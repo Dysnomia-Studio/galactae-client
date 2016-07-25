@@ -1,0 +1,506 @@
+/* Global Design for Computer Screens */
+body {
+	background-color: black;
+	font-family: Segoe UI Light;
+	cursor: url(../../img/mouse_cursor.png), auto;
+}
+
+/* Menu Design */
+
+/* Game Design */
+
+/* == Global Window == */
+#planet-content {
+	background: url(../../img/planets/1.jpg); /* Variable Background */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+    background-size: cover;
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#game-version {
+	text-align: right;
+	position: fixed;
+	font-size: 10px;
+	bottom: 5px;
+	right: 5px;
+	color: white;
+}
+
+#messagePanel {
+	position: fixed;
+	top: 55px;
+	left: 50%;
+	width: 300px;
+	margin-left: -150px;
+	background-color: rgba(190,190,190,0.5);
+	display: none;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	font-size: 23px;
+}
+
+/* == HUD == */
+/* Main */
+#hud-top-back {
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+}
+#hud-top {
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 90px;
+	color: rgb(180,180,180);
+}
+/* Center */
+#hud-top-center  {
+	list-style: none;
+}
+
+#hud-planet-prev {
+	position: fixed;
+	top: 3px;
+	left: 40%;
+	margin-left: -100px;
+	width: 10px;
+	font-weight: bold;
+}
+
+#hud-planet-prev:hover {
+	color: rgb(120,120,120);
+	cursor: pointer;
+}
+
+#hud-planet-name {
+	position: fixed;
+	top: 3px;
+	left: 40%;
+	width: 170px;
+	margin: 0;
+	margin-left: -85px;
+}
+
+#hud-username {
+	position: fixed;
+	top: 3px;
+	left: 40%;
+	margin-left: -210px;
+	width: 90px;
+	text-align: center;
+}
+
+#hud-user-money {
+	position: fixed;
+	top: 3px;
+	left: 40%;
+	margin-left: 120px;
+}
+#hud-user-money img, p {
+	vertical-align: middle;
+}
+.planet-name-text {
+	display: inline-block;
+	background-color: rgb(180,180,180);
+	border: 1px solid rgb(230,230,230);
+	text-align: center;
+	color: black;
+	width: 170px;
+	height: 20px;
+}
+
+#hud-planet-next {
+	position: fixed;
+	top: 3px;
+	left: 40%;
+	margin-left: 92px;
+	width: 10px;
+	font-weight: bold;
+}
+#hud-solar-system {
+	position: fixed;
+	top: 3px;
+	left: 40%;
+	margin-left: 160px;
+}
+/* Left */
+/* Ne fonctionne pas pour ecran < 1260px */
+#hud-top-left-content {
+	position: fixed;
+	top: 12px;
+	width: 290px;
+	left: calc(10.9% - 145px);
+	text-align: center;
+}
+/* Right */
+#hud-top-right-content {
+	position: fixed;
+	top: 12px;
+	width: 460px;
+	right: calc(21.9% - 230px);
+	text-align: center;
+}
+.nmb {
+	display: inline-block;
+	margin-right: 2px;
+}
+#element_fe {
+	margin-left: 10px;
+}
+.element {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#hud-top-left-content *, #hud-top-right-content * {
+	vertical-align: middle;
+	text-align: left;
+}
+/* == Chat == */
+#hud-chat {
+    background-image: url(../../img/hud-chat.png);
+    padding: 5px;
+    width: 460px;
+    height: 400px;
+	position: fixed;
+    right: 50px;
+    bottom: 50px;
+    text-align: center;
+}
+
+#chat_message {
+    background-color: rgba(255,255,255,0);
+    border: 1px solid #CCCCCC;
+    color: #DDDDDD;
+	display: inline;
+	width: 330px;
+	margin: 2px;
+	padding: 2px;
+}
+.chat_logs  {
+	list-style: none;
+	padding-left: 0;
+    margin: 0;
+}
+
+.chat_logs li {
+
+}
+
+#hud-chat form {
+	position: fixed;
+	right: 115px;
+	bottom: 55px;
+	width: 340px;
+	height: 30px;
+}
+
+#hud-chat-channels {
+	position: fixed;
+	right: 120px;
+	bottom: 420px;
+	width: 330px;
+    margin: 0;
+    padding: 0;
+    display: table;
+    background-color: rgba(0,0,0,0);
+}
+#hud-chat-channels li {
+    margin:0px;
+    padding:0px;
+    list-style: none;
+    display: table-cell;
+    width: 33.33%;
+   	margin: 0;
+	padding: 0;
+}
+#hud-chat-channels li a {
+    display: inline-block;
+    padding-top: 7px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    width: 100%;
+    color:#ffffff;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: rgba(240,240,240,0.2);
+    margin:0px; padding:0px;
+    margin-top:5px;
+    margin-bottom:6px;
+}
+
+#hud-chat-channels li a:hover {
+    background-color:#2f343a;
+}
+#hud-chat-channels li a.chatActive {
+    background-color: rgba(255,255,255,0.5);
+    color:#282e32;
+    display: block;
+}
+.chatContent {
+	position: fixed;
+	right: 100px;
+	bottom: 90px;
+    background-color: rgba(255,255,255,0);
+    color: #DDDDDD;
+    width: 350px;
+    height: 315px;
+    overflow: auto;
+    padding: 10px;
+    text-align: left;
+    margin: 0;
+    display: block;
+    font-size: 13px;
+}
+#hud-chat-sector, #hud-chat-ally { display:none; }
+
+/* == Constructions  == */
+#building-area {
+	display: none;
+	background-image: url(../../img/build-panel.png);
+	width: 580px;
+	height: 380px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -300px;
+	padding: 15px;
+	z-index: 1042;
+	color: #EEEEEE;
+}
+
+#building-name {
+	text-align: center;
+}
+
+#building-cost {
+	background-color: rgba(0,0,0,0.15);
+	border: 2px inset #BBBBBB;
+	color: #EEEEEE;
+	font-weight: bold;
+	padding: 10px;
+	width: 150px;
+	position: absolute;
+	bottom: 25px;
+	right: 25px;
+}
+#building-img {
+	position: absolute;
+	border: 3px inset #BBBBBB;
+	bottom: 25px;
+	left: 25px;
+	width: 365px;	
+}
+#building-upgrade {
+	border: 2px outset #BBBBBB;
+	width: 150px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+#building-quit {
+	position: absolute;
+	top: 6px;
+	right: 4px;
+	background-color: rgba(0,0,0,0);
+	border: 0px solid black;
+	color: white;
+	font-weight: bold;
+}
+.build-tab {
+	position: fixed;
+	left: 75px;
+	top: 50%;
+	margin-top: -202px;
+	width: 405px;
+}
+.build-title {
+	position: absolute;
+	top: -6px;
+	right: -5px;
+	color: #b4b4b4;
+	font-weight: bold;
+	margin: 0;
+	text-align: right;
+}
+#solar {
+	position: absolute;
+	top: 15px;
+	left: 100px;
+	z-index: 100;
+}
+#warehouse {
+	position: absolute;
+	top: 72px;
+	left: 15px;
+	z-index: 100;
+}
+#tank {
+	position: absolute;
+	top: 67px;
+	left: 172px;
+	z-index: 100;
+}
+#living {
+	position: absolute;
+	bottom: 65px;
+	left: 96px;
+	z-index: 100;
+}
+#serre {
+	position: absolute;
+	bottom: 170px;
+	left: 95px;
+	z-index: 100;
+}
+#research {
+	position: absolute;
+	bottom: 10px;
+	left: 20px;
+	z-index: 100;
+}
+#concasseur {
+	position: absolute;
+	top: 270px;
+	left: 165px;
+	z-index: 100;	
+}
+#launchpad {
+	position: absolute;
+	top: 365px;
+	left: 175px;
+	z-index: 100;	
+}
+#carriere {
+	position: absolute;
+	bottom: 235px;
+	left: 15px;
+	z-index: 100;	
+}
+/*Space Buildings */
+@media all and (min-height: 790px) {
+		.space-tab {
+		position: fixed;
+		right: 250px;
+		top: 100px;
+		width: 205px;
+	}
+}
+@media all and (max-height: 790px) {
+		.space-tab {
+		position: fixed;
+		right: 750px;
+		top: 100px;
+		width: 205px;
+	}
+}
+
+.space-title {
+	position: absolute;
+	top: -20px;
+	left: 0px;
+	color: #b4b4b4;
+	font-weight: bold;
+	margin: 0;
+	text-align: right;
+}
+
+.space-tab-background {
+	opacity: 0.65;
+}
+
+/* LoadScreen */
+#loading-overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: black;
+	background-image: url(../../img/loading.jpg);
+	background-attachment:fixed;
+	background-position:center;
+	background-repeat: no-repeat;
+    background-size: cover;
+	z-index: 500;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+}
+#loading-overlay-text {
+	position: fixed;
+	top: 50%;
+	margin-top: -150px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: 501;
+}
+#loading-overlay-img {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -100px;
+	margin-top: -100px;
+	text-align: center;
+	z-index: 501;
+}
+#loading-overlay-desc {
+	position: fixed;
+	top: 50%;
+	margin-top: 150px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: 501;
+}
+
+/* == Solar System == */
+#system-map {
+	background: url(../../img/space-background/1.jpg); /* Variable Background */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+    background-size: cover;
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: none;
+	text-align: center;
+}
+#map {
+	display: inline-block;
+	max-height: 100%;
+	max-width: 100%;
+}
+#hud-system-back {
+	background-color: #000000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	color: white;
+}
