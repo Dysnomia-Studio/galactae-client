@@ -59,7 +59,6 @@ include_once('./lib/php/lang.php');
     <script src="lib/js/socket.js"></script>
     <script src="lib/js/draw.js"></script>
     <script src="lib/js/chat.js"></script>
-    <script src="lib/js/canvas.js"></script>
 </head>
 
 <body>
