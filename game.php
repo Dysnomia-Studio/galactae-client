@@ -99,5 +99,5 @@ if(!isset($_SESSION['username'])||$_SESSION['username']=="") { header('Location:
 		<canvas id="map" width="1920" height="940"></canvas>
 		<div id="hud-system-back">Back to the planet</div>
 	</div>
-	<div id="game-version">Alpha-0.1.0-160725c<br />Created By Elanis - Copyright 2016</div>
+	<div id="game-version">Alpha-0.1.1-160726a<br />Created By Elanis - Copyright 2016</div>
 </body>
