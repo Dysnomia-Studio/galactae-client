@@ -31,7 +31,7 @@ include_once('./lib/php/lang.php');
 	<meta name="author" content="Elanis">
 	<!-- CSS INCLUDE -->
 	<link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
-	<link rel="stylesheet" media="screen" type="text/css" title="Design" href="./lib/css/style.css"/>
+	<link rel="stylesheet" media="screen" type="text/css" title="Design" href="lib/css/style.css"/>
 
 	<!-- JAVASCRIPT INCLUDE -->
 	<!-- JQuery Lib -->
@@ -64,6 +64,6 @@ include_once('./lib/php/lang.php');
 <body>
     <div id="loading-overlay">
     	<div id="loading-overlay-text">Loading game ...</div>
-    	<img id="loading-overlay-img" src="../../img/load-gears.gif" alt="loading-overlay">
+    	<img id="loading-overlay-img" src="img/load-gears.gif" alt="loading-overlay">
     	<div id="loading-overlay-desc">Connecting to server ...</div>
     </div>

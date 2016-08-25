@@ -1,7 +1,7 @@
 <?php
 include_once('lib/base.php'); 
 
-if(!isset($_SESSION['username'])||$_SESSION['username']=="") { header('Location: index.php'); }
+if(!isset($_SESSION['username'])||$_SESSION['username']=="") { header('Location: ../index.php'); }
 ?>
 	<div id="planet-content">
 		<div id="messagePanel">
