@@ -5,6 +5,24 @@ body {
 	cursor: url(../../img/mouse_cursor.png), auto;
 }
 
+/* Securité Portrait */
+@media all and (orientation: landscape) {
+	body {
+		display: block;
+	}
+	#portrait-warn {
+		display: none;
+	}
+}
+@media all and (orientation: portrait) {
+	body {
+		display: none;
+	}
+	#portrait-warn {
+		display: block;
+	}
+}
+
 /* Menu Design */
 
 /* Game Design */
@@ -115,6 +133,16 @@ body {
 #hud-user-money img, p {
 	vertical-align: middle;
 }
+
+#hud-settings {
+	position: fixed;
+	top: 3px;
+	left: 40%;
+	margin-left: -250px;
+	width: 30px;
+	text-align: center;
+}
+
 .planet-name-text {
 	display: inline-block;
 	background-color: rgb(180,180,180);
@@ -133,31 +161,30 @@ body {
 	width: 10px;
 	font-weight: bold;
 }
-#hud-solar-system {
-	position: fixed;
-	top: 3px;
-	left: 40%;
-	margin-left: 160px;
+#hud-username:hover, #hud-settings:hover {
+	cursor: pointer;
 }
+
 /* Left */
 /* Ne fonctionne pas pour ecran < 1260px */
 #hud-top-left-content {
-	position: fixed;
+	position: absolute;
 	top: 12px;
-	width: 290px;
-	left: calc(10.9% - 145px);
+	width: 18vw;
+	left: 1em;
+	margin: 0 1em;
 	text-align: center;
 }
 /* Right */
 #hud-top-right-content {
 	position: fixed;
 	top: 12px;
-	width: 500px;
-	right: calc(21.9% - 250px);
+	width: 40vw;
+	right: 1em;
+	margin: 0 1em;
 	text-align: center;
 }
 .nmb {
-	display: inline-block;
 	margin-right: 2px;
 }
 #element_fe {
@@ -165,31 +192,115 @@ body {
 }
 .element {
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 1.2em;
+}
+/* Tooltips */
+.hud-top-tooltip, .hud-top-tooltip-content {
+	display: inline-block;
+}
+.hud-top-tooltip-content {
+    visibility: hidden;
+    width: 150px;
+    background-color: #222222;
+    text-align: center !important;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 0.7em;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 101;
+    top: 125%;
+    left: 50%;
+
+    /* Fade in tooltip */
+    opacity: 0;
+}
+.hud-top-left-content .hud-top-tooltip-content {
+    margin-left: -30px;
+}
+#minerals-tooltips {
+    margin-left: -250px;
+}
+#he-tooltips {
+    margin-left: -170px;
+}
+#al-tooltips {
+    margin-left: -110px;
+}
+#fe-tooltips {
+    margin-left: -50px;
+}
+#ti-tooltips {
+    margin-left: 10px;
+}
+#cu-tooltips {
+    margin-left: 70px;
+}
+/* Tooltip arrow */
+.hud-top-tooltip-content::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #222222 transparent transparent transparent;
+    transform: rotate(180deg);
+}
+/* Events */
+.hud-top-tooltip:hover .hud-top-tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}
+/* == SETTINGS MENU == */
+#settings-menu {
+	position: fixed;
+	top: calc(50% - 145px);
+	left: calc(50% - 125px);
+	width: calc(290px);
+	height: calc(250px);
+	display: none;
+	background-image: url(../../img/hud-chat.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	font-size: 1.4em;
+	z-index: 200;
+}
+#settings-menu a {
+	color: white;
+	text-decoration: none;
+}
+#settings-menu a:hover {
+	font-weight: bold;
+}
+#close-settings-tabs {
+	position: absolute;
+	top: 10px;
+	right: 35px;
 }
 
-#hud-top-left-content *, #hud-top-right-content * {
-	vertical-align: middle;
-	text-align: left;
-}
 /* == Chat == */
 #hud-chat {
     background-image: url(../../img/hud-chat.png);
-    padding: 5px;
-    width: 460px;
-    height: 400px;
+    background-size: cover;
+    width: 24vw;
+    height: 20.9vw;
 	position: fixed;
-    right: 50px;
-    bottom: 50px;
+    right: 2.6vw;
+    bottom: 5.3vh;
     text-align: center;
+    z-index: 100;
 }
-
 #chat_message {
     background-color: rgba(0,0,0,0);
     border: 1px solid #0ec6c6;
     color: #DDDDDD;
 	display: inline;
-	width: 330px;
+	width: 17.2vw;
 	height: 15px;
 	margin: 2px;
 	padding: 2px;
@@ -199,76 +310,66 @@ body {
 	padding-left: 0;
     margin: 0;
 }
-
-.chat_logs li {
-
-}
-
 #hud-chat form {
-	position: fixed;
-	right: 115px;
-	bottom: 55px;
-	width: 340px;
+	position: absolute;
+	right: 3.125vw;
+	bottom: 5px;
+	width: 17.7vw;
 	height: 30px;
 }
 
 #hud-chat-channels {
-	position: fixed;
-	right: 120px;
-	bottom: 420px;
-	width: 330px;
+	position: absolute;
+	top: 5px;
+	right: 3.5vw;
+	width: 17vw;
     margin: 0;
+    margin-top: 3px;
     padding: 0;
     display: table;
-    background-color: rgba(0,0,0,0);
+    border: 1px solid #0EC6C6;
+    border-radius: 5px;
 }
 #hud-chat-channels li {
     list-style: none;
     display: table-cell;
     width: 33.33%;
-   	margin: 0;
 	padding: 0;
-}
-#hud-chat-channels li a {
-    display: inline-block;
-    padding-top: 7px;
     height: 20px;
     line-height: 20px;
     text-align: center;
-    width: 100%;
     color:#ffffff;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     text-decoration: none;
     font-size: 10px;
     font-weight: bold;
-    background-color: rgba(170,170,170,0.25);
-    padding:0px;
-    margin-top:5px;
-    margin-bottom:6px;
-   	margin-right: 2px;
-   	margin-left: 2px;
 }
-#hud-chat-channels li a.chatActive {
-    background-color: rgba(147,252,251,0.75);
+#hud-chat-channels li:first-child {
+	border-right: 1px solid #0EC6C6;
+}
+#hud-chat-channels li:last-child {
+	border-left: 1px solid #0EC6C6;
+}
+#hud-chat-channels .chatActive {
+    background-color: #0EC6C6 !important;
     color:#222222;
-    display: block;
 }
 .chatContent {
-	position: fixed;
-	right: 100px;
-	bottom: 90px;
+	position: absolute;
+	right: calc((100% - 18vw - 20px)/2);
+	bottom: 40px;
     background-color: rgba(255,255,255,0);
     color: #DDDDDD;
-    width: 350px;
-    height: 315px;
+    width: 18vw;
+    height: calc(100% - 90px);
     overflow: auto;
     padding: 10px;
     text-align: left;
     margin: 0;
     display: block;
-    font-size: 13px;
+    font-size: 0.8em;
 }
-#hud-chat-sector, #hud-chat-ally { display:none; }
+#hud-chat-trade, #hud-chat-ally { display:none; }
 
 /* == Constructions  == */
 #building-area {
@@ -282,7 +383,7 @@ body {
 	margin-top: -200px;
 	margin-left: -300px;
 	padding: 15px;
-	z-index: 1042;
+	z-index: 142;
 	color: #EEEEEE;
 }
 
@@ -333,97 +434,119 @@ body {
 }
 .build-title {
 	position: absolute;
-	top: -6px;
-	right: -5px;
+	top: 13px;
+	right: -10px;
+	width: 140px;
 	color: #b4b4b4;
 	font-weight: bold;
+	font-size: 0.8em;
 	margin: 0;
-	text-align: right;
+	text-align: center;
 }
-#solar {
+/* Icones */
+#carriere, #metallurgy, #living, #serre, #solar, #warehouse, #tank, #launchpad, #research {
 	position: absolute;
-	top: 15px;
-	left: 100px;
 	z-index: 100;
-}
-#warehouse {
-	position: absolute;
-	top: 72px;
-	left: 15px;
-	z-index: 100;
-}
-#tank {
-	position: absolute;
-	top: 67px;
-	left: 172px;
-	z-index: 100;
-}
-#living {
-	position: absolute;
-	bottom: 65px;
-	left: 96px;
-	z-index: 100;
-}
-#serre {
-	position: absolute;
-	bottom: 170px;
-	left: 95px;
-	z-index: 100;
-}
-#research {
-	position: absolute;
-	bottom: 10px;
-	left: 20px;
-	z-index: 100;
-}
-#concasseur {
-	position: absolute;
-	top: 270px;
-	left: 165px;
-	z-index: 100;	
-}
-#launchpad {
-	position: absolute;
-	top: 365px;
-	left: 175px;
-	z-index: 100;	
 }
 #carriere {
-	position: absolute;
-	bottom: 235px;
-	left: 15px;
-	z-index: 100;	
+	bottom: 240px;
+	left: 23px;
+}
+#metallurgy {
+	top: 275px;
+	left: 175px;
+}
+#living {
+	bottom: 80px;
+	left: 106px;
+}
+#serre {
+	bottom: 175px;
+	left: 100px;
+}
+#solar {
+	top: 20px;
+	left: 115px;
+}
+#warehouse {
+	top: 77px;
+	left: 21px;
+}
+#tank {
+	top: 63px;
+	left: 181px;
+}
+#launchpad {
+	top: 370px;
+	left: 183px;
+}
+#research {
+	bottom: 25px;
+	left: 33px;
+}
+/*lvls */
+#lvl-carriere, #lvl-metallurgy, #lvl-living, #lvl-serre, #lvl-solar, #lvl-warehouse, #lvl-tank, #lvl-launchpad, #lvl-research {
+    position: absolute;
+    z-index: 100;
+    color: white;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+    font-size: 0.9em;
+}
+#lvl-carriere {
+	bottom: 218px;
+	left: 37px;
+}
+#lvl-metallurgy {
+	top: 335px;
+	left: 188px;
+}
+#lvl-living {
+	bottom: 62px;
+	left: 113px;
+}
+#lvl-serre {
+	bottom: 165px;
+	left: 113px;
+}
+#lvl-solar {
+	top: 79px;
+	left: 115px;
+}
+#lvl-warehouse {
+	top: 130px;
+	left: 37px;
+}
+#lvl-tank {
+	top: 130px;
+	left: 190px;
+}
+#lvl-launchpad {
+	bottom: 12px;
+	left: 189px;
+}
+#lvl-research {
+	bottom: 12px;
+	left: 35px;
 }
 /*Space Buildings */
-@media all and (min-height: 720px) {
-		.space-tab {
-		position: fixed;
-		right: 250px;
-		top: 100px;
-		width: 205px;
-	}
+.space-tab {
+	position: fixed;
+	right: 100px;
+	top: 100px;
+	width: 500px;
 }
-@media all and (max-height: 720px) {
-		.space-tab {
-		position: fixed;
-		right: 750px;
-		top: 100px;
-		width: 205px;
-	}
-}
-
 .space-title {
 	position: absolute;
-	top: -20px;
-	left: 0px;
+	top: 13px;
+	left: 7px;
 	color: #b4b4b4;
+	font-size: 0.8em;
 	font-weight: bold;
+	width: 143px;
 	margin: 0;
-	text-align: right;
-}
-
-.space-tab-background {
-	opacity: 0.65;
+	text-align: center;
 }
 
 /* LoadScreen */
@@ -473,7 +596,7 @@ body {
 }
 
 /* == Solar System == */
-#system-map {
+#hud-map {
 	background: url(../../img/space-background/1.jpg); /* Variable Background */
 	background-attachment: fixed;
 	background-position: center;
@@ -493,14 +616,39 @@ body {
 	display: inline-block;
 	max-height: 100%;
 	max-width: 100%;
+	z-index: 99;
 }
-#hud-system-back {
-	background-color: #000000;
+/* Buttons */
+#map-button, #chat-button, #research-button, #moves-button { /* Global Design */
 	position: fixed;
-	top: 0;
-	left: 0;
+	background-image: url(../../img/hud-button.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
 	color: white;
-	font-weight: bold;
-	font-size: 20px;
-	padding-left: 5px;
+	width: 32vh;
+	height: 3.51vh;
+	z-index: 100;
+	text-align: center;
+	font-size: 0.9em;
+	text-transform: uppercase;
+	padding-bottom: 0.1em;
+}
+#chat-button, #research-button { /* Right Buttons */
+	transform: rotate(-90deg);
+	right: calc(-15.5vh + 5px); /* 0 - ( half width ) */
+}
+#chat-button {
+	bottom: calc(30px + 16vh - 5px);
+}
+#research-button {
+	top: calc(50px + 16vh - 5px);
+}
+#moves-button {
+	bottom: -0.5vh;
+	left: calc(50% - 16vh - 5px);
+}
+#map-button {
+	top: calc(50px + 16vh - 5px);
+	left: calc(-15vh + 5px); /* 0 - ( half width ) */
+	transform: rotate(90deg);
 }
