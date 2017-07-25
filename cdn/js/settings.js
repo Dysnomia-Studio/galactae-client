@@ -1,0 +1,21 @@
+class settings {
+	static init() {
+		Notification.permission = getCookie('galactae-settings-notifs');
+
+		loadScreen.complete();
+	}
+	static loadUI() {
+		$("#hud-settings").click(function () {
+			if(ui.menu) {
+				ui.closeTab("#settings-menu");
+			} else {
+				$("#settings-menu").css('display','block');
+			}
+			ui.menu = !(ui.menu);
+		});
+		$("#close-settings-tabs").click(function() {
+			ui.closeTab("#settings-menu");
+			ui.menu = false;
+		});
+	}
+}
