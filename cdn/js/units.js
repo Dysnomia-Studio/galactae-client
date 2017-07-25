@@ -123,7 +123,7 @@ class units {
 		}
 		$('#fleet-type-create-shipShape').html(selectShipShape);
 
-		units.drawShipShape(shipShapesDetails[type][shape]['svg']);
+		units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
 		units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
 	}
 
@@ -131,37 +131,57 @@ class units {
 		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
 
-		units.drawShipShape(shipShapesDetails[type][shape]['svg']);
+		units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
 		units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
 	}
 
-	static drawShipShape(shape) {
+	static drawShipShape(shape,content) {
 		var svgContent = "";
 
 		for(var i=0; i<shape.length; i++) {
-			if(shape[i][1]=="rect") {
-				svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '"/>';
-			} else if(shape[i][1]=="circle") {
-				svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '"/>'
-			} else if(shape[i][1]=="line") {
-				svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '"/>'
-			} else if(shape[i][1]=="path") {
-				svgContent += '<path class="' + shape[i][0] + '" d="';
+			// Draw shape
+			switch(shape[i][1]) {
+				case "rect":
+					svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '">';
+					break;
+				case "circle":
+					svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '">';
+					break;
+				case "line":
+					svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '">';
+					break;
+				case "path":
+					svgContent += '<path class="' + shape[i][0] + '" d="';
 
-				for(var j=2; j<shape[i].length; j++) {
-					svgContent += shape[i][j] + " ";
-				}
+					for(var j=2; j<shape[i].length; j++) {
+						svgContent += shape[i][j] + " ";
+					}
 
-				svgContent += '" />'
-			}  else { // Poly
-				svgContent += '<polygon class="' + shape[i][0] + '" points="';
+					svgContent += '" >';
+					break;
+				default: // Poly
+					svgContent += '<polygon class="' + shape[i][0] + '" points="';
 
-				for(var j=2; j<shape[i].length; j+=2) {
-					svgContent += shape[i][j] + "," + shape[i][j+1] + " ";
-				}
+					for(var j=2; j<shape[i].length; j+=2) {
+						svgContent += shape[i][j] + "," + shape[i][j+1] + " ";
+					}
 
-				svgContent += '" />'
+					svgContent += '" >';
 			}
+
+			// Draw content
+			if(shape[i][0] != "struct") {
+				svgContent += "<select>";
+
+				for(var j=0; j<content[shape[i][0]].length; j++) {
+					svgContent += '<option id="'+ content[shape[i][0]][j] + '">' + content[shape[i][0]][j] + "</option>";
+				}
+
+				svgContent += "</select>";
+			}
+
+			// End shape
+			svgContent += "</" + shape[i][1] + ">";
 		}
 		$('#fleet-type-create-schematic').html(svgContent);
 	}
