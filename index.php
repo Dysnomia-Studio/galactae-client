@@ -1,14 +1,13 @@
 <?php
-include_once('lib/config.php'); 
-
 if(isset($_SESSION['game_id'])) {
-	setcookie ( "galactae-account-id", $_SESSION['game_id'], time()+60*60*24*7,"/", ".***REMOVED***",true, false);
-	setcookie ( "galactae-account-id", $_SESSION['game_id'], time()+60*60*24*7,"/", "***REMOVED***",true, false);
+	setcookie ( "galactae-account-id", $_SESSION['game_id'], time()+60*60*24*7,"/", ".galactae.elanis.eu",true, false);
+	setcookie ( "galactae-account-id", $_SESSION['game_id'], time()+60*60*24*7,"/", "galactae.elanis.eu",true, false);
 }
 
+include_once('lib/init.php'); 
 // No Username and/or Id
 if(!isset($_COOKIE['galactae-account-username']) ||$_COOKIE['galactae-account-username']=="" || !isset($_COOKIE['galactae-account-bid']) ||$_COOKIE['galactae-account-bid']=="") {
-	header('Location: https://***REMOVED***');
+	echo '<script> window.location="https://galactae.elanis.eu"; </script>';
 }
 
 if(isset($db)) { //Maybe we don't have SQL connection ...
@@ -23,7 +22,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 	
 	if(!isset($data['user_name'])) { // Verif d'existance du compte SQL
-		header('Location: https://***REMOVED***');
+	    echo '<script> window.location="https://galactae.elanis.eu"; </script>';
 	}
 
 	// Check user datas
@@ -32,7 +31,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 
 	// Lvl Check
 	if($_SESSION['level']<2) { // Verif du niveau
-		header('Location: https://***REMOVED***');
+		echo '<script> window.location="https://galactae.elanis.eu"; </script>';
 	}
 
 	if(isset($_POST['choice'])) {
@@ -52,6 +51,6 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		include_once('game.php');
 	}
 } else { // SQL Connect Check end
-	header('Location: https://***REMOVED***');
+	echo '<script> window.location="https://galactae.elanis.eu"; </script>';
 }
 ?>

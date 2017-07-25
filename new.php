@@ -22,19 +22,19 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 	<div class="gvt-choice">
 		<h1>Président</h1>
 		<p>En tant que président, vous êtes représentant de votre parti politique. Vous prenez le contrôle des planètes où votre parti a été élu officiellement (enfin presque).</p>
-
+		<br/>
 		<span id="choosebtn1" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>
 	<div class="gvt-choice">
 		<h1>PDG</h1>
 		<p>Le PDG d'un conglomérat dirige son entreprise et les planètes possedées par celle-ci. Votre conglomérat pourra agrandir son influence en achetant des planètes, en respectant plus ou moins les lois.</p>
-
+		<br/>
 		<span id="choosebtn2" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>
 	<div class="gvt-choice">
 		<h1>Empereur</h1>
 		<p>L'Empreur est le héros du peuple, il libère vailliamant les planètes sous le joug des tyrans, les révolutions populaires sont la voix d'accession au pouvoir de l'empereur. Et bien sûr, l'empreur n'a jamais tord ...</p>
-
+		<br/>
 		<span id="choosebtn3" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>
 
@@ -93,6 +93,6 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 
 	$_SESSION['game_id'] = $mongoData['_id'];
 
-	header('Location: index.php');
+	echo '<script> window.location="https://01-milkyway.galactae.elanis.eu"; </script>';
 }
 ?>
