@@ -1,40 +1,45 @@
 <?php
 // Verif du client sur mongo
-$manager = new MongoDB\Driver\Manager("***REMOVED***");
+$manager = new MongoDB\Driver\Manager($dburl );
 
-$filter = ['name' => $_COOKIE['galactae-account-username'] ];
+$filter = ['name' => $_SESSION['username'] ];
 
 $query = new MongoDB\Driver\Query($filter);
-$cursor = $manager->executeQuery('spacegame.users', $query);
+$cursor = $manager->executeQuery($dbname.'.users', $query);
 
-$mongoData = array();
-
-foreach ($cursor as $document) {
-    foreach ($document as $key => $value) {
-    	$mongoData[$key] = $value;
-    }
-    break;
-}
+$mongoData = $cursor->toArray();
 
 if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo ) => Panel de choix de gvt
 ?>
 <div id="gvt-choicelist">
+	<div class="gvt-mainText">
+		Bienvenue <?php echo $data['user_name']; ?> ! Quel type de dirigant êtes vous ?
+	</div>
 	<div class="gvt-choice">
 		<h1>Président</h1>
-		<p>En tant que président, vous êtes représentant de votre parti politique. Vous prenez le contrôle des planètes où votre parti a été élu officiellement (enfin presque).</p>
-		<br/>
+		<div class="gvt-desc">
+			<p>Il est la tête de proue de son parti politique depuis peu, mais il fait déjà parler de lui. Les foules s'assemblent rien qu'à l'énonciation de son nom, et il compte bien se servir de cet avantage pour accroitre son emprise sur la galaxie.
+			<br/>
+			Sa carrière lui a permis de savoir cerner les besoins des gens, et ainsi sous sa direction, le peuple est plus facilement satisfait.
+			</p>
+		</div>
 		<span id="choosebtn1" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>
 	<div class="gvt-choice">
 		<h1>PDG</h1>
-		<p>Le PDG d'un conglomérat dirige son entreprise et les planètes possedées par celle-ci. Votre conglomérat pourra agrandir son influence en achetant des planètes, en respectant plus ou moins les lois.</p>
-		<br/>
+		<div class="gvt-desc">
+			<p>À la tête d'un conglomérat, il dirige ses planètes dans le but de toujours augmenter ses profits. Il lui a fallu faire des OPA chez ses concurrents afin de prendre le contrôle de sa planète, et cette expérience lui permettra d'en prendre d'autres ...<br/>
+			Sa grande maîtrise des outils économiques va lui permettre d'éviter les taxes galactiques lors des échanges commerciaux</p>
+		</div>
 		<span id="choosebtn2" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>
 	<div class="gvt-choice">
 		<h1>Empereur</h1>
-		<p>L'Empreur est le héros du peuple, il libère vailliamant les planètes sous le joug des tyrans, les révolutions populaires sont la voix d'accession au pouvoir de l'empereur. Et bien sûr, l'empreur n'a jamais tord ...</p>
-		<br/>
+		<div class="gvt-desc">
+			<p>L'Empreur est le héros du peuple, il libère vailliamant les planètes sous le joug des tyrans. Un coup d'êtat après l'autre, il augmente son emprise sur la galaxie ...
+			<br/>
+			Il dirige d'une main de fer ses armées, ce qui lui permet une meilleur efficacité lors des combat</p>
+		</div>
 		<span id="choosebtn3" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>
 
@@ -59,17 +64,18 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 			choice2.className = "gvt-choosebtn gvt-btn";
 			choice3.className = "gvt-choosebtn gvt-btn";
 
-			choice.value = chx;
-
 			switch(chx) {
 				case 1:
 					choice1.className = "gvt-choosebtn gvt-btn gvt-btn-active";
+					choice.value = chx;
 				break;
 				case 2:
 					choice2.className = "gvt-choosebtn gvt-btn gvt-btn-active";
+					choice.value = chx;
 				break;
 				case 3:
 					choice3.className = "gvt-choosebtn gvt-btn gvt-btn-active";
+					choice.value = chx;
 				break;
 				default:
 					// Do Nothing
@@ -87,9 +93,9 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 </script>
 <?php
 } else { // Update du SQL (autofix)
-	$db->updateContent('users',
-			["user_name",$_COOKIE['galactae-account-username']],
-			["game_id",$mongoData['_id']]);
+	$db->updateContent('game_id',
+			[["id",$data['user_id']]],
+			[["game_id",$mongoData['_id']]]);
 
 	$_SESSION['game_id'] = $mongoData['_id'];
 

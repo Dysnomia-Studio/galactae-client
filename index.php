@@ -1,23 +1,21 @@
 <?php
-if(isset($_SESSION['game_id'])) {
-	setcookie ( "galactae-account-id", $_SESSION['game_id'], time()+60*60*24*7,"/", ".galactae.elanis.eu",true, false);
-	setcookie ( "galactae-account-id", $_SESSION['game_id'], time()+60*60*24*7,"/", "galactae.elanis.eu",true, false);
-}
-
 include_once('lib/init.php'); 
-// No Username and/or Id
-if(!isset($_COOKIE['galactae-account-username']) ||$_COOKIE['galactae-account-username']=="" || !isset($_COOKIE['galactae-account-bid']) ||$_COOKIE['galactae-account-bid']=="") {
-	echo '<script> window.location="https://galactae.elanis.eu"; </script>';
-}
-
+include_once('gvars.php'); 
+?>
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
+<?php
 if(isset($db)) { //Maybe we don't have SQL connection ...
+	// No PHPSESSID
+	if(!(isset($_COOKIE['galactae-phpsessid']))) {
+		echo '<script> window.location="https://galactae.elanis.eu"; </script>';
+	}
+
 	// SQL Get Data
 	$data = $db->getCondContent("users",[
-		["user_name",strtolower($_COOKIE['galactae-account-username']),"str"],
-		["user_id",intval($_COOKIE['galactae-account-bid']),"int"]
+		["session_id",$_COOKIE['galactae-phpsessid'],"str"]
 		],0,1,"user_id");
 
-	if($data!=false&&isset($data[0])) {
+	if($data!=false && isset($data[0])) {
 		$data = $data[0];
 	}
 	
@@ -25,29 +23,41 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	    echo '<script> window.location="https://galactae.elanis.eu"; </script>';
 	}
 
-	// Check user datas
-	$_SESSION['level'] = $data['user_lvl'];
-	$_SESSION['game_id'] = $data['game_id'];
-
 	// Lvl Check
-	if($_SESSION['level']<2) { // Verif du niveau
+	if($data['user_lvl']<2) { // Verif du niveau
 		echo '<script> window.location="https://galactae.elanis.eu"; </script>';
 	}
 
-	if(isset($_POST['choice'])) {
-		$choice = (int) $_POST['choice'];
-	} else {
-		$choice = 0;
+	// SQL Get Data
+	$data2 = $db->getCondContent("game_id",[
+		["id",$data['user_id'],"int"],
+		["server_name",$dbname,"str"]
+		],0,1,"id");
+
+	if($data2!=false && isset($data2[0])) {
+		$data2 = $data2[0];
 	}
 
 	// Create account if needed
-	if((!isset($_SESSION['game_id']) || $_SESSION['game_id']=="" || $_SESSION['game_id']=="-1")) { // Verif d'existance du compte ( côté SQL )
+	if(!isset($data2['game_id']) || $data2['game_id']=="-1") { // Verif d'existance du compte ( côté SQL )
+
+	    if(isset($_POST['choice'])) {
+			$choice = (int) $_POST['choice'];
+		} else {
+			$choice = 0;
+		}
+
 		if($choice > 0 && $choice < 4) {  // Traitement
 			include_once('newconfirm.php');
 		} else { // Choix
 			include_once('new.php');
 		}
 	} else { // Play !
+	   	echo '
+			<script type="text/javascript" src="'.$cdnURL.'js/cookies.js"></script>
+			<script type="text/javascript">
+					setGvars("'.$data2['game_id'].'","'.$data['user_name'].'");
+			</script>';
 		include_once('game.php');
 	}
 } else { // SQL Connect Check end

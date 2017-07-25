@@ -8,40 +8,32 @@
 	define('ENERGY','Consommation Energetique');
 	define('TIME','Temps');
 	define('BUILD','Construire');
+	define('CAPACITY','Capacité');
+	define('PRODUCTION','Production');
+	define('CONSUMPTION','Consommation');
+	define('IMPORTANCE','Presence');
 
 	// == Buildings == \\
 	define('PLANET_BUILDING','Constructions à la Surface');
 	define('ORBITAL_BUILDING','Constructions en Orbite');
-
-	// == Fleets == \\
-	define('FLEET_BUILD_NAME','Nom');
-	define('FLEET_BUILD_TYPE','Type');
-	define('FLEET_BUILD_NOTE','Evaluation');
-	define('FLEET_BUILD_N_OWN','Nombre possédés');
-	define('FLEET_BUILD_CREATE','Nouveau modele');
-	define('SHIP_ATTACK','Attaque');
-	define('SHIP_SHIELD','Bouclier');
-	define('SHIP_ROLE','Role');
-	define('SHIP_PROPULSION','Moteurs');
-	define('SHIP_MISS_CHANCE','Probabilité d\'evitement');
 ?>
 <script type="text/javascript">
 	var planetBuilding = [
 		// ground
-		{id: "carriere", name: "Carriere", desc: "Les carrières vont extraire les minerais bruts du sol de la planète."},
+		{id: "carriere", name: "Carrieres", desc: "Les carrières vont extraire les minerais bruts du sol de la planète."},
 		{id: "metalurgie", name: "Metallurgie", desc: "Les minerais bruts seront ici traités et les metaux extraits."},
-		{id: "living",name: "Habitations", desc: "Les batiments dans lesquels vivent la population."},
-		{id: "serre", name: "Serres", desc: "C\'est dans ces endroits que pousse la nourriture."},
+		{id: "living",name: "Habitations", desc: "Les habitations hebergent la population stationnée sur la planète."},
+		{id: "serre", name: "Serres", desc: "Les serres sont la principale source de nourriture pour la population."},
 		{id: "solar", name: "Centrales Solaires", desc: "Ces centrales transforment l\'energie solaire en energie electrique." },
-		{id: "warehouse", name: "Entrepots", desc: "Ces batiments stockeront les solides (minerais bruts et metaux)" },
-		{id: "headquarter", name: "Etat Major", desc: "L'Etat Major vous permet de gerer vos differentes flottes, ainsi que les défenses de votre planète." },		
-		{id: "launchpad", name: "Centre Spatial", desc: "C\'est ici que seront construites et lancées vos unités et bâtiments spatiaux de base." },
-		{id: "research", name: "Centre de recherches", desc: "Ici, vous pourrez gerer toutes les recherches scientifiques de cette planète." },
+		{id: "warehouse", name: "Entrepots", desc: "Dans les entrepôts sont stockés les minerais bruts ainsi que les metaux traités." },
+		{id: "headquarter", name: "Etat Major", desc: "L'Etat Major est le centre névralgique de la gestion des flottes et du système millitaire de la planète." },		
+		{id: "launchpad", name: "Centre Spatial", desc: "Le centre spatial gère la création des défenses spatiales, des chasseurs ainsi que l'acheminements des ressources necessaires à la création de bâtiments spatiaux." },
+		{id: "research", name: "Centre de recherches", desc: "Les differents centres de recherches de vos planètes travaillent ensemble afin de découvrir de nouvelles technologies." },
 		// Space
-		{id: "radar", name: "Satellite Radar", desc: "Ce satellite vous permettra de dectecter les flottes de plus en plus loin avec ses evolutions." },
-		{id: "tank", name: "Réservoirs", desc: "Ces batiments stockeront l'helium 3." },
-		{id: "shipyard", name: "Chantier Naval", desc: "Le chantier naval vous permet de concevoir  ainsi que de construire vos differents vaisseaux." },
-		{id: "trade", name: "Hub Commercial", desc: "Cette station est le centre névralgique de toutes les activités commerciales de votre planète." },
+		{id: "radar", name: "Satellite Radar", desc: "Le Satellite Radar vous permet de détecter les flottes à une certaine distance de votre planète, il permet aussi de communiquer avec vos flottes en mouvement." },
+		{id: "tank", name: "Réservoirs", desc: "Cette station spatiale stocke l'helium 3." },
+		{id: "shipyard", name: "Chantier Naval", desc: "Le chantier naval vous permet de concevoir ainsi que de construire vos differents vaisseaux." },
+		{id: "trade", name: "Hub Commercial", desc: "Cette station est le centre névralgique de toutes les activités commerciales autour de votre planète." },
 		{id: "he3exp", name: "Station d'exploitation d'Helium 3", desc: "Cette station va exploiter les astéroides environnants afin de recuperer automatiquement de l'helium 3." },
 		];
 </script>

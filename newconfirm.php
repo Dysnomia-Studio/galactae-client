@@ -1,6 +1,6 @@
 <?php
 // Create new mongo user
-$manager = new MongoDB\Driver\Manager("***REMOVED***");
+$manager = new MongoDB\Driver\Manager($dburl);
 
 // Prepare vars
 $users_gameId = new MongoDB\BSON\ObjectID();
@@ -27,7 +27,8 @@ $planet = [
 	"planetType" => 0,
 	"nextBuilding" => -1,
 	"nextBuildingTime" => -1,
-	"lastResourcesUpdate" => time()*1000
+	"lastResourcesUpdate" => time()*1000,
+	"currResearch" => ""
 ];
 
 $user['planetlist'] = [new MongoDB\BSON\ObjectID($planet['_id'])];
@@ -40,16 +41,18 @@ $bulkUsers->insert($user);
 $bulkPlanets = new MongoDB\Driver\BulkWrite(['ordered' => true]);
 $bulkPlanets->insert($planet);
 
-$manager->executeBulkWrite('spacegame.users', $bulkUsers);
-$manager->executeBulkWrite('spacegame.planets', $bulkPlanets);
+$manager->executeBulkWrite($dbname.'.users', $bulkUsers);
+$manager->executeBulkWrite($dbname.'.planets', $bulkPlanets);
 
 // Share game-id to SQL server
-$db->updateContent('users',
-	[ ["game_id",$users_gameId,"str"] ],
-	[ ["user_id",$data['user_id'],"str"] ]);
+$db->addContent('game_id',[
+		["id",$data['user_id']],
+		["game_id",$users_gameId],
+		["server_name",$dbname]
+	]);
 
 $_SESSION['game_id'] = $users_gameId;
 
 // Then we reload the page ...
-echo '<script> window.location="https://01-milkyway.galactae.elanis.eu"; </script>';
+echo '<script> window.location.reload(); </script>';
 ?>

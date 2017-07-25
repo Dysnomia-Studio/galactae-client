@@ -1,35 +1,21 @@
+<?php
+$noscript=true;
+include_once 'gvars.php';
+?>
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
 	body {
 		font-family: 'Titillium Web', sans-serif;
-		cursor: url(../../img/mouse_cursor.png), auto;
+		cursor: url(<?php echo $cdnURL; ?>img/mouse_cursor.png), auto;
 		color: white;
 	}
 </style>
 
 <?php
-$serverIP = "***REMOVED***";
-
 // Verif du client sur mongo
-$manager = new MongoDB\Driver\Manager($serverIP);
+$manager = new MongoDB\Driver\Manager($dburl);
 
-// Get data from db
-$filter = array();
-$query = new MongoDB\Driver\Query($filter);
-$cursor = $manager->executeQuery('spacegame.users', $query);
-$playerList = $cursor->toArray();
-
-$plyNum = count($playerList);
-
-// To array
-for ($i=0; $i < $plyNum; $i++) { 
-	$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
-}
-
-/**
- * Trier par points
- */
 function cmp($a,$b) {
 	$val1 = $a['points'];
 	$val2 = $b['points'];
@@ -40,33 +26,106 @@ function cmp($a,$b) {
 
 	return ($val1 > $val2) ? -1 : 1;
 }
-usort($playerList,"cmp")
-?>
-<table style="width: 100%; text-align: center;">
-<tr>
-	<th>Rang</th>
-	<th>Noms</th>
-	<th>Points</th>
-	<th>Planetes</th>
-	<th>Alliance</th>
-</tr>
-<?php
-for ($i=0; $i < $plyNum; $i++) { 
-	if($playerList[$i]["points"]<1) { break; }
-	echo "
-	<tr>
-		<td>".($i + 1)."</td>
-		<td>".$playerList[$i]["name"]."</td>
-		<td>".$playerList[$i]["points"]."</td>
-		<td>".count($playerList[$i]["planetlist"])."</td>";
 
-		if($playerList[$i]["ally"]=="") {
-			echo "<td>-</td>";
-		} else {
-		echo "<td>".$playerList[$i]["ally"]."</td>";
+/**
+ * Cache Vars
+ */
+$_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
+switch ($_GET['type']) {
+	case 'galaxy-players':
+	default:
+		$type = "galaxy-players";
+
+		// Get data from db
+		$filter = array();
+		$query = new MongoDB\Driver\Query($filter);
+		$cursor = $manager->executeQuery($dbname.'.users', $query);
+		$playerList = $cursor->toArray();
+
+		$plyNum = count($playerList);
+
+		// To array
+		for ($i=0; $i < $plyNum; $i++) { 
+			$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
 		}
 
-	echo "</tr>";
+		/**
+		 * Trier par points
+		 */
+		usort($playerList,"cmp");
+	break;
+}
+
+$plyPerPage = 20;
+$pageCount = ceil($plyNum / $plyPerPage);
+$page = (isset($_GET['page']))?(int)$_GET['page']:1;
+if($page < 1) {
+	$page = 1;
+} elseif($page > $pageCount) {
+	$page = $pageCount;
+}
+
+$cache = 'ranks/'.$type.'-'.$page.'.html';
+$expire = time() - 600; // 10 min
+
+/**
+ * Cache Code
+ */
+if(file_exists($cache) && filemtime($cache) > $expire) {
+	readfile($cache);
+} else {
+	for($i=0; $i<$pageCount; $i++) {
+		$base = $i * $plyPerPage;
+		$cache = 'ranks/'.$type.'-'.($i+1).'.html';
+
+		ob_start();
+
+		echo "<table style=\"width: 100%; text-align: center;\">
+			<tr>
+				<th>Rang</th>
+				<th>Noms</th>
+				<th>Points</th>
+				<th>Planetes</th>
+				<th>Alliance</th>
+			</tr>";
+
+		for($j=0; $j<$plyPerPage; $j++) {
+			$curr = $base + $j;
+			if($curr>($plyNum-1)) { break; }
+			echo "
+			<tr>
+				<td>".($curr + 1)."</td>
+				<td>".$playerList[$curr]["name"]."</td>
+				<td>".$playerList[$curr]["points"]."</td>
+				<td>".count($playerList[$curr]["planetlist"])."</td>";
+
+				if($playerList[$curr]["ally"]=="") {
+					echo "<td>-</td>";
+				} else {
+				echo "<td>".$playerList[$curr]["ally"]."</td>";
+				}
+
+			echo "</tr>";
+		}
+
+		echo "</table>";
+
+		$page = ob_get_contents(); // copie du contenu du tampon dans une chaîne
+        ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
+        
+        file_put_contents($cache, $page); // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache)
+
+        echo $page ; // on affiche notre page :D 
+	}
+}
+
+/**
+ * Pagnation
+ */
+if($pageCount>1) {
+	echo "Page: ";
+	for($i=1; $i<($pageCount+1); $i++) {
+		echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
+	}
 }
 ?>
-</table>

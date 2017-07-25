@@ -1,0 +1,44 @@
+<script type="text/javascript">
+	var researchList = {
+		// Noeud Central
+		researchCenter:		{ name: "Research Center", desc: "" },
+		industrialistion:	{ name: "", desc: "" },
+		phyContemporaine:	{ name: "", desc: "" },
+		thermodynamique:	{ name: "", desc: "" },
+		// Mise en orbite et propulsion
+		prop_thermique:		{ name: "", desc: "" },
+		prop_vSolaire:		{ name: "", desc: "" },
+		prop_ions:			{ name: "", desc: "" },
+		prop_vsl:			{ name: "", desc: "" },
+		prop_hyperespace:	{ name: "", desc: "" },
+		prop_manoeuvre:		{ name: "", desc: "" },
+		prop_advManoeuvre:	{ name: "", desc: "" },
+		// Construction et production
+		cp_mecanisation:	{ name: "", desc: "" },
+		cp_tracteur:		{ name: "", desc: "" },
+		cp_materielTp:		{ name: "", desc: "" },
+		cp_dbRaffinage:		{ name: "", desc: "" },
+		// Armes
+		wep_railgun:		{ name: "", desc: "" },
+		wep_nuke:			{ name: "", desc: "" },
+		wep_laser:			{ name: "", desc: "" },
+		wep_plasma:			{ name: "", desc: "" },
+		// Mines
+		wep_mines:			{ name: "", desc: "" },
+		wep_mines_nuke:		{ name: "", desc: "" },
+		wep_mines_iem:		{ name: "", desc: "" },
+		// Satellites
+		wep_sat_railgun:	{ name: "", desc: "" },
+		wep_sat_laser:		{ name: "", desc: "" },
+		wep_sat_plasma:		{ name: "", desc: "" },
+		// Autres recherches spatiales
+		misc_astronomie:	{ name: "", desc: "" },
+		misc_telemetrie:	{ name: "", desc: ""},
+		misc_advTelemetrie:	{ name: "", desc: ""},
+		misc_mecStellaire:	{ name: "", desc: ""},
+		misc_phySolaire:	{ name: "", desc: ""},
+		misc_phyQuantique:	{ name: "", desc: ""},
+		misc_calcGravit:	{ name: "", desc: ""},
+		misc_em:			{ name: "", desc: ""},
+	};
+</script>
