@@ -38,12 +38,23 @@ class map {
 		ui.closeTab("#hud-research",false); /* A no-bug fix */
 		$("#research-button").css('display','none');
 		ui.map = true;
+
+		// On cache le chat et memorise son statut pour plus tard	
+		ui.mapChat = ($("#hud-chat").css('display')=="block");
+		ui.closeTab("#hud-chat",false);
+		ui.chat = false;
 	}
 
 	static closeTab() {
 		ui.closeTab("#hud-map",false);
 		$("#research-button").css('display','block');
 		ui.map = false;
+
+		// Re-affichage du chat si necessaire
+		if(!ui.chat) {
+			$("#hud-chat").css('display',(ui.mapChat)?"block":"none");
+			ui.chat = ui.mapChat;
+		}
 	}
 
 	static hideAllMaps() {

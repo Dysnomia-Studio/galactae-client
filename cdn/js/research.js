@@ -45,8 +45,10 @@ class research {
 		// Re-affichage de la planete
 		$("#planet-content").css('display','block');
 		// Re-affichage du chat si necessaire
-		$("#hud-chat").css('display',(ui.researchChat)?"block":"none");
-		ui.chat = ui.researchChat;
+		if(!ui.chat) {
+			$("#hud-chat").css('display',(ui.researchChat)?"block":"none");
+			ui.chat = ui.researchChat;
+		}
 
 		ui.research = false;
 	}
