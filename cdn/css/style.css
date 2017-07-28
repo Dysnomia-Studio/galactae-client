@@ -978,15 +978,16 @@ a[class="research-search"] {
 	padding: 0;
 }
 #hud-map-galaxy .select-quadrant {
-	width: 50%;
-	height: 50%;
+	border: 1px solid rgba(14,198,198,0.8);
 
+	cursor: pointer;
+	
 	position: absolute;
 }
-#hud-map-galaxy .quadrant-left { left: 0; }
-#hud-map-galaxy .quadrant-top { top: 0; }
-#hud-map-galaxy .quadrant-right { right: 0; }
-#hud-map-galaxy .quadrant-bottom { bottom: 0; }
+#hud-map-galaxy .quadrant-left { left: 0; border-right: 1px solid rgba(14,198,198,0.8); width: 49%; }
+#hud-map-galaxy .quadrant-top { top: 0; border-bottom: 1px solid rgba(14,198,198,0.8); height: 47%; }
+#hud-map-galaxy .quadrant-right { right: 0; width: 51%; }
+#hud-map-galaxy .quadrant-bottom { bottom: 0; height: 53%; }
 
 /**
  * Planet - Misc
