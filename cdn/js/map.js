@@ -5,16 +5,22 @@ class map {
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp=new XMLHttpRequest();
 		} else { // code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			map.xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		xmlhttp.onload = function() {
-			map.xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
-
+		map.xmlhttp.onreadystatechange = function() {
+			if (this.readyState === XMLHttpRequest.DONE) {
+				if (this.status === 200) {
+					map.xmlDoc = new DOMParser().parseFromString(map.xmlhttp.responseText,'text/xml');
+				} else {
+					map.xmlDoc = "";
+					console.log('ERROR: CANNOT LOAD MAP');
+				}
+			}
 		}
 
-		xmlhttp.open("GET",cdnURL + "/map.xml",false);
-        xmlhttp.send();
+		map.xmlhttp.open("GET",cdnURL + "/map.xml",false);
+        map.xmlhttp.send();
 	}
 
 	static openTab() {
