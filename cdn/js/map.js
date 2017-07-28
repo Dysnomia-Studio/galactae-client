@@ -38,23 +38,6 @@ class map {
 		ui.closeTab("#hud-research",false); /* A no-bug fix */
 		$("#research-button").css('display','none');
 		ui.map = true;
-
-		map.hideAllMaps();
-
-		switch(map.currentMap) {
-			case "galaxy":
-				map.openGalacticMap();
-				break;
-			case "quadrant":
-				map.openQuadrantMap(address);
-				break;
-			case "sector":
-				map.openSectorMap(address);
-				break;
-			default:	
-				map.currentMap = "solar";
-				map.openSolarSystemMap(address);
-		}
 	}
 
 	static closeTab() {
@@ -65,39 +48,44 @@ class map {
 
 	static hideAllMaps() {
 		/* Hide all maps */
-		$('hud-map-galaxy').style('display','none');
-		$('hud-map-quadrant').style('display','none');
-		$('hud-map-sector').style('display','none');
-		$('hud-map-system').style('display','none');
+		$('hud-map-galaxy').css('display','none');
+		$('hud-map-quadrant').css('display','none');
+		$('hud-map-sector').css('display','none');
+		$('hud-map-system').css('display','none');
 	}
 
 	static openSolarSystemMap(address) {
 		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
+		map.currentMap = "system";
 
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-system').style('display','block');
+		$('hud-map-system').css('display','block');
 	}
 
 	static openSectorMap(address) {
 		var sectorXML = $(map.xmlDoc).find("sector#" + address)[0];
+		map.currentMap = "sector";
 
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-sector').style('display','block');
+		$('hud-map-sector').css('display','block');
 	}
 
 	static openQuadrantMap(address) {
 		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address)[0];
+		map.currentMap = "quadrant";
 
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-quadrant').style('display','block');
+		$('hud-map-quadrant').css('display','block');
 	}
 
 	static openGalacticMap() {
+		map.currentMap = "galaxy";
+
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-galaxy').style('display','block');
+		$('hud-map-galaxy').css('display','block');
 	}
 }
