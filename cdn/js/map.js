@@ -1,6 +1,20 @@
 class map {
 	static init() {
 		map.currentMap = "";
+
+		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+			map.xmlhttp=new XMLHttpRequest();
+		} else { // code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		xmlhttp.onload = function() {
+			map.xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
+
+		}
+
+		xmlhttp.open("GET",cdnURL + "/map.xml",false);
+        xmlhttp.send();
 	}
 
 	static openTab() {
