@@ -938,11 +938,6 @@ a[class="research-search"] {
  */
 #hud-map {
 	background-color: black;
-	/*background: url(../img/space-background/1.jpg);
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;*/
 	position: fixed;
 	margin: 0;
 	padding: 0;
@@ -955,12 +950,22 @@ a[class="research-search"] {
 
 	user-select : none;
 }
+#hud-map-galaxy {
+	background-image: url('../img/map/galaxy.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 #hud-map-galaxy, #hud-map-quadrant, #hud-map-sector, #hud-map-system {
 	width: 100%;
 	height: 100%;
 
 	margin: 0;
 	padding: 0;
+}
+#hud-map-quadrant, #hud-map-sector, #hud-map-system {
+	display: none;
 }
 /**
  * Map - Galaxy

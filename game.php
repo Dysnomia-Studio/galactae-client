@@ -175,9 +175,6 @@
 <?php /* Map */ ?>
 <div id="hud-map">
 	<div id="hud-map-galaxy">
-		<img id="hud-map-galaxy-background" src="<?php echo $cdnURL; ?>/img/map/map-background.png">
-		<img id="hud-map-galaxy-foreground" src="<?php echo $cdnURL; ?>/img/map/galaxy.png">
-
 		<div class="select-quadrant quadrant-top quadrant-left" id="hud-map-galaxy-0"></div>
 		<div class="select-quadrant quadrant-top quadrant-right" id="hud-map-galaxy-1"></div>
 		<div class="select-quadrant quadrant-bottom quadrant-left" id="hud-map-galaxy-2"></div>
