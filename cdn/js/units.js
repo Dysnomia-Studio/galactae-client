@@ -170,10 +170,12 @@ class units {
 			}
 
 			// End shape
-			if(shape[i][1]=="") { shape[i][1]="polygon"; }
+			if(shape[i][1]=="" || shape[i][1]=="poly") { shape[i][1]="polygon"; }
 			svgContent += "</" + shape[i][1] + ">";
 		}
 		$('#fleet-type-create-schematic').html(svgContent);
+
+		console.log(svgContent);
 
 		// Events
 		$('#fleet-type-create-schematic *').click(function() { 
