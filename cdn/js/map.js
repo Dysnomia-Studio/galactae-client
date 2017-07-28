@@ -2,6 +2,9 @@ class map {
 	static init() {
 		map.currentMap = "";
 
+		/**
+		 * Load XML
+		 */
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp=new XMLHttpRequest();
 		} else { // code for IE6, IE5
@@ -21,6 +24,13 @@ class map {
 
 		map.xmlhttp.open("GET",cdnURL + "/maps/" + serverName + ".xml", true);
         map.xmlhttp.send();
+
+        /**
+         * Galaxy Map Events
+         */
+		$('#hud-map-galaxy .select-quadrant').click(function() {
+			map.openQuadrantMap($(this).attr('id').split('-')[3]);
+		});
 	}
 
 	static openTab() {
@@ -28,6 +38,8 @@ class map {
 		ui.closeTab("#hud-research",false); /* A no-bug fix */
 		$("#research-button").css('display','none');
 		ui.map = true;
+
+		map.hideAllMaps();
 
 		switch(map.currentMap) {
 			case "galaxy":
@@ -51,27 +63,41 @@ class map {
 		ui.map = false;
 	}
 
-	static openSolarSystemMap(address) {
-		var systemXML = $(map.xmlDoc).find("system#" + address);
+	static hideAllMaps() {
+		/* Hide all maps */
+		$('hud-map-galaxy').style('display','none');
+		$('hud-map-quadrant').style('display','none');
+		$('hud-map-sector').style('display','none');
+		$('hud-map-system').style('display','none');
+	}
 
-		console.log(systemXML);
+	static openSolarSystemMap(address) {
+		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
+
+		// Toggle Maps
+		map.hideAllMaps();
+		$('hud-map-system').style('display','block');
 	}
 
 	static openSectorMap(address) {
-		var sectorXML = $(map.xmlDoc).find("sector#" + address);
+		var sectorXML = $(map.xmlDoc).find("sector#" + address)[0];
 
-		console.log(sectorXML);
-
+		// Toggle Maps
+		map.hideAllMaps();
+		$('hud-map-sector').style('display','block');
 	}
 
 	static openQuadrantMap(address) {
-		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address);
+		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address)[0];
 
-		console.log(quadrantXML);
-
+		// Toggle Maps
+		map.hideAllMaps();
+		$('hud-map-quadrant').style('display','block');
 	}
 
 	static openGalacticMap() {
-
+		// Toggle Maps
+		map.hideAllMaps();
+		$('hud-map-galaxy').style('display','block');
 	}
 }

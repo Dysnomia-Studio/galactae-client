@@ -174,9 +174,18 @@
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
-	<div id="hud-map-galaxy"></div>
+	<div id="hud-map-galaxy">
+		<img id="hud-map-galaxy-background" src="<?php echo $cdnURL; ?>/img/map/map-background.png">
+		<img id="hud-map-galaxy-foreground" src="<?php echo $cdnURL; ?>/img/map/galaxy.png">
+
+		<div class="select-quadrant quadrant-top quadrant-left" id="hud-map-galaxy-0"></div>
+		<div class="select-quadrant quadrant-top quadrant-right" id="hud-map-galaxy-1"></div>
+		<div class="select-quadrant quadrant-bottom quadrant-left" id="hud-map-galaxy-2"></div>
+		<div class="select-quadrant quadrant-bottom quadrant-right" id="hud-map-galaxy-3"></div>
+	</div>
+	<div id="hud-map-quadrant"></div>
+	<div id="hud-map-sector"></div>
 	<div id="hud-map-system"></div>
-	<div id="hud-map-solar"></div>
 </div>
 <?php /* Fleet */ ?>
 <div id="hud-fleet">
