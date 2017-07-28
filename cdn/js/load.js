@@ -88,6 +88,9 @@ $(window).on( "load",function() {
 	// Prechargement des images
 	loadScreen.picturePreload();
 
+	// Chargement de la map
+	map.init();
+
 	// On se connecte au serveur node et on verifie l'identité du client ( Serveur )
 	webSockets.createConnection();
 });
