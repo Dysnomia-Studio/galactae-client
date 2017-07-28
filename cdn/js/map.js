@@ -52,14 +52,22 @@ class map {
 	}
 
 	static openSolarSystemMap(address) {
+		var systemXML = $(map.xmlDoc).find("system#" + address);
 
+		console.log(systemXML);
 	}
 
 	static openSectorMap(address) {
+		var sectorXML = $(map.xmlDoc).find("sector#" + address);
+
+		console.log(sectorXML);
 
 	}
 
 	static openQuadrantMap(address) {
+		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address);
+
+		console.log(quadrantXML);
 
 	}
 
