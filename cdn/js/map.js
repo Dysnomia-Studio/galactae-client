@@ -48,10 +48,10 @@ class map {
 
 	static hideAllMaps() {
 		/* Hide all maps */
-		$('hud-map-galaxy').css('display','none');
-		$('hud-map-quadrant').css('display','none');
-		$('hud-map-sector').css('display','none');
-		$('hud-map-system').css('display','none');
+		$('#hud-map-galaxy').css('display','none');
+		$('#hud-map-quadrant').css('display','none');
+		$('#hud-map-sector').css('display','none');
+		$('#hud-map-system').css('display','none');
 	}
 
 	static openSolarSystemMap(address) {
@@ -60,7 +60,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-system').css('display','block');
+		$('#hud-map-system').css('display','block');
 	}
 
 	static openSectorMap(address) {
@@ -69,7 +69,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-sector').css('display','block');
+		$('#hud-map-sector').css('display','block');
 	}
 
 	static openQuadrantMap(address) {
@@ -78,7 +78,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-quadrant').css('display','block');
+		$('#hud-map-quadrant').css('display','block');
 	}
 
 	static openGalacticMap() {
@@ -86,6 +86,6 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
-		$('hud-map-galaxy').css('display','block');
+		$('#hud-map-galaxy').css('display','block');
 	}
 }
