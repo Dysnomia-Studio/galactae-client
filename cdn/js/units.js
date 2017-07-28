@@ -170,6 +170,7 @@ class units {
 			}
 
 			// End shape
+			if(shape[i][1]=="") { shape[i][1]="polygon"; }
 			svgContent += "</" + shape[i][1] + ">";
 		}
 		$('#fleet-type-create-schematic').html(svgContent);
