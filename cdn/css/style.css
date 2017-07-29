@@ -537,6 +537,39 @@ body {
 		text-align: center;
 		z-index: 100;
 	}
+
+	#hud-chat form {
+		position: absolute;
+		right: 3.125vw;
+		bottom: 5px;
+		width: 17.7vw;
+		height: 30px;
+	}
+	#hud-chat-channels {
+		position: absolute;
+		top: 5px;
+		right: 3.5vw;
+		width: 17vw;
+		margin: 0;
+		margin-top: 3px;
+	}
+	.chatContent {
+		position: absolute;
+		right: calc((100% - 18vw - 20px)/2);
+		bottom: 40px;
+		background-color: rgba(255,255,255,0);
+		color: #DDDDDD;
+		width: 18vw;
+		height: calc(100% - 100px);
+		overflow: auto;
+		padding: 10px;
+		text-align: left;
+		margin: 0;
+		display: block;
+		font-size: 0.8em;
+		overflow-x: hidden;
+		word-wrap: break-word;
+	}
 }
 @media (max-width: 1050px) {
 	#hud-chat {
@@ -552,7 +585,42 @@ body {
 		z-index: 100;
 
 		display: none;
-	}	
+	}
+
+	#hud-chat form {
+		position: absolute;
+		right: 2.5vw;
+		bottom: 5px;
+
+		width: 95vw;
+		height: 30px;
+	}
+	#hud-chat-channels {
+		position: absolute;
+		top: 5px;
+		right: 2.5vw;
+
+		width: 95vw;
+		margin: 0;
+		margin-top: 3px;
+	}
+	.chatContent {
+		position: absolute;
+		right: 1vw;
+		bottom: 40px;
+		background-color: rgba(255,255,255,0);
+		color: #DDDDDD;
+		width: 98vw;
+		height: calc(100% - 100px);
+		overflow: auto;
+		padding: 10px;
+		text-align: left;
+		margin: 0;
+		display: block;
+		font-size: 0.8em;
+		overflow-x: hidden;
+		word-wrap: break-word;
+	}
 }
 #chat_message {
 	background-color: rgba(0,0,0,0);
@@ -572,41 +640,9 @@ body {
 #chat-voice,#chat_message {
 	vertical-align: middle;
 }
-#hud-chat form {
-	position: absolute;
-	right: 3.125vw;
-	bottom: 5px;
-	width: 17.7vw;
-	height: 30px;
-}
-#hud-chat-channels {
-	position: absolute;
-	top: 5px;
-	right: 3.5vw;
-	width: 17vw;
-	margin: 0;
-	margin-top: 3px;
-}
 #hud-chat-channels li {
 	height: 20px;
 	line-height: 20px;
-}
-.chatContent {
-	position: absolute;
-	right: calc((100% - 18vw - 20px)/2);
-	bottom: 40px;
-	background-color: rgba(255,255,255,0);
-	color: #DDDDDD;
-	width: 18vw;
-	height: calc(100% - 100px);
-	overflow: auto;
-	padding: 10px;
-	text-align: left;
-	margin: 0;
-	display: block;
-	font-size: 0.8em;
-	overflow-x: hidden;
-	word-wrap: break-word;
 }
 #hud-chat-trade, #hud-chat-ally { display:none; }
 .private-message { color: #51ce43 !important; }
