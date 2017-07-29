@@ -44,9 +44,9 @@ class ui {
 		ui.menu = false;
 		ui.map = false;
 		ui.research = false;
-		ui.researchChat = true;
+		ui.researchChat = false;
 		ui.fleet = false;
-		ui.chat = true;
+		ui.chat = ($('#hud-chat').css('display')=="block");
 		ui.ranks = false;
 
 		ui.mouseStatus = [0,0,0,0];
