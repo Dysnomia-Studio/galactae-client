@@ -525,7 +525,7 @@ body {
 /**
  * Chat
  */
-@media screen and (min-width: 1050px) {
+@media (min-width: 1050px) {
 	#hud-chat {
 		background-image: url(../img/ui/hud-chat.png);
 		background-size: cover;
@@ -538,7 +538,7 @@ body {
 		z-index: 100;
 	}
 }
-@media mobile or (max-width: 1050px) {
+@media (max-width: 1050px) {
 	#hud-chat {
 		background-color: #0b1012; 
 
