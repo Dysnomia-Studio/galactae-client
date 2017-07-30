@@ -21,7 +21,7 @@
 	var planetBuilding = [
 		// ground
 		{id: "carriere", name: "Quarry", desc: "The Quarry will harvest minerals from the ground."},
-		{id: "metalurgie", name: "Metallurgy", desc: "In this building, minerals become metals."},
+		{id: "metallurgy", name: "Metallurgy", desc: "In this building, minerals become metals."},
 		{id: "living",name: "Houses", desc: "Here lives the population."},
 		{id: "serre", name: "Greenhouse", desc: "The greenhouse are the main source of food on the planet."},
 		{id: "solar", name: "Solar Power Plant", desc: "Make electricity with solar energy !" },

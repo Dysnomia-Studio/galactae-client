@@ -525,7 +525,7 @@ body {
 /**
  * Chat
  */
-@media (min-width: 1050px) {
+@media (min-width: 1049px) {
 	#hud-chat {
 		background-image: url(../img/ui/hud-chat.png);
 		background-size: cover;
