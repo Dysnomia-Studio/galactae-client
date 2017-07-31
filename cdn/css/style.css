@@ -1127,7 +1127,7 @@ a[class="research-search"] {
 
 		padding: 15px;
 	}
-	#buidling-img {
+	#building-img {
 		position: absolute;
 		border: 1px inset transparent;
 		bottom: 50px;
@@ -1153,7 +1153,7 @@ a[class="research-search"] {
 
 		padding: 3em;
 	}
-	#buidling-img {
+	#building-img {
 		border: 1px inset transparent;
 		width: calc(100vw - 6em - 180px); /* parent - padding - right content */
 	}
