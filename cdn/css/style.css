@@ -1134,7 +1134,7 @@ a[class="research-search"] {
 		left: 25px;
 		width: calc(100% - 30px - 200px); /* parent - padding - right content */
 	}
-	#building-upgrade {
+	#building-message, #building-upgrade {
 		bottom: 25px;
 	}
 	#building-quit {
@@ -1160,7 +1160,7 @@ a[class="research-search"] {
 		border: 1px inset transparent;
 		width: calc(100vw - 6em - 180px); /* parent - padding - right content */
 	}
-	#building-upgrade {
+	#building-message, #building-upgrade {
 		bottom: 40px;
 	}
 	#building-quit {
