@@ -100,8 +100,9 @@ body {
 .gvt-choice {
 	position: relative;
 	vertical-align: top;
-	width: 33.1vw;
-	height: 75vh;
+	width: 32.9vw;
+	height: 72vh;
+	margin-top: 3vh;
 	display: inline-block;
 	text-align: center;
 }
@@ -109,7 +110,8 @@ body {
     position: absolute;
     bottom: calc(10px + 1.25em + 0.8em + 1.25em + 10px);
     vertical-align: middle;
-    min-height: 40%;
+    height: calc(100% - 6em - 2em); /* Total - bottom - top */
+    overflow-x: auto;
     font-size: 0.9em;
 }
 #gvt-confbtn {
