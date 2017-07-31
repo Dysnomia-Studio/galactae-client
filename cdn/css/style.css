@@ -886,6 +886,11 @@ a[class="research-search"] {
 		top: calc((100vh - 40vw)/2);
 		width: 70vw;
 		height: 40vw;
+
+		background: url(../img/ui/window.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
 	}
 }
 
@@ -896,17 +901,15 @@ a[class="research-search"] {
 		position: fixed;
 		left: 0;
 		top: 0;
+
 		width: 100vw;
 		height: 100vh;
+
+		background-color: #0b1012;
 	}
 }
 
 #hud-ranks {
-	background: url(../img/ui/window.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100%;
-
 	z-index: 100;
 	color: white;
 }
