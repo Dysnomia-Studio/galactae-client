@@ -889,7 +889,7 @@ a[class="research-search"] {
 	}
 }
 
-@media (max-width: 750px), (min-height: 40vw) {
+@media (max-width: 750px), (max-height: 40vw) {
 	#hud-ranks {
 		display: none;
 
