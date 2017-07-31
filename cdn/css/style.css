@@ -877,15 +877,31 @@ a[class="research-search"] {
 /**
  * Ranks
  */
+@media (min-width: 750px) {
+	#hud-ranks {
+		display: none;
+
+		position: fixed;
+		left: 15vw;
+		top: calc((100vh - 40vw)/2);
+		width: 70vw;
+		height: 40vw;
+	}
+}
+
+@media (max-width: 750px) {
+	#hud-ranks {
+		display: none;
+
+		position: fixed;
+		left: 15vw;
+		top: calc((100vh - 40vw)/2);
+		width: 70vw;
+		height: 40vw;
+	}
+}
+
 #hud-ranks {
-	display: none;
-
-	position: fixed;
-	left: 15vw;
-	top: calc((100vh - 40vw)/2);
-	width: 70vw;
-	height: 40vw;
-
 	background: url(../img/ui/window.png);
 	background-repeat: no-repeat;
 	background-position: center;
