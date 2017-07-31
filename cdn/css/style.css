@@ -1112,23 +1112,39 @@ a[class="research-search"] {
 /**
  * Building Panel
  */
+@media (min-height: 450px) and (min-width: 600px) {
+	#building-area {
+		background-image: url(../img/ui/build-panel.png);
+
+		width: 580px;
+		height: 380px;
+
+		margin-top: -200px;
+		margin-left: -300px;
+
+		top: 50%;
+		left: 50%;
+	}
+}
+@media (max-height: 450px), (max-width: 600px) {
+	#building-area {
+		background-color: #0b1012;
+
+		width: calc(100vw - 30px);
+		height: calc(100vh - 30px);
+
+		margin: 0;
+
+		top: 0;
+		left: 0;
+	}
+}
+
 #building-area {
-	display: none;
-	
+	display: none;	
 	position: fixed;
-	top: 50%;
-	left: 50%;
-
-	width: 580px;
-	height: 380px;
-
-	margin-top: -200px;
-	margin-left: -300px;
 	padding: 15px;
-
-	background-image: url(../img/ui/build-panel.png);
 	color: #EEEEEE;
-
 	z-index: 5;
 }
 #building-cost {
@@ -1146,7 +1162,7 @@ a[class="research-search"] {
 	border: 1px inset transparent;
 	bottom: 50px;
 	left: 25px;
-	width: 365px;
+	width: calc(100% - 215px);
 }
 #building-message, #building-upgrade {
 	display: block;
