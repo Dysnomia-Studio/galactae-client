@@ -1132,7 +1132,10 @@ a[class="research-search"] {
 		border: 1px inset transparent;
 		bottom: 50px;
 		left: 25px;
-		width: calc(100% - 30px - 180px); /* parent - padding - right content */
+		width: calc(100% - 30px - 200px); /* parent - padding - right content */
+	}
+	#building-upgrade {
+		bottom: 25px;
 	}
 	#building-quit {
 		top: 6px;
@@ -1156,6 +1159,9 @@ a[class="research-search"] {
 	#building-img {
 		border: 1px inset transparent;
 		width: calc(100vw - 6em - 180px); /* parent - padding - right content */
+	}
+	#building-upgrade {
+		bottom: 40px;
 	}
 	#building-quit {
 		top: 70px;
@@ -1182,7 +1188,6 @@ a[class="research-search"] {
 #building-message, #building-upgrade {
 	display: block;
 	position: absolute;
-	bottom: 25px;
 	right: 25px;
 	width: 170px;
 }
