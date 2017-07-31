@@ -1128,6 +1128,10 @@ a[class="research-search"] {
 		padding: 15px;
 	}
 	#buidling-img {
+		position: absolute;
+		border: 1px inset transparent;
+		bottom: 50px;
+		left: 25px;
 		width: calc(100% - 30px - 180px); /* parent - padding - right content */
 	}
 	#building-quit {
@@ -1150,7 +1154,8 @@ a[class="research-search"] {
 		padding: 3em;
 	}
 	#buidling-img {
-		width: calc(100% - 6em - 180px); /* parent - padding - right content */
+		border: 1px inset transparent;
+		width: calc(100vw - 6em - 180px); /* parent - padding - right content */
 	}
 	#building-quit {
 		top: 70px;
@@ -1173,12 +1178,6 @@ a[class="research-search"] {
 	top: 140px;
 	right: 25px;
 	height: 00px;
-}
-#building-img {
-	position: absolute;
-	border: 1px inset transparent;
-	bottom: 50px;
-	left: 25px;
 }
 #building-message, #building-upgrade {
 	display: block;
