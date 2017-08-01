@@ -7,7 +7,7 @@ include_once('gvars.php');
 if(isset($db)) { //Maybe we don't have SQL connection ...
 	// No PHPSESSID
 	if(!(isset($_COOKIE['galactae-phpsessid']))) {
-		echo '<script> window.location="https://galactae.elanis.eu"; </script>';
+		echo '<script> window.location="https://galactae.elanis.eu/login"; </script>';
 	}
 
 	// SQL Get Data
@@ -20,7 +20,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 	
 	if(!isset($data['user_name'])) { // Verif d'existance du compte SQL
-	    echo '<script> window.location="https://galactae.elanis.eu"; </script>';
+	    echo '<script> window.location="https://galactae.elanis.eu/login"; </script>';
 	}
 
 	// Lvl Check
