@@ -74,7 +74,7 @@ class map {
 		$('#hud-map-system').css('display','none');
 
 		/* Show back button */
-		$('hud-mmap-back').css('display','block');
+		$('hud-map-back').css('display','block');
 	}
 
 	static openSolarSystemMap(address) {

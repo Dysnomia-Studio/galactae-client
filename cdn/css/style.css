@@ -1034,7 +1034,7 @@ a[class="research-search"] {
 }
 #hud-map-back {
 	position: fixed;
-	top: calc(60px + 1em); /* hud top + move */
+	top: 1em;
 	left: 3em;
 	font-weight: bold;
 	color: white;
