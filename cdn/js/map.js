@@ -72,6 +72,9 @@ class map {
 		$('#hud-map-quadrant').css('display','none');
 		$('#hud-map-sector').css('display','none');
 		$('#hud-map-system').css('display','none');
+
+		/* Show back button */
+		$('hud-mmap-back').css('display','block');
 	}
 
 	static openSolarSystemMap(address) {
@@ -107,6 +110,7 @@ class map {
 		// Toggle Maps
 		map.hideAllMaps();
 		$('#hud-map-galaxy').css('display','block');
+		$('#hud-map-back').css('display','none');
 	}
 
 	static backToParent() {
