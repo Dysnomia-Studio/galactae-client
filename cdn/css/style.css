@@ -1032,6 +1032,14 @@ a[class="research-search"] {
 
 	user-select : none;
 }
+#hud-map-back {
+	position: fixed;
+	top: calc(60px + 1em); /* hud top + move */
+	left: 3em;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+}
 #hud-map-galaxy {
 	background-image: url('../img/map/galaxy.jpg');
 	background-attachment: fixed;

@@ -174,6 +174,7 @@
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
+	<div id="hud-map-back">Back to parent</div>
 	<div id="hud-map-galaxy">
 		<div class="select-quadrant quadrant-top quadrant-left" id="hud-map-galaxy-0"></div>
 		<div class="select-quadrant quadrant-top quadrant-right" id="hud-map-galaxy-1"></div>
