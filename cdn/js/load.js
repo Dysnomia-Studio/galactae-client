@@ -38,6 +38,8 @@ class loadScreen {
 			cdnURL + 'img/ui/hud-top.png',
 			cdnURL + 'img/ui/chat-voice.png',
 
+			cdnURL + 'img/ui/build-panel.png',
+
 			cdnURL + 'img/ui/population.png',
 			cdnURL + 'img/ui/research.png',
 			cdnURL + 'img/ui/moral.png',
@@ -46,6 +48,8 @@ class loadScreen {
 			cdnURL + 'img/ui/minerals.png',
 
 			cdnURL + 'img/ui/settings.png',
+			// Map
+			cdnURL + 'img/map/galaxy.jpg',
 		];
 
 		// Buildings

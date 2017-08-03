@@ -1,5 +1,7 @@
 <script type="text/javascript">
-var messageList = {
+var translate = translate || {};
+
+var translate["messages"] = {
 	// Building
 	"BUILD_OK": "The Building is now upgrading !",
 	"BUILD_ERROR": "An error has occurred while attempting to build",

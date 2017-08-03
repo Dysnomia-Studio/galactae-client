@@ -18,7 +18,9 @@
 	define('ORBITAL_BUILDING','Constructions en Orbite');
 ?>
 <script type="text/javascript">
-	var planetBuilding = [
+	var translate = translate || {};
+
+	translate['buildings'] = [
 		// ground
 		{id: "carriere", name: "Carrieres", desc: "Les carrières vont extraire les minerais bruts du sol de la planète."},
 		{id: "metallurgy", name: "Metallurgie", desc: "Les minerais bruts seront ici traités et les metaux extraits."},

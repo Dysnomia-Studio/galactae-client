@@ -66,7 +66,7 @@ class webSockets {
 		});
 		socket.on('server-general-alert', function(message) {
 			ui.drawMessage(message);
-			chat.sm("<span style=\"color: #438dce;\">" + messageList['SYSTEM_MESSAGE'] +"</span> " + " " + message);
+			chat.sm("<span style=\"color: #438dce;\">" + translate["messages"]['SYSTEM_MESSAGE'] +"</span> " + " " + message);
 		});
 
 		// Daily bonus !

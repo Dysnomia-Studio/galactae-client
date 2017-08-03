@@ -52,7 +52,7 @@ class chat {
 	}
 	static pm(data) {
 		// Translation
-		if((messageList[data.msg] !=undefined) && (messageList[data.msg] !="")) { data.msg = messageList[data.msg]; }
+		if((translate["messages"][data.msg] !=undefined) && (translate["messages"][data.msg] !="")) { data.msg = translate["messages"][data.msg]; }
 
 		$('#hud-chat-global .chat_logs').append($('<li>').html("<span class=\"private-message\">"+data.msg+"</span>"));
 		$('#hud-chat-trade .chat_logs').append($('<li>').html("<span class=\"private-message\">"+data.msg+"</span>"));
@@ -68,7 +68,7 @@ class chat {
 	}
 	static sm(msg) {
 		// Translation
-		if((messageList[msg] !=undefined) && (messageList[msg] !="")) { msg = messageList[msg]; }
+		if((translate["messages"][msg] !=undefined) && (translate["messages"][msg] !="")) { msg = translate["messages"][msg]; }
 
 		$('#hud-chat-global .chat_logs').append($('<li>').html("<span class=\"system-message\">"+msg+"</span>"));
 		$('#hud-chat-trade .chat_logs').append($('<li>').html("<span class=\"system-message\">"+msg+"</span>"));

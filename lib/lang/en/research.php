@@ -1,5 +1,7 @@
 <script type="text/javascript">
-	var researchList = {
+	var translate = translate || {};
+	
+	translate['research'] = {
 		// Noeud Central
 		researchCenter:		{ name: "Research Center", desc: "" },
 		industrialistion:	{ name: "", desc: "" },

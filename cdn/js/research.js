@@ -171,8 +171,8 @@ class research {
 		}
 
 		if(research.canResearch(key)) {
-			content += '<h2>' + researchList[key].name + '</h2>';
-			content += '<span class="research-desc">' + researchList[key].desc + '</span>';
+			content += '<h2>' + translate['research'][key].name + '</h2>';
+			content += '<span class="research-desc">' + translate['research'][key].desc + '</span>';
 			if(!research.isSearched(key)) {
 				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.png" alt="research">' + Math.floor(userData.research[key]) + '/' + research.list[key].cost + '</span>';
 				if(planetData.currResearch!=key) {
@@ -318,7 +318,7 @@ class research {
 			 */
 			if(userData.research[parents[i]]!=-1 && parents[i]!="researchCenter") {
 				if(missingParents!="") { missingParents+=","; }
-				missingParents += " " + researchList[parents[i]].name;
+				missingParents += " " + translate['research'][parents[i]].name;
 			} else { // == -1 or parent is researchCenter
 				oneParentOK = true;
 			}
@@ -326,7 +326,7 @@ class research {
 		}
 
 		if(oneParentOK && parents.length>1) {
-			return messageList['MISSING_PARENTS'] + ':' + missingParents;
+			return translate["messages"]['MISSING_PARENTS'] + ':' + missingParents;
 		}
 
 		return "???";
@@ -355,9 +355,9 @@ class research {
  		
  		if(userData.research[planetData.currResearch]>research.list[planetData.currResearch].cost) {
  			userData.research[planetData.currResearch] = research.list[planetData.currResearch].cost;
-			ui.notify("Galactae: " + messageList['ENDED_RESEARCH'], {
+			ui.notify("Galactae: " + translate["messages"]['ENDED_RESEARCH'], {
 				icon: cdnURL+"img/favicon.png",
-				body: messageList['ENDED_RESEARCH'] + ": " + researchList[planetData.currResearch].name
+				body: translate["messages"]['ENDED_RESEARCH'] + ": " + translate['research'][planetData.currResearch].name
 			});
  			research.sync();
  		}

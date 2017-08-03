@@ -18,7 +18,9 @@
 	define('ORBITAL_BUILDING','Orbital Build');
 ?>
 <script type="text/javascript">
-	var planetBuilding = [
+	var translate = translate || {};
+
+	translate['buildings'] = [
 		// ground
 		{id: "carriere", name: "Quarry", desc: "The Quarry will harvest minerals from the ground."},
 		{id: "metallurgy", name: "Metallurgy", desc: "In this building, minerals become metals."},

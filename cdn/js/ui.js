@@ -25,7 +25,7 @@ class ui {
 	 */
 	static drawMessage(msg) {
 		// Translation
-		if((messageList[msg] !=undefined) && (messageList[msg] !="")) { msg = messageList[msg]; }
+		if((translate["messages"][msg] !=undefined) && (translate["messages"][msg] !="")) { msg = translate["messages"][msg]; }
 		// Draw the message
 		$("#messagePanel").text(msg);
 		$("#messagePanel-div").fadeIn(1000);
@@ -255,7 +255,7 @@ class ui {
 
 		/* Planet Construction Tab */
 		$("#building-name").text(planetBuilding[id].name);
-		$("#building-level").text(messageList['LEVEL'] + ' ' +  planetData.Buildings[id]);
+		$("#building-level").text(translate["messages"]['LEVEL'] + ' ' +  planetData.Buildings[id]);
 		$("#building-desc").text(planetBuilding[id].desc);
 		$("#building-area").css("display","block");
 		$("#building-img").attr("src",cdnURL+"img/buildings/desc/"+planetBuilding[id].id+".jpg");
@@ -296,9 +296,9 @@ class ui {
 		/* Bouton upgrade ou message */
 		// Defaut Value
 		if(planetData.Buildings[id]==0) {
-			$('#building-upgrade').val(messageList["BUILD"]);
+			$('#building-upgrade').val(translate["messages"]["BUILD"]);
 		} else {
-			$('#building-upgrade').val(messageList["UPGRADE"]);
+			$('#building-upgrade').val(translate["messages"]["UPGRADE"]);
 		}
 		$("#building-upgrade").attr("onclick","");
 		$('#building-upgrade').css('display', 'none');
@@ -307,25 +307,25 @@ class ui {
 
 		// Edits
 		if(max) { // Max Level
-			$('#building-message').html(messageList["UPGRADE_MAX"]);
+			$('#building-message').html(translate["messages"]["UPGRADE_MAX"]);
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
-			$('#building-message').html(messageList["BUILD_FINISH_IN"] + " " + getStringTime((planetData.nextBuildingTime - (Date.now() + planet.deltaNow))/1000/3600));
+			$('#building-message').html(translate["messages"]["BUILD_FINISH_IN"] + " " + getStringTime((planetData.nextBuildingTime - (Date.now() + planet.deltaNow))/1000/3600));
 
 			ui.buildPanelInterval = setTimeout(function() {
 				ui.buildPanelOpen(id);
 			},1000);
 		} else if(ui.enoughResources>0) { // No enought Ressources
-			$('#building-message').html(messageList["ENOUGH_RESOURCES_AT"] + " " + getStringTime(ui.enoughResources));
+			$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_AT"] + " " + getStringTime(ui.enoughResources));
 
 			setTimeout(function() {
-				$('#building-message').html(messageList["ENOUGH_RESOURCES_AT"] + " " + getStringTime(ui.enoughResources-(1/3600)));
+				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_AT"] + " " + getStringTime(ui.enoughResources-(1/3600)));
 			},1000);
 
 			ui.buildPanelInterval = setTimeout(function() {
 				ui.buildPanelOpen(id);
 			},2000);
 		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
-			$('#building-message').html(messageList["ANOTHER_IN_BUILD"]);
+			$('#building-message').html(translate["messages"]["ANOTHER_IN_BUILD"]);
 			ui.buildPanelInterval = setTimeout(function() {
 				ui.buildPanelOpen(id);
 			},planetData.nextBuildingTime - (Date.now() + planet.deltaNow + 1000));
