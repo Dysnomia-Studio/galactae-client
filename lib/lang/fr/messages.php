@@ -1,7 +1,7 @@
 <script type="text/javascript">
 var translate = translate || {};
 
-var translate["messages"] = {
+translate["messages"] = {
 	// Building
 	"BUILD_OK": "Le bâtiment commence son amélioration !",
 	"BUILD_ERROR": "Erreur lors de la tentative d'amélioration",
