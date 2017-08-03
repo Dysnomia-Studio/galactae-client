@@ -119,12 +119,15 @@ class map {
 		switch(map.currentMap) {
 			case "system":
 				map.openSectorMap(currAddressParts[0] + '-' + currAddressParts[1]);
+				$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
 				break;
 			case "sector":
 				map.openQuadrantMap(currAddressParts[0]);
+				$('#hud-map-back').text(translate['map']['BACK_QUADRANT']);
 				break;
 			case "quadrant":
 				map.openGalacticMap();
+				$('#hud-map-back').text(translate['map']['BACK_GALAXY']);
 				break;
 			default:
 				// Do nothing
