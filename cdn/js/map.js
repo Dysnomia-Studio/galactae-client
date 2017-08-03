@@ -81,6 +81,8 @@ class map {
 		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
 		map.currentMap = "system";
 
+		$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
+
 		// Toggle Maps
 		map.hideAllMaps();
 		$('#hud-map-system').css('display','block');
@@ -90,6 +92,8 @@ class map {
 		var sectorXML = $(map.xmlDoc).find("sector#" + address)[0];
 		map.currentMap = "sector";
 
+		$('#hud-map-back').text(translate['map']['BACK_QUADRANT']);
+
 		// Toggle Maps
 		map.hideAllMaps();
 		$('#hud-map-sector').css('display','block');
@@ -98,6 +102,8 @@ class map {
 	static openQuadrantMap(address) {
 		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address)[0];
 		map.currentMap = "quadrant";
+
+		$('#hud-map-back').text(translate['map']['BACK_GALAXY']);
 
 		// Toggle Maps
 		map.hideAllMaps();
@@ -119,15 +125,12 @@ class map {
 		switch(map.currentMap) {
 			case "system":
 				map.openSectorMap(currAddressParts[0] + '-' + currAddressParts[1]);
-				$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
 				break;
 			case "sector":
 				map.openQuadrantMap(currAddressParts[0]);
-				$('#hud-map-back').text(translate['map']['BACK_QUADRANT']);
 				break;
 			case "quadrant":
 				map.openGalacticMap();
-				$('#hud-map-back').text(translate['map']['BACK_GALAXY']);
 				break;
 			default:
 				// Do nothing
