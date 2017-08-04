@@ -254,11 +254,11 @@ class ui {
 		var max = (planetData.Buildings[id]+1 > buildingMaxLvl[id]);
 
 		/* Planet Construction Tab */
-		$("#building-name").text(planetBuilding[id].name);
+		$("#building-name").text(translate["buildings"][id].name);
 		$("#building-level").text(translate["messages"]['LEVEL'] + ' ' +  planetData.Buildings[id]);
-		$("#building-desc").text(planetBuilding[id].desc);
+		$("#building-desc").text(translate["buildings"][id].desc);
 		$("#building-area").css("display","block");
-		$("#building-img").attr("src",cdnURL+"img/buildings/desc/"+planetBuilding[id].id+".jpg");
+		$("#building-img").attr("src",cdnURL+"img/buildings/desc/"+translate["buildings"][id].id+".jpg");
 		$("#building-area input").id=id;
 
 		/* Ressources */
