@@ -188,7 +188,7 @@ body {
 		background-size: 100%;
 	}
 }
-@media (max-width: 1350px) and (min-width: 650px), (max-width: 1350px) and (min-height: 400px) {
+@media (max-width: 1350px) and (min-width: calc(601px + 3em)), (max-width: 1350px) and (min-height: calc(338px + 3em)) {
 	#day-bonus {
 		left: calc((100vw - 601px - 6em)/2);
 		top: calc((100vh - 338px - 6em)/2);
@@ -201,7 +201,7 @@ body {
 		background-size: 100%;
 	}
 }
-@media (max-width: 649px) and (max-height: 399px) {
+@media (max-width: calc(600px + 3em)) and (max-height: calc(337px + 3em)) {
 	#day-bonus {
 		left: 0;
 		top: 0;
