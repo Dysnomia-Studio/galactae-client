@@ -1,5 +1,6 @@
 var RESEARCH_DIV_SIZE = 10000;
-var RESEARCH_DIV_DISTANCE = 400;
+var RESEARCH_DIV_DISTANCE = 500;
+var RESEARCH_DIV_DELTA_DISTANCE = 100;
 var prevMouse = [0,0];
 
 class research {
@@ -217,7 +218,7 @@ class research {
 			//countAngles++;
 			var topParent = parseInt($('#' + parent + '-node').position().top);
 			var topChild = parseInt($('#' + key + '-node').position().top);
-			var base = (topChild - topParent) / (RESEARCH_DIV_DISTANCE + (parentCount*100));
+			var base = (topChild - topParent) / (RESEARCH_DIV_DISTANCE + (parentCount*RESEARCH_DIV_DELTA_DISTANCE));
 			while(base>1) { base-=2; }
 			while(base<-1) { base+=2; }
 			baseAngle = Math.asin(base); 
@@ -240,7 +241,7 @@ class research {
 			if(current.parents.length > 0 && current.parents[0]==key) {
 				var angle = (baseAngle + uniqueAngle*countAngles)%(2 * Math.PI);
 
-				research.drawNode(keyChild,x + (RESEARCH_DIV_DISTANCE + (parentCount*100))*Math.cos(angle),y + (RESEARCH_DIV_DISTANCE + (parentCount*100))*Math.sin(angle),key,parentCount+1);
+				research.drawNode(keyChild,x + (RESEARCH_DIV_DISTANCE + (parentCount*RESEARCH_DIV_DELTA_DISTANCE))*Math.cos(angle),y + (RESEARCH_DIV_DISTANCE + (parentCount*RESEARCH_DIV_DELTA_DISTANCE))*Math.sin(angle),key,parentCount+1);
 
 				countAngles++;
 			}
