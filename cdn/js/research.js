@@ -1,5 +1,5 @@
 var RESEARCH_DIV_SIZE = 10000;
-var RESEARCH_DIV_DISTANCE = 500;
+var RESEARCH_DIV_DISTANCE = 400;
 var prevMouse = [0,0];
 
 class research {
@@ -160,7 +160,7 @@ class research {
 	 * @param      {number}  y       Node center position y
 	 * @param      {string}  parent  The parent
 	 */
-	static drawNode(key,x,y,parent="") {
+	static drawNode(key,x,y,parent="",parentCount=0) {
 		if( $('#'+key+'-node').length ) { return; }
 
 		// Place this node
@@ -217,7 +217,7 @@ class research {
 			//countAngles++;
 			var topParent = parseInt($('#' + parent + '-node').position().top);
 			var topChild = parseInt($('#' + key + '-node').position().top);
-			var base = (topChild - topParent) / RESEARCH_DIV_DISTANCE;
+			var base = (topChild - topParent) / (RESEARCH_DIV_DISTANCE + (parentCount*100));
 			while(base>1) { base-=2; }
 			while(base<-1) { base+=2; }
 			baseAngle = Math.asin(base); 
@@ -240,7 +240,7 @@ class research {
 			if(current.parents.length > 0 && current.parents[0]==key) {
 				var angle = (baseAngle + uniqueAngle*countAngles)%(2 * Math.PI);
 
-				research.drawNode(keyChild,x + RESEARCH_DIV_DISTANCE*Math.cos(angle),y + RESEARCH_DIV_DISTANCE*Math.sin(angle),key);
+				research.drawNode(keyChild,x + (RESEARCH_DIV_DISTANCE + (parentCount*100))*Math.cos(angle),y + (RESEARCH_DIV_DISTANCE + (parentCount*100))*Math.sin(angle),key,parentCount+1);
 
 				countAngles++;
 			}
