@@ -143,7 +143,7 @@ class map {
 			$("#hud-map-system-solarFront").append("<div class=\"planet\" id=\"" + planets.address + "\"></div>");
 
 			// Set Size
-			$("#" + planet.address).css("font-size","" + (PLANET_SIZE_BASE + planets.size*PLANET_SIZE_COEF) + "em");
+			$("#" + planets.address).css("font-size","" + (PLANET_SIZE_BASE + planets.size*PLANET_SIZE_COEF) + "em");
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
