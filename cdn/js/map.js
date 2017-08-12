@@ -1,10 +1,9 @@
 // Stars: 8 to 35 em
 var STAR_SIZE_BASE = 8;
-var STAR_SIZE_COEF = 27;
 
 // Planets: 4 to 15 em
 var PLANET_SIZE_BASE = 4;
-var PLANET_SIZE_COEF = 11; 
+var PLANET_SIZE_COEF = 11 / 7; 
 
 class map {
 	static init() {
@@ -121,7 +120,7 @@ class map {
 			$("#hud-map-system-solarFront").append("<div class=\"star\" id=\"" + stars[i].address + "\"></div>");
 
 			// Set Size
-			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + stars[i].size*STAR_SIZE_COEF) + "em");
+			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + stars[i].size) + "em");
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
