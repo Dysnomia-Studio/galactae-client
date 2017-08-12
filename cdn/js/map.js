@@ -94,6 +94,7 @@ class map {
 		var stars = [];
 		var starsXML = $(systemXML).find("star");
 		for(var i=0; i< starsXML.length; i++) {
+			stars[i] = {};
 			stars[i].address = starsXML[i].attributes.id;
 			stars[i].size    = starsXML[i].attributes.size;
 			stars[i].type    = starsXML[i].attributes.type;
@@ -102,6 +103,7 @@ class map {
 		var planets = [];
 		var planetsXML = $(systemXML).find("planet");
 		for(var i=0; i< planetsXML.length; i++) {
+			planets[i] = {};
 			planets[i].address = planetsXML[i].attributes.id;
 			planets[i].size    = planetsXML[i].attributes.size;
 			planets[i].type    = planetsXML[i].attributes.type;
