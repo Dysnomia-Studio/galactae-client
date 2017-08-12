@@ -95,19 +95,19 @@ class map {
 		var starsXML = $(systemXML).find("star");
 		for(var i=0; i< starsXML.length; i++) {
 			stars[i] = {};
-			stars[i].address = starsXML[i].attributes.id;
-			stars[i].size    = starsXML[i].attributes.size;
-			stars[i].type    = starsXML[i].attributes.type;
+			stars[i].address = $(starsXML[i]).attr('id');
+			stars[i].size    = $(starsXML[i]).attr('size');
+			stars[i].type    = $(starsXML[i]).attr('type');
 		}
 
 		var planets = [];
 		var planetsXML = $(systemXML).find("planet");
 		for(var i=0; i< planetsXML.length; i++) {
 			planets[i] = {};
-			planets[i].address = planetsXML[i].attributes.id;
-			planets[i].size    = planetsXML[i].attributes.size;
-			planets[i].type    = planetsXML[i].attributes.type;
-			planets[i].gtype   = planetsXML[i].attributes.gtype;
+			planets[i].address = $(planetsXML[i]).attr('id');
+			planets[i].size    = $(planetsXML[i]).attr('size');
+			planets[i].type    = $(planetsXML[i]).attr('type');
+			planets[i].gtype   = $(planetsXML[i]).attr('gtype');
 		}
 
 		console.info(stars);
