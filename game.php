@@ -183,7 +183,14 @@
 	</div>
 	<div id="hud-map-quadrant"></div>
 	<div id="hud-map-sector"></div>
-	<div id="hud-map-system"></div>
+	<div id="hud-map-system" class="opening view-2D">
+        <div id="hud-map-system-universeBack">
+          <div id="hud-map-system-galaxyBack">
+            <div id="hud-map-system-solarFront">
+            </div>
+          </div>
+        </div>
+    </div>
 </div>
 <?php /* Fleet */ ?>
 <div id="hud-fleet">

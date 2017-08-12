@@ -1,3 +1,11 @@
+// Stars: 8 to 35 em
+var STAR_SIZE_BASE = 8;
+var STAR_SIZE_COEF = 27;
+
+// Planets: 4 to 15 em
+var PLANET_SIZE_BASE = 4;
+var PLANET_SIZE_COEF = 11; 
+
 class map {
 	static init() {
 		map.currentMap = "";
@@ -24,18 +32,18 @@ class map {
 		}
 
 		map.xmlhttp.open("GET",cdnURL + "/maps/" + serverName + ".xml", true);
-        map.xmlhttp.send();
+		map.xmlhttp.send();
 
-        /**
-         * Global Map Events
-         **/
-        $('#hud-map-back').click(function() {
-        	map.backToParent();
-        });
+		/**
+		 * Global Map Events
+		 **/
+		$('#hud-map-back').click(function() {
+			map.backToParent();
+		});
 
-        /**
-         * Galaxy Map Events
-         */
+		/**
+		 * Galaxy Map Events
+		 */
 		$('#hud-map-galaxy .select-quadrant').click(function() {
 			map.currentAddress = $(this).attr('id').split('-')[3];
 			map.openQuadrantMap();
@@ -77,15 +85,86 @@ class map {
 		$('#hud-map-back').css('display','block');
 	}
 
-	static openSolarSystemMap(address) {
+	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
 		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
 		map.currentMap = "system";
 
+		$('#hud-map-system-solarFront').html("");
+
+		var stars = [];
+		var planets = [];
+
+		var starsXML = systemXML.find("star");
+		for(var i=0; i< starsXML.length; i++) {
+			stars[i].address = starsXML[i].attr('id');
+			stars[i].size    = starsXML[i].attr('size');
+		}
+
+		var planetsXML = systemXML.find("planet");
+		for(var i=0; i< planetsXML.length; i++) {
+			planets[i].address = planetsXML[i].attr('id');
+			planets[i].size    = planetsXML[i].attr('size');
+		}
+
+		console.info(stars);
+		console.info(planets);
+
+		var prevOrbit = 0;
+
+		// For each Star
+		for(var i=0; i<stars.length; i++) {
+			// Create DOM
+			$("#hud-map-system-solarFront").append("<div class=\"star\" id=\"" + stars[i].address + "\"></div>");
+
+			// Set Size
+			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + stars[i].size*STAR_SIZE_COEF) + "em");
+
+			// Set Orbit, planet position and anim duration
+			// !! Percentage of solar system size !! \\
+			var orbitSize = 0;
+			if(stars.length > 1) { // Only one star
+				orbitSize = 0; // @ADD: Calculation of Orbit size
+			} 
+
+			var orbitDuration = orbitSize * 36; // in seconds
+
+			var pos = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+
+			// @ADD: Orbit placement, star placement 
+		}
+
+		// For each Planet
+		for(var i=0; i<planets.length; i++) {
+			// Create DOM
+			$("#hud-map-system-solarFront").append("<div class=\"planet\" id=\"" + planets.address + "\"></div>");
+
+			// Set Size
+			$("#" + planet.address).css("font-size","" + (PLANET_SIZE_BASE + planets.size*PLANET_SIZE_COEF) + "em");
+
+			// Set Orbit, planet position and anim duration
+			// !! Percentage of solar system size !! \\
+			var orbitSize = 0; // @ADD: Calculation of Orbit size
+
+			var orbitDuration = orbitSize * 36; // in seconds
+
+			var pos = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+
+			// @ADD: Orbit placement, planet placement
+
+			// @ADD: Rings & Moons
+		}		
+
+		// Back button
 		$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
 
 		// Toggle Maps
 		map.hideAllMaps();
 		$('#hud-map-system').css('display','block');
+
+		$("#hud-map-system").removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
+			$(this).removeClass('hide-UI').addClass("set-speed");
+			$(this).dequeue();
+		});
 	}
 
 	static openSectorMap(address) {

@@ -1108,6 +1108,314 @@ a[class="research-search"] {
 #hud-map-galaxy .quadrant-bottom { bottom: 0; height: calc(53% - 1px); }
 
 /**
+ * Solar system Map 
+ * Inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
+ */
+#hud-map-system {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 10px;
+}
+#hud-map-system-universeBack {
+  z-index: 1;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+#hud-map-system-galaxyBack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#hud-map-system-solarFront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation-name: orbit;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.orbit .orbit {
+  animation-name: suborbit;
+}
+.pos {
+  position: absolute;
+  top: 50%;
+  width: 2em;
+  height: 2em;
+  margin-top: -1em;
+  margin-left: -1em;
+  transform-style: preserve-3d;
+  animation-name: invert;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.star, .planet, .satelite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.star {
+  background-color: #FB7209;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+}
+.planet {
+  background-color: #202020;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+/* Animations */
+@keyframes orbit {
+	0% {
+		transform: rotateZ(0deg);
+	}
+	100% {
+		transform: rotateZ(-360deg);
+	} 
+}
+@keyframes suborbit {
+	0% {
+		transform: rotateX(90deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(90deg) rotateZ(-360deg);
+	} 
+}
+@keyframes invert {
+	0% {
+		transform: rotateX(-90deg) rotateY(360deg) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+	} 
+}
+
+/* Opening */
+.view-3D .opening .star,
+.view-3D .opening .orbit,
+.view-3D .opening .pos,
+.view-3D .opening .planet,
+.view-3D .opening .satelite,
+.view-3D .opening .ring {
+  transition-duration: 4s;
+}
+#hud-map-system-universeBack.opening .star {
+  box-shadow: 0 0 0 rgba(255, 160, 60, 0);
+}
+/* 2D View */
+.view-2D .star {
+  transform-style: flat;
+}
+.view-2D .orbit {
+  transform-style: flat;
+}
+.view-2D .star,
+.view-2D .ring {
+  transform: rotateX(0deg);
+}
+.view-2D .planet,
+.view-2D .satelite {
+  transform: rotateX(90deg);
+}
+/* 3D View */
+.view-3D .star {
+  transform-style: preserve-3d;
+}
+.view-3D .orbit {
+  transform-style: preserve-3d;
+}
+.view-3D #hud-map-system-solarFront {
+  transform: rotateX(75deg);
+}
+.view-3D .star {
+  transform: rotateX(-90deg);
+}
+.view-3D .ring {
+  transform: rotateX(90deg);
+}
+.view-3D .planet,
+.view-3D .satelite {
+  transform: rotateX(0deg);
+}
+
+#hud-map-system-solarFront {
+  width: 100%;
+}
+.view-2D #hud-map-system-solarFront {
+  font-size: 26%;
+}
+.view-3D #hud-map-system-solarFront {
+  font-size: 62%;
+}
+
+/* Infos de la planete */
+dl.infos {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: -90%;
+  margin-left: 90%;
+  padding-left: 100%;
+  transform-origin: 100% 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg);
+}
+dl.infos:before {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 30px;
+  left: 15px;
+  bottom: 0;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  transform-style: preserve-3d;
+  transform: skew(-45deg, 0deg);
+  box-shadow: inset 1px 1px black;
+}
+dl.infos dt {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 26px;
+  bottom: 30px;
+  color: #FFF;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px black;
+}
+.star .infos,
+.orbit .infos {
+  display: block;
+  opacity: 1;
+  transform: rotateX(0deg);
+}
+.orbit .orbit {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+/* transitions */
+.pos {
+  transition-property: top, left;
+}
+#hud-map-system-solarFront, .orbit,
+.planet,
+.satelite,
+.ring {
+  transition-property: width, height, top, left, margin-left, margin-top, webkit-transform;
+}
+.star, .icon {
+  transition-property: width, height, webkit-transform;
+}
+#hud-map-system-solarFront,
+.star,
+.orbit,
+.pos,
+.planet,
+.satelite,
+.ring,
+.infos,
+.icon {
+  transition-duration: .8s;
+  transition-timing-function: ease-in-out;
+}
+#hud-map-system-solarFront,
+.star,
+.planet,
+.satelite,
+.ring {
+  transition-delay: 0s;
+}
+.pos {
+  transition-delay: 1s;
+}
+.opening #hud-map-system-solarFront,
+.opening .star,
+.opening .orbit,
+.opening .pos,
+.opening .planet,
+.opening .satelite,
+.opening .ring,
+.opening .infos,
+.opening dl.infos {
+  transition-duration: 0s;
+  transition-delay: 0s;
+}
+.opening .pos {
+  transition-delay: 0s;
+}
+/* Responsive */
+@media screen and (max-width: 299px) {
+	#hud-map-system-universeBack {
+		font-size: 20%; 
+	} 
+}
+@media screen and (min-width: 300px) {
+	#hud-map-system-universeBack {
+		font-size: 24%;
+	} 
+}
+@media screen and (min-width: 500px) {
+	#hud-map-system-universeBack {
+		font-size: 36%;
+	} 
+}
+@media screen and (min-width: 600px) {
+	#hud-map-system-universeBack {
+		font-size: 44%;
+	} 
+}
+@media screen and (min-width: 760px) {
+	#hud-map-system-universeBack {
+		font-size: 58%;
+	} 
+}
+@media screen and (min-width: 1000px) {
+	#hud-map-system-universeBack {
+		font-size: 73%;
+	} 
+}
+@media screen and (min-width: 1300px) {
+	#hud-map-system-universeBack {
+		font-size: 100%;
+	} 
+}
+
+/**
  * Planet - Misc
  */
 #planet-content {
@@ -1243,9 +1551,8 @@ a[class="research-search"] {
 }
 #building-name, #building-message, #building-level { text-align: center; }
 #building-name, #building-level { margin: 0; font-weight: normal; }
-#building-desc {
-	margin: 0.5em 0;
-}
+#building-desc { margin: 0.5em 0; }
+
 /**
  * Building List
  */
@@ -1313,8 +1620,9 @@ a[class="research-search"] {
 /* Elements */
 #carriere, #metallurgy, #living, #serre, #solar, 
 #warehouse, #headquarter, #launchpad, #research ,
-#radar, #tank, #shipyard, #trade, #he3exp
-{ position: absolute; }
+#radar, #tank, #shipyard, #trade, #he3exp {
+	position: absolute;
+}
 
 #carriere		{ top: 188px;	left: 18px;	}
 #metallurgy		{ top: 270px;	left: 175px; }
@@ -1360,8 +1668,9 @@ a[class="research-search"] {
 /* Fleches */
 #arrow-carriere, #arrow-metallurgy, #arrow-living, #arrow-serre, #arrow-solar, 
 #arrow-warehouse, #arrow-headquarter, #arrow-launchpad, #arrow-research,
-#arrow-radar, #arrow-tank, #arrow-shipyard, #arrow-trade, #arrow-he3exp
-{ position: absolute; }
+#arrow-radar, #arrow-tank, #arrow-shipyard, #arrow-trade, #arrow-he3exp {
+	position: absolute;
+}
 
 #arrow-carriere    { top: 236px; left: 67px;  }
 #arrow-metallurgy  { top: 341px; left: 220px; }
