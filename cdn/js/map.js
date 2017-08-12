@@ -92,15 +92,14 @@ class map {
 		$('#hud-map-system-solarFront').html("");
 
 		var stars = [];
-		var planets = [];
-
-		var starsXML = systemXML.find("star");
+		var starsXML = $(systemXML).find("star");
 		for(var i=0; i< starsXML.length; i++) {
 			stars[i].address = starsXML[i].attr('id');
 			stars[i].size    = starsXML[i].attr('size');
 		}
 
-		var planetsXML = systemXML.find("planet");
+		var planets = [];
+		var planetsXML = $(systemXML).find("planet");
 		for(var i=0; i< planetsXML.length; i++) {
 			planets[i].address = planetsXML[i].attr('id');
 			planets[i].size    = planetsXML[i].attr('size');
