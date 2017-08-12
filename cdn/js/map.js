@@ -140,10 +140,10 @@ class map {
 		// For each Planet
 		for(var i=0; i<planets.length; i++) {
 			// Create DOM
-			$("#hud-map-system-solarFront").append("<div class=\"planet\" id=\"" + planets.address + "\"></div>");
+			$("#hud-map-system-solarFront").append("<div class=\"planet\" id=\"" + planets[i].address + "\"></div>");
 
 			// Set Size
-			$("#" + planets.address).css("font-size","" + (PLANET_SIZE_BASE + planets.size*PLANET_SIZE_COEF) + "em");
+			$("#" + planets[i].address).css("font-size","" + (PLANET_SIZE_BASE + planets[i].size*PLANET_SIZE_COEF) + "em");
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
