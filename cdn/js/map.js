@@ -2,8 +2,8 @@
 var STAR_SIZE_BASE = 8;
 
 // Planets: 4 to 15 em
-var PLANET_SIZE_BASE = 4;
-var PLANET_SIZE_COEF = 11 / 7; 
+var PLANET_SIZE_BASE = 3;
+var PLANET_SIZE_COEF = 9 / 7; 
 
 class map {
 	static init() {
