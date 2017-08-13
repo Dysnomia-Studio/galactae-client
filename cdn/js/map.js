@@ -188,7 +188,7 @@ class map {
 
 			/* Planet Img */
 			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
-			$("#" + planets[i].address + " .pos .planet").css("background-image","url(../img/planets/front/" + planets.type + ".jpg)")
+			$("#" + planets[i].address + " .pos .planet").css("background-image","url(../img/planets/front/" + planets[i].type + ".jpg)")
 
 			// @ADD: Rings & Moons
 		}		
