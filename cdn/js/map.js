@@ -144,15 +144,6 @@ class map {
 				
 				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
 				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
-			} else {
-				$("#" + stars[i].address).css("height","0vh");
-				$("#" + stars[i].address).css("width","0vw");
-
-				$("#" + stars[i].address).css("margin-top","0vh");
-				$("#" + stars[i].address).css("margin-left","0vw");
-
-				$("#" + stars[i].address + " .pos").css("top","50%");
-				$("#" + stars[i].address + " .pos").css("left","50%");
 			}
 		}
 
@@ -170,7 +161,7 @@ class map {
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
-			var orbitSize = i*10; // @ADD: Calculation of Orbit size
+			var orbitSize = i*9; // @ADD: Calculation of Orbit size
 
 			var orbitDuration = orbitSize * 36; // in seconds
 
