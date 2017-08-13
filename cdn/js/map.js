@@ -155,7 +155,7 @@ class map {
 		// For each Planet
 		for(var i=0; i<planets.length; i++) {
 			// Create DOM
-			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"><div class="planet></div></div></div>');
+			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>');
 			$("#" + planets[i].address + " .pos .planet").append('<dl class="infos">' +
 						'<dt></dt>' + // @ADD: Name
 						'<dd></dd>' + // @ADD: Player & Address
@@ -168,23 +168,26 @@ class map {
 			// !! Percentage of solar system size !! \\
 			var orbitSize = firstPlanet + i*9; // @ADD: Calculation of Orbit size
 
+			// Anim duration
 			var orbitDuration = orbitSize * 36; // in seconds
+			$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
 
 			/* Orbit */
 			$("#" + planets[i].address).css("height","" + orbitSize + "vh");
-			$("#" + planets[i].address).css("width","" + orbitSize + "vw");
+			$("#" + planets[i].address).css("width","" + orbitSize + "vh");
 
 			$("#" + planets[i].address).css("margin-top","-" + (orbitSize/2) + "vh");
-			$("#" + planets[i].address).css("margin-left","-" + (orbitSize/2) + "vw");
+			$("#" + planets[i].address).css("margin-left","-" + (orbitSize/2) + "vh");
 
 			/* Planet Pos */
 			var orbitDuration = orbitSize * 36; // in seconds
 			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 			
 			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
-			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
+			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vh * " + Math.cos(posAng) + "))");
 
 			/* Planet Img */
+			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
 			$("#" + planets[i].address + " .pos .planet").css("background-image","url(../img/planets/front/" + planets.type + ".jpg)")
 
 			// @ADD: Rings & Moons
