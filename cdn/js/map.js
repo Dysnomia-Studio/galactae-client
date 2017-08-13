@@ -171,6 +171,8 @@ class map {
 			// Anim duration
 			var orbitDuration = orbitSize * 36; // in seconds
 			$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
+			$("#" + planets[i].address + ".pos").css("animation-duration","" + orbitDuration + "s");
+			$("#" + planets[i].address + ".pos .planet").css("animation-duration","" + orbitDuration + "s");
 
 			/* Orbit */
 			$("#" + planets[i].address).css("height","" + orbitSize + "vh");
