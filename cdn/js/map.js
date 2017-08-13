@@ -166,7 +166,7 @@ class map {
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
-			var orbitSize = firstPlanet + i*9; // @ADD: Calculation of Orbit size
+			var orbitSize = firstPlanet + (i+1)*8; // @ADD: Calculation of Orbit size
 
 			// Anim duration
 			var orbitDuration = orbitSize * 36; // in seconds
