@@ -128,6 +128,7 @@ class map {
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
 			var orbitSize = 0;
+			var firstPlanet = 0;
 			if(stars.length > 1) { // Only one star
 				orbitSize = 0; // @ADD: Calculation of Orbit size
 				
@@ -144,6 +145,10 @@ class map {
 				
 				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
 				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
+
+				firstPlanet = 0; // @ADD: calculation
+			} else {
+				firstPlanet = 0; // @ADD: calculation
 			}
 		}
 
@@ -161,7 +166,7 @@ class map {
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
-			var orbitSize = i*9; // @ADD: Calculation of Orbit size
+			var orbitSize = firstPlanet + i*9; // @ADD: Calculation of Orbit size
 
 			var orbitDuration = orbitSize * 36; // in seconds
 
@@ -178,6 +183,9 @@ class map {
 			
 			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
 			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
+
+			/* Planet Img */
+			$("#" + planets[i].address + " .pos .planet").css("background-image","url(../img/planets/front/" + planets.type + ".jpg)")
 
 			// @ADD: Rings & Moons
 		}		
