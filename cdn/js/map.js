@@ -117,7 +117,7 @@ class map {
 		// For each Star
 		for(var i=0; i<stars.length; i++) {
 			// Create DOM
-			$("#hud-map-system-solarFront").append("<div class=\"star\" id=\"" + stars[i].address + "\"></div>");
+			$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
 
 			// Set Size
 			console.log(STAR_SIZE_BASE);
@@ -130,13 +130,30 @@ class map {
 			var orbitSize = 0;
 			if(stars.length > 1) { // Only one star
 				orbitSize = 0; // @ADD: Calculation of Orbit size
-			} 
+				
+				/* Orbit */
+				$("#" + stars[i].address).css("height","" + orbitSize + "vh");
+				$("#" + stars[i].address).css("width","" + orbitSize + "vw");
 
-			var orbitDuration = orbitSize * 36; // in seconds
+				$("#" + stars[i].address).css("margin-top","-" + (orbitSize/2) + "vh");
+				$("#" + stars[i].address).css("margin-left","-" + (orbitSize/2) + "vw");
 
-			var pos = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+				/* Star Pos */
+				var orbitDuration = orbitSize * 36; // in seconds
+				var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+				
+				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
+			} else {
+				$("#" + stars[i].address).css("height","0vh");
+				$("#" + stars[i].address).css("width","0vw");
 
-			// @ADD: Orbit placement, star placement 
+				$("#" + stars[i].address).css("margin-top","0vh");
+				$("#" + stars[i].address).css("margin-left","0vw");
+
+				$("#" + stars[i].address + " .pos").css("top","50%");
+				$("#" + stars[i].address + " .pos").css("left","50%");
+			}
 		}
 
 		// For each Planet
@@ -157,9 +174,19 @@ class map {
 
 			var orbitDuration = orbitSize * 36; // in seconds
 
-			var pos = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+			/* Orbit */
+			$("#" + planets[i].address).css("height","" + orbitSize + "vh");
+			$("#" + planets[i].address).css("width","" + orbitSize + "vw");
 
-			// @ADD: Orbit placement, planet placement
+			$("#" + planets[i].address).css("margin-top","-" + (orbitSize/2) + "vh");
+			$("#" + planets[i].address).css("margin-left","-" + (orbitSize/2) + "vw");
+
+			/* Planet Pos */
+			var orbitDuration = orbitSize * 36; // in seconds
+			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+			
+			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
+			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
 
 			// @ADD: Rings & Moons
 		}		
