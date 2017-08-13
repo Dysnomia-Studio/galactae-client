@@ -1119,7 +1119,7 @@ a[class="research-search"] {
   width: 100%;
   height: 100%;
 }
-#hud-map-system.view-3D {
+.view-3D {
   font-size: 10px;
 }
 #hud-map-system-universeBack {
