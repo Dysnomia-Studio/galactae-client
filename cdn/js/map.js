@@ -120,6 +120,9 @@ class map {
 			$("#hud-map-system-solarFront").append("<div class=\"star\" id=\"" + stars[i].address + "\"></div>");
 
 			// Set Size
+			console.log(STAR_SIZE_BASE);
+			console.log(stars[i].size);
+			console.log(STAR_SIZE_BASE + stars[i].size);
 			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + stars[i].size) + "em");
 
 			// Set Orbit, planet position and anim duration
@@ -139,14 +142,18 @@ class map {
 		// For each Planet
 		for(var i=0; i<planets.length; i++) {
 			// Create DOM
-			$("#hud-map-system-solarFront").append("<div class=\"planet\" id=\"" + planets[i].address + "\"></div>");
+			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"><div class="planet></div></div></div>');
+			$("#" + planets[i].address + " .pos .planet").append('<dl class="infos">' +
+						'<dt></dt>' + // @ADD: Name
+						'<dd></dd>' + // @ADD: Player & Address
+				'</dl>');
 
 			// Set Size
 			$("#" + planets[i].address).css("font-size","" + (PLANET_SIZE_BASE + planets[i].size*PLANET_SIZE_COEF) + "em");
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
-			var orbitSize = 0; // @ADD: Calculation of Orbit size
+			var orbitSize = i*10; // @ADD: Calculation of Orbit size
 
 			var orbitDuration = orbitSize * 36; // in seconds
 
