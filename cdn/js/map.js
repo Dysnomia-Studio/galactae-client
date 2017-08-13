@@ -146,9 +146,9 @@ class map {
 				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
 				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
 
-				firstPlanet = 0; // @ADD: calculation
+				firstPlanet = 5; // @ADD: calculation
 			} else {
-				firstPlanet = 0; // @ADD: calculation
+				firstPlanet = 5; // @ADD: calculation
 			}
 		}
 
