@@ -123,7 +123,7 @@ class map {
 			console.log(STAR_SIZE_BASE);
 			console.log(stars[i].size);
 			console.log(STAR_SIZE_BASE + stars[i].size);
-			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + stars[i].size) + "em");
+			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
@@ -149,7 +149,7 @@ class map {
 				'</dl>');
 
 			// Set Size
-			$("#" + planets[i].address).css("font-size","" + (PLANET_SIZE_BASE + planets[i].size*PLANET_SIZE_COEF) + "em");
+			$("#" + planets[i].address).css("font-size","" + (PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF) + "em");
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
