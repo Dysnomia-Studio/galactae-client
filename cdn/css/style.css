@@ -1069,6 +1069,8 @@ a[class="research-search"] {
 	color: white;
 	cursor: pointer;
 	display: none;
+
+	z-index: 150;
 }
 #hud-map-galaxy {
 	background-image: url('../img/map/galaxy.jpg');
