@@ -3,7 +3,9 @@ var STAR_SIZE_BASE = 8;
 
 // Planets: 4 to 15 em
 var PLANET_SIZE_BASE = 3;
-var PLANET_SIZE_COEF = 9 / 7; 
+var PLANET_SIZE_COEF = 9 / 7;
+
+var QUADRANT_SECTOR_COUNT = [6,5,5,6];
 
 class map {
 	static init() {
@@ -85,6 +87,13 @@ class map {
 	}
 
 	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
+		// Check Address
+		if(address.split("-").length != 3) {
+			console.log('INVALID ADRESS FORMAT !');
+			return;
+		}
+
+		// Get XML
 		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
 		map.currentMap = "system";
 
@@ -209,6 +218,13 @@ class map {
 	}
 
 	static openSectorMap(address) {
+		// Check Address
+		if(address.split("-").length != 2) {
+			console.log('INVALID ADRESS FORMAT !');
+			return;
+		}
+
+		// Get XML
 		var sectorXML = $(map.xmlDoc).find("sector#" + address)[0];
 		map.currentMap = "sector";
 
@@ -220,9 +236,18 @@ class map {
 	}
 
 	static openQuadrantMap(address) {
+		// Check Address
+		if(address.split("-").length != 1) {
+			console.log('INVALID ADRESS FORMAT !');
+			return;
+		}
+
+		// Get XML
 		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address)[0];
 		map.currentMap = "quadrant";
+		
 
+		// Back button
 		$('#hud-map-back').text(translate['map']['BACK_GALAXY']);
 
 		// Toggle Maps
@@ -233,10 +258,13 @@ class map {
 	static openGalacticMap() {
 		map.currentMap = "galaxy";
 
+
+		// Back button
+		$('#hud-map-back').css('display','none');
+
 		// Toggle Maps
 		map.hideAllMaps();
 		$('#hud-map-galaxy').css('display','block');
-		$('#hud-map-back').css('display','none');
 	}
 
 	static backToParent() {
