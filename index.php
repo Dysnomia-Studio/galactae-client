@@ -1,7 +1,8 @@
 <?php
+include_once('lib/init.php');
 include_once('gvars.php'); 
-include_once('lib/init.php'); 
 ?>
+<link rel="shortcut icon" type="image/png" href="<?php echo $cdnUrl; ?>/favicon.png"/>
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
 <?php
 if(isset($db)) { //Maybe we don't have SQL connection ...
