@@ -1,6 +1,6 @@
 <?php
-include_once('lib/init.php'); 
 include_once('gvars.php'); 
+include_once('lib/init.php'); 
 ?>
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
 <?php
