@@ -1124,6 +1124,7 @@ a[class="research-search"] {
 	position: absolute;
 
 	width: 80vw;
+	height: 80vw;
 }
 #hud-map-quadrant-current .quadrant-subsector {
 	border: 1px solid rgba(14,198,198,0.8);
@@ -1131,8 +1132,8 @@ a[class="research-search"] {
 	border-bottom: none;
 	border-left: none;
 
-	width: 10vw;
-	height: 10vw;
+	width: 20%;
+	height: 20%;
 
 	position: absolute;
 }
