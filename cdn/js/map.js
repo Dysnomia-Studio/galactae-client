@@ -46,8 +46,7 @@ class map {
 		 * Galaxy Map Events
 		 */
 		$('#hud-map-galaxy .select-quadrant').click(function() {
-			map.currentAddress = $(this).attr('id').split('-')[3];
-			map.openQuadrantMap();
+			map.openQuadrantMap($(this).attr('id').split('-')[3]);
 		});
 	}
 
@@ -209,6 +208,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
+		map.currentAddress = address;
 		$('#hud-map-system').css('display','block');
 
 		$("#hud-map-system").removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
@@ -232,6 +232,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
+		map.currentAddress = address;
 		$('#hud-map-sector').css('display','block');
 	}
 
@@ -371,6 +372,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
+		map.currentAddress = address;
 		$('#hud-map-quadrant').css('display','block');
 	}
 
@@ -383,6 +385,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
+		map.currentAddress = "";
 		$('#hud-map-galaxy').css('display','block');
 	}
 
