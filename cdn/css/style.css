@@ -1123,8 +1123,8 @@ a[class="research-search"] {
 #hud-map-quadrant-current {
 	position: absolute;
 
-	width: 80vw;
-	height: 80vw;
+	width: 70vw;
+	height: 40vw;
 }
 #hud-map-quadrant-current .quadrant-subsector {
 	border: 1px solid rgba(14,198,198,0.8);
@@ -1134,10 +1134,10 @@ a[class="research-search"] {
 
 	position: absolute;
 }
-.current-quadrant-left   { left: 10vw;   }
-.current-quadrant-top    { top: 10vw;    }
-.current-quadrant-right  { right: 10vw;  }
-.current-quadrant-bottom { bottom: 10vw; }
+.current-quadrant-left   { left:   5vw;  }
+.current-quadrant-top    { top:    4vh;  }
+.current-quadrant-right  { right:  5vw;  }
+.current-quadrant-bottom { bottom: 4vh;  }
 
 /**
  * Solar system Map 
