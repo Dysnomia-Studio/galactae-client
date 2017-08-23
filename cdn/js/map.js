@@ -242,10 +242,129 @@ class map {
 			return;
 		}
 
+		address = parseInt(address);
+
+		// Background position
+		// Keep in mind to set 10% of picture out of borders
+		switch(address) {
+			case 0: // Top left
+				$('#hud-map-quadrant').css('background-position','10% 10%');
+				break;
+			case 1: // Top right
+			    $('#hud-map-quadrant').css('background-position','90% 10%');
+				break;
+			case 2: // Bottom left
+			    $('#hud-map-quadrant').css('background-position','10% 90%');
+				break;
+			case 3: // Bottom right
+			    $('#hud-map-quadrant').css('background-position','90% 90%');
+				break;
+			default:
+				return;
+		}
+
 		// Get XML
 		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address)[0];
 		map.currentMap = "quadrant";
-		
+
+		$('#hud-map-quadrant-current').html("");
+		$('#hud-map-quadrant-current').removeClass("current-quadrant-left current-quadrant-top current-quadrant-right current-quadrant-bottom");
+
+		// Generate sectors
+		for(var i=0; i<QUADRANT_SECTOR_COUNT[address]; i++) {
+			$('#hud-map-quadrant-current').append('<div class="quadrant-subsector" id="' + address + '-' + i + '"></div>');
+
+			var lines = [];
+
+			var baseleft = 0;
+			var basetop = 0;
+
+			var multleft = 0;
+			var multtop = 0;
+
+			// Positionning
+			switch(address) {
+				case 0: // Top left
+					lines = [5,5,5,5];
+
+					baseleft = 100;
+					basetop = 100;
+
+					multleft = -20;
+					multtop = -20;
+
+					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-left");
+					break;
+				case 1: // Top right
+					lines = [2,3,4,4];
+
+					baseleft = 0;
+					basetop = 100;
+	
+					multleft = 20;
+					multtop = -20;
+
+					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-right");
+					break;
+				case 2: // Bottom left
+					lines = [4,4,4,3,1];
+
+					baseleft = 100;
+					basetop = 0;
+	
+					multleft = -20;
+					multtop = 20;
+
+					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-left");
+					break;
+				case 3: // Bottom right
+					lines = [4,4,4,4,4];
+
+					baseleft = 0;
+					basetop = 0;
+	
+					multleft = 20;
+					multtop = 20;
+
+					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-right");
+					break;
+				default:
+					return;
+			}
+
+			var mod = i;
+			var it = 0;
+			while(mod>=lines[it]) {
+				mod -= lines[it];
+				it ++;
+			}
+
+			var left = baseleft + (mod*multleft);
+			var top  = basetop + (Math.floor(i/lines[it])*multtop);
+				
+			$('#' + address + '-' + i).css('left',"" + left + "%");
+			$('#' + address + '-' + i).css('top',"" + top + "%");
+		}
+
+		// Generate other quadrants
+		// & lines
+		switch(address) {
+			case 0: // Top left
+				
+				break;
+			case 1: // Top right
+				
+				break;
+			case 2: // Bottom left
+				
+				break;
+			case 3: // Bottom right
+				
+				break;
+			default:
+				return;
+		}
+
 
 		// Back button
 		$('#hud-map-back').text(translate['map']['BACK_GALAXY']);
