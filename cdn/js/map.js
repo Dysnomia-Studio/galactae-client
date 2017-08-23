@@ -88,7 +88,7 @@ class map {
 
 	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
 		// Check Address
-		if(address.split("-").length != 3) {
+		if(typeof(address) != "string" || address.split("-").length != 3) {
 			console.log('INVALID ADRESS FORMAT !');
 			return;
 		}
@@ -219,7 +219,7 @@ class map {
 
 	static openSectorMap(address) {
 		// Check Address
-		if(address.split("-").length != 2) {
+		if(typeof(address) != "string" || address.split("-").length != 2) {
 			console.log('INVALID ADRESS FORMAT !');
 			return;
 		}
@@ -237,7 +237,7 @@ class map {
 
 	static openQuadrantMap(address) {
 		// Check Address
-		if(address.split("-").length != 1) {
+		if(typeof(address) != "string" || address.split("-").length != 1) {
 			console.log('INVALID ADRESS FORMAT !');
 			return;
 		}
