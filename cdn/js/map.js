@@ -372,7 +372,7 @@ class map {
 
 		// Toggle Maps
 		map.hideAllMaps();
-		map.currentAddress = address;
+		map.currentAddress = ""+address;
 		$('#hud-map-quadrant').css('display','block');
 	}
 
