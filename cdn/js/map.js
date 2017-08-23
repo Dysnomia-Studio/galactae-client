@@ -340,11 +340,20 @@ class map {
 				it ++;
 			}
 
-			var left = baseleft + (mod*multleft);
-			var top  = basetop + (Math.floor(i/lines[it])*multtop);
-				
-			$('#' + address + '-' + i).css('left',"" + left + "%");
-			$('#' + address + '-' + i).css('top',"" + top + "%");
+			var w = baseleft + (mod*multleft);
+			var h  = basetop + (Math.floor(i/lines[it])*multtop);
+			
+			if(multleft>0) {
+				$('#' + address + '-' + i).css('left',"" + w + "%");
+			} else {
+				$('#' + address + '-' + i).css('right',"" + w + "%");
+			}
+
+			if(multtop>0) {
+				$('#' + address + '-' + i).css('top',"" + h + "%");
+			} else {
+				$('#' + address + '-' + i).css('bottom',"" + h + "%");
+			}
 		}
 
 		// Generate other quadrants
