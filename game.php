@@ -181,7 +181,10 @@
 		<div class="select-quadrant quadrant-bottom quadrant-left" id="hud-map-galaxy-2"></div>
 		<div class="select-quadrant quadrant-bottom quadrant-right" id="hud-map-galaxy-3"></div>
 	</div>
-	<div id="hud-map-quadrant"></div>
+	<div id="hud-map-quadrant">
+		<div id="hud-map-quadrant-current"></div>
+		<div id="hud-map-quadrant-others"></div>
+	</div>
 	<div id="hud-map-sector"></div>
 	<div id="hud-map-system" class="opening view-2D">
         <div id="hud-map-system-universeBack">
