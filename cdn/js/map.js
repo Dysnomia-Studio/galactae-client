@@ -300,7 +300,7 @@ class map {
 					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-left");
 					break;
 				case 1: // Top right
-					lines = [2,3,4,4];
+					lines = [4,4,3,2];
 
 					baseleft = 0;
 					basetop = 100;
@@ -370,6 +370,10 @@ class map {
 				return;
 		}
 
+		// Open sector
+		$('.quadrant-subsector').click(function() {
+			map.openSectorMap($(this).attr('id'));
+		});
 
 		// Back button
 		$('#hud-map-back').text(translate['map']['BACK_GALAXY']);
