@@ -306,8 +306,8 @@ class map {
 					baseleft = 85;
 					basetop = 85;
 
-					multleft = -15;
-					multtop = -15;
+					multleft = -11.667;
+					multtop = -11.667;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-left");
 					break;
@@ -317,8 +317,8 @@ class map {
 					baseleft = 0;
 					basetop = 85;
 	
-					multleft = 15;
-					multtop = -15;
+					multleft = 11.667;
+					multtop = -11.667;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-right");
 					break;
@@ -328,8 +328,8 @@ class map {
 					baseleft = 85;
 					basetop = 0;
 	
-					multleft = -15;
-					multtop = 15;
+					multleft = -11.667;
+					multtop = 11.667;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-left");
 					break;
@@ -339,8 +339,8 @@ class map {
 					baseleft = 0;
 					basetop = 0;
 	
-					multleft = 15;
-					multtop = 15;
+					multleft = 11.667;
+					multtop = 11.667;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-right");
 					break;
