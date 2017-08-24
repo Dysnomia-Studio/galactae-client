@@ -303,11 +303,11 @@ class map {
 				case 0: // Top left
 					lines = [5,5,5,5];
 
-					baseleft = 85;
+					baseleft = 86.5;;
 					basetop = 85;
 
-					multleft = -11.667;
-					multtop = -11.667;
+					multleft = -13.5;
+					multtop = -15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-left");
 					break;
@@ -317,19 +317,19 @@ class map {
 					baseleft = 0;
 					basetop = 85;
 	
-					multleft = 11.667;
-					multtop = -11.667;
+					multleft = 13.5;
+					multtop = -15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-right");
 					break;
 				case 2: // Bottom left
 					lines = [4,4,4,3,1];
 
-					baseleft = 85;
+					baseleft = 86.5;
 					basetop = 0;
 	
-					multleft = -11.667;
-					multtop = 11.667;
+					multleft = -13.5;
+					multtop = 15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-left");
 					break;
@@ -339,8 +339,8 @@ class map {
 					baseleft = 0;
 					basetop = 0;
 	
-					multleft = 11.667;
-					multtop = 11.667;
+					multleft = 13.5;
+					multtop = 15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-right");
 					break;
