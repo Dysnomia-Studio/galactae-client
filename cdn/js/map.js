@@ -399,13 +399,14 @@ class map {
 	static openGalacticMap() {
 		map.currentMap = "galaxy";
 
+		// Toggle Maps
+		map.hideAllMaps();
+		map.currentAddress = "";
 
 		// Back button
 		$('#hud-map-back').css('display','none');
 
-		// Toggle Maps
-		map.hideAllMaps();
-		map.currentAddress = "";
+
 		$('#hud-map-galaxy').css('display','block');
 	}
 
