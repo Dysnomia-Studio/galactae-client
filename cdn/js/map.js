@@ -291,44 +291,44 @@ class map {
 				case 0: // Top left
 					lines = [5,5,5,5];
 
-					baseleft = 100;
-					basetop = 100;
+					baseleft = 85;
+					basetop = 85;
 
-					multleft = -20;
-					multtop = -20;
+					multleft = -15;
+					multtop = -15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-left");
 					break;
 				case 1: // Top right
 					lines = [4,4,3,2];
 
-					baseleft = 0;
-					basetop = 100;
+					baseleft = 15;
+					basetop = 85;
 	
-					multleft = 20;
-					multtop = -20;
+					multleft = 15;
+					multtop = -15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-right");
 					break;
 				case 2: // Bottom left
 					lines = [4,4,4,3,1];
 
-					baseleft = 100;
-					basetop = 0;
+					baseleft = 85;
+					basetop = 15;
 	
-					multleft = -20;
-					multtop = 20;
+					multleft = -15;
+					multtop = 15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-left");
 					break;
 				case 3: // Bottom right
 					lines = [4,4,4,4,4];
 
-					baseleft = 0;
-					basetop = 0;
+					baseleft = 15;
+					basetop = 15;
 	
-					multleft = 20;
-					multtop = 20;
+					multleft = 15;
+					multtop = 15;
 
 					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-right");
 					break;
