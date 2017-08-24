@@ -253,15 +253,27 @@ class map {
 		switch(address) {
 			case 0: // Top left
 				$('#hud-map-quadrant').css('background-position','  0%   0%');
+
+				$('#hud-map-quadrant-current').css('width', '82vw');
+				$('#hud-map-quadrant-current').css('height','45vw');
 				break;
 			case 1: // Top right
 			    $('#hud-map-quadrant').css('background-position','100%   0%');
+
+				$('#hud-map-quadrant-current').css('width', '84.5vw');
+				$('#hud-map-quadrant-current').css('height','45vw');
 				break;
 			case 2: // Bottom left
 			    $('#hud-map-quadrant').css('background-position','  0% 100%');
+
+				$('#hud-map-quadrant-current').css('width', '82vw');
+				$('#hud-map-quadrant-current').css('height','50vw');
 				break;
 			case 3: // Bottom right
 			    $('#hud-map-quadrant').css('background-position','100% 100%');
+
+				$('#hud-map-quadrant-current').css('width', '84.5vw');
+				$('#hud-map-quadrant-current').css('height','50vw');
 				break;
 			default:
 				return;
@@ -302,7 +314,7 @@ class map {
 				case 1: // Top right
 					lines = [4,4,3,2];
 
-					baseleft = 15;
+					baseleft = 0;
 					basetop = 85;
 	
 					multleft = 15;
@@ -314,7 +326,7 @@ class map {
 					lines = [4,4,4,3,1];
 
 					baseleft = 85;
-					basetop = 15;
+					basetop = 0;
 	
 					multleft = -15;
 					multtop = 15;
@@ -324,8 +336,8 @@ class map {
 				case 3: // Bottom right
 					lines = [4,4,4,4,4];
 
-					baseleft = 15;
-					basetop = 15;
+					baseleft = 0;
+					basetop = 0;
 	
 					multleft = 15;
 					multtop = 15;
