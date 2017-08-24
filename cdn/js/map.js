@@ -5,7 +5,7 @@ var STAR_SIZE_BASE = 8;
 var PLANET_SIZE_BASE = 3;
 var PLANET_SIZE_COEF = 9 / 7;
 
-var QUADRANT_SECTOR_COUNT = [6,5,5,6];
+var QUADRANT_SECTOR_COUNT = [20,13,16,20];
 
 class map {
 	static init() {
