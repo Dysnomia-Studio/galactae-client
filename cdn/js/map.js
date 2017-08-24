@@ -29,6 +29,9 @@ class map {
 					map.xmlDoc = "";
 					console.log('ERROR: CANNOT LOAD MAP');
 				}
+			} else {
+				map.xmlDoc = "";
+				console.log('ERROR: CANNOT LOAD MAP');
 			}
 		}
 
@@ -340,20 +343,12 @@ class map {
 				it ++;
 			}
 
-			var w = baseleft + (mod*multleft);
-			var h  = basetop + (Math.floor(i/lines[it])*multtop);
+			var left = baseleft + (mod*multleft);
+			var top  = basetop + (Math.floor(i/lines[it])*multtop);
 			
-			if(multleft>0) {
-				$('#' + address + '-' + i).css('left',"" + w + "%");
-			} else {
-				$('#' + address + '-' + i).css('right',"" + w + "%");
-			}
+			$('#' + address + '-' + i).css('left',"" + w + "%");
 
-			if(multtop>0) {
-				$('#' + address + '-' + i).css('top',"" + h + "%");
-			} else {
-				$('#' + address + '-' + i).css('bottom',"" + h + "%");
-			}
+			$('#' + address + '-' + i).css('top',"" + top + "%");
 		}
 
 		// Generate other quadrants
