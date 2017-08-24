@@ -1134,10 +1134,10 @@ a[class="research-search"] {
 
 	position: absolute;
 }
-.current-quadrant-left   { left:   5vw;  }
-.current-quadrant-top    { top:    4vh;  }
-.current-quadrant-right  { right:  5vw;  }
-.current-quadrant-bottom { bottom: 4vh;  }
+.current-quadrant-left   { left:   0;  }
+.current-quadrant-top    { top:    0;  }
+.current-quadrant-right  { right:  0;  }
+.current-quadrant-bottom { bottom: 0;  }
 
 /**
  * Solar system Map 

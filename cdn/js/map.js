@@ -252,16 +252,16 @@ class map {
 		// Keep in mind to set 10% of picture out of borders
 		switch(address) {
 			case 0: // Top left
-				$('#hud-map-quadrant').css('background-position','10% 10%');
+				$('#hud-map-quadrant').css('background-position','  0%   0%');
 				break;
 			case 1: // Top right
-			    $('#hud-map-quadrant').css('background-position','90% 10%');
+			    $('#hud-map-quadrant').css('background-position','100%   0%');
 				break;
 			case 2: // Bottom left
-			    $('#hud-map-quadrant').css('background-position','10% 90%');
+			    $('#hud-map-quadrant').css('background-position','  0% 100%');
 				break;
 			case 3: // Bottom right
-			    $('#hud-map-quadrant').css('background-position','90% 90%');
+			    $('#hud-map-quadrant').css('background-position','100% 100%');
 				break;
 			default:
 				return;
