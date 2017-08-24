@@ -346,7 +346,7 @@ class map {
 			var left = baseleft + (mod*multleft);
 			var top  = basetop + (Math.floor(i/lines[it])*multtop);
 			
-			$('#' + address + '-' + i).css('left',"" + w + "%");
+			$('#' + address + '-' + i).css('left',"" + left + "%");
 
 			$('#' + address + '-' + i).css('top',"" + top + "%");
 		}
