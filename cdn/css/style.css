@@ -1132,6 +1132,14 @@ a[class="research-search"] {
 	position: absolute;
 }
 
+#hud-map-quadrant-others {	
+	width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
 .quadrant-other-vertical
 
 .quadrant-current-left   { left:   0;  }
