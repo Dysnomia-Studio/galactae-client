@@ -29,9 +29,6 @@ class map {
 					map.xmlDoc = "";
 					console.log('ERROR: CANNOT LOAD MAP');
 				}
-			} else {
-				map.xmlDoc = "";
-				console.log('ERROR: CANNOT LOAD MAP');
 			}
 		}
 
@@ -51,6 +48,8 @@ class map {
 		$('#hud-map-galaxy .select-quadrant').click(function() {
 			map.openQuadrantMap($(this).attr('id').split('-')[3]);
 		});
+
+		loadScreen.complete();
 	}
 
 	static openTab() {

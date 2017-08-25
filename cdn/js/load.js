@@ -7,6 +7,7 @@ var loadEnd = 7;
 // 5 -> Player data
 // 6 -> Settings
 // 7 -> Preload Pictures
+// 8 -> Map
 class loadScreen {
 	static show() {
 		$('#loading-overlay').show();
