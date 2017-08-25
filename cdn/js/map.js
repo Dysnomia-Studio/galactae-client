@@ -349,7 +349,7 @@ class map {
 			case 1: // Top right
 			    $('#hud-map-quadrant').css('background-position','100%   0%');
 
-				$('#hud-map-quadrant-current').css('width', 'calc(84.5vw - 2px)');
+				$('#hud-map-quadrant-current').css('width', '84.5vw');
 				$('#hud-map-quadrant-current').css('height','calc(45vw - 2px)');
 
 				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-bottom" id="3" style="width: calc(84.5vw - 2px); height: calc(100vh - 45vw - 2px);"></div>';
@@ -360,7 +360,7 @@ class map {
 			    $('#hud-map-quadrant').css('background-position','  0% 100%');
 
 				$('#hud-map-quadrant-current').css('width', 'calc(82vw - 2px)');
-				$('#hud-map-quadrant-current').css('height','calc(50vw - 2px)');
+				$('#hud-map-quadrant-current').css('height','50vw');
 
 				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-top" id="0" style="width: calc(82vw - 2px); height: calc(100vh - 50vw - 2px);"></div>';
 				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-top" id="1" style="width: calc(18vw - 2px); height: calc(100vh - 50vw - 2px);"></div>';
@@ -369,8 +369,8 @@ class map {
 			case 3: // Bottom right
 			    $('#hud-map-quadrant').css('background-position','100% 100%');
 
-				$('#hud-map-quadrant-current').css('width', 'calc(84.5vw - 2px)');
-				$('#hud-map-quadrant-current').css('height','calc(50vw - 2px)');
+				$('#hud-map-quadrant-current').css('width', '84.5vw');
+				$('#hud-map-quadrant-current').css('height','50vw');
 
 				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-top" id="1" style="width: calc(84.5vw - 2px); height: calc(100vh - 50vw - 2px);"></div>';
 				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-top" id="0" style="width: calc(15.5vw - 2px); height: calc(100vh - 50vw - 2px);"></div>';
