@@ -342,9 +342,9 @@ class map {
 				$('#hud-map-quadrant-current').css('width', '82vw');
 				$('#hud-map-quadrant-current').css('height','45vw');
 
-				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 82vw; height: calc(100vh - 45vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 18vw; height: calc(100vh - 45vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 18vw; height: 45vw;">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 82vw; height: calc(100vh - 45vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 18vw; height: calc(100vh - 45vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 18vw; height: 45vw;"></div>';
 				break;
 			case 1: // Top right
 			    $('#hud-map-quadrant').css('background-position','100%   0%');
@@ -352,9 +352,9 @@ class map {
 				$('#hud-map-quadrant-current').css('width', '84.5vw');
 				$('#hud-map-quadrant-current').css('height','45vw');
 
-				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 84.5vw; height: calc(100vh - 45vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 15.5vw; height: calc(100vh - 45vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 15.5vw; height: 45vw;">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 84.5vw; height: calc(100vh - 45vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 15.5vw; height: calc(100vh - 45vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 15.5vw; height: 45vw;"></div>';
 				break;
 			case 2: // Bottom left
 			    $('#hud-map-quadrant').css('background-position','  0% 100%');
@@ -362,9 +362,9 @@ class map {
 				$('#hud-map-quadrant-current').css('width', '82vw');
 				$('#hud-map-quadrant-current').css('height','50vw');
 
-				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 82vw; height: calc(100vh - 50vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 18vw; height: calc(100vh - 50vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 18vw; height: 50vw;">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 82vw; height: calc(100vh - 50vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 18vw; height: calc(100vh - 50vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 18vw; height: 50vw;"></div>';
 				break;
 			case 3: // Bottom right
 			    $('#hud-map-quadrant').css('background-position','100% 100%');
@@ -372,9 +372,9 @@ class map {
 				$('#hud-map-quadrant-current').css('width', '84.5vw');
 				$('#hud-map-quadrant-current').css('height','50vw');
 
-				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 84.5vw; height: calc(100vh - 45vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 15.5vw; height: calc(100vh - 45vw);">';
-				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 15.5vw; height: 45vw;">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 84.5vw; height: calc(100vh - 45vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 15.5vw; height: calc(100vh - 45vw);"></div>';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 15.5vw; height: 45vw;"></div>';
 				break;
 			default:
 				return;
