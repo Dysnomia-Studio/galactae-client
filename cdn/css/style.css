@@ -1131,10 +1131,24 @@ a[class="research-search"] {
 
 	position: absolute;
 }
-.current-quadrant-left   { left:   0;  }
-.current-quadrant-top    { top:    0;  }
-.current-quadrant-right  { right:  0;  }
-.current-quadrant-bottom { bottom: 0;  }
+
+.quadrant-other-vertical
+
+.quadrant-current-left   { left:   0;  }
+.quadrant-current-top    { top:    0;  }
+.quadrant-current-right  { right:  0;  }
+.quadrant-current-bottom { bottom: 0;  }
+
+.quadrant-other {
+	position: absolute;
+
+	border: 1px solid rgba(14,198,198,0.3);
+}
+
+.quadrant-other-left   { left:   0;  }
+.quadrant-other-top    { top:    0;  }
+.quadrant-other-right  { right:  0;  }
+.quadrant-other-bottom { bottom: 0;  }
 
 /**
  * Solar system Map 

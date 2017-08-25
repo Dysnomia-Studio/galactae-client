@@ -247,43 +247,12 @@ class map {
 
 		address = parseInt(address);
 
-		// Background position
-		// Keep in mind to set 10% of picture out of borders
-		switch(address) {
-			case 0: // Top left
-				$('#hud-map-quadrant').css('background-position','  0%   0%');
-
-				$('#hud-map-quadrant-current').css('width', '82vw');
-				$('#hud-map-quadrant-current').css('height','45vw');
-				break;
-			case 1: // Top right
-			    $('#hud-map-quadrant').css('background-position','100%   0%');
-
-				$('#hud-map-quadrant-current').css('width', '84.5vw');
-				$('#hud-map-quadrant-current').css('height','45vw');
-				break;
-			case 2: // Bottom left
-			    $('#hud-map-quadrant').css('background-position','  0% 100%');
-
-				$('#hud-map-quadrant-current').css('width', '82vw');
-				$('#hud-map-quadrant-current').css('height','50vw');
-				break;
-			case 3: // Bottom right
-			    $('#hud-map-quadrant').css('background-position','100% 100%');
-
-				$('#hud-map-quadrant-current').css('width', '84.5vw');
-				$('#hud-map-quadrant-current').css('height','50vw');
-				break;
-			default:
-				return;
-		}
-
 		// Get XML
 		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address)[0];
 		map.currentMap = "quadrant";
 
 		$('#hud-map-quadrant-current').html("");
-		$('#hud-map-quadrant-current').removeClass("current-quadrant-left current-quadrant-top current-quadrant-right current-quadrant-bottom");
+		$('#hud-map-quadrant-current').removeClass("quadrant-current-left quadrant-current-top quadrant-current-right quadrant-current-bottom");
 
 		// Generate sectors
 		for(var i=0; i<QUADRANT_SECTOR_COUNT[address]; i++) {
@@ -308,7 +277,7 @@ class map {
 					multleft = -13.5;
 					multtop = -15;
 
-					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-left");
+					$('#hud-map-quadrant-current').addClass("quadrant-current-top quadrant-current-left");
 					break;
 				case 1: // Top right
 					lines = [4,4,3,2];
@@ -319,7 +288,7 @@ class map {
 					multleft = 13.5;
 					multtop = -15;
 
-					$('#hud-map-quadrant-current').addClass("current-quadrant-top current-quadrant-right");
+					$('#hud-map-quadrant-current').addClass("quadrant-current-top quadrant-current-right");
 					break;
 				case 2: // Bottom left
 					lines = [4,4,4,3,1];
@@ -330,7 +299,7 @@ class map {
 					multleft = -13.5;
 					multtop = 15;
 
-					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-left");
+					$('#hud-map-quadrant-current').addClass("quadrant-current-bottom quadrant-current-left");
 					break;
 				case 3: // Bottom right
 					lines = [4,4,4,4,4];
@@ -341,7 +310,7 @@ class map {
 					multleft = 13.5;
 					multtop = 15;
 
-					$('#hud-map-quadrant-current').addClass("current-quadrant-bottom current-quadrant-right");
+					$('#hud-map-quadrant-current').addClass("quadrant-current-bottom quadrant-current-right");
 					break;
 				default:
 					return;
@@ -362,28 +331,64 @@ class map {
 			$('#' + address + '-' + i).css('top',"" + top + "%");
 		}
 
-		// Generate other quadrants
-		// & lines
+		// Background position
+		// & Quadrants position
+		var othersQuadrants = "";
+		
 		switch(address) {
 			case 0: // Top left
-				
+				$('#hud-map-quadrant').css('background-position','  0%   0%');
+
+				$('#hud-map-quadrant-current').css('width', '82vw');
+				$('#hud-map-quadrant-current').css('height','45vw');
+
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 82vw; height: calc(100vh - 45vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 18vw; height: calc(100vh - 45vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 18vw; height: 45vw;">';
 				break;
 			case 1: // Top right
-				
+			    $('#hud-map-quadrant').css('background-position','100%   0%');
+
+				$('#hud-map-quadrant-current').css('width', '84.5vw');
+				$('#hud-map-quadrant-current').css('height','45vw');
+
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 84.5vw; height: calc(100vh - 45vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 15.5vw; height: calc(100vh - 45vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 15.5vw; height: 45vw;">';
 				break;
 			case 2: // Bottom left
-				
+			    $('#hud-map-quadrant').css('background-position','  0% 100%');
+
+				$('#hud-map-quadrant-current').css('width', '82vw');
+				$('#hud-map-quadrant-current').css('height','50vw');
+
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 82vw; height: calc(100vh - 50vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 18vw; height: calc(100vh - 50vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-bottom" id="3" style="width: 18vw; height: 50vw;">';
 				break;
 			case 3: // Bottom right
-				
+			    $('#hud-map-quadrant').css('background-position','100% 100%');
+
+				$('#hud-map-quadrant-current').css('width', '84.5vw');
+				$('#hud-map-quadrant-current').css('height','50vw');
+
+				othersQuadrants += '<div class="quadrant-other quadrants-other-right quadrants-other-top" id="1" style="width: 84.5vw; height: calc(100vh - 45vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-top" id="0" style="width: 15.5vw; height: calc(100vh - 45vw);">';
+				othersQuadrants += '<div class="quadrant-other quadrants-other-left quadrants-other-bottom" id="2" style="width: 15.5vw; height: 45vw;">';
 				break;
 			default:
 				return;
 		}
 
+		$('#hud-map-quadrant-others').html(othersQuadrants);
+
 		// Open sector
 		$('.quadrant-subsector').click(function() {
 			map.openSectorMap($(this).attr('id'));
+		});
+
+		$('.quadrant-other').click(function() {
+			map.openQuadrantMap($(this).attr('id'));
 		});
 
 		// Back button
@@ -404,7 +409,6 @@ class map {
 
 		// Back button
 		$('#hud-map-back').css('display','none');
-
 
 		$('#hud-map-galaxy').css('display','block');
 	}
