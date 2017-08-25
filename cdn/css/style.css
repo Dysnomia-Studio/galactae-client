@@ -1118,7 +1118,9 @@ a[class="research-search"] {
 	background-attachment: fixed;
 	/* background-position: top left; -- Set by js script depends on quadrant */
 	background-repeat: no-repeat;
-	background-size: calc(100vw / 0.6); /* Keep 60% of galaxy on that map */
+	background-size: calc(100vw / 0.6); /* Keep 60% of galaxy width on that map */
+
+	height: 110vh;
 }
 #hud-map-quadrant-current {
 	position: absolute;
@@ -1147,14 +1149,12 @@ a[class="research-search"] {
 
 .quadrant-other {
 	position: absolute;
-
-	border: 1px solid rgba(14,198,198,0.3);
 }
 
-.quadrant-other-left   { left:   0;  }
-.quadrant-other-top    { top:    0;  }
-.quadrant-other-right  { right:  0;  }
-.quadrant-other-bottom { bottom: 0;  }
+.quadrant-other-left   { left:   0;  border-right: 1px solid rgba(14,198,198,0.3); }
+.quadrant-other-top    { top:    0;  border-bottom: 1px solid rgba(14,198,198,0.3); }
+.quadrant-other-right  { right:  0;  border-left: 1px solid rgba(14,198,198,0.3); }
+.quadrant-other-bottom { bottom: 0;  border-top: 1px solid rgba(14,198,198,0.3); }
 
 /**
  * Solar system Map 
