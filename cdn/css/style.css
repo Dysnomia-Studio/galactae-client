@@ -1115,7 +1115,6 @@ a[class="research-search"] {
  */
 #hud-map-quadrant {
 	background-image: url('../img/map/galaxy.jpg');
-	background-attachment: fixed;
 	/* background-position: top left; -- Set by js script depends on quadrant */
 	background-repeat: no-repeat;
 	background-size: calc(100vw / 0.6); /* Keep 60% of galaxy width on that map */
