@@ -9,6 +9,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	// No PHPSESSID
 	if(!(isset($_COOKIE['galactae-phpsessid']))) {
 		echo 'CA MARCHE PAS !';
+		die();
 	}
 
 	// SQL Get Data
