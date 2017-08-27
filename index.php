@@ -1,13 +1,14 @@
 <?php
-include_once('lib/init.php'); 
+include_once('lib/init.php');
 include_once('gvars.php'); 
 ?>
+<link rel="shortcut icon" type="image/png" href="<?php echo $cdnURL; ?>img/favicon.png"/>
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
 <?php
 if(isset($db)) { //Maybe we don't have SQL connection ...
 	// No PHPSESSID
 	if(!(isset($_COOKIE['galactae-phpsessid']))) {
-		echo '<script> window.location="https://galactae.elanis.eu"; </script>';
+		echo '<script> window.location="https://galactae.eu/login"; </script>';
 	}
 
 	// SQL Get Data
@@ -20,12 +21,12 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 	
 	if(!isset($data['user_name'])) { // Verif d'existance du compte SQL
-	    echo '<script> window.location="https://galactae.elanis.eu"; </script>';
+	    echo '<script> window.location="https://galactae.eu/login"; </script>';
 	}
 
 	// Lvl Check
 	if($data['user_lvl']<2) { // Verif du niveau
-		echo '<script> window.location="https://galactae.elanis.eu"; </script>';
+		echo '<script> window.location="https://galactae.eu"; </script>';
 	}
 
 	// SQL Get Data
@@ -61,6 +62,6 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		include_once('game.php');
 	}
 } else { // SQL Connect Check end
-	echo '<script> window.location="https://galactae.elanis.eu"; </script>';
+	echo '<script> window.location="https://galactae.eu"; </script>';
 }
 ?>

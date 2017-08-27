@@ -98,7 +98,7 @@
 		<span id="hud-top-left-moveRight">&#9654;</span>
 	</div>
 	<ul id="hud-top-center">
-		<li id="hud-username"><a href="https://galactae.elanis.eu/profil" target="_blank"><?php echo $data['user_name'];?></a></li>
+		<li id="hud-username"><a href="https://galactae.eu/profil" target="_blank"><?php echo $data['user_name'];?></a></li>
 		<li id="hud-settings"><img height="20" src="<?php echo $cdnURL; ?>img/ui/settings.png" alt="settings"></li>
 		<li id="hud-planet-prev" onclick="planet.prev();">&#60;</li>
 		<li id="hud-planet-name"><span class="planet-name-text"></span></li>
@@ -141,8 +141,8 @@
 	<br/>
 	<a href="#close-settings-tabs" id="close-settings-tabs">X</a><br/>
 	<a href="#settings-tabs"><?php echo SETTINGS; ?></a><br/>
-	<a href="https://galactae.elanis.eu/portal"><?php echo PORTAL; ?></a><br/>
-	<a href="https://galactae.elanis.eu/deconnexion"><?php echo DISCONNECT; ?></a>
+	<a href="https://galactae.eu/portal"><?php echo PORTAL; ?></a><br/>
+	<a href="https://galactae.eu/deconnexion"><?php echo DISCONNECT; ?></a>
 </div>
 <?php /* Chat */ ?>
 <div id="hud-chat">
@@ -174,9 +174,26 @@
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
-	<div id="hud-map-galaxy"></div>
-	<div id="hud-map-system"></div>
-	<div id="hud-map-solar"></div>
+	<div id="hud-map-back">Back to parent</div>
+	<div id="hud-map-galaxy">
+		<div class="select-quadrant quadrant-top quadrant-left" id="hud-map-galaxy-0"></div>
+		<div class="select-quadrant quadrant-top quadrant-right" id="hud-map-galaxy-1"></div>
+		<div class="select-quadrant quadrant-bottom quadrant-left" id="hud-map-galaxy-2"></div>
+		<div class="select-quadrant quadrant-bottom quadrant-right" id="hud-map-galaxy-3"></div>
+	</div>
+	<div id="hud-map-quadrant">
+		<div id="hud-map-quadrant-current"></div>
+		<div id="hud-map-quadrant-others"></div>
+	</div>
+	<div id="hud-map-sector"></div>
+	<div id="hud-map-system" class="opening view-2D">
+        <div id="hud-map-system-universeBack">
+          <div id="hud-map-system-galaxyBack">
+            <div id="hud-map-system-solarFront">
+            </div>
+          </div>
+        </div>
+    </div>
 </div>
 <?php /* Fleet */ ?>
 <div id="hud-fleet">
@@ -292,7 +309,7 @@
 	<span id="day-bonus-later"><?php echo DAY_BONUS_LATER; ?></span>
 </div>
 <?php /* Game Version & Copyright */ ?>
-<div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="http://bugs.elanis.eu/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
+<div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.elanis.eu/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/socket.min.js"></script>

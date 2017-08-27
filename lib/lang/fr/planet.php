@@ -18,10 +18,12 @@
 	define('ORBITAL_BUILDING','Constructions en Orbite');
 ?>
 <script type="text/javascript">
-	var planetBuilding = [
+	var translate = translate || {};
+
+	translate['buildings'] = [
 		// ground
 		{id: "carriere", name: "Carrieres", desc: "Les carrières vont extraire les minerais bruts du sol de la planète."},
-		{id: "metalurgie", name: "Metallurgie", desc: "Les minerais bruts seront ici traités et les metaux extraits."},
+		{id: "metallurgy", name: "Metallurgie", desc: "Les minerais bruts seront ici traités et les metaux extraits."},
 		{id: "living",name: "Habitations", desc: "Les habitations hebergent la population stationnée sur la planète."},
 		{id: "serre", name: "Serres", desc: "Les serres sont la principale source de nourriture pour la population."},
 		{id: "solar", name: "Centrales Solaires", desc: "Ces centrales transforment l\'energie solaire en energie electrique." },

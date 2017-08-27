@@ -99,6 +99,6 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 
 	$_SESSION['game_id'] = $mongoData['_id'];
 
-	echo '<script> window.location="https://01-milkyway.galactae.elanis.eu"; </script>';
+	echo '<script> window.location.reload(); </script>';
 }
 ?>

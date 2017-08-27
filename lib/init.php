@@ -1,4 +1,7 @@
-<?php $config = parse_ini_file('config.ini'); ?>
+<?php 
+$debut = round(microtime(true) * 1000);
+
+$config = parse_ini_file('config.ini'); ?>
 <!DOCTYPE html>
 <!-- 
 	Code by Elanis
@@ -64,7 +67,6 @@ function LoadIt() {
 <meta name="keywords" content="<?php echo META_KEYS; ?>">
 <meta name="description" content="<?php echo META_DESC; ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
 <?php
 echo $config['website_custom_head'];
 ?>
