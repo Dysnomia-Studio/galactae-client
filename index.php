@@ -8,7 +8,7 @@ include_once('gvars.php');
 if(isset($db)) { //Maybe we don't have SQL connection ...
 	// No PHPSESSID
 	if(!(isset($_COOKIE['galactae-phpsessid']))) {
-		echo '<script> window.location="https://galactae.eu/login"; </script>';
+		echo 'CA MARCHE PAS !';
 	}
 
 	// SQL Get Data
