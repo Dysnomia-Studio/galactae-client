@@ -341,7 +341,7 @@ class planet {
 		}
 
 
-		$(".arrow-build-active").removeClass("arrow-build-active");
+		/*$(".arrow-build-active").removeClass("arrow-build-active");
 
 		// Draw arrows or not :p
 		for(var i=0; i<14; i++) {
@@ -353,7 +353,7 @@ class planet {
 			} else {
 				$('#arrow-'+ buildingsNames[i]).css('display','none');
 			}
-		}
+		}*/
 	}
 	/*
 	Gets the energy consomation.

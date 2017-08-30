@@ -5,7 +5,7 @@
 	<div id="loading-overlay-text"><?php echo GAME_LOADING; ?></div>
 </div>
 <?php /* Planet View */ ?>
-<div id="planet-content">
+<div id="planet">
 	<?php /* Planet Back */ ?>
 	<div id="planet-back">
 		<div id="planet-back-bg"></div>
@@ -14,68 +14,76 @@
 			<div id="planet-back-halo"></div>
 		</div>
 	</div>
-	<?php /* Buildings ( Details ) */ ?>
-	<div id="building-area">	
-		<h1 id="building-name"></h1>
-		<h3 id="building-level"></h3>
-		<p id="building-desc"></p>
-		<div id="building-cost">
-			<span id="building-cost-iron"><?php echo METAL_IRON; ?>: <span id="building-cost-iron-val"></span></span>
-			<span id="building-cost-aluminium"><?php echo METAL_ALUMINIUM; ?>: <span id="building-cost-aluminium-val"></span></span>
-			<span id="building-cost-copper"><?php echo METAL_COPPER; ?>: <span id="building-cost-copper-val"></span></span>
-			<span id="building-cost-titanium"><?php echo METAL_TITANIUM; ?>: <span id="building-cost-titanium-val"></span></span>
-			<span id="building-cost-energy"><?php echo ENERGY; ?>: <span id="building-cost-energy-val"></span></span>
-			<span id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+
+	<?php /* Current Planet */ ?>
+	<div id="planet-current">
+		<?php /* Buildings ( Details ) */ ?>
+		<div id="building-area">	
+			<h1 id="building-name"></h1>
+			<h3 id="building-level"></h3>
+			<p id="building-desc"></p>
+			<div id="building-cost">
+				<span id="building-cost-iron"><?php echo METAL_IRON; ?>: <span id="building-cost-iron-val"></span></span>
+				<span id="building-cost-aluminium"><?php echo METAL_ALUMINIUM; ?>: <span id="building-cost-aluminium-val"></span></span>
+				<span id="building-cost-copper"><?php echo METAL_COPPER; ?>: <span id="building-cost-copper-val"></span></span>
+				<span id="building-cost-titanium"><?php echo METAL_TITANIUM; ?>: <span id="building-cost-titanium-val"></span></span>
+				<span id="building-cost-energy"><?php echo ENERGY; ?>: <span id="building-cost-energy-val"></span></span>
+				<span id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+			</div>
+
+			<span id="building-message"></span>
+			<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
+			
+			<img src="?" id="building-img" alt="building-img">
+			<input type="button" id="building-quit" value="X" onclick="ui.buildPanelHide()">
 		</div>
 
-		<span id="building-message"></span>
-		<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
-		
-		<img src="?" id="building-img" alt="building-img">
-		<input type="button" id="building-quit" value="X" onclick="ui.buildPanelHide()">
+		<?php /* Ground Building */ ?>
+		<div class="build-tab">
+			<p class="build-title"><?php echo PLANET_BUILDING; ?></p>
+			<img src="<?php echo $cdnURL; ?>img/buildings/tabs/0.png" class="build-tab-background" alt="building-tab">
+			<?php
+				$buildings = [
+					"carriere",
+					"metallurgy",
+					"living",
+					"serre",
+					"solar",
+					"warehouse",
+					"headquarter",
+					"launchpad",
+					"research",
+
+					"radar",
+					"tank",
+					"shipyard",
+					"trade",
+					"he3exp"
+				];
+
+				for($i=0; $i<9; $i++) {
+					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'1.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
+						<span id="lvl-'.$buildings[$i].'"></span>';
+				}
+			?>
+		</div>
+
+		<?php /* Space Building */ ?>
+		<div class="space-tab">
+			<p class="space-title"><?php echo ORBITAL_BUILDING; ?></p>
+			<img src="<?php echo $cdnURL; ?>img/buildings/tabs/space-tab.png" class="space-tab-background" alt="space-tab">
+			<?php
+				for($i=9; $i<14; $i++) {
+					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'1.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
+						<span id="lvl-'.$buildings[$i].'"></span>';
+				}
+			?>
+		</div>
 	</div>
-	<?php /* Ground Building */ ?>
-	<div class="build-tab">
-		<p class="build-title"><?php echo PLANET_BUILDING; ?></p>
-		<img src="<?php echo $cdnURL; ?>img/buildings/tabs/0.png" class="build-tab-background" alt="building-tab">
-		<?php
-			$buildings = [
-				"carriere",
-				"metallurgy",
-				"living",
-				"serre",
-				"solar",
-				"warehouse",
-				"headquarter",
-				"launchpad",
-				"research",
 
-				"radar",
-				"tank",
-				"shipyard",
-				"trade",
-				"he3exp"
-			];
+	<?php /* Other planets */ ?>
+	<div id="planet-other">
 
-			for($i=0; $i<9; $i++) {
-				echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'1.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
-					<span id="lvl-'.$buildings[$i].'"></span>
-					<img id="arrow-'.$buildings[$i].'" src="'.$cdnURL.'img/buildings/arrow.png" alt="can be build">';
-			}
-		?>
-	</div>
-
-	<?php /* Space Building */ ?>
-	<div class="space-tab">
-		<p class="space-title"><?php echo ORBITAL_BUILDING; ?></p>
-		<img src="<?php echo $cdnURL; ?>img/buildings/tabs/space-tab.png" class="space-tab-background" alt="space-tab">
-		<?php
-			for($i=9; $i<14; $i++) {
-				echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'1.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
-					<span id="lvl-'.$buildings[$i].'"></span>
-					<img id="arrow-'.$buildings[$i].'" src="'.$cdnURL.'img/buildings/arrow.png" alt="can be build">';
-			}
-		?>
 	</div>
 </div>
 <?php /* Msg Popup */ ?>

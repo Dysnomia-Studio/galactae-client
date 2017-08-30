@@ -8,16 +8,17 @@ body {
 	font-family: 'Titillium Web', sans-serif;
 	cursor: url(../img/mouse_cursor.png), auto;
 }
+a, body {
+	color: white;
+}
 #game-version {
 	text-align: right;
 	position: fixed;
 	font-size: 10px;
 	bottom: 5px;
 	right: 5px;
-	color: white;
 }
 #game-version a {
-	color: white;
 	text-decoration: none;
 }
 #game-version a:hover {
@@ -88,7 +89,6 @@ body {
     width: 100vw;
     height: 100vh;
 
-	color: white;
     background-color: #0b1012;
 }
 .gvt-mainText {
@@ -168,7 +168,6 @@ body {
 		background-size: cover;
 		z-index: 500;
 
-		color: white;
 		text-align: center;
 	}
 }
@@ -218,7 +217,6 @@ body {
 	position: fixed;
 
 	z-index: 100;
-	color: white;
 
 	padding: 3em;
 }
@@ -258,7 +256,6 @@ body {
  * Loading overlay
  */
 #loading-overlay {
-	color: white;
 	font-size: 24px;
 	font-weight: bold;
 }
@@ -314,7 +311,6 @@ body {
 	z-index: 200;
 }
 #settings-menu a {
-	color: white;
 	text-decoration: none;
 }
 #settings-menu a:hover {
@@ -333,7 +329,6 @@ body {
 	background-image: url(../img/ui/hud-button.png);
 	background-repeat: no-repeat;
 	background-size: 100%;
-	color: white;
 	width: 32vh;
 	height: 3.51vh;
 	z-index: 100;
@@ -757,7 +752,6 @@ body {
 	background-position: center;
 	background-size: 100%;
 	z-index: 100;
-	color: white;
 }
 #fleet-type-create, #fleet-ship-build {
 	position: fixed;
@@ -770,7 +764,6 @@ body {
 	background-position: center;
 	background-size: 100%;
 	z-index: 101;
-	color: white;
 }
 #fleet-type-create-shipType, #fleet-type-create-shipShape, #fleet-type-create-name {
 	position: absolute;
@@ -843,7 +836,6 @@ body {
 	top: 65px;
 	right: 5vh;
 
-	color: white;
 	font-size: 1.5em;
 	font-weight: bold;
 
@@ -947,7 +939,6 @@ a[class="research-search"] {
 
 #hud-ranks {
 	z-index: 100;
-	color: white;
 }
 #hud-ranks iframe {
 	width: 94%;
@@ -955,7 +946,6 @@ a[class="research-search"] {
 
 	margin: 3%;
 
-	color: white;
 	border: 0;
 	overflow-x: auto;
 }
@@ -1068,7 +1058,6 @@ a[class="research-search"] {
 	top: 1em;
 	left: 3em;
 	font-weight: bold;
-	color: white;
 	cursor: pointer;
 	display: none;
 
@@ -1504,9 +1493,9 @@ dl.infos dt {
 }
 
 /**
- * Planet - Misc
+ * Planet
  */
-#planet-content {
+#planet {
 	position: fixed;
 	margin: 0;
 	padding: 0;
@@ -1548,6 +1537,180 @@ dl.infos dt {
 	position: absolute;
 	overflow: hidden;
 }
+/**
+ * Planet - Current
+ */
+#planet-current {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.building-list-building {
+	transform: rotate(-45deg);
+	width: 5em;
+	position: absolute;
+}
+/**
+ * Ground building
+ */
+#building-ground-title {
+	position: absolute;
+	top: calc(50vh + ((24em)/2) + 2.5em);
+	left: 2em;
+	width: 16em;
+	text-align: center;
+	font-weight: 0.8em;
+}
+#carriere {
+	top: calc(50vh - ((24em)/2) + 0em);
+	left: 7em;
+}
+#metallurgy {
+	top: calc(50vh - ((24em)/2) + 4em);
+	left: 11em;
+}
+#living {
+	top: calc(50vh - ((24em)/2) + 4em);
+	left: 3em;
+}
+#serre {
+	top: calc(50vh - ((24em)/2) + 12em);
+	left: 3em;
+}
+#solar {
+	top: calc(50vh - ((24em)/2) + 8em);
+	left: 7em;
+}
+#warehouse {
+	top: calc(50vh - ((24em)/2) + 16em);
+	left: 7em;
+}
+#headquarter {
+	top: calc(50vh - ((24em)/2) + 20em);
+	left: 3em;
+}
+#launchpad {
+	top: calc(50vh - ((24em)/2) + 20em);
+	left: 11em;
+}
+#research {
+	top: calc(50vh - ((24em)/2) + 16em);
+	left: 15em;
+}
+#lvl-carriere, #lvl-metallurgy, #lvl-living,
+#lvl-serre, #lvl-solar, #lvl-warehouse,
+#lvl-headquarter, #lvl-launchpad, #lvl-research {
+	position: absolute;
+	width: 1.8em;
+	height: 1.8em;
+	line-height: 1.8em;
+	border-radius: 1.8em;
+	text-align: center;
+	background-color: rgba(11,16,18,0.9);
+	z-index: 2;
+}
+#lvl-carriere {
+	top: calc(50vh - ((24em)/2) + 1.5em);
+	left: 12em;
+}
+#lvl-metallurgy {
+	top: calc(50vh - ((24em)/2) + 5.5em);
+	left: 16em;
+}
+#lvl-living {
+	top: calc(50vh - ((24em)/2) + 5.5em);
+	left: 8em;
+}
+#lvl-serre {
+	top: calc(50vh - ((24em)/2) + 13.5em);
+	left: 8em;
+}
+#lvl-solar {
+	top: calc(50vh - ((24em)/2) + 9.5em);
+	left: 12em;
+}
+#lvl-warehouse {
+	top: calc(50vh - ((24em)/2) + 17.5em);
+	left: 12em;
+}
+#lvl-headquarter {
+	top: calc(50vh - ((24em)/2) + 21.5em);
+	left: 8em;
+}
+#lvl-launchpad {
+	top: calc(50vh - ((24em)/2) + 21.5em);
+	left: 16em;
+}
+#lvl-research {
+	top: calc(50vh - ((24em)/2) + 17.5em);
+	left: 20em;
+}
+
+/**
+ * Space buildings
+ */
+#building-space-title {
+	position: absolute;
+	top: calc(25vh + ((8em)/2) + 4em + 2.5em);
+	right: 2em;
+	width: 16em;
+	text-align: center;
+	font-weight: 0.8em;
+}
+#radar {
+	top: calc(25vh - ((8em)/2) + 0em);
+	right: 7em;
+}
+#tank {
+	top: calc(25vh - ((8em)/2) + 0em);
+	right: 15em;
+}
+#shipyard {
+	top: calc(25vh - ((8em)/2) + 4em);
+	right: 11em;
+}
+#trade {
+	top: calc(25vh - ((8em)/2) + 4em);
+	right: 3em;
+}
+#he3exp {
+	top: calc(25vh - ((8em)/2) + 8em);
+	right: 7em;
+}
+#lvl-radar, #lvl-tank, #lvl-shipyard,
+#lvl-trade, #lvl-he3exp {
+	position: absolute;
+	width: 1.8em;
+	height: 1.8em;
+	line-height: 1.8em;
+	border-radius: 1.8em;
+	text-align: center;
+	background-color: rgba(11,16,18,0.9);
+	z-index: 2;
+}
+#lvl-radar {
+	top: calc(25vh - ((8em)/2) + 1.5em);
+	right: 12em;
+}
+#lvl-tank {
+	top: calc(25vh - ((8em)/2) + 1.5em);
+	right: 20em;
+}
+#lvl-shipyard {
+	top: calc(25vh - ((8em)/2) + 5.5em);
+	right: 16em;
+}
+#lvl-trade {
+	top: calc(25vh - ((8em)/2) + 5.5em);
+	right: 8em;
+}
+#lvl-he3exp {
+	top: calc(25vh - ((8em)/2) + 9.5em);
+	right: 12em;
+}
+
 /**
  * Building Panel
  */
@@ -1634,144 +1797,8 @@ dl.infos dt {
 	position: absolute;
 	background-color: rgba(0,0,0,0);
 	border: 0px solid black;
-	color: white;
 	font-weight: bold;
 }
 #building-name, #building-message, #building-level { text-align: center; }
 #building-name, #building-level { margin: 0; font-weight: normal; }
 #building-desc { margin: 0.5em 0; }
-
-/**
- * Building List
- */
-
-/* Arrow Anim */
-@keyframes flickerAnimation {
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-o-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-moz-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-@-webkit-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-.arrow-build-active {
-   -webkit-animation: flickerAnimation 3s infinite;
-   -moz-animation: flickerAnimation 3s infinite;
-   -o-animation: flickerAnimation 3s infinite;
-    animation: flickerAnimation 3s infinite;
-}
-/* Tabs */
-.build-tab, .space-tab {
-	position: fixed;
-}
-.build-tab {
-	left: 75px;
-	top: 50%;
-	margin-top: -202px;
-	width: 405px;
-}
-.space-tab {
-	right: 100px;
-	top: 100px;
-	width: 500px;
-}
-/* Titles */
-.build-title, .space-title {
-	position: absolute;
-	color: #b4b4b4;
-	font-size: 0.8em;
-	font-weight: bold;
-	width: 145px;
-	margin: 0;
-	text-align: center;
-}
-.build-title {
-	top: 13px;
-	right: -10px;
-}
-.space-title {
-	top: 13px;
-	left: 7px;
-}
-/* Elements */
-#carriere, #metallurgy, #living, #serre, #solar, 
-#warehouse, #headquarter, #launchpad, #research ,
-#radar, #tank, #shipyard, #trade, #he3exp {
-	position: absolute;
-}
-
-#carriere		{ top: 188px;	left: 18px;	}
-#metallurgy		{ top: 270px;	left: 175px; }
-#living			{ top: 320px;	left: 93px;  }
-#serre			{ top: 223px;	left: 100px; }
-#solar			{ top: 20px;	left: 115px; }
-#warehouse		{ top: 77px;	left: 23px;  }
-#headquarter	{ top: 66px;	left: 178px; }
-#launchpad		{ top: 375px;	left: 183px; }
-#research		{ top: 363px;	left: 33px;  }
-
-#radar			{ top: 80px;	left: 175px; }
-#tank			{ top: 15px;	left: 255px; }
-#shipyard		{ top: 67px;	left: 332px; }
-#trade			{ top: 15px;	left: 413px; }
-#he3exp			{ top: 115px;	left: 255px; }
-
-/* Niveaux */
-#lvl-carriere, #lvl-metallurgy, #lvl-living, #lvl-serre, #lvl-solar, 
-#lvl-warehouse, #lvl-headquarter, #lvl-launchpad, #lvl-research,
-#lvl-radar, #lvl-tank, #lvl-shipyard, #lvl-trade, #lvl-he3exp {
-	position: absolute;
-	color: white;
-	font-size: 0.9em;
-}
-
-#lvl-carriere    { top: 235px; left: 37px;  }
-#lvl-metallurgy  { top: 335px; left: 192px; }
-#lvl-living      { top: 388px; left: 113px; }
-#lvl-serre       { top: 285px; left: 113px; }
-#lvl-solar       { top: 81px;  left: 113px; }
-#lvl-warehouse   { top: 133px; left: 37px;  }
-#lvl-headquarter { top: 133px; left: 192px; }
-#lvl-launchpad   { top: 439px; left: 192px; }
-#lvl-research    { top: 439px; left: 37px;  }
-
-#lvl-radar    { top: 133px; left: 194px; }
-#lvl-tank     { top: 82px;  left: 272px; }
-#lvl-shipyard { top: 133px; left: 349px; }
-#lvl-trade    { top: 82px;  left: 426px; }
-#lvl-he3exp   { top: 183px; left: 272px; }
-
-/* Fleches */
-#arrow-carriere, #arrow-metallurgy, #arrow-living, #arrow-serre, #arrow-solar, 
-#arrow-warehouse, #arrow-headquarter, #arrow-launchpad, #arrow-research,
-#arrow-radar, #arrow-tank, #arrow-shipyard, #arrow-trade, #arrow-he3exp {
-	position: absolute;
-}
-
-#arrow-carriere    { top: 236px; left: 67px;  }
-#arrow-metallurgy  { top: 341px; left: 220px; }
-#arrow-living      { top: 391px; left: 143px; }
-#arrow-serre       { top: 288px; left: 143px; }
-#arrow-solar       { top: 82px;  left: 143px; }
-#arrow-warehouse   { top: 135px; left: 67px;  }
-#arrow-headquarter { top: 135px; left: 220px; }
-#arrow-launchpad   { top: 441px; left: 220px; }
-#arrow-research    { top: 441px; left: 67px;  }
-
-#arrow-radar    { top: 134px; left: 225px; }
-#arrow-tank     { top: 83px;  left: 300px; }
-#arrow-shipyard { top: 134px; left: 379px; }
-#arrow-trade    { top: 83px;  left: 457px; }
-#arrow-he3exp   { top: 185px; left: 300px; }
