@@ -1565,39 +1565,39 @@ dl.infos dt {
 }
 #carriere {
 	top: calc(50vh - ((24em)/2) + 0em);
-	left: 7em;
+	left: 8em;
 }
 #metallurgy {
 	top: calc(50vh - ((24em)/2) + 4em);
-	left: 11em;
+	left: 12em;
 }
 #living {
 	top: calc(50vh - ((24em)/2) + 4em);
-	left: 3em;
+	left: 4em;
 }
 #serre {
 	top: calc(50vh - ((24em)/2) + 12em);
-	left: 3em;
+	left: 4em;
 }
 #solar {
 	top: calc(50vh - ((24em)/2) + 8em);
-	left: 7em;
+	left: 8em;
 }
 #warehouse {
 	top: calc(50vh - ((24em)/2) + 16em);
-	left: 7em;
+	left: 8em;
 }
 #headquarter {
 	top: calc(50vh - ((24em)/2) + 20em);
-	left: 3em;
+	left: 4em;
 }
 #launchpad {
 	top: calc(50vh - ((24em)/2) + 20em);
-	left: 11em;
+	left: 12em;
 }
 #research {
 	top: calc(50vh - ((24em)/2) + 16em);
-	left: 15em;
+	left: 16em;
 }
 #lvl-carriere, #lvl-metallurgy, #lvl-living,
 #lvl-serre, #lvl-solar, #lvl-warehouse,
@@ -1613,39 +1613,39 @@ dl.infos dt {
 }
 #lvl-carriere {
 	top: calc(50vh - ((24em)/2) + 1.5em);
-	left: 12em;
+	left: 13em;
 }
 #lvl-metallurgy {
 	top: calc(50vh - ((24em)/2) + 5.5em);
-	left: 16em;
+	left: 17em;
 }
 #lvl-living {
 	top: calc(50vh - ((24em)/2) + 5.5em);
-	left: 8em;
+	left: 9em;
 }
 #lvl-serre {
 	top: calc(50vh - ((24em)/2) + 13.5em);
-	left: 8em;
+	left: 9em;
 }
 #lvl-solar {
 	top: calc(50vh - ((24em)/2) + 9.5em);
-	left: 12em;
+	left: 13em;
 }
 #lvl-warehouse {
 	top: calc(50vh - ((24em)/2) + 17.5em);
-	left: 12em;
+	left: 13em;
 }
 #lvl-headquarter {
 	top: calc(50vh - ((24em)/2) + 21.5em);
-	left: 8em;
+	left: 9em;
 }
 #lvl-launchpad {
 	top: calc(50vh - ((24em)/2) + 21.5em);
-	left: 16em;
+	left: 17em;
 }
 #lvl-research {
 	top: calc(50vh - ((24em)/2) + 17.5em);
-	left: 20em;
+	left: 21em;
 }
 
 /**
