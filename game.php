@@ -62,7 +62,7 @@
 				];
 
 				for($i=0; $i<9; $i++) {
-					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
+					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'.png" class="building-list-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
 						<span id="lvl-'.$buildings[$i].'"></span>';
 				}
 			?>
@@ -74,7 +74,7 @@
 			<img src="<?php echo $cdnURL; ?>img/buildings/tabs/space-tab.png" class="space-tab-background" alt="space-tab">
 			<?php
 				for($i=9; $i<14; $i++) {
-					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
+					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'.png" class="building-list-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
 						<span id="lvl-'.$buildings[$i].'"></span>';
 				}
 			?>
