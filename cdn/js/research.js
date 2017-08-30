@@ -44,7 +44,7 @@ class research {
 	static closeUI() {
 		ui.closeTab("#hud-research");
 		// Re-affichage de la planete
-		$("#planet-content").css('display','block');
+		$("#planet").css('display','block');
 		// Re-affichage du chat si necessaire
 		if(!ui.chat) {
 			$("#hud-chat").css('display',(ui.researchChat)?"block":"none");
@@ -58,7 +58,7 @@ class research {
 	 */
 	static openUI() {
 		// On cache la planete et la map
-		ui.closeTab("#planet-content",false);
+		ui.closeTab("#planet",false);
 		ui.closeTab("#hud-map",false); /* A no-bug fix */
 		// On affiche le panel de recherches
 		$("#hud-research").css('display','block');

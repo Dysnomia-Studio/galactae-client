@@ -1740,6 +1740,7 @@ dl.infos dt {
 		bottom: 25px;
 	}
 	#building-quit {
+		color: white;
 		top: 6px;
 		right: 4px;
 	}
