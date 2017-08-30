@@ -39,9 +39,8 @@
 		</div>
 
 		<?php /* Ground Building */ ?>
-		<div class="build-tab">
-			<p class="build-title"><?php echo PLANET_BUILDING; ?></p>
-			<img src="<?php echo $cdnURL; ?>img/buildings/tabs/0.png" class="build-tab-background" alt="building-tab">
+		<div class="building-ground">
+			<span id="building-ground-title"><?php echo PLANET_BUILDING; ?></span>
 			<?php
 				$buildings = [
 					"carriere",
@@ -69,9 +68,8 @@
 		</div>
 
 		<?php /* Space Building */ ?>
-		<div class="space-tab">
-			<p class="space-title"><?php echo ORBITAL_BUILDING; ?></p>
-			<img src="<?php echo $cdnURL; ?>img/buildings/tabs/space-tab.png" class="space-tab-background" alt="space-tab">
+		<div class="building-space">
+			<span id="building-space-title"><?php echo ORBITAL_BUILDING; ?></span>
 			<?php
 				for($i=9; $i<14; $i++) {
 					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'.png" class="building-list-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
