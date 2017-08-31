@@ -35,7 +35,7 @@
 			<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
 			
 			<img src="?" id="building-img" alt="building-img">
-			<input type="button" id="building-quit" value="X" onclick="ui.buildPanelHide()">
+			<span type="button" id="building-quit"onclick="ui.buildPanelHide()">X</span>
 		</div>
 
 		<?php /* Ground Building */ ?>

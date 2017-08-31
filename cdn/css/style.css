@@ -1726,9 +1726,11 @@ dl.infos dt {
 	/**
 	 * Width: 15vh
 	 * Distance: 22vh; au lieu de 21.21, histoire d'avoir une marge
-	 * Marge a gauche: 4vw;
-	 * Decalage lvl haut: 11vh;
-	 * Decalage lvl gauche : 1.5em;
+	 * Marge a gauche: 3vh;
+	 * MArge a droite: 6vh;
+	 * Decalage lvl haut: 7vh - 0.9em;
+	 * Decalage lvl gauche : 14vh;
+	 * Decalage lvl droit: 12.5vh;
 	 */
 
 
@@ -1928,7 +1930,7 @@ dl.infos dt {
 	#building-quit {
 		color: white;
 		top: 6px;
-		right: 4px;
+		right: 10px;
 	}
 }
 @media (max-height: 450px), (max-width: 600px) {
