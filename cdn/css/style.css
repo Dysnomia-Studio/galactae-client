@@ -1547,168 +1547,354 @@ dl.infos dt {
 	width: 100%;
 	height: 100%;
 }
-.building-list-building {
-	transform: rotate(-45deg);
-	width: 5em;
-	position: absolute;
-}
-/**
- * Ground building
- */
-#building-ground-title {
-	position: absolute;
-	top: calc(50vh + ((24em)/2) + 2.5em);
-	left: 2em;
-	width: 16em;
-	text-align: center;
-	font-weight: 0.8em;
-}
-#carriere {
-	top: calc(50vh - ((24em)/2) + 0em);
-	left: 8em;
-}
-#metallurgy {
-	top: calc(50vh - ((24em)/2) + 4em);
-	left: 12em;
-}
-#living {
-	top: calc(50vh - ((24em)/2) + 4em);
-	left: 4em;
-}
-#serre {
-	top: calc(50vh - ((24em)/2) + 12em);
-	left: 4em;
-}
-#solar {
-	top: calc(50vh - ((24em)/2) + 8em);
-	left: 8em;
-}
-#warehouse {
-	top: calc(50vh - ((24em)/2) + 16em);
-	left: 8em;
-}
-#headquarter {
-	top: calc(50vh - ((24em)/2) + 20em);
-	left: 4em;
-}
-#launchpad {
-	top: calc(50vh - ((24em)/2) + 20em);
-	left: 12em;
-}
-#research {
-	top: calc(50vh - ((24em)/2) + 16em);
-	left: 16em;
-}
-#lvl-carriere, #lvl-metallurgy, #lvl-living,
-#lvl-serre, #lvl-solar, #lvl-warehouse,
-#lvl-headquarter, #lvl-launchpad, #lvl-research {
-	position: absolute;
-	width: 1.8em;
-	height: 1.8em;
-	line-height: 1.8em;
-	border-radius: 1.8em;
-	text-align: center;
-	background-color: rgba(11,16,18,0.9);
-	z-index: 2;
-}
-#lvl-carriere {
-	top: calc(50vh - ((24em)/2) + 1.5em);
-	left: 13em;
-}
-#lvl-metallurgy {
-	top: calc(50vh - ((24em)/2) + 5.5em);
-	left: 17em;
-}
-#lvl-living {
-	top: calc(50vh - ((24em)/2) + 5.5em);
-	left: 9em;
-}
-#lvl-serre {
-	top: calc(50vh - ((24em)/2) + 13.5em);
-	left: 9em;
-}
-#lvl-solar {
-	top: calc(50vh - ((24em)/2) + 9.5em);
-	left: 13em;
-}
-#lvl-warehouse {
-	top: calc(50vh - ((24em)/2) + 17.5em);
-	left: 13em;
-}
-#lvl-headquarter {
-	top: calc(50vh - ((24em)/2) + 21.5em);
-	left: 9em;
-}
-#lvl-launchpad {
-	top: calc(50vh - ((24em)/2) + 21.5em);
-	left: 17em;
-}
-#lvl-research {
-	top: calc(50vh - ((24em)/2) + 17.5em);
-	left: 21em;
+
+
+@media (min-height: 531px) {
+	/**
+	 * Width: 5em
+	 * Distance: 8em;
+	 * Marge a gauche: 4em;
+	 * Decalage lvl haut: 4em;
+	 * Decalage lvl gauche : 1.5em;
+	 */
+
+
+	.building-list-building {
+		transform: rotate(-45deg);
+		width: 5em;
+		position: absolute;
+	}
+	/**
+	 * Ground building
+	 */
+	#building-ground-title {
+		position: absolute;
+		top: calc(50vh + ((24em)/2) + 2.5em);
+		left: 2em;
+		width: 16em;
+		text-align: center;
+	}
+	#carriere {
+		top: calc(50vh - ((24em)/2) + 0em);
+		left: 8em;
+	}
+	#metallurgy {
+		top: calc(50vh - ((24em)/2) + 4em);
+		left: 12em;
+	}
+	#living {
+		top: calc(50vh - ((24em)/2) + 4em);
+		left: 4em;
+	}
+	#serre {
+		top: calc(50vh - ((24em)/2) + 12em);
+		left: 4em;
+	}
+	#solar {
+		top: calc(50vh - ((24em)/2) + 8em);
+		left: 8em;
+	}
+	#warehouse {
+		top: calc(50vh - ((24em)/2) + 16em);
+		left: 8em;
+	}
+	#headquarter {
+		top: calc(50vh - ((24em)/2) + 20em);
+		left: 4em;
+	}
+	#launchpad {
+		top: calc(50vh - ((24em)/2) + 20em);
+		left: 12em;
+	}
+	#research {
+		top: calc(50vh - ((24em)/2) + 16em);
+		left: 16em;
+	}
+	#lvl-carriere, #lvl-metallurgy, #lvl-living,
+	#lvl-serre, #lvl-solar, #lvl-warehouse,
+	#lvl-headquarter, #lvl-launchpad, #lvl-research {
+		position: absolute;
+		width: 1.8em;
+		height: 1.8em;
+		line-height: 1.8em;
+		border-radius: 1.8em;
+		text-align: center;
+		background-color: rgba(11,16,18,0.9);
+		z-index: 2;
+	}
+	#lvl-carriere {
+		top: calc(50vh - ((24em)/2) + 1.5em);
+		left: 13em;
+	}
+	#lvl-metallurgy {
+		top: calc(50vh - ((24em)/2) + 5.5em);
+		left: 17em;
+	}
+	#lvl-living {
+		top: calc(50vh - ((24em)/2) + 5.5em);
+		left: 9em;
+	}
+	#lvl-serre {
+		top: calc(50vh - ((24em)/2) + 13.5em);
+		left: 9em;
+	}
+	#lvl-solar {
+		top: calc(50vh - ((24em)/2) + 9.5em);
+		left: 13em;
+	}
+	#lvl-warehouse {
+		top: calc(50vh - ((24em)/2) + 17.5em);
+		left: 13em;
+	}
+	#lvl-headquarter {
+		top: calc(50vh - ((24em)/2) + 21.5em);
+		left: 9em;
+	}
+	#lvl-launchpad {
+		top: calc(50vh - ((24em)/2) + 21.5em);
+		left: 17em;
+	}
+	#lvl-research {
+		top: calc(50vh - ((24em)/2) + 17.5em);
+		left: 21em;
+	}
+
+	/**
+	 * Space buildings
+	 */
+	#building-space-title {
+		position: absolute;
+		top: calc(25vh + ((8em)/2) + 4em + 2.5em);
+		right: 2em;
+		width: 16em;
+		text-align: center;
+	}
+	#radar {
+		top: calc(25vh - ((8em)/2) + 0em);
+		right: 7em;
+	}
+	#tank {
+		top: calc(25vh - ((8em)/2) + 0em);
+		right: 15em;
+	}
+	#shipyard {
+		top: calc(25vh - ((8em)/2) + 4em);
+		right: 11em;
+	}
+	#trade {
+		top: calc(25vh - ((8em)/2) + 4em);
+		right: 3em;
+	}
+	#he3exp {
+		top: calc(25vh - ((8em)/2) + 8em);
+		right: 7em;
+	}
+	#lvl-radar, #lvl-tank, #lvl-shipyard,
+	#lvl-trade, #lvl-he3exp {
+		position: absolute;
+		width: 1.8em;
+		height: 1.8em;
+		line-height: 1.8em;
+		border-radius: 1.8em;
+		text-align: center;
+		background-color: rgba(11,16,18,0.9);
+		z-index: 2;
+	}
+	#lvl-radar {
+		top: calc(25vh - ((8em)/2) + 1.5em);
+		right: 12em;
+	}
+	#lvl-tank {
+		top: calc(25vh - ((8em)/2) + 1.5em);
+		right: 20em;
+	}
+	#lvl-shipyard {
+		top: calc(25vh - ((8em)/2) + 5.5em);
+		right: 16em;
+	}
+	#lvl-trade {
+		top: calc(25vh - ((8em)/2) + 5.5em);
+		right: 8em;
+	}
+	#lvl-he3exp {
+		top: calc(25vh - ((8em)/2) + 9.5em);
+		right: 12em;
+	}
 }
 
-/**
- * Space buildings
- */
-#building-space-title {
-	position: absolute;
-	top: calc(25vh + ((8em)/2) + 4em + 2.5em);
-	right: 2em;
-	width: 16em;
-	text-align: center;
-	font-weight: 0.8em;
-}
-#radar {
-	top: calc(25vh - ((8em)/2) + 0em);
-	right: 7em;
-}
-#tank {
-	top: calc(25vh - ((8em)/2) + 0em);
-	right: 15em;
-}
-#shipyard {
-	top: calc(25vh - ((8em)/2) + 4em);
-	right: 11em;
-}
-#trade {
-	top: calc(25vh - ((8em)/2) + 4em);
-	right: 3em;
-}
-#he3exp {
-	top: calc(25vh - ((8em)/2) + 8em);
-	right: 7em;
-}
-#lvl-radar, #lvl-tank, #lvl-shipyard,
-#lvl-trade, #lvl-he3exp {
-	position: absolute;
-	width: 1.8em;
-	height: 1.8em;
-	line-height: 1.8em;
-	border-radius: 1.8em;
-	text-align: center;
-	background-color: rgba(11,16,18,0.9);
-	z-index: 2;
-}
-#lvl-radar {
-	top: calc(25vh - ((8em)/2) + 1.5em);
-	right: 12em;
-}
-#lvl-tank {
-	top: calc(25vh - ((8em)/2) + 1.5em);
-	right: 20em;
-}
-#lvl-shipyard {
-	top: calc(25vh - ((8em)/2) + 5.5em);
-	right: 16em;
-}
-#lvl-trade {
-	top: calc(25vh - ((8em)/2) + 5.5em);
-	right: 8em;
-}
-#lvl-he3exp {
-	top: calc(25vh - ((8em)/2) + 9.5em);
-	right: 12em;
+@media (max-height: 530px) {
+	/**
+	 * Width: 15vh
+	 * Distance: 22vh; au lieu de 21.21, histoire d'avoir une marge
+	 * Marge a gauche: 4vw;
+	 * Decalage lvl haut: 11vh;
+	 * Decalage lvl gauche : 1.5em;
+	 */
+
+
+	.building-list-building {
+		transform: rotate(-45deg);
+		width: 14vh;
+		position: absolute;
+	}
+	/**
+	 * Ground building
+	 */
+	#building-ground-title {
+		position: absolute;
+		top: calc(45vh + ((55vh)/2) + 6vh + 3em);
+		left: 4vh;
+		width: 60vh;
+		text-align: center;
+		font-size: 0.9em;
+	}
+	#carriere {
+		top: calc(45vh - ((55vh)/2) + 0vh);
+		left: 22vh;
+	}
+	#metallurgy {
+		top: calc(45vh - ((55vh)/2) + 11vh);
+		left: 33vh;
+	}
+	#living {
+		top: calc(45vh - ((55vh)/2) + 11vh);
+		left: 11vh;
+	}
+	#serre {
+		top: calc(45vh - ((55vh)/2) + 33vh);
+		left: 11vh;
+	}
+	#solar {
+		top: calc(45vh - ((55vh)/2) + 22vh);
+		left: 22vh;
+	}
+	#warehouse {
+		top: calc(45vh - ((55vh)/2) + 44vh);
+		left: 22vh;
+	}
+	#headquarter {
+		top: calc(45vh - ((55vh)/2) + 55vh);
+		left: 11vh;
+	}
+	#launchpad {
+		top: calc(45vh - ((55vh)/2) + 55vh);
+		left: 33vh;
+	}
+	#research {
+		top: calc(45vh - ((55vh)/2) + 44vh);
+		left: 44vh;
+	}
+	#lvl-carriere, #lvl-metallurgy, #lvl-living,
+	#lvl-serre, #lvl-solar, #lvl-warehouse,
+	#lvl-headquarter, #lvl-launchpad, #lvl-research {
+		position: absolute;
+		width: 1.8em;
+		height: 1.8em;
+		line-height: 1.8em;
+		border-radius: 1.8em;
+		text-align: center;
+		background-color: rgba(11,16,18,0.9);
+		z-index: 2;
+	}
+	#lvl-carriere {
+		top: calc(45vh - ((55vh)/2) + 7vh - 0.9em);
+		left: 36vh;
+	}
+	#lvl-metallurgy {
+		top: calc(45vh - ((55vh)/2) + 18vh - 0.9em);
+		left: 47vh;
+	}
+	#lvl-living {
+		top: calc(45vh - ((55vh)/2) + 18vh - 0.9em);
+		left: 25vh;
+	}
+	#lvl-serre {
+		top: calc(45vh - ((55vh)/2) + 40vh - 0.9em);
+		left: 25vh;
+	}
+	#lvl-solar {
+		top: calc(45vh - ((55vh)/2) + 29vh - 0.9em);
+		left: 36vh;
+	}
+	#lvl-warehouse {
+		top: calc(45vh - ((55vh)/2) + 51vh - 0.9em);
+		left: 36vh;
+	}
+	#lvl-headquarter {
+		top: calc(45vh - ((55vh)/2) + 62vh  - 0.9em);
+		left: 25vh;
+	}
+	#lvl-launchpad {
+		top: calc(45vh - ((55vh)/2) + 62vh - 0.9em);
+		left: 47vh;
+	}
+	#lvl-research {
+		top: calc(45vh - ((55vh)/2) + 51vh - 0.9em);
+		left: 58vh;
+	}
+
+	/**
+	 * Space buildings
+	 */
+	#building-space-title {
+		position: absolute;
+		top: calc(25vh + ((22vh)/2) + 7vh + 3em);
+		right: 4vh;
+		width: 55vh;
+		text-align: center;
+		font-size: 0.9em;
+	}
+	#radar {
+		top: calc(25vh - ((22vh)/2) + 0vh);
+		right: 20vh;
+	}
+	#tank {
+		top: calc(25vh - ((22vh)/2) + 0vh);
+		right: 42vh;
+	}
+	#shipyard {
+		top: calc(25vh - ((22vh)/2) + 11vh);
+		right: 31vh;
+	}
+	#trade {
+		top: calc(25vh - ((22vh)/2) + 11vh);
+		right: 9vh;
+	}
+	#he3exp {
+		top: calc(25vh - ((22vh)/2) + 22vh);
+		right: 20vh;
+	}
+	#lvl-radar, #lvl-tank, #lvl-shipyard,
+	#lvl-trade, #lvl-he3exp {
+		position: absolute;
+		width: 1.8em;
+		height: 1.8em;
+		line-height: 1.8em;
+		border-radius: 1.8em;
+		text-align: center;
+		background-color: rgba(11,16,18,0.9);
+		z-index: 2;
+	}
+	#lvl-radar {
+		top: calc(25vh - ((22vh)/2) + 7vh - 0.9em);;
+		right: 32.5vh;
+	}
+	#lvl-tank {
+		top: calc(25vh - ((22vh)/2) + 7vh - 0.9em);
+		right: 54.5vh;
+	}
+	#lvl-shipyard {
+		top: calc(25vh - ((22vh)/2) + 18vh - 0.9em);
+		right: 43.5vh;
+	}
+	#lvl-trade {
+		top: calc(25vh - ((22vh)/2) + 18vh - 0.9em);
+		right: 21.5vh;
+	}
+	#lvl-he3exp {
+		top: calc(25vh - ((22vh)/2) + 30vh - 0.9em);
+		right: 32.5vh;
+	}
 }
 
 /**
