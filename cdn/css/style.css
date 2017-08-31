@@ -1838,30 +1838,30 @@ dl.infos dt {
 	 */
 	#building-space-title {
 		position: absolute;
-		top: calc(25vh + ((22vh)/2) + 7vh + 3em);
+		top: calc(30vh + ((22vh)/2) + 7vh + 3em);
 		right: 4vh;
 		width: 55vh;
 		text-align: center;
 		font-size: 0.9em;
 	}
 	#radar {
-		top: calc(25vh - ((22vh)/2) + 0vh);
+		top: calc(30vh - ((22vh)/2) + 0vh);
 		right: 20vh;
 	}
 	#tank {
-		top: calc(25vh - ((22vh)/2) + 0vh);
+		top: calc(30vh - ((22vh)/2) + 0vh);
 		right: 42vh;
 	}
 	#shipyard {
-		top: calc(25vh - ((22vh)/2) + 11vh);
+		top: calc(30vh - ((22vh)/2) + 11vh);
 		right: 31vh;
 	}
 	#trade {
-		top: calc(25vh - ((22vh)/2) + 11vh);
+		top: calc(30vh - ((22vh)/2) + 11vh);
 		right: 9vh;
 	}
 	#he3exp {
-		top: calc(25vh - ((22vh)/2) + 22vh);
+		top: calc(30vh - ((22vh)/2) + 22vh);
 		right: 20vh;
 	}
 	#lvl-radar, #lvl-tank, #lvl-shipyard,
@@ -1876,23 +1876,23 @@ dl.infos dt {
 		z-index: 2;
 	}
 	#lvl-radar {
-		top: calc(25vh - ((22vh)/2) + 7vh - 0.9em);;
+		top: calc(30vh - ((22vh)/2) + 7vh - 0.9em);;
 		right: 32.5vh;
 	}
 	#lvl-tank {
-		top: calc(25vh - ((22vh)/2) + 7vh - 0.9em);
+		top: calc(30vh - ((22vh)/2) + 7vh - 0.9em);
 		right: 54.5vh;
 	}
 	#lvl-shipyard {
-		top: calc(25vh - ((22vh)/2) + 18vh - 0.9em);
+		top: calc(30vh - ((22vh)/2) + 18vh - 0.9em);
 		right: 43.5vh;
 	}
 	#lvl-trade {
-		top: calc(25vh - ((22vh)/2) + 18vh - 0.9em);
+		top: calc(30vh - ((22vh)/2) + 18vh - 0.9em);
 		right: 21.5vh;
 	}
 	#lvl-he3exp {
-		top: calc(25vh - ((22vh)/2) + 30vh - 0.9em);
+		top: calc(30vh - ((22vh)/2) + 30vh - 0.9em);
 		right: 32.5vh;
 	}
 }
