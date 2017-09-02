@@ -490,7 +490,7 @@ a, body {
 }
 #hud-planet-name {
 	margin: 0 10px;
-	padding: 0 0.3em;
+	padding: 0 0.5em;
 
 	height: 3vw;
 	line-height: 1.8vw;
@@ -510,6 +510,8 @@ a, body {
 	position: fixed;
 
 	user-select: none;
+	
+	top: 0.2vw;
 }
 #hud-top-right-moveLeft {
 	right: 42vw;
