@@ -56,7 +56,7 @@ class loadScreen {
 		// Buildings
 		for(var i=0; i<buildingsNames.length; i++) {
 			// Icon
-			picList.push(cdnURL + "img/buildings/icons/" + buildingsNames[i] + '1.png')
+			picList.push(cdnURL + "img/buildings/icons/" + buildingsNames[i] + '.png')
 			// Panel picture
 			picList.push(cdnURL + "img/buildings/desc/" + buildingsNames[i] + '.jpg')
 		}
