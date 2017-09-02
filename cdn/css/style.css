@@ -42,6 +42,8 @@ a, body {
 	background-color: rgba(11,17,19,1);
 	border: 1px solid #0d8384;
 
+	word-break: break-word
+
 	padding: 0.75em;
 
 	z-index: 999; /* Above all */
