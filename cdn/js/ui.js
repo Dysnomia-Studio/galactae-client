@@ -28,8 +28,8 @@ class ui {
 		if((translate["messages"][msg] !=undefined) && (translate["messages"][msg] !="")) { msg = translate["messages"][msg]; }
 		// Draw the message
 		$("#messagePanel").text(msg);
-		$("#messagePanel-div").fadeIn(1000);
-		setTimeout(function() { $("#messagePanel-div").fadeOut(1000); }, 1000 + 100*msg.length);	
+		$("#messagePanel").fadeIn(1000);
+		setTimeout(function() { $("#messagePanel").fadeOut(1000); }, 1000 + 100*msg.length);	
 	}
 	/**
 	 * Tout les événements à creer au lancement

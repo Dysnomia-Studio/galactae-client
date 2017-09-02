@@ -27,21 +27,26 @@ a, body {
 /**
  * Popup Message
  */
-#messagePanel-div {
+#messagePanel {
 	position: fixed;
 	top: 55px;
 	left: 0;
 	min-height: 20px;
-	width: 100%;
+	width: calc(90% - 1.5em);
+
+	margin: 0 5%;
+
 	text-align: center;
 	display: none;
-	font-size: 23px;
 	user-select: none;
+	background-color: rgba(11,17,19,1);
+	border: 1px solid #0d8384;
+
+	padding: 0.75em;
+
+	z-index: 999; /* Above all */
 }
-#messagePanel {
-	background-color: rgba(190,190,190,0.5);
-	padding: 0.3em;
-}
+
 /**
  * Scrollbar
  */

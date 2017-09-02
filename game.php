@@ -85,7 +85,7 @@
 	</div>
 </div>
 <?php /* Msg Popup */ ?>
-<div id="messagePanel-div"><span id="messagePanel"></span></div>
+<div id="messagePanel"></div>
 <?php /* Top HUD */ ?>
 <div id="hud-top">
 	<div id="hud-top-left">
