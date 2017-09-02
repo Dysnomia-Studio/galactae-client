@@ -491,6 +491,9 @@ a, body {
 #hud-planet-name {
 	margin: 0 10px;
 	padding: 0 0.5em;
+	width: 8vw;
+
+	overflow: hidden;
 
 	height: 3vw;
 	line-height: 1.8vw;
