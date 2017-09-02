@@ -128,36 +128,36 @@ class ui {
 	static loadHUDButtons() {
 		// HUD Top right
 		$('#hud-top-right-moveLeft').click(function() {
-			var scroll = $('#hud-top-right-content').scrollLeft();
+			var scroll = $('#hud-top-right').scrollLeft();
 			scroll -= 20;
 			if(scroll<0) { scroll=0; }
-			$('#hud-top-right-content').scrollLeft(scroll);
+			$('#hud-top-right').scrollLeft(scroll);
 		});
 
 		$('#hud-top-right-moveRight').click(function() {
-			var scroll = $('#hud-top-right-content').scrollLeft();
+			var scroll = $('#hud-top-right').scrollLeft();
 			scroll += 20;
-			if(scroll>$('#hud-top-right-content').width()) { scroll=$('#hud-top-right-content').width(); }
-			$('#hud-top-right-content').scrollLeft(scroll);
+			if(scroll>$('#hud-top-right').width()) { scroll=$('#hud-top-right').width(); }
+			$('#hud-top-right').scrollLeft(scroll);
 		});
 		// HUD Top left
 		$('#hud-top-left-moveLeft').click(function() {
-			var scroll = $('#hud-top-left-content').scrollLeft();
+			var scroll = $('#hud-top-left').scrollLeft();
 			scroll -= 20;
 			if(scroll<0) { scroll=0; }
-			$('#hud-top-left-content').scrollLeft(scroll);
+			$('#hud-top-left').scrollLeft(scroll);
 		});
 
 		$('#hud-top-left-moveRight').click(function() {
-			var scroll = $('#hud-top-left-content').scrollLeft();
+			var scroll = $('#hud-top-left').scrollLeft();
 			scroll += 20;
-			if(scroll>$('#hud-top-left-content').width()) { scroll=$('#hud-top-left-content').width(); }
-			$('#hud-top-left-content').scrollLeft(scroll);
+			if(scroll>$('#hud-top-left').width()) { scroll=$('#hud-top-left').width(); }
+			$('#hud-top-left').scrollLeft(scroll);
 		});
 
 		// Display none if needed	
-		if(document.getElementById('hud-top-left-content').scrollWidth
-			<= Math.round($('#hud-top-left-content').width())) {
+		if(document.getElementById('hud-top-left').scrollWidth
+			<= Math.round($('#hud-top-left').width())) {
 			$('#hud-top-left-moveRight').css('display','none');
 			$('#hud-top-left-moveLeft').css('display','none');
 		} else {
@@ -165,8 +165,8 @@ class ui {
 			$('#hud-top-left-moveLeft').css('display','block');
 		}
 
-		if(document.getElementById('hud-top-right-content').scrollWidth
-			<= Math.round($('#hud-top-right-content').width())) {
+		if(document.getElementById('hud-top-right').scrollWidth
+			<= Math.round($('#hud-top-right').width())) {
 			$('#hud-top-right-moveRight').css('display','none');
 			$('#hud-top-right-moveLeft').css('display','none');
 		} else {
