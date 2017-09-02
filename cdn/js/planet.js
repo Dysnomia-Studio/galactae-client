@@ -425,8 +425,7 @@ class planet {
 	 */
 	static MiscDrawUpdate() {
 		//Planet name
-		$('#hud-planet-name span').text(planetData.name);
-		$('#money_nmb').html(GetBetterUnit(userData.money,""));
+		$('#hud-planet-name').text(planetData.name);
 
 		//Page Title
 		document.title = userData.username + " - " + planetData.name;
