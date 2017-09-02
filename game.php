@@ -88,30 +88,33 @@
 <div id="messagePanel-div"><span id="messagePanel"></span></div>
 <?php /* Top HUD */ ?>
 <div id="hud-top">
-	<img id="hud-top-back" src="<?php echo $cdnURL; ?>img/ui/hud-top.png" alt="hud-top">
-	<div id="hud-top-left-content">
+	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
-		<img height="20" src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span class="nmb" id="population_nmb">1</span>
-		<img height="20" src="<?php echo $cdnURL; ?>img/ui/research.png" alt="research"> <span class="nmb" id="research_nmb">1</span>
-		<img height="20" src="<?php echo $cdnURL; ?>img/ui/moral.png" alt="moral"> <span class="nmb" id="moral_nmb">1</span>
+
+		<img height="15" src="./cdn/img/ui/population.png" alt="population"> <span class="nmb" id="population_nmb">100Kt</span>
+		<img height="15" src="./cdn/img/ui/research.png" alt="research"> <span class="nmb" id="research_nmb">100Kt</span>
+		<img height="15" src="./cdn/img/ui/moral.png" alt="moral"> <span class="nmb" id="moral_nmb">100Kt</span>
 		<span class="hud-top-tooltip">
-			<img height="20" src="<?php echo $cdnURL; ?>img/ui/electricity.png" alt="electricity" > <span class="nmb" id="electricity_nmb">1</span>
-			<span class="hud-top-tooltip-content">
-				<?php echo PRODUCTION; ?>: <span id="electricity-prod">XXX Kwh</span><br/>
-				<?php echo CONSUMPTION; ?>: <span id="electricity-cons">XXX Kwh</span><br/>
+			<img height="15" src="./cdn/img/ui/electricity.png" alt="electricity" > <span class="nmb" id="electricity_nmb">100Kt</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content">
+					Production: <span id="electricity-prod">XXX Kwh</span><br/>
+					Consommation: <span id="electricity-cons">XXX Kwh</span><br/>
+				</span>
 			</span>
 		</span>
+
 		<span id="hud-top-left-moveRight">&#9654;</span>
 	</div>
-	<ul id="hud-top-center">
-		<li id="hud-username"><a href="https://galactae.eu/profil" target="_blank"><?php echo $data['user_name'];?></a></li>
-		<li id="hud-settings"><img height="20" src="<?php echo $cdnURL; ?>img/ui/settings.png" alt="settings"></li>
-		<li id="hud-planet-prev" onclick="planet.prev();">&#60;</li>
-		<li id="hud-planet-name"><span class="planet-name-text"></span></li>
-		<li id="hud-planet-next" onclick="planet.next();">&#62;</li>
-		<li id="hud-user-money"><img height="20" src="<?php echo $cdnURL; ?>img/ui/money.png" alt="money"> <span class="nmb" id="money_nmb">1</span></li>
-	</ul>
-	<div id="hud-top-right-content">
+
+	<div id="hud-top-center">
+		<img id="hud-settings" height="20" src="./cdn/img/ui/settings.png" alt="settings">
+		<span id="hud-planet-prev" onclick="planet.prev();">&#9664;</span>
+		<span id="hud-planet-name">SomeLongName</span>
+		<span id="hud-planet-next" onclick="planet.next();">&#9654;</span>
+	</div>
+
+	<div id="hud-top-right">
 		<span id="hud-top-right-moveLeft">&#9664;</span>
 		<?php
 			$topRightContent = [
@@ -129,14 +132,14 @@
 			<span class="hud-top-tooltip">
 				'.$topRightContent[$i][1].'
 				<span class="nmb" id="'.$topRightContent[$i][0].'_nmb">1</span>
-				<span class="hud-top-tooltip-content" id="'.$topRightContent[$i][0].'-tooltips">';
+				<span class="hud-top-tooltip-wrapper"><span class="hud-top-tooltip-content" id="'.$topRightContent[$i][0].'-tooltips">';
 
 			if($topRightContent[$i][2]) { echo CAPACITY.': <span id="'.$topRightContent[$i][0].'-cap">XXX t</span><br/>'; }
 			if($topRightContent[$i][3]) { echo PRODUCTION.': <span id="'.$topRightContent[$i][0].'-prod">XXX t</span><br/>'; }
 			if($topRightContent[$i][4]) { echo CONSUMPTION.': <span id="'.$topRightContent[$i][0].'-cons">XXX t</span><br/>'; }
 			if($topRightContent[$i][5]) { echo IMPORTANCE.': <span id="'.$topRightContent[$i][0].'-variety">XXX t</span><br/>'; }
 
-			echo'</span></span>';
+			echo'</span></span></span>';
 		}
 		?>
 		<span id="hud-top-right-moveRight">&#9654;</span>
