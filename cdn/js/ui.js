@@ -70,7 +70,7 @@ class ui {
 		settings.loadUI();
 
 		//Rename planet
-		$(".planet-name-text").click(function() {
+		$("#hud-planet-name").click(function() {
 			ui.planetNameSwitchToInput()
 		});
 		//HUD Buttons
