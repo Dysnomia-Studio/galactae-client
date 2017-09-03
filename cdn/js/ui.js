@@ -353,13 +353,13 @@ class ui {
 
 	/********** PLANET NAME **********/
 	static planetNameSwitchToInput() {
-		var elt = $(".planet-name-text");
+		var elt = $("#hud-planet-name");
 		ui.oldname = elt.text();
 		var $input = $("<input>", {
 			val: elt.text(),
-			type: "text"
+			type: "text",
+			id: "hud-planet-name"
 		});
-		$input.addClass("planet-name-text");
 		elt.replaceWith($input);
 		$input.on("blur", ui.planetNameSwitchToSpan);
 		$input.select();
@@ -367,12 +367,12 @@ class ui {
 		ui.renaming = true;
 	}
 	static planetNameSwitchToSpan() {
-		var elt = $(".planet-name-text");
+		var elt = $("#hud-planet-name");
 		var newname = elt.val();
 		var $span = $("<span>", {
-			text: elt.val()
-		});
-		$span.addClass("planet-name-text");
+			text: elt.val(),
+			id: "hud-planet-name"
+		});;
 		elt.replaceWith($span);
 		$span.on("click", ui.planetNameSwitchToInput);
 		if(ui.oldname!=newname) {
