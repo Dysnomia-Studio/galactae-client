@@ -1081,7 +1081,7 @@ a[class="research-search"] {
 }
 #hud-map-back {
 	position: fixed;
-	top: 1em;
+	top: 3.5vw;
 	left: 3em;
 	font-weight: bold;
 	cursor: pointer;
