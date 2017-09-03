@@ -490,7 +490,9 @@ a, body {
 
 	margin-right: 0.5em;
 }
-
+.max-value {
+	color: red;
+}
 #hud-planet-prev:hover, #hud-planet-next:hover {
 	color: #4f8e8d;
 	cursor: pointer;
