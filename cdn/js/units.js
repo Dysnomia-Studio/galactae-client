@@ -171,7 +171,7 @@ class units {
 
 			// Draw HTML
 			if(shape[i][0]!="struct") {
-				htmlContent += '<select class="part-selecting" partName="' + shape[i][6] + '"" style="';
+				htmlContent += '<select class="part-selecting" partName="' + shape[i][6] + 'partType="' + shape[i][60] + '" style="';
 				htmlContent += 'left: ' + shape[i][2] + 'px;';
 				htmlContent += 'top: ' + shape[i][3] + 'px;';
 				htmlContent += 'width: ' + shape[i][4] + 'px;';
@@ -254,13 +254,22 @@ class units {
 		var parts = $('#fleet-type-create-selects').children();
 		for(var i=0; i<parts.length; i++) {
 			var name = $(parts[i]).attr('partName');
+			var type = $(parts[i]).attr('partType');
 			var value =  $(parts[i]).val();
+
 			if(value==undefined || value.split(' ').join('')=="") {
 				errors++;
-				errorMessage = "SHIP_HAS_EMPTY_FIELD : " + name;
+				errorMessage = "SHIP_HAS_EMPTY_FIELD";
+				break;
 			}
 
-			ship[name] = value;
+			if(type==undefined || type.split(' ').join('')=="") {
+				errors++;
+				errorMessage = "SHIP_HAS_WRONG_PARTS";
+				break;
+			}
+
+			ship[name] = {value: value, type: type};
 		}
 		
 		if(errors==0) {
