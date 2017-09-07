@@ -222,7 +222,7 @@ var shipShapesDetails = {
 				["struct","poly",300,100,210,382,445,202,165,202,390,382],
 				["struct","circle",300,250,100],
 				// Arme
-				["cannon","rect"  ,275,225, 50, 50],
+				["explosive","rect"  ,275,225, 50, 50],
 			],
 			content: {
 				explosive: ["explosive","iem","nuke","antimater"],
