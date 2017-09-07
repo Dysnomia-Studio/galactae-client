@@ -238,6 +238,7 @@ class units {
 
 	static createNewType() {
 		var errors = 0;
+		var errorMessage = "";
 		
 		var ship = {
 			name: $("#fleet-type-create-shipType option").val(),
@@ -247,7 +248,7 @@ class units {
 		/* Checks ... */
 		if(ship.name.split(' ').join('')=="") {
 			errors ++;
-			message = "SHIP_HAS_NO_NAME";
+			errorMessage = "SHIP_HAS_NO_NAME";
 		}
 
 		/* Get All parts */
@@ -257,7 +258,7 @@ class units {
 			var value =  $(parts[i]).filter(":selected").val();
 			if(value==undefined || value.split(' ').join('')=="") {
 				errors++;
-				message = "SHIP_HAS_EMPTY_FIELD";
+				errorMessage = "SHIP_HAS_EMPTY_FIELD";
 			}
 
 			ship[name] = value;
@@ -267,7 +268,7 @@ class units {
 			ui.closeTab("#fleet-type-create");
 			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
 		} else {
-			ui.drawMessage(message); // @ADD: Translation
+			ui.drawMessage(errorMessage); // @ADD: Translation
 		}
 	}
 }
