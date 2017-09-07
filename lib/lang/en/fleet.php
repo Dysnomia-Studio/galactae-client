@@ -38,15 +38,16 @@
 		"SHIP_TYPE": "Type",
 		"SHIP_SHAPE": "Model",
 		// Types names
-		"SHIP_ORBITAL_DEF": "Orbital Defenses",
+		"SHIP_SAT": "Satellite",
 		"SHIP_BATTLECRUISER": "Battlecruisers",
 		"SHIP_CUIRASSE": "Battleships",
 		"SHIP_FIGHTER": "Fighters",
 		"SHIP_CORVET": "Corvette",
 		"SHIP_CARRIER": "Carriers",
 		// Shapes names
-		"SHIP_ORBITAL_DEF_SAT": "Satellites",
-		"SHIP_ORBITAL_DEF_MINES": "Mines",
+		"SHIP_SAT_AG1": "Satellite AG-I",
+		"SHIP_SAT_AG2": "Satellite AG-II",
+		"SHIP_SAT_AG3": "Satellite AG-III",
 		"SHIP_SMALL": "Small",
 		"SHIP_MEDIUM": "Medium",
 	};

@@ -178,7 +178,7 @@ var researchBonus = {
  * Units
  */
 var unitTypes = [
-	"SHIP_ORBITAL_DEF",
+	"SHIP_SAT",
 	"SHIP_BATTLECRUISER",
 	"SHIP_CUIRASSE",
 	"SHIP_FIGHTER",
@@ -187,8 +187,8 @@ var unitTypes = [
 ];
 
 var shipShapesDetails = {
-	SHIP_ORBITAL_DEF: {
-		SHIP_ORBITAL_DEF_SAT: {
+	SHIP_SAT: {
+		SHIP_SAT_AG1: {
 			svg: [
 				// Aile Gauche
 				["struct","rect", 75,175,250,150],
@@ -211,21 +211,6 @@ var shipShapesDetails = {
 			content: {
 				cannon: ["railgun","laser","plasma"],
 				shield: ["none"],
-			},
-			stats: {
-				mass: 0,
-			},
-		},
-		SHIP_ORBITAL_DEF_MINES: {
-			svg: [
-				// Structure
-				["struct","poly",300,100,210,382,445,202,165,202,390,382],
-				["struct","circle",300,250,100],
-				// Arme
-				["explosive","rect"  ,275,225, 50, 50, "explosive_1"],
-			],
-			content: {
-				explosive: ["explosive","iem","nuke","antimater"],
 			},
 			stats: {
 				mass: 0,

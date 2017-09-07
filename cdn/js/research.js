@@ -112,13 +112,13 @@ class research {
 			wep_laser:			{ cost: 260, parents: ["wep_railgun","misc_phyQuantique"] },
 			wep_plasma:			{ cost: 480, parents: ["wep_laser"] },
 			// Mines spatiales
-			wep_mines: 			{ cost: 380, parents: ["misc_calcGravit","misc_telemetrie",] },
+			wep_mines: 			{ cost: 380, parents: ["misc_calcGravit","misc_telemetrie"] },
 			wep_mines_nuke:		{ cost: 750, parents: ["wep_mines","wep_nuke"] },
 			wep_mines_iem:		{ cost: 550, parents: ["wep_mines","misc_em"] },
 			// Satellites
-			wep_sat_railgun:	{ cost: 360, parents: ["misc_calcGravit","wep_railgun"] },
-			wep_sat_laser:		{ cost: 650, parents: ["wep_sat_railgun","wep_laser"] },
-			wep_sat_plasma:		{ cost: 1500, parents: ["wep_sat_laser","wep_plasma"] },
+			wep_sat_ag1:		{ cost: 360, parents: ["misc_calcGravit","misc_telemetrie"] },
+			wep_sat_ag2:		{ cost: 650, parents: ["wep_sat_ag2","misc_advTelemetrie"] },
+			wep_sat_ag3:		{ cost: 1500, parents: ["wep_sat_ag3"] },
 			// Autres recherches
 			misc_astronomie:	{ cost: 45, parents: ["phyContemporaine"] },
 			misc_telemetrie: 	{ cost: 90, parents: ["misc_astronomie"] },

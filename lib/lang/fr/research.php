@@ -30,9 +30,9 @@
 		wep_mines_nuke:		{ name: "Mines nucléaires", desc: "" },
 		wep_mines_iem:		{ name: "Mines IEM", desc: "" },
 		// Satellites
-		wep_sat_railgun:	{ name: "Satellites AG-I", desc: "" },
-		wep_sat_laser:		{ name: "Satellites AG-II", desc: "" },
-		wep_sat_plasma:		{ name: "Satellites AG-III", desc: "" },
+		wep_sat_ag1:		{ name: "Satellites AG-I", desc: "" },
+		wep_sat_ag2:		{ name: "Satellites AG-II", desc: "" },
+		wep_sat_ag3:		{ name: "Satellites AG-III", desc: "" },
 		// Autres recherches spatiales
 		misc_astronomie:	{ name: "Astronomie", desc: "" },
 		misc_telemetrie:	{ name: "Telemetrie", desc: ""},
