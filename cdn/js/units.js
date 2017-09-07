@@ -171,7 +171,7 @@ class units {
 
 			// Draw HTML
 			if(shape[i][0]!="struct") {
-				htmlContent += '<select class="part-selecting" partName="' + shape[i][6] + 'partType="' + shape[i][60] + '" style="';
+				htmlContent += '<select class="part-selecting" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="';
 				htmlContent += 'left: ' + shape[i][2] + 'px;';
 				htmlContent += 'top: ' + shape[i][3] + 'px;';
 				htmlContent += 'width: ' + shape[i][4] + 'px;';
