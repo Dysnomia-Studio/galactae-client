@@ -172,14 +172,14 @@ class units {
 
 			// Draw HTML
 			if(shape[i][0]!="struct") {
-				htmlContent += '<select class="part-selecting" style="';
+				htmlContent += '<select class="part-selecting" partName="' + shape[i][6] + '"" style="';
 				htmlContent += 'left: ' + shape[i][2] + 'px;';
 				htmlContent += 'top: ' + shape[i][3] + 'px;';
 				htmlContent += 'width: ' + shape[i][4] + 'px;';
 				htmlContent += 'height: ' + shape[i][5] + 'px;';
 				htmlContent += '">';
 
-				for(var j=0; j<content[shape[i][0]].length; j++) {
+				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: research check
 					htmlContent += '<option value="' + content[shape[i][0]][j] + '">' + content[shape[i][0]][j] + '</option>'; // @ADD: Translation
 				}
 
@@ -237,8 +237,31 @@ class units {
 	}
 
 	static createNewType() {
-		// Do some stuff
+		var errors = 0;
 		
-		$('#fleet-type-create-name').val('');
+		var ship = {
+			name: $("#fleet-type-create-shipType option").val(),
+			type: $("#fleet-type-create-shipType option").filter(":selected").val(),
+			shape: ("#fleet-type-create-shipShape option").filter(":selected").val()
+		};
+		/* Checks ... */
+		if(ship.name.split(' ').join('')=="") {
+			errors ++;
+			message = "SHIP_HAS_NO_NAME";
+		}
+
+		/* Get All parts */
+		var parts = $('#fleet-type-create-selects').children();
+		for(var i=0; i<parts.length; i++) {
+			var name = $(parts[i]).attr('partName');
+			ship[name] = $(parts[i]).filter(":selected").val();
+		}
+		
+		if(errors==0) {
+			ui.closeTab("#fleet-type-create");
+			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
+		} else {
+			ui.drawMessage(message); // @ADD: Translation
+		}
 	}
 }
