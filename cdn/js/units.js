@@ -130,7 +130,7 @@ class units {
 		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
 
-		$('#fleet-type-create-name').html('');
+		$($('#fleet-type-create-name').get(0)).val('');
 
 		units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
 		units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
