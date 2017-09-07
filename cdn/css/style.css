@@ -11,6 +11,10 @@ body {
 a, body {
 	color: white;
 }
+/* Fix for opera */
+select, input {
+	outline: none;
+}
 #game-version {
 	text-align: right;
 	position: fixed;
