@@ -205,12 +205,12 @@ var shipShapesDetails = {
 				["struct","line",625,185,625,315],
 				["struct","line",675,185,675,315],
 				// Contenu
-				["cannon","rect",375,150, 50, 50],
-				["shield","rect",375,300, 50, 50],
+				["cannon","rect",375,150, 50, 50, "cannon_1"],
+				["shield","rect",375,300, 50, 50, "shield_1"],
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
-				shield: [],
+				shield: ["none"],
 			},
 			stats: {
 				mass: 0,
@@ -222,7 +222,7 @@ var shipShapesDetails = {
 				["struct","poly",300,100,210,382,445,202,165,202,390,382],
 				["struct","circle",300,250,100],
 				// Arme
-				["explosive","rect"  ,275,225, 50, 50],
+				["explosive","rect"  ,275,225, 50, 50, "explosive_1"],
 			],
 			content: {
 				explosive: ["explosive","iem","nuke","antimater"],
@@ -254,7 +254,7 @@ var shipShapesDetails = {
 				rocketLauncher: ["explosive","nuke","antimater"],
 				sub_propulsion: ["ion"],
 				sup_propulsion: ["vsl","hyperespace"],
-				shield: [],
+				shield: ["none"],
 			},
 			stats: {
 				mass: 0,
@@ -277,9 +277,9 @@ var shipShapesDetails = {
 				["struct","poly",60,205,50,250,60,295,510,280,520,250,510,220], // Corps
 				//["struct","poly",50,50,50,50,50,50,50,50], // Cockpit
 				// Armes
-				["cannon","rect"  ,455,225, 50, 50],
+				["cannon","rect"  ,455,225, 50, 50,"cannon_1"],
 				// Propulseur
-				["sub_propulsion","rect"  ,70,225, 50, 50],
+				["sub_propulsion","rect"  ,70,225, 50, 50,"prop_1"],
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
@@ -295,10 +295,10 @@ var shipShapesDetails = {
 				["struct","path","M260",228,"Q",300,130,340,228], // Avant
 				["struct","path","M50",300,"Q",300,150,550,300], // Cockpit
 				// Armes
-				["cannon","rect"  ,150,180, 50, 50],
-				["cannon","rect"  ,400,180, 50, 50],
+				["cannon","rect"  ,150,180, 50, 50,"cannon_1"],
+				["cannon","rect"  ,400,180, 50, 50,"cannon_2"],
 				// Propulseur
-				["sub_propulsion","rect"  ,275,115, 50, 50],
+				["sub_propulsion","rect"  ,275,115, 50, 50,"prop_1"],
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
@@ -317,17 +317,17 @@ var shipShapesDetails = {
 				["struct","circle",250,250,150], // Corps
 				["struct","path"  ,"M385",185,"Q",300,250,385,315], // Cockpit
 				// Cloak
-				["cloak","rect",250,120,50,50],
+				["cloak","rect",250,120,50,50,"cloak_1"],
 				// Scanner
-				["scanner","rect",250,330,50,50],
+				["scanner","rect",250,330,50,50,"scanner_1"],
 				// Propulseurs
-				["sub_propulsion","rect"  , 55,295, 50, 50],
-				["sub_propulsion","rect"  , 55,155, 50, 50],
-				["sup_propulsion","rect"  ,110,225, 50, 50],
+				["sub_propulsion","rect"  , 55,295, 50, 50,"prop_1"],
+				["sub_propulsion","rect"  , 55,155, 50, 50,"prop_2"],
+				["sup_propulsion","rect"  ,110,225, 50, 50,"prop_3"],
 			],
 			content: {
-				cloak: [],
-				scanner: [],
+				cloak: ["none"],
+				scanner: ["none"],
 				sub_propulsion: ["ion","vsolaire"],
 				sup_propulsion: ["vsl","hyperespace"],
 			},
@@ -345,21 +345,21 @@ var shipShapesDetails = {
 				["struct","poly",60,300,60,370,220,370,240,300], // Aile droite avant
 				["struct","poly",60,300,60,410,130,410,150,300], // Aile droite arriere
 				// Hangars
-				["hangar","rect", 70,110,50,50], // Aile gauche arriere 
-				["hangar","rect",160,140,50,50], // Aile gauche avant 
-				["hangar","rect", 70,340,50,50], // Aile droite arriere
-				["hangar","rect",160,310,50,50], // Aile droite avant
+				["hangar","rect", 70,110,50,50,"hangar_1"], // Aile gauche arriere 
+				["hangar","rect",160,140,50,50,"hangar_2"], // Aile gauche avant 
+				["hangar","rect", 70,340,50,50,"hangar_3"], // Aile droite arriere
+				["hangar","rect",160,310,50,50,"hangar_4"], // Aile droite avant
 				// Boucliers
-				["shield","rect",250,225, 50, 50],
+				["shield","rect",250,225, 50, 50,"shield_1"],
 				// Propulseurs
-				["sub_propulsion","rect"  , 100,225, 50, 50],
-				["sup_propulsion","rect"  , 40,225, 50, 50],
+				["sub_propulsion","rect"  , 100,225, 50, 50,"prop_1"],
+				["sup_propulsion","rect"  , 40,225, 50, 50,"prop_2"],
 			],
 			content: {
-				hangar: [],
+				hangar: ["none"],
 				sub_propulsion: ["ion"],
 				sup_propulsion: ["vsl","hyperespace"],
-				shield: [],
+				shield: ["none"],
 			},
 			stats: {
 				mass: 0,
