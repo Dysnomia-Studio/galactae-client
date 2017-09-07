@@ -242,7 +242,7 @@ class units {
 		var ship = {
 			name: $("#fleet-type-create-shipType option").val(),
 			type: $("#fleet-type-create-shipType option").filter(":selected").val(),
-			shape: ("#fleet-type-create-shipShape option").filter(":selected").val()
+			shape: $("#fleet-type-create-shipShape option").filter(":selected").val()
 		};
 		/* Checks ... */
 		if(ship.name.split(' ').join('')=="") {
