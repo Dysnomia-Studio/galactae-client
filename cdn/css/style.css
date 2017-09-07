@@ -794,6 +794,8 @@ a, body {
 	z-index: 101;
 }
 #fleet-type-create-shipType, #fleet-type-create-shipShape, #fleet-type-create-name {
+	z-index: 10;
+
 	position: absolute;
 	top: 15px;
 }
@@ -821,6 +823,14 @@ a, body {
 }
 .part-selecting {
 	position: absolute;
+
+	/* Style */
+	background: transparent;
+	border: none;
+
+	/* Disable arrow */
+	-webkit-appearance: none;
+    -moz-appearance: none;
 }
 #fleet-type-create-schematic * {
 	fill: #0b1012; 

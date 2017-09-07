@@ -143,13 +143,13 @@ class units {
 			// Draw shape
 			switch(shape[i][1]) {
 				case "rect":
-					svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '">';
+					svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '"></rect>';
 					break;
 				case "circle":
-					svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '">';
+					svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '"></circle>';
 					break;
 				case "line":
-					svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '">';
+					svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '"></line>';
 					break;
 				case "path":
 					svgContent += '<path class="' + shape[i][0] + '" d="';
@@ -158,7 +158,7 @@ class units {
 						svgContent += shape[i][j] + " ";
 					}
 
-					svgContent += '" >';
+					svgContent += '" ></path>';
 					break;
 				default: // Poly
 					svgContent += '<polygon class="' + shape[i][0] + '" points="';
@@ -167,12 +167,8 @@ class units {
 						svgContent += shape[i][j] + "," + shape[i][j+1] + " ";
 					}
 
-					svgContent += '" >';
+					svgContent += '" ></polygon>';
 			}
-
-			// End shape
-			if(shape[i][1]=="" || shape[i][1]=="poly") { shape[i][1]="polygon"; }
-			svgContent += "</" + shape[i][1] + ">";
 
 			// Draw HTML
 			if(shape[i][0]!="struct") {
@@ -183,7 +179,7 @@ class units {
 				htmlContent += 'height: ' + shape[i][5] + 'px;';
 				htmlContent += '">';
 
-				for(var j=0; j<content[shape[i][0]]; j++) {
+				for(var j=0; j<content[shape[i][0]].length; j++) {
 					htmlContent += '<option value="' + content[j] + '">' + content[j] + '</option>'; // @ADD: Translation
 				}
 
