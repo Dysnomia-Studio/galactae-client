@@ -254,7 +254,13 @@ class units {
 		var parts = $('#fleet-type-create-selects').children();
 		for(var i=0; i<parts.length; i++) {
 			var name = $(parts[i]).attr('partName');
-			ship[name] = $(parts[i]).filter(":selected").val();
+			var value =  $(parts[i]).filter(":selected").val();
+			if(value==undefined || value.split(' ').join('')=="") {
+				errors++;
+				message = "SHIP_HAS_EMPTY_FIELD";
+			}
+
+			ship[name] = value;
 		}
 		
 		if(errors==0) {
