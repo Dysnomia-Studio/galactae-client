@@ -137,6 +137,7 @@ class units {
 
 	static drawShipShape(shape,content) {
 		var svgContent = "";
+		var htmlContent = "";
 
 		for(var i=0; i<shape.length; i++) {
 			// Draw shape
