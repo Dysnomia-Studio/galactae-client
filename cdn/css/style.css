@@ -827,10 +827,14 @@ a, body {
 	/* Style */
 	background: transparent;
 	border: none;
+	color: white;
 
 	/* Disable arrow */
 	-webkit-appearance: none;
     -moz-appearance: none;
+}
+.part-selecting option {
+	background-color: #0b1012;
 }
 #fleet-type-create-schematic * {
 	fill: #0b1012; 
