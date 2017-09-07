@@ -180,7 +180,7 @@ class units {
 				htmlContent += '">';
 
 				for(var j=0; j<content[shape[i][0]].length; j++) {
-					htmlContent += '<option value="' + content[j] + '">' + content[j] + '</option>'; // @ADD: Translation
+					htmlContent += '<option value="' + content[shape[i][0]][j] + '">' + content[shape[i][0]][j] + '</option>'; // @ADD: Translation
 				}
 
 				htmlContent += '</select>';
@@ -189,13 +189,12 @@ class units {
 		$('#fleet-type-create-schematic').html(svgContent);
 		$('#fleet-type-create-selects').html(htmlContent);
 
-		console.log(svgContent);
-
 		// Events
-		$('#fleet-type-create-schematic *').click(function() { 
-			if(! $(this).hasClass('struct')) {
-				units.showPartPanel($(this));	
-			}
+		$('.part-selecting').on("change",function() { 
+			var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
+			var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
+			
+			units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
 		 });
 	}
 
@@ -235,10 +234,6 @@ class units {
 		$('#fleet-build-stat-propulsion-val').text(units.list[id].engineType);
 		$('#fleet-build-stat-miss-val').text(units.list[id].missChance);
 		$('#fleet-build-stat-note-val').text(units.list[id].note);
-	}
-
-	static showPartPanel(obj) {
-		console.log('partChoice');
 	}
 
 	static createNewType() {
