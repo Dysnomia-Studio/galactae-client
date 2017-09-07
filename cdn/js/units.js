@@ -48,7 +48,6 @@ class units {
 		$('#fleet-type-create-form').submit(function(e) {
 			 e.preventDefault();
 			 units.createNewType();
-			 ui.closeTab('#fleet-type-create',false);
 		});
 	}
 
@@ -265,7 +264,7 @@ class units {
 		}
 		
 		if(errors==0) {
-			ui.closeTab("#fleet-type-create");
+			ui.closeTab("#fleet-type-create",false);
 			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
 		} else {
 			ui.drawMessage(errorMessage); // @ADD: Translation
