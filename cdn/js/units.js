@@ -115,6 +115,8 @@ class units {
 		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		var shape = "";
 
+		$($('#fleet-type-create-name').get(0)).val('');
+
 		var selectShipShape = "<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>";
 		for(var index in shipShapesDetails[type]) {
 			if(shape=="") { shape = index; }
