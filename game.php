@@ -283,6 +283,7 @@
 		<input type="text" id="fleet-type-create-name" placeholder="<?php echo SHIP_NAME; ?>" class="ui-large-button" required/>
 
 		<svg id="fleet-type-create-schematic" width="800px" height="450px"></svg>
+		<div id="fleet-type-create-selects"></div>
 
 		<div id="fleet-type-create-cost">
 				<?php echo '<div id="fleet-type-create-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-type-create-stat-subspeed-val"></span><br /></div>

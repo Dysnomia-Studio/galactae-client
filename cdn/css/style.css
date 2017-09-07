@@ -811,6 +811,17 @@ a, body {
 	height: 34px;
 	padding: 2px 5px;
 }
+#fleet-type-create-selects {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 800px; 
+	height: 450px;
+}
+.part-selecting {
+	position: absolute;
+}
 #fleet-type-create-schematic * {
 	fill: #0b1012; 
 	stroke-width: 1;

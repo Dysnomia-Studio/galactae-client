@@ -135,7 +135,7 @@ class units {
 		units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
 	}
 
-	static drawShipShape(shape) {
+	static drawShipShape(shape,content) {
 		var svgContent = "";
 
 		for(var i=0; i<shape.length; i++) {
@@ -172,8 +172,25 @@ class units {
 			// End shape
 			if(shape[i][1]=="" || shape[i][1]=="poly") { shape[i][1]="polygon"; }
 			svgContent += "</" + shape[i][1] + ">";
+
+			// Draw HTML
+			if(shape[i][0]!="struct") {
+				htmlContent += '<select class="part-selecting" style="';
+				htmlContent += 'left: ' + shape[i][2] + 'px;';
+				htmlContent += 'top: ' + shape[i][3] + 'px;';
+				htmlContent += 'width: ' + shape[i][4] + 'px;';
+				htmlContent += 'height: ' + shape[i][5] + 'px;';
+				htmlContent += '">';
+
+				for(var j=0; j<content[shape[i][0]]; j++) {
+					htmlContent += '<option value="' + content[j] + '">' + content[j] + '</option>'; // @ADD: Translation
+				}
+
+				htmlContent += '</select>';
+			}
 		}
 		$('#fleet-type-create-schematic').html(svgContent);
+		$('#fleet-type-create-selects').html(htmlContent);
 
 		console.log(svgContent);
 
