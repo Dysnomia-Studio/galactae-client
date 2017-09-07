@@ -117,8 +117,8 @@ class research {
 			wep_mines_iem:		{ cost: 550, parents: ["wep_mines","misc_em"] },
 			// Satellites
 			wep_sat_ag1:		{ cost: 360, parents: ["misc_calcGravit","misc_telemetrie"] },
-			wep_sat_ag2:		{ cost: 650, parents: ["wep_sat_ag2","misc_advTelemetrie"] },
-			wep_sat_ag3:		{ cost: 1500, parents: ["wep_sat_ag3"] },
+			wep_sat_ag2:		{ cost: 650, parents: ["wep_sat_ag1","misc_advTelemetrie"] },
+			wep_sat_ag3:		{ cost: 1500, parents: ["wep_sat_ag2"] },
 			// Autres recherches
 			misc_astronomie:	{ cost: 45, parents: ["phyContemporaine"] },
 			misc_telemetrie: 	{ cost: 90, parents: ["misc_astronomie"] },
