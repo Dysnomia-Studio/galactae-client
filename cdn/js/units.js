@@ -68,7 +68,7 @@ class units {
 				}
 			}
 
-			$('#fleet-build-list tbody tr').html(content);
+			$('#fleet-build-list tbody').html(content);
 			units.selectUnit(0);
 
 			$('#fleet-build-list').css('display','inline-block');
