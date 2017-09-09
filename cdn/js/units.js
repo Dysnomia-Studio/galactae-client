@@ -233,7 +233,7 @@ class units {
 	static selectUnit(id) {
 		$('#fleet-build-stat-attack-val').text(units.list[id].attack);
 		$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
-		$('#fleet-build-stat-role-val').text(unitTypes[units.list[i].shipType]);
+		$('#fleet-build-stat-role-val').text(unitTypes[units.list[id].shipType]);
 		$('#fleet-build-stat-propulsion-val').text(units.list[id].engineType);
 		$('#fleet-build-stat-miss-val').text(units.list[id].missChance);
 		$('#fleet-build-stat-note-val').text(units.list[id].note);
