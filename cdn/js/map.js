@@ -186,7 +186,6 @@ class map {
 			$("#" + planets[i].address).css("margin-left","-" + (orbitSize/2) + "vh");
 
 			/* Planet Pos */
-			var orbitDuration = orbitSize * 36; // in seconds
 			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 			
 			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
@@ -199,12 +198,13 @@ class map {
 			/* Shadow Anim */
 			$.keyframe.define([{
 				name: "planetShadow-" + planets[i].address,
-				'0%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"},
-				'25%': { "box-shadow": "inset 12px 0 5px rgba(0, 0, 0, 0.5)"},
-				'50%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"},
-				'50.01%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"},
-				'75%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
-				'100%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}
+				'0%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
+				'25%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}, // Haut
+				'25.01%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}, // Haut
+				'50%': { "box-shadow": "inset 12px 0 5px rgba(0, 0, 0, 0.5)"},
+				'75%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"}, // Bas
+				'75.01%': { "box-shadow": "inset -50px -15px 40px rgba(0, 0, 0, 0.5)"}, // Bas
+				'100%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
 			}]);
 
 			/* Set shadow anim */
