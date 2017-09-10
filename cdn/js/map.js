@@ -214,6 +214,8 @@ class map {
 			var currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
 			$("#" + planets[i].address + " .pos .planet").css("animation-delay",currShadow);
 
+			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
+
 
 			// @ADD: Rings & Moons
 		}		
