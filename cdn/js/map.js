@@ -119,9 +119,6 @@ class map {
 			planets[i].gtype   = $(planetsXML[i]).attr('gtype');
 		}
 
-		console.info(stars);
-		console.info(planets);
-
 		var prevOrbit = 0;
 
 		// For each Star
@@ -130,9 +127,6 @@ class map {
 			$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
 
 			// Set Size
-			console.log(STAR_SIZE_BASE);
-			console.log(stars[i].size);
-			console.log(STAR_SIZE_BASE + stars[i].size);
 			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
 
 			// Set Orbit, planet position and anim duration
@@ -201,6 +195,25 @@ class map {
 			/* Planet Img */
 			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
 			$("#" + planets[i].address + " .pos .planet").css("background-image","url("+cdnURL+"/img/planets/front/" + planets[i].type + ".jpg)")
+
+			/* Shadow Anim */
+			$.keyframe.define([{
+				name: planets[i].address,
+				'0%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"},
+				'25%': { "box-shadow": "inset 12px 0 5px rgba(0, 0, 0, 0.5)"},
+				'50%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"},
+				'50.01%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"},
+				'75%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
+				'100%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"},
+				}]);
+
+			/* Set shadow anim */
+			$("#" + planets[i].address + " .pos .planet").css("animation-name",planets[i].address);
+
+			/* Place shadow anim */
+			var currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
+			$("#" + planets[i].address + " .pos .planet").css("animation-delay",currShadow);
+
 
 			// @ADD: Rings & Moons
 		}		
