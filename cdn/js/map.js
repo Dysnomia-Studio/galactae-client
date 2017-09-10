@@ -198,17 +198,17 @@ class map {
 
 			/* Shadow Anim */
 			$.keyframe.define([{
-				name: planets[i].address,
+				name: "planetShadow-" + planets[i].address,
 				'0%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"},
 				'25%': { "box-shadow": "inset 12px 0 5px rgba(0, 0, 0, 0.5)"},
 				'50%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"},
 				'50.01%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"},
 				'75%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
-				'100%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"},
-				}]);
+				'100%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}
+			}]);
 
 			/* Set shadow anim */
-			$("#" + planets[i].address + " .pos .planet").css("animation-name",planets[i].address);
+			$("#" + planets[i].address + " .pos .planet").css("animation-name","planetShadow-" + planets[i].address);
 
 			/* Place shadow anim */
 			var currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
