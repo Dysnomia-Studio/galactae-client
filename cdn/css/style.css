@@ -1131,6 +1131,11 @@ a[class="research-search"] {
 #hud-map-quadrant, #hud-map-sector, #hud-map-system {
 	display: none;
 }
+#hud-map-sector, #hud-map-system {
+	background-position: center;
+	background-size: cover;
+	background-image: url(../img/planets/back/0.png)
+}
 /**
  * Map - Galaxy
  */
