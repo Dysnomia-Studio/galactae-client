@@ -230,9 +230,9 @@ var shipShapesDetails = {
 				// Boucliers
 				["shield","rect",200,225, 50, 50, "shield_1"],
 				// Propulseurs
-				["sub_propulsion","rect"  , 80,225, 50, 50, "prop_1"],
-				["sup_propulsion","rect"  ,120,140, 50, 50, "prop_2"],
-				["sup_propulsion","rect"  ,120,310, 50, 50, "prop_3"],
+				["sup_propulsion","rect"  , 80,225, 50, 50, "prop_1"],
+				["sub_propulsion","rect"  ,120,140, 50, 50, "prop_2"],
+				["sub_propulsion","rect"  ,120,310, 50, 50, "prop_3"],
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
