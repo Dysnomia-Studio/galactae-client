@@ -147,10 +147,12 @@
 </div>
 <?php /* ESC */ ?>
 <div id="settings-menu">
-	<br/>
 	<a href="#close-settings-tabs" id="close-settings-tabs">X</a><br/>
-	<a href="#settings-tabs"><?php echo SETTINGS; ?></a><br/>
+	<a href="https://galactae.eu/support"><?php echo SUPPORT; ?></a><br/>
 	<a href="https://galactae.eu/portal"><?php echo PORTAL; ?></a><br/>
+	<a href="https://galactae.eu/forum"><?php echo FORUM; ?></a><br/>
+	<a href="https://galactae.eu/profil"><?php echo PROFIL; ?></a><br/>
+	<a href="#settings-tabs"><?php echo SETTINGS; ?></a><br/>
 	<a href="https://galactae.eu/deconnexion"><?php echo DISCONNECT; ?></a>
 </div>
 <?php /* Chat */ ?>
