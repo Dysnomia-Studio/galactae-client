@@ -1,7 +1,10 @@
 <?php
 	//== SETTINGS ==\\
-	define('SETTINGS','Settings');
+	define('SUPPORT','Support');
+	define('FORUM','Forum');
+	define('PROFIL','Profile');
 	define('PORTAL','Galaxy Portal');
+	define('SETTINGS','Settings');
 	define('DISCONNECT','Disconnect');
 
 	//== BUTTONS ==\\

@@ -1,7 +1,10 @@
 <?php
 	//== SETTINGS ==\\
-	define('SETTINGS','Paramètres');
+	define('SUPPORT','Support');
+	define('FORUM','Forum');
+	define('PROFIL','Profil');
 	define('PORTAL','Portail des galaxies');
+	define('SETTINGS','Paramètres');
 	define('DISCONNECT','Déconnexion');
 
 	//== BUTTONS ==\\
