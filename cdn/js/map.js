@@ -150,9 +150,9 @@ class map {
 				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
 				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
 
-				firstPlanet = 5; // @ADD: calculation
+				firstPlanet = 12; // @ADD: calculation
 			} else {
-				firstPlanet = 5; // @ADD: calculation
+				firstPlanet = 12; // @ADD: calculation
 			}
 		}
 
