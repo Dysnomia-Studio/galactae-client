@@ -1216,6 +1216,8 @@ a[class="research-search"] {
 }
 .sector-subsystem {
 	position: absolute;
+	width: 0.5em;
+	height: 0.5em;
 }
 
 /**

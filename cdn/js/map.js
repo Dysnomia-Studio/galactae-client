@@ -263,7 +263,7 @@ class map {
 
 			content += '<span id="' + $(systemList[i]).attr('id') + '" class="sector-subsystem ' + starBType + '" ';
 
-			content += 'style="left: ' + $(systemList[i]).attr('x') + '; top: ' + $(systemList[i]).attr('y') + ';"></span>';
+			content += 'style="left: ' + $(systemList[i]).attr('x') + '%; top: ' + $(systemList[i]).attr('y') + '%;"></span>';
 		}
 
 		$('#hud-map-sector').html(content);
