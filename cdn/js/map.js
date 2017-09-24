@@ -245,7 +245,7 @@ class map {
 		var sectorXML = $(map.xmlDoc).find("sector#" + address)[0];
 		map.currentMap = "sector";
 
-		var systemList = $(systemXML).find("system");
+		var systemList = $(sectorXML).find("system");
 
 		// Generate Content
 		var content = "";
