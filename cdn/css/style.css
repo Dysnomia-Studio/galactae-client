@@ -1211,13 +1211,17 @@ a[class="research-search"] {
 	width: 90%;
 	height: 90%;
 
-	margin: 0;
-	padding: 5%;
+	position: relative;
+
+	margin: 5%;
+	padding: 0;
 }
 .sector-subsystem {
 	position: absolute;
 	width: 0.5em;
 	height: 0.5em;
+
+	border-radius: 0.25em;
 }
 
 /**
