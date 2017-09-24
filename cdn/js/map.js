@@ -255,7 +255,7 @@ class map {
 			var starBType = "";
 			var starBSize = 0;
 
-			for(var currStar=0; currStar<starList.length) {
+			for(var currStar=0; currStar<starList.length; currStar++) {
 				if($(starList[currStar]).attr('size') > starBSize) {
 					starBType = $(starList[currStar]).attr('type');
 				}
