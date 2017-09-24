@@ -1097,7 +1097,9 @@ a[class="research-search"] {
  * Maps
  */
 #hud-map {
-	background-color: black;
+	background-image: url(https://pixabay.com/get/e833b40…/starry-sky-1654074.jpg);
+    background-size: cover;
+
 	position: fixed;
 	margin: 0;
 	padding: 0;
@@ -1213,7 +1215,7 @@ a[class="research-search"] {
 
 	position: relative;
 
-	margin: 5%;
+	margin: 4vw 0;
 	padding: 0;
 }
 .sector-subsystem {
