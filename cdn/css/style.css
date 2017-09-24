@@ -1210,8 +1210,8 @@ a[class="research-search"] {
  * Sector Map
  */
 #hud-map-sector {
-	width: 90%;
-	height: 90%;
+	width: 100%;
+	height: calc(100vh - 8vw);
 
 	position: relative;
 
