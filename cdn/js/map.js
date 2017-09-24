@@ -84,11 +84,9 @@ class map {
 		$('#hud-map-system').css('display','none');
 
 		/* Empty HTML to avoid bugs */
-		if(map.currentMap!="galaxy" && map.currentMap!="") {
-			$('#hud-map-galaxy').html('');
-		}
 		if(map.currentMap!="quadrant") {
-			$('#hud-map-quadrant').html('');
+			$('#hud-map-quadrant-current').html('');
+			$('#hud-map-quadrant-others').html('');
 		}
 		if(map.currentMap!="sector") {
 			$('#hud-map-sector').html('');
