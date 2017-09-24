@@ -1097,7 +1097,7 @@ a[class="research-search"] {
  * Maps
  */
 #hud-map {
-	background-image: url(https://pixabay.com/get/e833b40…/starry-sky-1654074.jpg);
+	background-image: url(../img/map/background.jpg);
     background-size: cover;
 
 	position: fixed;
