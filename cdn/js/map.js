@@ -83,6 +83,20 @@ class map {
 		$('#hud-map-sector').css('display','none');
 		$('#hud-map-system').css('display','none');
 
+		/* Empty HTML to avoid bugs */
+		if(map.currentMap!="galaxy" && map.currentMap!="") {
+			$('#hud-map-galaxy').html('');
+		}
+		if(map.currentMap!="quadrant") {
+			$('#hud-map-quadrant').html('');
+		}
+		if(map.currentMap!="sector") {
+			$('#hud-map-sector').html('');
+		}
+		if(map.currentMap!="system") {
+			$('#hud-map-system').html('');
+		}		
+
 		/* Show back button */
 		$('#hud-map-back').css('display','block');
 	}
@@ -258,6 +272,7 @@ class map {
 			for(var currStar=0; currStar<starList.length; currStar++) {
 				if($(starList[currStar]).attr('size') > starBSize) {
 					starBType = $(starList[currStar]).attr('type');
+					starBSize = $(starList[currStar]).attr('size');
 				}
 			}
 
