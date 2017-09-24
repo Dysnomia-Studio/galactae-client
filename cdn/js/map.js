@@ -92,7 +92,7 @@ class map {
 			$('#hud-map-sector').html('');
 		}
 		if(map.currentMap!="system") {
-			$('#hud-map-system').html('');
+			$('#hud-map-system-solarFront').html('');
 		}		
 
 		/* Show back button */
