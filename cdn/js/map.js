@@ -245,6 +245,35 @@ class map {
 		var sectorXML = $(map.xmlDoc).find("sector#" + address)[0];
 		map.currentMap = "sector";
 
+		var systemList = $(systemXML).find("system");
+
+		// Generate Content
+		var content = "";
+
+		for(var i=0; i<systemList.length; i++) {
+			var starList = $(systemList[i]).find("star");
+			var starBType = "";
+			var starBSize = 0;
+
+			for(var currStar=0; currStar<starList.length) {
+				if($(starList[currStar]).attr('size') > starBSize) {
+					starBType = $(starList[currStar]).attr('type');
+				}
+			}
+
+			content += '<span id="' + $(systemList[i]).attr('id') + '" class="sector-subsystem ' + starBType '" ';
+
+			content += 'style="left: ' + $(systemList[i]).attr('x') + '; top: ' + $(systemList[i]).attr('y') + ';">';
+		}
+
+		$('#hud-map-sector').html(content);
+
+		// Events
+		$('.sector-subsystem').click(function() {
+			map.openSolarSystemMap($(this).attr('id'));
+		});
+
+		// Back button
 		$('#hud-map-back').text(translate['map']['BACK_QUADRANT']);
 
 		// Toggle Maps
