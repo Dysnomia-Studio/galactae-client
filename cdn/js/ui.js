@@ -313,7 +313,7 @@ class ui {
 
 			if(((planetData.nextBuildingTime + planet.deltaNow) - ((planetData.nextBuildingTime + planet.deltaNow)%(24*60*60*1000))) == ((Date.now() + planet.deltaNow) - ((Date.now() + planet.deltaNow)%(24*60*60*1000)))) { // Same day
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
-			} else if(((planetData.nextBuildingTime + planet.deltaNow) - ((planetData.nextBuildingTime + planet.deltaNow)%(24*60*60*1000))) == ((Date.now() + planet.deltaNow) - ((Date.now() + planet.deltaNow)%(24*60*60*1000) + 1))) { // Tomorrow
+			} else if(((planetData.nextBuildingTime + planet.deltaNow) - ((planetData.nextBuildingTime + planet.deltaNow)%(24*60*60*1000))) == ((Date.now() + planet.deltaNow) - ((Date.now() + planet.deltaNow)%(24*60*60*1000)) + (24*60*60*1000))) { // Tomorrow
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
 			} else {
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
