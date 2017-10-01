@@ -321,15 +321,17 @@ class ui {
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 			}
 		} else if(ui.enoughResources>0) { // No enought Ressources
-			$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_AT"] + " " + getStringTime(ui.enoughResources));
+			var dateEnd = new Date(ui.enoughResources);
+			var dateNow = new Date();
+			var dateTom = new Date(Date.now() + (24*60*60*1000));
 
-			setTimeout(function() {
-				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_AT"] + " " + getStringTime(ui.enoughResources-(1/3600)));
-			},1000);
-
-			ui.buildPanelInterval = setTimeout(function() {
-				ui.buildPanelOpen(id);
-			},2000);
+			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
+				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
+				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+			} else {
+				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCESTHE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["ENOUGH_RESOURCES_AT"] + " " + dateEnd.toLocaleTimeString());
+			}
 		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
 			$('#building-message').html(translate["messages"]["ANOTHER_IN_BUILD"]);
 			ui.buildPanelInterval = setTimeout(function() {
