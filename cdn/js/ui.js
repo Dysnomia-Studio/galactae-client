@@ -310,10 +310,12 @@ class ui {
 			$('#building-message').html(translate["messages"]["UPGRADE_MAX"]);
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			var dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
+			var dateNow = new Date();
+			var dateTom = new Date(Date.now() + (24*60*60*1000));
 
-			if(((planetData.nextBuildingTime + planet.deltaNow) - ((planetData.nextBuildingTime + planet.deltaNow)%(24*60*60*1000))) == ((Date.now() + planet.deltaNow) - ((Date.now() + planet.deltaNow)%(24*60*60*1000)))) { // Same day
+			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
-			} else if(((planetData.nextBuildingTime + planet.deltaNow) - ((planetData.nextBuildingTime + planet.deltaNow)%(24*60*60*1000))) == ((Date.now() + planet.deltaNow) - ((Date.now() + planet.deltaNow)%(24*60*60*1000)) + (24*60*60*1000))) { // Tomorrow
+			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
 			} else {
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
