@@ -14,7 +14,10 @@ translate["messages"] = {
 	"LEVEL": "Niveau",
 	"UPGRADE_MAX": "Niveau Maximum atteint",
 	"ENOUGH_RESOURCES_AT": "Assez de ressources dans",
-	"BUILD_FINISH_IN": "Fin de la construction dans",
+	"BUILD_FINISH_TODAY_AT": "Fin de la construction aujourd'hui à",
+	"BUILD_FINISH_TOMORROW_AT": "Fin de la construction demain à",
+	"BUILD_FINISH_THE": "Fin de la construction le",
+	"BUILD_FINISH_AT": "à",
 	"ANOTHER_IN_BUILD": "Un autre bâtiment est déjà en construction",
 	// Building Notifs
 	"ENDED_BUILDING_TITLE": "Bâtiment Terminé !",
