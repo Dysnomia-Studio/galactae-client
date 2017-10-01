@@ -321,7 +321,7 @@ class ui {
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 			}
 		} else if(ui.enoughResources>0) { // No enought Ressources
-			var dateEnd = new Date(ui.enoughResources*3600*1000);
+			var dateEnd = new Date(Date.now() + ui.enoughResources*3600*1000);
 			var dateNow = new Date();
 			var dateTom = new Date(Date.now() + (24*60*60*1000));
 
