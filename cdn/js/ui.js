@@ -241,6 +241,7 @@ class ui {
 	 */
 	static buildPanelOpen(id) {
 		ui.buildPanel = id;
+		var dateNow = new Date();
 
 		if(ui.buildPanelInterval!=-1) {
 			clearTimeout(ui.buildPanelInterval);
@@ -310,7 +311,6 @@ class ui {
 			$('#building-message').html(translate["messages"]["UPGRADE_MAX"]);
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			var dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
-			var dateNow = new Date();
 			var dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
@@ -320,9 +320,12 @@ class ui {
 			} else {
 				$('#building-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 			}
+
+			ui.buildPanelInterval = setTimeout(function() {
+				ui.buildPanelOpen(id);
+			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (60 - dateNow.getSeconds()))*1000);
 		} else if(ui.enoughResources>0) { // No enought Ressources
 			var dateEnd = new Date(Date.now() + ui.enoughResources*3600*1000);
-			var dateNow = new Date();
 			var dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
@@ -332,6 +335,10 @@ class ui {
 			} else {
 				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["ENOUGH_RESOURCES_AT"] + " " + dateEnd.toLocaleTimeString());
 			}
+
+			ui.buildPanelInterval = setTimeout(function() {
+				ui.buildPanelOpen(id);
+			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (60 - dateNow.getSeconds()))*1000);
 		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
 			$('#building-message').html(translate["messages"]["ANOTHER_IN_BUILD"]);
 			ui.buildPanelInterval = setTimeout(function() {
