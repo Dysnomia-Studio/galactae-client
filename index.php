@@ -31,7 +31,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 
 	// SQL Get Data
 	$data2 = $db->getCondContent("user_game_id",[
-		["id",$data['user_id'],"int"],
+		["user_id",$data['user_id'],"int"],
 		["server_name",$dbname,"str"]
 		],0,1,"id");
 
