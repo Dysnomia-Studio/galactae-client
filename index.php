@@ -33,7 +33,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	$data2 = $db->getCondContent("user_game_id",[
 		["user_id",$data['user_id'],"int"],
 		["server_name",$dbname,"str"]
-		],0,1,"id");
+		],0,1,"user_id");
 
 	if($data2!=false && isset($data2[0])) {
 		$data2 = $data2[0];
