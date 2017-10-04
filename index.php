@@ -12,7 +12,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	// SQL Get Data
-	$data = $db->getCondContent("users",[
+	$data = $db->getCondContent("user_list",[
 		["session_id",$_COOKIE['galactae-phpsessid'],"str"]
 		],0,1,"user_id");
 
@@ -30,7 +30,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	// SQL Get Data
-	$data2 = $db->getCondContent("game_id",[
+	$data2 = $db->getCondContent("user_game_id",[
 		["id",$data['user_id'],"int"],
 		["server_name",$dbname,"str"]
 		],0,1,"id");
