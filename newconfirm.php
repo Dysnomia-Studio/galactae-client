@@ -45,8 +45,8 @@ $manager->executeBulkWrite($dbname.'.users', $bulkUsers);
 $manager->executeBulkWrite($dbname.'.planets', $bulkPlanets);
 
 // Share game-id to SQL server
-$db->addContent('game_id',[
-		["id",$data['user_id']],
+$db->addContent('user_game_id',[
+		["user_id",$data['user_id']],
 		["game_id",$users_gameId],
 		["server_name",$dbname]
 	]);

@@ -93,8 +93,8 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 </script>
 <?php
 } else { // Update du SQL (autofix)
-	$db->updateContent('game_id',
-			[["id",$data['user_id']]],
+	$db->updateContent('user_game_id',
+			[["user_id",$data['user_id']]],
 			[["game_id",$mongoData['_id']]]);
 
 	$_SESSION['game_id'] = $mongoData['_id'];
