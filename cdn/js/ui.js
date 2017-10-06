@@ -249,10 +249,14 @@ class ui {
 		}
 
 		 //Next level cost
-		if(planetData.nextBuilding==id) { var cost = planet.getBuildCost(id,planetData.Buildings[id] + 2); } 
-		else							{ var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1); }
-
-		var max = (planetData.Buildings[id]+1 > buildingMaxLvl[id]);
+		if(planetData.nextBuilding==id) { 
+			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 2);
+			var max = (planetData.Buildings[id]+2 > buildingMaxLvl[id]);
+		} 
+		else { 
+			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1);
+			var max = (planetData.Buildings[id]+1 > buildingMaxLvl[id]);
+		}
 
 		/* Planet Construction Tab */
 		$("#building-name").text(translate["buildings"][id].name);
