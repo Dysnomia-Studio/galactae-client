@@ -251,12 +251,13 @@ class ui {
 		 //Next level cost
 		if(planetData.nextBuilding==id) { 
 			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 2);
-			var max = (planetData.Buildings[id]+2 > buildingMaxLvl[id]);
 		} 
 		else { 
 			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1);
-			var max = (planetData.Buildings[id]+1 > buildingMaxLvl[id]);
 		}
+
+		var max2 = (planetData.Buildings[id]+2 > buildingMaxLvl[id]);
+		var max = (planetData.Buildings[id]+1 > buildingMaxLvl[id]);
 
 		/* Planet Construction Tab */
 		$("#building-name").text(translate["buildings"][id].name);
@@ -274,7 +275,7 @@ class ui {
 			["building-cost-titanium",cost.titanium]
 		];
 		for(var i=0; i<4; i++) {
-			if(costs[i][1]==0 || max) {
+			if(costs[i][1]==0 || max || max2) {
 				$("#"+costs[i][0]).css("display","none");
 			} else {
 				$("#"+costs[i][0]).css("display","block");
@@ -285,14 +286,14 @@ class ui {
 		ui.enoughResources = planet.getTimeBeforeBuild(id);
 
 		/* Energie */
-		if(cost.energy==0 || max) {
+		if(cost.energy==0 || max || max2) {
 			$("#building-cost-energy").css("display","none");
 		} else {
 			$("#building-cost-energy").css("display","block");
 			$("#building-cost-energy-val").html(GetBetterUnit(cost.energy,"Wh (+" + GetBetterUnit(cost.energy_difference,"Wh") + ")",energyProd-energyCons));
 		}
 		/* Temps */
-		if(max) {
+		if(max || max2) {
 			$("#building-cost-time").css("display","none");
 		} else {
 			$("#building-cost-time").css("display","block");
