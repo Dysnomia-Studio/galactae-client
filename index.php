@@ -20,11 +20,15 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		$data = $db->getCondContent("user_list",[
 			["user_id",$sess_data['user_id'],"int"]
 			],0,1,"user_id");
+
+		if($data!=false && isset($data[0])) {
+			$data = $data[0];
+		}
+	} else {
+		$data = [];
 	}
 
-	if($data!=false && isset($data[0])) {
-		$data = $data[0];
-	}
+
 	
 	if(!isset($data['user_name'])) { // Verif d'existance du compte SQL
 	    echo '<script> window.location="https://galactae.eu/login"; </script>';
