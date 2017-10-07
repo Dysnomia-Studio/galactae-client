@@ -31,10 +31,6 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	} else {
 		$data = [];
 	}
-
-	var_dump($data);
-
-	die();
 	
 	if(!isset($data['user_name'])) { // Verif d'existance du compte SQL
 	    echo '<script> window.location="https://galactae.eu/login"; </script>';
