@@ -256,7 +256,7 @@ class ui {
 			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1);
 		}
 
-		var max2 = (planetData.Buildings[id]+2 > buildingMaxLvl[id]);
+		var max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
 		var max = (planetData.Buildings[id]+1 > buildingMaxLvl[id]);
 
 		/* Planet Construction Tab */
