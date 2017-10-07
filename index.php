@@ -12,13 +12,15 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	// SQL Get Data
-	$sess_data = $db->getCondContent("user_list",[
+	$sess_data = $db->getCondContent("user_session",[
 		["user_session_uid",$_COOKIE['galactae-phpsessid'],"str"]
 		],0,1,"user_id"); 
 	
-	$data = $db->getCondContent("user_list",[
-		["user_id",$sess_data['user_id'],"int"]
-		],0,1,"user_id");
+	if(isset($sess_data['user_id'])) {
+		$data = $db->getCondContent("user_list",[
+			["user_id",$sess_data['user_id'],"int"]
+			],0,1,"user_id");
+	}
 
 	if($data!=false && isset($data[0])) {
 		$data = $data[0];
