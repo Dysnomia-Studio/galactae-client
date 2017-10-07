@@ -16,7 +16,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		["user_session_uid",$_COOKIE['galactae-phpsessid'],"str"]
 		],0,1,"user_id"); 
 	
-	if(isset($sess_data['user_id'])) {
+	if(isset($sess_data['user_id']) && isset($sess_data['user_session_expiration']) && ((int) $sess_data['user_session_expiration'] > time())) {
 		$data = $db->getCondContent("user_list",[
 			["user_id",$sess_data['user_id'],"int"]
 			],0,1,"user_id");
@@ -28,7 +28,9 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		$data = [];
 	}
 
+	var_dump($data);
 
+	die();
 	
 	if(!isset($data['user_name'])) { // Verif d'existance du compte SQL
 	    echo '<script> window.location="https://galactae.eu/login"; </script>';
