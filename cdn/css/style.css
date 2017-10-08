@@ -651,13 +651,13 @@ select, input {
 		height: 20.9vw;
 		position: fixed;
 		right: 2.6vw;
-		bottom: 3.2vw;
+		bottom: 4vw;
 		text-align: center;
 		z-index: 100;
 	}
 	@media (max-width: 1000px) {
-		#game-version {
-			bottom: 32px;
+		#hud-chat {
+			bottom: 40px;
 		}
 	}
 	#hud-chat form {
