@@ -151,7 +151,7 @@
 		$bottomContent =[
 			// Left
 			["map",HUD_BOTTOM_MAP],
-			["research",HUD_BOTTOM_RESEARCH],
+			["researchs",HUD_BOTTOM_RESEARCH],
 			["units",HUD_BOTTOM_UNITS],
 			["fleets",HUD_BOTTOM_FLEETS],
 			["radar",HUD_BOTTOM_RADAR],

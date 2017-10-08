@@ -433,7 +433,7 @@ class ui {
 				}
 			}
 		});
-		$("#hud-bottom-button-research").click(function() {
+		$("#hud-bottom-button-researchs").click(function() {
 			if(ui.research) {
 				research.closeUI();
 			} else {
