@@ -952,11 +952,8 @@ select, input {
 }
 #hud-research-close {
 	position: fixed;
-	top: 65px;
-	right: 5vh;
-
-	font-size: 1.5em;
-	font-weight: bold;
+    top: 4vw;
+    right: 1vh;
 
 	z-index: 10;
 }
