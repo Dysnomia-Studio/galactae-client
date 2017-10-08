@@ -171,7 +171,7 @@
 			for($i=0; $i<7; $i++) {
 				echo '
 				<span class="hud-bottom-tooltip">
-					<a href="#chat" id="hud-bottom-button-'.$bottomContent[$i][0].'"><img src="./cdn/img/ui/'.$bottomContent[$i]0].'.png"></a>
+					<a href="#chat" id="hud-bottom-button-'.$bottomContent[$i][0].'"><img src="./cdn/img/ui/'.$bottomContent[$i][0].'.png"></a>
 					<span class="hud-bottom-tooltip-wrapper">
 						<span class="hud-bottom-tooltip-content">'.$bottomContent[$i][1].'</span>
 					</span>
