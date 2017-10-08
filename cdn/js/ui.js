@@ -108,11 +108,11 @@ class ui {
 		});
 
 		// Sécurité
-		/*//Block Inspect Element when 
+		//Block Inspect Element when 
 		//right click
-		$(document).on("contextmenu",function(){
+		/*$(document).on("contextmenu",function(){
 			return false;
-		}); 
+		}); */
 		$(document).keydown(function(e){
 		//F12 => Firefox, Chrome, Edge
 			if(e.which === KEYBOARD.F12){
@@ -122,7 +122,7 @@ class ui {
 			if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
 				return false;
 			}
-		});*/
+		});
 	}
 
 	static loadHUDButtons() {
