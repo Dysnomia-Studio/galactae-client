@@ -74,7 +74,7 @@ class ui {
 			ui.planetNameSwitchToInput()
 		});
 		//HUD Buttons
-		ui.buttonsDefine();
+		ui.hudBottomButtons();
 
 		$(window).resize(function() {
 			ui.loadHUDButtons();
@@ -402,8 +402,8 @@ class ui {
 		ui.renaming = false;
 	}
 	/************ BOUTONS ************/
-	static buttonsDefine() {
-		$("#chat-button").click(function() {
+	static hudBottomButtons() {
+		$("#hud-bottom-button-chat").click(function() {
 			if(ui.chat) {
 				ui.closeTab("#hud-chat");
 				ui.chat = false;
@@ -412,7 +412,7 @@ class ui {
 				ui.chat = true;
 			}
 		});
-		$("#ranks-button").click(function() {
+		$("#hud-bottom-button-ranks").click(function() {
 			if(ui.ranks) {
 				ui.closeTab("#hud-ranks");
 				ui.ranks = false;
@@ -423,7 +423,7 @@ class ui {
 				$('#hud-ranks-frame').attr('src',$('#hud-ranks-frame').attr('src'));		
 			}
 		});
-		$("#map-button").click(function() {
+		$("#hud-bottom-button-map").click(function() {
 			if(ui.map) {
 				map.closeTab();
 			} else {
@@ -433,7 +433,7 @@ class ui {
 				}
 			}
 		});
-		$("#research-button").click(function() {
+		$("#hud-bottom-button-research").click(function() {
 			if(ui.research) {
 				research.closeUI();
 			} else {
@@ -443,7 +443,7 @@ class ui {
 				}
 			}
 		});
-		$("#fleet-button").click(function() {
+		$("#hud-bottom-button-fleet").click(function() {
 			if(ui.fleet) {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
