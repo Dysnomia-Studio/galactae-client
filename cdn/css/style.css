@@ -292,7 +292,7 @@ select, input {
 	background-position:center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	z-index: 500;
+	z-index: 1000000;
 }
 #loading-overlay-img {
 	position: fixed;
@@ -301,7 +301,7 @@ select, input {
 	margin-left: -100px;
 	margin-top: -100px;
 	text-align: center;
-	z-index: 501;
+	z-index: 1000001;
 }
 #loading-overlay-text {
 	position: fixed;
@@ -310,7 +310,7 @@ select, input {
 	left: 0;
 	width: 100%;
 	text-align: center;
-	z-index: 501;
+	z-index: 1000001;
 }
 /**
  * Settings Menu
