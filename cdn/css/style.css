@@ -39,7 +39,7 @@ select, input {
 }
 /**
  * Popup Message
- */
+ */f
 #messagePanel {
 	position: fixed;
 	top: 55px;
@@ -1808,6 +1808,7 @@ dl.infos dt {
 		border-radius: 1.8em;
 		text-align: center;
 		background-color: rgba(11,16,18,0.9);
+		border: 2px solid #0ec6c6;
 		z-index: 2;
 	}
 	#lvl-carriere {
@@ -1886,6 +1887,7 @@ dl.infos dt {
 		border-radius: 1.8em;
 		text-align: center;
 		background-color: rgba(11,16,18,0.9);
+		border: 2px solid #0ec6c6;
 		z-index: 2;
 	}
 	#lvl-radar {
@@ -1983,6 +1985,7 @@ dl.infos dt {
 		border-radius: 1.8em;
 		text-align: center;
 		background-color: rgba(11,16,18,0.9);
+		border: 2px solid #0ec6c6;
 		z-index: 2;
 	}
 	#lvl-carriere {
@@ -2062,6 +2065,7 @@ dl.infos dt {
 		border-radius: 1.8em;
 		text-align: center;
 		background-color: rgba(11,16,18,0.9);
+		border: 2px solid #0ec6c6;
 		z-index: 2;
 	}
 	#lvl-radar {
