@@ -145,6 +145,54 @@
 		<span id="hud-top-right-moveRight">&#9654;</span>
 	</div>
 </div>
+<?php /* HUD Bottom */ ?>
+	<div id="hud-bottom">
+		<?php 
+		$bottomContent =[
+			// Left
+			["map",HUD_BOTTOM_MAP],
+			["research",HUD_BOTTOM_RESEARCH],
+			["units",HUD_BOTTOM_UNITS],
+			["fleets",HUD_BOTTOM_FLEETS],
+			["radar",HUD_BOTTOM_RADAR],
+			["ally",HUD_BOTTOM_ALLY],
+			["rapports",HUD_BOTTOM_RAPPORTS],
+			// Right
+			["quests",HUD_BOTTOM_QUEST],
+			["trade",HUD_BOTTOM_TRADE],
+			["ranks",HUD_BOTTOM_RANKS],
+			["profil",HUD_BOTTOM_PROFIL],
+			["messages",HUD_BOTTOM_MESSAGES],
+			["chat",HUD_BOTTOM_CHAT],
+		];
+		?>
+		<div id="hud-bottom-left">
+			<?php
+			for($i=0; $i<7; $i++) {
+				echo '
+				<span class="hud-bottom-tooltip">
+					<a href="#chat" id="hud-bottom-button-'.$bottomContent[$i][0].'"><img src="./cdn/img/ui/'.$bottomContent[$i]0].'.png"></a>
+					<span class="hud-bottom-tooltip-wrapper">
+						<span class="hud-bottom-tooltip-content">'.$bottomContent[$i][1].'</span>
+					</span>
+				</span>';
+			}
+			?>
+		</div>
+		<div id="hud-bottom-right">
+			<?php
+			for($i=7; $i<13; $i++) {
+				echo '
+				<span class="hud-bottom-tooltip">
+					<a href="#chat" id="hud-bottom-button-'.$bottomContent[$i][0].'"><img src="./cdn/img/ui/'.$bottomContent[$i]0].'.png"></a>
+					<span class="hud-bottom-tooltip-wrapper">
+						<span class="hud-bottom-tooltip-content">'.$bottomContent[$i][1].'</span>
+					</span>
+				</span>';
+			}
+			?>
+		</div>
+	</div>
 <?php /* ESC */ ?>
 <div id="settings-menu">
 	<a href="#close-settings-tabs" id="close-settings-tabs">X</a><br/>
@@ -174,14 +222,6 @@
 <div id="hud-ranks">
 	<span id="hud-ranks-close">X</span>
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
-</div>
-<?php /* Buttons */ ?>
-<div id="hud-buttons">
-	<span id="map-button"><?php echo HUD_MAP; ?></span>
-	<span id="chat-button"><?php echo HUD_CHAT; ?></span>
-	<span id="fleet-button"><?php echo HUD_FLEET; ?></span>
-	<span id="ranks-button"><?php echo HUD_RANKS; ?></span>
-	<span id="research-button"><?php echo HUD_RESEARCH; ?></span>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">

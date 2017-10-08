@@ -7,12 +7,21 @@
 	define('SETTINGS','Settings');
 	define('DISCONNECT','Disconnect');
 
-	//== BUTTONS ==\\
-	define('HUD_MAP','Map');
-	define('HUD_CHAT','Chat');
-	define('HUD_RESEARCH','Research');
-	define('HUD_RANKS','Ranking');
-	define('HUD_FLEET','Fleet');
+	//== HUD BOTTOM ==\\
+	define('HUD_BOTTOM_MAP','Map');
+	define('HUD_BOTTOM_RESEARCH','Research');
+	define('HUD_BOTTOM_UNITS','Units');
+	define('HUD_BOTTOM_FLEETS','Fleets');
+	define('HUD_BOTTOM_RADAR','Radar');
+	define('HUD_BOTTOM_ALLY','Alliance');
+	define('HUD_BOTTOM_RAPPORTS','Reports');
+
+	define('HUD_BOTTOM_QUEST','Quests');
+	define('HUD_BOTTOM_TRADE','Trades');
+	define('HUD_BOTTOM_RANKS','Ranks');
+	define('HUD_BOTTOM_PROFIL','Profiles');
+	define('HUD_BOTTOM_MESSAGES','Private Messages');
+	define('HUD_BOTTOM_CHAT','Chat');
 
 	//== DAY BONUS ==\\
 	define('DAY_BONUS_TITLE','Daily Bonus');

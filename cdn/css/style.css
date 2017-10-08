@@ -15,14 +15,22 @@ a, body {
 select, input {
 	outline: none;
 }
+/**
+ * Game version & Copyright
+ */
 #game-version {
-	text-align: right;
 	position: fixed;
 	font-size: 10px;
-	bottom: 5px;
-	right: 5px;
+	bottom: 0.2rem;
+	right: calc(16vw + 2.4rem + 0.2rem);
+}
+@media (max-width: 1000px) {
+	#game-version {
+		right: calc(160px + 2.4rem + 0.2rem);
+	}
 }
 #game-version a {
+	color: white;
 	text-decoration: none;
 }
 #game-version a:hover {
@@ -332,47 +340,6 @@ select, input {
 	top: 10px;
 	right: 35px;
 }
-/**
- * Boutons HUD General
- */
-#map-button, #chat-button, #research-button, #fleet-button, #ranks-button { /* Global Design */
-	position: fixed;
-	background-image: url(../img/ui/hud-button.png);
-	background-repeat: no-repeat;
-	background-size: 100%;
-	width: 32vh;
-	height: 3.51vh;
-	z-index: 100;
-	text-align: center;
-	font-size: 0.9em;
-	text-transform: uppercase;
-	padding-bottom: 0.1em;
-	-webkit-transform-origin: 50% 51.6%;
-
-	user-select: none;
-	cursor: pointer;
-}
-#chat-button, #research-button { /* Right Buttons */
-	transform: rotate(-90deg);
-	right: calc(-15.5vh + 5px); /* 0 - ( half width ) */
-}
-#chat-button, #ranks-button {
-	bottom: calc(30px + 16vh - 5px);
-}
-#research-button {
-	top: calc(50px + 16vh - 5px);
-}
-#fleet-button {
-	bottom: -0.5vh;
-	left: calc(50% - 16vh - 5px);
-}
-#map-button {
-	top: calc(50px + 16vh - 5px);
-}
-#map-button, #ranks-button {
-	left: calc(-15vh + 5px); /* 0 - ( half width ) */
-	transform: rotate(90deg);
-}
 
 /**
  * HUD Top
@@ -583,6 +550,94 @@ select, input {
 	border-style: solid;
 	border-color: #222222 transparent transparent transparent;
 	transform: rotate(180deg);
+}
+/**
+ * Hud Bottom
+ */
+#hud-bottom {
+	width: 100vw;
+
+	position: fixed;
+	bottom: 0;
+	left: 0;
+
+	z-index: 1;
+
+	color: #93fcfc;
+}
+
+#hud-bottom img {
+	height: 2vw;
+	min-height: 20px;
+	margin: 0.3em 0.2em 0.1em 0.2em;
+}
+#hud-bottom-right, #hud-bottom-left {
+	position: fixed;
+	white-space: nowrap;
+
+	bottom: 0;
+	padding: 0.2em 0.1em;
+
+	background-size: 100% 100%;
+}
+#hud-bottom-right {
+	right: 0;
+	
+	padding-left: 2.5vw;
+
+	background-image: url('../img/ui/hud-bottom-right.png');
+}
+#hud-bottom-left {
+	left: 0;
+
+	padding-right: 2.5vw;
+
+	background-image: url('../img/ui/hud-bottom-left.png');
+}
+/* Tooltips */
+.hud-bottom-tooltip {
+	display: inline-block;
+	height: 100%;
+}
+.hud-bottom-tooltip-wrapper {
+	position: absolute;
+	visibility: hidden;
+
+	bottom: 2.5em;
+}
+/* Events */
+.hud-bottom-tooltip:hover .hud-bottom-tooltip-wrapper {
+	visibility: visible;
+}
+/* Tooltip */
+.hud-bottom-tooltip-content {
+	display: block;
+	position: relative;
+
+    top: -1vw;
+
+	background-color: #222222;
+	text-align: center !important;
+	padding: 0.4em 1em;
+	border-radius: 6px;
+	font-size: 0.7em;
+}
+/* Tooltip arrow */
+.hud-bottom-tooltip-content::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 1vw;
+	margin-left: 0;
+	border-width: 10px;
+	border-style: solid;
+	border-color: #222222 transparent transparent transparent;
+}
+#hud-bottom-left .hud-bottom-tooltip-content {
+	right: calc(2vw + 0.5rem);
+}
+#hud-bottom-right .hud-bottom-tooltip-content {
+	left: calc(-3vw + 0.5rem);
 }
 
 /**
