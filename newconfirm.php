@@ -15,7 +15,9 @@ $user = [
 	"lastConnected" => 0,
 	"dayBonusStreak" => 0,
 	"dayBonusBest" => 0,
-	"lastBonus" => 0
+	"lastBonus" => 0,
+	"points" => 47,
+	"beginnerProtectEnd" => ((time() + ($beginnerProtectionDuration * 24 * 60 * 60)) * 1000)
 ];
 
 $planet = [
@@ -28,7 +30,8 @@ $planet = [
 	"nextBuilding" => -1,
 	"nextBuildingTime" => -1,
 	"lastResourcesUpdate" => time()*1000,
-	"currResearch" => ""
+	"currResearch" => "",
+	"points" => 47
 ];
 
 $user['planetlist'] = [new MongoDB\BSON\ObjectID($planet['_id'])];
