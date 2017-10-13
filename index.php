@@ -53,11 +53,11 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 			["server_name",$dbname,"str"]
 		],0,1000,"server_name");
 
-		if($devPrivileges!=false && isset($devPrivileges[0])) {
-			$devPrivileges = $devPrivileges[0];
+		if($userPrivileges!=false && isset($userPrivileges[0])) {
+			$userPrivileges = $userPrivileges[0];
 		}
 
-		if(!isset($devPrivileges['user_whitelist']) || ((int) $devPrivileges['user_whitelist']!=1)) {
+		if(!isset($userPrivileges['user_whitelist']) || ((int) $userPrivileges['user_whitelist']!=1)) {
 			echo '<script> window.location="https://galactae.eu/portal"; </script>';
 			//@ADD: Message - Serveur en maintenance
 		}
