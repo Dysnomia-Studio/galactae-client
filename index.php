@@ -48,7 +48,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==1) {
-		$userPrivileges = $sqlDB->getCondContent("user_privileges",[
+		$userPrivileges = $db->getCondContent("user_privileges",[
 			["user_id",$userData['user_id'],"int"],
 			["server_name",$dbname,"str"]
 		],0,1000,"server_name");
