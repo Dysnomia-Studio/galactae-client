@@ -2,7 +2,7 @@
 // Verif du client sur mongo
 $manager = new MongoDB\Driver\Manager($dburl );
 
-$filter = ['name' => $_SESSION['username'] ];
+$filter = ['name' => $userData['user_name'] ];
 
 $query = new MongoDB\Driver\Query($filter);
 $cursor = $manager->executeQuery($dbname.'.users', $query);
@@ -13,7 +13,7 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 ?>
 <div id="gvt-choicelist">
 	<div class="gvt-mainText">
-		Bienvenue <?php echo $data['user_name']; ?> ! Quel type de dirigant êtes vous ?
+		Bienvenue <?php echo $userData['user_name']; ?> ! Quel type de dirigant êtes vous ?
 	</div>
 	<div class="gvt-choice">
 		<h1>Président</h1>
@@ -94,7 +94,7 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 <?php
 } else { // Update du SQL (autofix)
 	$db->updateContent('user_game_id',
-			[["user_id",$data['user_id']]],
+			[["user_id",$user_name['user_id']]],
 			[["game_id",$mongoData['_id']]]);
 
 	$_SESSION['game_id'] = $mongoData['_id'];

@@ -7,8 +7,7 @@ $users_gameId = new MongoDB\BSON\ObjectID();
 
 $user = [
 	"_id" => $users_gameId,
-	"name" => $data['user_name'],
-	"lvl" => $data['user_lvl'],
+	"name" => $userData['user_name'],
 	"gvt" => $choice,
 	"ally" => "",
 	"sid" => "-1",
@@ -22,7 +21,7 @@ $user = [
 
 $planet = [
 	"_id" => new MongoDB\BSON\ObjectID(),
-	"name" => "Planète de ".$data['user_name'],
+	"name" => "Planète de ".$userData['user_name'], //@ADD: Translation
 	"owner" => $users_gameId,
 	"resources" => [ 100, 42, 100, 100, 100, 100 ],
 	"Buildings" => [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -49,7 +48,7 @@ $manager->executeBulkWrite($dbname.'.planets', $bulkPlanets);
 
 // Share game-id to SQL server
 $db->addContent('user_game_id',[
-		["user_id",$data['user_id']],
+		["user_id",$userData['user_id']],
 		["game_id",$users_gameId],
 		["server_name",$dbname]
 	]);
