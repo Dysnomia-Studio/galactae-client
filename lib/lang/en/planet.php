@@ -12,6 +12,9 @@
 	define('PRODUCTION','Production');
 	define('CONSUMPTION','Consumption');
 	define('IMPORTANCE','Importance');
+	define('AVAILABLE','Available');
+	define('USED','Used');
+	define('TOTAL','Total');
 
 	// == Buildings == \\
 	define('PLANET_BUILDING','Ground Build');

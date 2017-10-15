@@ -91,6 +91,37 @@
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
 
+		<?php
+			$topLeftContent = [
+				// Nom | Symbole | Tooltip | Disponible | Utilisé | Total
+				['population','<img height="15" src="./cdn/img/ui/population.png" alt="population">',1,1,1,1],
+				['research','<img height="15" src="./cdn/img/ui/research.png" alt="research">',0,0,0,0],
+				['moral','<img height="15" src="./cdn/img/ui/moral.png" alt="moral">',0,0,0,0],
+				['electricity','<img height="15" src="./cdn/img/ui/electricity.png" alt="electricity">',1,1,1,1]
+			];
+
+
+		for($i=0; $i<count($topLeftContent); $i++) {
+			if(!$topLeftContent[$i][2]) { // No tooltips
+				echo '
+				'.$topLeftContent[$i][1].'
+				<span class="nmb" id="'.$topLeftContent[$i][0].'_nmb">1</span>';
+			} else {
+				echo '
+			<span class="hud-top-tooltip">
+				'.$topLeftContent[$i][1].'
+				<span class="nmb" id="'.$topLeftContent[$i][0].'_nmb">1</span>
+				<span class="hud-top-tooltip-wrapper"><span class="hud-top-tooltip-content" id="'.$topLeftContent[$i][0].'-tooltips">';
+
+				if($topLeftContent[$i][2]) { echo AVAILABLE.': <span id="'.$topLeftContent[$i][0].'-available">XXX t</span><br/>'; }
+				if($topLeftContent[$i][3]) { echo USED.': <span id="'.$topLeftContent[$i][0].'-used">XXX t</span><br/>'; }
+				if($topLeftContent[$i][4]) { echo TOTAL.': <span id="'.$topLeftContent[$i][0].'-total">XXX t</span><br/>'; }
+
+				echo'</span></span></span>';
+			}
+		}
+		?>
+
 		<img height="15" src="./cdn/img/ui/population.png" alt="population"> <span class="nmb" id="population_nmb">100Kt</span>
 		<img height="15" src="./cdn/img/ui/research.png" alt="research"> <span class="nmb" id="research_nmb">100Kt</span>
 		<img height="15" src="./cdn/img/ui/moral.png" alt="moral"> <span class="nmb" id="moral_nmb">100Kt</span>

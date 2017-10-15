@@ -36,8 +36,6 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	    echo '<script> window.location="https://galactae.eu/login"; </script>';
 	}
 
-
-
 	// SQL Get Server Data
 	$srv_data = $db->getCondContent("server_list",[
 		["server_name", $dbname, "str"]
