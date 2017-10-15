@@ -121,20 +121,6 @@
 			}
 		}
 		?>
-
-		<img height="15" src="./cdn/img/ui/population.png" alt="population"> <span class="nmb" id="population_nmb">100Kt</span>
-		<img height="15" src="./cdn/img/ui/research.png" alt="research"> <span class="nmb" id="research_nmb">100Kt</span>
-		<img height="15" src="./cdn/img/ui/moral.png" alt="moral"> <span class="nmb" id="moral_nmb">100Kt</span>
-		<span class="hud-top-tooltip">
-			<img height="15" src="./cdn/img/ui/electricity.png" alt="electricity" > <span class="nmb" id="electricity_nmb">100Kt</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content">
-					Production: <span id="electricity-prod">XXX Kwh</span><br/>
-					Consommation: <span id="electricity-cons">XXX Kwh</span><br/>
-				</span>
-			</span>
-		</span>
-
 		<span id="hud-top-left-moveRight">&#9654;</span>
 	</div>
 
