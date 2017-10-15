@@ -314,8 +314,9 @@ class planet {
 
 
 		$('#electricity_nmb').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
-		$('#electricity-prod').html(GetBetterUnit(energyProd,"Wh"));
-		$('#electricity-cons').html(GetBetterUnit(energyCons,"Wh"));
+		$('#electricity-available').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
+		$('#electricity-used').html(GetBetterUnit(energyCons,"Wh"));
+		$('#electricity-total').html(GetBetterUnit(energyProd,"Wh"));	
 	}
 	/*
 	Draws if buildings can be build.
