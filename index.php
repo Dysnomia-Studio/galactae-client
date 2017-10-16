@@ -77,6 +77,21 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	// Create account if needed
 	if(!isset($data2['game_id']) || $data2['game_id']=="-1") { // Verif d'existance du compte ( côté SQL )
 
+		$currentpage = explode("?",$_SERVER['REQUEST_URI'])[0];
+		// Strtolower
+		$currentname = strtolower($currentpage);
+		// Strip .* et /
+		$currentname = str_replace(".php", "", $currentname);
+		$currentname = str_replace(".html", "", $currentname);
+		$currentname = str_replace(".htm", "", $currentname);
+		$currentname = str_replace("/", "", $currentname);
+
+		if($currentname=="ranks") {
+			include_once('ranks.php');
+			die();
+		}
+
+
 	    if(isset($_POST['choice'])) {
 			$choice = (int) $_POST['choice'];
 		} else {
