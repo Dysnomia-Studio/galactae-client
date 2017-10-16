@@ -9,6 +9,7 @@ include_once('gvars.php');
 		font-family: 'Titillium Web', sans-serif;
 		cursor: url(<?php echo $cdnURL; ?>img/mouse_cursor.png), auto;
 		color: white;
+		background-color: transparent !important;
 	}
 </style>
 
