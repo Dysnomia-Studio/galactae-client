@@ -163,34 +163,34 @@
 		</span>
 		<span class="hud-top-tooltip">
 			<span class="element" id="element_fe">Fe </span>
-			<span class="nmb" id="al_nmb">1</span>
+			<span class="nmb" id="fe_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="al-tooltips">
-					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
-					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				<span class="hud-top-tooltip-content" id="fe-tooltips">
+					<?php echo CAPACITY; ?>: <span id="fe-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="fe-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="fe-variety">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
 		<span class="hud-top-tooltip">
 			<span class="element">Ti </span>
-			<span class="nmb" id="al_nmb">1</span>
+			<span class="nmb" id="ti_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="al-tooltips">
-					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
-					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				<span class="hud-top-tooltip-content" id="ti-tooltips">
+					<?php echo CAPACITY; ?>: <span id="ti-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="ti-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="ti-variety">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
 		<span class="hud-top-tooltip">
 			<span class="element">Cu </span>
-			<span class="nmb" id="al_nmb">1</span>
+			<span class="nmb" id="cu_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="al-tooltips">
-					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
-					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				<span class="hud-top-tooltip-content" id="cu-tooltips">
+					<?php echo CAPACITY; ?>: <span id="cu-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="cu-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="cu-variety">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
