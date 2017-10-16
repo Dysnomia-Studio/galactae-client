@@ -9,6 +9,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	// No PHPSESSID
 	if(!(isset($_COOKIE['galactae-phpsessid']))) {
 		echo '<script> window.location="https://galactae.eu/login"; </script>';
+		die();
 	}
 
 	// SQL Get User Data
@@ -34,6 +35,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	
 	if(!isset($userData['user_name'])) { // Verif d'existance du compte SQL
 	    echo '<script> window.location="https://galactae.eu/login"; </script>';
+		die();
 	}
 
 	// SQL Get Server Data
@@ -58,6 +60,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		if(!isset($userPrivileges['user_whitelist']) || ((int) $userPrivileges['user_whitelist']!=1)) {
 			echo '<script> window.location="https://galactae.eu/portal"; </script>';
 			//@ADD: Message - Serveur en maintenance
+			die();
 		}
 	}
 
@@ -95,5 +98,6 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 } else { // SQL Connect Check end
 	echo '<script> window.location="https://galactae.eu"; </script>';
+	die();
 }
 ?>
