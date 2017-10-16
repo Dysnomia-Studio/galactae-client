@@ -86,6 +86,8 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		$currentname = str_replace(".htm", "", $currentname);
 		$currentname = str_replace("/", "", $currentname);
 
+		echo "CURRENT PAGE: ".$currentname;
+
 		if($currentname=="ranks") {
 			include_once('ranks.php');
 			die();
