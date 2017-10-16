@@ -41,41 +41,39 @@
 		<?php /* Ground Building */ ?>
 		<div class="building-ground">
 			<span id="building-ground-title"><?php echo PLANET_BUILDING; ?></span>
-			<?php
-				$buildings = [
-					"carriere",
-					"metallurgy",
-					"living",
-					"serre",
-					"solar",
-					"warehouse",
-					"headquarter",
-					"launchpad",
-					"research",
-
-					"radar",
-					"tank",
-					"shipyard",
-					"trade",
-					"he3exp"
-				];
-
-				for($i=0; $i<9; $i++) {
-					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'.png" class="building-list-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
-						<span id="lvl-'.$buildings[$i].'"></span>';
-				}
-			?>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/carriere.png" class="building-list-building" id="carriere" onclick="ui.buildPanelOpen(0)" alt="carriere">
+			<span id="lvl-carriere"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/metallurgy.png" class="building-list-building" id="metallurgy" onclick="ui.buildPanelOpen(1)" alt="metallurgy">
+			<span id="lvl-metallurgy"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/living.png" class="building-list-building" id="living" onclick="ui.buildPanelOpen(2)" alt="living">
+			<span id="lvl-living"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/serre.png" class="building-list-building" id="serre" onclick="ui.buildPanelOpen(3)" alt="serre">
+			<span id="lvl-serre"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/solar.png" class="building-list-building" id="solar" onclick="ui.buildPanelOpen(4)" alt="solar">
+			<span id="lvl-solar"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/warehouse.png" class="building-list-building" id="warehouse" onclick="ui.buildPanelOpen(5)" alt="warehouse">
+			<span id="lvl-warehouse"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/headquarter.png" class="building-list-building" id="headquarter" onclick="ui.buildPanelOpen(6)" alt="headquarter">
+			<span id="lvl-headquarter"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/launchpad.png" class="building-list-building" id="launchpad" onclick="ui.buildPanelOpen(7)" alt="launchpad">
+			<span id="lvl-launchpad"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/research.png" class="building-list-building" id="research" onclick="ui.buildPanelOpen(8)" alt="research">
+			<span id="lvl-research"></span>
 		</div>
 
 		<?php /* Space Building */ ?>
 		<div class="building-space">
 			<span id="building-space-title"><?php echo ORBITAL_BUILDING; ?></span>
-			<?php
-				for($i=9; $i<14; $i++) {
-					echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'.png" class="building-list-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
-						<span id="lvl-'.$buildings[$i].'"></span>';
-				}
-			?>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/radar.png" class="building-list-building" id="radar" onclick="ui.buildPanelOpen(9)" alt="radar">
+				<span id="lvl-radar"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/tank.png" class="building-list-building" id="tank" onclick="ui.buildPanelOpen(10)" alt="tank">
+				<span id="lvl-tank"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/shipyard.png" class="building-list-building" id="shipyard" onclick="ui.buildPanelOpen(11)" alt="shipyard">
+				<span id="lvl-shipyard"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/trade.png" class="building-list-building" id="trade" onclick="ui.buildPanelOpen(12)" alt="trade">
+				<span id="lvl-trade"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/he3exp.png" class="building-list-building" id="he3exp" onclick="ui.buildPanelOpen(13)" alt="he3exp">
+				<span id="lvl-he3exp"></span>
 		</div>
 	</div>
 
@@ -90,42 +88,40 @@
 <div id="hud-top">
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
+		<span class="hud-top-tooltip">
+			<img height="15" src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population">
+			<span class="nmb" id="population_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="population-tooltips">
+					<?php echo AVAILABLE; ?>: <span id="population-available">XXX t</span><br/>
+					<?php echo USED; ?>: <span id="population-used">XXX t</span><br/>
+					<?php echo TOTAL; ?>: <span id="population-total">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
 
-		<?php
-			$topLeftContent = [
-				// Nom | Symbole | Tooltip | Disponible | Utilisé | Total
-				['population','<img height="15" src="./cdn/img/ui/population.png" alt="population">',1,1,1,1],
-				['research','<img height="15" src="./cdn/img/ui/research.png" alt="research">',0,0,0,0],
-				['moral','<img height="15" src="./cdn/img/ui/moral.png" alt="moral">',0,0,0,0],
-				['electricity','<img height="15" src="./cdn/img/ui/electricity.png" alt="electricity">',1,1,1,1]
-			];
+		<img height="15" src="<?php echo $cdnURL; ?>img/ui/research.png" alt="research">
+		<span class="nmb" id="research_nmb">1</span>
 
+		<img height="15" src="<?php echo $cdnURL; ?>img/ui/moral.png" alt="moral">
+		<span class="nmb" id="moral_nmb">1</span>
 
-		for($i=0; $i<count($topLeftContent); $i++) {
-			if(!$topLeftContent[$i][2]) { // No tooltips
-				echo '
-				'.$topLeftContent[$i][1].'
-				<span class="nmb" id="'.$topLeftContent[$i][0].'_nmb">1</span>';
-			} else {
-				echo '
-			<span class="hud-top-tooltip">
-				'.$topLeftContent[$i][1].'
-				<span class="nmb" id="'.$topLeftContent[$i][0].'_nmb">1</span>
-				<span class="hud-top-tooltip-wrapper"><span class="hud-top-tooltip-content" id="'.$topLeftContent[$i][0].'-tooltips">';
-
-				if($topLeftContent[$i][2]) { echo AVAILABLE.': <span id="'.$topLeftContent[$i][0].'-available">XXX t</span><br/>'; }
-				if($topLeftContent[$i][3]) { echo USED.': <span id="'.$topLeftContent[$i][0].'-used">XXX t</span><br/>'; }
-				if($topLeftContent[$i][4]) { echo TOTAL.': <span id="'.$topLeftContent[$i][0].'-total">XXX t</span><br/>'; }
-
-				echo'</span></span></span>';
-			}
-		}
-		?>
+		<span class="hud-top-tooltip">
+			<img height="15" src="<?php echo $cdnURL; ?>img/ui/electricity.png" alt="electricity">
+			<span class="nmb" id="electricity_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="electricity-tooltips">
+					<?php echo AVAILABLE; ?>: <span id="electricity-available">XXX t</span><br/>
+					<?php echo USED; ?>: <span id="electricity-used">XXX t</span><br/>
+					<?php echo TOTAL; ?>: <span id="electricity-total">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
 		<span id="hud-top-left-moveRight">&#9654;</span>
 	</div>
 
 	<div id="hud-top-center">
-		<img id="hud-settings" height="20" src="./cdn/img/ui/settings.png" alt="settings">
+		<img id="hud-settings" height="20" src="<?php echo $cdnURL; ?>img/ui/settings.png" alt="settings">
 		<span id="hud-planet-prev" onclick="planet.prev();">&#9664;</span>
 		<span id="hud-planet-name">SomeLongName</span>
 		<span id="hud-planet-next" onclick="planet.next();">&#9654;</span>
@@ -133,81 +129,157 @@
 
 	<div id="hud-top-right">
 		<span id="hud-top-right-moveLeft">&#9664;</span>
-		<?php
-			$topRightContent = [
-				// Nom | Symbole | Capacite | Production | Consommation | Taux de presence
-				["minerals",'<img height="20" src="'.$cdnURL.'img/ui/minerals.png" alt="minerals">',1,1,1,0],
-				["he",'<span class="element">&sup3;He </span>',1,1,0,0],
-				["al",'<span class="element">Al </span>',1,1,0,1],
-				["fe",'<span class="element" id="element_fe">Fe </span>',1,1,0,1],
-				["ti",'<span class="element">Ti </span>',1,1,0,1],
-				["cu",'<span class="element">Cu </span>',1,1,0,1]
-			];
-
-		for($i=0; $i<count($topRightContent); $i++) {
-			echo '
-			<span class="hud-top-tooltip">
-				'.$topRightContent[$i][1].'
-				<span class="nmb" id="'.$topRightContent[$i][0].'_nmb">1</span>
-				<span class="hud-top-tooltip-wrapper"><span class="hud-top-tooltip-content" id="'.$topRightContent[$i][0].'-tooltips">';
-
-			if($topRightContent[$i][2]) { echo CAPACITY.': <span id="'.$topRightContent[$i][0].'-cap">XXX t</span><br/>'; }
-			if($topRightContent[$i][3]) { echo PRODUCTION.': <span id="'.$topRightContent[$i][0].'-prod">XXX t</span><br/>'; }
-			if($topRightContent[$i][4]) { echo CONSUMPTION.': <span id="'.$topRightContent[$i][0].'-cons">XXX t</span><br/>'; }
-			if($topRightContent[$i][5]) { echo IMPORTANCE.': <span id="'.$topRightContent[$i][0].'-variety">XXX t</span><br/>'; }
-
-			echo'</span></span></span>';
-		}
-		?>
+		<span class="hud-top-tooltip">
+			<img height="20" src="<?php echo $cdnURL; ?>img/ui/minerals.png" alt="minerals">
+			<span class="nmb" id="minerals_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="minerals-tooltips">
+					<?php echo CAPACITY; ?>: <span id="minerals-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="minerals-prod">XXX t</span><br/>
+					<?php echo CONSUMPTION; ?>: <span id="minerals-cons">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">&sup3;He </span>
+			<span class="nmb" id="he_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="he-tooltips">
+					<?php echo CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">Al </span>
+			<span class="nmb" id="al_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="al-tooltips">
+					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element" id="element_fe">Fe </span>
+			<span class="nmb" id="al_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="al-tooltips">
+					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">Ti </span>
+			<span class="nmb" id="al_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="al-tooltips">
+					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">Cu </span>
+			<span class="nmb" id="al_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="al-tooltips">
+					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
 		<span id="hud-top-right-moveRight">&#9654;</span>
 	</div>
 </div>
 <?php /* HUD Bottom */ ?>
 	<div id="hud-bottom">
-		<?php 
-		$bottomContent =[
-			// Left
-			["map",HUD_BOTTOM_MAP],
-			["researchs",HUD_BOTTOM_RESEARCH],
-			["units",HUD_BOTTOM_UNITS],
-			["fleets",HUD_BOTTOM_FLEETS],
-			["radar",HUD_BOTTOM_RADAR],
-			["ally",HUD_BOTTOM_ALLY],
-			["rapports",HUD_BOTTOM_RAPPORTS],
-			// Right
-			["quests",HUD_BOTTOM_QUEST],
-			["trade",HUD_BOTTOM_TRADE],
-			["ranks",HUD_BOTTOM_RANKS],
-			["profil",HUD_BOTTOM_PROFIL],
-			["messages",HUD_BOTTOM_MESSAGES],
-			["chat",HUD_BOTTOM_CHAT],
-		];
-		?>
 		<div id="hud-bottom-left">
-			<?php
-			for($i=0; $i<7; $i++) {
-				echo '
-				<span class="hud-bottom-tooltip">
-					<a href="#chat" id="hud-bottom-button-'.$bottomContent[$i][0].'"><img src="./cdn/img/ui/'.$bottomContent[$i][0].'.png" alt="'.$bottomContent[$i][0].'"></a>
-					<span class="hud-bottom-tooltip-wrapper">
-						<span class="hud-bottom-tooltip-content">'.$bottomContent[$i][1].'</span>
-					</span>
-				</span>';
-			}
-			?>
+			<span class="hud-bottom-tooltip">
+				<a href="#map" id="hud-bottom-button-map"><img src="<?php echo $cdnURL; ?>img/ui/map.png" alt="map"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MAP; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#researchs" id="hud-bottom-button-researchs"><img src="<?php echo $cdnURL; ?>img/ui/researchs.png" alt="researchs"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RESEARCH; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#units" id="hud-bottom-button-units"><img src="<?php echo $cdnURL; ?>img/ui/units.png" alt="units"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_UNITS; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?php echo $cdnURL; ?>img/ui/fleets.png" alt="fleets"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_FLEETS; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#radar" id="hud-bottom-button-radar"><img src="<?php echo $cdnURL; ?>img/ui/radar.png" alt="radar"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RADAR; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#ally" id="hud-bottom-button-ally"><img src="<?php echo $cdnURL; ?>img/ui/ally.png" alt="ally"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_ALLY; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?php echo $cdnURL; ?>img/ui/rapports.png" alt="rapports"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RAPPORTS; ?></span>
+				</span>
+			</span>
 		</div>
 		<div id="hud-bottom-right">
-			<?php
-			for($i=7; $i<13; $i++) {
-				echo '
-				<span class="hud-bottom-tooltip">
-					<a href="#chat" id="hud-bottom-button-'.$bottomContent[$i][0].'"><img src="./cdn/img/ui/'.$bottomContent[$i][0].'.png" alt="'.$bottomContent[$i][0].'"></a>
-					<span class="hud-bottom-tooltip-wrapper">
-						<span class="hud-bottom-tooltip-content">'.$bottomContent[$i][1].'</span>
-					</span>
-				</span>';
-			}
-			?>
+			<span class="hud-bottom-tooltip">
+				<a href="#quests" id="hud-bottom-button-quests"><img src="<?php echo $cdnURL; ?>img/ui/quests.png" alt="quests"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_QUEST; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#trade" id="hud-bottom-button-trade"><img src="<?php echo $cdnURL; ?>img/ui/trade.png" alt="trade"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_TRADE; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?php echo $cdnURL; ?>img/ui/ranks.png" alt="ranks"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RANKS; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#profil" id="hud-bottom-button-profil"><img src="<?php echo $cdnURL; ?>img/ui/profil.png" alt="profil"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_PROFIL; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#messages" id="hud-bottom-button-messages"><img src="<?php echo $cdnURL; ?>img/ui/messages.png" alt="messages"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MESSAGES; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#chat" id="hud-bottom-button-chat"><img src="<?php echo $cdnURL; ?>img/ui/chat.png" alt="chat"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_CHAT; ?></span>
+				</span>
+			</span>
 		</div>
 	</div>
 <?php /* ESC */ ?>
@@ -230,7 +302,7 @@
 	<div id="hud-chat-global" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-trade" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
-	<form action="game.php" method="post" id="chat_form">
+	<form action="#chat_text" method="post" id="chat_form">
 		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
 		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?php echo $cdnURL; ?>img/ui/chat-voice.png" alt="voice"></a>
 	</form>
