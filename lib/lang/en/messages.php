@@ -27,7 +27,7 @@ translate["messages"] = {
 	"KICK": "You're kicked from the game. Reason:",
 	"BAN": "The ban hammer has spoken. Reason:",
 	"MAINTENANCE": "Maintenance ongoing.",
-	"REBOOT": "Restarting game servers ...",
+	"RESTARTING_SERVER": "Restarting game servers ...",
 	"DOUBLE_ACCOUNTS_CONNECTED": "You're already connected with this account on another game-client.",
 	"SYSTEM_MESSAGE": "Message Systeme:",
 	// Research

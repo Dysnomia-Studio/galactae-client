@@ -33,7 +33,7 @@ translate["messages"] = {
 	"KICK": "Vous avez été exclus du jeu. Raison:",
 	"BAN": "Le marteau du bannissement a frappé ! Raison:",
 	"MAINTENANCE": "Une maintenance est en cours.",
-	"REBOOT": "Redemarrage des serveurs de jeu ...",
+	"RESTARTING_SERVER": "Redemarrage des serveurs de jeu ...",
 	"DOUBLE_ACCOUNTS_CONNECTED": "Vous êtes connecté plusieurs fois sur le jeu en même temps.",
 	"SYSTEM_MESSAGE": "Message Systeme:",
 	// Research
