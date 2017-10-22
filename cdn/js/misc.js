@@ -7,7 +7,7 @@ function kick(msg,time=3000,canBeCanceled=false) {
 	}
 	
 	connectTimeout = setTimeout(function() {
-		window.location.href = "https://galactae.elanis.eu/portal";
+		window.location.href = "https://galactae.eu/portal";
 	},time);
 
 	if(!canBeCanceled) {
