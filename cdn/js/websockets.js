@@ -83,7 +83,7 @@ class webSockets {
 			kick("MAINTENANCE");
 		});
 		socket.on('server-reboot', function() {
-			kick("REBOOT");
+			kick("RESTARTING_SERVER");
 		});
 		$(window).on("beforeunload", function() {
 			socket.emit("game-disconnect",{username: userData.username, id: userData.id, pid: userData.pid});

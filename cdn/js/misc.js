@@ -2,6 +2,12 @@ var connectTimeout = -1;
 
 function kick(msg,time=3000,canBeCanceled=false) {
 	if(msg!="") {
+        let message = translate['message'][msg],
+
+        if(message==undefined) {
+            message = msg;
+        }
+
 		chat.sm(msg);
 		ui.drawMessage(msg);
 	}
