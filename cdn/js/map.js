@@ -131,41 +131,85 @@ class map {
 			planets[i].gtype   = $(planetsXML[i]).attr('gtype');
 		}
 
-		var prevOrbit = 0;
+		
+		// !! Percentage of solar system size !! \\
+		var firstPlanet = 0;
 
-		// For each Star
-		for(var i=0; i<stars.length; i++) {
-			// Create DOM
-			$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
+		// Star position
+		if(stars.length > 1) { // If multiple stars
+			// Classons les etoiles et placons les sur leurs orbites
+			var orbitSize = [];
 
-			// Set Size
-			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
+		    if(stars.length == 2) { // 2 etoiles
+				// Si c'est les memes gTypes (naine et naine OU geante et geante), et on exclue les supergeantes
+				if(stars[0].type.substr(-5) === stars[1].type.substr(-5) && 
+					stars[0].type.substr(-10) !== "SuperGiant" && 
+					stars[1].type.substr(-10) !== "SuperGiant") {
 
-			// Set Orbit, planet position and anim duration
-			// !! Percentage of solar system size !! \\
-			var orbitSize = 0;
-			var firstPlanet = 0;
-			if(stars.length > 1) { // Only one star
-				orbitSize = 0; // @ADD: Calculation of Orbit size
+					orbitSize[0] = orbitSize[1] = 8;
+					firstPlanet = 20;
+				} else { // Si ce sont des etoiles differentes
+					// Sort by size 
+				    stars.sort(function(a,b) {
+				    	if(a.size == b.size) {
+				    		return 0;
+				    	} else if(a.size > b.size) {
+				    		return -1;
+				    	} 
+				    	return 1;
+				    });
+
+				    // On place la premiere en 0
+				    orbitSize[0] = 0;
+
+				    // et la seconde en orbite
+				    orbitSize[1] = 15;
+
+				    // enfin la position de la premiere planete en orbite autour
+				    firstPlanet = 28;
+				}
+			} else { // 3 etoiles
+				// On cherche si les 3 sont du meme gType
+				
+				// sinon si 2 sont du meme type, qui est plus gros que la 3e
+
+				// sinon si 2 sont du meme type, qui est plus petit que la 3e
+
+				// sinon on sort par taille
+			}
+
+			// Enfin on genere les étoiles à leur place
+			for(var i=0; i<stars.length; i++) {
+				// Create DOM
+				$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
+
+				// Set Size
+				$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
+
+				// Set Orbit, star position and anim duration
 				
 				/* Orbit */
-				$("#" + stars[i].address).css("height","" + orbitSize + "vh");
-				$("#" + stars[i].address).css("width","" + orbitSize + "vw");
+				$("#" + stars[i].address).css("height","" + orbitSize[i] + "vh");
+				$("#" + stars[i].address).css("width","" + orbitSize[i] + "vw");
 
-				$("#" + stars[i].address).css("margin-top","-" + (orbitSize/2) + "vh");
-				$("#" + stars[i].address).css("margin-left","-" + (orbitSize/2) + "vw");
+				$("#" + stars[i].address).css("margin-top","-" + (orbitSize[i]/2) + "vh");
+				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "vw");
 
 				/* Star Pos */
-				var orbitDuration = orbitSize * 36; // in seconds
+				var orbitDuration = orbitSize[i] * 36; // in seconds
 				var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
-				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
-				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vw * " + Math.cos(posAng) + "))");
-
-				firstPlanet = 12; // @ADD: calculation
-			} else {
-				firstPlanet = 12; // @ADD: calculation
+				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "vh * " + Math.sin(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "vw * " + Math.cos(posAng) + "))");
 			}
+		} else { 
+			// Only a star
+			$("#hud-map-system-solarFront").append("<div class=\"star " + stars[0].type + "\" id=\"" + stars[0].address + "\"></div>");
+
+			// Set Size
+			$("#" + stars[0].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[0].size)) + "em");
+
+			firstPlanet = 12;
 		}
 
 		// For each Planet
@@ -182,7 +226,7 @@ class map {
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
-			var orbitSize = firstPlanet + (i+1)*8; // @ADD: Calculation of Orbit size
+			var orbitSize = firstPlanet + 5 + (i)*((95 - firstPlanet)/((planets.length * 0.5) + 1));
 
 			// Anim duration
 			var orbitDuration = orbitSize * 36; // in seconds
