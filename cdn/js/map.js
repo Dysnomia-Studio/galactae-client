@@ -191,7 +191,12 @@ class map {
 				$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
 
 				// Set Orbit, star position and anim duration
-				
+
+				// Anim duration
+				var orbitDuration = orbitSize[i] * 36; // in seconds
+				$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
+				$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
+
 				/* Orbit */
 				$("#" + stars[i].address).css("height","" + orbitSize[i] + "vh");
 				$("#" + stars[i].address).css("width","" + orbitSize[i] + "vw");
