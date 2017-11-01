@@ -184,7 +184,7 @@ class map {
 					// Create DOM
 					$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
 				} else {
-					$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>');	
+					$("#hud-map-system-solarFront").append('<div class="orbit" id="' + stars[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>');	
 				}
 
 				// Set Size
