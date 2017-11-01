@@ -178,6 +178,9 @@ class map {
 				// sinon on sort par taille
 			}
 
+			// @ADD: faire en sorte que 2 etoiles sur une meme orbite soient opposées
+			// @ADD: meilleurs placements des orbites
+
 			// Enfin on genere les étoiles à leur place
 			for(var i=0; i<stars.length; i++) {
 				if(orbitSize[i]==0) {
