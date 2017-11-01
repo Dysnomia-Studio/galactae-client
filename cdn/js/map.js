@@ -180,8 +180,12 @@ class map {
 
 			// Enfin on genere les étoiles à leur place
 			for(var i=0; i<stars.length; i++) {
-				// Create DOM
-				$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
+				if(orbitSize[i]==0) {
+					// Create DOM
+					$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
+				} else {
+					$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>');	
+				}
 
 				// Set Size
 				$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
