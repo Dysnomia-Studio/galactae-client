@@ -1036,6 +1036,10 @@ a[class="research-search"] {
 		background-position: center;
 		background-size: 100%;
 	}
+
+	#hud-ranks iframe, #hud-news iframe {
+		height: 85%;
+	}
 }
 
 @media (max-width: 750px), (max-height: 40vw) {
@@ -1051,6 +1055,11 @@ a[class="research-search"] {
 
 		background-color: #0b1012;
 	}
+
+	#hud-ranks iframe, #hud-news iframe {
+
+
+	}
 }
 
 #hud-ranks, #hud-news {
@@ -1058,7 +1067,6 @@ a[class="research-search"] {
 }
 #hud-ranks iframe, #hud-news iframe {
 	width: 94%;
-	height: 88%;
 
 	margin: 3%;
 
