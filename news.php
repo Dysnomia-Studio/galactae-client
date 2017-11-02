@@ -15,6 +15,8 @@ $newsList = $sqlDB->selectQuery(
 	"SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT :searched_id, 10",
 	[ "searched_id" => $limit ]);
 
+echo "SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT ".$limit.", 10";
+
 var_dump($newsList);
 
 $prev = -1;
