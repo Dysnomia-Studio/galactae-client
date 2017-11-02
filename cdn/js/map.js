@@ -191,8 +191,10 @@ class map {
 
 				// Multiple stars on same orbit
 				if(stars.length == 3 && orbitSize[0] == orbitSize[1] && orbitSize[0] == orbitSize[2]) {
+					$("#" + stars[i].address).css("animation-delay","-" + i*orbitDuration/3 + "s");
 					$("#" + stars[i].address + " .pos").css("animation-delay","-" + i*orbitDuration/3 + "s");
 				} else if((i==1 && orbitSize[0] == orbitSize[1]) ||(i==2 && orbitSize[1] == orbitSize[2])) {
+					$("#" + stars[i].address).css("animation-delay","-" + i*orbitDuration/2 + "s");
 					$("#" + stars[i].address + " .pos").css("animation-delay","-" + i*orbitDuration/2 + "s");
 				}
 
