@@ -945,7 +945,7 @@ select, input {
 	top: 0.52vw;
 	right: 0.89vw;
 }
-#hud-ranks-close {
+#hud-ranks-close, #hud-news-close {
 	position: absolute;
 	top: 1vw;
 	right: 0.89vw;
