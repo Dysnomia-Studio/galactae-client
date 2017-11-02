@@ -1,5 +1,5 @@
 <?php
-if(!isset($_GET['n')) {
+if(!isset($_GET['n'])) {
 	die();
 }
 
