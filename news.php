@@ -51,7 +51,7 @@ if($prev != -1) {
 	echo '<a href="news.php?n='.$prev.'>'.OLDER_NEWS.'</a>';
 }
 if($prev != -1 && $next != -1) {
-	echo " - "
+	echo " - ";
 }
 if($next != -1) {
 	echo '<a href="news.php?n='.$prev.'>'.NEWER_NEWS.'</a>';
