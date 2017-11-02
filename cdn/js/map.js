@@ -186,8 +186,15 @@ class map {
 
 				// Anim duration
 				var orbitDuration = orbitSize[i] * 36; // in seconds
-				$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
-				$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
+				$("#" + stars[i].address).css("animation-duration","" + orbitDuration + "s");
+				$("#" + stars[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
+
+				// Multiple stars on same orbit
+				if(stars.length == 3 && orbitSize[0] == orbitSize[1] && orbitSize[0] == orbitSize[2]) {
+					$("#" + stars[i].address + " .pos").css("animation-delay","-" + i*orbitDuration/3 + "s");
+				} else if((i==1 && orbitSize[0] == orbitSize[1]) ||(i==2 && orbitSize[1] == orbitSize[2])) {
+					$("#" + stars[i].address + " .pos").css("animation-delay","-" + i*orbitDuration/2 + "s");
+				}
 
 				/* Orbit */
 				$("#" + stars[i].address).css("height","" + orbitSize[i] + "rem");
