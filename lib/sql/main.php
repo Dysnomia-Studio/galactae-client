@@ -317,18 +317,23 @@ class sqlInterface {
 				$query->bindValue(':'.$name,$value,$pdoType);
 			}
 
+			$query->execute();
+
 			if($oneResult) {
 				$data = $query->fetch();
 				$query->CloseCursor();
+
 				return $data;
 			} else {
-				$query->execute();
 				$data = array();
 				$i = 0;
+
 				while($data1 = $query->fetch()) {
+					var_dump($data1);
 					$data[$i] = $data1;
 					$i++;
 				}
+
 				$query->CloseCursor();
 
 				return $data;	
