@@ -19,7 +19,7 @@ $expire = time() - 600; // 10 min
 $newsList = $sqlDB->updateQuery(
 	"UPDATE user_list SET lastViewedNews = :viewedNews  WHERE user_id = :user_id AND lastViewedNews < :viewedNews",
 	[ "user_id" => $userData['user_id'],
-	  "viewedNews" => $curr['blog_id'] ]);
+	  "viewedNews" => $news_needed ]);
 
 if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
