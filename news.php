@@ -2,7 +2,17 @@
 $noscript=true;
 include_once('gvars.php');
 
-$cache = 'cache/news.html';
+if(!isset($_GET['n'])) {
+	die();
+}
+
+$news_needed = htmlspecialchars(htmlentities($_GET['n']));
+
+if(!is_int((int) $news_needed)) {
+	die();
+}
+
+$cache = 'cache/news-'.$news_needed.'.html';
 $expire = time() - 600; // 10 min
 
 if(file_exists($cache) && filemtime($cache) > $expire) {
@@ -38,16 +48,6 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	</style>
 
 	<?php
-	if(!isset($_GET['n'])) {
-		die();
-	}
-
-	$news_needed = htmlspecialchars(htmlentities($_GET['n']));
-
-	if(!is_int((int) $news_needed)) {
-		die();
-	}
-
 	$limit = ($news_needed<10)?0:($news_needed - 10);
 
 	$newsList = $sqlDB->selectQuery(
