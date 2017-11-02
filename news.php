@@ -32,7 +32,7 @@ if($curr == [] || !isset($curr['blog_title_'.$_SESSION['lang']])) {
 /* Say to SQL server, we seen a newer news */
 $newsList = $sqlDB->updateQuery(
 	"UPDATE user_list SET lastViewedNews = :lastViewedNews  WHERE user_id = :user_id AND lastViewedNews < :lastViewedNews",
-	[ "user_id": ,
+	[ "user_id": $userData['user_id'],
 
 /* Echo this news */
 echo "<article>
