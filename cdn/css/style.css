@@ -939,7 +939,7 @@ select, input {
 #fleet-type-create-close {
 	 z-index: 100;
 }
-#hud-fleet-close, #hud-research-close, #hud-ranks-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close { cursor: pointer; }
+#hud-fleet-close, #hud-research-close, #hud-ranks-close, #hud-news-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close { cursor: pointer; }
 #hud-fleet-close {
 	position: absolute;
 	top: 0.52vw;
@@ -1022,7 +1022,7 @@ a[class="research-search"] {
  * Ranks
  */
 @media (min-width: 750px) and (min-height: 40vw) {
-	#hud-ranks {
+	#hud-ranks, #hud-news {
 		display: none;
 
 		position: fixed;
@@ -1039,7 +1039,7 @@ a[class="research-search"] {
 }
 
 @media (max-width: 750px), (max-height: 40vw) {
-	#hud-ranks {
+	#hud-ranks, #hud-news {
 		display: none;
 
 		position: fixed;
@@ -1053,10 +1053,10 @@ a[class="research-search"] {
 	}
 }
 
-#hud-ranks {
+#hud-ranks, #hud-news {
 	z-index: 100;
 }
-#hud-ranks iframe {
+#hud-ranks iframe, #hud-news iframe {
 	width: 94%;
 	height: 88%;
 

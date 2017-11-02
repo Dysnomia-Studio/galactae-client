@@ -312,7 +312,27 @@
 	<span id="hud-ranks-close">X</span>
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
 </div>
-<?php /* Map */ ?>
+<?php /* News */
+$lastNews = $sqlDb->getCondContent('announces',
+	["onGame",1,"int"],
+	0,1,"blog_id DESC");
+
+if(!isset($lastNews[0]) || !isset($lastNews[0]['blog_id'])) {
+	$lastNews = [ [ 'blog_id' => 0 ] ];
+}
+
+if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
+	echo '<div id="hud-news" style="display: block;">';
+} else {
+	echo '<div id="hud-news" style="display: none;">';
+}
+?>
+	<span id="hud-news-close">X</span>
+	<iframe id="hud-news-frame" src="news.php?<?php echo $lastNews[0]['blog_id']; ?>"></iframe>
+</div>
+<?php
+}
+/* Map */ ?>
 <div id="hud-map">
 	<div id="hud-map-back">Back to parent</div>
 	<div id="hud-map-galaxy">

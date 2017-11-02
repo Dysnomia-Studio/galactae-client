@@ -19,7 +19,7 @@ include_once('gvars.php');
 	}
 
 	img {
-		max-width: calc(100vw - 2em);
+		max-width: calc(100vw - 4em);
 	}
 
 	.older {
