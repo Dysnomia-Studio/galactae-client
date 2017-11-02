@@ -243,17 +243,17 @@ class map {
 			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
 
 			/* Orbit */
-			$("#" + planets[i].address).css("height","calc(" + orbitSize + " * (100vh - " + firstPlanet + "em) + " + firstPlanet + "em)");
-			$("#" + planets[i].address).css("width","calc(" + orbitSize + " * (100vh - " + firstPlanet + "em) + " + firstPlanet + "em)");
+			$("#" + planets[i].address).css("height","calc(" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)");
+			$("#" + planets[i].address).css("width","calc(" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)");
 
-			$("#" + planets[i].address).css("margin-top","calc(- 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "em) + " + firstPlanet + "em))");
-			$("#" + planets[i].address).css("margin-left","calc(- 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "em) + " + firstPlanet + "em))");
+			$("#" + planets[i].address).css("margin-top","calc(- 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
+			$("#" + planets[i].address).css("margin-left","calc(- 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
 
 			/* Planet Pos */
 			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 			
-			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + Math.sin(posAng) + " 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "em) + " + firstPlanet + "em)))");
-			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + Math.cos(posAng) + " 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "em) + " + firstPlanet + "em)))");
+			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + Math.sin(posAng) + " 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
+			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + Math.cos(posAng) + " 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
 
 			/* Planet Img */
 			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
