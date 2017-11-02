@@ -237,7 +237,7 @@ class map {
 			var orbitSize = i * ((0.9/planets.length) * 0.5 + 0.045); // 49.5 a 90% du systeme
 
 			// Anim duration
-			var orbitDuration = (100 + orbitSize) * 360; // in seconds
+			var orbitDuration = (2 + orbitSize) * 360; // in seconds
 			$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
