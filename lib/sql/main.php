@@ -308,8 +308,10 @@ class sqlInterface {
 			$query = $this->bd->prepare($queryString);
 
 			foreach($bindValue as $name => $value) {
-				if(is_int($value) && is_bool($value)) {
+				if(is_int($value)) {
 					$pdoType = PDO::PARAM_INT;
+				} elseif(is_bool($value)) {
+					$pdoType = PDO::PARAM_BOOL;
 				} else {
 					$pdoType = PDO::PARAM_STR;
 				}
