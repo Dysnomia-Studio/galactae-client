@@ -7,7 +7,7 @@ if(!is_int((int) $news_needed)) {
 
 $newsList = $sqlDB->selectQuery(
 	"SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT :searched_id, 10",
-	[ "searched_id": ($news_needed - 10) ]);
+	[ "searched_id" => ($news_needed - 10) ]);
 
 $prev = -1;
 $curr = [];
@@ -31,8 +31,9 @@ if($curr == [] || !isset($curr['blog_title_'.$_SESSION['lang']])) {
 
 /* Say to SQL server, we seen a newer news */
 $newsList = $sqlDB->updateQuery(
-	"UPDATE user_list SET lastViewedNews = :lastViewedNews  WHERE user_id = :user_id AND lastViewedNews < :lastViewedNews",
-	[ "user_id": $userData['user_id'],
+	"UPDATE user_list SET lastViewedNews = :viewedNews  WHERE user_id = :user_id AND lastViewedNews < :viewedNews",
+	[ "user_id" => $userData['user_id'],
+	  "viewedNews" => $curr['blog_id'] ]);
 
 /* Echo this news */
 echo "<article>
