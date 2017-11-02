@@ -1,4 +1,36 @@
 <?php
+$noscript=true;
+include_once('gvars.php');
+?>
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+	body {
+		font-family: 'Titillium Web', sans-serif;
+		cursor: url(<?php echo $cdnURL; ?>img/mouse_cursor.png), auto;
+		color: white;
+		background-color: transparent !important;
+
+		padding: 2em;
+	}
+
+	h2 {
+		text-align: center;
+	}
+
+	img {
+		max-width: calc(100vw - 2em);
+	}
+
+	.older {
+		float: left;
+	}
+	.newer {
+		float: right;
+	}
+</style>
+
+<?php
 if(!isset($_GET['n'])) {
 	die();
 }
@@ -55,11 +87,8 @@ echo "<article>
 
 /* Prev/Next */
 if($prev != -1) {
-	echo '<a href="news.php?n='.$prev.'">'.OLDER_NEWS.'</a>';
-}
-if($prev != -1 && $next != -1) {
-	echo " - ";
+	echo '<a class="older" href="news.php?n='.$prev.'">'.OLDER_NEWS.'</a>';
 }
 if($next != -1) {
-	echo '<a href="news.php?n='.$next.'">'.NEWER_NEWS.'</a>';
+	echo '<a class="newer" href="news.php?n='.$next.'">'.NEWER_NEWS.'</a>';
 }
