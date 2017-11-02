@@ -1,7 +1,7 @@
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !(.*)\.(css|jpg|png|gif|js|ttf|ico|mp3|map|xml)$
-RewriteRule ^(.*)$ index.php/?n=$1 [L]
+RewriteRule ^(.*)$ index.php?route=/$1 [QSA,L]
 
 # Client Cache
 <ifmodule mod_expires.c>
