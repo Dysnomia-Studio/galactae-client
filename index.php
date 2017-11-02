@@ -5,7 +5,7 @@ include_once('gvars.php');
 <link rel="shortcut icon" type="image/png" href="<?php echo $cdnURL; ?>img/favicon.png"/>
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
 <?php
-if(isset($db)) { //Maybe we don't have SQL connection ...
+if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
 	// No PHPSESSID
 	if(!(isset($_COOKIE['galactae-phpsessid']))) {
 		echo '<script> window.location="https://galactae.eu/login"; </script>';
@@ -13,7 +13,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	// SQL Get User Data
-	$sess_data = $db->getCondContent("user_session",[
+	$sess_data = $sqlDB->getCondContent("user_session",[
 		["user_session_uid", $_COOKIE['galactae-phpsessid'], "str"]
 	],0,1,"user_id"); 
 	
@@ -22,7 +22,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 	
 	if(isset($sess_data['user_id']) && isset($sess_data['user_session_expiration']) && ((int) $sess_data['user_session_expiration'] > time())) {
-		$userData = $db->getCondContent("user_list",[
+		$userData = $sqlDB->getCondContent("user_list",[
 			["user_id", $sess_data['user_id'], "int"]
 		],0,1,"user_id");
 
@@ -39,7 +39,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	// SQL Get Server Data
-	$srv_data = $db->getCondContent("server_list",[
+	$srv_data = $sqlDB->getCondContent("server_list",[
 		["server_name", $dbname, "str"]
 	],0,1,"server_name");
 
@@ -48,7 +48,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==1) {
-		$userPrivileges = $db->getCondContent("user_privileges",[
+		$userPrivileges = $sqlDB->getCondContent("user_privileges",[
 			["user_id",$userData['user_id'],"int"],
 			["server_name",$dbname,"str"]
 		],0,1000,"server_name");
@@ -65,7 +65,7 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 	}
 
 	// SQL Get User game id Data
-	$data2 = $db->getCondContent("user_game_id",[
+	$data2 = $sqlDB->getCondContent("user_game_id",[
 		["user_id",$userData['user_id'],"int"],
 		["server_name",$dbname,"str"]
 		],0,1,"user_id");
@@ -97,8 +97,12 @@ if(isset($db)) { //Maybe we don't have SQL connection ...
 		$currentname = str_replace(".htm", "", $currentname);
 		$currentname = str_replace("/", "", $currentname);
 
+		/* Whitelist of other files */
 		if($currentname=="ranks") {
 			include_once('ranks.php');
+			die();
+		} elseif($currentname=="news") {
+			include_once('news.php');
 			die();
 		}
 
