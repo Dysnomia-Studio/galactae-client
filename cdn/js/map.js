@@ -1,6 +1,7 @@
 // Stars: 4.8 to 12 em
-// in XML from 15 to 37
-var STAR_SIZE_COEF = 12 / 37;
+// in XML from 0 to 37
+var STAR_SIZE_BASE = 4;
+var STAR_SIZE_COEF = 9 / 37;
 
 // Planets: 4 to 15 em
 var PLANET_SIZE_BASE = 3;
@@ -118,7 +119,7 @@ class map {
 		for(var i=0; i< starsXML.length; i++) {
 			stars[i] = {};
 			stars[i].address = $(starsXML[i]).attr('id');
-			stars[i].size    = (STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('size')));
+			stars[i].size    = (STAR_SIZE_BASE + STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('size')));
 			stars[i].type    = $(starsXML[i]).attr('type');
 		}
 
