@@ -78,11 +78,12 @@ function LoadIt() {
 <meta name="keywords" content="<?php echo META_KEYS; ?>">
 <meta name="description" content="<?php echo META_DESC; ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php if(!$config['website_css_disabled']) { ?>
+
 <link rel="shortcut icon" type="image/png" href="<?php echo $config['website_favicon']; ?>"/>
-<?php } ?>
+<?php if(!$config['website_css_disabled']) { ?>
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $config['website_css']; ?>"/>
 <?php
+}
 echo $config['website_custom_head'];
 ?>
 </head>
