@@ -1,4 +1,5 @@
 <?php
+var_dump($_GET);
 if(!isset($_GET['n'])) {
 	die();
 }
