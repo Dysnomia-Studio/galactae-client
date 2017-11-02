@@ -36,4 +36,6 @@
 	define('PORTRAIT_ERROR','You need a screen in landscape orientation to play.');
 	define('CREATED_BY','Created by');
 	define('SOON_AVAILABLE','Soon Available ...');
+	define('OLDER_NEWS','Older');
+	define('NEWER_NEWS','Newer');
 ?>

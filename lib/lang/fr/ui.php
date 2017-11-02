@@ -36,4 +36,6 @@
 	define('PORTRAIT_ERROR','Il est necessaire d\'avoir un ecran en orientation paysage pour pouvoir jouer');
 	define('CREATED_BY','Crée par');
 	define('SOON_AVAILABLE','Bientot Disponible ...');
+	define('OLDER_NEWS','Plus ancien');
+	define('NEWER_NEWS','Plus recent');
 ?>
