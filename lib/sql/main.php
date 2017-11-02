@@ -301,11 +301,11 @@ class sqlInterface {
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	public function selectQuery($query,$bindValue,$oneResult=false) {
+	public function selectQuery($queryString,$bindValue,$oneResult=false) {
 
-		if(is_string($query)&&is_array($bindValue)&&is_bool($oneResult)) {
+		if(is_string($queryString)&&is_array($bindValue)&&is_bool($oneResult)) {
 
-			$query = $this->bd->prepare($query);
+			$query = $this->bd->prepare($queryString);
 
 			foreach($bindValue as $name => $value) {
 				if(is_int($value) && is_bool($value)) {
@@ -349,10 +349,10 @@ class sqlInterface {
 	 * @param      <type>  $query      The custom query
 	 * @param      <type>  $bindValue  The binded value
 	 */
-	public function updateQuery($query,$bindValue) {
-		if(is_string($query)&&is_array($bindValue)) {
+	public function updateQuery($queryString,$bindValue) {
+		if(is_string($queryString)&&is_array($bindValue)) {
 
-			$query = $this->bd->prepare($query);
+			$query = $this->bd->prepare($queryString);
 
 			foreach($bindValue as $name => $value) {
 				if(is_int($value) && is_bool($value)) {
