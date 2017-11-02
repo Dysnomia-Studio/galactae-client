@@ -48,6 +48,7 @@ class ui {
 		ui.fleet = false;
 		ui.chat = ($('#hud-chat').css('display')=="block");
 		ui.ranks = false;
+		ui.news = false;
 
 		ui.mouseStatus = [0,0,0,0];
 
@@ -92,6 +93,11 @@ class ui {
 		$("#hud-ranks-close").click(function() {
 			ui.closeTab("#hud-ranks");
 			ui.ranks = false;
+		});
+
+		$("#hud-news-close").click(function() {
+			ui.closeTab("#hud-news");
+			ui.news = false;
 		});
 
 		//Bonus Quotidien
