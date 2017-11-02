@@ -313,8 +313,8 @@
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
 </div>
 <?php /* News */
-$lastNews = $sqlDb->getCondContent('announces',
-	["onGame",1,"int"],
+$lastNews = $sqlDB->getCondContent('announces',
+	[ ["onGame",1,"int"] ],
 	0,1,"blog_id DESC");
 
 if(!isset($lastNews[0]) || !isset($lastNews[0]['blog_id'])) {
