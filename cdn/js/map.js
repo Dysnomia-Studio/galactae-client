@@ -1,5 +1,6 @@
-// Stars: 8 to 35 em
-var STAR_SIZE_BASE = 8;
+// Stars: 4 to 15 em
+// in XML from 15 to 37
+var STAR_SIZE_COEF = 15 / 37;
 
 // Planets: 4 to 15 em
 var PLANET_SIZE_BASE = 3;
@@ -117,9 +118,11 @@ class map {
 		for(var i=0; i< starsXML.length; i++) {
 			stars[i] = {};
 			stars[i].address = $(starsXML[i]).attr('id');
-			stars[i].size    = (STAR_SIZE_BASE + $(starsXML[i]).attr('size') + parseFloat(stars[i].size));
+			stars[i].size    = (STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('size')));
 			stars[i].type    = $(starsXML[i]).attr('type');
 		}
+
+		console.info(stars);
 
 		var planets = [];
 		var planetsXML = $(systemXML).find("planet");
@@ -135,6 +138,7 @@ class map {
 		 * Stars drawing
 		 */
 		var firstPlanet = 0; // var needed to know where to place the planets
+		var orbitSize = [];
 
 		// Sort by size 
 		stars.sort(function(a,b) {
@@ -185,22 +189,22 @@ class map {
 				$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
 
 				/* Orbit */
-				$("#" + stars[i].address).css("height","" + orbitSize[i] + "em");
-				$("#" + stars[i].address).css("width","" + orbitSize[i] + "em");
+				$("#" + stars[i].address).css("height","" + orbitSize[i] + "rem");
+				$("#" + stars[i].address).css("width","" + orbitSize[i] + "rem");
 
-				$("#" + stars[i].address).css("margin-top","-" + (orbitSize[i]/2) + "em");
-				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "em");
+				$("#" + stars[i].address).css("margin-top","-" + (orbitSize[i]/2) + "rem");
+				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "rem");
 
 				/* Star Pos */
 				var orbitDuration = orbitSize[i] * 36; // in seconds
 				var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
-				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "em * " + Math.sin(posAng) + "))");
-				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "em * " + Math.cos(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "rem * " + Math.sin(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "rem * " + Math.cos(posAng) + "))");
 			}
 
 			// Set Size
-			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
+			$("#" + stars[i].address).css("font-size","" + stars[i].size + "rem");
 		}
 
 	
