@@ -1,4 +1,8 @@
 <?php
+if(!isset($_GET['n')) {
+	die();
+}
+
 $news_needed = htmlspecialchars(htmlentities($_GET['n']));
 
 if(!is_int((int) $news_needed)) {
