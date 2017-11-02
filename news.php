@@ -9,9 +9,11 @@ if(!is_int((int) $news_needed)) {
 	die();
 }
 
+$limit = ($news_needed<10)?0:($news_needed - 10);
+
 $newsList = $sqlDB->selectQuery(
 	"SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT :searched_id, 10",
-	[ "searched_id" => ($news_needed - 10) ]);
+	[ "searched_id" => $limit ]);
 
 var_dump($newsList);
 
