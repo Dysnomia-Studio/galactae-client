@@ -106,18 +106,18 @@ class map {
 			return;
 		}
 
-		// Get XML
-		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
 		map.currentMap = "system";
-
 		$('#hud-map-system-solarFront').html("");
+
+		// Parse XML
+		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
 
 		var stars = [];
 		var starsXML = $(systemXML).find("star");
 		for(var i=0; i< starsXML.length; i++) {
 			stars[i] = {};
 			stars[i].address = $(starsXML[i]).attr('id');
-			stars[i].size    = $(starsXML[i]).attr('size');
+			stars[i].size    = (STAR_SIZE_BASE + $(starsXML[i]).attr('size') + parseFloat(stars[i].size));
 			stars[i].type    = $(starsXML[i]).attr('type');
 		}
 
@@ -131,67 +131,51 @@ class map {
 			planets[i].gtype   = $(planetsXML[i]).attr('gtype');
 		}
 
+		/**
+		 * Stars drawing
+		 */
+		var firstPlanet = 0; // var needed to know where to place the planets
+
+		// Sort by size 
+		stars.sort(function(a,b) {
+			if(a.size == b.size) {
+				return 0;
+			} else if(a.size > b.size) {
+				return -1;
+			} 
+			return 1;
+		});
 		
-		// !! Percentage of solar system size !! \\
-		var firstPlanet = 0;
+		// Calc star positions for ...
+		if(stars.length == 1) { // one star
+			orbitSize[0] = 0;
 
-		// Star position
-		if(stars.length > 1) { // If multiple stars
-			// Classons les etoiles et placons les sur leurs orbites
-			var orbitSize = [];
+			firstPlanet = stars[0].size * 1.5;
+		} else if(stars.length == 2) { // two stars
+			// Si c'est les memes gTypes (naine et naine OU geante et geante), et on exclue les supergeantes
+			if(stars[0].type.substr(-5) === stars[1].type.substr(-5) && 
+				stars[0].type.substr(-10) !== "SuperGiant" && 
+				stars[1].type.substr(-10) !== "SuperGiant") {
 
-		    if(stars.length == 2) { // 2 etoiles
-				// Si c'est les memes gTypes (naine et naine OU geante et geante), et on exclue les supergeantes
-				if(stars[0].type.substr(-5) === stars[1].type.substr(-5) && 
-					stars[0].type.substr(-10) !== "SuperGiant" && 
-					stars[1].type.substr(-10) !== "SuperGiant") {
+				orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * 1.5;
+			} else {
+				orbitSize[0] = 0;
 
-					orbitSize[0] = orbitSize[1] = 8;
-					firstPlanet = 20;
-				} else { // Si ce sont des etoiles differentes
-					// Sort by size 
-				    stars.sort(function(a,b) {
-				    	if(a.size == b.size) {
-				    		return 0;
-				    	} else if(a.size > b.size) {
-				    		return -1;
-				    	} 
-				    	return 1;
-				    });
-
-				    // On place la premiere en 0
-				    orbitSize[0] = 0;
-
-				    // et la seconde en orbite
-				    orbitSize[1] = 15;
-
-				    // enfin la position de la premiere planete en orbite autour
-				    firstPlanet = 28;
-				}
-			} else { // 3 etoiles
-				// On cherche si les 3 sont du meme gType
-				
-				// sinon si 2 sont du meme type, qui est plus gros que la 3e
-
-				// sinon si 2 sont du meme type, qui est plus petit que la 3e
-
-				// sinon on sort par taille
+				orbitSize[1] = stars[0] * 1.5 + stars[1] * 0.75;
 			}
 
-			// @ADD: faire en sorte que 2 etoiles sur une meme orbite soient opposées
-			// @ADD: meilleurs placements des orbites
+			firstPlanet =  orbitSize[1] + stars[1].size * 0.75;
+		} else { // 3 stars
 
-			// Enfin on genere les étoiles à leur place
-			for(var i=0; i<stars.length; i++) {
-				if(orbitSize[i]==0) {
-					// Create DOM
-					$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
-				} else {
-					$("#hud-map-system-solarFront").append('<div class="orbit" id="' + stars[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>');	
-				}
+		}
 
-				// Set Size
-				$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
+		// Then, we place it in HTML
+		for(var i=0; i<stars.length; i++) {
+			if(orbitSize[i]==0) {
+				// Create DOM
+				$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
+			} else {
+				$("#hud-map-system-solarFront").append('<div class="orbit" id="' + stars[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>');	
 
 				// Set Orbit, star position and anim duration
 
@@ -201,92 +185,25 @@ class map {
 				$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
 
 				/* Orbit */
-				$("#" + stars[i].address).css("height","" + orbitSize[i] + "vh");
-				$("#" + stars[i].address).css("width","" + orbitSize[i] + "vw");
+				$("#" + stars[i].address).css("height","" + orbitSize[i] + "em");
+				$("#" + stars[i].address).css("width","" + orbitSize[i] + "em");
 
-				$("#" + stars[i].address).css("margin-top","-" + (orbitSize[i]/2) + "vh");
-				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "vw");
+				$("#" + stars[i].address).css("margin-top","-" + (orbitSize[i]/2) + "em");
+				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "em");
 
 				/* Star Pos */
 				var orbitDuration = orbitSize[i] * 36; // in seconds
 				var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
-				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "vh * " + Math.sin(posAng) + "))");
-				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "vw * " + Math.cos(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "em * " + Math.sin(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "em * " + Math.cos(posAng) + "))");
 			}
-		} else { 
-			// Only a star
-			$("#hud-map-system-solarFront").append("<div class=\"star " + stars[0].type + "\" id=\"" + stars[0].address + "\"></div>");
 
 			// Set Size
-			$("#" + stars[0].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[0].size)) + "em");
-
-			firstPlanet = 12;
+			$("#" + stars[i].address).css("font-size","" + (STAR_SIZE_BASE + parseFloat(stars[i].size)) + "em");
 		}
 
-		// For each Planet
-		for(var i=0; i<planets.length; i++) {
-			// Create DOM
-			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>');
-			$("#" + planets[i].address + " .pos .planet").append('<dl class="infos">' +
-						'<dt></dt>' + // @ADD: Name
-						'<dd></dd>' + // @ADD: Player & Address
-				'</dl>');
-
-			// Set Size
-			$("#" + planets[i].address).css("font-size","" + (PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF) + "em");
-
-			// Set Orbit, planet position and anim duration
-			// !! Percentage of solar system size !! \\
-			var orbitSize = firstPlanet + 5 + (i)*((95 - firstPlanet)/((planets.length * 0.5) + 1));
-
-			// Anim duration
-			var orbitDuration = orbitSize * 36; // in seconds
-			$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
-			$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
-			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
-
-			/* Orbit */
-			$("#" + planets[i].address).css("height","" + orbitSize + "vh");
-			$("#" + planets[i].address).css("width","" + orbitSize + "vh");
-
-			$("#" + planets[i].address).css("margin-top","-" + (orbitSize/2) + "vh");
-			$("#" + planets[i].address).css("margin-left","-" + (orbitSize/2) + "vh");
-
-			/* Planet Pos */
-			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
-			
-			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + (orbitSize/2) + "vh * " + Math.sin(posAng) + "))");
-			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + (orbitSize/2) + "vh * " + Math.cos(posAng) + "))");
-
-			/* Planet Img */
-			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
-			$("#" + planets[i].address + " .pos .planet").css("background-image","url("+cdnURL+"/img/planets/front/" + planets[i].type + ".jpg)")
-
-			/* Shadow Anim */
-			$.keyframe.define([{
-				name: "planetShadow-" + planets[i].address,
-				'0%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
-				'25%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}, // Haut
-				'25.01%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}, // Haut
-				'50%': { "box-shadow": "inset 12px 0 5px rgba(0, 0, 0, 0.5)"},
-				'75%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"}, // Bas
-				'75.01%': { "box-shadow": "inset -50px -15px 40px rgba(0, 0, 0, 0.5)"}, // Bas
-				'100%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
-			}]);
-
-			/* Set shadow anim */
-			$("#" + planets[i].address + " .pos .planet").css("animation-name","planetShadow-" + planets[i].address);
-
-			/* Place shadow anim */
-			var currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
-			$("#" + planets[i].address + " .pos .planet").css("animation-delay","" + currShadow + "s");
-
-			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
-
-
-			// @ADD: Rings & Moons
-		}		
+	
 
 		// Back button
 		$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
