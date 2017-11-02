@@ -1038,7 +1038,7 @@ a[class="research-search"] {
 	}
 
 	#hud-ranks iframe, #hud-news iframe {
-		height: 85%;
+		height: 88%;
 	}
 }
 
@@ -1057,8 +1057,7 @@ a[class="research-search"] {
 	}
 
 	#hud-ranks iframe, #hud-news iframe {
-
-
+		height: 85%;
 	}
 }
 
