@@ -83,7 +83,7 @@ echo "<article>
 	<div class=\"devblog-description\">
 		".$curr['blog_desc_'.$_SESSION['lang']]."
 	</div>
-</article>";
+</article><br/><br/>";
 
 /* Prev/Next */
 if($prev != -1) {

@@ -328,7 +328,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 }
 ?>
 	<span id="hud-news-close">X</span>
-	<iframe id="hud-news-frame" src="news.php?<?php echo $lastNews[0]['blog_id']; ?>"></iframe>
+	<iframe id="hud-news-frame" src="news.php?n=<?php echo $lastNews[0]['blog_id']; ?>"></iframe>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
