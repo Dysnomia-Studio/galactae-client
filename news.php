@@ -18,6 +18,7 @@ $expire = time() - 600; // 10 min
 if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
 } else {
+	ob_start();
 	?>
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
