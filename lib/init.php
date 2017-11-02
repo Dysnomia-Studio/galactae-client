@@ -20,7 +20,8 @@ function LoadIt() {
 	global $config;
 	
 	/* Create global vars */
-	global $db;
+	global $sqlDB;
+	global $mongoDB;
 	global $lang;
 	global $user;
 
@@ -31,12 +32,15 @@ function LoadIt() {
 		}
 	}
 	/* SQL Launch */
-	$db = ($config['module_sql'])?new Database($config['sql_host'],$config['sql_database'],$config['sql_username'],$config['sql_password']):null;
+	$sqlDB = ($config['module_sql'])?new sqlInterface($config['sql_host'],$config['sql_database'],$config['sql_username'],$config['sql_password'],$config['sql_port']):null;
+
+	/* Mongo Launch */
+	$mongoDB = ($config['module_mongodb'])?new mongoInterface($config['mongo_host']):null;
 
 	/* Translate */
 	$lang = ($config['module_lang'])?new Language():null;
 
-	/* For no bugs */
+	/* If not translation, we force some constants */
 	if(!$config['module_lang']) {
 		define('META_KEYS',$config['website_keywords']);
 		define('META_DESC',$config['website_desc']);
@@ -55,24 +59,37 @@ function LoadIt() {
 		$_SESSION['default-maxperpage'] = $config['website_default-maxperpage'];
 	}
 
-	/* Cookies prevention panel */
-	if($config['module_cookies']) {
-		drawCookiePreventionPanel();
+	echo "<title>".$config['website_name']."</title>";
+
+	if(!isset($config['website_css']) || $config['website_css']=="") {
+		$config['website_css'] = "./lib/css/style.css";
 	}
 
-	echo "<title>".$config['website_name']."</title>";
+	if(!isset($config['website_favicon']) || $config['website_favicon']=="") {
+		$config['website_favicon'] = "./img/favicon.png";
+	}
+
+	if(isset($_config['website_theme_color']) && (strlen($_config['website_theme_color'])==7 || strlen($_config['website_theme_color'])==4)) {
+		echo '<meta name="theme-color" content="'.$_config['website_theme_color'].'">';
+	}
 ?>
 <meta charset="UTF-8">
 <!-- On prepare le charset , les mots clés , le fichier css et l'icone du site -->
 <meta name="keywords" content="<?php echo META_KEYS; ?>">
 <meta name="description" content="<?php echo META_DESC; ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="<?php echo $config['website_favicon']; ?>"/>
+<link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $config['website_css']; ?>"/>
 <?php
 echo $config['website_custom_head'];
 ?>
 </head>
 <body>
 <?php
+	/* Cookies prevention panel */
+	if($config['module_cookies']) {
+		drawCookiePreventionPanel();
+	}
 }
 
 LoadIt();
