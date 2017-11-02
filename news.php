@@ -3,11 +3,15 @@ if(!isset($_GET['n'])) {
 	die();
 }
 
+echo "1";
+
 $news_needed = htmlspecialchars(htmlentities($_GET['n']));
 
 if(!is_int((int) $news_needed)) {
 	die();
 }
+
+echo "2";
 
 $newsList = $sqlDB->selectQuery(
 	"SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT :searched_id, 10",
@@ -32,6 +36,9 @@ foreach ($newsList as $key => $news) {
 if($curr == [] || !isset($curr['blog_title_'.$_SESSION['lang']])) {
 	die();
 }
+
+echo "3";
+
 
 /* Say to SQL server, we seen a newer news */
 $newsList = $sqlDB->updateQuery(
