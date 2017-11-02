@@ -61,5 +61,5 @@ if($prev != -1 && $next != -1) {
 	echo " - ";
 }
 if($next != -1) {
-	echo '<a href="news.php?n='.$prev.'>'.NEWER_NEWS.'</a>';
+	echo '<a href="news.php?n='.$next.'>'.NEWER_NEWS.'</a>';
 }
