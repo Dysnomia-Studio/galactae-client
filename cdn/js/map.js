@@ -1,6 +1,6 @@
-// Stars: 4 to 15 em
+// Stars: 4.8 to 12 em
 // in XML from 15 to 37
-var STAR_SIZE_COEF = 15 / 37;
+var STAR_SIZE_COEF = 12 / 37;
 
 // Planets: 4 to 15 em
 var PLANET_SIZE_BASE = 3;
