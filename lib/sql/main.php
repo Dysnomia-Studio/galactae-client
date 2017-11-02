@@ -302,9 +302,9 @@ class sqlInterface {
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
 	public function selectQuery($queryString,$bindValue,$oneResult=false) {
-
+		echo "1";
 		if(is_string($queryString)&&is_array($bindValue)&&is_bool($oneResult)) {
-
+			echo "2";
 			$query = $this->bd->prepare($queryString);
 
 			foreach($bindValue as $name => $value) {
