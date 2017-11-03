@@ -124,8 +124,6 @@ class map {
 			stars[i].type    = $(starsXML[i]).attr('type');
 		}
 
-		console.info(stars);
-
 		var planets = [];
 		var planetsXML = $(systemXML).find("planet");
 		for(var i=0; i< planetsXML.length; i++) {
