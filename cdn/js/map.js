@@ -1,8 +1,8 @@
 // Stars: 4.8 to 12 em
 // in XML from 0 to 37
 var STAR_SIZE_BASE = 4;
-var STAR_SIZE_COEF = 9 / 37;
-var STAR_ECART = 2;
+var STAR_SIZE_COEF = 8 / 37;
+var STAR_ECART = 2.25;
 
 // Planets: 4 to 15 em
 var PLANET_SIZE_BASE = 3;
