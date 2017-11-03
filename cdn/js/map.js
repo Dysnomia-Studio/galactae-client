@@ -174,15 +174,7 @@ class map {
 
 			firstPlanet =  orbitSize[1] + stars[1].size * STAR_ECART/2;
 		} else { // 3 stars
-			// Same stars on center
-			if((stars[0].type.substr(-5) === stars[1].type.substr(-5) && 
-				stars[1].type.substr(-5) === stars[2].type.substr(-5)) ||
-				(stars[0].type.substr(-10) === stars[1].type.substr(-10) &&
-				stars[1].type.substr(-10) === stars[2].type.substr(-10))) { // Same 3 firsts stars
-			
-				orbitSize[0] = orbitSize[1] = orbitSize[2] = (stars[0].size + stars[1].size + stars[2].size)/3 * STAR_ECART;
-
-			} else if(stars[0].type.substr(-5) !== stars[1].type.substr(-5) && 
+			if(stars[0].type.substr(-5) !== stars[1].type.substr(-5) && 
 				stars[1].type.substr(-5) === stars[2].type.substr(-5) &&
 				stars[1].type.substr(-10) !== "SuperGiant" && 
 				stars[2].type.substr(-10) !== "SuperGiant") { // Same 2 lasts stars
@@ -191,10 +183,16 @@ class map {
 
 				orbitSize[1] = orbitSize[2] = stars[0].size * STAR_ECART + (stars[1].size + stars[2].size)/2 * STAR_ECART;
 			
-			} else { // Sort by size or same 2 first stars
-				orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * STAR_ECART;
+			} else { // Sort by size or same 2 first stars or same 3 stars
+			    if(stars[0].size - stars[1].size < 2) { // If 2 biggers are almost same size
+					orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * STAR_ECART;
 
-				orbitSize[2] = 2 * orbitSize[1] + stars[2].size/2 * STAR_ECART;
+					orbitSize[2] = 2 * orbitSize[1] + stars[2].size/2 * STAR_ECART;
+				else { // If one is bigger than 2 others
+					orbitSize[0] = 0;
+
+					orbitSize[1] = orbitSize[2] = stars[0].size * STAR_ECART + (stars[1].size + stars[2].size)/2 * STAR_ECART;
+				}
 			}
 
 			firstPlanet =  orbitSize[2] + stars[1].size * STAR_ECART/2;
