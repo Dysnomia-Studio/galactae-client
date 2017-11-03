@@ -234,7 +234,7 @@ class map {
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
-			var orbitSize = i * ((0.9/planets.length) * 0.5 + 0.045); // 49.5 a 90% du systeme
+			var orbitSize = i * ((1/planets.length) * 0.5 + 0.045); // 49.5 a 90% du systeme
 
 			// Anim duration
 			var orbitDuration = (2 + orbitSize) * 360; // in seconds
@@ -252,8 +252,8 @@ class map {
 			/* Planet Pos */
 			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 			
-			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + Math.sin(posAng) + " 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
-			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + Math.cos(posAng) + " 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
+			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + Math.sin(posAng) + " * 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
+			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + Math.cos(posAng) + " * 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
 
 			/* Planet Img */
 			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
