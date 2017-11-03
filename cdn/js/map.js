@@ -188,7 +188,7 @@ class map {
 					orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * STAR_ECART;
 
 					orbitSize[2] = 2 * orbitSize[1] + stars[2].size/2 * STAR_ECART;
-				else { // If one is bigger than 2 others
+				} else { // If one is bigger than 2 others
 					orbitSize[0] = 0;
 
 					orbitSize[1] = orbitSize[2] = stars[0].size * STAR_ECART + (stars[1].size + stars[2].size)/2 * STAR_ECART;
