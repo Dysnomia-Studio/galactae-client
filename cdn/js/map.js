@@ -246,8 +246,8 @@ class map {
 			$("#" + planets[i].address).css("height","calc(" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)");
 			$("#" + planets[i].address).css("width","calc(" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)");
 
-			$("#" + planets[i].address).css("margin-top","calc(- 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
-			$("#" + planets[i].address).css("margin-left","calc(- 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
+			$("#" + planets[i].address).css("margin-top","calc(-0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
+			$("#" + planets[i].address).css("margin-left","calc(-0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
 
 			/* Planet Pos */
 			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
