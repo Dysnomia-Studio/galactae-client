@@ -165,7 +165,11 @@ class map {
 			} else {
 				orbitSize[0] = 0;
 
-				orbitSize[1] = stars[0] * STAR_ECART + stars[1] * STAR_ECART/2;
+				orbitSize[1] = stars[0].size * STAR_ECART + stars[1].size * STAR_ECART/2;
+
+				console.log(stars[0]);
+				console.log(stars[1]);
+				console.log(orbitSize[1]);
 			}
 
 			firstPlanet =  orbitSize[1] + stars[1].size * STAR_ECART/2;
@@ -185,7 +189,7 @@ class map {
 				
 				orbitSize[0] = 0;
 
-				orbitSize[1] = orbitSize[2] = stars[0] * STAR_ECART + (stars[1].size + stars[2].size)/2 * STAR_ECART;
+				orbitSize[1] = orbitSize[2] = stars[0].size * STAR_ECART + (stars[1].size + stars[2].size)/2 * STAR_ECART;
 			
 			} else { // Sort by size or same 2 first stars
 				orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * STAR_ECART;
