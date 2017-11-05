@@ -199,7 +199,7 @@ class ui {
 				ui.closeTab("#hud-ranks")
 				ui.ranks = false;
 			} else if(ui.map==true) {
-				if(map.currentMap == "" || map.currentMap = "galaxy") {
+				if(map.currentMap == "" || map.currentMap == "galaxy") {
 					map.closeTab();
 				} else {
 					map.backToParent();
