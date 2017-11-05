@@ -199,7 +199,12 @@ class ui {
 				ui.closeTab("#hud-ranks")
 				ui.ranks = false;
 			} else if(ui.map==true) {
-				map.closeTab();
+				if(map.currentMap == "" || map.currentMap = "galaxy") {
+					map.closeTab();
+				} else {
+					map.backToParent();
+				}
+				
 			} else if(ui.buildPanel!=-1) {
 				ui.buildPanelHide(); // Ferme la vue du batiment
 			}
