@@ -172,6 +172,7 @@ var researchBonus = {
 	cp_mecanisation: -0.05,
 	cp_tracteur: 	 -0.05,
 	cp_materielTp: 	 -0.1,
+	cp_molecular_compression: 1.1,
 };
 
 /**

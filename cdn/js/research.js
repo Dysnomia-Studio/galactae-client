@@ -106,6 +106,7 @@ class research {
 			cp_tracteur: 	 	{ cost: 150, parents: ["industrialistion"] },
 			cp_materielTp: 		{ cost: 350, parents: ["cp_tracteur","misc_advTelemetrie"] },
 			cp_dbRaffinage: 	{ cost: 100, parents: ["industrialistion"] },
+			cp_molecular_compression: 	{ cost: 180, parents: ["industrialistion","misc_phyQuantique"] },
 			// Armes
 			wep_railgun:		{ cost: 50, parents: ["phyContemporaine"] },
 			wep_nuke:			{ cost: 180, parents: ["wep_railgun"] },

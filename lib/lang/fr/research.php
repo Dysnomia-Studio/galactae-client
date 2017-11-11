@@ -20,6 +20,7 @@
 		cp_tracteur:		{ name: "Rayon Tracteur", desc: "-5% de temps de construction pour unités et bâtments spatiaux" },
 		cp_materielTp:		{ name: "Teleportation de materiel", desc: "-10% de temps de construction pour unités et bâtments spatiaux" },
 		cp_dbRaffinage:		{ name: "Double raffinage", desc: "Deux fois plus de chance de trouver des minerais rares." },
+		cp_molecular_compression: { name: "Compression moleculaire", desc: "Augmente sensiblement la capacité de stockage des solides et gaz." },
 		// Armes
 		wep_railgun:		{ name: "Railguns", desc: "" },
 		wep_nuke:			{ name: "Armes nucléaires", desc: "" },
