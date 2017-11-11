@@ -301,15 +301,15 @@ class sqlInterface {
 	 *
 	 * @return     array|boolean  ( description_of_the_return_value )
 	 */
-	public function selectQuery($queryString,$bindValue,$oneResult=false) {
-		if(is_string($queryString)&&is_array($bindValue)&&is_bool($oneResult)) {
-			$query = $this->bd->prepare($queryString);
+	public function selectQuery($query,$bindValue,$oneResult=false) {
+
+		if(is_string($query)&&is_array($bindValue)&&is_bool($oneResult)) {
+
+			$query = $this->bd->prepare($query);
 
 			foreach($bindValue as $name => $value) {
-				if(is_int($value)) {
+				if(is_int($value) && is_bool($value)) {
 					$pdoType = PDO::PARAM_INT;
-				} elseif(is_bool($value)) {
-					$pdoType = PDO::PARAM_BOOL;
 				} else {
 					$pdoType = PDO::PARAM_STR;
 				}
@@ -317,22 +317,18 @@ class sqlInterface {
 				$query->bindValue(':'.$name,$value,$pdoType);
 			}
 
-			$query->execute();
-
 			if($oneResult) {
 				$data = $query->fetch();
 				$query->CloseCursor();
-
 				return $data;
 			} else {
+				$query->execute();
 				$data = array();
 				$i = 0;
-
 				while($data1 = $query->fetch()) {
 					$data[$i] = $data1;
 					$i++;
 				}
-
 				$query->CloseCursor();
 
 				return $data;	
@@ -348,10 +344,10 @@ class sqlInterface {
 	 * @param      <type>  $query      The custom query
 	 * @param      <type>  $bindValue  The binded value
 	 */
-	public function updateQuery($queryString,$bindValue) {
-		if(is_string($queryString)&&is_array($bindValue)) {
+	public function updateQuery($query,$bindValue) {
+		if(is_string($query)&&is_array($bindValue)) {
 
-			$query = $this->bd->prepare($queryString);
+			$query = $this->bd->prepare($query);
 
 			foreach($bindValue as $name => $value) {
 				if(is_int($value) && is_bool($value)) {
