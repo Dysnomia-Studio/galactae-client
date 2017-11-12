@@ -5,7 +5,7 @@ function kick(msg,time=0,canBeCanceled=false) {
 
 	if(msg!="" && translate['messages'][msg] != undefined) {
         message = message = translate['messages'][msg];
-    else if(msg==undefined) {
+    } else if(msg==undefined) {
         message = "";
     }
 
