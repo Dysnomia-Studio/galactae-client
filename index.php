@@ -22,6 +22,11 @@ if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
 	}
 	
 	if(isset($sess_data['user_id']) && isset($sess_data['user_session_expiration']) && ((int) $sess_data['user_session_expiration'] > time())) {
+		if(!isset($sess_data['user_agent']) || $sess_data['user_agent'] != $_SERVER['HTTP_USER_AGENT']) {
+			echo '<script> window.location="https://galactae.eu/login"; </script>';
+			die();
+		}
+
 		$userData = $sqlDB->getCondContent("user_list",[
 			["user_id", $sess_data['user_id'], "int"]
 		],0,1,"user_id");
