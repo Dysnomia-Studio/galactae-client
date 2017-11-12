@@ -1,19 +1,21 @@
 var connectTimeout = -1;
 
-function kick(msg,time=3000,canBeCanceled=false) {
-	if(msg!="") {
-        let message = translate['messages'][msg];
+function kick(msg,time=0,canBeCanceled=false) {
+    var message;
 
-        if(message==undefined) {
-            message = msg;
-        }
+	if(msg!="" && translate['messages'][msg] != undefined) {
+        message = message = translate['messages'][msg];
+    else if(msg==undefined) {
+        message = "";
+    }
 
-		chat.sm(msg);
-		ui.drawMessage(msg);
-	}
+    if(message!="") {
+        chat.sm(message);
+        ui.drawMessage(message);    
+    }
 	
 	connectTimeout = setTimeout(function() {
-		window.location.href = "https://galactae.eu/portal";
+		window.location.href = "https://galactae.eu/portal?kickmsg=" + message;
 	},time);
 
 	if(!canBeCanceled) {
