@@ -192,7 +192,7 @@ class ui {
 				ui.menu = false;
 			} else if(ui.research==true) {
 				research.closeUI();
-			} else if(ui.fleet==true) {
+			} else if(ui.fleet==true && !preventFleetHUDClosing) {
 				ui.closeTab("#hud-fleet");
 				ui.fleet= false;
 			} else if(ui.ranks==true) {

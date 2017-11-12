@@ -1,3 +1,5 @@
+var preventFleetHUDClosing = false;
+
 class units {
 	static sync() {
 		socket.emit('units-ask-data', userData);
@@ -12,10 +14,12 @@ class units {
 	static loadUI() {
 		// Fleet panels close events
 		$("#hud-fleet-close").click(function() {
+			if(preventFleetHUDClosing) { return; }
 			ui.closeTab("#hud-fleet");
 			ui.fleet = false;
 		});
 		$("#fleet-type-create-close").click(function() {
+			preventFleetHUDClosing = true;
 			ui.closeTab("#fleet-type-create");
 		});
 		$("#fleet-ship-build").click(function() {
@@ -103,6 +107,8 @@ class units {
 		$('#fleet-type-create-shipShape').html("<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>");
 
 		units.changeShipType();
+
+		preventFleetHUDClosing = true;
 
 		$("#fleet-type-create").css('display','block');
 	}
@@ -278,6 +284,7 @@ class units {
 		
 		if(errors==0) {
 			ui.closeTab("#fleet-type-create",false);
+			preventFleetHUDClosing = false;
 			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
 		} else {
 			ui.drawMessage(errorMessage); // @ADD: Translation
