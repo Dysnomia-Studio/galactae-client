@@ -7,6 +7,8 @@ function kick(msg,time=0,canBeCanceled=false) {
         message = message = translate['messages'][msg];
     } else if(msg==undefined) {
         message = "";
+    } else {
+        message = msg;
     }
 
     chat.sm(msg);
