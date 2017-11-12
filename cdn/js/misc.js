@@ -9,11 +9,9 @@ function kick(msg,time=0,canBeCanceled=false) {
         message = "";
     }
 
-    if(message!="") {
-        chat.sm(message);
-        ui.drawMessage(message);    
-    }
-	
+    chat.sm(msg);
+    ui.drawMessage(msg);    
+
 	connectTimeout = setTimeout(function() {
 		window.location.href = "https://galactae.eu/portal?kickmsg=" + message;
 	},time);
