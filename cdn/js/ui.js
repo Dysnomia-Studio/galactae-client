@@ -455,7 +455,7 @@ class ui {
 			}
 		});
 		$("#hud-bottom-button-units").click(function() {
-			if(ui.fleet) {
+			if(ui.fleet && !preventFleetHUDClosing) {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
 			} else {

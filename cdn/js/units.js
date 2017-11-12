@@ -19,7 +19,7 @@ class units {
 			ui.fleet = false;
 		});
 		$("#fleet-type-create-close").click(function() {
-			preventFleetHUDClosing = true;
+			preventFleetHUDClosing = false;
 			ui.closeTab("#fleet-type-create");
 		});
 		$("#fleet-ship-build").click(function() {
