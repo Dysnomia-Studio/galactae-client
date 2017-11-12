@@ -454,7 +454,7 @@ class ui {
 				}
 			}
 		});
-		$("#hud-bottom-button-fleet").click(function() {
+		$("#hud-bottom-button-units").click(function() {
 			if(ui.fleet) {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
