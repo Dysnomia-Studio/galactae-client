@@ -1153,29 +1153,18 @@ a[class="research-search"] {
 	width: 200px;
 	height: 100%;
 }
-#fleet-build-create, #fleet-build-upgrade, #fleet-build-message {
-	width: 210px;
-}
-#fleet-build-upgrade, #fleet-build-message {
+#fleet-build-create, #fleet-build-upgrade, #fleet-build-message, #fleet-build-count {
+	width: 100%;
 	display: block;
-	position: absolute;
-	bottom: 25px;
-	right: 25px;
+	margin: 0.2em;
 }
 #fleet-build-cost {
 	color: #EEEEEE;
 	font-size: 0.9em;
-	padding: 10px;
-	width: 150px;
-    position: absolute;
-    bottom: 130px;
+	margin: 0.2em;
+	height: calc(100% - 3em - 3em - 3em - 0.6em); /* Total - Bouton du dessus - Count - Bouton du dessous - somme des padding */
 }
-#fleet-build-count {
-	position: absolute;
-    bottom: 80px;
-    width: 210px;
-}
-#fleet-build-count::-webkit-inner-spin-button {
+#fleet-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
   -webkit-appearance: none;
 }
 #fleet-build-list-empty {
