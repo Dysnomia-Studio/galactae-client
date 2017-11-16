@@ -38,12 +38,12 @@
 		"SHIP_TYPE": "Type",
 		"SHIP_SHAPE": "Modèle",
 		// Types names
-		"SHIP_SAT": "Satellites",
-		"SHIP_BATTLECRUISER": "Croiseurs",
-		"SHIP_CUIRASSE": "Cuirassés",
-		"SHIP_FIGHTER": "Chasseurs",
-		"SHIP_CORVET": "Corvettes",
-		"SHIP_CARRIER": "Transporteurs",
+		"SHIP_SAT": "Satellite",
+		"SHIP_BATTLECRUISER": "Croiseur",
+		"SHIP_CUIRASSE": "Cuirassé",
+		"SHIP_FIGHTER": "Chasseur",
+		"SHIP_CORVET": "Corvette",
+		"SHIP_CARRIER": "Transporteur",
 		// Shapes names
 		"SHIP_SAT_AG1": "Satellite AG-I",
 		"SHIP_SAT_AG2": "Satellite AG-II",

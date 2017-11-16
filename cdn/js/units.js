@@ -68,7 +68,7 @@ class units {
 						content+= "<tr id=\""+ i +"\">";
 					}
 
-					content += "<td>" + units.list[i].name + "</td><td>" + unitTypes[units.list[i].shipType] + "</td><td>" + units.list[i].note + "<td>" + units.list[i].owned + "</td></tr>";
+					content += "<td>" + units.list[i].name + "</td><td>" + fleetTranslate[units.list[i].shipType] + "</td><td>" + units.list[i].note + "<td>" + units.list[i].owned + "</td></tr>";
 				}
 			}
 
