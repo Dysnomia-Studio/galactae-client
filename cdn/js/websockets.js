@@ -41,6 +41,7 @@ class webSockets {
 		//Sync the units data
 		socket.on('units-recieve-data',function(data) { 
 			units.refresh(data);
+			console.info(data);
 			loadScreen.complete();
 		});
 
