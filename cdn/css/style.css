@@ -834,13 +834,28 @@ select, input {
 	color: #EEEEEE;
 	height: 40px;
 }
+@media all and (min-width: 900px) {
+	#hud-fleet {
+		position: fixed;
+		left: 10vw;
+		top: calc((100vh - 45vw)/2);
+		width: 80vw;
+		height: 45vw;
+	}
+}
+@media all and (max-width: 900px) {
+	#hud-fleet {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
+	}
+}
+
 #hud-fleet {
 	display: none;
-	position: fixed;
-	left: 10vw;
-	top: calc((100vh - 45vw)/2);
-	width: 80vw;
-	height: 45vw;
+
 	background: url(../img/ui/window.png);
 	background-repeat: no-repeat;
 	background-position: center;
