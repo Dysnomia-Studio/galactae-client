@@ -841,25 +841,29 @@ select, input {
 		top: calc((100vh - 45vw)/2);
 		width: 80vw;
 		height: 45vw;
+
+		background: url(../img/ui/window.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
 	}
 }
-@media all and (max-width: 900px) {
+@media all and (max-width: 900px) { /* Mobile and small screens*/
 	#hud-fleet {
 		position: fixed;
 		left: 0;
 		top: 0;
 		width: 100vw;
-		height: 100vh;
+		height: calc(100vh - 6vw);
+
+		padding: 3vw 0;
+
+		background-color: #0b1012;
 	}
 }
 
 #hud-fleet {
 	display: none;
-
-	background: url(../img/ui/window.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100%;
 	z-index: 100;
 }
 #fleet-type-create, #fleet-ship-build {
