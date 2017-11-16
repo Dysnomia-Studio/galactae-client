@@ -34,14 +34,14 @@ class webSockets {
 		
 		//Sync the planet data
 		socket.on('planet-recieve-data',function(data) { 
-			loadScreen.complete();
 			planet.refresh(data);
+			loadScreen.complete();
 		});
 
 		//Sync the units data
 		socket.on('units-recieve-data',function(data) { 
-			loadScreen.complete();
 			units.refresh(data);
+			loadScreen.complete();
 		});
 
 		//Sync the player data
