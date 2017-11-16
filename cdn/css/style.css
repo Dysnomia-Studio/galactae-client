@@ -1162,7 +1162,9 @@ a[class="research-search"] {
 	color: #EEEEEE;
 	font-size: 0.9em;
 	margin: 0.2em;
-	height: calc(100% - 3em - 3em - 3em - 0.6em); /* Total - Bouton du dessus - Count - Bouton du dessous - somme des padding */
+	height: calc(100% - 2em - 3em - 3em - 3em - 0.6em); /* Total - Parent padding - Bouton du dessus - Count - Bouton du dessous - somme des padding */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 #fleet-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
   -webkit-appearance: none;
