@@ -807,7 +807,7 @@ select, input {
 .ul-choice-line li:last-child { border: 0; }
 .fleet-ul1 {
 	margin-left: 25px;
-	width: calc(100% - 75px);
+	width: calc(100% - 55px);
 }
 #fleet-orbit, #fleet-move, #fleet-out, #fleet-type-create, #fleet-ship-build { /* Tabs hidden by default */
 	display: none;
@@ -1075,14 +1075,14 @@ a[class="research-search"] {
 /**
  * Planet - Fleet Building
  */
-#fleet-build { height: calc(100% - 50px); }
+#fleet-build { height: calc(100% - 3em); }
 .fleet-ul2 {
 	margin-left: 50px;
 	width: calc(100% - 125px);
 }
 #fleet-build-content {
-	height: calc(100% - 50px - 2em);
-	padding: 2em;
+	height: calc(100% - 3em - 2em); /* Total - Top - padding */
+	padding: 1em 2em;
 }
 #fleet-build-list, #fleet-build-info {
 	display: inline-block;
@@ -1094,9 +1094,13 @@ a[class="research-search"] {
 	height: 100%;
 	border-spacing: 0;
 }
+#fleet-build-list {
+	white-space: nowrap;
+}
 #fleet-build-list thead, #fleet-build-list tbody, #fleet-build-list tr, 
-#fleet-build-list th, #fleet-build-list td { display: block; }
-#fleet-build-list thead { max-height: 1.5em; }
+#fleet-build-list th, #fleet-build-list td { 
+	display: block; 
+}
 #fleet-build-list thead tr {
 	height: 1.5em;
 	width: 97%; /* Fallback */
@@ -1110,6 +1114,7 @@ a[class="research-search"] {
 }
 #fleet-build-list tbody {
 	padding-right: 20px;
+	width: calc(100% - 20px);
 	height: calc(100% - 1.5em);
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
