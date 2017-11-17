@@ -1102,6 +1102,7 @@ a[class="research-search"] {
 #fleet-build-content {
 	height: calc(100% - 3em - 2em); /* Total - Top - padding */
 	padding: 1em 2em;
+	user-select: none;
 }
 #fleet-build-list, #fleet-build-info {
 	display: inline-block;
@@ -1145,6 +1146,7 @@ a[class="research-search"] {
 }
 #fleet-build-list tbody tr {
 	border: 1px solid transparent;
+	cursor: pointer;
 }
 .fleet-build-list-active {
     border: 1px solid #0EC6C6 !important;
