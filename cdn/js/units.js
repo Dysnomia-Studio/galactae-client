@@ -60,10 +60,12 @@ class units {
 			$('#fleet-build-list-empty').css('display','none');
 
 			var content = "";
+			var active = true;
 			for(var i=0; i<units.list.length; i++) {
 				if(type=="SHIP_ALL" || type==units.list[i].shipType) {
-					if(i==0) {
-						content+= "<tr id=\""+ 0 +"\" class=\"fleet-build-list-active\">";
+					if(active) {
+						content+= "<tr id=\""+ i +"\" class=\"fleet-build-list-active\">";
+						active = false;
 					} else {
 						content+= "<tr id=\""+ i +"\">";
 					}
