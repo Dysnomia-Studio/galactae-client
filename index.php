@@ -37,7 +37,7 @@ if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
 			);
 		} else {
 			$sqlDB->updateContent('user_session',
-				[ ["user_session_expiration",time()+2678400"int"] ],
+				[ ["user_session_expiration",time()+2678400,"int"] ],
 				[ ["user_session_uid",$_COOKIE['galactae-phpsessid'],"str"] ]);
 		}
 	} else {
