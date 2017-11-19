@@ -55,13 +55,13 @@ class units {
 		});
 	}
 
-	static drawMain(type=-1) {
+	static drawMain(type="SHIP_ALL") {
 		if(units.list.length!=0) {
 			$('#fleet-build-list-empty').css('display','none');
 
 			var content = "";
 			for(var i=0; i<units.list.length; i++) {
-				if(type==units.list[i].shipType || type==-1) {
+				if(type=="SHIP_ALL" || type==units.list[i].shipType) {
 					if(i==0) {
 						content+= "<tr id=\""+ 0 +"\" class=\"fleet-build-list-active\">";
 					} else {
