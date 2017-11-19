@@ -27,6 +27,20 @@ if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
 			die();
 		}
 
+		if($lang->getLanguage() != $sess_data['lang']) {
+			$sqlDB->updateContent('user_session',
+				[
+				 	["user_session_expiration",time()+$expTime,"int"],
+					["user_session_lang",$sess_data['lang'],"str"] 
+				],
+				[ ["user_session_uid",$_COOKIE['galactae-phpsessid'],"str"] ]
+			);
+		} else {
+			$sqlDB->updateContent('user_session',
+				[ ["user_session_expiration",time()+$expTime,"int"] ],
+				[ ["user_session_uid",$_COOKIE['galactae-phpsessid'],"str"] ]);
+		}
+
 		$userData = $sqlDB->getCondContent("user_list",[
 			["user_id", $sess_data['user_id'], "int"]
 		],0,1,"user_id");
