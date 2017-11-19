@@ -39,6 +39,7 @@ translate["messages"] = {
 	// Research
 	"MISSING_PARENTS": "Recherches parentes manquantes",
 	"ENDED_RESEARCH": "Research unlocked",
+	"NEEDED_RESEARCH_MISSING": "You need to discover some technologies to create that ship.",
 	// Errors message
 	"PLY_NOT_FOUND": "Error: player not found",
 	"NO_PM_YOU": "Error: you can't send a private message to yourself",
