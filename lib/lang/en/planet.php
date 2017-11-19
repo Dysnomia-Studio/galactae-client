@@ -1,5 +1,9 @@
 <?php
 	// == Resources == \\
+	define('MINERALS','Raw Minerals');
+	define('POPULATION','Population');
+	define('ELECTRICITY','Electricity');
+	define('HELIUM3','Helium 3');
 	define('METAL_CATEGORY','Metal');
 	define('METAL_IRON','Iron');
 	define('METAL_ALUMINIUM','Aluminium');

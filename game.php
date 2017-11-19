@@ -93,6 +93,7 @@
 			<span class="nmb" id="population_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="population-tooltips">
+					<?php echo POPULATION; ?><br/>
 					<?php echo AVAILABLE; ?>: <span id="population-available">XXX t</span><br/>
 					<?php echo USED; ?>: <span id="population-used">XXX t</span><br/>
 					<?php echo TOTAL; ?>: <span id="population-total">XXX t</span><br/>
@@ -111,6 +112,7 @@
 			<span class="nmb" id="electricity_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="electricity-tooltips">
+					<?php echo ELECTRICITY; ?><br/>
 					<?php echo AVAILABLE; ?>: <span id="electricity-available">XXX t</span><br/>
 					<?php echo USED; ?>: <span id="electricity-used">XXX t</span><br/>
 					<?php echo TOTAL; ?>: <span id="electricity-total">XXX t</span><br/>
@@ -134,6 +136,7 @@
 			<span class="nmb" id="minerals_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="minerals-tooltips">
+					<?php echo MINERALS; ?><br/>
 					<?php echo CAPACITY; ?>: <span id="minerals-cap">XXX t</span><br/>
 					<?php echo PRODUCTION; ?>: <span id="minerals-prod">XXX t</span><br/>
 					<?php echo CONSUMPTION; ?>: <span id="minerals-cons">XXX t</span><br/>
@@ -145,6 +148,7 @@
 			<span class="nmb" id="he_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="he-tooltips">
+					<?php echo HELIUM3; ?><br/>
 					<?php echo CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
 					<?php echo PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
 				</span>
@@ -155,6 +159,7 @@
 			<span class="nmb" id="al_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="al-tooltips">
+					<?php echo METAL_ALUMINIUM; ?><br/>
 					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
 					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
 					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
@@ -166,6 +171,7 @@
 			<span class="nmb" id="fe_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="fe-tooltips">
+					<?php echo METAL_IRON; ?><br/>
 					<?php echo CAPACITY; ?>: <span id="fe-cap">XXX t</span><br/>
 					<?php echo PRODUCTION; ?>: <span id="fe-prod">XXX t</span><br/>
 					<?php echo IMPORTANCE; ?>: <span id="fe-variety">XXX t</span><br/>
@@ -177,6 +183,7 @@
 			<span class="nmb" id="ti_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="ti-tooltips">
+					<?php echo METAL_TITANIUM; ?><br/>
 					<?php echo CAPACITY; ?>: <span id="ti-cap">XXX t</span><br/>
 					<?php echo PRODUCTION; ?>: <span id="ti-prod">XXX t</span><br/>
 					<?php echo IMPORTANCE; ?>: <span id="ti-variety">XXX t</span><br/>
@@ -188,6 +195,7 @@
 			<span class="nmb" id="cu_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="cu-tooltips">
+					<?php echo METAL_COPPER; ?><br/>
 					<?php echo CAPACITY; ?>: <span id="cu-cap">XXX t</span><br/>
 					<?php echo PRODUCTION; ?>: <span id="cu-prod">XXX t</span><br/>
 					<?php echo IMPORTANCE; ?>: <span id="cu-variety">XXX t</span><br/>
