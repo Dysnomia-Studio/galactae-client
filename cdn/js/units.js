@@ -12,6 +12,8 @@ class units {
 	}
 
 	static loadUI() {
+		units.lastType = "SHIP_ALL";
+
 		// Fleet panels close events
 		$("#hud-fleet-close").click(function() {
 			if(preventFleetHUDClosing) { return; }
@@ -55,7 +57,13 @@ class units {
 		});
 	}
 
-	static drawMain(type="SHIP_ALL") {
+	static drawMain(type="") {
+		if(type=="") {
+			type = units.lastType;
+		} else {
+			units.lastType = type;
+		}
+
 		if(units.list.length!=0) {
 			$('#fleet-build-list-empty').css('display','none');
 
