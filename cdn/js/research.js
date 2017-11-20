@@ -240,24 +240,13 @@ class research {
 		$('#hud-research-content').append(content);
 
 		// Position
-		$('#' + key + '-node').css("left",  x - ($('#' + key + '-node').height())/2 );
-		$('#' + key + '-node').css("top", y - ($('#' + key + '-node').width())/2  );
+		$('#' + key + '-node').css("left",  researchPos[key][0]- ($('#' + key + '-node').height())/2 );
+		$('#' + key + '-node').css("top", researchPos[key][1] - ($('#' + key + '-node').width())/2  );
 
 		if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch!=key) {
 			$('#'+key).click(function(){
 				research.change(key);
 			});
-		}
-
-		for(var keyChild in research.list) {
-			var current = research.list[keyChild];
-
-			if(researchPos[keyChild][0] != 0) {
-				if(current.parents.length > 0 && current.parents[0]==key) {
-					research.drawNode(keyChild,researchPos[keyChild][0],researchPos[keyChild][1],key,parentCount+1);
-					continue;
-				}
-			}
 		}
 	}
 	/**
