@@ -44,12 +44,6 @@ class units {
 
 			units.drawMain($(this).attr('shipType'));
 		});
-		// Fleet Build
-		$('#fleet-build-list tbody tr').click(function() {
-			$("#fleet-build-list .fleet-build-list-active").removeClass("fleet-build-list-active"); //Retirer les classes actives
-			$(this).addClass("fleet-build-list-active"); // Activer l'onglet cliqué
-			units.selectUnit($(this).attr('id'));
-		});
 		// Fleet type create
 		$('#fleet-type-create-form').submit(function(e) {
 			 e.preventDefault();
@@ -91,6 +85,13 @@ class units {
 			$('#fleet-build-message').css('display','block');
 			$('#fleet-build-count').css('display','block');
 			$('#fleet-build-upgrade').css('display','block');
+
+			// Fleet Build
+			$('#fleet-build-list tbody tr').click(function() {
+				$("#fleet-build-list .fleet-build-list-active").removeClass("fleet-build-list-active"); //Retirer les classes actives
+				$(this).addClass("fleet-build-list-active"); // Activer l'onglet cliqué
+				units.selectUnit($(this).attr('id'));
+			});
 		} else {
 			$('#fleet-build-list').css('display','none');
 
