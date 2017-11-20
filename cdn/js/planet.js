@@ -257,21 +257,22 @@ class planet {
 
 		// Building Production (tooltips)
 		// Minerals
-		$('#minerals-cap').html(GetBetterUnit(mineralStorageBase,'t'));
-		if(planetData.resources[0]>=mineralStorageBase) {
-			$('#minerals-prod').html(GetBetterUnit(0,'t/h'));
-		} else {		
-			$('#minerals-prod').html(GetBetterUnit(mineralProdBase,'t/h'));
-		}
-
 		if((planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) && 
 			(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) && 
 			(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) && 
-			(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio)) {
-				$('#minerals-cons').html(GetBetterUnit(0,'t/h'));
-		} else {	
-			$('#minerals-cons').html(GetBetterUnit(metalProdBase,'t/h'));
+			(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio)) { // Si on a tout les metaux
+			metalProdBase = 0;
 		}
+
+		if(planetData.resources[0]<mineralStorageBase) { // Si on a tout les minerais
+			mineralProd = metalProdBase;
+		}
+
+
+		$('#minerals-cap').html(GetBetterUnit(mineralStorageBase,'t'));
+		$('#minerals-prod').html(GetBetterUnit(mineralProdBase,'t/h'));
+		$('#minerals-cons').html(GetBetterUnit(metalProdBase,'t/h'));
+
 		// Helium-3
 		$('#he-cap').html(GetBetterUnit(storageHelium,'t'));
 		if(planetData.resources[1]>=storageHelium) {
