@@ -248,6 +248,8 @@ class planet {
 		}
 
 		console.info(userData);
+		console.info(userData.research);
+		console.info(userData.research["cp_molecular_compression"]);
 		console.log(mineralStorageBase);
 		console.log(research.isSearched("cp_molecular_compression"));
 		console.log(userData.research["cp_molecular_compression"]);
