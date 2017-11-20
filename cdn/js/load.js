@@ -71,11 +71,11 @@ class loadScreen {
 			901,42,
 			1000,1001];
 		for(var i in frontPlanetList) {
-			picList.push(cdnURL + "img/planets/back/" + frontPlanetList[i] + '.jpg')
+			picList.push(cdnURL + "img/planets/front/" + frontPlanetList[i] + '.jpg')
 		}
 		var haloPlanetList = [];
 		for(var i in haloPlanetList) {
-			picList.push(cdnURL + "img/planets/back/" + haloPlanetList[i] + '.png')
+			picList.push(cdnURL + "img/planets/halo/" + haloPlanetList[i] + '.png')
 		}
 
 		var count = 0;
