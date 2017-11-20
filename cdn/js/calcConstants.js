@@ -29,7 +29,7 @@ var buildingMaxLvl = [
 	30,	// Centrales Solaires
 	25,	// Entrepôts
 	5,	// Etat Major
-	30,	// Centre de lancement
+	35,	// Centre de lancement
 	30,	// Centre de recherches
 	10,	// Radar
 	25,	// Reservoir
