@@ -247,20 +247,11 @@ class planet {
 			storageHelium = 0;
 		}
 
-		console.info(userData);
-		console.info(userData.research);
-		console.info(userData.research["cp_molecular_compression"]);
-		console.log(mineralStorageBase);
-		console.log(research.isSearched("cp_molecular_compression"));
-		console.log(userData.research["cp_molecular_compression"]);
-
 		if(research.isSearched("cp_molecular_compression")) {
 			mineralStorageBase *= researchBonus["cp_molecular_compression"];
 			metalsStorageBase *= researchBonus["cp_molecular_compression"];
 			storageHelium *= researchBonus["cp_molecular_compression"];
 		}
-
-		console.log(mineralStorageBase);
 
 		// Energy
 		energyProd = Math.round(2080000*Math.pow(planetData.Buildings[4],2) + 165000*planetData.Buildings[4] + 550000);
