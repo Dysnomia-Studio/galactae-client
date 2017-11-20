@@ -20,6 +20,7 @@
 		cp_tracteur:		{ name: "", desc: "" },
 		cp_materielTp:		{ name: "", desc: "" },
 		cp_dbRaffinage:		{ name: "", desc: "" },
+		cp_molecular_compression: { name: "", desc: "" },
 		// Armes
 		wep_railgun:		{ name: "", desc: "" },
 		wep_nuke:			{ name: "", desc: "" },

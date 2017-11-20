@@ -3,6 +3,50 @@ var RESEARCH_DIV_DISTANCE = 500;
 var RESEARCH_DIV_DELTA_DISTANCE = 100;
 var prevMouse = [0,0];
 
+var researchPos = {
+	// Noeud Central
+	researchCenter:		[5000,5000],
+	industrialistion:	[5563,5000],
+	phyContemporaine:	[4813,5333],
+	thermodynamique:	[4900,4467],
+	// Mise en orbite et propulsion
+	prop_thermique:		[4313,3933],
+	prop_vSolaire:		[3600,4250],
+	prop_ions:			[5922,4114],
+	prop_vsl:			[6918,4196],
+	prop_hyperespace:	[7800,4150],
+	prop_manoeuvre:		[4813,3433],
+	prop_advManoeuvre:	[5000,3000],
+	// Construction et production
+	cp_mecanisation:	[6000,4600],
+	cp_tracteur:		[6300,4950],
+	cp_materielTp:		[6550,5250],
+	cp_dbRaffinage:		[6100,5400],
+	cp_molecular_compression: [5450,5350],
+	// Armes
+	wep_railgun:		[5900,5700],
+	wep_nuke:			[6500,6300],
+	wep_laser:			[6600,6000],
+	wep_plasma:			[7300,6400],
+	// Mines
+	wep_mines:			[5300,6600],
+	wep_mines_nuke:		[0,0],
+	wep_mines_iem:		[4600,6100],
+	// Satellites
+	wep_sat_ag1:		[5300,7100],
+	wep_sat_ag2:		[6350,7500],
+	wep_sat_ag3:		[7329,7850],
+	// Autres recherches spatiales
+	misc_astronomie:	[5200,6200],
+	misc_telemetrie:	[6100,6200],
+	misc_advTelemetrie:	[6900,5600],
+	misc_mecStellaire:	[4000,6100],
+	misc_phySolaire:	[3700,5850],
+	misc_phyQuantique:	[4800,5850],
+	misc_calcGravit:	[4500,6500],
+	misc_em:			[4300,5600],
+};
+
 class research {
 	/**
 	 * Loader for research UI
@@ -138,7 +182,9 @@ class research {
 		$('#hud-research-content').html('<svg id="hud-research-links" width="10000px" height="10000px"></svg>');
 
 		// Create nodes
-		research.drawNode("researchCenter",10000/2,10000/2);
+		for(var key in researchPos) {
+			research.drawNode(key);
+		}
 
 		// Link Them
 		for(var key in research.list) {
@@ -162,7 +208,7 @@ class research {
 	 * @param      {number}  y       Node center position y
 	 * @param      {string}  parent  The parent
 	 */
-	static drawNode(key,x,y,parent="",parentCount=0) {
+	static drawNode(key) {
 		if( $('#'+key+'-node').length ) { return; }
 
 		// Place this node
@@ -203,48 +249,14 @@ class research {
 			});
 		}
 
-		var count = 0;
-		var countAngles = 0; 
-		var baseAngle = 0;
-
-		// Childs
-		for(var keyChild in research.list) {
-			if(research.list[keyChild].parents.length > 0 && research.list[keyChild].parents[0]==key) { count++; }
-		}
-
-		if(count==0) { return; } // No child
-
-		if(parent!="") {
-			count++;
-			//countAngles++;
-			var topParent = parseInt($('#' + parent + '-node').position().top);
-			var topChild = parseInt($('#' + key + '-node').position().top);
-			var base = (topChild - topParent) / (RESEARCH_DIV_DISTANCE + (parentCount*RESEARCH_DIV_DELTA_DISTANCE));
-			while(base>1) { base-=2; }
-			while(base<-1) { base+=2; }
-			baseAngle = Math.asin(base); 
-
-			/*if(parent=="researchCenter" || (research.list[parent]!=undefined && research.list[parent].parent !=undefined && research.list[parent].parent.indexOf("researchCenter")!==-1)) {
-				baseAngle -= Math.PI/2;
-				count*=2;
-			}*/
-			if(key!="researchCenter") {
-				//baseAngle -= Math.PI/2;
-				count*=2;
-			}
-		}
-		
-		var uniqueAngle = 2 * Math.PI / count;
-
 		for(var keyChild in research.list) {
 			var current = research.list[keyChild];
 
-			if(current.parents.length > 0 && current.parents[0]==key) {
-				var angle = (baseAngle + uniqueAngle*countAngles)%(2 * Math.PI);
-
-				research.drawNode(keyChild,x + (RESEARCH_DIV_DISTANCE + (parentCount*RESEARCH_DIV_DELTA_DISTANCE))*Math.cos(angle),y + (RESEARCH_DIV_DISTANCE + (parentCount*RESEARCH_DIV_DELTA_DISTANCE))*Math.sin(angle),key,parentCount+1);
-
-				countAngles++;
+			if(researchPos[keyChild][0] != 0) {
+				if(current.parents.length > 0 && current.parents[0]==key) {
+					research.drawNode(keyChild,researchPos[keyChild][0],researchPos[keyChild][1],key,parentCount+1);
+					continue;
+				}
 			}
 		}
 	}
