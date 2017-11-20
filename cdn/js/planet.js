@@ -272,7 +272,7 @@ class planet {
 		}
 
 		if(planetData.resources[0]<mineralStorageBase) { // Si on a tout les minerais
-			mineralProd = metalProdBase;
+			mineralProdBase = metalProdBase;
 		}
 
 
