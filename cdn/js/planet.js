@@ -250,7 +250,7 @@ class planet {
 		console.info(userData);
 		console.log(mineralStorageBase);
 		console.log(research.isSearched("cp_molecular_compression"));
-		console.log(userData.research[key]);
+		console.log(userData.research["cp_molecular_compression"]);
 
 		if(research.isSearched("cp_molecular_compression")) {
 			mineralStorageBase *= researchBonus["cp_molecular_compression"];
