@@ -247,6 +247,8 @@ class planet {
 			storageHelium = 0;
 		}
 
+		console.info(userData);
+
 		if(research.isSearched("cp_molecular_compression")) {
 			mineralStorageBase *= researchBonus["cp_molecular_compression"];
 			metalsStorageBase *= researchBonus["cp_molecular_compression"];
