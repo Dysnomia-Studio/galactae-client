@@ -271,7 +271,7 @@ class planet {
 			metalProdBase = 0;
 		}
 
-		if(planetData.resources[0]<mineralStorageBase) { // Si on a tout les minerais
+		if(planetData.resources[0]>=mineralStorageBase) { // Si on a tout les minerais
 			mineralProdBase = metalProdBase;
 		}
 
