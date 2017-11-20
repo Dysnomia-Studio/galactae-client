@@ -34,7 +34,6 @@ class loadScreen {
 			cdnURL + 'img/ui/research.png',
 			// Buildings
 			cdnURL + 'img/buildings/arrow.png',
-			cdnURL + 'img/buildings/tabs/space-tab.png',
 			// UI
 			cdnURL + 'img/ui/hud-top.png',
 			cdnURL + 'img/ui/chat-voice.png',
@@ -56,9 +55,27 @@ class loadScreen {
 		// Buildings
 		for(var i=0; i<buildingsNames.length; i++) {
 			// Icon
-			picList.push(cdnURL + "img/buildings/icons/" + buildingsNames[i] + '.png')
+			picList.push(cdnURL + "img/buildings/icons/" + buildingsNames[i] + '.png');
 			// Panel picture
-			picList.push(cdnURL + "img/buildings/desc/" + buildingsNames[i] + '.jpg')
+			picList.push(cdnURL + "img/buildings/desc/" + buildingsNames[i] + '.jpg');
+		}
+
+		// Planets
+		var backPlanetList = [0];
+		for(var i in backPlanetList) {
+			picList.push(cdnURL + "img/planets/back/" + backPlanetList[i] + '.png')
+		}
+		var frontPlanetList = [0,1,
+			101,102,103,104,105,106,107,108,109,110,111,112,
+			501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,
+			901,42,
+			1000,1001];
+		for(var i in frontPlanetList) {
+			picList.push(cdnURL + "img/planets/back/" + frontPlanetList[i] + '.jpg')
+		}
+		var haloPlanetList = [];
+		for(var i in haloPlanetList) {
+			picList.push(cdnURL + "img/planets/back/" + haloPlanetList[i] + '.png')
 		}
 
 		var count = 0;
