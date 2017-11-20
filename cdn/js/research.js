@@ -30,7 +30,7 @@ var researchPos = {
 	wep_plasma:			[7300,6400],
 	// Mines
 	wep_mines:			[5300,6600],
-	wep_mines_nuke:		[0,0],
+	wep_mines_nuke:		[6250,6600],
 	wep_mines_iem:		[4600,6100],
 	// Satellites
 	wep_sat_ag1:		[5300,7100],
