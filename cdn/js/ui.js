@@ -262,11 +262,9 @@ class ui {
 		 //Next level cost
 		if(planetData.nextBuilding==id) { 
 			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 2);		
-			var costbefore = planet.getBuildCost(id,planetData.Buildings[id] + 1);
 		} 
 		else { 
 			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1);
-			var costbefore = planet.getBuildCost(id,planetData.Buildings[id]);
 		}
 
 		var costbefore = planet.getBuildCost(id,planetData.Buildings[id]);
@@ -305,7 +303,7 @@ class ui {
 			$("#building-cost-energy").css("display","none");
 		} else {
 			$("#building-cost-energy").css("display","block");
-			$("#building-cost-energy-val").html(GetBetterUnit(cost.energy,"Wh (+" + GetBetterUnit(cost.energy_difference,"Wh",energyProd-energyCons) + ")",energyProd-energyCons+costbefore.energy-cost.energy));
+			$("#building-cost-energy-val").html(GetBetterUnit(cost.energy,"Wh (+" + GetBetterUnit(cost.energy_difference,"Wh",energyProd-energyCons) + ")",energyProd-energyCons+cost.energy_difference));
 		}
 		/* Temps */
 		if(max || max2) {
