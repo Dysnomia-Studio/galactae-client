@@ -304,7 +304,7 @@ class ui {
 			$("#building-cost-energy-val").html(
 				GetBetterUnit(cost.energy,"Wh (+" + 
 					GetBetterUnit(cost.energy_difference,"Wh",energyProd-energyCons) + ")",
-					cost.energy + energyProd-energyCons));
+					cost.energy + energyProd - energyCons - cost.energy_difference));
 		}
 		/* Temps */
 		if(max || max2) {
