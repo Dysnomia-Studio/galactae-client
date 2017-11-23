@@ -44,6 +44,9 @@ var heliumProdBase; // Production d'Helium 3
 var energyProd; // Production energetique
 var energyCons; // Consomation energetique
 
+var habProd; // Production energetique
+var habCons; // Consomation energetique
+
 class planet {
 	/* sync
 	Ask to the server data on current planet
@@ -208,7 +211,7 @@ class planet {
 	*/
 	static ResourcesDrawUpdate() {
 		//Top left
-		$('#population_nmb').html(GetBetterUnit(Math.round(3242*Math.exp(0.3608*planetData.Buildings[2]))));
+		$('#population_nmb').html(GetBetterUnit(habProd - habCons));
 		$('#research_nmb').html(GetBetterUnit(Math.round(researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2]),"/h"));
 		$('#moral_nmb').html(50+'%');
 
@@ -254,8 +257,12 @@ class planet {
 		}
 
 		// Energy
-		energyProd = Math.round(2080000*Math.pow(planetData.Buildings[4],2) + 165000*planetData.Buildings[4] + 550000);
+		energyProd = Math.round(electricity[0]*Math.pow(planetData.Buildings[4],2) + electricity[1]*planetData.Buildings[4] + electricity[2]);
 		energyCons = planet.getEnergyConsomation();
+
+		// Habitants
+		habProd = Math.round(habGen[0]*Math.pow(planetData.Buildings[2],2) + habGen[1]* planetData.Buildings[2] + habGen[2]);
+		habCons = planet.getHabitantConsomation();
 
 		// Buildings Levels
 		for(var i=0; i<14; i++) {
@@ -324,7 +331,12 @@ class planet {
 		$('#electricity_nmb').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
 		$('#electricity-available').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
 		$('#electricity-used').html(GetBetterUnit(energyCons,"Wh"));
-		$('#electricity-total').html(GetBetterUnit(energyProd,"Wh"));	
+		$('#electricity-total').html(GetBetterUnit(energyProd,"Wh"));
+
+		$('#population_nmb').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
+		$('#population-available').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
+		$('#population-used').html(GetBetterUnit(energyCons,"Wh"));
+		$('#population-total').html(GetBetterUnit(energyProd,"Wh"));		
 	}
 	/*
 	Draws if buildings can be build.
@@ -377,6 +389,16 @@ class planet {
 		}
 
 		return energy;
+	}
+
+	static getHabitantConsomation() {
+		var habitants = 0;
+
+		for(var i=0; i<14; i++) {
+			habitants += planet.getBuildCost(i,planetData.Buildings[i]).habitants;
+		}
+
+		return habitants;
 	}
 
 	static getTimeBeforeBuild(building) {
@@ -466,8 +488,11 @@ class planet {
 			titanium: 	Math.round(buildCost["titanium"][build][0]*Math.pow(level,2) + 		buildCost["titanium"][build][1]*level + 	buildCost["titanium"][build][2]),
 			time: 				   buildCost["time"][build][0]*Math.pow(level,2) + 			buildCost["time"][build][1]*level + 		buildCost["time"][build][2],
 			energy: 	Math.round(Math.pow(buildCost["energy"][build][0]*level,2) + 		buildCost["energy"][build][1]*level + 		buildCost["energy"][build][2]),
-			energy_difference: Math.round(Math.pow(buildCost["energy"][build][0]*level,2) + buildCost["energy"][build][1]*level + buildCost["energy"][build][2] 
-										- Math.pow(buildCost["energy"][build][0]*(level-1),2) + buildCost["energy"][build][1]*(level-1) + buildCost["energy"][build][2])
+			energy_difference: Math.round(Math.pow(buildCost["energy"][build][0]*level,2) + buildCost["energy"][build][1]*level +       buildCost["energy"][build][2] 
+			                        - Math.pow(buildCost["energy"][build][0]*(level-1),2) + buildCost["energy"][build][1]*(level-1) +   buildCost["energy"][build][2])
+			habitants:  Math.round(buildCost["habitants"][build][0]*Math.pow(level,2) +		buildCost["habitants"][build][1]*level + 	buildCost["habitants"][build][2]),
+			habitants_difference: Math.round(buildCost["habitants"][build][0]*Math.pow(level,2) +	buildCost["habitants"][build][1]*level + 	buildCost["habitants"][build][2]
+				                         - buildCost["habitants"][build][0]*Math.pow((level-1),2) +	buildCost["habitants"][build][1]*(level-1) + buildCost["habitants"][build][2]),
 		}
 	}
 	// Prev/Next

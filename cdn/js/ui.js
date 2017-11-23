@@ -306,6 +306,16 @@ class ui {
 					GetBetterUnit(cost.energy_difference,"Wh",energyProd-energyCons) + ")",
 					cost.energy + energyProd - energyCons - cost.energy_difference));
 		}
+		/* Habitants */
+		if(cost.habitant==0 || max || max2) {
+			$("#building-cost-population").css("display","none");
+		} else {
+			$("#building-cost-population").css("display","block");
+			$("#building-cost-population-val").html(
+				GetBetterUnit(cost.habitant," (+" + 
+					GetBetterUnit(cost.habitants_difference,"",habProd-habCons) + ")",
+					cost.habitant + habProd - habCons - cost.habitants_difference));
+		}
 		/* Temps */
 		if(max || max2) {
 			$("#building-cost-time").css("display","none");

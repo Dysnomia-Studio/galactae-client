@@ -28,6 +28,7 @@
 				<span id="building-cost-copper"><?php echo METAL_COPPER; ?>: <span id="building-cost-copper-val"></span></span>
 				<span id="building-cost-titanium"><?php echo METAL_TITANIUM; ?>: <span id="building-cost-titanium-val"></span></span>
 				<span id="building-cost-energy"><?php echo ENERGY; ?>: <span id="building-cost-energy-val"></span></span>
+				<span id="building-cost-population"><?php echo POPULATION; ?>: <span id="building-cost-population-val"></span></span>
 				<span id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 			</div>
 
@@ -94,9 +95,9 @@
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="population-tooltips">
 					<?php echo POPULATION; ?><br/>
-					<?php echo AVAILABLE; ?>: <span id="population-available">XXX t</span><br/>
-					<?php echo USED; ?>: <span id="population-used">XXX t</span><br/>
-					<?php echo TOTAL; ?>: <span id="population-total">XXX t</span><br/>
+					<?php echo AVAILABLE; ?>: <span id="population-available">XXX</span><br/>
+					<?php echo USED; ?>: <span id="population-used">XXX</span><br/>
+					<?php echo TOTAL; ?>: <span id="population-total">XXX</span><br/>
 				</span>
 			</span>
 		</span>

@@ -9,6 +9,7 @@ translate["messages"] = {
 	"BUILDING_ERROR_MAXIMUM": "Maximum level reached",
 	"BUILDING_ERROR_COST": "You don't have enough resources",
 	"BUILDING_ERROR_ENERGY": "No enough energy produced",
+	"BUILDING_ERROR_PEOPLE": "No enough people",
 	"UPGRADE": "Upgrade",
 	"BUILD": "Construire",
 	"LEVEL": "Level",
