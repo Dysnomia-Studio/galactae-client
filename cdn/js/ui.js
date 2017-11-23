@@ -312,9 +312,9 @@ class ui {
 		} else {
 			$("#building-cost-population").css("display","block");
 			$("#building-cost-population-val").html(
-				GetBetterUnit(cost.habitant," (+" + 
+				GetBetterUnit(cost.habitants," (+" + 
 					GetBetterUnit(cost.habitants_difference,"",habProd-habCons) + ")",
-					cost.habitant + habProd - habCons - cost.habitants_difference));
+					cost.habitants + habProd - habCons - cost.habitants_difference));
 		}
 		/* Temps */
 		if(max || max2) {

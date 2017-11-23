@@ -333,10 +333,10 @@ class planet {
 		$('#electricity-used').html(GetBetterUnit(energyCons,"Wh"));
 		$('#electricity-total').html(GetBetterUnit(energyProd,"Wh"));
 
-		$('#population_nmb').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
-		$('#population-available').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
-		$('#population-used').html(GetBetterUnit(energyCons,"Wh"));
-		$('#population-total').html(GetBetterUnit(energyProd,"Wh"));		
+		$('#population_nmb').html(GetBetterUnit(habProd-habCons,"Wh",0));
+		$('#population-available').html(GetBetterUnit(habProd-habCons,"Wh",0));
+		$('#population-used').html(GetBetterUnit(habCons,"Wh"));
+		$('#population-total').html(GetBetterUnit(habProd,"Wh"));		
 	}
 	/*
 	Draws if buildings can be build.
