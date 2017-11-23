@@ -18,25 +18,36 @@
 	<?php /* Current Planet */ ?>
 	<div id="planet-current">
 		<?php /* Buildings ( Details ) */ ?>
-		<div id="building-area">	
+		<div id="building-area">
+			<span type="button" id="building-quit" onclick="ui.buildPanelHide()">X</span>	
 			<h1 id="building-name"></h1>
-			<h3 id="building-level"></h3>
-			<p id="building-desc"></p>
-			<div id="building-cost">
-				<span id="building-cost-iron"><?php echo METAL_IRON; ?>: <span id="building-cost-iron-val"></span></span>
-				<span id="building-cost-aluminium"><?php echo METAL_ALUMINIUM; ?>: <span id="building-cost-aluminium-val"></span></span>
-				<span id="building-cost-copper"><?php echo METAL_COPPER; ?>: <span id="building-cost-copper-val"></span></span>
-				<span id="building-cost-titanium"><?php echo METAL_TITANIUM; ?>: <span id="building-cost-titanium-val"></span></span>
-				<span id="building-cost-energy"><?php echo ENERGY; ?>: <span id="building-cost-energy-val"></span></span>
-				<span id="building-cost-population"><?php echo POPULATION; ?>: <span id="building-cost-population-val"></span></span>
-				<span id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+			<h4 id="building-level"></h4>
+			<div id="building-info">
+				<p id="building-desc"></p>
+				<img src="?" id="building-img" alt="building-img">
+			</div>
+			<div id="building-orders">
+				<div id="building-cost">
+					<h4>Coût d'amelioration</h4>
+					<span id="building-cost-iron"><?php echo METAL_IRON; ?>: <span id="building-cost-iron-val"></span></span>
+					<span id="building-cost-aluminium"><?php echo METAL_ALUMINIUM; ?>: <span id="building-cost-aluminium-val"></span></span>
+					<span id="building-cost-copper"><?php echo METAL_COPPER; ?>: <span id="building-cost-copper-val"></span></span>
+					<span id="building-cost-titanium"><?php echo METAL_TITANIUM; ?>: <span id="building-cost-titanium-val"></span></span>
+					<span id="building-cost-energy"><?php echo ENERGY; ?>: <span id="building-cost-energy-val"></span></span>
+					<span id="building-cost-population"><?php echo POPULATION; ?>: <span id="building-cost-population-val"></span></span>
+					<span id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+				</div>
+			</div>
+			<div id="buildings-bonus">
+				<h4>Bonus d'amelioration</h4>
+				<span id="building-bonus">
+					<span id="building-bonus-icon"></span>
+					<span id="building-bonus-val"></span>
+				</span>
 			</div>
 
 			<span id="building-message"></span>
 			<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
-			
-			<img src="?" id="building-img" alt="building-img">
-			<span type="button" id="building-quit" onclick="ui.buildPanelHide()">X</span>
 		</div>
 
 		<?php /* Ground Building */ ?>

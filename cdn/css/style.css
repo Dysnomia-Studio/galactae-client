@@ -2115,61 +2115,80 @@ dl.infos dt {
 /**
  * Building Panel
  */
-@media (min-height: 450px) and (min-width: 600px) {
+@media all and (min-width: 650px) and (min-height: 450px) {
 	#building-area {
+		top:  calc(50vh - 205px);
+		left: calc(50vw - 305px);
+
 		background-image: url(../img/ui/build-panel.png);
 
-		width: 580px;
-		height: 380px;
+		width: calc(610px - 2em);
+		height: calc(410px - 2em);
+		padding: 1em;
 
-		margin-top: -200px;
-		margin-left: -300px;
-
-		top: 50%;
-		left: 50%;
-
-		padding: 15px;
+	}
+	#building-area h1, h4 {
+		margin: 0;
+		text-align: center;
 	}
 	#building-img {
-		position: absolute;
-		border: 1px inset transparent;
-		bottom: 50px;
-		left: 25px;
-		width: calc(100% - 30px - 200px); /* parent - padding - right content */
+		width: calc(50% - 1em);
+		margin-right: 1em;
 	}
-	#building-message, #building-upgrade {
-		bottom: 25px;
+	#building-orders {
+		width: calc(100% - 1em);
+		position: absolute;
+		bottom: 1em;
+		left: 1em;
+	}
+	.building-cost-item {
+		display: inline-block;
+		margin: 0 1em;
 	}
 	#building-quit {
-		color: white;
-		top: 6px;
-		right: 10px;
+		position: absolute;
+		top: 0.52vw;
+		right: 0.89vw;
 	}
 }
-@media (max-height: 450px), (max-width: 600px) {
+
+@media (max-width: 649px), (max-height: 449px) {
 	#building-area {
 		background-color: #0b1012;
 
-		width: calc(100vw - 6em);
-		height: calc(100vh - 6em);
+		width: 100vw;
+		height: 100vh;
 
 		margin: 0;
 
 		top: 0;
 		left: 0;
-
-		padding: 3em;
+	}
+	#building-area h1, h4 {
+		margin: 0;
+		text-align: center;
+	}
+	#building-area h1 {
+		margin-top: 4%;
 	}
 	#building-img {
-		border: 1px inset transparent;
-		width: calc(100vw - 6em - 180px); /* parent - padding - right content */
+		max-height: calc(100vh - 4vh - 2em - 1.34em - 2.66em - 1em - 5.4em - 2.4em - 50px); /* Total - Top - H1 - H1 Margin - H4 - H4 Margin - 6*0.9em (=order) - H4 Margin - Bottom */
+		margin-right: 1em;
 	}
-	#building-message, #building-upgrade {
-		bottom: 40px;
+	#building-orders {
+		width: calc(100% - 1em);
+		position: absolute;
+		bottom: 50px;
+		left: 1em;
+	}
+	.building-cost-item {
+		display: inline-block;
+		margin: 0 1.5em;
 	}
 	#building-quit {
-		top: 70px;
-		right: 2em;
+		position: absolute;
+		top: 4vw;
+		right: 0.89vw;
 	}
 }
 
@@ -2179,28 +2198,36 @@ dl.infos dt {
 	color: #EEEEEE;
 	z-index: 5;
 }
-#building-cost {
-	color: #EEEEEE;
+#building-info {
+	margin: 1%;
+
+	width: 99%;
+	max-height: 50%;
+}
+#building-img {
+	display: inline-block;
+	float: left;
+}
+#building-cost, #buildings-bonus {
+	width: calc(75% - 1em);
+	height: 100%;
+	display: inline-block;
+
 	font-size: 0.9em;
-	padding: 10px;
-	width: 150px;
-	position: absolute;
-	top: 140px;
-	right: 25px;
-	height: 00px;
+	text-align: center;
 }
-#building-message, #building-upgrade {
-	display: block;
+#building-upgrade {
+	display: inline-block;
+	width: calc(25% - 2em);
+
 	position: absolute;
-	right: 25px;
-	width: 170px;
+	right: 1em;
+	top: 2em;
 }
-#building-quit {
-	position: absolute;
-	background-color: rgba(0,0,0,0);
-	border: 0px solid black;
-	font-weight: bold;
+#building-orders img {
+	height: 1.3em;
+	vertical-align: middle;
 }
-#building-name, #building-message, #building-level { text-align: center; }
-#building-name, #building-level { margin: 0; font-weight: normal; }
-#building-desc { margin: 0.5em 0; }
+#building-quit, #building-upgrade {
+	cursor: pointer;
+}
