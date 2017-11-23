@@ -2222,11 +2222,14 @@ dl.infos dt {
 
 	position: absolute;
 	right: 1em;
+}
+#building-upgrade {
 	top: 2em;
 }
 #building-message {
     text-align: center;
     font-size: 0.9em;
+    bottom: 0.5em;
 }
 #building-orders img {
 	height: 1.3em;
