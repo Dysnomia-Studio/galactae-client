@@ -289,7 +289,7 @@ class ui {
 			if(costs[i][1]==0) {
 				$("#"+costs[i][0]).css("display","none");
 			} else {
-				$("#"+costs[i][0]).css("display","block");
+				$("#"+costs[i][0]).css("display","inline-block");
 				$("#"+costs[i][0]+"-val").html(GetBetterUnit(costs[i][1],'t',planetData.resources[i+2]));
 			}
 		}
@@ -300,7 +300,7 @@ class ui {
 		if(cost.energy==0) {
 			$("#building-cost-energy").css("display","none");
 		} else {
-			$("#building-cost-energy").css("display","block");
+			$("#building-cost-energy").css("display","inline-block");
 			$("#building-cost-energy-val").html(
 				GetBetterUnit(cost.energy,"Wh (+" + 
 					GetBetterUnit(cost.energy_difference,"Wh",energyProd-energyCons) + ")",
@@ -310,7 +310,7 @@ class ui {
 		if(cost.habitants==0) {
 			$("#building-cost-population").css("display","none");
 		} else {
-			$("#building-cost-population").css("display","block");
+			$("#building-cost-population").css("display","inline-block");
 			$("#building-cost-population-val").html(
 				GetBetterUnit(cost.habitants," (+" + 
 					GetBetterUnit(cost.habitants_difference,"",habProd-habCons) + ")",
@@ -375,7 +375,13 @@ class ui {
 			$("#building-upgrade").attr("onclick","planet.build("+id+")");
 		}
 
+		// Bonus
+		switch(id) {
+			case 1:
 
+				break;
+			default:
+		}
 	}
 
 	/**
