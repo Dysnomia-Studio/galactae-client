@@ -48,19 +48,18 @@ var habProd; // Production energetique
 var habCons; // Consomation energetique
 
 class planet {
-	/* sync
-	Ask to the server data on current planet
-	INPUT: -
-	OUTPUT: -
-	*/
+	/**
+	 * Ask to the server data on current planet
+	 */
 	static sync() {
 		socket.emit('planet-ask-data', userData);
 	}
-	/* refresh
-	Rafraichir les données affichées et stockées
-	INPUT: data
-	OUTPUT: -
-	*/
+
+	/**
+	 * Rafraichir les données affichées et stockées
+	 *
+	 * @param      {<type>}  data    The data
+	 */
 	static refresh(data) {
 		// Keep planet id in a cookie
 		setCookie('galactae-account-pid', data.data._id, 1);
@@ -112,11 +111,10 @@ class planet {
 		// Needed late after load ...
 		ui.loadHUDButtons();
 	}
-	/* simMyRealRessources
-	ClientSide simulation of growing resources
-	INPUT: -
-	OUTPUT: -
-	*/
+
+	/**
+	 * Clientside simulation of growing resources
+	 */
 	static simMyRealRessources() {
 		var time = 2/3600; // 2 sec
 
@@ -192,11 +190,12 @@ class planet {
 			return planetRatios[0];
 		}
 	}
-	/* build
-	Construire un bâtiment
-	INPUT: -
-	OUTPUT: -
-	*/
+
+	/**
+	 * Construire un bâtiment
+	 *
+	 * @param      {<type>}  id      Building ID
+	 */
 	static build(id) {
 		if(planetData.Buildings[id]+1 > buildingMaxLvl[id]) {
 			ui.drawMessage('MAX_LEVEL');
@@ -204,13 +203,14 @@ class planet {
 			socket.emit('planet-build', { planet: planetData._id, id: userData.id, username: userData.username, building: id });
 		}
 	}
-	/* ResourcesDrawUpdate
-	Afficher les modifications de quantité de ressources
-	INPUT: -
-	OUTPUT: -
-	*/
+
+	/**
+	 * Afficher les modifications de quantité de ressources
+	 *
+	 * @class      ResourcesDrawUpdate (name)
+	 */
 	static ResourcesDrawUpdate() {
-		//Top left
+		// Top left
 		$('#population_nmb').html(GetBetterUnit(habProd - habCons));
 		$('#research_nmb').html(GetBetterUnit(Math.round(researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2]),"/h"));
 		$('#moral_nmb').html(50+'%');
@@ -223,11 +223,12 @@ class planet {
 		$('#cu_nmb').html(GetBetterUnit(planetData.resources[4],'t',metalsStorageBase*ratio.copperRatio));
 		$('#ti_nmb').html(GetBetterUnit(planetData.resources[5],'t',metalsStorageBase*ratio.titanRatio));
 	}
-	/* BuildingDrawUpdate
-	Afficher les modifications en rapport avec les batiments (niveaux ou production)
-	INPUT: -
-	OUTPUT: -
-	*/
+
+	/**
+	 * Afficher les modifications en rapport avec les batiments (niveaux ou production)
+	 *
+	 * @class      BuildingDrawUpdate (name)
+	 */
 	static BuildingDrawUpdate() {
 		buildings = planetData.Buildings;
 		currentBuilding = planetData.nextBuilding;
