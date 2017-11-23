@@ -328,7 +328,7 @@ class ui {
 		}
 		$("#building-upgrade").attr("onclick","");
 		$('#building-upgrade').css('display', 'none');
-		$('#building-message').css('display', 'block');
+		$('#building-message').css('display', 'inline-block');
 
 		// Edits
 		if(max) { // Max Level

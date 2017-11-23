@@ -44,10 +44,9 @@
 						<span id="building-bonus-icon"></span>
 						<span id="building-bonus-val"></span>
 					</span>
-
-					<span id="building-message"></span>
 				</div>
 
+				<span id="building-message"></span>
 				<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
 			</div>
 		</div>
