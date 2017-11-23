@@ -22,9 +22,9 @@
 			<span type="button" id="building-quit" onclick="ui.buildPanelHide()">X</span>	
 			<h1 id="building-name"></h1>
 			<h4 id="building-level"></h4>
-			<div id="building-info">
-				<p id="building-desc"></p>
+			<div id="building-info">	
 				<img src="?" id="building-img" alt="building-img">
+				<p id="building-desc"></p>
 			</div>
 			<div id="building-orders">
 				<div id="building-cost">
