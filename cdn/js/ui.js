@@ -267,8 +267,7 @@ class ui {
 			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1);
 		}
 
-		var max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
-		var max = (planetData.Buildings[id]+1 > buildingMaxLvl[id]);
+		var max = ((planetData.Buildings[id]+1 > buildingMaxLvl[id]) || ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id)));
 
 		/* Planet Construction Tab */
 		$("#building-name").text(translate["buildings"][id].name);
@@ -277,6 +276,7 @@ class ui {
 		$("#building-area").css("display","block");
 		$("#building-img").attr("src",cdnURL+"img/buildings/desc/"+translate["buildings"][id].id+".jpg");
 		$("#building-area input").id=id;
+		$('#building-cost').css('display', 'block');
 
 		/* Ressources */
 		var costs = [
@@ -286,7 +286,7 @@ class ui {
 			["building-cost-titanium",cost.titanium]
 		];
 		for(var i=0; i<4; i++) {
-			if(costs[i][1]==0 || max || max2) {
+			if(costs[i][1]==0) {
 				$("#"+costs[i][0]).css("display","none");
 			} else {
 				$("#"+costs[i][0]).css("display","block");
@@ -297,7 +297,7 @@ class ui {
 		ui.enoughResources = planet.getTimeBeforeBuild(id);
 
 		/* Energie */
-		if(cost.energy==0 || max || max2) {
+		if(cost.energy==0) {
 			$("#building-cost-energy").css("display","none");
 		} else {
 			$("#building-cost-energy").css("display","block");
@@ -307,7 +307,7 @@ class ui {
 					cost.energy + energyProd - energyCons - cost.energy_difference));
 		}
 		/* Habitants */
-		if(cost.habitants==0 || max || max2) {
+		if(cost.habitants==0) {
 			$("#building-cost-population").css("display","none");
 		} else {
 			$("#building-cost-population").css("display","block");
@@ -317,12 +317,8 @@ class ui {
 					cost.habitants + habProd - habCons - cost.habitants_difference));
 		}
 		/* Temps */
-		if(max || max2) {
-			$("#building-cost-time").css("display","none");
-		} else {
-			$("#building-cost-time").css("display","block");
-			$("#building-cost-time-val").html(getStringTime(cost.time));
-		}
+		$("#building-cost-time-val").html(getStringTime(cost.time));
+
 		/* Bouton upgrade ou message */
 		// Defaut Value
 		if(planetData.Buildings[id]==0) {
@@ -333,11 +329,11 @@ class ui {
 		$("#building-upgrade").attr("onclick","");
 		$('#building-upgrade').css('display', 'none');
 		$('#building-message').css('display', 'block');
-		$('#building-upgrade').prop('disabled', false);
 
 		// Edits
 		if(max) { // Max Level
 			$('#building-message').html(translate["messages"]["UPGRADE_MAX"]);
+			$('#building-cost').css('display', 'none');
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			var dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
 			var dateTom = new Date(Date.now() + (24*60*60*1000));
@@ -378,6 +374,8 @@ class ui {
 			$('#building-upgrade').css('display', 'block');
 			$("#building-upgrade").attr("onclick","planet.build("+id+")");
 		}
+
+
 	}
 
 	/**

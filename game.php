@@ -29,22 +29,24 @@
 			<div id="building-orders">
 				<div id="building-cost">
 					<h4>Coût d'amelioration</h4>
-					<span id="building-cost-iron"><?php echo METAL_IRON; ?>: <span id="building-cost-iron-val"></span></span>
-					<span id="building-cost-aluminium"><?php echo METAL_ALUMINIUM; ?>: <span id="building-cost-aluminium-val"></span></span>
-					<span id="building-cost-copper"><?php echo METAL_COPPER; ?>: <span id="building-cost-copper-val"></span></span>
-					<span id="building-cost-titanium"><?php echo METAL_TITANIUM; ?>: <span id="building-cost-titanium-val"></span></span>
-					<span id="building-cost-energy"><?php echo ENERGY; ?>: <span id="building-cost-energy-val"></span></span>
-					<span id="building-cost-population"><?php echo POPULATION; ?>: <span id="building-cost-population-val"></span></span>
-					<span id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+					<span class="building-cost-item" id="building-cost-iron">Fe <span id="building-cost-iron-val"></span></span>
+					<span class="building-cost-item" id="building-cost-aluminium">Al <span id="building-cost-aluminium-val"></span></span>
+					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
+					<span class="building-cost-item" id="building-cost-titanium">Ti <span id="building-cost-titanium-val"></span></span>
+					<br/>
+					<span class="building-cost-item" id="building-cost-energy"><img src="./cdn/img/ui/electricity.png" alt="electricity" > <span id="building-cost-energy-val"></span></span>
+					<span class="building-cost-item" id="building-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
+					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+				</div>
+				<div id="buildings-bonus">
+					<h4>Bonus d'amelioration</h4>
+					<span id="building-bonus">
+						<span id="building-bonus-icon"></span>
+						<span id="building-bonus-val"></span>
+					</span>
 				</div>
 			</div>
-			<div id="buildings-bonus">
-				<h4>Bonus d'amelioration</h4>
-				<span id="building-bonus">
-					<span id="building-bonus-icon"></span>
-					<span id="building-bonus-val"></span>
-				</span>
-			</div>
+
 
 			<span id="building-message"></span>
 			<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
