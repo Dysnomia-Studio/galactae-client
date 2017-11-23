@@ -307,7 +307,7 @@ class ui {
 					cost.energy + energyProd - energyCons - cost.energy_difference));
 		}
 		/* Habitants */
-		if(cost.habitant==0 || max || max2) {
+		if(cost.habitants==0 || max || max2) {
 			$("#building-cost-population").css("display","none");
 		} else {
 			$("#building-cost-population").css("display","block");
