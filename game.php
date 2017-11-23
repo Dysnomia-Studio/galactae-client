@@ -39,10 +39,10 @@
 					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
 				<div id="buildings-bonus">
-					<h4>Bonus d'amelioration</h4>
+					<h4><?php echo PRODUCTION; ?></h4>
 					<span id="building-bonus">
 						<span id="building-bonus-icon"></span>
-						<span id="building-bonus-val"></span>
+						<span id="building-bonus-val">XXXt (+ XXt <?php echo AT_NEXT_LVL; ?>)</span>
 					</span>
 				</div>
 

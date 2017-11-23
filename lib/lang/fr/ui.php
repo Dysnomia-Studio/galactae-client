@@ -38,4 +38,5 @@
 	define('SOON_AVAILABLE','Bientot Disponible ...');
 	define('OLDER_NEWS','Plus ancien');
 	define('NEWER_NEWS','Plus recent');
+	define('AT_NEXT_LVL','au niveau suivant');
 ?>
