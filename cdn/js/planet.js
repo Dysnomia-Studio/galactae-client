@@ -214,7 +214,7 @@ class planet {
 	static ResourcesDrawUpdate() {
 		// Top left
 		$('#population_nmb').html(GetBetterUnit(habProd - habCons));
-		$('#research_nmb').html(GetBetterUnit(Math.round(researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2]),"/h"));
+		$('#research_nmb').html(GetBetterUnit(researchProd,"/h"));
 		$('#moral_nmb').html(50+'%');
 
 		//Top right
@@ -264,11 +264,17 @@ class planet {
 
 		// Energy
 		energyProd = Math.round(electricity[0]*Math.pow(buildings[4],2) + electricity[1]*buildings[4] + electricity[2]);
+		energyProd1 = Math.round(electricity[0]*Math.pow((buildings[4]+1),2) + electricity[1]*(buildings[4]+1) + electricity[2]);
 		energyCons = planet.getEnergyConsomation();
 
 		// Habitants
 		habProd = Math.round(habGen[0]*Math.pow(buildings[2],2) + habGen[1]* buildings[2] + habGen[2]);
+		habProd1 = Math.round(habGen[0]*Math.pow((buildings[2]+1),2) + habGen[1]*(buildings[2]+1) + habGen[2]);
 		habCons = planet.getHabitantConsomation();
+
+		// Research
+		researchProd = Math.round(researchProduction[0]*Math.pow(buildings[8],2) + researchProduction[1]*buildings[8] + researchProduction[2]);
+		researchProd1 = Math.round(researchProduction[0]*Math.pow((buildings[8] + 1),2) + researchProduction[1]*(buildings[8] + 1) + researchProduction[2]);
 	}
 
 	/**

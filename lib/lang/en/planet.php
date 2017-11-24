@@ -49,6 +49,8 @@
 		translate['planet-ui'] = {
 			"storage": "Stockage",
 			"production": "Production",
+			"population": "Population",
 			"afterUpdating": "after upgrading"
+			"metal": "Metal",
 		};
 </script>

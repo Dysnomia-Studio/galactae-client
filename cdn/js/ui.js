@@ -389,8 +389,26 @@ class ui {
 				break;
 			case 1: // Metallurgie
 				title = translate['planet-ui']['production'];
-				icon = '<img height="20" src="'+cdnURL+'img/ui/minerals.png" alt="minerals">';
+				icon = translate['planet-ui']['metal'];
 				value = GetBetterUnit(metalProdBase,'t/h') + ' (+ ' + GetBetterUnit(metalProdBase1 - metalProdBase,'t/h') 
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
+			case 2: // Houses
+				title = translate['planet-ui']['population'];
+				icon = '';
+				value = GetBetterUnit(habProd,'') + ' (+ ' + GetBetterUnit(habProd1 - habProd,'') 
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
+			case 4: // Solar panel
+				title = translate['planet-ui']['production'];
+				icon = '<img height="15" src="'+cdnURL+'>img/ui/electricity.png" alt="electricity">';
+				value = GetBetterUnit(energyProd,'Wh') + ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
+			case 8: // Research Center
+				title = translate['planet-ui']['production'];
+				icon = '<img height="15" src="'+cdnURL+'>img/ui/research.png" alt="research">';
+				value = GetBetterUnit(energyProd,'/h') + ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 13: // Helium production facility
