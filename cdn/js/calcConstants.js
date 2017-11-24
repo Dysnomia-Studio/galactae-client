@@ -200,6 +200,8 @@ var researchBonus = {
 /**
  * Units
  */
+var hqFleetCount = [2,5,9,14,20,0]; // Last entry to prevent bugs
+
 var unitTypes = [
 	"SHIP_SAT",
 	"SHIP_BATTLECRUISER",

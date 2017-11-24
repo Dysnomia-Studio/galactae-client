@@ -404,6 +404,13 @@ class ui {
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 4: // Solar panel
+				title = translate['planet-ui']['availableFleets'];
+				icon = '';
+				value = hqFleetCount[planetData.Buildings[id]];
+				valuep1 = ' (' + hqFleetCount[planetData.Buildings[id] + 1]
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
+			case 4: // Solar panel
 				title = translate['planet-ui']['production'];
 				icon = '<img height="15" src="'+cdnURL+'img/ui/electricity.png" alt="electricity">';
 				value = GetBetterUnit(energyProd,'Wh');

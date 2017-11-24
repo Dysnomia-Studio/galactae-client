@@ -50,7 +50,8 @@
 			"storage": "Stockage",
 			"production": "Production",
 			"population": "Population",
-			"afterUpdating": "after upgrading"
+			"afterUpdating": "after upgrading",
+			"availableFleets": "available fleets",
 			"metal": "Metal",
 		};
 </script>

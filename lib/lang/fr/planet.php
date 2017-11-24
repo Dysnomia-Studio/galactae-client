@@ -51,6 +51,7 @@
 			"production": "Production",
 			"population": "Population",
 			"afterUpdating": "après l'amélioration",
+			"availableFleets": "flottes disponibles",
 			"metal": "Metaux",
 		};
 </script>
