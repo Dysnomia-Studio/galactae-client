@@ -378,43 +378,50 @@ class ui {
 		// Bonus
 		var title = "",
 			icon = "",
-			value = "";
+			value = "",
+			valuep1 = "";
 	
 		switch(id) {
 			case 0: // Quarry
 				title = translate['planet-ui']['production'];
 				icon = '<img height="20" src="'+cdnURL+'img/ui/minerals.png" alt="minerals">';
-				value = GetBetterUnit(mineralProdBase,'t/h') + ' (+ ' + GetBetterUnit(mineralProdBase1 - mineralProdBase,'t/h') 
+				value = GetBetterUnit(mineralProdBase,'t/h');
+				valuep1 = ' (+ ' + GetBetterUnit(mineralProdBase1 - mineralProdBase,'t/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 1: // Metallurgie
 				title = translate['planet-ui']['production'];
 				icon = translate['planet-ui']['metal'];
-				value = GetBetterUnit(metalProdBase,'t/h') + ' (+ ' + GetBetterUnit(metalProdBase1 - metalProdBase,'t/h') 
+				value = GetBetterUnit(metalProdBase,'t/h');
+				valuep1 = ' (+ ' + GetBetterUnit(metalProdBase1 - metalProdBase,'t/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 2: // Houses
 				title = translate['planet-ui']['population'];
 				icon = '';
-				value = GetBetterUnit(habProd,'') + ' (+ ' + GetBetterUnit(habProd1 - habProd,'') 
+				value = GetBetterUnit(habProd,'');
+				valuep1 = ' (+ ' + GetBetterUnit(habProd1 - habProd,'') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 4: // Solar panel
 				title = translate['planet-ui']['production'];
 				icon = '<img height="15" src="'+cdnURL+'>img/ui/electricity.png" alt="electricity">';
-				value = GetBetterUnit(energyProd,'Wh') + ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
+				value = GetBetterUnit(energyProd,'Wh');
+				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 8: // Research Center
 				title = translate['planet-ui']['production'];
 				icon = '<img height="15" src="'+cdnURL+'>img/ui/research.png" alt="research">';
-				value = GetBetterUnit(energyProd,'/h') + ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'/h') 
+				value = GetBetterUnit(energyProd,'/h'); 
+				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 13: // Helium production facility
 				title = translate['planet-ui']['production'];
 				icon = '&sup3;He';
-				value = GetBetterUnit(heliumProdBase,'t/h') + ' (+ ' + GetBetterUnit(heliumProdBase1 - heliumProdBase,'t/h') 
+				value = GetBetterUnit(heliumProdBase,'t/h');
+				valuep1 = ' (+ ' + GetBetterUnit(heliumProdBase1 - heliumProdBase,'t/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			default:
@@ -422,7 +429,11 @@ class ui {
 
 		$('#building-bonus-title').html(title);
 		$('#building-bonus-icon').html(icon);
-		$('#building-bonus-val').html(value);
+		if(max) {
+			$('#building-bonus-val').html(value);
+		} else {
+			$('#building-bonus-val').html(value + valuep1);
+		}
 	}
 
 	/**
