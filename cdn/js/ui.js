@@ -381,10 +381,10 @@ class ui {
 			value = "";
 	
 		switch(id) {
-			case 1: // Quarry
+			case 0: // Quarry
 				title = translate['planet-ui']['production'];
 				icon = '<img height="20" src="'+cdnURL+'img/ui/minerals.png" alt="minerals">';
-				value = GetBetterUnit(mineralProdBase,'t') + '(+ ' + GetBetterUnit(mineralProdBase1,'t') 
+				value = GetBetterUnit(mineralProdBase,'t') + ' (+ ' + GetBetterUnit(mineralProdBase1,'t') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			default:

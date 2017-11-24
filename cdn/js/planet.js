@@ -274,6 +274,7 @@ class planet {
 
 		// Building Production (tooltips)
 		// Minerals
+		var mineralProdBaseTemp = mineralProdBase;
 		if((planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) && 
 			(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) && 
 			(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) && 
@@ -282,12 +283,12 @@ class planet {
 		}
 
 		if(planetData.resources[0]>=mineralStorageBase) { // Si on a tout les minerais
-			mineralProdBase = metalProdBase;
+			mineralProdBaseTemp = metalProdBase;
 		}
 
 
 		$('#minerals-cap').html(GetBetterUnit(mineralStorageBase,'t'));
-		$('#minerals-prod').html(GetBetterUnit(mineralProdBase,'t/h'));
+		$('#minerals-prod').html(GetBetterUnit(mineralProdBaseTemp,'t/h'));
 		$('#minerals-cons').html(GetBetterUnit(metalProdBase,'t/h'));
 
 		// Helium-3
