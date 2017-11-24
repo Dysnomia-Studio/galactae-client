@@ -41,6 +41,7 @@ var mineralProdBase1; // Production de minerais lvl + 1
 var metalProdBase; // Production de metaux
 var metalProdBase1; // Production de metaux lvl + 1
 var heliumProdBase; // Production d'Helium 3
+var heliumProdBase1; // Production d'Helium 3 lvl +1
 
 var energyProd; // Production energetique
 var energyCons; // Consomation energetique
@@ -240,7 +241,9 @@ class planet {
 		mineralProdBase = mineralProd[0]*Math.pow(buildings[0],2) - mineralProd[1]*buildings[0] + mineralProd[2];
 		mineralProdBase1 = mineralProd[0]*Math.pow((buildings[0] + 1),2) - mineralProd[1]*(buildings[0] + 1) + mineralProd[2];
 		metalProdBase   = metalProd[0]*Math.pow(buildings[1],2)   - metalProd[1]*buildings[1]   + metalProd[2];
+		metalProdBase1   = metalProd[0]*Math.pow((buildings[1] + 1),2)   - metalProd[1]*(buildings[1] + 1)   + metalProd[2];
 		heliumProdBase  = heliumProd[0]*Math.pow(buildings[13],2)  - heliumProd[1]*buildings[13]  + heliumProd[2];
+		heliumProdBase1  = heliumProd[0]*Math.pow((buildings[13] + 1),2)  - heliumProd[1]*(buildings[13]+1)  + heliumProd[2];
 
 		var warehouseBase = storageRatio[0]*Math.log(buildings[5]) + storageRatio[1];
 
