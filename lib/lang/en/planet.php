@@ -51,7 +51,7 @@
 			"production": "Production",
 			"population": "Population",
 			"afterUpdating": "after upgrading",
-			"availableFleets": "available fleets",
+			"availableFleets": "Available fleets",
 			"metal": "Metal",
 		};
 </script>
