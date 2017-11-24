@@ -405,14 +405,14 @@ class ui {
 				break;
 			case 4: // Solar panel
 				title = translate['planet-ui']['production'];
-				icon = '<img height="15" src="'+cdnURL+'>img/ui/electricity.png" alt="electricity">';
+				icon = '<img height="15" src="'+cdnURL+'img/ui/electricity.png" alt="electricity">';
 				value = GetBetterUnit(energyProd,'Wh');
 				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 8: // Research Center
 				title = translate['planet-ui']['production'];
-				icon = '<img height="15" src="'+cdnURL+'>img/ui/research.png" alt="research">';
+				icon = '<img height="15" src="'+cdnURL+'img/ui/research.png" alt="research">';
 				value = GetBetterUnit(energyProd,'/h'); 
 				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
