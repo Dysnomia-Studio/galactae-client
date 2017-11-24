@@ -44,10 +44,15 @@ var heliumProdBase; // Production d'Helium 3
 var heliumProdBase1; // Production d'Helium 3 lvl +1
 
 var energyProd; // Production energetique
+var energyProd1; // Production energetique lvl +1
 var energyCons; // Consomation energetique
 
-var habProd; // Production energetique
-var habCons; // Consomation energetique
+var habProd; // Production population
+var habProd1; // Production population lvl +1
+var habCons; // Consomation population
+
+var researchProd; // Production recherche
+var researchProd1; // Production recherche lvl +1
 
 class planet {
 	/**
