@@ -404,17 +404,17 @@ class ui {
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 4: // Solar panel
-				title = translate['planet-ui']['availableFleets'];
-				icon = '';
-				value = hqFleetCount[planetData.Buildings[id]];
-				valuep1 = ' (' + hqFleetCount[planetData.Buildings[id] + 1]
-					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
-				break;
-			case 4: // Solar panel
 				title = translate['planet-ui']['production'];
 				icon = '<img height="15" src="'+cdnURL+'img/ui/electricity.png" alt="electricity">';
 				value = GetBetterUnit(energyProd,'Wh');
 				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
+			case 6: // Headquarters
+				title = translate['planet-ui']['availableFleets'];
+				icon = '';
+				value = hqFleetCount[planetData.Buildings[id] - 1];
+				valuep1 = ' (' + hqFleetCount[planetData.Buildings[id]]
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 8: // Research Center
@@ -422,6 +422,13 @@ class ui {
 				icon = '<img height="15" src="'+cdnURL+'img/ui/research.png" alt="research">';
 				value = GetBetterUnit(researchProd,'/h'); 
 				valuep1 = ' (+ ' + GetBetterUnit(researchProd1 - researchProd,'/h') 
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
+			case 8: // Research Center
+				title = translate['planet-ui']['storage'];
+				icon = '&sup3;He';
+				value = GetBetterUnit(storageHelium,'t'); 
+				valuep1 = ' (+ ' + GetBetterUnit(storageHelium1 - storageHelium,'t') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 13: // Helium production facility

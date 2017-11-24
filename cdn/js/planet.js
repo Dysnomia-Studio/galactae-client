@@ -35,6 +35,7 @@ var ratios;
 var metalsStorageBase; // Metaux
 var mineralStorageBase; // Minerais
 var storageHelium; // Helium 3
+var storageHelium1; // Helium 3 lvl + 1
  
 var mineralProdBase; // Production de minerais
 var mineralProdBase1; // Production de minerais lvl + 1
@@ -260,6 +261,8 @@ class planet {
 		} else {
 			storageHelium = 0;
 		}
+
+		storageHelium1 = (heliumProd[0]*Math.pow((buildings[10]+1),2)  - heliumProd[1]*(buildings[10]+1)  + heliumProd[2])*(storageRatio[0]*Math.log((buildings[10]+1)) + storageRatio[1])*heliumStorageRatio;
 
 		if(research.isSearched("cp_molecular_compression")) {
 			mineralStorageBase *= researchBonus["cp_molecular_compression"];
