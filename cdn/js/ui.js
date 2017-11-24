@@ -413,8 +413,8 @@ class ui {
 			case 8: // Research Center
 				title = translate['planet-ui']['production'];
 				icon = '<img height="15" src="'+cdnURL+'img/ui/research.png" alt="research">';
-				value = GetBetterUnit(energyProd,'/h'); 
-				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'/h') 
+				value = GetBetterUnit(researchProd,'/h'); 
+				valuep1 = ' (+ ' + GetBetterUnit(researchProd1 - researchProd,'/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 13: // Helium production facility
