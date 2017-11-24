@@ -277,7 +277,7 @@ class planet {
 	 * @class      BuildingDrawUpdate (name)
 	 */
 	static BuildingDrawUpdate() {
-		planet.recalcBaseRessources():
+		planet.recalcBaseRessources();
 
 		// Buildings Levels
 		for(var i=0; i<14; i++) {
@@ -288,7 +288,7 @@ class planet {
 		// Minerals
 		var mineralProdBaseTemp = mineralProdBase;
 		var metalProdBaseTemp = metalProdBase;
-		
+
 		if((planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) && 
 			(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) && 
 			(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) && 
