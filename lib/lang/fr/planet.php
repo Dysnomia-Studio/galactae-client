@@ -45,4 +45,10 @@
 		{id: "trade", name: "Hub Commercial", desc: "Cette station est le centre névralgique de toutes les activités commerciales autour de votre planète." },
 		{id: "he3exp", name: "Station d'exploitation d'Helium 3", desc: "Cette station va exploiter les astéroides environnants afin de recuperer automatiquement de l'helium 3." },
 		];
+
+		translate['planet-ui'] = {
+			"storage": "Stockage",
+			"production": "Production",
+			"afterUpdating": "après l'amélioration",
+		};
 </script>

@@ -376,12 +376,23 @@ class ui {
 		}
 
 		// Bonus
+		var title = "",
+			icon = "",
+			value = "";
+	
 		switch(id) {
-			case 1:
-
+			case 1: // Quarry
+				title = translate['planet-ui']['production'];
+				icon = '<img height="20" src="'+cdnURL+'img/ui/minerals.png" alt="minerals">';
+				value = GetBetterUnit(mineralProdBase,'t') + '(+ ' + GetBetterUnit(mineralProdBase1,'t') 
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			default:
 		}
+
+		$('#building-bonus-title').html(title);
+		$('#building-bonus-icon').html(icon);
+		$('#building-bonus-val').html(value);
 	}
 
 	/**

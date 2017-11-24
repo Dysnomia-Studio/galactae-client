@@ -45,4 +45,10 @@
 		{id: "trade", name: "Trading station", desc: "The trading station is the center of all our commercial activities." },
 		{id: "he3exp", name: "Helium 3 exploitation station", desc: "This station will search helium 3 in closet asteroids and get it." },
 		];
+
+		translate['planet-ui'] = {
+			"storage": "Stockage",
+			"production": "Production",
+			"afterUpdating": "after upgrading"
+		};
 </script>
