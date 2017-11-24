@@ -424,7 +424,7 @@ class ui {
 				valuep1 = ' (+ ' + GetBetterUnit(researchProd1 - researchProd,'/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
-			case 8: // Research Center
+			case 10: // Tank
 				title = translate['planet-ui']['storage'];
 				icon = '&sup3;He';
 				value = GetBetterUnit(storageHelium,'t'); 
