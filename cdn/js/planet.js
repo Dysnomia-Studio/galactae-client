@@ -227,11 +227,9 @@ class planet {
 	}
 
 	/**
-	 * Afficher les modifications en rapport avec les batiments (niveaux ou production)
-	 *
-	 * @class      BuildingDrawUpdate (name)
+	 * Recalc ressources
 	 */
-	static BuildingDrawUpdate() {
+	static recalcBaseRessources() {
 		buildings = planetData.Buildings;
 		currentBuilding = planetData.nextBuilding;
 
@@ -240,8 +238,10 @@ class planet {
 
 		mineralProdBase = mineralProd[0]*Math.pow(buildings[0],2) - mineralProd[1]*buildings[0] + mineralProd[2];
 		mineralProdBase1 = mineralProd[0]*Math.pow((buildings[0] + 1),2) - mineralProd[1]*(buildings[0] + 1) + mineralProd[2];
+
 		metalProdBase   = metalProd[0]*Math.pow(buildings[1],2)   - metalProd[1]*buildings[1]   + metalProd[2];
 		metalProdBase1   = metalProd[0]*Math.pow((buildings[1] + 1),2)   - metalProd[1]*(buildings[1] + 1)   + metalProd[2];
+
 		heliumProdBase  = heliumProd[0]*Math.pow(buildings[13],2)  - heliumProd[1]*buildings[13]  + heliumProd[2];
 		heliumProdBase1  = heliumProd[0]*Math.pow((buildings[13] + 1),2)  - heliumProd[1]*(buildings[13]+1)  + heliumProd[2];
 
@@ -263,12 +263,21 @@ class planet {
 		}
 
 		// Energy
-		energyProd = Math.round(electricity[0]*Math.pow(planetData.Buildings[4],2) + electricity[1]*planetData.Buildings[4] + electricity[2]);
+		energyProd = Math.round(electricity[0]*Math.pow(buildings[4],2) + electricity[1]*buildings[4] + electricity[2]);
 		energyCons = planet.getEnergyConsomation();
 
 		// Habitants
-		habProd = Math.round(habGen[0]*Math.pow(planetData.Buildings[2],2) + habGen[1]* planetData.Buildings[2] + habGen[2]);
+		habProd = Math.round(habGen[0]*Math.pow(buildings[2],2) + habGen[1]* buildings[2] + habGen[2]);
 		habCons = planet.getHabitantConsomation();
+	}
+
+	/**
+	 * Afficher les modifications en rapport avec les batiments (niveaux ou production)
+	 *
+	 * @class      BuildingDrawUpdate (name)
+	 */
+	static BuildingDrawUpdate() {
+		planet.recalcBaseRessources():
 
 		// Buildings Levels
 		for(var i=0; i<14; i++) {
@@ -278,11 +287,13 @@ class planet {
 		// Building Production (tooltips)
 		// Minerals
 		var mineralProdBaseTemp = mineralProdBase;
+		var metalProdBaseTemp = metalProdBase;
+		
 		if((planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) && 
 			(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) && 
 			(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) && 
 			(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio)) { // Si on a tout les metaux
-			metalProdBase = 0;
+			mineralProdBaseTemp = 0;
 		}
 
 		if(planetData.resources[0]>=mineralStorageBase) { // Si on a tout les minerais
@@ -292,7 +303,7 @@ class planet {
 
 		$('#minerals-cap').html(GetBetterUnit(mineralStorageBase,'t'));
 		$('#minerals-prod').html(GetBetterUnit(mineralProdBaseTemp,'t/h'));
-		$('#minerals-cons').html(GetBetterUnit(metalProdBase,'t/h'));
+		$('#minerals-cons').html(GetBetterUnit(mineralProdBaseTemp,'t/h'));
 
 		// Helium-3
 		$('#he-cap').html(GetBetterUnit(storageHelium,'t'));
@@ -306,7 +317,7 @@ class planet {
 		if(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio) {
 			$('#fe-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#fe-prod').html(GetBetterUnit(metalProdBase*ratio.ironRatio,'t/h'));
+			$('#fe-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.ironRatio,'t/h'));
 		}
 		$('#fe-variety').html(GetBetterUnit(ratio.ironRatio*100,'%'));
 		// Aluminium
@@ -314,7 +325,7 @@ class planet {
 		if(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) {
 			$('#al-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#al-prod').html(GetBetterUnit(metalProdBase*ratio.aluRatio,'t/h'));
+			$('#al-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.aluRatio,'t/h'));
 		}
 		$('#al-variety').html(GetBetterUnit(ratio.aluRatio*100,'%'));
 		// Copper
@@ -322,7 +333,7 @@ class planet {
 		if(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) {
 			$('#cu-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#cu-prod').html(GetBetterUnit(metalProdBase*ratio.copperRatio,'t/h'));
+			$('#cu-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.copperRatio,'t/h'));
 		}
 		$('#cu-variety').html(GetBetterUnit(ratio.copperRatio*100,'%'));
 		// Titanium
@@ -330,7 +341,7 @@ class planet {
 		if(planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) {	
 			$('#ti-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#ti-prod').html(GetBetterUnit(metalProdBase*ratio.titanRatio,'t/h'));
+			$('#ti-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.titanRatio,'t/h'));
 		}
 		$('#ti-variety').html(GetBetterUnit(ratio.titanRatio*100,'%'));
 

@@ -387,6 +387,12 @@ class ui {
 				value = GetBetterUnit(mineralProdBase,'t/h') + ' (+ ' + GetBetterUnit(mineralProdBase1 - mineralProdBase,'t/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
+			case 1: // Metallurgie
+				title = translate['planet-ui']['production'];
+				icon = '<img height="20" src="'+cdnURL+'img/ui/minerals.png" alt="minerals">';
+				value = GetBetterUnit(metalProdBase,'t/h') + ' (+ ' + GetBetterUnit(metalProdBase1 - metalProdBase,'t/h') 
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
 			case 13: // Helium production facility
 				title = translate['planet-ui']['production'];
 				icon = '&sup3;He';
