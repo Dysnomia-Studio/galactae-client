@@ -39,7 +39,6 @@
 					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
 				<br/>
-				<br/>
 				<div id="buildings-bonus">
 					<h4 id="building-bonus-title"></h4>
 					<span id="building-bonus">

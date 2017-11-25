@@ -2146,7 +2146,7 @@ dl.infos dt {
 	}
 	.building-cost-item {
 		display: inline-block;
-		margin: 0 0.75em;
+		margin: 0 0.5em;
 	}
 	#building-quit {
 		position: absolute;
