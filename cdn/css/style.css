@@ -1171,6 +1171,9 @@ a[class="research-search"] {
 #fleet-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
   -webkit-appearance: none;
 }
+#fleet-build-count {
+	text-align: center;
+}
 #fleet-build-list-empty {
 	text-align: center;
 	width: calc(100% - 220px);

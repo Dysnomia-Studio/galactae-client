@@ -5,7 +5,7 @@ class webSockets {
 		//Connect to the server
 		socket = io.connect('wss://'+gameServer, {secure: true, 'connect timeout': 10000 });
 
-		//Catch connection errors ( like server offline )
+		//Catch connection errors (like server offline)
 		socket.on('connect_failed', function(){
 			kick("CONNECT_LOSS",10000,true);
 			
