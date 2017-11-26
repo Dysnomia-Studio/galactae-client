@@ -121,10 +121,10 @@ class research {
 		$("#hud-research").css("top",pos[1]);
 
 		if($("#hud-research").css("left")< 0) {
-			$("#hud-research").css("left") = 0;
+			$("#hud-research").css("left", 0);
 		}
 		if($("#hud-research").css("top")< 0) {
-			$("#hud-research").css("top") = 0;
+			$("#hud-research").css("top", 0);
 		}
 	}
 	/**
