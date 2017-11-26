@@ -1,6 +1,6 @@
 <?php
 $noscript=true;
-include_once 'gvars.php';
+include_once('gvars.php');
 ?>
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
@@ -9,6 +9,7 @@ include_once 'gvars.php';
 		font-family: 'Titillium Web', sans-serif;
 		cursor: url(<?php echo $cdnURL; ?>img/mouse_cursor.png), auto;
 		color: white;
+		background-color: transparent !important;
 	}
 </style>
 
@@ -65,7 +66,7 @@ if($page < 1) {
 	$page = $pageCount;
 }
 
-$cache = 'ranks/'.$type.'-'.$page.'.html';
+$cache = 'cache/ranks/'.$type.'-'.$page.'.html';
 $expire = time() - 600; // 10 min
 
 /**
@@ -76,7 +77,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 } else {
 	for($i=0; $i<$pageCount; $i++) {
 		$base = $i * $plyPerPage;
-		$cache = 'ranks/'.$type.'-'.($i+1).'.html';
+		$cache = 'cache/ranks/'.$type.'-'.($i+1).'.html';
 
 		ob_start();
 

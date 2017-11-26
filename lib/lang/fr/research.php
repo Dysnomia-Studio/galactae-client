@@ -20,6 +20,7 @@
 		cp_tracteur:		{ name: "Rayon Tracteur", desc: "-5% de temps de construction pour unités et bâtments spatiaux" },
 		cp_materielTp:		{ name: "Teleportation de materiel", desc: "-10% de temps de construction pour unités et bâtments spatiaux" },
 		cp_dbRaffinage:		{ name: "Double raffinage", desc: "Deux fois plus de chance de trouver des minerais rares." },
+		cp_molecular_compression: { name: "Compression moleculaire", desc: "Augmente sensiblement la capacité de stockage des solides et gaz." },
 		// Armes
 		wep_railgun:		{ name: "Railguns", desc: "" },
 		wep_nuke:			{ name: "Armes nucléaires", desc: "" },
@@ -30,9 +31,9 @@
 		wep_mines_nuke:		{ name: "Mines nucléaires", desc: "" },
 		wep_mines_iem:		{ name: "Mines IEM", desc: "" },
 		// Satellites
-		wep_sat_railgun:	{ name: "Satellites AG-I", desc: "" },
-		wep_sat_laser:		{ name: "Satellites AG-II", desc: "" },
-		wep_sat_plasma:		{ name: "Satellites AG-III", desc: "" },
+		wep_sat_ag1:		{ name: "Satellites AG-I", desc: "" },
+		wep_sat_ag2:		{ name: "Satellites AG-II", desc: "" },
+		wep_sat_ag3:		{ name: "Satellites AG-III", desc: "" },
 		// Autres recherches spatiales
 		misc_astronomie:	{ name: "Astronomie", desc: "" },
 		misc_telemetrie:	{ name: "Telemetrie", desc: ""},

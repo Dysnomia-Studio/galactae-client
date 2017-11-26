@@ -20,6 +20,7 @@
 		cp_tracteur:		{ name: "", desc: "" },
 		cp_materielTp:		{ name: "", desc: "" },
 		cp_dbRaffinage:		{ name: "", desc: "" },
+		cp_molecular_compression: { name: "", desc: "" },
 		// Armes
 		wep_railgun:		{ name: "", desc: "" },
 		wep_nuke:			{ name: "", desc: "" },
@@ -30,9 +31,9 @@
 		wep_mines_nuke:		{ name: "", desc: "" },
 		wep_mines_iem:		{ name: "", desc: "" },
 		// Satellites
-		wep_sat_railgun:	{ name: "", desc: "" },
-		wep_sat_laser:		{ name: "", desc: "" },
-		wep_sat_plasma:		{ name: "", desc: "" },
+		wep_sat_ag1:		{ name: "", desc: "" },
+		wep_sat_ag2:		{ name: "", desc: "" },
+		wep_sat_ag3:		{ name: "", desc: "" },
 		// Autres recherches spatiales
 		misc_astronomie:	{ name: "", desc: "" },
 		misc_telemetrie:	{ name: "", desc: ""},

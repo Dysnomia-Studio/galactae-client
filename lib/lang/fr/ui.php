@@ -1,15 +1,27 @@
 <?php
 	//== SETTINGS ==\\
-	define('SETTINGS','Paramètres');
+	define('SUPPORT','Support');
+	define('FORUM','Forum');
+	define('PROFIL','Profil');
 	define('PORTAL','Portail des galaxies');
+	define('SETTINGS','Paramètres');
 	define('DISCONNECT','Déconnexion');
 
-	//== BUTTONS ==\\
-	define('HUD_MAP','Carte');
-	define('HUD_CHAT','Chat');
-	define('HUD_RESEARCH','Recherches');
-	define('HUD_RANKS','Classement');
-	define('HUD_FLEET','Flottes');
+	//== HUD BOTTOM ==\\
+	define('HUD_BOTTOM_MAP','Carte');
+	define('HUD_BOTTOM_RESEARCH','Recherches');
+	define('HUD_BOTTOM_UNITS','Unités');
+	define('HUD_BOTTOM_FLEETS','Flottes');
+	define('HUD_BOTTOM_RADAR','Radar');
+	define('HUD_BOTTOM_ALLY','Aliances');
+	define('HUD_BOTTOM_RAPPORTS','Rapports');
+
+	define('HUD_BOTTOM_QUEST','Quêtes');
+	define('HUD_BOTTOM_TRADE','Commerce');
+	define('HUD_BOTTOM_RANKS','Classement');
+	define('HUD_BOTTOM_PROFIL','Profils');
+	define('HUD_BOTTOM_MESSAGES','Messages');
+	define('HUD_BOTTOM_CHAT','Chat');
 
 	//== DAY BONUS ==\\
 	define('DAY_BONUS_TITLE','Bonus de connexion');
@@ -24,4 +36,7 @@
 	define('PORTRAIT_ERROR','Il est necessaire d\'avoir un ecran en orientation paysage pour pouvoir jouer');
 	define('CREATED_BY','Crée par');
 	define('SOON_AVAILABLE','Bientot Disponible ...');
+	define('OLDER_NEWS','Plus ancien');
+	define('NEWER_NEWS','Plus recent');
+	define('AT_NEXT_LVL','au niveau suivant');
 ?>

@@ -1,5 +1,9 @@
 <?php
 	// == Resources == \\
+	define('MINERALS','Raw Minerals');
+	define('POPULATION','Population');
+	define('ELECTRICITY','Electricity');
+	define('HELIUM3','Helium 3');
 	define('METAL_CATEGORY','Metal');
 	define('METAL_IRON','Iron');
 	define('METAL_ALUMINIUM','Aluminium');
@@ -12,6 +16,9 @@
 	define('PRODUCTION','Production');
 	define('CONSUMPTION','Consumption');
 	define('IMPORTANCE','Importance');
+	define('AVAILABLE','Available');
+	define('USED','Used');
+	define('TOTAL','Total');
 
 	// == Buildings == \\
 	define('PLANET_BUILDING','Ground Build');
@@ -38,4 +45,13 @@
 		{id: "trade", name: "Trading station", desc: "The trading station is the center of all our commercial activities." },
 		{id: "he3exp", name: "Helium 3 exploitation station", desc: "This station will search helium 3 in closet asteroids and get it." },
 		];
+
+		translate['planet-ui'] = {
+			"storage": "Stockage",
+			"production": "Production",
+			"population": "Population",
+			"afterUpdating": "after upgrading",
+			"availableFleets": "Available fleets",
+			"metal": "Metal",
+		};
 </script>

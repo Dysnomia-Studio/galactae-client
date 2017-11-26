@@ -5,7 +5,7 @@
 	<div id="loading-overlay-text"><?php echo GAME_LOADING; ?></div>
 </div>
 <?php /* Planet View */ ?>
-<div id="planet-content">
+<div id="planet">
 	<?php /* Planet Back */ ?>
 	<div id="planet-back">
 		<div id="planet-back-bg"></div>
@@ -14,134 +14,304 @@
 			<div id="planet-back-halo"></div>
 		</div>
 	</div>
-	<?php /* Buildings ( Details ) */ ?>
-	<div id="building-area">	
-		<h1 id="building-name"></h1>
-		<h3 id="building-level"></h3>
-		<p id="building-desc"></p>
-		<div id="building-cost">
-			<span id="building-cost-iron"><?php echo METAL_IRON; ?>: <span id="building-cost-iron-val"></span></span>
-			<span id="building-cost-aluminium"><?php echo METAL_ALUMINIUM; ?>: <span id="building-cost-aluminium-val"></span></span>
-			<span id="building-cost-copper"><?php echo METAL_COPPER; ?>: <span id="building-cost-copper-val"></span></span>
-			<span id="building-cost-titanium"><?php echo METAL_TITANIUM; ?>: <span id="building-cost-titanium-val"></span></span>
-			<span id="building-cost-energy"><?php echo ENERGY; ?>: <span id="building-cost-energy-val"></span></span>
-			<span id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+
+	<?php /* Current Planet */ ?>
+	<div id="planet-current">
+		<?php /* Buildings ( Details ) */ ?>
+		<div id="building-area">
+			<span type="button" id="building-quit" onclick="ui.buildPanelHide()">X</span>	
+			<h1 id="building-name"></h1>
+			<h4 id="building-level"></h4>
+			<div id="building-info">	
+				<img src="?" id="building-img" alt="building-img">
+				<p id="building-desc"></p>
+			</div>
+			<div id="building-orders">
+				<div id="building-cost">
+					<h4>Coût d'amelioration</h4>
+					<span class="building-cost-item" id="building-cost-iron">Fe <span id="building-cost-iron-val"></span></span>
+					<span class="building-cost-item" id="building-cost-aluminium">Al <span id="building-cost-aluminium-val"></span></span>
+					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
+					<span class="building-cost-item" id="building-cost-titanium">Ti <span id="building-cost-titanium-val"></span></span>
+					<br/>
+					<span class="building-cost-item" id="building-cost-energy"><img src="./cdn/img/ui/electricity.png" alt="electricity" > <span id="building-cost-energy-val"></span></span>
+					<span class="building-cost-item" id="building-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
+					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+				</div>
+				<br/>
+				<div id="buildings-bonus">
+					<h4 id="building-bonus-title"></h4>
+					<span id="building-bonus">
+						<span id="building-bonus-icon"></span>
+						<span id="building-bonus-val">XXXt (+ XXt <?php echo AT_NEXT_LVL; ?>)</span>
+					</span>
+				</div>
+
+				<span id="building-message"></span>
+				<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
+			</div>
 		</div>
 
-		<span id="building-message"></span>
-		<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
-		
-		<img src="?" id="building-img" alt="building-img">
-		<input type="button" id="building-quit" value="X" onclick="ui.buildPanelHide()">
+		<?php /* Ground Building */ ?>
+		<div class="building-ground">
+			<span id="building-ground-title"><?php echo PLANET_BUILDING; ?></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/carriere.png" class="building-list-building" id="carriere" onclick="ui.buildPanelOpen(0)" alt="carriere">
+			<span id="lvl-carriere"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/metallurgy.png" class="building-list-building" id="metallurgy" onclick="ui.buildPanelOpen(1)" alt="metallurgy">
+			<span id="lvl-metallurgy"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/living.png" class="building-list-building" id="living" onclick="ui.buildPanelOpen(2)" alt="living">
+			<span id="lvl-living"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/serre.png" class="building-list-building" id="serre" onclick="ui.buildPanelOpen(3)" alt="serre">
+			<span id="lvl-serre"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/solar.png" class="building-list-building" id="solar" onclick="ui.buildPanelOpen(4)" alt="solar">
+			<span id="lvl-solar"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/warehouse.png" class="building-list-building" id="warehouse" onclick="ui.buildPanelOpen(5)" alt="warehouse">
+			<span id="lvl-warehouse"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/headquarter.png" class="building-list-building" id="headquarter" onclick="ui.buildPanelOpen(6)" alt="headquarter">
+			<span id="lvl-headquarter"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/launchpad.png" class="building-list-building" id="launchpad" onclick="ui.buildPanelOpen(7)" alt="launchpad">
+			<span id="lvl-launchpad"></span>
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/research.png" class="building-list-building" id="research" onclick="ui.buildPanelOpen(8)" alt="research">
+			<span id="lvl-research"></span>
+		</div>
+
+		<?php /* Space Building */ ?>
+		<div class="building-space">
+			<span id="building-space-title"><?php echo ORBITAL_BUILDING; ?></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/radar.png" class="building-list-building" id="radar" onclick="ui.buildPanelOpen(9)" alt="radar">
+				<span id="lvl-radar"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/tank.png" class="building-list-building" id="tank" onclick="ui.buildPanelOpen(10)" alt="tank">
+				<span id="lvl-tank"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/shipyard.png" class="building-list-building" id="shipyard" onclick="ui.buildPanelOpen(11)" alt="shipyard">
+				<span id="lvl-shipyard"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/trade.png" class="building-list-building" id="trade" onclick="ui.buildPanelOpen(12)" alt="trade">
+				<span id="lvl-trade"></span>
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/he3exp.png" class="building-list-building" id="he3exp" onclick="ui.buildPanelOpen(13)" alt="he3exp">
+				<span id="lvl-he3exp"></span>
+		</div>
 	</div>
-	<?php /* Ground Building */ ?>
-	<div class="build-tab">
-		<p class="build-title"><?php echo PLANET_BUILDING; ?></p>
-		<img src="<?php echo $cdnURL; ?>img/buildings/tabs/0.png" class="build-tab-background" alt="building-tab">
-		<?php
-			$buildings = [
-				"carriere",
-				"metallurgy",
-				"living",
-				"serre",
-				"solar",
-				"warehouse",
-				"headquarter",
-				"launchpad",
-				"research",
 
-				"radar",
-				"tank",
-				"shipyard",
-				"trade",
-				"he3exp"
-			];
+	<?php /* Other planets */ ?>
+	<div id="planet-other">
 
-			for($i=0; $i<9; $i++) {
-				echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'1.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
-					<span id="lvl-'.$buildings[$i].'"></span>
-					<img id="arrow-'.$buildings[$i].'" src="'.$cdnURL.'img/buildings/arrow.png" alt="can be build">';
-			}
-		?>
-	</div>
-
-	<?php /* Space Building */ ?>
-	<div class="space-tab">
-		<p class="space-title"><?php echo ORBITAL_BUILDING; ?></p>
-		<img src="<?php echo $cdnURL; ?>img/buildings/tabs/space-tab.png" class="space-tab-background" alt="space-tab">
-		<?php
-			for($i=9; $i<14; $i++) {
-				echo '<img src="'.$cdnURL.'img/buildings/icons/'.$buildings[$i].'1.png" class="build-tab-building" id="'.$buildings[$i].'" onclick="ui.buildPanelOpen('.$i.')" alt="'.$buildings[$i].'">
-					<span id="lvl-'.$buildings[$i].'"></span>
-					<img id="arrow-'.$buildings[$i].'" src="'.$cdnURL.'img/buildings/arrow.png" alt="can be build">';
-			}
-		?>
 	</div>
 </div>
 <?php /* Msg Popup */ ?>
-<div id="messagePanel-div"><span id="messagePanel"></span></div>
+<div id="messagePanel"></div>
 <?php /* Top HUD */ ?>
 <div id="hud-top">
-	<img id="hud-top-back" src="<?php echo $cdnURL; ?>img/ui/hud-top.png" alt="hud-top">
-	<div id="hud-top-left-content">
+	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
-		<img height="20" src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span class="nmb" id="population_nmb">1</span>
-		<img height="20" src="<?php echo $cdnURL; ?>img/ui/research.png" alt="research"> <span class="nmb" id="research_nmb">1</span>
-		<img height="20" src="<?php echo $cdnURL; ?>img/ui/moral.png" alt="moral"> <span class="nmb" id="moral_nmb">1</span>
 		<span class="hud-top-tooltip">
-			<img height="20" src="<?php echo $cdnURL; ?>img/ui/electricity.png" alt="electricity" > <span class="nmb" id="electricity_nmb">1</span>
-			<span class="hud-top-tooltip-content">
-				<?php echo PRODUCTION; ?>: <span id="electricity-prod">XXX Kwh</span><br/>
-				<?php echo CONSUMPTION; ?>: <span id="electricity-cons">XXX Kwh</span><br/>
+			<img height="15" src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population">
+			<span class="nmb" id="population_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="population-tooltips">
+					<?php echo POPULATION; ?><br/>
+					<?php echo AVAILABLE; ?>: <span id="population-available">XXX</span><br/>
+					<?php echo USED; ?>: <span id="population-used">XXX</span><br/>
+					<?php echo TOTAL; ?>: <span id="population-total">XXX</span><br/>
+				</span>
+			</span>
+		</span>
+
+		<img height="15" src="<?php echo $cdnURL; ?>img/ui/research.png" alt="research">
+		<span class="nmb" id="research_nmb">1</span>
+
+		<img height="15" src="<?php echo $cdnURL; ?>img/ui/moral.png" alt="moral">
+		<span class="nmb" id="moral_nmb">1</span>
+
+		<span class="hud-top-tooltip">
+			<img height="15" src="<?php echo $cdnURL; ?>img/ui/electricity.png" alt="electricity">
+			<span class="nmb" id="electricity_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="electricity-tooltips">
+					<?php echo ELECTRICITY; ?><br/>
+					<?php echo AVAILABLE; ?>: <span id="electricity-available">XXX t</span><br/>
+					<?php echo USED; ?>: <span id="electricity-used">XXX t</span><br/>
+					<?php echo TOTAL; ?>: <span id="electricity-total">XXX t</span><br/>
+				</span>
 			</span>
 		</span>
 		<span id="hud-top-left-moveRight">&#9654;</span>
 	</div>
-	<ul id="hud-top-center">
-		<li id="hud-username"><a href="https://galactae.eu/profil" target="_blank"><?php echo $data['user_name'];?></a></li>
-		<li id="hud-settings"><img height="20" src="<?php echo $cdnURL; ?>img/ui/settings.png" alt="settings"></li>
-		<li id="hud-planet-prev" onclick="planet.prev();">&#60;</li>
-		<li id="hud-planet-name"><span class="planet-name-text"></span></li>
-		<li id="hud-planet-next" onclick="planet.next();">&#62;</li>
-		<li id="hud-user-money"><img height="20" src="<?php echo $cdnURL; ?>img/ui/money.png" alt="money"> <span class="nmb" id="money_nmb">1</span></li>
-	</ul>
-	<div id="hud-top-right-content">
+
+	<div id="hud-top-center">
+		<img id="hud-settings" height="20" src="<?php echo $cdnURL; ?>img/ui/settings.png" alt="settings">
+		<span id="hud-planet-prev" onclick="planet.prev();">&#9664;</span>
+		<span id="hud-planet-name">SomeLongName</span>
+		<span id="hud-planet-next" onclick="planet.next();">&#9654;</span>
+	</div>
+
+	<div id="hud-top-right">
 		<span id="hud-top-right-moveLeft">&#9664;</span>
-		<?php
-			$topRightContent = [
-				// Nom | Symbole | Capacite | Production | Consommation | Taux de presence
-				["minerals",'<img height="20" src="'.$cdnURL.'img/ui/minerals.png" alt="minerals">',1,1,1,0],
-				["he",'<span class="element">&sup3;He </span>',1,1,0,0],
-				["al",'<span class="element">Al </span>',1,1,0,1],
-				["fe",'<span class="element" id="element_fe">Fe </span>',1,1,0,1],
-				["ti",'<span class="element">Ti </span>',1,1,0,1],
-				["cu",'<span class="element">Cu </span>',1,1,0,1]
-			];
-
-		for($i=0; $i<count($topRightContent); $i++) {
-			echo '
-			<span class="hud-top-tooltip">
-				'.$topRightContent[$i][1].'
-				<span class="nmb" id="'.$topRightContent[$i][0].'_nmb">1</span>
-				<span class="hud-top-tooltip-content" id="'.$topRightContent[$i][0].'-tooltips">';
-
-			if($topRightContent[$i][2]) { echo CAPACITY.': <span id="'.$topRightContent[$i][0].'-cap">XXX t</span><br/>'; }
-			if($topRightContent[$i][3]) { echo PRODUCTION.': <span id="'.$topRightContent[$i][0].'-prod">XXX t</span><br/>'; }
-			if($topRightContent[$i][4]) { echo CONSUMPTION.': <span id="'.$topRightContent[$i][0].'-cons">XXX t</span><br/>'; }
-			if($topRightContent[$i][5]) { echo IMPORTANCE.': <span id="'.$topRightContent[$i][0].'-variety">XXX t</span><br/>'; }
-
-			echo'</span></span>';
-		}
-		?>
+		<span class="hud-top-tooltip">
+			<img height="20" src="<?php echo $cdnURL; ?>img/ui/minerals.png" alt="minerals">
+			<span class="nmb" id="minerals_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="minerals-tooltips">
+					<?php echo MINERALS; ?><br/>
+					<?php echo CAPACITY; ?>: <span id="minerals-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="minerals-prod">XXX t</span><br/>
+					<?php echo CONSUMPTION; ?>: <span id="minerals-cons">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">&sup3;He </span>
+			<span class="nmb" id="he_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="he-tooltips">
+					<?php echo HELIUM3; ?><br/>
+					<?php echo CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">Al </span>
+			<span class="nmb" id="al_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="al-tooltips">
+					<?php echo METAL_ALUMINIUM; ?><br/>
+					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element" id="element_fe">Fe </span>
+			<span class="nmb" id="fe_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="fe-tooltips">
+					<?php echo METAL_IRON; ?><br/>
+					<?php echo CAPACITY; ?>: <span id="fe-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="fe-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="fe-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">Ti </span>
+			<span class="nmb" id="ti_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="ti-tooltips">
+					<?php echo METAL_TITANIUM; ?><br/>
+					<?php echo CAPACITY; ?>: <span id="ti-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="ti-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="ti-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
+		<span class="hud-top-tooltip">
+			<span class="element">Cu </span>
+			<span class="nmb" id="cu_nmb">1</span>
+			<span class="hud-top-tooltip-wrapper">
+				<span class="hud-top-tooltip-content" id="cu-tooltips">
+					<?php echo METAL_COPPER; ?><br/>
+					<?php echo CAPACITY; ?>: <span id="cu-cap">XXX t</span><br/>
+					<?php echo PRODUCTION; ?>: <span id="cu-prod">XXX t</span><br/>
+					<?php echo IMPORTANCE; ?>: <span id="cu-variety">XXX t</span><br/>
+				</span>
+			</span>
+		</span>
 		<span id="hud-top-right-moveRight">&#9654;</span>
 	</div>
 </div>
+<?php /* HUD Bottom */ ?>
+	<div id="hud-bottom">
+		<div id="hud-bottom-left">
+			<span class="hud-bottom-tooltip">
+				<a href="#map" id="hud-bottom-button-map"><img src="<?php echo $cdnURL; ?>img/ui/map.png" alt="map"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MAP; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#researchs" id="hud-bottom-button-researchs"><img src="<?php echo $cdnURL; ?>img/ui/researchs.png" alt="researchs"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RESEARCH; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#units" id="hud-bottom-button-units"><img src="<?php echo $cdnURL; ?>img/ui/units.png" alt="units"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_UNITS; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?php echo $cdnURL; ?>img/ui/fleets.png" alt="fleets"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_FLEETS; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#radar" id="hud-bottom-button-radar"><img src="<?php echo $cdnURL; ?>img/ui/radar.png" alt="radar"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RADAR; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#ally" id="hud-bottom-button-ally"><img src="<?php echo $cdnURL; ?>img/ui/ally.png" alt="ally"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_ALLY; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?php echo $cdnURL; ?>img/ui/rapports.png" alt="rapports"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RAPPORTS; ?></span>
+				</span>
+			</span>
+		</div>
+		<div id="hud-bottom-right">
+			<span class="hud-bottom-tooltip">
+				<a href="#quests" id="hud-bottom-button-quests"><img src="<?php echo $cdnURL; ?>img/ui/quests.png" alt="quests"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_QUEST; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#trade" id="hud-bottom-button-trade"><img src="<?php echo $cdnURL; ?>img/ui/trade.png" alt="trade"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_TRADE; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?php echo $cdnURL; ?>img/ui/ranks.png" alt="ranks"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RANKS; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#profil" id="hud-bottom-button-profil"><img src="<?php echo $cdnURL; ?>img/ui/profil.png" alt="profil"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_PROFIL; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#messages" id="hud-bottom-button-messages"><img src="<?php echo $cdnURL; ?>img/ui/messages.png" alt="messages"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MESSAGES; ?></span>
+				</span>
+			</span>
+			<span class="hud-bottom-tooltip">
+				<a href="#chat" id="hud-bottom-button-chat"><img src="<?php echo $cdnURL; ?>img/ui/chat.png" alt="chat"></a>
+				<span class="hud-bottom-tooltip-wrapper">
+					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_CHAT; ?></span>
+				</span>
+			</span>
+		</div>
+	</div>
 <?php /* ESC */ ?>
 <div id="settings-menu">
-	<br/>
 	<a href="#close-settings-tabs" id="close-settings-tabs">X</a><br/>
-	<a href="#settings-tabs"><?php echo SETTINGS; ?></a><br/>
 	<a href="https://galactae.eu/portal"><?php echo PORTAL; ?></a><br/>
+	<a href="https://galactae.eu/profil"><?php echo PROFIL; ?></a><br/>
+	<a href="https://galactae.eu/forum"><?php echo FORUM; ?></a><br/>
+	<a href="https://galactae.eu/support"><?php echo SUPPORT; ?></a><br/>
+	<a href="#settings-tabs"><?php echo SETTINGS; ?></a><br/>
 	<a href="https://galactae.eu/deconnexion"><?php echo DISCONNECT; ?></a>
 </div>
 <?php /* Chat */ ?>
@@ -154,7 +324,7 @@
 	<div id="hud-chat-global" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-trade" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
-	<form action="game.php" method="post" id="chat_form">
+	<form action="#chat_text" method="post" id="chat_form">
 		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
 		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?php echo $cdnURL; ?>img/ui/chat-voice.png" alt="voice"></a>
 	</form>
@@ -164,13 +334,23 @@
 	<span id="hud-ranks-close">X</span>
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
 </div>
-<?php /* Buttons */ ?>
-<div id="hud-buttons">
-	<span id="map-button"><?php echo HUD_MAP; ?></span>
-	<span id="chat-button"><?php echo HUD_CHAT; ?></span>
-	<span id="fleet-button"><?php echo HUD_FLEET; ?></span>
-	<span id="ranks-button"><?php echo HUD_RANKS; ?></span>
-	<span id="research-button"><?php echo HUD_RESEARCH; ?></span>
+<?php /* News */
+$lastNews = $sqlDB->getCondContent('announces',
+	[ ["onGame",1,"int"] ],
+	0,1,"blog_id DESC");
+
+if(!isset($lastNews[0]) || !isset($lastNews[0]['blog_id'])) {
+	$lastNews = [ [ 'blog_id' => 0 ] ];
+}
+
+if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
+	echo '<div id="hud-news" style="display: block;">';
+} else {
+	echo '<div id="hud-news" style="display: none;">';
+}
+?>
+	<span id="hud-news-close">X</span>
+	<iframe id="hud-news-frame" src="news.php?n=<?php echo $lastNews[0]['blog_id']; ?>"></iframe>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
@@ -208,13 +388,13 @@
 	<?php /* Fleet Building */ ?>
 	<div id="fleet-build">
 		<ul id="fleet-build-choice" class="ul-choice-line fleet-ul2">
-			<li shipType="-1" id="fleet-build-all-button" class="ul-choice-line-li-active"><?php echo FLEET_BUILD_ALL; ?></li>
-			<li shipType="0" id="fleet-build-defense-button"><?php echo FLEET_BUILD_DEF; ?></li>
-			<li shipType="1" id="fleet-build-fighter-button"><?php echo FLEET_BUILD_FIGHTER; ?></li>
-			<li shipType="2" id="fleet-build-cruisader-button"><?php echo FLEET_BUILD_CUISADER; ?></li>
-			<li shipType="3" id="fleet-build-cuirasse-button"><?php echo FLEET_BUILD_CUIRASSE; ?></li>
-			<li shipType="4" id="fleet-build-corvette-button"><?php echo FLEET_BUILD_CORVET; ?></li>
-			<li shipType="5" id="fleet-build-carrier-button"><?php echo FLEET_BUILD_CARRIER; ?></li>
+			<li shipType="SHIP_ALL" id="fleet-build-all-button" class="ul-choice-line-li-active"><?php echo FLEET_BUILD_ALL; ?></li>
+			<li shipType="SHIP_SAT" id="fleet-build-defense-button"><?php echo FLEET_BUILD_DEF; ?></li>
+			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?php echo FLEET_BUILD_FIGHTER; ?></li>
+			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?php echo FLEET_BUILD_CUISADER; ?></li>
+			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?php echo FLEET_BUILD_CUIRASSE; ?></li>
+			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?php echo FLEET_BUILD_CORVET; ?></li>
+			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?php echo FLEET_BUILD_CARRIER; ?></li>
 		</ul>
 		<div id="fleet-build-content">
 			<h2 id="fleet-build-list-empty"><?php echo FLEET_NO_MODEL; ?></h2>
@@ -274,6 +454,7 @@
 		<input type="text" id="fleet-type-create-name" placeholder="<?php echo SHIP_NAME; ?>" class="ui-large-button" required/>
 
 		<svg id="fleet-type-create-schematic" width="800px" height="450px"></svg>
+		<div id="fleet-type-create-selects"></div>
 
 		<div id="fleet-type-create-cost">
 				<?php echo '<div id="fleet-type-create-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-type-create-stat-subspeed-val"></span><br /></div>
@@ -312,6 +493,7 @@
 <div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.elanis.eu/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.keyframes.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
