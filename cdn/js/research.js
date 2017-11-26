@@ -120,11 +120,17 @@ class research {
 		$("#hud-research").css("left",pos[0]);
 		$("#hud-research").css("top",pos[1]);
 
-		if($("#hud-research").css("left")< 0) {
+		if(parseInt($("#hud-research").css("left")) > 0) {
 			$("#hud-research").css("left", 0);
 		}
-		if($("#hud-research").css("top")< 0) {
+		if(parseInt($("#hud-research").css("top")) > 0) {
 			$("#hud-research").css("top", 0);
+		}
+		if(parseInt($("#hud-research").css("left")) < $(document).width()-RESEARCH_DIV_SIZE) {
+			$("#hud-research").css("left", $(document).width()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"));
+		}
+		if(parseInt($("#hud-research").css("top")) < $(document).height()-RESEARCH_DIV_SIZE) {
+			$("#hud-research").css("top", $(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"));
 		}
 	}
 	/**
