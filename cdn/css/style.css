@@ -574,6 +574,9 @@ select, input {
 	min-height: 20px;
 	margin: 0.3em 0.2em 0.1em 0.2em;
 }
+#hud-bottom a {
+	cursor: url(../img/mouse_pointer.png), pointer
+}
 #hud-bottom-right, #hud-bottom-left {
 	position: fixed;
 	white-space: nowrap;
