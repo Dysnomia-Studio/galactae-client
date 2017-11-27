@@ -143,7 +143,7 @@ select, input {
 }
 .gvt-btn {
 	text-align: center;
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 	background-color: rgba(200,200,200,0.25);
 	padding: 1.25em 2.5em;
 	font-size: 0.8em;
@@ -270,7 +270,7 @@ select, input {
 #day-bonus-later { right: 7.5%; }
 #day-bonus-confirm:hover, #day-bonus-later:hover {
 	background-color: rgba(220,220,220,0.5);
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 /**
  * Loading overlay
@@ -467,7 +467,7 @@ select, input {
 }
 #hud-planet-prev:hover, #hud-planet-next:hover {
 	color: #4f8e8d;
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 #hud-planet-name {
 	margin: 0 10px;
@@ -489,7 +489,7 @@ select, input {
 	margin-right: 0.5em;
 }
 #hud-top-right-moveLeft, #hud-top-right-moveRight, #hud-top-left-moveLeft, #hud-top-left-moveRight {
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 
 	position: fixed;
 
@@ -958,7 +958,7 @@ select, input {
 #fleet-type-create-close {
 	 z-index: 100;
 }
-#hud-fleet-close, #hud-research-close, #hud-ranks-close, #hud-news-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close { cursor: pointer; }
+#hud-fleet-close, #hud-research-close, #hud-ranks-close, #hud-news-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close { cursor: url(../img/mouse_pointer.png), pointer; }
 #hud-fleet-close {
 	position: absolute;
 	top: 0.52vw;
@@ -1031,7 +1031,7 @@ select, input {
 	bottom: 5px;
 }
 a[class="research-search"] {
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 .research-ok {
 	text-align: center;
@@ -1146,7 +1146,7 @@ a[class="research-search"] {
 }
 #fleet-build-list tbody tr {
 	border: 1px solid transparent;
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 .fleet-build-list-active {
     border: 1px solid #0EC6C6 !important;
@@ -1203,7 +1203,7 @@ a[class="research-search"] {
 	top: 3.5vw;
 	left: 3em;
 	font-weight: bold;
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 	display: none;
 
 	z-index: 150;
@@ -1237,7 +1237,7 @@ a[class="research-search"] {
 	padding: 0;
 }
 #hud-map-galaxy .select-quadrant {
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 
 	position: absolute;
 }
@@ -2239,5 +2239,5 @@ dl.infos dt {
 	vertical-align: middle;
 }
 #building-quit, #building-upgrade {
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
