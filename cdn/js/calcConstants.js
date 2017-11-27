@@ -197,6 +197,178 @@ var researchBonus = {
 	cp_molecular_compression: 1.1,
 };
 
+var researchPos = {
+	// Noeud Central
+	researchCenter:		[5000,5000],
+	industrialistion:	[5563,5000],
+	phyContemporaine:	[4813,5333],
+	thermodynamique:	[4900,4467],
+	// Mise en orbite et propulsion
+	prop_thermique:		[4313,3933],
+	prop_vSolaire:		[3600,4250],
+	prop_ions:			[5922,4114],
+	prop_vsl:			[6918,4196],
+	prop_hyperespace:	[7800,4150],
+	prop_manoeuvre:		[4813,3433],
+	prop_advManoeuvre:	[5000,3000],
+	// Construction et production
+	cp_mecanisation:	[6000,4600],
+	cp_tracteur:		[6300,4950],
+	cp_materielTp:		[6550,5250],
+	cp_dbRaffinage:		[6100,5400],
+	cp_molecular_compression: [5450,5350],
+	// Armes
+	wep_railgun:		[5900,5700],
+	wep_nuke:			[6500,6300],
+	wep_laser:			[6600,6000],
+	wep_plasma:			[7300,6400],
+	// Mines
+	wep_mines:			[5300,6600],
+	wep_mines_nuke:		[6250,6600],
+	wep_mines_iem:		[4600,6100],
+	// Satellites
+	wep_sat_ag1:		[5300,7100],
+	wep_sat_ag2:		[6350,7500],
+	wep_sat_ag3:		[7329,7850],
+	// Autres recherches spatiales
+	misc_astronomie:	[5200,6200],
+	misc_telemetrie:	[6100,6200],
+	misc_advTelemetrie:	[6900,5600],
+	misc_mecStellaire:	[4000,6100],
+	misc_phySolaire:	[3700,5850],
+	misc_phyQuantique:	[4800,5850],
+	misc_calcGravit:	[4500,6500],
+	misc_em:			[4300,5600],
+};
+
+var researchList = {
+	// Noeud Central
+	researchCenter: 	{ cost: 0, parents: [] },
+	industrialistion: 	{ cost: 8, parents: ["researchCenter"] },		
+	phyContemporaine: 	{ cost: 20, parents: ["researchCenter"] },	
+	thermodynamique: 	{ cost: 13, parents: ["researchCenter"] },
+	// Mise en orbite et propulsion
+	prop_thermique: 	{ cost: 380, parents: ["thermodynamique","misc_mecStellaire",] },
+	prop_vSolaire: 		{ cost: 2300, parents: ["prop_thermique","misc_phySolaire"] },
+	prop_ions: 			{ cost: 2000, parents: ["prop_thermique","misc_phyQuantique"] },
+	prop_vsl: 			{ cost: 15000, parents: ["prop_ions","misc_advTelemetrie"] },
+	prop_hyperespace: 	{ cost: 35000, parents: ["prop_vsl"] },
+	prop_manoeuvre: 	{ cost: 450, parents: ["prop_thermique"] },
+	prop_advManoeuvre: 	{ cost: 700, parents: ["prop_manoeuvre"] },
+	// Construction et production
+	cp_mecanisation: 	{ cost: 120, parents: ["industrialistion"] },
+	cp_tracteur: 	 	{ cost: 150, parents: ["industrialistion"] },
+	cp_materielTp: 		{ cost: 350, parents: ["cp_tracteur","misc_advTelemetrie"] },
+	cp_dbRaffinage: 	{ cost: 100, parents: ["industrialistion"] },
+	cp_molecular_compression: 	{ cost: 180, parents: ["industrialistion","misc_phyQuantique"] },
+	// Armes
+	wep_railgun:		{ cost: 50, parents: ["phyContemporaine"] },
+	wep_nuke:			{ cost: 180, parents: ["wep_railgun"] },
+	wep_laser:			{ cost: 260, parents: ["wep_railgun","misc_phyQuantique"] },
+	wep_plasma:			{ cost: 480, parents: ["wep_laser"] },
+	// Mines spatiales
+	wep_mines: 			{ cost: 380, parents: ["misc_calcGravit","misc_telemetrie"] },
+	wep_mines_nuke:		{ cost: 750, parents: ["wep_mines","wep_nuke"] },
+	wep_mines_iem:		{ cost: 550, parents: ["wep_mines","misc_em"] },
+	// Satellites
+	wep_sat_ag1:		{ cost: 360, parents: ["misc_calcGravit","misc_telemetrie"] },
+	wep_sat_ag2:		{ cost: 650, parents: ["wep_sat_ag1","misc_advTelemetrie"] },
+	wep_sat_ag3:		{ cost: 1500, parents: ["wep_sat_ag2"] },
+	// Autres recherches
+	misc_astronomie:	{ cost: 45, parents: ["phyContemporaine"] },
+	misc_telemetrie: 	{ cost: 90, parents: ["misc_astronomie"] },
+	misc_advTelemetrie: { cost: 320, parents: ["misc_telemetrie"] },
+	misc_mecStellaire: 	{ cost: 340, parents: ["misc_calcGravit"] },
+	misc_phyQuantique: 	{ cost: 120, parents: ["phyContemporaine"] },
+	misc_phySolaire: 	{ cost: 280, parents: ["misc_phyQuantique"] },
+	misc_calcGravit: 	{ cost: 240, parents: ["misc_astronomie"] },
+	misc_em: 			{ cost: 110, parents: ["phyContemporaine"] },
+};
+var researchNamesList = [
+	// Noeud Central
+	"researchCenter",
+	"industrialistion",
+	"phyContemporaine",
+	"thermodynamique",
+	// Mise en orbite et propulsion
+	"prop_thermique",
+	"prop_vSolaire",
+	"prop_ions",
+	"prop_vsl",
+	"prop_hyperespace",
+	"prop_manoeuvre",
+	"prop_advManoeuvre",
+	// Construction et production
+	"cp_mecanisation",
+	"cp_tracteur",
+	"cp_materielTp",
+	"cp_dbRaffinage",
+	"cp_molecular_compression",
+	// Armes
+	"wep_railgun",
+	"wep_nuke",
+	"wep_laser",
+	"wep_plasma",
+	// Mines Spatiales
+	"wep_mines",
+	"wep_mines_nuke",
+	"wep_mines_iem",
+	// Satellites
+	"wep_sat_ag1",
+	"wep_sat_ag2",
+	"wep_sat_ag3",
+	// Autres recherches
+	"misc_astronomie",
+	"misc_telemetrie",
+	"misc_advTelemetrie",
+	"misc_mecStellaire",
+	"misc_phyQuantique",
+	"misc_phySolaire",
+	"misc_calcGravit",
+	"misc_em",
+];
+var researchCost = {
+	researchCenter: 	0,
+	industrialistion: 	8,		
+	phyContemporaine: 	20,	
+	thermodynamique: 	13,
+	// Mise en orbite et propulsion
+	prop_thermique: 	380,
+	prop_vSolaire: 		2300,
+	prop_ions: 			2000,
+	prop_vsl: 			15000,
+	prop_hyperespace: 	35000,
+	prop_manoeuvre: 	450,
+	prop_advManoeuvre: 	700,
+	// Construction et production
+	cp_mecanisation: 	120,
+	cp_tracteur: 	 	150,
+	cp_materielTp: 		350,
+	cp_dbRaffinage: 	100,
+	cp_molecular_compression: 180,
+	// Armes
+	wep_railgun:		50,
+	wep_nuke:			180,
+	wep_laser:			260,
+	wep_plasma:			480,
+	// Mines spatiales
+	wep_mines: 			380,
+	wep_mines_nuke:		750,
+	wep_mines_iem:		550,
+	// Satellites
+	wep_sat_ag1:	    360,
+	wep_sat_ag2:		650,
+	wep_sat_ag3:		1500,
+	// Autres recherches
+	misc_astronomie:	45,
+	misc_telemetrie: 	90,
+	misc_advTelemetrie: 320,
+	misc_mecStellaire: 	340,
+	misc_phyQuantique: 	120,
+	misc_phySolaire: 	280,
+	misc_calcGravit: 	240,
+	misc_em: 			110,
+};
 /**
  * Units
  */

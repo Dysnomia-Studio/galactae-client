@@ -3,49 +3,7 @@ var RESEARCH_DIV_DISTANCE = 500;
 var RESEARCH_DIV_DELTA_DISTANCE = 100;
 var prevMouse = [0,0];
 
-var researchPos = {
-	// Noeud Central
-	researchCenter:		[5000,5000],
-	industrialistion:	[5563,5000],
-	phyContemporaine:	[4813,5333],
-	thermodynamique:	[4900,4467],
-	// Mise en orbite et propulsion
-	prop_thermique:		[4313,3933],
-	prop_vSolaire:		[3600,4250],
-	prop_ions:			[5922,4114],
-	prop_vsl:			[6918,4196],
-	prop_hyperespace:	[7800,4150],
-	prop_manoeuvre:		[4813,3433],
-	prop_advManoeuvre:	[5000,3000],
-	// Construction et production
-	cp_mecanisation:	[6000,4600],
-	cp_tracteur:		[6300,4950],
-	cp_materielTp:		[6550,5250],
-	cp_dbRaffinage:		[6100,5400],
-	cp_molecular_compression: [5450,5350],
-	// Armes
-	wep_railgun:		[5900,5700],
-	wep_nuke:			[6500,6300],
-	wep_laser:			[6600,6000],
-	wep_plasma:			[7300,6400],
-	// Mines
-	wep_mines:			[5300,6600],
-	wep_mines_nuke:		[6250,6600],
-	wep_mines_iem:		[4600,6100],
-	// Satellites
-	wep_sat_ag1:		[5300,7100],
-	wep_sat_ag2:		[6350,7500],
-	wep_sat_ag3:		[7329,7850],
-	// Autres recherches spatiales
-	misc_astronomie:	[5200,6200],
-	misc_telemetrie:	[6100,6200],
-	misc_advTelemetrie:	[6900,5600],
-	misc_mecStellaire:	[4000,6100],
-	misc_phySolaire:	[3700,5850],
-	misc_phyQuantique:	[4800,5850],
-	misc_calcGravit:	[4500,6500],
-	misc_em:			[4300,5600],
-};
+
 
 class research {
 	/**
@@ -137,50 +95,6 @@ class research {
 	 * Draws research UI
 	 */
 	static drawPanel() {
-		research.list = {
-			// Noeud Central
-			researchCenter: 	{ cost: 0, parents: [] },
-			industrialistion: 	{ cost: 8, parents: ["researchCenter"] },		
-			phyContemporaine: 	{ cost: 20, parents: ["researchCenter"] },	
-			thermodynamique: 	{ cost: 13, parents: ["researchCenter"] },
-			// Mise en orbite et propulsion
-			prop_thermique: 	{ cost: 380, parents: ["thermodynamique","misc_mecStellaire",] },
-			prop_vSolaire: 		{ cost: 2300, parents: ["prop_thermique","misc_phySolaire"] },
-			prop_ions: 			{ cost: 2000, parents: ["prop_thermique","misc_phyQuantique"] },
-			prop_vsl: 			{ cost: 15000, parents: ["prop_ions","misc_advTelemetrie"] },
-			prop_hyperespace: 	{ cost: 35000, parents: ["prop_vsl"] },
-			prop_manoeuvre: 	{ cost: 450, parents: ["prop_thermique"] },
-			prop_advManoeuvre: 	{ cost: 700, parents: ["prop_manoeuvre"] },
-			// Construction et production
-			cp_mecanisation: 	{ cost: 120, parents: ["industrialistion"] },
-			cp_tracteur: 	 	{ cost: 150, parents: ["industrialistion"] },
-			cp_materielTp: 		{ cost: 350, parents: ["cp_tracteur","misc_advTelemetrie"] },
-			cp_dbRaffinage: 	{ cost: 100, parents: ["industrialistion"] },
-			cp_molecular_compression: 	{ cost: 180, parents: ["industrialistion","misc_phyQuantique"] },
-			// Armes
-			wep_railgun:		{ cost: 50, parents: ["phyContemporaine"] },
-			wep_nuke:			{ cost: 180, parents: ["wep_railgun"] },
-			wep_laser:			{ cost: 260, parents: ["wep_railgun","misc_phyQuantique"] },
-			wep_plasma:			{ cost: 480, parents: ["wep_laser"] },
-			// Mines spatiales
-			wep_mines: 			{ cost: 380, parents: ["misc_calcGravit","misc_telemetrie"] },
-			wep_mines_nuke:		{ cost: 750, parents: ["wep_mines","wep_nuke"] },
-			wep_mines_iem:		{ cost: 550, parents: ["wep_mines","misc_em"] },
-			// Satellites
-			wep_sat_ag1:		{ cost: 360, parents: ["misc_calcGravit","misc_telemetrie"] },
-			wep_sat_ag2:		{ cost: 650, parents: ["wep_sat_ag1","misc_advTelemetrie"] },
-			wep_sat_ag3:		{ cost: 1500, parents: ["wep_sat_ag2"] },
-			// Autres recherches
-			misc_astronomie:	{ cost: 45, parents: ["phyContemporaine"] },
-			misc_telemetrie: 	{ cost: 90, parents: ["misc_astronomie"] },
-			misc_advTelemetrie: { cost: 320, parents: ["misc_telemetrie"] },
-			misc_mecStellaire: 	{ cost: 340, parents: ["misc_calcGravit"] },
-			misc_phyQuantique: 	{ cost: 120, parents: ["phyContemporaine"] },
-			misc_phySolaire: 	{ cost: 280, parents: ["misc_phyQuantique"] },
-			misc_calcGravit: 	{ cost: 240, parents: ["misc_astronomie"] },
-			misc_em: 			{ cost: 110, parents: ["phyContemporaine"] },
-		};
-
 		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
 		$('#hud-research').css("opacity",0);
 		$('#hud-research').css("display","block");
@@ -193,8 +107,8 @@ class research {
 		}
 
 		// Link Them
-		for(var key in research.list) {
-			var current = research.list[key];
+		for(var key in researchList) {
+			var current = researchList[key];
 
 			for(var i=0; i<current.parents.length; i++) {
 				research.drawLink(key,current.parents[i]);
@@ -228,7 +142,7 @@ class research {
 			content += '<h2>' + translate['research'][key].name + '</h2>';
 			content += '<span class="research-desc">' + translate['research'][key].desc + '</span>';
 			if(!research.isSearched(key)) {
-				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.png" alt="research">' + Math.floor(userData.research[key]) + '/' + research.list[key].cost + '</span>';
+				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.png" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
 				if(planetData.currResearch!=key) {
 					content += '<a class="research-search" id="'+key+'" src="#research">Rechercher</a>'; // @ADD: Logo
 				} else {
@@ -294,7 +208,7 @@ class research {
 	 * @return     {boolean}  True if able to research, False otherwise.
 	 */
 	static canResearch(key) {
-		var parents = research.list[key].parents;
+		var parents = researchList[key].parents;
 
 		for(var i=0; i<parents.length; i++) {
 			if(userData.research[parents[i]]==undefined) { userData.research[parents[i]]=0; } // No bug then
@@ -313,7 +227,7 @@ class research {
 	}
 
 	static getMissingParents(key) {
-		var parents = research.list[key].parents;
+		var parents = researchList[key].parents;
 		var oneParentOK = false;
 		var missingParents = "";
 
@@ -364,8 +278,8 @@ class research {
 
  		userData.research[planetData.currResearch]+= (researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2])/1800
  		
- 		if(userData.research[planetData.currResearch]>research.list[planetData.currResearch].cost) {
- 			userData.research[planetData.currResearch] = research.list[planetData.currResearch].cost;
+ 		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
+ 			userData.research[planetData.currResearch] = researchList[planetData.currResearch].cost;
 			ui.notify("Galactae: " + translate["messages"]['ENDED_RESEARCH'], {
 				icon: cdnURL+"img/favicon.png",
 				body: translate["messages"]['ENDED_RESEARCH'] + ": " + translate['research'][planetData.currResearch].name
@@ -373,6 +287,6 @@ class research {
  			research.sync();
  		}
  		
- 		$("#"+planetData.currResearch+"-node .research-cost").html("<img height=\"20\" src=\""+cdnURL+"img/ui/research.png\" alt=\"research\">" + Math.floor(userData.research[planetData.currResearch]) +"/"+research.list[planetData.currResearch].cost);
+ 		$("#"+planetData.currResearch+"-node .research-cost").html("<img height=\"20\" src=\""+cdnURL+"img/ui/research.png\" alt=\"research\">" + Math.floor(userData.research[planetData.currResearch]) +"/"+researchList[planetData.currResearch].cost);
  	}
 }
