@@ -476,7 +476,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 		<input type="submit" id="fleet-type-create-submit" class="ui-large-button" value="<?php echo FLEET_CREATE; ?>">
 	</form>
 </div>
-<div id="fleet-ship-build" style="display: block;">
+<div id="fleet-ship-build">
 	<span id="fleet-ship-build-close">X</span>
 	<div class="fleet-ship-build-cost">
 		<h4 style="text-align: left;"><?php echo FLEET_TOTAL_COST; ?></h4>

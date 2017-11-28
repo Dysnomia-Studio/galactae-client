@@ -18,6 +18,7 @@
 	define('FLEET_BUILD_NOTE','Evaluation');
 	define('FLEET_BUILD_N_OWN','Nombre possédés');
 	define('FLEET_BUILD_CREATE','Nouveau modele');
+	define('FLEET_TOTAL_COST','Coût Total');
 	define('FLEET_CREATE','Creer');
 	define('SHIP_NAME','Nom');
 	define('SHIP_ATTACK','Attaque');
