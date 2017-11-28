@@ -876,7 +876,7 @@ select, input {
 	display: none;
 	z-index: 100;
 }
-#fleet-type-create, #fleet-ship-build {
+#fleet-type-create {
 	position: fixed;
 	left: calc((100vw - 800px)/2);
 	top: calc((100vh - 450px)/2);
@@ -887,6 +887,43 @@ select, input {
 	background-position: center;
 	background-size: 100%;
 	z-index: 101;
+}
+#fleet-ship-build {
+	position: fixed;
+	left: calc((100vw - (18em / 45 * 80))/2);
+	top: calc((100vh - 18em)/2);
+	width: calc(18em / 45 * 80);
+	height: 18em;
+	padding: 1em 1.78em; /* 1 / 45 * 80 ~ 1.777778 */
+	background: url(../img/ui/window.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+	z-index: 101;
+}
+#fleet-ship-build-upgrade {
+	position: absolute;
+	right: 1em;
+	bottom: 1em;
+	width: 30%;
+}
+#fleet-ship-build-count {
+	position: absolute;
+	right: 1em;
+	bottom: calc(1.5em + 50px);
+	width: calc(30% - 2px);
+	text-align: center;
+}
+#fleet-ship-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
+  -webkit-appearance: none;
+}
+#fleet-ship-build-name {
+	position: absolute;
+	top: 2em;
+	right: 1em;
+	text-align: right;
+	max-width: 30%;
+	word-break: break-all;
 }
 #fleet-type-create-shipType, #fleet-type-create-shipShape, #fleet-type-create-name {
 	z-index: 10;
@@ -991,6 +1028,123 @@ select, input {
 	top: 6px;
 	right: 10px;
 }
+/**
+ * Planet - Fleet Building
+ */
+#fleet-build { height: calc(100% - 3em); }
+.fleet-ul2 {
+	margin-left: 50px;
+	width: calc(100% - 125px);
+}
+#fleet-build-content {
+	height: calc(100% - 3em - 2em); /* Total - Top - padding */
+	padding: 1em 2em;
+	user-select: none;
+}
+#fleet-build-list, #fleet-build-info {
+	display: inline-block;
+	vertical-align: top;
+}
+#fleet-build-list {
+	width: calc(100% - 220px);
+	margin-right: 10px;
+	height: 100%;
+	border-spacing: 0;
+}
+#fleet-build-list {
+	white-space: nowrap;
+}
+#fleet-build-list thead, #fleet-build-list tbody, #fleet-build-list tr, 
+#fleet-build-list th, #fleet-build-list td { 
+	display: block; 
+}
+#fleet-build-list thead tr {
+	height: 1.5em;
+	width: 97%; /* Fallback */
+	width: calc(100% - 16px);
+}
+#fleet-build-list tr:after {  /* clearing float */
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+#fleet-build-list tbody {
+	padding-right: 20px;
+	width: calc(100% - 20px);
+	height: calc(100% - 1.5em);
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+#fleet-build-list td, #fleet-build-list th {
+	text-align: center;
+	width: 24.5%;
+	float: left;
+}
+#fleet-build-list tbody tr {
+	border: 1px solid transparent;
+	cursor: url(../img/mouse_pointer.png), pointer;
+}
+.fleet-build-list-active {
+    border: 1px solid #0EC6C6 !important;
+}
+#fleet-build-info {
+	width: 200px;
+	height: 100%;
+}
+#fleet-build-create, #fleet-build-upgrade, #fleet-build-message, #fleet-build-count, #fleet-build-buttons {
+	width: 100%;
+	display: block;
+	margin: 0.2em;
+}
+#fleet-build-stat {
+	color: #EEEEEE;
+	font-size: 0.9em;
+	margin: 0.2em;
+	height: calc(100% - 2em - 3em - 3em - 0.4em); /* Total - Parent padding - Bouton du dessus - Count - Bouton du dessous - somme des padding */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#fleet-build-buttons img {
+	max-height: 1.8em;
+}
+#fleet-build-buttons {
+	text-align: center;
+}
+#fleet-build-openPanel {
+	float: left;
+}
+#fleet-build-type-delete {
+	float: right;
+}
+#fleet-build-desc {
+ 	color: transparent;
+}
+#fleet-build-openPanel:hover ~ #fleet-build-desc, 
+	#fleet-build-type-edit:hover ~ #fleet-build-desc, 
+	#fleet-build-type-delete:hover ~ #fleet-build-desc {
+
+	color: inherit;
+}
+.fleet-ship-build-cost-item img {
+	max-height: 2em;	
+}
+#fleet-build-list-empty {
+	text-align: center;
+	width: calc(100% - 220px);
+	margin: 0;
+}
+@media all and (max-width: 900px) {
+	#fleet-build-desc { /* We need space, and mostly, mobiles won't see that ... */
+		display: none;
+	}
+	#fleet-build-buttons {
+		margin-top: 1em;
+	}
+}
+/**
+ * Research
+ */
 #hud-research {
 	position: fixed;
 	margin: 0;
@@ -1100,94 +1254,6 @@ a[class="research-search"] {
 
 	border: 0;
 	overflow-x: auto;
-}
-/**
- * Planet - Fleet Building
- */
-#fleet-build { height: calc(100% - 3em); }
-.fleet-ul2 {
-	margin-left: 50px;
-	width: calc(100% - 125px);
-}
-#fleet-build-content {
-	height: calc(100% - 3em - 2em); /* Total - Top - padding */
-	padding: 1em 2em;
-	user-select: none;
-}
-#fleet-build-list, #fleet-build-info {
-	display: inline-block;
-	vertical-align: top;
-}
-#fleet-build-list {
-	width: calc(100% - 220px);
-	margin-right: 10px;
-	height: 100%;
-	border-spacing: 0;
-}
-#fleet-build-list {
-	white-space: nowrap;
-}
-#fleet-build-list thead, #fleet-build-list tbody, #fleet-build-list tr, 
-#fleet-build-list th, #fleet-build-list td { 
-	display: block; 
-}
-#fleet-build-list thead tr {
-	height: 1.5em;
-	width: 97%; /* Fallback */
-	width: calc(100% - 16px);
-}
-#fleet-build-list tr:after {  /* clearing float */
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
-#fleet-build-list tbody {
-	padding-right: 20px;
-	width: calc(100% - 20px);
-	height: calc(100% - 1.5em);
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
-}
-#fleet-build-list td, #fleet-build-list th {
-	text-align: center;
-	width: 24.5%;
-	float: left;
-}
-#fleet-build-list tbody tr {
-	border: 1px solid transparent;
-	cursor: url(../img/mouse_pointer.png), pointer;
-}
-.fleet-build-list-active {
-    border: 1px solid #0EC6C6 !important;
-}
-#fleet-build-info {
-	width: 200px;
-	height: 100%;
-}
-#fleet-build-create, #fleet-build-upgrade, #fleet-build-message, #fleet-build-count {
-	width: 100%;
-	display: block;
-	margin: 0.2em;
-}
-#fleet-build-cost {
-	color: #EEEEEE;
-	font-size: 0.9em;
-	margin: 0.2em;
-	height: calc(100% - 2em - 3em - 3em - 3em - 0.6em); /* Total - Parent padding - Bouton du dessus - Count - Bouton du dessous - somme des padding */
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-#fleet-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
-  -webkit-appearance: none;
-}
-#fleet-build-count {
-	text-align: center;
-}
-#fleet-build-list-empty {
-	text-align: center;
-	width: calc(100% - 220px);
-	margin: 0;
 }
 /**
  * Maps
