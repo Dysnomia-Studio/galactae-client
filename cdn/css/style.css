@@ -1,4 +1,11 @@
 /**
+ * Regles du z-index:
+ * jusque 10: interface et contenu de la planete
+ * 10 a 100: fenetres
+ * 100+: parties des fenetres
+ */
+
+/**
  * Global design
  */
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');

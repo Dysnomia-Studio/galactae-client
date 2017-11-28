@@ -88,7 +88,7 @@ class units {
 
 			$('#fleet-build-list').css('display','inline-block');
 
-			$('#fleet-build-cost').css('display','block');
+			$('#fleet-build-stat').css('display','block');
 			$('#fleet-build-message').css('display','block');
 			$('#fleet-build-count').css('display','block');
 			$('#fleet-build-upgrade').css('display','block');
@@ -102,7 +102,7 @@ class units {
 		} else {
 			$('#fleet-build-list').css('display','none');
 
-			$('#fleet-build-cost').css('display','none');
+			$('#fleet-build-stat').css('display','none');
 			$('#fleet-build-message').css('display','none');
 			$('#fleet-build-count').css('display','none');
 			$('#fleet-build-upgrade').css('display','none');

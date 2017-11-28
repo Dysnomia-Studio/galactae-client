@@ -267,7 +267,8 @@ class ui {
 			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1);
 		}
 
-		var max = ((planetData.Buildings[id]+1 > buildingMaxLvl[id]) || ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id)));
+		var max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
+		var max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
 
 		/* Planet Construction Tab */
 		$("#building-name").text(translate["buildings"][id].name);
@@ -443,7 +444,7 @@ class ui {
 
 		$('#building-bonus-title').html(title);
 		$('#building-bonus-icon').html(icon);
-		if(max) {
+		if(max || max2) {
 			$('#building-bonus-val').html(value);
 		} else {
 			$('#building-bonus-val').html(value + valuep1);
