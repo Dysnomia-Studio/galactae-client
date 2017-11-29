@@ -62,6 +62,12 @@ class units {
 			units.drawBuildPanel();
 		});
 
+		$('#fleet-ship-build-upgrade').click(function() {
+			//units.askUnitBuild();
+			// Disabled until we finish all work
+			// @Petit Malin qui lit le code, pas la peine de tester, tout sera clear a la mise en route
+		});
+
 		// Change informations with buttons
 		$('#fleet-build-buttons img').mouseenter(function() {
 			switch($(this).attr('id')) {
@@ -192,9 +198,26 @@ class units {
 
 		units.updateBuildCost();
 
+		$("#fleet-ship-build-count").val("");
 		$("#fleet-ship-build-count").attr("placeholder","Max: " + units.getMaxShips());
 
 		$("#fleet-ship-build").css('display','block');	
+	}
+
+	static askUnitBuild() {
+		var count = parseInt($("#fleet-ship-build-count").val());
+
+		if(count==NaN || units.currUnit==-1) { return; }
+
+		socket.emit("unit-build", { 
+			id: userData.id,
+			username: userData.username,
+			planet: userData.pid,
+			count: count,
+			unit: units.currUnit,
+			fleet: $("#fleet-ship-build-fleet").val()
+		});
+		ui.closeTab("fleet-ship-build");
 	}
 
 	static drawCreateTypePanel() {
