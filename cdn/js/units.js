@@ -50,11 +50,14 @@ class units {
 			 units.createNewType();
 		});
 
-		// Fleet counter
-		$('#fleet-build-count').keypress(function(event) {
-			if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
-				return false;
-			}
+		// Fleet create
+		$('#fleet-build-create').click(function() {
+			units.drawCreateTypePanel();
+		});
+
+		// Fleet build
+		$('#fleet-build-openPanel').click(function() {
+			units.drawBuildPanel();
 		});
 
 		// Change informations with buttons
@@ -67,6 +70,13 @@ class units {
 					break;
 				default:
 					// do nothing here
+			}
+		});
+
+		// Fleet counter
+		$('#fleet-build-count').keypress(function(event) {
+			if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
+				return false;
 			}
 		});
 	}
@@ -122,6 +132,11 @@ class units {
 
 			$('#fleet-build-list-empty').css('display','inline-block');
 		}
+	}
+
+	static drawBuildPanel() {
+
+		$("#fleet-ship-build").css('display','block');	
 	}
 
 	static drawCreateTypePanel() {

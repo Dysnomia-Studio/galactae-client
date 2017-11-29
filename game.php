@@ -412,7 +412,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 			</table>
 
 			<div id="fleet-build-info">
-				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>" onclick="units.drawCreateTypePanel();">
+				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>">
 
 				<div id="fleet-build-cost">
 					<?php echo '<span id="fleet-build-stat-attack">'.SHIP_ATTACK.' : <span id="fleet-build-stat-attack-val"></span></span><br />
