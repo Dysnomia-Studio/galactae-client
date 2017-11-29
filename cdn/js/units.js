@@ -8,7 +8,7 @@ class units {
 	static refresh(data) {
 		units.list = data;
 
-		units.currUnit = "";
+		units.currUnit = -1;
 
 		units.drawMain();
 	}
@@ -184,7 +184,7 @@ class units {
 	}
 
 	static drawBuildPanel() {
-		if(units.currUnit == "" || units.list[units.currUnit] == undefined) { return; }
+		if(units.currUnit == -1 || units.list[units.currUnit] == undefined) { return; }
 
 		var currUnit = units.list[units.currUnit];
 
