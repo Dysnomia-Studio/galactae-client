@@ -57,4 +57,3 @@
 		"fleet-build-type-delete": "Delete model",
 	};
 </script>
-</script>
