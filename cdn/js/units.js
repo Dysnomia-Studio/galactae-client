@@ -216,11 +216,7 @@ class units {
 
 		$("#fleet-type-create").css('display','block');
 	}
-
-	static drawBuildPanel() {
-		$("#fleet-ship-build").css('display','block');
-	}
-
+	
 	static changeShipType() {
 		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		var shape = "";
