@@ -51,5 +51,9 @@
 		"SHIP_SAT_AG3": "Satellite AG-III",
 		"SHIP_SMALL": "Petit",
 		"SHIP_MEDIUM": "Moyen",
+		// Texts
+		"fleet-build-openPanel": "Construire l'unité",
+		"fleet-build-type-edit": "Modifier le modele",
+		"fleet-build-type-delete": "Supprimer le modele",
 	};
 </script>

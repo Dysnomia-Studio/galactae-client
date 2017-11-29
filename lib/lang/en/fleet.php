@@ -51,6 +51,10 @@
 		"SHIP_SAT_AG3": "Satellite AG-III",
 		"SHIP_SMALL": "Small",
 		"SHIP_MEDIUM": "Medium",
+		// Texts
+		"fleet-build-openPanel": "Build this unit",
+		"fleet-build-type-edit": "Edit model",
+		"fleet-build-type-delete": "Delete model",
 	};
 </script>
 </script>

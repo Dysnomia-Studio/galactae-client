@@ -56,6 +56,19 @@ class units {
 				return false;
 			}
 		});
+
+		// Change informations with buttons
+		$('#fleet-build-buttons img').mouseenter(function() {
+			switch($(this).attr('id')) {
+				case "fleet-build-openPanel":
+				case "fleet-build-type-edit":
+				case "fleet-build-type-delete":
+					$('#fleet-build-desc').text(fleetTranslate[$(this).attr('id')]);
+					break;
+				default:
+					// do nothing here
+			}
+		});
 	}
 
 	static drawMain(type="") {
