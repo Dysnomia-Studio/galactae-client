@@ -8,6 +8,8 @@ class units {
 	static refresh(data) {
 		units.list = data;
 
+		units.currUnit = "";
+
 		units.drawMain();
 	}
 
@@ -24,8 +26,8 @@ class units {
 			preventFleetHUDClosing = false;
 			ui.closeTab("#fleet-type-create");
 		});
-		$("#fleet-ship-build").click(function() {
-			ui.closeTab("#fleet-ship-build-close");
+		$("#fleet-ship-build-close").click(function() {
+			ui.closeTab("#fleet-ship-build");
 		});
 		// Fleet Menu
 		$(".fleet-ul1 li").click(function() {
@@ -135,6 +137,12 @@ class units {
 	}
 
 	static drawBuildPanel() {
+		if(units.currUnit == "" || units.list[units.currUnit] == undefined) { return; }
+
+		var currUnit = units.list[units.currUnit];
+
+
+		
 
 		$("#fleet-ship-build").css('display','block');	
 	}
@@ -160,7 +168,7 @@ class units {
 	}
 
 	static drawBuildPanel() {
-		$("#fleet-ship-build-close").css('display','block');
+		$("#fleet-ship-build").css('display','block');
 	}
 
 	static changeShipType() {
@@ -283,6 +291,7 @@ class units {
 	}
 
 	static selectUnit(id) {
+		units.currUnit = id;
 		$('#fleet-build-stat-attack-val').text(units.list[id].attack);
 		$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
 		$('#fleet-build-stat-role-val').text(unitTypes[units.list[id].shipType]);
