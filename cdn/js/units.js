@@ -80,6 +80,8 @@ class units {
 			if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
 				return false;
 			}
+
+			units.updateCount();
 		});
 	}
 
@@ -136,13 +138,61 @@ class units {
 		}
 	}
 
+	static updateBuildCost() {
+		var costs = [
+			"fleet-ship-build-cost-iron-val",
+			"fleet-ship-build-cost-aluminium-val",
+			"fleet-ship-build-cost-copper-val",
+			"fleet-ship-build-cost-titanium-val",
+			"fleet-ship-build-cost-population-val",
+			"fleet-ship-build-cost-time-val",
+		];
+
+		var currUnit = units.list[units.currUnit];
+		var count = parseInt($("#fleet-ship-build-count").val());
+
+		for(var i in costs) {
+			$("#" + costs[i]).text(GetBetterUnit(Math.round(count * currUnit.cost[i])));
+		}
+	}
+
+	static getMaxShips() {
+		var currUnit = units.list[units.currUnit];
+		var max = Math.floor(planetData.resources[2] / currUnit.cost[0])
+
+		for(var i=1; i<4; i++) {
+			var currMax = Math.floor(planetData.resources[2 + i] / currUnit.cost[i]);
+			if(currMax < max) {
+				max = currMax;
+			}
+		}
+
+		if(Math.floor(habProd/currUnit.cost[4]) < max) {
+			max = Math.floor(habProd/currUnit.cost[4]);
+		}
+
+		return max;
+	}
+
+	static updateCount(count) {
+		var max = units.getMaxShips();
+		if(count > max) {
+			$("#fleet-ship-build-count").val(max);
+		}
+
+		units.updateBuildCost();
+	}
+
 	static drawBuildPanel() {
 		if(units.currUnit == "" || units.list[units.currUnit] == undefined) { return; }
 
 		var currUnit = units.list[units.currUnit];
 
+		$("#fleet-ship-build-name").text(currUnit.name);
 
-		
+		units.updateBuildCost();
+
+		$("#fleet-ship-build-count").attr("placeholder","Max: " + units.getMaxShips());
 
 		$("#fleet-ship-build").css('display','block');	
 	}
