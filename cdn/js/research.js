@@ -3,14 +3,22 @@ var RESEARCH_DIV_DISTANCE = 500;
 var RESEARCH_DIV_DELTA_DISTANCE = 100;
 var prevMouse = [0,0];
 
-
-
 class research {
 	/**
 	 * Loader for research UI
 	 */
 	static loadUI() {
 		$("#hud-research-close").click(function() { research.closeUI() });
+		$('#hud-research').touchmove(function(e) {
+			var simulatedEvent = document.createEvent("MouseEvent");
+			    simulatedEvent.initMouseEvent("mousemove", true, true, window, 1,
+			                              first.screenX, first.screenY,
+			                              first.clientX, first.clientY, false,
+			                              false, false, false, 0/*left*/, null);
+
+			    first.target.dispatchEvent(simulatedEvent);
+			    e.preventDefault();
+		});
 		$("#hud-research").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				var pos = $("#hud-research").position();

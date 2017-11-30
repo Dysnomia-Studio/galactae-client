@@ -59,6 +59,13 @@ class ui {
 			ui.mouseStatus[event.which] = 0;
 		});
 
+		$('body').on('touchstart', function(event) {
+			ui.mouseStatus[event.which] = 1;
+		});
+		$('body').on('touchend', function(event) {
+			ui.mouseStatus[event.which] = 0;
+		});
+
 		// Chat tampon
 		ui.lastMessage = "";
 
