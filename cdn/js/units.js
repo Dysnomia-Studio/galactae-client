@@ -179,6 +179,8 @@ class units {
 		var currUnit = units.list[units.currUnit];
 		var count = parseInt($("#fleet-ship-build-count").val());
 
+		if($("#fleet-ship-build-count").val() == "" || count < 1) { count = 1; }
+
 		for(var i in costs) {
 			$("#" + costs[i]).text(GetBetterUnit(Math.round(count * currUnit.cost[i])));
 		}
