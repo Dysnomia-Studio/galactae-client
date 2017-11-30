@@ -33,6 +33,10 @@ class research {
 			research.touchHandler(e);
 		});
 
+		$("#hud-research").on('touchstart', function(e) {
+			prevMouse[0] = e.pageX;
+			prevMouse[1] = e.pageY;
+		});
 		$("#hud-research").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				var pos = $("#hud-research").position();
