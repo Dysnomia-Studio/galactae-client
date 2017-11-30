@@ -28,10 +28,10 @@ class research {
 	static loadUI() {
 		$("#hud-research-close").click(function() { research.closeUI() });
 
-	    document.addEventListener("touchstart", research.touchHandler, true);
-	    document.addEventListener("touchmove", research.touchHandler, true);
-	    document.addEventListener("touchend", research.touchHandler, true);
-	    document.addEventListener("touchcancel", research.touchHandler, true);
+	    document.addEventListener("touchstart", research.touchHandler);
+	    document.addEventListener("touchmove", research.touchHandler);
+	    document.addEventListener("touchend", research.touchHandler);
+	    document.addEventListener("touchcancel", research.touchHandler);
 
 		$("#hud-research").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
