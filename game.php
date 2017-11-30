@@ -479,7 +479,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 <div id="fleet-ship-build">
 	<span id="fleet-ship-build-close">X</span>
 	<div class="fleet-ship-build-cost">
-		<h4 style="text-align: left;"><?php echo FLEET_TOTAL_COST; ?></h4>
+		<h4><?php echo FLEET_TOTAL_COST; ?></h4>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-iron">Fe <span id="fleet-ship-build-cost-iron-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-aluminium">Al <span id="fleet-ship-build-cost-aluminium-val">XXXt</p></span>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-copper">Cu <span id="fleet-ship-build-cost-copper-val">XXXt</span></p>

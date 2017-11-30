@@ -1135,6 +1135,9 @@ select, input {
 .fleet-ship-build-cost-item img {
 	max-height: 2em;	
 }
+#fleet-ship-build-cost {
+	width: 60%;
+}
 #fleet-build-list-empty {
 	text-align: center;
 	width: calc(100% - 220px);

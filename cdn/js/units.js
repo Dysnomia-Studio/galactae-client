@@ -111,6 +111,12 @@ class units {
 		$('#fleet-ship-build-count').on('input', function() {
 			units.updateCount(parseInt($(this).val()));
 		});
+
+		$('#fleet-ship-build-fleetSelect').change(function() {
+			if(parseInt($(this).attr('id'))==-1) {
+				units.drawNewFleetPanel();
+			}
+		});
 	}
 
 	static drawMain(type="") {
@@ -164,6 +170,14 @@ class units {
 
 			$('#fleet-build-list-empty').css('display','inline-block');
 		}
+	}
+
+	static drawNewFleetPanel() {
+		// @ADD: Display panel
+	}
+
+	static createNewFleet() {
+		// @ADD: Create new fleet
 	}
 
 	static updateBuildCost() {
