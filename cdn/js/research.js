@@ -4,24 +4,35 @@ var RESEARCH_DIV_DELTA_DISTANCE = 100;
 var prevMouse = [0,0];
 
 class research {
+
+	static touchHandler(event) {
+	    var touch = event.changedTouches[0];
+
+	    var simulatedEvent = document.createEvent("MouseEvent");
+	        simulatedEvent.initMouseEvent({
+	        touchstart: "mousedown",
+	        touchmove: "mousemove",
+	        touchend: "mouseup"
+	    }[event.type], true, true, window, 1,
+	        touch.screenX, touch.screenY,
+	        touch.clientX, touch.clientY, false,
+	        false, false, false, 0, null);
+
+	    touch.target.dispatchEvent(simulatedEvent);
+	    event.preventDefault();
+	}
+
 	/**
 	 * Loader for research UI
 	 */
 	static loadUI() {
 		$("#hud-research-close").click(function() { research.closeUI() });
-		$('#hud-research').on('touchmove', function(e) {
-		    var touches = event.changedTouches,
-		        first = touches[0];
 
-			var simulatedEvent = document.createEvent("MouseEvent");
-			    simulatedEvent.initMouseEvent("mousemove", true, true, window, 1,
-			                              first.screenX, first.screenY,
-			                              first.clientX, first.clientY, false,
-			                              false, false, false, 0/*left*/, null);
+	    document.addEventListener("touchstart", research.touchHandler, true);
+	    document.addEventListener("touchmove", research.touchHandler, true);
+	    document.addEventListener("touchend", research.touchHandler, true);
+	    document.addEventListener("touchcancel", research.touchHandler, true);
 
-			    first.target.dispatchEvent(simulatedEvent);
-			    e.preventDefault();
-		});
 		$("#hud-research").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				var pos = $("#hud-research").position();
