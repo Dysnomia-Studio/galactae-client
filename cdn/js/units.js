@@ -9,8 +9,28 @@ class units {
 		units.list = data;
 
 		units.currUnit = -1;
+		units.fleetList = units.fleetList || {};
 
 		units.drawMain();
+	}
+
+	static regenFleetList(fleets) {
+		units.fleetList = fleets;
+
+		/**
+		 * Regen Fleet building
+		 */
+		var optionList = $("#fleet-ship-build-fleetSelect option");
+		// Remove old option
+		for(var i=0; i<optionList.length; i++) {
+			if(parseInt($(optionList[i]).attr('id')) > -1) {
+				$(optionList[i]).remove();
+			}
+		}
+		// Regen new option
+		for(var i=0; i<units.fleetList.length; i++) {
+			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');
+		}
 	}
 
 	static loadUI() {
@@ -82,12 +102,12 @@ class units {
 		});
 
 		// Fleet counter
-		$('#fleet-build-count').keypress(function(event) {
+		$('#fleet-ship-build-count').keypress(function(event) {
 			if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
 				return false;
 			}
 
-			units.updateCount();
+			units.updateCount(parseInt($('#fleet-ship-build-count').val()));
 		});
 	}
 

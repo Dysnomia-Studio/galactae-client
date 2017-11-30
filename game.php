@@ -490,6 +490,10 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 
 	<span id="fleet-ship-build-name">This isn't a ship name</span>
 
+	<select id="fleet-ship-build-fleetSelect" class="ui-large-button">
+		<option id="-2" selected disabled><?php echo FLEET; ?>
+		<option id="-1"><?php echo NEW_FLEET; ?>
+	</select>
 	<input type="number" name="fleet-ship-build-count" id="fleet-ship-build-count" class="ui-large-button">
 	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">	
 </div>

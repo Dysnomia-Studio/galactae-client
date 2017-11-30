@@ -44,6 +44,11 @@ class webSockets {
 			loadScreen.complete();
 		});
 
+		//Sync the fleet data
+		socket.on('fleet-recieve-data',function(data) { 
+			units.regenFleetList(data);
+		});
+
 		//Sync the player data
 		socket.on('player-recieve-data',function(data) {
 			for(var key in data) {

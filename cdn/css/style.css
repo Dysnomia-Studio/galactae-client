@@ -917,6 +917,12 @@ select, input {
 #fleet-ship-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
   -webkit-appearance: none;
 }
+#fleet-ship-build-fleetSelect {
+	position: absolute;
+    right: 1em;
+    width: 30%;
+    bottom: calc(2em + 50px + 50px);
+}
 #fleet-ship-build-name {
 	position: absolute;
 	top: 2em;

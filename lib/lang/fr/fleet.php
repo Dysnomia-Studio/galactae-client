@@ -30,6 +30,10 @@
 	define('SHIP_MASS','Masse');
 	define('SHIP_FCAP','Capacité chasseurs');
 
+	//== Fleet ==\\
+	define('FLEET','Flotte');
+	define('NEW_FLEET','Nouvelle Flotte ...');
+
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','Vous n\'avez encore aucun modèle');
 ?>

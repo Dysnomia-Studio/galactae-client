@@ -30,6 +30,10 @@
 	define('SHIP_MASS','Mass');
 	define('SHIP_FCAP','Fighters Capacity');
 
+	//== Fleet ==\\
+	define('FLEET','Fleet');
+	define('NEW_FLEET','New Fleet ...');
+
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','You hav\'nt models yet');
 ?>
