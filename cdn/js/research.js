@@ -9,7 +9,7 @@ class research {
 	 */
 	static loadUI() {
 		$("#hud-research-close").click(function() { research.closeUI() });
-		$('#hud-research').touchmove(function(e) {
+		$('#hud-research').on('touchmove', function(e) {
 			var simulatedEvent = document.createEvent("MouseEvent");
 			    simulatedEvent.initMouseEvent("mousemove", true, true, window, 1,
 			                              first.screenX, first.screenY,
