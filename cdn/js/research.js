@@ -29,8 +29,8 @@ class research {
 		$("#hud-research-close").click(function() { research.closeUI() });
 
 
-		$("#hud-research").on('touchstart touchmove touchend touchcancel', function() {
-			research.touchHandler();
+		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
+			research.touchHandler(e);
 		});
 
 		$("#hud-research").mousemove(function(e) {
