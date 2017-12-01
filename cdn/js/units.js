@@ -361,6 +361,7 @@ class units {
 				htmlContent += '">';
 
 				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: research check
+					if(!research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 					htmlContent += '<option value="' + content[shape[i][0]][j] + '">' + content[shape[i][0]][j] + '</option>'; // @ADD: Translation
 				}
 
