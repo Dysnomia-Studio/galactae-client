@@ -284,7 +284,7 @@ class units {
 
 		$($('#fleet-type-create-name').get(0)).val('');
 
-		var selectShipShape = "<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>";
+		var selectShipShape = "";
 		for(var index in shipShapesDetails[type]) {
 			if(shape=="") { shape = index; }
 			if(shipResearchDependencies[shape] != undefined && !research.isSearched(shipResearchDependencies[shape])) { continue; }
@@ -292,6 +292,7 @@ class units {
 		}
 
 		if(selectShipShape != "") {
+			selectShipShape = "<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>" + selectShipShape;
 			$('#fleet-type-create-shipType option[value='+type+']').css("display","block");
 			$('#fleet-type-create-shipShape').html(selectShipShape);
 
