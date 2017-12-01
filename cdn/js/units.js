@@ -293,12 +293,16 @@ class units {
 
 		if(selectShipShape != "") {
 			selectShipShape = "<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>" + selectShipShape;
+
+			$("#fleet-type-create-shipType option[value='+type+']").removeAttr('disabled');
 			$('#fleet-type-create-shipType option[value='+type+']').css("display","block");
+			
 			$('#fleet-type-create-shipShape').html(selectShipShape);
 
 			units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
 			units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
 		} else {
+			$("#fleet-type-create-shipType option[value='+type+']").attr('disabled','disabled');
 			$('#fleet-type-create-shipType option[value='+type+']').css("display","none");
 		}
 	}
