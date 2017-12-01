@@ -373,7 +373,41 @@ var researchCost = {
  * Units
  */
 var hqFleetCount = [2,5,9,14,20,0]; // Last entry to prevent bugs
+var shipResearchDependencies = {
+	// Satelites shapes
+	SHIP_SAT_AG1: "wep_sat_ag1",
+	SHIP_SAT_AG2: "wep_sat_ag2",
+	SHIP_SAT_AG3: "wep_sat_ag3",
 
+	// Mines
+	WEP_MINES: "wep_mines",
+	WEP_MINES_IEM: "wep_mines_iem",
+	WEP_MINES_NUKE: "wep_mines_nuke",
+
+	// Explosives
+	explosive: "wep_mines",
+	nuke: "wep_nuke",
+	iem: "wep_iem",
+	antimater: "wep_antimater",
+
+	// Cannon
+	railgun: "wep_railgun",
+	laser: "wep_laser",
+	plasma: "wep_plasma",
+
+	// Shields
+
+	// Cloak
+	
+	// Scanners
+	
+	// Propulsion
+	vsl: "prop_vsl",
+	hyperespace: "prop_hyperespace",
+
+	ion: "prop_ions",
+	vsolaire: "prop_vSolaire",
+};
 var unitTypes = [
 	"SHIP_SAT",
 	"SHIP_BATTLECRUISER",

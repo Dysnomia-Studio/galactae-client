@@ -245,7 +245,7 @@ class units {
 	static askUnitBuild() {
 		var count = parseInt($("#fleet-ship-build-count").val());
 
-		if(count==NaN || units.currUnit==-1) { return; }
+		if(count==NaN || count==undefined || units.currUnit==-1) { return; }
 
 		socket.emit("unit-build", { 
 			id: userData.id,
@@ -287,12 +287,19 @@ class units {
 		var selectShipShape = "<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>";
 		for(var index in shipShapesDetails[type]) {
 			if(shape=="") { shape = index; }
+			if(shipResearchDependencies[shape] != undefined && !research.isSearched(shipResearchDependencies[shape])) { continue; }
 			selectShipShape += '<option value="' + index + '">' + fleetTranslate[index] + '</option>';
 		}
-		$('#fleet-type-create-shipShape').html(selectShipShape);
 
-		units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
-		units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
+		if(selectShipShape != "") {
+			$('#fleet-type-create-shipType option[value='+type+']').css("display","block");
+			$('#fleet-type-create-shipShape').html(selectShipShape);
+
+			units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
+			units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
+		} else {
+			$('#fleet-type-create-shipType option[value='+type+']').css("display","none");
+		}
 	}
 
 	static changeShipShape(id) {
