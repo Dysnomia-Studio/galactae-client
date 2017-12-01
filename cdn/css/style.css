@@ -1171,7 +1171,7 @@ select, input {
 	z-index: -1;
 	zoom: 0.9;
 }
-#hud-research-content {
+#hud-research-content, #hud-research-links {
 	background-color: #0b1012;
 }
 .research-node {

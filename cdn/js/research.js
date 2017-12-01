@@ -50,16 +50,22 @@ class research {
 			var zoom = parseFloat($('#hud-research-content').css('zoom'));
 
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-				var coef = 0.025; // Scroll up
+				var coef = 0.05; // Scroll up
 			} else {			
-				var coef = -0.025; // Scroll down
+				var coef = -0.05; // Scroll down
 			}
 
 			zoom += coef;
-			if(zoom < 0.5) { zoom = 0.5; }
-			if(zoom > 2) { zoom = 2; }
+			if(zoom < 0.5) { return; }
+			if(zoom > 1.75) { return; }
+
+			var pos = $("#hud-research").position();
+			pos.left = ((pos.left - prevMouse[0])/(zoom - coef) * zoom) + prevMouse[0];
+			pos.top = ((pos.top - prevMouse[1])/(zoom - coef) * zoom) + prevMouse[1];
+			$("#hud-research").css("left",pos.left);
+			$("#hud-research").css("top" ,pos.top );
 					
-			//$('#hud-research-content').css('zoom',zoom);
+			$('#hud-research-content').css('zoom',zoom);
 		});
 
 		if(ui.research) {
