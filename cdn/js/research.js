@@ -307,6 +307,7 @@ class research {
 
  	static sim() {
  		if(userData.research[planetData.currResearch]==-1) { return; } // If research is finished
+ 		if(researchList[planetData.currResearch] == undefined) { return; } // If research is undefined
 
  		userData.research[planetData.currResearch]+= (researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2])/1800
  		
