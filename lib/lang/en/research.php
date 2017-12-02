@@ -30,6 +30,19 @@
 		wep_mines:			{ name: "", desc: "" },
 		wep_mines_nuke:		{ name: "", desc: "" },
 		wep_mines_iem:		{ name: "", desc: "" },
+		// Figther
+		figther_light_interceptor: { name: "", desc: "" },
+		figther_heavy_interceptor: { name: "", desc: "" },
+		figther_bomber: 	{ name: "", desc: "" },
+		// Battlecruiser
+		battlecruiser_small: { name: "", desc: "" },
+		// Cuirasse
+		cuirasse_small: 	{ name: "", desc: "" },
+		// Corvet
+		corvet_small: 		{ name: "", desc: "" },
+		// Carrier
+		carrier_small: 		{ name: "", desc: "" },
+		carrier_medium: 	{ name: "", desc: "" },
 		// Satellites
 		wep_sat_ag1:		{ name: "", desc: "" },
 		wep_sat_ag2:		{ name: "", desc: "" },
