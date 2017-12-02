@@ -312,7 +312,7 @@ class research {
  		userData.research[planetData.currResearch]+= (researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2])/1800
  		
  		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
- 			userData.research[planetData.currResearch] = researchList[planetData.currResearch].cost;
+ 			userData.research[planetData.currResearch] = -1;
 			ui.notify("Galactae: " + translate["messages"]['ENDED_RESEARCH'], {
 				icon: cdnURL+"img/favicon.png",
 				body: translate["messages"]['ENDED_RESEARCH'] + ": " + translate['research'][planetData.currResearch].name
