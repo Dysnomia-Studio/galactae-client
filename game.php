@@ -389,7 +389,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 	<div id="fleet-build">
 		<ul id="fleet-build-choice" class="ul-choice-line fleet-ul2">
 			<li shipType="SHIP_ALL" id="fleet-build-all-button" class="ul-choice-line-li-active"><?php echo FLEET_BUILD_ALL; ?></li>
-			<li shipType="SHIP_SAT" id="fleet-build-defense-button"><?php echo FLEET_BUILD_DEF; ?></li>
+			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?php echo FLEET_BUILD_DEF; ?></li>
 			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?php echo FLEET_BUILD_FIGHTER; ?></li>
 			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?php echo FLEET_BUILD_CUISADER; ?></li>
 			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?php echo FLEET_BUILD_CUIRASSE; ?></li>

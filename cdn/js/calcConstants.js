@@ -248,7 +248,7 @@ var researchList = {
 	phyContemporaine: 	{ cost: 20, parents: ["researchCenter"] },	
 	thermodynamique: 	{ cost: 13, parents: ["researchCenter"] },
 	// Mise en orbite et propulsion
-	prop_thermique: 	{ cost: 380, parents: ["thermodynamique","misc_mecStellaire",] },
+	prop_thermique: 	{ cost: 380, parents: ["thermodynamique","misc_mecStellaire"] },
 	prop_vSolaire: 		{ cost: 2300, parents: ["prop_thermique","misc_phySolaire"] },
 	prop_ions: 			{ cost: 2000, parents: ["prop_thermique","misc_phyQuantique"] },
 	prop_vsl: 			{ cost: 15000, parents: ["prop_ions","misc_advTelemetrie"] },
@@ -380,9 +380,9 @@ var shipResearchDependencies = {
 	SHIP_SAT_AG3: "wep_sat_ag3",
 
 	// Mines
-	WEP_MINES: "wep_mines",
-	WEP_MINES_IEM: "wep_mines_iem",
-	WEP_MINES_NUKE: "wep_mines_nuke",
+	SHIP_WEP_MINES: "wep_mines",
+	SHIP_WEP_MINES_IEM: "wep_mines_iem",
+	SHIP_WEP_MINES_NUKE: "wep_mines_nuke",
 
 	// Explosives
 	explosive: "wep_mines",
@@ -409,7 +409,7 @@ var shipResearchDependencies = {
 	vsolaire: "prop_vSolaire",
 };
 var unitTypes = [
-	"SHIP_SAT",
+	"DEF_SAT",
 	"SHIP_BATTLECRUISER",
 	"SHIP_CUIRASSE",
 	"SHIP_FIGHTER",
@@ -418,7 +418,7 @@ var unitTypes = [
 ];
 
 var shipShapesDetails = {
-	SHIP_SAT: {
+	SHIP_DEF: {
 		SHIP_SAT_AG1: {
 			svg: [
 				// Aile Gauche
@@ -449,7 +449,7 @@ var shipShapesDetails = {
 		},
 	},
 	SHIP_BATTLECRUISER: {
-		SHIP_SMALL: {
+		SHIP_BATTLECRUISER_SMALL: {
 			svg: [
 				// Structure
 				["struct","path","M200",130,"Q",300,165,200,200,"L100",200,"L100",130,"L200",130], // Moteur gauche
@@ -478,7 +478,7 @@ var shipShapesDetails = {
 		},
 	},
 	SHIP_CUIRASSE: {
-		SHIP_SMALL: {
+		SHIP_CUIRASSE_SMALL: {
 			svg: [],
 			content: {},
 			stats: {
@@ -487,7 +487,7 @@ var shipShapesDetails = {
 		},
 	},
 	SHIP_FIGHTER: {
-		SHIP_SMALL: {
+		SHIP_FIGHTER_SMALL: {
 			svg: [
 				["struct","poly",100,100,70,250,100,400,170,400,250,250,170,100], // Ailes
 				["struct","poly",60,205,50,250,60,295,510,280,520,250,510,220], // Corps
@@ -505,7 +505,7 @@ var shipShapesDetails = {
 				mass: 0,
 			},
 		},
-		SHIP_MEDIUM: {
+		SHIP_FIGHTER_MEDIUM: {
 			svg: [
 				["struct","path","M50",300,"Q",300,-100,550,300], // Arriere
 				["struct","path","M260",228,"Q",300,130,340,228], // Avant
@@ -526,7 +526,7 @@ var shipShapesDetails = {
 		},
 	},
 	SHIP_CORVET: {
-		SHIP_SMALL: {
+		SHIP_CORVET_SMALL: {
 			svg: [			
 				["struct","rect"  , 50,150,120, 60], // Moteur 1
 				["struct","rect"  , 50,290,120, 60], // Moteur 2
@@ -553,7 +553,7 @@ var shipShapesDetails = {
 		},
 	},
 	SHIP_CARRIER: {
-		SHIP_MEDIUM: {
+		SHIP_CARRIER_MEDIUM: {
 			svg: [
 				["struct","path","M400",200,"Q",500,250,400,300,"L50",300,"Q",0,250,50,200,"L400",200], // Centre	
 				["struct","poly",60,200,60,130,220,130,240,200], // Aile gauche avant 

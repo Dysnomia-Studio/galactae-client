@@ -42,19 +42,30 @@
 		// Titles
 		"SHIP_TYPE": "Type",
 		"SHIP_SHAPE": "Model",
-		// Types names
+
+		// Types & Shapes
 		"SHIP_SAT": "Satellite",
+		"SHIP_SAT_AG1": "AG-I",
+		"SHIP_SAT_AG2": "AG-II",
+		"SHIP_SAT_AG3": "AG-III",
+
 		"SHIP_BATTLECRUISER": "Battlecruisers",
+		"SHIP_BATTLECRUISER_SMALL": "Small",
+
 		"SHIP_CUIRASSE": "Battleships",
+		"SHIP_CUIRASSE_SMALL": "Small",
+
 		"SHIP_FIGHTER": "Fighters",
-		"SHIP_CORVET": "Corvette",
-		"SHIP_CARRIER": "Carriers",
-		// Shapes names
-		"SHIP_SAT_AG1": "Satellite AG-I",
-		"SHIP_SAT_AG2": "Satellite AG-II",
-		"SHIP_SAT_AG3": "Satellite AG-III",
-		"SHIP_SMALL": "Small",
-		"SHIP_MEDIUM": "Medium",
+		"SHIP_FIGHTER_SMALL": "Light Interceptor",
+		"SHIP_FIGHTER_MEDIUM": "Heavy Interceptor",
+		"SHIP_FIGHTER_HUGE": "Bomber",
+
+		"SHIP_CORVET": "Corvet",
+		"SHIP_CORVET_SMALL": "Small",
+
+		"SHIP_CARRIER": "Carrier",
+		"SHIP_CARRIER_MEDIUM": "Medium",
+
 		// Texts
 		"fleet-build-openPanel": "Build this unit",
 		"fleet-build-type-edit": "Edit model",
