@@ -20,7 +20,7 @@ var storageRatio = [47.52,8.29];
 var heliumStorageRatio = 0.2;
 
 var electricity = [2080000,165000,550000];
-var habGen = [25447,419910,-200000];
+var habGen = [25447,419910,-170000];
 
 /**
  * Buildings
