@@ -35,6 +35,9 @@ class webSockets {
 		//Sync the planet data
 		socket.on('planet-recieve-data',function(data) { 
 			planet.refresh(data);
+			if(userData.research != undefined) {
+				research.drawPanel();
+			}
 			loadScreen.complete();
 		});
 
