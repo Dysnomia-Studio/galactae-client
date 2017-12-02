@@ -427,6 +427,7 @@ class planet {
 		var habitants = 0;
 
 		for(var i=0; i<14; i++) {
+			if(planetData.Buildings[i]==0) { continue; }
 			habitants += planet.getBuildCost(i,planetData.Buildings[i]).habitants;
 		}
 
