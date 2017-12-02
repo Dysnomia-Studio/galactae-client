@@ -8,7 +8,7 @@
 		phyContemporaine:	{ name: "", desc: "" },
 		thermodynamique:	{ name: "", desc: "" },
 		// Mise en orbite et propulsion
-		prop_thermique:		{ name: "", desc: "" },
+		prop_main:			{ name: "", desc: "" },
 		prop_vSolaire:		{ name: "", desc: "" },
 		prop_ions:			{ name: "", desc: "" },
 		prop_vsl:			{ name: "", desc: "" },

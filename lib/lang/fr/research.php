@@ -8,9 +8,9 @@
 		phyContemporaine:	{ name: "Physique Contemporaine", desc: "" },
 		thermodynamique:	{ name: "Thermodynamique", desc: "" },
 		// Mise en orbite et propulsion
-		prop_thermique:		{ name: "Propulsion thermique", desc: "" },
+		prop_main:			{ name: "Propulsion", desc: "" },
 		prop_vSolaire:		{ name: "Voile solaire", desc: "" },
-		prop_ions:			{ name: "Propulsion a ions", desc: "" },
+		prop_ions:			{ name: "Moteurs a ions", desc: "" },
 		prop_vsl:			{ name: "Vitesse Supraluminique", desc: "" },
 		prop_hyperespace:	{ name: "Hyperespace", desc: "" },
 		prop_manoeuvre:		{ name: "Propulseurs de manoeuvre", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (2% de chance d'evitement)" },

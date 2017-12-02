@@ -204,7 +204,7 @@ var researchPos = {
 	phyContemporaine:	[4813,5333],
 	thermodynamique:	[4900,4467],
 	// Mise en orbite et propulsion
-	prop_thermique:		[4313,3933],
+	prop_main:			[4313,3933],
 	prop_vSolaire:		[3600,4250],
 	prop_ions:			[5922,4114],
 	prop_vsl:			[6918,4196],
@@ -248,12 +248,12 @@ var researchList = {
 	phyContemporaine: 	{ cost: 20, parents: ["researchCenter"] },	
 	thermodynamique: 	{ cost: 13, parents: ["researchCenter"] },
 	// Mise en orbite et propulsion
-	prop_thermique: 	{ cost: 380, parents: ["thermodynamique","misc_mecStellaire"] },
-	prop_vSolaire: 		{ cost: 2300, parents: ["prop_thermique","misc_phySolaire"] },
-	prop_ions: 			{ cost: 2000, parents: ["prop_thermique","misc_phyQuantique"] },
+	prop_main: 			{ cost: 380, parents: ["thermodynamique","misc_mecStellaire"] },
+	prop_vSolaire: 		{ cost: 2300, parents: ["prop_main","misc_phySolaire"] },
+	prop_ions: 			{ cost: 2000, parents: ["prop_main","misc_phyQuantique"] },
 	prop_vsl: 			{ cost: 15000, parents: ["prop_ions","misc_advTelemetrie"] },
 	prop_hyperespace: 	{ cost: 35000, parents: ["prop_vsl"] },
-	prop_manoeuvre: 	{ cost: 450, parents: ["prop_thermique"] },
+	prop_manoeuvre: 	{ cost: 450, parents: ["prop_main"] },
 	prop_advManoeuvre: 	{ cost: 700, parents: ["prop_manoeuvre"] },
 	// Construction et production
 	cp_mecanisation: 	{ cost: 120, parents: ["industrialistion"] },
@@ -291,7 +291,7 @@ var researchNamesList = [
 	"phyContemporaine",
 	"thermodynamique",
 	// Mise en orbite et propulsion
-	"prop_thermique",
+	"prop_main",
 	"prop_vSolaire",
 	"prop_ions",
 	"prop_vsl",
@@ -333,7 +333,7 @@ var researchCost = {
 	phyContemporaine: 	20,	
 	thermodynamique: 	13,
 	// Mise en orbite et propulsion
-	prop_thermique: 	380,
+	prop_main: 			380,
 	prop_vSolaire: 		2300,
 	prop_ions: 			2000,
 	prop_vsl: 			15000,
