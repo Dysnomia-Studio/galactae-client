@@ -20,7 +20,7 @@ var storageRatio = [47.52,8.29];
 var heliumStorageRatio = 0.2;
 
 var electricity = [2080000,165000,550000];
-var habGen = [25447,419910,-250000];
+var habGen = [25447,419910,-200000];
 
 /**
  * Buildings
@@ -168,7 +168,7 @@ var buildCost = {
 	],
 	habitants: [
 		// Ground building
-		[700,90120,60000], // Quarry
+		[700,90120,-60000], // Quarry
 		[1300,72010,-32359], // Metallurgie
 		[0,0,0], // Living
 		[2035,24090,15464], // Serres
