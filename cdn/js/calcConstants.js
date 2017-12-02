@@ -226,6 +226,19 @@ var researchPos = {
 	wep_mines:			[5300,6600],
 	wep_mines_nuke:		[6250,6600],
 	wep_mines_iem:		[4600,6100],
+	// Figther
+	figther_light_interceptor: [6100,3700],
+	figther_heavy_interceptor: [6150,3400],
+	figther_bomber: 	[6250,3100],
+	// Battlecruiser
+	battlecruiser_small: [7800,4900],
+	// Cuirasse
+	cuirasse_small: 	[7500,4500],
+	// Corvet
+	corvet_small: 		[6600,3800],
+	// Carrier
+	carrier_small: 		[5750,3600],
+	carrier_medium: 	[5700,3300],
 	// Satellites
 	wep_sat_ag1:		[5300,7100],
 	wep_sat_ag2:		[6350,7500],
