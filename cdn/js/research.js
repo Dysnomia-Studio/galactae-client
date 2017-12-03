@@ -127,6 +127,9 @@ class research {
 	 * Draws research UI
 	 */
 	static drawPanel() {
+		var zoom = $('#hud-research-content').css('zoom');
+		$('#hud-research-content').css('zoom',1);
+
 		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
 		$('#hud-research').css("opacity",0);
 		$('#hud-research').css("display","block");
@@ -151,6 +154,7 @@ class research {
 		$('#hud-research').css("opacity",1);
 
 		research.loadUI();
+		$('#hud-research-content').css('zoom',zoom);
 	}
 	/**
 	 * Draws a node.
