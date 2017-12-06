@@ -47,6 +47,7 @@ class units {
 			ui.closeTab("#fleet-type-create");
 		});
 		$("#fleet-ship-build-close").click(function() {
+			preventFleetHUDClosing = false;
 			ui.closeTab("#fleet-ship-build");
 		});
 		// Fleet Menu
@@ -79,6 +80,7 @@ class units {
 
 		// Fleet build
 		$('#fleet-build-openPanel').click(function() {
+			preventFleetHUDClosing = true;
 			units.drawBuildPanel();
 		});
 
