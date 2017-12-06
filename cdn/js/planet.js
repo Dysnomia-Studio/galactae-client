@@ -311,8 +311,8 @@ class planet {
 		}
 
 		if(planetData.resources[0]>=mineralStorageBase 
-			&& mineralProdBaseTemp > metalProdBase) { // Si on a tout les minerais
-			mineralProdBaseTemp = metalProdBase;
+			&& mineralProdBaseTemp > metalProdBaseTemp) { // Si on a tout les minerais
+			mineralProdBaseTemp = metalProdBaseTemp;
 		}
 
 
