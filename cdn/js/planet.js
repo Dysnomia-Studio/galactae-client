@@ -311,14 +311,14 @@ class planet {
 		}
 
 		if(planetData.resources[0]>=mineralStorageBase 
-			&& metalProdBaseTemp < mineralProdBaseTemp) { // Si on a tout les minerais
+			&& mineralProdBaseTemp > metalProdBase) { // Si on a tout les minerais
 			mineralProdBaseTemp = metalProdBase;
 		}
 
 
 		$('#minerals-cap').html(GetBetterUnit(mineralStorageBase,'t'));
 		$('#minerals-prod').html(GetBetterUnit(mineralProdBaseTemp,'t/h'));
-		$('#minerals-cons').html(GetBetterUnit(mineralProdBaseTemp,'t/h'));
+		$('#minerals-cons').html(GetBetterUnit(metalProdBaseTemp,'t/h'));
 
 		// Helium-3
 		$('#he-cap').html(GetBetterUnit(storageHelium,'t'));
