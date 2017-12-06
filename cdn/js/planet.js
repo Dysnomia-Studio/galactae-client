@@ -307,10 +307,11 @@ class planet {
 			(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) && 
 			(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) && 
 			(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio)) { // Si on a tout les metaux
-			mineralProdBaseTemp = 0;
+			metalProdBaseTemp = 0;
 		}
 
-		if(planetData.resources[0]>=mineralStorageBase) { // Si on a tout les minerais
+		if(planetData.resources[0]>=mineralStorageBase 
+			&& metalProdBaseTemp < mineralProdBaseTemp) { // Si on a tout les minerais
 			mineralProdBaseTemp = metalProdBase;
 		}
 
