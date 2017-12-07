@@ -44,10 +44,10 @@
 		"SHIP_SHAPE": "Model",
 
 		// Types & Shapes
-		"SHIP_SAT": "Satellite",
-		"SHIP_SAT_AG1": "AG-I",
-		"SHIP_SAT_AG2": "AG-II",
-		"SHIP_SAT_AG3": "AG-III",
+		"SHIP_DEF": "Défenses",
+		"SHIP_SAT_AG1": "Satellite AG-I",
+		"SHIP_SAT_AG2": "Satellite AG-II",
+		"SHIP_SAT_AG3": "Satellite AG-III",
 
 		"SHIP_BATTLECRUISER": "Battlecruisers",
 		"SHIP_BATTLECRUISER_SMALL": "Small",
