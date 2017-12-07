@@ -365,7 +365,7 @@ var shipResearchDependencies = {
 	vsolaire: "prop_vSolaire",
 };
 var unitTypes = [
-	"DEF_SAT",
+	"SHIP_DEF",
 	"SHIP_BATTLECRUISER",
 	"SHIP_CUIRASSE",
 	"SHIP_FIGHTER",

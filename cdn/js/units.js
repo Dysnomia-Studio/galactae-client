@@ -263,6 +263,9 @@ class units {
 	static drawCreateTypePanel() {
 		$('#fleet-type-create-cost div').css('display','none');
 
+		$('#fleet-type-create-schematic').html("");
+		$('#fleet-type-create-selects').html("");
+
 		var selectContent = "<option disabled>" + fleetTranslate['SHIP_TYPE'] + "</option>";
 
 		for(var i=0; i<unitTypes.length; i++) {
