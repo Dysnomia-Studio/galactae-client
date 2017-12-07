@@ -266,7 +266,16 @@ class units {
 		var selectContent = "<option disabled>" + fleetTranslate['SHIP_TYPE'] + "</option>";
 
 		for(var i=0; i<unitTypes.length; i++) {
-			selectContent += '<option value="' + unitTypes[i] + '">' + fleetTranslate[unitTypes[i]] + '</option>';
+			var disabled = false;
+			for(var index in shipShapesDetails[unitTypes[i]]) {
+				if(shipResearchDependencies[index] != undefined && !research.isSearched(shipResearchDependencies[index])) { 
+					disabled = true;
+				}
+			}
+
+			if(!disabled) {
+				selectContent += '<option value="' + unitTypes[i] + '">' + fleetTranslate[unitTypes[i]] + '</option>';
+			}
 		}
 
 		$('#fleet-type-create-shipType').html(selectContent);
@@ -289,7 +298,7 @@ class units {
 		var selectShipShape = "";
 		for(var index in shipShapesDetails[type]) {
 			if(shape=="") { shape = index; }
-			if(shipResearchDependencies[shape] != undefined && !research.isSearched(shipResearchDependencies[shape])) { continue; }
+			if(shipResearchDependencies[index] != undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
 			selectShipShape += '<option value="' + index + '">' + fleetTranslate[index] + '</option>';
 		}
 
