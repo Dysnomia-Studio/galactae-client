@@ -240,7 +240,7 @@ class ui {
 	static closeTab(tab,sound=true) {
 		$(tab).css('display','none');
 		if(sound) {
-			var closeUISound = new Audio(cdnURL+'snd/ui/wclose.wav');
+			var closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
 			closeUISound.volume = 0.5;
 			closeUISound.play();
 		}
