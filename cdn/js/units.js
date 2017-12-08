@@ -202,7 +202,7 @@ class units {
 				$("#" + costs[i].substring(0,costs[i].length-4)).css("display","none");
 				continue;
 			}
-			$("#" + costs[i].substring(0,costs[i].length-4)).css("display","inline-block");
+			$("#" + costs[i].substring(0,costs[i].length-4)).css("display","block");
 
 			if(costs[i] != "fleet-ship-build-cost-time-val") {
 				$("#" + costs[i]).text(GetBetterUnit(Math.round(count * currUnit.cost[i])));
