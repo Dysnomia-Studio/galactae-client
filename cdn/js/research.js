@@ -226,7 +226,7 @@ class research {
 		var color; //default 
 
 		if(research.isSearched(parent)) { color = '#0EC6C6'; } 
-		else { color = 'rgba(14,198,198,0.3)'; }
+		else { color = 'rgba(14,198,198,0.2)'; }
 
 		var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
 	    newLine.setAttribute('stroke',color);
