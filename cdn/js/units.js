@@ -199,10 +199,10 @@ class units {
 
 		for(var i in costs) {
 			if(currUnit.cost[i] == 0) { 
-				$("#" + costs[i]).css("display","none");
+				$("#" + costs[i].substr(0,-4)).css("display","none");
 				continue;
 			}
-			$("#" + costs[i]).css("display","inline-block");
+			$("#" + costs[i].substr(0,-4)).css("display","inline-block");
 
 			if(costs[i] != "fleet-ship-build-cost-time-val") {
 				$("#" + costs[i]).text(GetBetterUnit(Math.round(count * currUnit.cost[i])));
