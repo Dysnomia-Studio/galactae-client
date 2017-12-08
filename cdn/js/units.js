@@ -184,12 +184,12 @@ class units {
 
 	static updateBuildCost() {
 		var costs = [
-			"fleet-ship-build-cost-iron-val",
 			"fleet-ship-build-cost-aluminium-val",
-			"fleet-ship-build-cost-copper-val",
+			"fleet-ship-build-cost-iron-val",
 			"fleet-ship-build-cost-titanium-val",
-			"fleet-ship-build-cost-population-val",
+			"fleet-ship-build-cost-copper-val",
 			"fleet-ship-build-cost-time-val",
+			"fleet-ship-build-cost-population-val",
 		];
 
 		var currUnit = units.list[units.currUnit];
@@ -198,7 +198,17 @@ class units {
 		if($("#fleet-ship-build-count").val() == "" || count < 1) { count = 1; }
 
 		for(var i in costs) {
-			$("#" + costs[i]).text(GetBetterUnit(Math.round(count * currUnit.cost[i])));
+			if(currUnit.cost[i] == 0) { 
+				$("#" + costs[i]).css("display","none");
+				continue;
+			}
+			$("#" + costs[i]).css("display","block");
+
+			if(costs[i] != "fleet-ship-build-cost-time-val") {
+				$("#" + costs[i]).text(GetBetterUnit(Math.round(count * currUnit.cost[i])));
+			} else {
+				$("#" + costs[i]).text(getStringTime(count * currUnit.cost[i]));
+			}
 		}
 	}
 
