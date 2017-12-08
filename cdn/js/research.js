@@ -185,7 +185,7 @@ class research {
 					content += '<span class="research-search">Recherche en cours ...</span>';
 				}
 			} else {
-				content += '<p class="research-ok">' + translate['research']['tech-owned'] + '</p>'
+				content += '<p class="research-ok">' + translate['research']['tech_owned'] + '</p>';
 			}
 		} else {
 			content += '<h2>???</h2>';

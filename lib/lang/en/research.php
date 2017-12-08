@@ -57,6 +57,6 @@
 		misc_calcGravit:	{ name: "Gravitational Calculation", desc: ""},
 		misc_em:			{ name: "Electromagnetism", desc: ""},
 		// Messages
-		tech-owned: "Already searched technology",
+		tech_owned: "Already searched technology",
 	};
 </script>
