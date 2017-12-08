@@ -56,5 +56,7 @@
 		misc_phyQuantique:	{ name: "Quantum Physics", desc: ""},
 		misc_calcGravit:	{ name: "Gravitational Calculation", desc: ""},
 		misc_em:			{ name: "Electromagnetism", desc: ""},
+		// Messages
+		tech-owned: "Already searched technology",
 	};
 </script>
