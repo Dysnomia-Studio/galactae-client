@@ -351,7 +351,11 @@ var shipResearchDependencies = {
 	laser: "wep_laser",
 	plasma: "wep_plasma",
 
-	// Shields
+	// Shields & Defences
+	magnetic: "def_shield_magnetic",
+	turret: "def_turret",
+	singularity: "def_shield_singularity",
+	projector: "def_shield_projector",
 
 	// Cloak
 	
@@ -397,7 +401,7 @@ var shipShapesDetails = {
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
-				shield: ["none"],
+				shield: ["none","magnetic","projector"],
 			},
 			stats: {
 				mass: 0,
@@ -426,7 +430,7 @@ var shipShapesDetails = {
 				rocketLauncher: ["explosive","nuke","antimater"],
 				sub_propulsion: ["ion"],
 				sup_propulsion: ["vsl","hyperespace"],
-				shield: ["none"],
+				shield: ["none","magnetic","turret"],
 			},
 			stats: {
 				mass: 0,
@@ -435,8 +439,25 @@ var shipShapesDetails = {
 	},
 	SHIP_CUIRASSE: {
 		SHIP_CUIRASSE_SMALL: {
-			svg: [],
-			content: {},
+			svg: [
+				["struct","poly",100,100,50,200,50,300,100,400,225,300,500,250,225,200],
+				["struct","poly",50,200,50,300,300,275,375,250,300,225],
+				// Armes
+				["cannon","rect",130,225, 50, 50,"cannon_1"],
+				// Boucliers
+				["shield","rect",200,225, 50, 50, "shield_1"],
+				["shield","rect",200,225, 50, 50, "shield_2"],
+				// Propulseurs
+				["sup_propulsion","rect", 60,225, 50, 50, "prop_1"],
+				["sub_propulsion","rect", 90,140, 50, 50, "prop_2"],
+				["sub_propulsion","rect", 90,310, 50, 50, "prop_3"],
+			],
+			content: {
+				cannon: ["railgun","laser","plasma"],
+				sub_propulsion: ["ion"],
+				sup_propulsion: ["vsl","hyperespace"],
+				shield: ["none","magnetic","turret","singularity","projector"],
+			},
 			stats: {
 				mass: 0,
 			},
@@ -531,7 +552,7 @@ var shipShapesDetails = {
 				hangar: ["none"],
 				sub_propulsion: ["ion"],
 				sup_propulsion: ["vsl","hyperespace"],
-				shield: ["none"],
+				shield: ["none","magnetic","turret","projector"],
 			},
 			stats: {
 				mass: 0,
