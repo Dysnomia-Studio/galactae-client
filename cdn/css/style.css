@@ -365,6 +365,8 @@ select, input {
 	left: 0;
 
 	color: #93fcfc;
+
+	user-select: none;
 }
 #hud-top-left {
 	width: calc(22vw - 3em);
