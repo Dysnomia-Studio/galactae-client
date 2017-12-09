@@ -134,9 +134,9 @@ class planet {
 		if(buildings[13]!=0 && currentBuilding!=13) { planetData.resources[1] += heliumProdBase*time; }
 
 		//Metals
-		if(planetData.resources[0]-(mineralProdBase*time)>0 && currentBuilding!=1) { //Verify if you can use basic ressources
+		if(planetData.resources[0]-(metalProdBase*time)>0 && currentBuilding!=1) { //Verify if you can use basic ressources
 		    for(var i=2; i<6; i++) {
-		    	planetData.resources[i] += (mineralProdBase*time)*ratios[i-2];
+		    	planetData.resources[i] += (metalProdBase*time)*ratios[i-2];
 		    }
 
 			planetData.resources[0] -= (mineralProdBase*time); //Consomation Algorithm
@@ -313,6 +313,8 @@ class planet {
 		if(planetData.resources[0]>=mineralStorageBase 
 			&& mineralProdBaseTemp > metalProdBaseTemp) { // Si on a tout les minerais
 			mineralProdBaseTemp = metalProdBaseTemp;
+		} else if(planetData.resources[0]==0 && metalProdBaseTemp > mineralProdBaseTemp) {
+			mineralProdBaseTemp = metalProdBaseTemp;
 		}
 
 
@@ -332,7 +334,7 @@ class planet {
 		if(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio) {
 			$('#fe-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#fe-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.ironRatio,'t/h'));
+			$('#fe-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.ironRatio,'t/h'));
 		}
 		$('#fe-variety').html(GetBetterUnit(ratio.ironRatio*100,'%'));
 		// Aluminium
@@ -340,7 +342,7 @@ class planet {
 		if(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) {
 			$('#al-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#al-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.aluRatio,'t/h'));
+			$('#al-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.aluRatio,'t/h'));
 		}
 		$('#al-variety').html(GetBetterUnit(ratio.aluRatio*100,'%'));
 		// Copper
@@ -348,7 +350,7 @@ class planet {
 		if(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) {
 			$('#cu-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#cu-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.copperRatio,'t/h'));
+			$('#cu-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.copperRatio,'t/h'));
 		}
 		$('#cu-variety').html(GetBetterUnit(ratio.copperRatio*100,'%'));
 		// Titanium
@@ -356,7 +358,7 @@ class planet {
 		if(planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) {	
 			$('#ti-prod').html(GetBetterUnit(0,'t/h'));
 		} else {
-			$('#ti-prod').html(GetBetterUnit(mineralProdBaseTemp*ratio.titanRatio,'t/h'));
+			$('#ti-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.titanRatio,'t/h'));
 		}
 		$('#ti-variety').html(GetBetterUnit(ratio.titanRatio*100,'%'));
 
