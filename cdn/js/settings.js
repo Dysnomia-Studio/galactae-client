@@ -1,7 +1,5 @@
 class settings {
 	static init() {
-		Notification.permission = getCookie('galactae-settings-notifs');
-
 		loadScreen.complete();
 	}
 	static loadUI() {

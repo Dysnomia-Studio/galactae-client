@@ -604,7 +604,6 @@ class ui {
 			    // Quelque soit la réponse de l'utilisateur, nous nous assurons de stocker cette information
 				if(!('permission' in Notification)) {
 					Notification.permission = permission;
-					setCookie('galactae-settings-notifs',permission)
 				}
 
 				// Si l'utilisateur est OK, on crée une notification
