@@ -28,7 +28,7 @@
 			</div>
 			<div id="building-orders">
 				<div id="building-cost">
-					<h4>Coût d'amelioration</h4>
+					<h4><?php echo COST; ?></h4>
 					<span class="building-cost-item" id="building-cost-iron">Fe <span id="building-cost-iron-val"></span></span>
 					<span class="building-cost-item" id="building-cost-aluminium">Al <span id="building-cost-aluminium-val"></span></span>
 					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>

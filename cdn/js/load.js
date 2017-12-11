@@ -125,6 +125,10 @@ $(window).on( "load",function() {
 	if(!existCookie('galactae-account-username') || !existCookie('galactae-account-id')) { //Why are you here ?!
 		kick("not-connected");
 	}
+
+	// Load settings
+	settings.init();
+
 	// On affiche la page de chargement
 	loadScreen.show();
 

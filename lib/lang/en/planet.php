@@ -19,6 +19,7 @@
 	define('AVAILABLE','Available');
 	define('USED','Used');
 	define('TOTAL','Total');
+	define('COST','Next level cost');
 
 	// == Buildings == \\
 	define('PLANET_BUILDING','Ground Build');

@@ -19,6 +19,7 @@
 	define('AVAILABLE','Disponible');
 	define('USED','Utilisé');
 	define('TOTAL','Total');
+	define('COST','Coût du niveau suivant');
 
 	// == Buildings == \\
 	define('PLANET_BUILDING','Constructions à la Surface');
