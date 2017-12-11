@@ -918,6 +918,12 @@ select, input {
 		width: calc(30% - 2px);
 		text-align: center;
 	}
+	#fleet-ship-build-fleetSelect {
+		position: absolute;
+		right: 1em;
+		width: 30%;
+		bottom: calc(2em + 50px + 50px);
+	}
 }
 @media (max-width: 630px), (max-height: 430px) {
 	#fleet-ship-build {
@@ -941,6 +947,12 @@ select, input {
 		bottom: calc(7vw + 1.5em + 50px);
 		width: calc(30% - 2px);
 		text-align: center;
+	}
+	#fleet-ship-build-fleetSelect {
+		position: absolute;
+		right: 1em;
+		width: 30%;
+		bottom: calc(7vw + 2em + 50px + 50px);
 	}
 }
 #fleet-ship-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
