@@ -1,5 +1,5 @@
 var loadStatus = 0;
-var loadEnd = 7;
+var loadEnd = 9;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
 // 3 -> Planet Back
@@ -8,14 +8,15 @@ var loadEnd = 7;
 // 6 -> Settings
 // 7 -> Preload Pictures
 // 8 -> Map
+// 9 -> Fleet list
+
 class loadScreen {
 	static show() {
 		$('#loading-overlay').show();
 	}
 
 	static complete() {
-		if(loadStatus>=loadEnd) { return; } // Not needed if loading is already hided
-		loadStatus++;
+		if(++loadStatus>loadEnd) { return; } // Not needed if loading is already hided
 
 		if(loadStatus==loadEnd) {
 			setTimeout(function() {
@@ -31,15 +32,19 @@ class loadScreen {
 	static picturePreload() {
 		var picList = [
 			// Research
-			cdnURL + 'img/ui/research.png',
+			//cdnURL + 'img/ui/research.png', Disabled because already preloaded in HUD
 			// Buildings
 			cdnURL + 'img/buildings/arrow.png',
-			// UI
+			// Misc UI
 			cdnURL + 'img/ui/hud-top.png',
+			cdnURL + 'img/ui/hud-bottom-left.png',
+			cdnURL + 'img/ui/hud-bottom-right.png',
+			cdnURL + 'img/ui/hud-chat.png',
 			cdnURL + 'img/ui/chat-voice.png',
-
 			cdnURL + 'img/ui/build-panel.png',
+			cdnURL + 'img/ui/window.png',
 
+			// HUD TOP
 			cdnURL + 'img/ui/population.png',
 			cdnURL + 'img/ui/research.png',
 			cdnURL + 'img/ui/moral.png',
@@ -48,6 +53,22 @@ class loadScreen {
 			cdnURL + 'img/ui/minerals.png',
 
 			cdnURL + 'img/ui/settings.png',
+			// HUD BOTTOM LEFT
+			cdnURL + 'img/ui/map.png',
+			cdnURL + 'img/ui/researchs.png',
+			cdnURL + 'img/ui/units.png',
+			cdnURL + 'img/ui/fleets.png',
+			cdnURL + 'img/ui/radar.png',
+			cdnURL + 'img/ui/ally.png',
+			cdnURL + 'img/ui/rapports.png',
+			// HUD BOTTOM RIGHT
+			cdnURL + 'img/ui/quests.png',
+			cdnURL + 'img/ui/trade.png',
+			cdnURL + 'img/ui/ranks.png',
+			cdnURL + 'img/ui/profil.png',
+			cdnURL + 'img/ui/messages.png',
+			cdnURL + 'img/ui/chat.png',
+			
 			// Map
 			cdnURL + 'img/map/galaxy.jpg',
 		];

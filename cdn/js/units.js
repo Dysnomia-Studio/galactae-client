@@ -14,25 +14,6 @@ class units {
 		units.drawMain();
 	}
 
-	static regenFleetList(fleets) {
-		units.fleetList = fleets;
-
-		/**
-		 * Regen Fleet building
-		 */
-		var optionList = $("#fleet-ship-build-fleetSelect option");
-		// Remove old option
-		for(var i=0; i<optionList.length; i++) {
-			if(parseInt($(optionList[i]).attr('id')) > -1) {
-				$(optionList[i]).remove();
-			}
-		}
-		// Regen new option
-		for(var i=0; i<units.fleetList.length; i++) {
-			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');
-		}
-	}
-
 	static loadUI() {
 		units.lastType = "SHIP_ALL";
 
@@ -244,13 +225,24 @@ class units {
 
 		var currUnit = units.list[units.currUnit];
 
+		// Name
 		$("#fleet-ship-build-name").text(currUnit.name);
 
+		// Costs
 		units.updateBuildCost();
 
+		// Count
 		$("#fleet-ship-build-count").val("");
 		$("#fleet-ship-build-count").attr("placeholder","Max: " + units.getMaxShips());
 
+		// Fleet list
+		$('fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
+		for(var i in units.fleetList) {
+			$('fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i].id + '">' + units.fleetList[i].name + '</option>');
+		}
+		$('fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
+
+		// Draw panel
 		$("#fleet-ship-build").css('display','block');	
 	}
 
