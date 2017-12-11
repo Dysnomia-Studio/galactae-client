@@ -18,6 +18,7 @@
 	define('FLEET_BUILD_NOTE','Evaluation');
 	define('FLEET_BUILD_N_OWN','Nombre possédés');
 	define('FLEET_BUILD_CREATE','Nouveau modele');
+	define('FLEET_TOTAL_COST','Coût Total');
 	define('FLEET_CREATE','Creer');
 	define('SHIP_NAME','Nom');
 	define('SHIP_ATTACK','Attaque');
@@ -29,6 +30,10 @@
 	define('SHIP_MASS','Masse');
 	define('SHIP_FCAP','Capacité chasseurs');
 
+	//== Fleet ==\\
+	define('FLEET','Flotte');
+	define('NEW_FLEET','Nouvelle Flotte ...');
+
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','Vous n\'avez encore aucun modèle');
 ?>
@@ -37,18 +42,33 @@
 		// Titles
 		"SHIP_TYPE": "Type",
 		"SHIP_SHAPE": "Modèle",
-		// Types names
-		"SHIP_SAT": "Satellite",
-		"SHIP_BATTLECRUISER": "Croiseur",
-		"SHIP_CUIRASSE": "Cuirassé",
-		"SHIP_FIGHTER": "Chasseur",
-		"SHIP_CORVET": "Corvette",
-		"SHIP_CARRIER": "Transporteur",
-		// Shapes names
+
+		// Types & Shapes
+		"SHIP_DEF": "Défenses",
 		"SHIP_SAT_AG1": "Satellite AG-I",
 		"SHIP_SAT_AG2": "Satellite AG-II",
 		"SHIP_SAT_AG3": "Satellite AG-III",
-		"SHIP_SMALL": "Petit",
-		"SHIP_MEDIUM": "Moyen",
+
+		"SHIP_BATTLECRUISER": "Croiseur",
+		"SHIP_BATTLECRUISER_SMALL": "Petit",
+
+		"SHIP_CUIRASSE": "Cuirassé",
+		"SHIP_CUIRASSE_SMALL": "Petit",
+
+		"SHIP_FIGHTER": "Chasseur",
+		"SHIP_FIGHTER_SMALL": "Intercepteur Leger",
+		"SHIP_FIGHTER_MEDIUM": "Intercepteur Lourd",
+		"SHIP_FIGHTER_HUGE": "Bombardier",
+
+		"SHIP_CORVET": "Corvette",
+		"SHIP_CORVET_SMALL": "Petite",
+
+		"SHIP_CARRIER": "Transporteur",
+		"SHIP_CARRIER_MEDIUM": "Moyen",
+
+		// Texts
+		"fleet-build-openPanel": "Construire l'unité",
+		"fleet-build-type-edit": "Modifier le modele",
+		"fleet-build-type-delete": "Supprimer le modele",
 	};
 </script>

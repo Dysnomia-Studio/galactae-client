@@ -8,10 +8,10 @@
 		phyContemporaine:	{ name: "Physique Contemporaine", desc: "" },
 		thermodynamique:	{ name: "Thermodynamique", desc: "" },
 		// Mise en orbite et propulsion
-		prop_thermique:		{ name: "Propulsion thermique", desc: "" },
+		prop_main:			{ name: "Propulsion", desc: "" },
 		prop_vSolaire:		{ name: "Voile solaire", desc: "" },
-		prop_ions:			{ name: "Propulsion a ions", desc: "" },
-		prop_vsl:			{ name: "Vitesse Supraluminique", desc: "" },
+		prop_ions:			{ name: "Moteurs a ions", desc: "" },
+		prop_vsl:			{ name: "Vitesse Supraluminique (VSL)", desc: "" },
 		prop_hyperespace:	{ name: "Hyperespace", desc: "" },
 		prop_manoeuvre:		{ name: "Propulseurs de manoeuvre", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (2% de chance d'evitement)" },
 		prop_advManoeuvre:	{ name: "Propulseur de manoeuvres avancés", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (5% de chance d'evitement)" },
@@ -22,14 +22,27 @@
 		cp_dbRaffinage:		{ name: "Double raffinage", desc: "Deux fois plus de chance de trouver des minerais rares." },
 		cp_molecular_compression: { name: "Compression moleculaire", desc: "Augmente sensiblement la capacité de stockage des solides et gaz." },
 		// Armes
-		wep_railgun:		{ name: "Railguns", desc: "" },
+		wep_railgun:		{ name: "Canons railgun", desc: "" },
 		wep_nuke:			{ name: "Armes nucléaires", desc: "" },
 		wep_laser:			{ name: "Armes lasers", desc: "" },
 		wep_plasma:			{ name: "Armes plasma", desc: "" },
 		// Mines
 		wep_mines:			{ name: "Mines", desc: "" },
 		wep_mines_nuke:		{ name: "Mines nucléaires", desc: "" },
-		wep_mines_iem:		{ name: "Mines IEM", desc: "" },
+		wep_mines_iem:		{ name: "Mines à impulsions électromagnetiques (IEM)", desc: "" },
+		// Figther
+		figther_light_interceptor: { name: "Intercepteur Léger", desc: "" },
+		figther_heavy_interceptor: { name: "Intercepteur Lourd", desc: "" },
+		figther_bomber: 	{ name: "Bombardier", desc: "" },
+		// Battlecruiser
+		battlecruiser_small: { name: "Petit Croiseur", desc: "" },
+		// Cuirasse
+		cuirasse_small: 	{ name: "Petit Cuirassé", desc: "" },
+		// Corvet
+		corvet_small: 		{ name: "Petite Corvette", desc: "" },
+		// Carrier
+		carrier_small: 		{ name: "Petit Transporteur", desc: "" },
+		carrier_medium: 	{ name: "Transporteur Moyen", desc: "" },
 		// Satellites
 		wep_sat_ag1:		{ name: "Satellites AG-I", desc: "" },
 		wep_sat_ag2:		{ name: "Satellites AG-II", desc: "" },
@@ -43,5 +56,7 @@
 		misc_phyQuantique:	{ name: "Physique Quantique", desc: ""},
 		misc_calcGravit:	{ name: "Calculs Gravitationels", desc: ""},
 		misc_em:			{ name: "Electromagnetisme", desc: ""},
+		// Messages
+		tech_owned: "Technologie possédée",
 	};
 </script>

@@ -19,6 +19,7 @@
 	define('AVAILABLE','Available');
 	define('USED','Used');
 	define('TOTAL','Total');
+	define('COST','Next level cost');
 
 	// == Buildings == \\
 	define('PLANET_BUILDING','Ground Build');
@@ -37,7 +38,7 @@
 		{id: "warehouse", name: "Warehouse", desc: "Warehouse will stock minerals and metals." },
 		{id: "headquarter", name: "Headquarters", desc: "The Headquarters lead all your fleets and all your defenses." },
 		{id: "launchpad", name: "Space Center", desc: "In the space center, we'll build planet defences, fighters and resource transport to space buildings." },
-		{id: "research", name: "Institute for Scientific Research", desc: "The research centers of all your planets works together to discover new technologies." }
+		{id: "research", name: "Institute for Scientific Research", desc: "The research centers of all your planets works together to discover new technologies." },
 		// Space
 		{id: "radar", name: "Radar Satelite", desc: "This satelite will detect all closet fleets and is useful to contact your fleets." },
 		{id: "tank", name: "Tank", desc: "It will stock Helium 3." },

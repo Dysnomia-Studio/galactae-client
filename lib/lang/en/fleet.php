@@ -18,6 +18,7 @@
 	define('FLEET_BUILD_NOTE','Notation');
 	define('FLEET_BUILD_N_OWN','Number of owned');
 	define('FLEET_BUILD_CREATE','New model');
+	define('FLEET_TOTAL_COST','Total Cost');
 	define('FLEET_CREATE','Create');
 	define('SHIP_NAME','Name');
 	define('SHIP_ATTACK','Attack');
@@ -29,6 +30,10 @@
 	define('SHIP_MASS','Mass');
 	define('SHIP_FCAP','Fighters Capacity');
 
+	//== Fleet ==\\
+	define('FLEET','Fleet');
+	define('NEW_FLEET','New Fleet ...');
+
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','You hav\'nt models yet');
 ?>
@@ -37,19 +42,33 @@
 		// Titles
 		"SHIP_TYPE": "Type",
 		"SHIP_SHAPE": "Model",
-		// Types names
-		"SHIP_SAT": "Satellite",
+
+		// Types & Shapes
+		"SHIP_DEF": "Defences",
+		"SHIP_SAT_AG1": "AG-I Satellite",
+		"SHIP_SAT_AG2": "AG-II Satellite",
+		"SHIP_SAT_AG3": "AG-III Satellite",
+
 		"SHIP_BATTLECRUISER": "Battlecruisers",
+		"SHIP_BATTLECRUISER_SMALL": "Small",
+
 		"SHIP_CUIRASSE": "Battleships",
+		"SHIP_CUIRASSE_SMALL": "Small",
+
 		"SHIP_FIGHTER": "Fighters",
-		"SHIP_CORVET": "Corvette",
-		"SHIP_CARRIER": "Carriers",
-		// Shapes names
-		"SHIP_SAT_AG1": "Satellite AG-I",
-		"SHIP_SAT_AG2": "Satellite AG-II",
-		"SHIP_SAT_AG3": "Satellite AG-III",
-		"SHIP_SMALL": "Small",
-		"SHIP_MEDIUM": "Medium",
+		"SHIP_FIGHTER_SMALL": "Light Interceptor",
+		"SHIP_FIGHTER_MEDIUM": "Heavy Interceptor",
+		"SHIP_FIGHTER_HUGE": "Bomber",
+
+		"SHIP_CORVET": "Corvet",
+		"SHIP_CORVET_SMALL": "Small",
+
+		"SHIP_CARRIER": "Carrier",
+		"SHIP_CARRIER_MEDIUM": "Medium",
+
+		// Texts
+		"fleet-build-openPanel": "Build this unit",
+		"fleet-build-type-edit": "Edit model",
+		"fleet-build-type-delete": "Delete model",
 	};
-</script>
 </script>

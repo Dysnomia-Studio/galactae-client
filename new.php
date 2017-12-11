@@ -29,16 +29,16 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 		<h1>PDG</h1>
 		<div class="gvt-desc">
 			<p>À la tête d'un conglomérat, il dirige ses planètes dans le but de toujours augmenter ses profits. Il lui a fallu faire des OPA chez ses concurrents afin de prendre le contrôle de sa planète, et cette expérience lui permettra d'en prendre d'autres ...<br/>
-			Sa grande maîtrise des outils économiques va lui permettre d'éviter les taxes galactiques lors des échanges commerciaux</p>
+			Sa grande maîtrise des outils économiques va lui permettre d'éviter les taxes galactiques lors des échanges commerciaux.</p>
 		</div>
 		<span id="choosebtn2" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>
 	<div class="gvt-choice">
 		<h1>Empereur</h1>
 		<div class="gvt-desc">
-			<p>L'Empreur est le héros du peuple, il libère vailliamant les planètes sous le joug des tyrans. Un coup d'êtat après l'autre, il augmente son emprise sur la galaxie ...
+			<p>L'Empereur est le héros du peuple, il libère vaillamment les planètes sous le joug des tyrans. Un coup d'état après l'autre, il augmente son emprise sur la galaxie ...
 			<br/>
-			Il dirige d'une main de fer ses armées, ce qui lui permet une meilleur efficacité lors des combat</p>
+			Il dirige d'une main de fer ses armées, ce qui lui permet une meilleure efficacité lors des combats.</p>
 		</div>
 		<span id="choosebtn3" class="gvt-choosebtn gvt-btn">Choisir !</span>
 	</div>

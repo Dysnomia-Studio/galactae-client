@@ -28,7 +28,7 @@
 			</div>
 			<div id="building-orders">
 				<div id="building-cost">
-					<h4>Coût d'amelioration</h4>
+					<h4><?php echo COST; ?></h4>
 					<span class="building-cost-item" id="building-cost-iron">Fe <span id="building-cost-iron-val"></span></span>
 					<span class="building-cost-item" id="building-cost-aluminium">Al <span id="building-cost-aluminium-val"></span></span>
 					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
@@ -389,7 +389,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 	<div id="fleet-build">
 		<ul id="fleet-build-choice" class="ul-choice-line fleet-ul2">
 			<li shipType="SHIP_ALL" id="fleet-build-all-button" class="ul-choice-line-li-active"><?php echo FLEET_BUILD_ALL; ?></li>
-			<li shipType="SHIP_SAT" id="fleet-build-defense-button"><?php echo FLEET_BUILD_DEF; ?></li>
+			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?php echo FLEET_BUILD_DEF; ?></li>
 			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?php echo FLEET_BUILD_FIGHTER; ?></li>
 			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?php echo FLEET_BUILD_CUISADER; ?></li>
 			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?php echo FLEET_BUILD_CUIRASSE; ?></li>
@@ -412,7 +412,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 			</table>
 
 			<div id="fleet-build-info">
-				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>" onclick="units.drawCreateTypePanel();">
+				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>">
 
 				<div id="fleet-build-cost">
 					<?php echo '<span id="fleet-build-stat-attack">'.SHIP_ATTACK.' : <span id="fleet-build-stat-attack-val"></span></span><br />
@@ -425,9 +425,17 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 					<span id="fleet-build-stat-fcap">'.SHIP_FCAP.' : <span id="fleet-build-stat-fcap-val"></span></span><br />
 					<span id="fleet-build-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-build-stat-note-val"></span></span><br />'; ?>
 				</div>
-				<input type="number" name="fleet-build-count" id="fleet-build-count" class="ui-large-button" />
-				<span id="fleet-build-message"></span>
-				<input type="button" id="fleet-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>" onclick="units.drawBuildPanel();">	
+	
+				<span id="fleet-build-message" style="display: block;"></span>
+
+				<div id="fleet-build-buttons">
+
+					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.png" alt="build">
+					<img id="fleet-build-type-edit" src="./cdn/img/ui/edit.png" alt="edit">
+					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.png alt="delete">
+					<br/>
+					<span id="fleet-build-desc">Build unit</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -468,10 +476,31 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 		<input type="submit" id="fleet-type-create-submit" class="ui-large-button" value="<?php echo FLEET_CREATE; ?>">
 	</form>
 </div>
-
 <div id="fleet-ship-build">
 	<span id="fleet-ship-build-close">X</span>
+	<div class="fleet-ship-build-cost">
+		<h4><?php echo FLEET_TOTAL_COST; ?></h4>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-iron">Fe <span id="fleet-ship-build-cost-iron-val">XXXt</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-aluminium">Al <span id="fleet-ship-build-cost-aluminium-val">XXXt</p></span>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-copper">Cu <span id="fleet-ship-build-cost-copper-val">XXXt</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-titanium">Ti <span id="fleet-ship-build-cost-titanium-val">XXXt</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-time"><?php echo TIME; ?>: <span id="fleet-ship-build-cost-time-val">00:00:00</span></p>
+	</div>
 
+	<span id="fleet-ship-build-name">This isn't a ship name</span>
+
+	<script type="text/javascript">
+		var unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
+		var unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
+	</script>
+	
+	<select id="fleet-ship-build-fleetSelect" class="ui-large-button">
+		<option id="-2" selected disabled><?php echo FLEET; ?></option>
+		<option id="-1"><?php echo NEW_FLEET; ?></option>
+	</select>
+	<input type="number" name="fleet-ship-build-count" id="fleet-ship-build-count" class="ui-large-button">
+	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">	
 </div>
 <?php /* Researchs */ ?>
 <div id="hud-research">
