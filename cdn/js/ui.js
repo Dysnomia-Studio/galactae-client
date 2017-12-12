@@ -442,7 +442,7 @@ class ui {
 			default:
 		}
 
-		if(planetData.Buildings[id]==0) { value = "0"; } // If lvl, we set to 0
+		if(planetData.Buildings[id]==0 && value != "") { value = "0"; } // If lvl, we set to 0
 
 		$('#building-bonus-title').html(title);
 		$('#building-bonus-icon').html(icon);
