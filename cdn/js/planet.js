@@ -371,7 +371,7 @@ class planet {
 		$('#population_nmb').html(GetBetterUnit(habProd-habCons,"",0));
 		$('#population-available').html(GetBetterUnit(habProd-habCons,"",0));
 		$('#population-used').html(GetBetterUnit(habCons,""));
-		$('#population-total').html(GetBetterUnit(habProd,""));		
+		$('#population-total').html(GetBetterUnit(habProd,""));	
 	}
 	/*
 	Draws if buildings can be build.
@@ -396,20 +396,8 @@ class planet {
 			},timeBeforeEndBuild + 1000);
 		}
 
-
-		/*$(".arrow-build-active").removeClass("arrow-build-active");
-
-		// Draw arrows or not :p
-		for(var i=0; i<14; i++) {
-			if(planet.canBeBuild(i)) {
-				$('#arrow-'+ buildingsNames[i]).css('display','block');
-			} else if(planetData.nextBuilding==i) {
-				$('#arrow-'+ buildingsNames[i]).css('display','block');
-				$('#arrow-'+ buildingsNames[i]).addClass("arrow-build-active");
-			} else {
-				$('#arrow-'+ buildingsNames[i]).css('display','none');
-			}
-		}*/
+		$('.building-list-active').removeClass('building-list-active');
+		$('#'+ buildingsNames[i]).addClass('building-list-active');
 	}
 	/*
 	Gets the energy consomation.

@@ -17,7 +17,7 @@ include_once('gvars.php');
 // Verif du client sur mongo
 $manager = new MongoDB\Driver\Manager($dburl);
 
-function cmp($a,$b) {
+function sortPlayers($a,$b) {
 	$val1 = $a['points'];
 	$val2 = $b['points'];
 
@@ -32,39 +32,23 @@ function cmp($a,$b) {
  * Cache Vars
  */
 $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
+
 switch ($_GET['type']) {
+	/*case 'sector-players':
+		$type = "galaxy-players";
+		break;*/
 	case 'galaxy-players':
 	default:
 		$type = "galaxy-players";
-
-		// Get data from db
-		$filter = array();
-		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery($dbname.'.users', $query);
-		$playerList = $cursor->toArray();
-
-		$plyNum = count($playerList);
-
-		// To array
-		for ($i=0; $i < $plyNum; $i++) { 
-			$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
-		}
-
-		/**
-		 * Trier par points
-		 */
-		usort($playerList,"cmp");
-	break;
+		break;
 }
 
 $plyPerPage = 20;
 $pageCount = ceil($plyNum / $plyPerPage);
+/* Which page to display ? */
 $page = (isset($_GET['page']))?(int)$_GET['page']:1;
-if($page < 1) {
-	$page = 1;
-} elseif($page > $pageCount) {
-	$page = $pageCount;
-}
+if($page < 1) { $page = 1; } 
+elseif($page > $pageCount) { $page = $pageCount; }
 
 $cache = 'cache/ranks/'.$type.'-'.$page.'.html';
 $expire = time() - 600; // 10 min
@@ -75,6 +59,38 @@ $expire = time() - 600; // 10 min
 if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
 } else {
+	/**
+	 * Check and sort players
+	 */
+	switch ($type) {
+		case 'galaxy-players':
+		default:
+			// Refresh user points
+			
+
+			// Get data from db
+			$filter = array();
+			$query = new MongoDB\Driver\Query($filter);
+			$cursor = $manager->executeQuery($dbname.'.users', $query);
+			$playerList = $cursor->toArray();
+
+			$plyNum = count($playerList);
+
+			// To array
+			for ($i=0; $i < $plyNum; $i++) { 
+				$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
+			}
+
+			/**
+			 * Trier par points
+			 */
+			usort($playerList,"sortPlayers");
+		break;
+	}
+
+	/**
+	 * Generate cache
+	 */
 	for($i=0; $i<$pageCount; $i++) {
 		$base = $i * $plyPerPage;
 		$cache = 'cache/ranks/'.$type.'-'.($i+1).'.html';
@@ -118,15 +134,15 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
         echo $page ; // on affiche notre page :D 
 	}
-}
 
-/**
- * Pagnation
- */
-if($pageCount>1) {
-	echo "Page: ";
-	for($i=1; $i<($pageCount+1); $i++) {
-		echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
+	/**
+	 * Pagination
+	 */
+	if($pageCount>1) {
+		echo "Page: ";
+		for($i=1; $i<($pageCount+1); $i++) {
+			echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
+		}
 	}
 }
 ?>
