@@ -397,7 +397,9 @@ class planet {
 		}
 
 		$('.building-list-active').removeClass('building-list-active');
-		$('#'+ buildingsNames[i]).addClass('building-list-active');
+		if(planetData.nextBuilding > -1 && planetData.nextBuilding < 14) {
+			$('#'+ buildingsNames[planetData.nextBuilding]).addClass('building-list-active');
+		}
 	}
 	/*
 	Gets the energy consomation.

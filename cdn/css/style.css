@@ -2237,18 +2237,18 @@ dl.infos dt {
 
 @keyframes building-list-animActive {
 	0% {
-		background: rgba(220,220,220,0);
+		background: rgba(147,252,252,0);
 	}
 	50% {
-		background: rgba(220,220,220,0.2);
+		background: rgba(147,252,252,0.2);
 	}
 	100% {
-		background: rgba(220,220,220,0);
+		background: rgba(147,252,252,0);
 	}
 }
 
 .building-list-active {
-	background: rgba(220,220,220,0.2);
+	background: rgba(147,252,252,0.2);
 	animation-name: building-list-animActive;
 	animation-delay: 2s;
 	animation-iteration-count: infinite;
