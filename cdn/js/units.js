@@ -171,13 +171,23 @@ class units {
 		$('#fleet-newFleet-panel').css('display','block');
 	}
 
+	static fleetExists(fname) {
+		for(var i in units.fleetList) {
+			if(units.fleetList.name == fname) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	static validFleetName() {
-		fname = $('#fleet-newFleet-name').val();
+		var fname = $('#fleet-newFleet-name').val();
 
 		if(fname == "") { return; }
-		if(fleetExists(fname)) { return; }
+		if(units.fleetExists(fname)) { return; }
 
 		units.fname = fname;
+		$('#fleet-ship-build-fleetSelect option#-1').text(units.fname);
 		$('#fleet-newFleet-panel').css('display','none');
 	}
 
