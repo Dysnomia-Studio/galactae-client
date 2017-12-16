@@ -353,7 +353,7 @@ class units {
 		units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
 	}
 
-	static drawShipShape(shape,content) {
+	static drawShipShape(shape,content,unitsParts=[]) {
 		var svgContent = "";
 		var htmlContent = "";
 
