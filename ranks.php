@@ -40,6 +40,14 @@ switch ($_GET['type']) {
 	case 'galaxy-players':
 	default:
 		$type = "galaxy-players";
+
+		// Get data from db
+		$filter = array();
+		$query = new MongoDB\Driver\Query($filter);
+		$cursor = $manager->executeQuery($dbname.'.users', $query);
+		$playerList = $cursor->toArray();
+
+		$plyNum = count($playerList);
 		break;
 }
 
@@ -67,14 +75,6 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 		default:
 			// Refresh user points
 			
-
-			// Get data from db
-			$filter = array();
-			$query = new MongoDB\Driver\Query($filter);
-			$cursor = $manager->executeQuery($dbname.'.users', $query);
-			$playerList = $cursor->toArray();
-
-			$plyNum = count($playerList);
 
 			// To array
 			for ($i=0; $i < $plyNum; $i++) { 
