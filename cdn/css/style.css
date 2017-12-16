@@ -985,6 +985,7 @@ select, input {
 	width: 200px;
 	margin: 5px 10px;
 	padding: 0;
+	text-align: center;
 }
 #fleet-type-create-shipType, #fleet-type-create-shipShape, #fleet-type-create-name {
 	z-index: 10;

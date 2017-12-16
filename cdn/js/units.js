@@ -277,7 +277,9 @@ class units {
 
 	static askUnitBuild() {
 		var count = parseInt($("#fleet-ship-build-count").val());
-
+		var fleet = parseInt($("#fleet-ship-build-fleetSelect option").filter(':selected').attr("id"));
+		
+		if(fleet==NaN || fleet==-2) { return; }
 		if(count==NaN || count==undefined || units.currUnit==-1) { return; }
 
 		socket.emit("unit-build", { 
@@ -285,11 +287,20 @@ class units {
 			username: userData.username,
 			planet: userData.pid,
 			count: count,
-			unit: units.currUnit,
-			fleet: $("#fleet-ship-build-fleet").val(),
+			unit: units.list[units.currUnit]._id,
+			fleet: fleet,
 			fleetName: units.fname
 		});
-		ui.closeTab("fleet-ship-build");
+		console.info({ 
+			id: userData.id,
+			username: userData.username,
+			planet: userData.pid,
+			count: count,
+			unit: units.list[units.currUnit]._id,
+			fleet: fleet,
+			fleetName: units.fname
+		});
+		//ui.closeTab("#fleet-ship-build");
 	}
 
 	static drawCreateTypePanel(unit=-1) {
