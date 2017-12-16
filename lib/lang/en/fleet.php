@@ -68,7 +68,7 @@
 
 		// Texts
 		"fleet-build-openPanel": "Build this unit",
-		"fleet-build-type-edit": "Edit model",
+		"fleet-build-type-edit": "Duplicate this model",
 		"fleet-build-type-delete": "Delete model",
 	};
 </script>

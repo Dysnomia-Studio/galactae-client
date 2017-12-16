@@ -64,7 +64,9 @@ class units {
 			preventFleetHUDClosing = true;
 			units.drawBuildPanel();
 		});
-
+		$('#fleet-build-type-edit').click(function() {
+			units.drawCreateTypePanel(units.currUnit);
+		});
 		$('#fleet-ship-build-upgrade').click(function() {
 			//units.askUnitBuild();
 			// Disabled until we finish all work
@@ -262,7 +264,20 @@ class units {
 		ui.closeTab("fleet-ship-build");
 	}
 
-	static drawCreateTypePanel() {
+	static drawCreateTypePanel(unit=-1) {
+		var unitsParts = [];
+		var selectedType = "";
+		var selectedShape = "";
+
+		if(units.currUnit != -1 && units.list[units.currUnit] != undefined) { 
+			for(var i in units.list[units.currUnit].parts) {
+				unitsParts[units.list[units.currUnit].parts[i].name] = units.list[units.currUnit].parts[i].tech;
+			}
+
+			selectedType = units.list[units.currUnit].shipType;
+			selectedShape = units.list[units.currUnit].shipShape;
+		}
+
 		$('#fleet-type-create-cost div').css('display','none');
 
 		$('#fleet-type-create-schematic').html("");
@@ -278,8 +293,10 @@ class units {
 				}
 			}
 
-			if(!disabled) {
+			if(!disabled && selectedType != unitTypes[i]) {
 				selectContent += '<option value="' + unitTypes[i] + '">' + fleetTranslate[unitTypes[i]] + '</option>';
+			} else if(!disabled && selectedType == unitTypes[i]) {
+				selectContent += '<option value="' + unitTypes[i] + '" selected>' + fleetTranslate[unitTypes[i]] + '</option>';
 			}
 		}
 
@@ -287,14 +304,14 @@ class units {
 
 		$('#fleet-type-create-shipShape').html("<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>");
 
-		units.changeShipType();
+		units.changeShipType(unitsParts,selectedShape);
 
 		preventFleetHUDClosing = true;
 
 		$("#fleet-type-create").css('display','block');
 	}
 	
-	static changeShipType() {
+	static changeShipType(unitsParts=[],selectedShape="") {
 		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		var shape = "";
 
@@ -304,7 +321,11 @@ class units {
 		for(var index in shipShapesDetails[type]) {
 			if(shape=="") { shape = index; }
 			if(shipResearchDependencies[index] != undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
-			selectShipShape += '<option value="' + index + '">' + fleetTranslate[index] + '</option>';
+			if(index == selectedShape) {
+				selectShipShape += '<option value="' + index + '" selected>' + fleetTranslate[index] + '</option>';
+			} else {
+				selectShipShape += '<option value="' + index + '">' + fleetTranslate[index] + '</option>';
+			}
 		}
 
 		if(selectShipShape != "") {
@@ -314,7 +335,7 @@ class units {
 			
 			$('#fleet-type-create-shipShape').html(selectShipShape);
 
-			units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
+			units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content'],unitsParts);
 			units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
 		} else {
 			$("#fleet-type-create-shipType").val($("#fleet-type-create-shipType option:first").val());
@@ -378,7 +399,11 @@ class units {
 
 				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: research check
 					if(content[shape[i][0]][j] != "none" && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
-					htmlContent += '<option value="' + content[shape[i][0]][j] + '">' + content[shape[i][0]][j] + '</option>'; // @ADD: Translation
+					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
+						htmlContent += '<option value="' + content[shape[i][0]][j] + '" selected>' + content[shape[i][0]][j] + '</option>'; // @ADD: pics
+					} else {
+						htmlContent += '<option value="' + content[shape[i][0]][j] + '">' + content[shape[i][0]][j] + '</option>'; // @ADD: pics
+					}
 				}
 
 				htmlContent += '</select>';
