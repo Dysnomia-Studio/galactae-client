@@ -74,7 +74,7 @@ class units {
 			preventFleetHUDClosing = true;
 			units.drawBuildPanel();
 		});
-		$('#fleet-newFleet-panel').click(function() {
+		$('#fleet-newFleet-submit').click(function() {
 			units.validFleetName();
 		})
 
@@ -107,7 +107,7 @@ class units {
 		});
 
 		$('#fleet-ship-build-fleetSelect').change(function() {
-			if(parseInt($(this).attr('id'))==-1) {
+			if(parseInt($('#fleet-ship-build-fleetSelect option').filter(":selected").attr('id'))==-1) {
 				units.drawNewFleetPanel();
 			}
 		});

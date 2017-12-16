@@ -220,90 +220,90 @@
 	</div>
 </div>
 <?php /* HUD Bottom */ ?>
-	<div id="hud-bottom">
-		<div id="hud-bottom-left">
-			<span class="hud-bottom-tooltip">
-				<a href="#map" id="hud-bottom-button-map"><img src="<?php echo $cdnURL; ?>img/ui/map.png" alt="map"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MAP; ?></span>
-				</span>
+<div id="hud-bottom">
+	<div id="hud-bottom-left">
+		<span class="hud-bottom-tooltip">
+			<a href="#map" id="hud-bottom-button-map"><img src="<?php echo $cdnURL; ?>img/ui/map.png" alt="map"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MAP; ?></span>
 			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#researchs" id="hud-bottom-button-researchs"><img src="<?php echo $cdnURL; ?>img/ui/researchs.png" alt="researchs"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RESEARCH; ?></span>
-				</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#researchs" id="hud-bottom-button-researchs"><img src="<?php echo $cdnURL; ?>img/ui/researchs.png" alt="researchs"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RESEARCH; ?></span>
 			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#units" id="hud-bottom-button-units"><img src="<?php echo $cdnURL; ?>img/ui/units.png" alt="units"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_UNITS; ?></span>
-				</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#units" id="hud-bottom-button-units"><img src="<?php echo $cdnURL; ?>img/ui/units.png" alt="units"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_UNITS; ?></span>
 			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?php echo $cdnURL; ?>img/ui/fleets.png" alt="fleets"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_FLEETS; ?></span>
-				</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?php echo $cdnURL; ?>img/ui/fleets.png" alt="fleets"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_FLEETS; ?></span>
 			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#radar" id="hud-bottom-button-radar"><img src="<?php echo $cdnURL; ?>img/ui/radar.png" alt="radar"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RADAR; ?></span>
-				</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#radar" id="hud-bottom-button-radar"><img src="<?php echo $cdnURL; ?>img/ui/radar.png" alt="radar"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RADAR; ?></span>
 			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#ally" id="hud-bottom-button-ally"><img src="<?php echo $cdnURL; ?>img/ui/ally.png" alt="ally"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_ALLY; ?></span>
-				</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#ally" id="hud-bottom-button-ally"><img src="<?php echo $cdnURL; ?>img/ui/ally.png" alt="ally"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_ALLY; ?></span>
 			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?php echo $cdnURL; ?>img/ui/rapports.png" alt="rapports"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RAPPORTS; ?></span>
-				</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?php echo $cdnURL; ?>img/ui/rapports.png" alt="rapports"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>
-		</div>
-		<div id="hud-bottom-right">
-			<span class="hud-bottom-tooltip">
-				<a href="#quests" id="hud-bottom-button-quests"><img src="<?php echo $cdnURL; ?>img/ui/quests.png" alt="quests"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_QUEST; ?></span>
-				</span>
-			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#trade" id="hud-bottom-button-trade"><img src="<?php echo $cdnURL; ?>img/ui/trade.png" alt="trade"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_TRADE; ?></span>
-				</span>
-			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?php echo $cdnURL; ?>img/ui/ranks.png" alt="ranks"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RANKS; ?></span>
-				</span>
-			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#profil" id="hud-bottom-button-profil"><img src="<?php echo $cdnURL; ?>img/ui/profil.png" alt="profil"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_PROFIL; ?></span>
-				</span>
-			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#messages" id="hud-bottom-button-messages"><img src="<?php echo $cdnURL; ?>img/ui/messages.png" alt="messages"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MESSAGES; ?></span>
-				</span>
-			</span>
-			<span class="hud-bottom-tooltip">
-				<a href="#chat" id="hud-bottom-button-chat"><img src="<?php echo $cdnURL; ?>img/ui/chat.png" alt="chat"></a>
-				<span class="hud-bottom-tooltip-wrapper">
-					<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_CHAT; ?></span>
-				</span>
-			</span>
-		</div>
+		</span>
 	</div>
+	<div id="hud-bottom-right">
+		<span class="hud-bottom-tooltip">
+			<a href="#quests" id="hud-bottom-button-quests"><img src="<?php echo $cdnURL; ?>img/ui/quests.png" alt="quests"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_QUEST; ?></span>
+			</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#trade" id="hud-bottom-button-trade"><img src="<?php echo $cdnURL; ?>img/ui/trade.png" alt="trade"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_TRADE; ?></span>
+			</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?php echo $cdnURL; ?>img/ui/ranks.png" alt="ranks"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RANKS; ?></span>
+			</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#profil" id="hud-bottom-button-profil"><img src="<?php echo $cdnURL; ?>img/ui/profil.png" alt="profil"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_PROFIL; ?></span>
+			</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#messages" id="hud-bottom-button-messages"><img src="<?php echo $cdnURL; ?>img/ui/messages.png" alt="messages"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MESSAGES; ?></span>
+			</span>
+		</span>
+		<span class="hud-bottom-tooltip">
+			<a href="#chat" id="hud-bottom-button-chat"><img src="<?php echo $cdnURL; ?>img/ui/chat.png" alt="chat"></a>
+			<span class="hud-bottom-tooltip-wrapper">
+				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_CHAT; ?></span>
+			</span>
+		</span>
+	</div>
+</div>
 <?php /* ESC */ ?>
 <div id="settings-menu">
 	<a href="#close-settings-tabs" id="close-settings-tabs">X</a><br/>
@@ -501,6 +501,10 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 	</select>
 	<input type="number" name="fleet-ship-build-count" id="fleet-ship-build-count" class="ui-large-button">
 	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">	
+</div>
+<div id="fleet-newFleet-panel">
+	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
+	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
 <?php /* Researchs */ ?>
 <div id="hud-research">
