@@ -275,7 +275,7 @@ select, input {
 }
 #day-bonus-confirm { left: 7.5%; }
 #day-bonus-later { right: 7.5%; }
-#day-bonus-confirm:hover, #day-bonus-later:hover {
+#day-bonus-confirm:hover, #day-bonus-later:hover, #day-bonus-confirm:active, #day-bonus-later:active {
 	background-color: rgba(220,220,220,0.5);
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
