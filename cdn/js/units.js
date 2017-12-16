@@ -71,7 +71,7 @@ class units {
 			socket.emit("unit-type-delete", { 
 				id: userData.id,
 				username: userData.username,
-				unit: unit.currUnit
+				unit: units.list[units.currUnit]._id
 			});
 		});
 		$('#fleet-ship-build-upgrade').click(function() {
