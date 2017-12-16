@@ -67,6 +67,12 @@ class units {
 		$('#fleet-build-type-copy').click(function() {
 			units.drawCreateTypePanel(units.currUnit);
 		});
+		$('#fleet-build-type-delete').click(function() {
+			socket.emit("unit-type-delete", { 
+			id: userData.id,
+			username: userData.username,
+			unit: unit.currUnit,
+		});
 		$('#fleet-ship-build-upgrade').click(function() {
 			//units.askUnitBuild();
 			// Disabled until we finish all work
