@@ -39,4 +39,5 @@
 	define('OLDER_NEWS','Older');
 	define('NEWER_NEWS','Newer');
 	define('AT_NEXT_LVL','at next level');
+	define('CONFIRM','Confirm');
 ?>

@@ -32,6 +32,7 @@
 
 	//== Fleet ==\\
 	define('FLEET','Flotte');
+	define('FLEET_NAME','Nom de la flotte');
 	define('NEW_FLEET','Nouvelle Flotte ...');
 
 	//== Erreurs ==\\
@@ -67,7 +68,6 @@
 		"SHIP_CARRIER_MEDIUM": "Moyen",
 
 		// Texts
-		"FLEET_NAME": "Nom de la flotte",
 		"fleet-build-openPanel": "Construire l'unité",
 		"fleet-build-type-copy": "Copier ce modele",
 		"fleet-build-type-delete": "Supprimer le modele",

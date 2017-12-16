@@ -977,6 +977,8 @@ select, input {
 	top: calc(50% - 62px);
 	left: calc(50% - 112px);
 
+	z-index: 1000;
+
 	display: none;
 }
 #fleet-newFleet-name, #fleet-newFleet-submit {
