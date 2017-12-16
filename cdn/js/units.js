@@ -8,6 +8,7 @@ class units {
 	static refresh(data) {
 		units.list = data;
 
+		units.fname = "";
 		units.currUnit = -1;
 		units.fleetList = units.fleetList || {};
 
@@ -58,12 +59,6 @@ class units {
 		$('#fleet-build-create').click(function() {
 			units.drawCreateTypePanel();
 		});
-
-		// Fleet build
-		$('#fleet-build-openPanel').click(function() {
-			preventFleetHUDClosing = true;
-			units.drawBuildPanel();
-		});
 		$('#fleet-build-type-copy').click(function() {
 			units.drawCreateTypePanel(units.currUnit);
 		});
@@ -74,10 +69,17 @@ class units {
 				unit: units.list[units.currUnit]._id
 			});
 		});
+		// Fleet build
+		$('#fleet-build-openPanel').click(function() {
+			preventFleetHUDClosing = true;
+			units.drawBuildPanel();
+		});
+		$('#fleet-newFleet-panel').click(function() {
+			units.validFleetName();
+		})
+
 		$('#fleet-ship-build-upgrade').click(function() {
-			//units.askUnitBuild();
-			// Disabled until we finish all work
-			// @Petit Malin qui lit le code, pas la peine de tester, tout sera clear a la mise en route
+			units.askUnitBuild();
 		});
 
 		// Change informations with buttons
@@ -165,11 +167,18 @@ class units {
 	}
 
 	static drawNewFleetPanel() {
-		// @ADD: Display panel
+		$('#fleet-newFleet-name').val("");
+		$('#fleet-newFleet-panel').css('display','block');
 	}
 
-	static createNewFleet() {
-		// @ADD: Create new fleet
+	static validFleetName() {
+		fname = $('#fleet-newFleet-name').val();
+
+		if(fname == "") { return; }
+		if(fleetExists(fname)) { return; }
+
+		units.fname = fname;
+		$('#fleet-newFleet-panel').css('display','none');
 	}
 
 	static updateBuildCost() {
@@ -232,6 +241,7 @@ class units {
 	static drawBuildPanel() {
 		if(units.currUnit == -1 || units.list[units.currUnit] == undefined) { return; }
 
+		units.fname = "";
 		var currUnit = units.list[units.currUnit];
 
 		// Name
@@ -266,7 +276,8 @@ class units {
 			planet: userData.pid,
 			count: count,
 			unit: units.currUnit,
-			fleet: $("#fleet-ship-build-fleet").val()
+			fleet: $("#fleet-ship-build-fleet").val(),
+			fleetName: units.fname
 		});
 		ui.closeTab("fleet-ship-build");
 	}
