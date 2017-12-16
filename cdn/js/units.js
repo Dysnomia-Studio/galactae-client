@@ -291,16 +291,7 @@ class units {
 			fleet: fleet,
 			fleetName: units.fname
 		});
-		console.info({ 
-			id: userData.id,
-			username: userData.username,
-			planet: userData.pid,
-			count: count,
-			unit: units.list[units.currUnit]._id,
-			fleet: fleet,
-			fleetName: units.fname
-		});
-		//ui.closeTab("#fleet-ship-build");
+		ui.closeTab("#fleet-ship-build");
 	}
 
 	static drawCreateTypePanel(unit=-1) {
