@@ -64,7 +64,7 @@ class units {
 			preventFleetHUDClosing = true;
 			units.drawBuildPanel();
 		});
-		$('#fleet-build-type-edit').click(function() {
+		$('#fleet-build-type-copy').click(function() {
 			units.drawCreateTypePanel(units.currUnit);
 		});
 		$('#fleet-ship-build-upgrade').click(function() {
@@ -77,7 +77,7 @@ class units {
 		$('#fleet-build-buttons img').mouseenter(function() {
 			switch($(this).attr('id')) {
 				case "fleet-build-openPanel":
-				case "fleet-build-type-edit":
+				case "fleet-build-type-copy":
 				case "fleet-build-type-delete":
 					$('#fleet-build-desc').text(fleetTranslate[$(this).attr('id')]);
 					break;

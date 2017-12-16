@@ -1162,7 +1162,7 @@ select, input {
  	color: transparent;
 }
 #fleet-build-openPanel:hover ~ #fleet-build-desc, 
-	#fleet-build-type-edit:hover ~ #fleet-build-desc, 
+	#fleet-build-type-copy:hover ~ #fleet-build-desc, 
 	#fleet-build-type-delete:hover ~ #fleet-build-desc {
 
 	color: inherit;

@@ -431,7 +431,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 				<div id="fleet-build-buttons">
 
 					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.png" alt="build">
-					<img id="fleet-build-type-edit" src="./cdn/img/ui/edit.png" alt="edit">
+					<img id="fleet-build-type-copy" src="./cdn/img/ui/copy.png" alt="copy">
 					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.png alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
