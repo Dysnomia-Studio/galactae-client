@@ -67,6 +67,7 @@
 		"SHIP_CARRIER_MEDIUM": "Medium",
 
 		// Texts
+		"FLEET_NAME": "Fleet name",
 		"fleet-build-openPanel": "Build this unit",
 		"fleet-build-type-copy": "Duplicate this model",
 		"fleet-build-type-delete": "Delete model",
