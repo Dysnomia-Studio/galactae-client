@@ -65,6 +65,8 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	$curr = [];
 	$next = -1;
 
+	var_dump($newsList);
+
 	/* Search the needed elements */
 	foreach ($newsList as $key => $news) {
 		if($news['blog_id'] < $news_needed) {
