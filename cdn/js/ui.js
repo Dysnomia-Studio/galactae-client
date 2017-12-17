@@ -574,6 +574,23 @@ class ui {
 				ui.fleet = true;
 			}
 		});
+		$("#hud-bottom-button-radar").click(function() {
+			if(ui.fleet && !preventFleetHUDClosing) {
+				ui.closeTab("#hud-fleet");
+				ui.fleet = false;
+			} else {
+				$("#hud-fleet").css('display','block');
+				
+				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
+				$("#fleet-radar-button").addClass("ul-choice-line-li-active");
+
+				$("#fleet-orbit").css('display',"none");
+				$("#fleet-build").css('display',"none");
+				$("#fleet-move").css('display',"block");
+				$("#fleet-out").css('display',"none");
+				ui.fleet = true;
+			}
+		});
 	}
 	/********** DAILY BONUS **********/
 	static dailyBonus(streak,best) {	
