@@ -248,6 +248,15 @@ class units {
 		units.updateBuildCost();
 	}
 
+	static regenerateBuildFleetList() {
+		// Fleet list
+		$('fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
+		for(var i in units.fleetList) {
+			$('fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i].id + '">' + units.fleetList[i].name + '</option>');
+		}
+		$('fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
+	}
+
 	static drawBuildPanel() {
 		if(units.currUnit == -1 || units.list[units.currUnit] == undefined) { return; }
 
@@ -264,12 +273,7 @@ class units {
 		$("#fleet-ship-build-count").val("");
 		$("#fleet-ship-build-count").attr("placeholder","Max: " + units.getMaxShips());
 
-		// Fleet list
-		$('fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
-		for(var i in units.fleetList) {
-			$('fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i].id + '">' + units.fleetList[i].name + '</option>');
-		}
-		$('fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
+		units.regenerateBuildFleetList();
 
 		// Draw panel
 		$("#fleet-ship-build").css('display','block');	
