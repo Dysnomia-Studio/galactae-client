@@ -296,6 +296,8 @@ class units {
 			fleetName: units.fname
 		});
 		ui.closeTab("#fleet-ship-build");
+
+		preventFleetHUDClosing = false;
 	}
 
 	static drawCreateTypePanel(unit=-1) {
