@@ -56,7 +56,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 	<?php
 	$limit = ($news_needed<10)?0:($news_needed - 10);
-
+	
 	$newsList = $sqlDB->selectQuery(
 		"SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT :searched_id, 10",
 		[ "searched_id" => $limit ]);
@@ -64,8 +64,6 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	$prev = -1;
 	$curr = [];
 	$next = -1;
-
-	var_dump($newsList);
 
 	/* Search the needed elements */
 	foreach ($newsList as $key => $news) {
