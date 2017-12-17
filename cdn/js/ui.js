@@ -546,6 +546,31 @@ class ui {
 				ui.fleet = false;
 			} else {
 				$("#hud-fleet").css('display','block');
+				
+				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
+				$("#fleet-build-button").addClass("ul-choice-line-li-active");
+
+				$("#fleet-orbit").css('display',"none");
+				$("#fleet-build").css('display',"block");
+				$("#fleet-move").css('display',"none");
+				$("#fleet-out").css('display',"none");
+				ui.fleet = true;
+			}
+		});
+		$("#hud-bottom-button-fleets").click(function() {
+			if(ui.fleet && !preventFleetHUDClosing) {
+				ui.closeTab("#hud-fleet");
+				ui.fleet = false;
+			} else {
+				$("#hud-fleet").css('display','block');
+				
+				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
+				$("#fleet-orbit-button").addClass("ul-choice-line-li-active");
+
+				$("#fleet-orbit").css('display',"block");
+				$("#fleet-build").css('display',"none");
+				$("#fleet-move").css('display',"none");
+				$("#fleet-out").css('display',"none");
 				ui.fleet = true;
 			}
 		});
