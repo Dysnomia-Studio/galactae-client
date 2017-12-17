@@ -574,7 +574,7 @@ class ui {
 				ui.fleet = true;
 			}
 		});
-		$("#hud-bottom-button-move").click(function() {
+		$("#hud-bottom-button-radar").click(function() {
 			if(ui.fleet && !preventFleetHUDClosing) {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
