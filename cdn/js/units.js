@@ -250,11 +250,11 @@ class units {
 
 	static regenerateBuildFleetList() {
 		// Fleet list
-		$('fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
-		for(var i in units.fleetList) {
-			$('fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i].id + '">' + units.fleetList[i].name + '</option>');
+		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
+		for(var i=0; i<units.fleetList.length; i++) {
+			$('#fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i].id + '">' + units.fleetList[i].name + '</option>');
 		}
-		$('fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
+		$('#fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
 	}
 
 	static drawBuildPanel() {
