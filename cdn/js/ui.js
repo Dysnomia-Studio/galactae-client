@@ -541,7 +541,7 @@ class ui {
 			}
 		});
 		$("#hud-bottom-button-units").click(function() {
-			if(ui.fleet && !preventFleetHUDClosing) {
+			if(ui.fleet && !preventFleetHUDClosing && $("#fleet-build").css('display') == "block") {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
 			} else {
@@ -558,7 +558,7 @@ class ui {
 			}
 		});
 		$("#hud-bottom-button-fleets").click(function() {
-			if(ui.fleet && !preventFleetHUDClosing) {
+			if(ui.fleet && !preventFleetHUDClosing && $("#fleet-orbit").css('display') == "block") {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
 			} else {
@@ -575,7 +575,7 @@ class ui {
 			}
 		});
 		$("#hud-bottom-button-radar").click(function() {
-			if(ui.fleet && !preventFleetHUDClosing) {
+			if(ui.fleet && !preventFleetHUDClosing && $("#fleet-move").css('display') == "block") {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
 			} else {
