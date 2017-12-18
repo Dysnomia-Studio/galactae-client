@@ -2099,46 +2099,46 @@ dl.infos dt {
 	 */
 	#building-ground-title {
 		position: absolute;
-		top: calc(45vh + ((55vh)/2) + 6vh + 3em);
+		top: calc(39vh + ((55vh)/2) + 6vh + 3em);
 		left: 4vh;
 		width: 60vh;
 		text-align: center;
 		font-size: 0.9em;
 	}
 	#carriere {
-		top: calc(45vh - ((55vh)/2) + 0vh);
+		top: calc(39vh - ((55vh)/2) + 0vh);
 		left: 22vh;
 	}
 	#metallurgy {
-		top: calc(45vh - ((55vh)/2) + 11vh);
+		top: calc(39vh - ((55vh)/2) + 11vh);
 		left: 33vh;
 	}
 	#living {
-		top: calc(45vh - ((55vh)/2) + 11vh);
+		top: calc(39vh - ((55vh)/2) + 11vh);
 		left: 11vh;
 	}
 	#serre {
-		top: calc(45vh - ((55vh)/2) + 33vh);
+		top: calc(39vh - ((55vh)/2) + 33vh);
 		left: 11vh;
 	}
 	#solar {
-		top: calc(45vh - ((55vh)/2) + 22vh);
+		top: calc(39vh - ((55vh)/2) + 22vh);
 		left: 22vh;
 	}
 	#warehouse {
-		top: calc(45vh - ((55vh)/2) + 44vh);
+		top: calc(39vh - ((55vh)/2) + 44vh);
 		left: 22vh;
 	}
 	#headquarter {
-		top: calc(45vh - ((55vh)/2) + 55vh);
+		top: calc(39vh - ((55vh)/2) + 55vh);
 		left: 11vh;
 	}
 	#launchpad {
-		top: calc(45vh - ((55vh)/2) + 55vh);
+		top: calc(39vh - ((55vh)/2) + 55vh);
 		left: 33vh;
 	}
 	#research {
-		top: calc(45vh - ((55vh)/2) + 44vh);
+		top: calc(39vh - ((55vh)/2) + 44vh);
 		left: 44vh;
 	}
 	#lvl-carriere, #lvl-metallurgy, #lvl-living,
@@ -2155,39 +2155,39 @@ dl.infos dt {
 		z-index: 2;
 	}
 	#lvl-carriere {
-		top: calc(45vh - ((55vh)/2) + 7vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 7vh - 0.9em);
 		left: 36vh;
 	}
 	#lvl-metallurgy {
-		top: calc(45vh - ((55vh)/2) + 18vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 18vh - 0.9em);
 		left: 47vh;
 	}
 	#lvl-living {
-		top: calc(45vh - ((55vh)/2) + 18vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 18vh - 0.9em);
 		left: 25vh;
 	}
 	#lvl-serre {
-		top: calc(45vh - ((55vh)/2) + 40vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 40vh - 0.9em);
 		left: 25vh;
 	}
 	#lvl-solar {
-		top: calc(45vh - ((55vh)/2) + 29vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 29vh - 0.9em);
 		left: 36vh;
 	}
 	#lvl-warehouse {
-		top: calc(45vh - ((55vh)/2) + 51vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 51vh - 0.9em);
 		left: 36vh;
 	}
 	#lvl-headquarter {
-		top: calc(45vh - ((55vh)/2) + 62vh  - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 62vh  - 0.9em);
 		left: 25vh;
 	}
 	#lvl-launchpad {
-		top: calc(45vh - ((55vh)/2) + 62vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 62vh - 0.9em);
 		left: 47vh;
 	}
 	#lvl-research {
-		top: calc(45vh - ((55vh)/2) + 51vh - 0.9em);
+		top: calc(39vh - ((55vh)/2) + 51vh - 0.9em);
 		left: 58vh;
 	}
 

@@ -48,6 +48,8 @@ translate["messages"] = {
 	"SHIP_HAS_NO_NAME": "Your ship isn't named",
 	"SHIP_NAME_ALREADY_EXISTS": "A ship model with this name already exists",
 	"SHIP_TYPE_ALREADY_EXISTS": "You already have created this ship",
+	"MODEL_DELETE_USED_BY_UNITS": "This model is used by some unit, you need to upgrade or destroy them before",
+	"MODEL_DELETED": "Ship model deleted",
 	"FLEET_MAX_REACHED": "Maximum count of fleets reached",
 	"FLEET_NAME_ALREADY_EXISTS": "Another fleet with this name already belong to this planet",
 	// Errors message

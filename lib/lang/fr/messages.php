@@ -48,6 +48,8 @@ translate["messages"] = {
 	"SHIP_HAS_NO_NAME": "Votre vaisseau n'a pas de nom",
 	"SHIP_NAME_ALREADY_EXISTS": "Un modele de vaisseau avec ce nom est déjà enregistré dans votre liste",
 	"SHIP_TYPE_ALREADY_EXISTS": "Ce modele de vaisseau est déjà enregistré dans votre liste",
+	"MODEL_DELETE_USED_BY_UNITS": "Ce modele est déjà utilisé par une ou plusieurs unités, vous devez les améliorer ou les détruire pour supprimer ce modèle",
+	"MODEL_DELETED": "Modèle de vaisseau supprimé !",
 	"FLEET_MAX_REACHED": "Nombre de flottes maximales atteintes",
 	"FLEET_NAME_ALREADY_EXISTS": "Une autre flotte avec ce nom appartient déjà à cette planète",
 	// Errors message
