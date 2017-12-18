@@ -105,7 +105,7 @@ class planet {
 				planet.sync();
 				ui.notify("Galactae: " + translate["messages"]['ENDED_BUILDING_TITLE'], {
 					icon: cdnURL+"img/favicon.png",
-					body: translate["messages"]['ENDED_BUILDING_01'] + translate['buildings'][planetData.nextBuilding].name + translate["messages"]['ENDED_BUILDING_02'] + planetData.Buildings[planetData.nextBuilding]
+					body: translate["messages"]['ENDED_BUILDING_01'] + translate['buildings'][planetData.nextBuilding].name + translate["messages"]['ENDED_BUILDING_02'] + (planetData.Buildings[planetData.nextBuilding]+1)
 				});
 				autobuildingrefresh = -1;
 			},planetData.nextBuildingTime-Date.now()+planet.deltaNow+1);
