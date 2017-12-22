@@ -41,6 +41,17 @@ translate["messages"] = {
 	"MISSING_PARENTS": "Recherches parentes manquantes",
 	"ENDED_RESEARCH": "Recherche Terminée",
 	"NEEDED_RESEARCH_MISSING": "Il vous reste des technologies a decouvrir afin de creer ce vaisseau.",
+	// Fleets & Units
+	"SHIP_HAS_INVALID_PARTS": "Votre vaisseau a des composants invalides",
+	"SHIP_HAS_WRONG_TYPE_OR_SHAPE": "Votre vaisseau est du mauvais type ou de la mauvaise forme",
+	"SHIP_HAS_EMPTY_FIELD": "Il manque certains composants dans votre vaisseau",
+	"SHIP_HAS_NO_NAME": "Votre vaisseau n'a pas de nom",
+	"SHIP_NAME_ALREADY_EXISTS": "Un modele de vaisseau avec ce nom est déjà enregistré dans votre liste",
+	"SHIP_TYPE_ALREADY_EXISTS": "Ce modele de vaisseau est déjà enregistré dans votre liste",
+	"MODEL_DELETE_USED_BY_UNITS": "Ce modele est déjà utilisé par une ou plusieurs unités, vous devez les améliorer ou les détruire pour supprimer ce modèle",
+	"MODEL_DELETED": "Modèle de vaisseau supprimé !",
+	"FLEET_MAX_REACHED": "Nombre de flottes maximales atteintes",
+	"FLEET_NAME_ALREADY_EXISTS": "Une autre flotte avec ce nom appartient déjà à cette planète",
 	// Errors message
 	"PLY_NOT_FOUND": "Erreur: joueur introuvable",
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",

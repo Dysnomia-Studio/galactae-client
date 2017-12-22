@@ -32,6 +32,7 @@
 
 	//== Fleet ==\\
 	define('FLEET','Fleet');
+	define('FLEET_NAME','Fleet name');
 	define('NEW_FLEET','New Fleet ...');
 
 	//== Erreurs ==\\
@@ -68,7 +69,7 @@
 
 		// Texts
 		"fleet-build-openPanel": "Build this unit",
-		"fleet-build-type-edit": "Edit model",
+		"fleet-build-type-copy": "Duplicate this model",
 		"fleet-build-type-delete": "Delete model",
 	};
 </script>

@@ -41,6 +41,17 @@ translate["messages"] = {
 	"MISSING_PARENTS": "Recherches parentes manquantes",
 	"ENDED_RESEARCH": "Research unlocked",
 	"NEEDED_RESEARCH_MISSING": "You need to discover some technologies to create that ship.",
+	// Fleets & Units
+	"SHIP_HAS_INVALID_PARTS": "Your ship has invalid components",
+	"SHIP_HAS_WRONG_TYPE_OR_SHAPE": "Your ship has wrong type or shape",
+	"SHIP_HAS_EMPTY_FIELD": "You forgot to choose a or multiple components",
+	"SHIP_HAS_NO_NAME": "Your ship isn't named",
+	"SHIP_NAME_ALREADY_EXISTS": "A ship model with this name already exists",
+	"SHIP_TYPE_ALREADY_EXISTS": "You already have created this ship",
+	"MODEL_DELETE_USED_BY_UNITS": "This model is used by some unit, you need to upgrade or destroy them before",
+	"MODEL_DELETED": "Ship model deleted",
+	"FLEET_MAX_REACHED": "Maximum count of fleets reached",
+	"FLEET_NAME_ALREADY_EXISTS": "Another fleet with this name already belong to this planet",
 	// Errors message
 	"PLY_NOT_FOUND": "Error: player not found",
 	"NO_PM_YOU": "Error: you can't send a private message to yourself",
