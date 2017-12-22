@@ -204,7 +204,7 @@ select, input {
 @media (min-width: 1350px) and (min-height: 22.5vw) {
 	#day-bonus {
 		left: calc(30vw - 3em);
-		top: calc((100vh - 22.5vw - 6em)/2);
+		top: calc(50vh - 11.25vw - 3em); /*calc((100vh - 22.5vw - 6em)/2);*/
 		width: 40vw;
 		height: 22.5vw;
 
@@ -216,8 +216,8 @@ select, input {
 }
 @media (max-width: 1350px) and (min-width: 801px), (max-width: 1350px) and (min-height: 450px) {
 	#day-bonus {
-		left: calc((100vw - 601px - 6em)/2);
-		top: calc((100vh - 338px - 6em)/2);
+		left: calc(50vw - 300.5px - 3em); /* calc((100vw - 601px - 6em)/2); */
+		top: calc(50vh - 169px - 3em); /* calc((100vh - 338px - 6em)/2); */
 		width: 601px;
 		height: 338px;
 
@@ -326,8 +326,8 @@ select, input {
 	position: fixed;
 	top: calc(50% - 145px);
 	left: calc(50% - 125px);
-	width: calc(290px);
-	height: calc(250px);
+	width: 290px;
+	height: 250px;
 	display: none;
 	background-image: url(../img/ui/hud-chat.png);
 	background-size: cover;
@@ -690,7 +690,7 @@ select, input {
 	}
 	.chatContent {
 		position: absolute;
-		right: calc((100% - 18vw - 20px)/2);
+		right: calc(50% - 9vw - 10px); /* calc((100% - 18vw - 20px)/2); */
 		bottom: 40px;
 		background-color: rgba(255,255,255,0);
 		color: #DDDDDD;
@@ -848,7 +848,7 @@ select, input {
 	#hud-fleet {
 		position: fixed;
 		left: 10vw;
-		top: calc((100vh - 45vw)/2);
+		top: calc(50vh - 22.25vw); /* calc((100vh - 45vw)/2); */
 		width: 80vw;
 		height: 45vw;
 
@@ -878,8 +878,8 @@ select, input {
 }
 #fleet-type-create {
 	position: fixed;
-	left: calc((100vw - 800px)/2);
-	top: calc((100vh - 450px)/2);
+	left: calc(50vw - 400px); /* calc((100vw - 800px)/2); */
+	top: calc(50vh - 225px); /* calc((100vh - 450px)/2); */
 	width: 800px;
 	height: 450px;
 	background: url(../img/ui/window.png);
@@ -894,9 +894,9 @@ select, input {
 }
 @media (min-width: 630px) and (min-height: 430px) {
 	#fleet-ship-build {
-		left: calc((100vw - (18em / 45 * 80))/2);
-		top: calc((100vh - 18em)/2);
-		width: calc(18em / 45 * 80);
+		left: calc(50vw - 16em); /* calc((100vw - (18em / 45 * 80))/2); */
+		top: calc(50vh - 9em); /*  calc((100vh - 18em)/2); */
+		width: 32em; /* calc(18em / 45 * 80); */
 		height: 18em;
 		padding: 1em 1.78em; /* 1 / 45 * 80 ~ 1.777778 */
 
@@ -1275,7 +1275,7 @@ a[class="research-search"] {
 
 		position: fixed;
 		left: 15vw;
-		top: calc((100vh - 40vw)/2);
+		top: calc(50vh - 20vw); /* calc((100vh - 40vw)/2); */
 		width: 70vw;
 		height: 40vw;
 
@@ -1923,45 +1923,45 @@ dl.infos dt {
 	 */
 	#building-ground-title {
 		position: absolute;
-		top: calc(50vh + ((24em)/2) + 2.5em);
+		top: calc(50vh + 12em + 2.5em); /* calc(50vh + ((24em)/2) + 2.5em); */
 		left: 2em;
 		width: 16em;
 		text-align: center;
 	}
 	#carriere {
-		top: calc(50vh - ((24em)/2) + 0em);
+		top: calc(50vh - 12em + 0em);
 		left: 8em;
 	}
 	#metallurgy {
-		top: calc(50vh - ((24em)/2) + 4em);
+		top: calc(50vh - 12em + 4em);
 		left: 12em;
 	}
 	#living {
-		top: calc(50vh - ((24em)/2) + 4em);
+		top: calc(50vh - 12em + 4em);
 		left: 4em;
 	}
 	#serre {
-		top: calc(50vh - ((24em)/2) + 12em);
+		top: calc(50vh - 12em + 12em);
 		left: 4em;
 	}
 	#solar {
-		top: calc(50vh - ((24em)/2) + 8em);
+		top: calc(50vh - 12em + 8em);
 		left: 8em;
 	}
 	#warehouse {
-		top: calc(50vh - ((24em)/2) + 16em);
+		top: calc(50vh - 12em + 16em);
 		left: 8em;
 	}
 	#headquarter {
-		top: calc(50vh - ((24em)/2) + 20em);
+		top: calc(50vh - 12em + 20em);
 		left: 4em;
 	}
 	#launchpad {
-		top: calc(50vh - ((24em)/2) + 20em);
+		top: calc(50vh - 12em + 20em);
 		left: 12em;
 	}
 	#research {
-		top: calc(50vh - ((24em)/2) + 16em);
+		top: calc(50vh - 12em + 16em);
 		left: 16em;
 	}
 	#lvl-carriere, #lvl-metallurgy, #lvl-living,
@@ -1978,39 +1978,39 @@ dl.infos dt {
 		z-index: 2;
 	}
 	#lvl-carriere {
-		top: calc(50vh - ((24em)/2) + 1.5em);
+		top: calc(50vh - 12em + 1.5em);
 		left: 13em;
 	}
 	#lvl-metallurgy {
-		top: calc(50vh - ((24em)/2) + 5.5em);
+		top: calc(50vh - 12em + 5.5em);
 		left: 17em;
 	}
 	#lvl-living {
-		top: calc(50vh - ((24em)/2) + 5.5em);
+		top: calc(50vh - 12em + 5.5em);
 		left: 9em;
 	}
 	#lvl-serre {
-		top: calc(50vh - ((24em)/2) + 13.5em);
+		top: calc(50vh - 12em + 13.5em);
 		left: 9em;
 	}
 	#lvl-solar {
-		top: calc(50vh - ((24em)/2) + 9.5em);
+		top: calc(50vh - 12em + 9.5em);
 		left: 13em;
 	}
 	#lvl-warehouse {
-		top: calc(50vh - ((24em)/2) + 17.5em);
+		top: calc(50vh - 12em + 17.5em);
 		left: 13em;
 	}
 	#lvl-headquarter {
-		top: calc(50vh - ((24em)/2) + 21.5em);
+		top: calc(50vh - 12em + 21.5em);
 		left: 9em;
 	}
 	#lvl-launchpad {
-		top: calc(50vh - ((24em)/2) + 21.5em);
+		top: calc(50vh - 12em + 21.5em);
 		left: 17em;
 	}
 	#lvl-research {
-		top: calc(50vh - ((24em)/2) + 17.5em);
+		top: calc(50vh - 12em + 17.5em);
 		left: 21em;
 	}
 
@@ -2019,29 +2019,29 @@ dl.infos dt {
 	 */
 	#building-space-title {
 		position: absolute;
-		top: calc(25vh + ((8em)/2) + 4em + 2.5em);
+		top: calc(25vh + 4em + 4em + 2.5em); /* calc(25vh + ((8em)/2) + 4em + 2.5em); */
 		right: 2em;
 		width: 16em;
 		text-align: center;
 	}
 	#radar {
-		top: calc(25vh - ((8em)/2) + 0em);
+		top: calc(25vh - 4em + 0em);
 		right: 7em;
 	}
 	#tank {
-		top: calc(25vh - ((8em)/2) + 0em);
+		top: calc(25vh - 4em + 0em);
 		right: 15em;
 	}
 	#shipyard {
-		top: calc(25vh - ((8em)/2) + 4em);
+		top: calc(25vh - 4em + 4em);
 		right: 11em;
 	}
 	#trade {
-		top: calc(25vh - ((8em)/2) + 4em);
+		top: calc(25vh - 4em + 4em);
 		right: 3em;
 	}
 	#he3exp {
-		top: calc(25vh - ((8em)/2) + 8em);
+		top: calc(25vh - 4em + 8em);
 		right: 7em;
 	}
 	#lvl-radar, #lvl-tank, #lvl-shipyard,
@@ -2057,23 +2057,23 @@ dl.infos dt {
 		z-index: 2;
 	}
 	#lvl-radar {
-		top: calc(25vh - ((8em)/2) + 1.5em);
+		top: calc(25vh - 4em + 1.5em);
 		right: 12em;
 	}
 	#lvl-tank {
-		top: calc(25vh - ((8em)/2) + 1.5em);
+		top: calc(25vh - 4em + 1.5em);
 		right: 20em;
 	}
 	#lvl-shipyard {
-		top: calc(25vh - ((8em)/2) + 5.5em);
+		top: calc(25vh - 4em + 5.5em);
 		right: 16em;
 	}
 	#lvl-trade {
-		top: calc(25vh - ((8em)/2) + 5.5em);
+		top: calc(25vh - 4em + 5.5em);
 		right: 8em;
 	}
 	#lvl-he3exp {
-		top: calc(25vh - ((8em)/2) + 9.5em);
+		top: calc(25vh - 4em + 9.5em);
 		right: 12em;
 	}
 }
@@ -2099,46 +2099,46 @@ dl.infos dt {
 	 */
 	#building-ground-title {
 		position: absolute;
-		top: calc(39vh + ((55vh)/2) + 6vh + 3em);
+		top: calc(39vh + 22.5vh + 6vh + 3em); /* calc(39vh + ((55vh)/2) + 6vh + 3em) */
 		left: 4vh;
 		width: 60vh;
 		text-align: center;
 		font-size: 0.9em;
 	}
 	#carriere {
-		top: calc(39vh - ((55vh)/2) + 0vh);
+		top: calc(39vh - 22.5vh + 0vh);
 		left: 22vh;
 	}
 	#metallurgy {
-		top: calc(39vh - ((55vh)/2) + 11vh);
+		top: calc(39vh - 22.5vh + 11vh);
 		left: 33vh;
 	}
 	#living {
-		top: calc(39vh - ((55vh)/2) + 11vh);
+		top: calc(39vh - 22.5vh + 11vh);
 		left: 11vh;
 	}
 	#serre {
-		top: calc(39vh - ((55vh)/2) + 33vh);
+		top: calc(39vh - 22.5vh + 33vh);
 		left: 11vh;
 	}
 	#solar {
-		top: calc(39vh - ((55vh)/2) + 22vh);
+		top: calc(39vh - 22.5vh + 22vh);
 		left: 22vh;
 	}
 	#warehouse {
-		top: calc(39vh - ((55vh)/2) + 44vh);
+		top: calc(39vh - 22.5vh + 44vh);
 		left: 22vh;
 	}
 	#headquarter {
-		top: calc(39vh - ((55vh)/2) + 55vh);
+		top: calc(39vh - 22.5vh + 55vh);
 		left: 11vh;
 	}
 	#launchpad {
-		top: calc(39vh - ((55vh)/2) + 55vh);
+		top: calc(39vh - 22.5vh + 55vh);
 		left: 33vh;
 	}
 	#research {
-		top: calc(39vh - ((55vh)/2) + 44vh);
+		top: calc(39vh - 22.5vh + 44vh);
 		left: 44vh;
 	}
 	#lvl-carriere, #lvl-metallurgy, #lvl-living,
@@ -2155,39 +2155,39 @@ dl.infos dt {
 		z-index: 2;
 	}
 	#lvl-carriere {
-		top: calc(39vh - ((55vh)/2) + 7vh - 0.9em);
+		top: calc(39vh - 22.5vh + 7vh - 0.9em);
 		left: 36vh;
 	}
 	#lvl-metallurgy {
-		top: calc(39vh - ((55vh)/2) + 18vh - 0.9em);
+		top: calc(39vh - 22.5vh + 18vh - 0.9em);
 		left: 47vh;
 	}
 	#lvl-living {
-		top: calc(39vh - ((55vh)/2) + 18vh - 0.9em);
+		top: calc(39vh - 22.5vh + 18vh - 0.9em);
 		left: 25vh;
 	}
 	#lvl-serre {
-		top: calc(39vh - ((55vh)/2) + 40vh - 0.9em);
+		top: calc(39vh - 22.5vh + 40vh - 0.9em);
 		left: 25vh;
 	}
 	#lvl-solar {
-		top: calc(39vh - ((55vh)/2) + 29vh - 0.9em);
+		top: calc(39vh - 22.5vh + 29vh - 0.9em);
 		left: 36vh;
 	}
 	#lvl-warehouse {
-		top: calc(39vh - ((55vh)/2) + 51vh - 0.9em);
+		top: calc(39vh - 22.5vh + 51vh - 0.9em);
 		left: 36vh;
 	}
 	#lvl-headquarter {
-		top: calc(39vh - ((55vh)/2) + 62vh  - 0.9em);
+		top: calc(39vh - 22.5vh + 62vh  - 0.9em);
 		left: 25vh;
 	}
 	#lvl-launchpad {
-		top: calc(39vh - ((55vh)/2) + 62vh - 0.9em);
+		top: calc(39vh - 22.5vh + 62vh - 0.9em);
 		left: 47vh;
 	}
 	#lvl-research {
-		top: calc(39vh - ((55vh)/2) + 51vh - 0.9em);
+		top: calc(39vh - 22.5vh + 51vh - 0.9em);
 		left: 58vh;
 	}
 
@@ -2196,30 +2196,30 @@ dl.infos dt {
 	 */
 	#building-space-title {
 		position: absolute;
-		top: calc(30vh + ((22vh)/2) + 7vh + 3em);
+		top: calc(30vh + 11vh + 7vh + 3em); /* calc(30vh + ((22vh)/2) + 7vh + 3em); */
 		right: 4vh;
 		width: 55vh;
 		text-align: center;
 		font-size: 0.9em;
 	}
 	#radar {
-		top: calc(30vh - ((22vh)/2) + 0vh);
+		top: calc(30vh - 11vh + 0vh);
 		right: 20vh;
 	}
 	#tank {
-		top: calc(30vh - ((22vh)/2) + 0vh);
+		top: calc(30vh - 11vh + 0vh);
 		right: 42vh;
 	}
 	#shipyard {
-		top: calc(30vh - ((22vh)/2) + 11vh);
+		top: calc(30vh - 11vh + 11vh);
 		right: 31vh;
 	}
 	#trade {
-		top: calc(30vh - ((22vh)/2) + 11vh);
+		top: calc(30vh - 11vh + 11vh);
 		right: 9vh;
 	}
 	#he3exp {
-		top: calc(30vh - ((22vh)/2) + 22vh);
+		top: calc(30vh - 11vh + 22vh);
 		right: 20vh;
 	}
 	#lvl-radar, #lvl-tank, #lvl-shipyard,
@@ -2235,23 +2235,23 @@ dl.infos dt {
 		z-index: 2;
 	}
 	#lvl-radar {
-		top: calc(30vh - ((22vh)/2) + 7vh - 0.9em);;
+		top: calc(30vh - 11vh + 7vh - 0.9em);;
 		right: 32.5vh;
 	}
 	#lvl-tank {
-		top: calc(30vh - ((22vh)/2) + 7vh - 0.9em);
+		top: calc(30vh - 11vh + 7vh - 0.9em);
 		right: 54.5vh;
 	}
 	#lvl-shipyard {
-		top: calc(30vh - ((22vh)/2) + 18vh - 0.9em);
+		top: calc(30vh - 11vh + 18vh - 0.9em);
 		right: 43.5vh;
 	}
 	#lvl-trade {
-		top: calc(30vh - ((22vh)/2) + 18vh - 0.9em);
+		top: calc(30vh - 11vh + 18vh - 0.9em);
 		right: 21.5vh;
 	}
 	#lvl-he3exp {
-		top: calc(30vh - ((22vh)/2) + 30vh - 0.9em);
+		top: calc(30vh - 11vh + 30vh - 0.9em);
 		right: 32.5vh;
 	}
 }
