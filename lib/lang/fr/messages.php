@@ -6,6 +6,7 @@ translate["messages"] = {
 	"BUILD_OK": "Le bâtiment commence son amélioration !",
 	"BUILD_ERROR": "Erreur lors de la tentative d'amélioration",
 	"BUILDING_ERROR_ALREADY": "Un bâtiment est déjà en construction",
+	"UNIT_ERROR_ALREADY": "Une unité est déjà en construction",
 	"BUILDING_ERROR_MAXIMUM": "Niveau maximum déjà atteint",
 	"BUILDING_ERROR_COST": "Pas assez de ressources disponibles",
 	"BUILDING_ERROR_ENERGY": "Production energetique insuffisante",

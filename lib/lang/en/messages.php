@@ -6,6 +6,7 @@ translate["messages"] = {
 	"BUILD_OK": "The Building is now upgrading !",
 	"BUILD_ERROR": "An error has occurred while attempting to build",
 	"BUILDING_ERROR_ALREADY": "A building is already upgrading",
+	"UNIT_ERROR_ALREADY": "An unit is already building",
 	"BUILDING_ERROR_MAXIMUM": "Maximum level reached",
 	"BUILDING_ERROR_COST": "You don't have enough resources",
 	"BUILDING_ERROR_ENERGY": "No enough energy produced",
