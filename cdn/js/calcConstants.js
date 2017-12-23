@@ -1,10 +1,7 @@
 var globalConst = {
 	buildingNumber: 	14,
 }
-var pointsCoef = {
-	planet:				1,
-	research: 			0.02,
-}
+
 /**
  * Production
  */

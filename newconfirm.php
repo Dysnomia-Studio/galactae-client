@@ -29,6 +29,7 @@ $planet = [
 	"nextBuilding" => -1,
 	"nextBuildingTime" => -1,
 	"lastResourcesUpdate" => time()*1000,
+	"lastUnitUpdate" => time()*1000,
 	"currResearch" => "",
 	"points" => 47
 ];
