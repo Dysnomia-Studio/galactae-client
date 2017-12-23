@@ -252,7 +252,7 @@ class units {
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
 		for(var i=0; i<units.fleetList.length; i++) {
-			$('#fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i].id + '">' + units.fleetList[i].name + '</option>');
+			$('#fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i]._id + '">' + units.fleetList[i].name + '</option>');
 		}
 		$('#fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
 	}
@@ -283,7 +283,7 @@ class units {
 		var count = parseInt($("#fleet-ship-build-count").val());
 		var fleet = parseInt($("#fleet-ship-build-fleetSelect option").filter(':selected').attr("id"));
 		
-		if(fleet==NaN || fleet==-2) { return; }
+		if(fleet==NaN || fleet==undefined || fleet==-2) { return; }
 		if(count==NaN || count==undefined || units.currUnit==-1) { return; }
 
 		if(fleet == -1) {
