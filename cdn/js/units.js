@@ -286,15 +286,28 @@ class units {
 		if(fleet==NaN || fleet==-2) { return; }
 		if(count==NaN || count==undefined || units.currUnit==-1) { return; }
 
-		socket.emit("unit-build", { 
-			id: userData.id,
-			username: userData.username,
-			planet: userData.pid,
-			count: count,
-			unit: units.list[units.currUnit]._id,
-			fleet: fleet,
-			fleetName: units.fname
-		});
+		if(fleet == -1) {
+			var unit = { 
+				id: userData.id,
+				username: userData.username,
+				planet: userData.pid,
+				count: count,
+				unit: units.list[units.currUnit]._id,
+				fleet: fleet,
+				fleetName: units.fname
+			};
+		} else {
+			var unit = { 
+				id: userData.id,
+				username: userData.username,
+				planet: userData.pid,
+				count: count,
+				unit: units.list[units.currUnit]._id,
+				fleet: fleet
+			};
+		}
+
+		socket.emit("unit-build", unit);
 		ui.closeTab("#fleet-ship-build");
 
 		preventFleetHUDClosing = false;
