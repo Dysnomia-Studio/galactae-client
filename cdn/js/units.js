@@ -252,7 +252,7 @@ class units {
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
 		for(var i=0; i<units.fleetList.length; i++) {
-			$('#fleet-ship-build-fleetSelect').append('<option id="' + units.fleetList[i]._id + '">' + units.fleetList[i].name + '</option>');
+			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');
 		}
 		$('#fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
 	}
@@ -303,7 +303,7 @@ class units {
 				planet: userData.pid,
 				count: count,
 				unit: units.list[units.currUnit]._id,
-				fleet: fleet
+				fleet: units.fleetList[fleet]._id
 			};
 		}
 
