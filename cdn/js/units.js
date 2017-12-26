@@ -259,6 +259,7 @@ class units {
 
 	static drawBuildPanel() {
 		if(units.currUnit == -1 || units.list[units.currUnit] == undefined) { return; }
+		$('#fleet-ship-build-fleetSelect').css('display','block');
 
 		units.fname = "";
 		var currUnit = units.list[units.currUnit];
@@ -274,6 +275,10 @@ class units {
 		$("#fleet-ship-build-count").attr("placeholder","Max: " + units.getMaxShips());
 
 		units.regenerateBuildFleetList();
+
+		if(units.list[units.currUnit]shipType == "SHIP_DEF") {
+			$('#fleet-ship-build-fleetSelect').css('display','none');
+		}
 
 		// Draw panel
 		$("#fleet-ship-build").css('display','block');	
