@@ -276,7 +276,7 @@ class units {
 
 		units.regenerateBuildFleetList();
 
-		if(units.list[units.currUnit]shipType == "SHIP_DEF") {
+		if(units.list[units.currUnit].shipType == "SHIP_DEF") {
 			$('#fleet-ship-build-fleetSelect').css('display','none');
 		}
 
