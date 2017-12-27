@@ -139,7 +139,7 @@ class planet {
 		    	planetData.resources[i] += (metalProdBase*time)*ratios[i-2];
 		    }
 
-			planetData.resources[0] -= (mineralProdBase*time); //Consomation Algorithm
+			planetData.resources[0] -= (metalProdBase*time); //Consomation Algorithm
 		} else { // Do the max we can
 		    for(var i=2; i<6; i++) {
 		    	planetData.resources[i] += planetData.resources[0]*ratios[i-2];
@@ -314,7 +314,7 @@ class planet {
 			&& mineralProdBaseTemp > metalProdBaseTemp) { // Si on a tout les minerais
 			mineralProdBaseTemp = metalProdBaseTemp;
 		} else if(planetData.resources[0]==0 && metalProdBaseTemp > mineralProdBaseTemp) {
-			mineralProdBaseTemp = metalProdBaseTemp;
+			metalProdBaseTemp = mineralProdBaseTemp;
 		}
 
 
