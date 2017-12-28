@@ -6,16 +6,16 @@ class chat {
 		 * Envoi d'un message
 		 */
 		$('#chat_form').on('submit', function(e){
-	        e.preventDefault(); // On évite le recharchement de la page lors de la validation du formulaire
+	        e.preventDefault(); // On évite le rechargement de la page lors de la validation du formulaire
 	        
-	        // On recupere le message precedent et on vide le input
+	        // On recupere le message et on vide le input
 	        var message = $('#chat_message').val();
 	        $('#chat_message').val('');
 
 	        // Quelques verifs pour empecher les messages inutiles
 	        var blockSend = false;
 
-	        if(message.charAt(0)=="@" && message.substr(1,userData.username.length).toLowerCase()==userData.username) {
+	        if(message.charAt(0)=="@" && message.substr(1,userData.username.length).toLowerCase()==userData.username.toLowerCase()) {
 	        	chat.sm('NO_PM_YOU');
 	        	blockSend = true;
 	        }

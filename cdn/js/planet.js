@@ -418,10 +418,22 @@ class planet {
 
 	static getHabitantConsomation() {
 		var habitants = 0;
+		var buildings = planetData.Buildings;
 
+		// Buildings
 		for(var i=0; i<14; i++) {
-			if(planetData.Buildings[i]==0) { continue; }
-			habitants += planet.getBuildCost(i,planetData.Buildings[i]).habitants;
+			if(buildings[i]==0) { continue; }
+			if(i==planetData.nextBuilding) {
+				// Current in-build building
+				cons += parseInt(planet.getBuildCost(i,buildings[i] + 1).habitants);
+				continue; 
+			}
+			cons += parseInt(planet.getBuildCost(i,buildings[i]).habitants);
+		}
+
+		// Units builded and in-build
+		for(var i=0; i<units.fleetList.length; i++) {
+			cons += units.fleetList[i].population;
 		}
 
 		return habitants;
