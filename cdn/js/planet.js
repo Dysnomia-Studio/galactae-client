@@ -425,15 +425,15 @@ class planet {
 			if(buildings[i]==0) { continue; }
 			if(i==planetData.nextBuilding) {
 				// Current in-build building
-				cons += parseInt(planet.getBuildCost(i,buildings[i] + 1).habitants);
+				habitants += parseInt(planet.getBuildCost(i,buildings[i] + 1).habitants);
 				continue; 
 			}
-			cons += parseInt(planet.getBuildCost(i,buildings[i]).habitants);
+			habitants += parseInt(planet.getBuildCost(i,buildings[i]).habitants);
 		}
 
 		// Units builded and in-build
 		for(var i=0; i<units.fleetList.length; i++) {
-			cons += units.fleetList[i].population;
+			habitants += units.fleetList[i].population;
 		}
 
 		return habitants;
