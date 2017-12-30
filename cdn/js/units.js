@@ -508,6 +508,7 @@ class units {
 
 	static selectUnit(id=units.currUnit) {
 		units.currUnit = id;
+		if(units.list[id] === undefined) { return; }
 		$('#fleet-build-name').text(units.list[id].name);
 		//$('#fleet-build-stat-attack-val').text(attack);
 		$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
