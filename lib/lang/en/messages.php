@@ -53,6 +53,8 @@ translate["messages"] = {
 	"MODEL_DELETED": "Ship model deleted",
 	"FLEET_MAX_REACHED": "Maximum count of fleets reached",
 	"FLEET_NAME_ALREADY_EXISTS": "Another fleet with this name already belong to this planet",
+	"BUILDING_ERROR_INVALID_FLEET": "Error: units fleet doesn't exists",
+	"BUILDING_ERROR_FLEET_SIZE": "Error: fleet maximum units capacity exceeded",
 	// Errors message
 	"PLY_NOT_FOUND": "Error: player not found",
 	"NO_PM_YOU": "Error: you can't send a private message to yourself",

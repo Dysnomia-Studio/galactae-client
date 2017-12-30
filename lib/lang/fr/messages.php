@@ -53,6 +53,8 @@ translate["messages"] = {
 	"MODEL_DELETED": "Modèle de vaisseau supprimé !",
 	"FLEET_MAX_REACHED": "Nombre de flottes maximales atteintes",
 	"FLEET_NAME_ALREADY_EXISTS": "Une autre flotte avec ce nom appartient déjà à cette planète",
+	"BUILDING_ERROR_INVALID_FLEET": "Erreur: la flotte où construire ces unités n'existe pas",
+	"BUILDING_ERROR_FLEET_SIZE": "Erreur: capacité maximale d'unités de la flotte depassée",
 	// Errors message
 	"PLY_NOT_FOUND": "Erreur: joueur introuvable",
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",
