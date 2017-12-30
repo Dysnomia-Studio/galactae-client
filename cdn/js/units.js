@@ -1,4 +1,5 @@
 var preventFleetHUDClosing = false;
+var preventUnitBuildPanelClose = false;
 
 class units {
 	static sync() {
@@ -29,6 +30,7 @@ class units {
 			ui.closeTab("#fleet-type-create");
 		});
 		$("#fleet-ship-build-close").click(function() {
+			if(preventUnitBuildPanelClose) { return; }
 			preventFleetHUDClosing = false;
 			ui.closeTab("#fleet-ship-build");
 		});
@@ -169,6 +171,7 @@ class units {
 	static drawNewFleetPanel() {
 		$('#fleet-newFleet-name').val("");
 		$('#fleet-newFleet-panel').css('display','block');
+		preventUnitBuildPanelClose = true;
 	}
 
 	static fleetExists(fname) {
@@ -189,6 +192,7 @@ class units {
 		units.fname = fname;
 		$('#fleet-ship-build-fleetSelect option#-1').text(units.fname);
 		$('#fleet-newFleet-panel').css('display','none');
+		preventUnitBuildPanelClose = false;
 	}
 
 	static updateBuildCost() {
@@ -291,26 +295,19 @@ class units {
 		
 		if(fleet==NaN || fleet==undefined || (fleet==-2 && units.list[units.currUnit].shipType != "SHIP_DEF")) { return; }
 		if(count==NaN || count==undefined || units.currUnit==-1) { return; }
+		if(preventUnitBuildPanelClose) { return; }
+
+		var unit = { 
+			id: userData.id,
+			username: userData.username,
+			planet: userData.pid,
+			count: count,
+			unit: units.list[units.currUnit]._id,
+			fleet: units.fleetList[fleet]._id
+		};
 
 		if(fleet == -1) {
-			var unit = { 
-				id: userData.id,
-				username: userData.username,
-				planet: userData.pid,
-				count: count,
-				unit: units.list[units.currUnit]._id,
-				fleet: fleet,
-				fleetName: units.fname
-			};
-		} else {
-			var unit = { 
-				id: userData.id,
-				username: userData.username,
-				planet: userData.pid,
-				count: count,
-				unit: units.list[units.currUnit]._id,
-				fleet: units.fleetList[fleet]._id
-			};
+			unit.fleetName = units.fname;
 		}
 
 		socket.emit("unit-build", unit);
