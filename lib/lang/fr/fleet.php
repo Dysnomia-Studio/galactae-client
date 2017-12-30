@@ -45,7 +45,7 @@
 		"SHIP_SHAPE": "Modèle",
 
 		// Types & Shapes
-		"SHIP_DEF": "Défenses",
+		"SHIP_DEF": "Défense",
 		"SHIP_SAT_AG1": "Satellite AG-I",
 		"SHIP_SAT_AG2": "Satellite AG-II",
 		"SHIP_SAT_AG3": "Satellite AG-III",

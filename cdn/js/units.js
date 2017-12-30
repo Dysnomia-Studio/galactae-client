@@ -510,14 +510,43 @@ class units {
 		units.currUnit = id = (id === undefined)?0:id;
 		if(units.list[id] === undefined) { return; }
 		$('#fleet-build-name').text(units.list[id].name);
-		//$('#fleet-build-stat-attack-val').text(attack);
-		$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
-		$('#fleet-build-stat-role-val').text(fleetTranslate[units.list[id].shipType]);
-		//$('#fleet-build-stat-subspeed-val').text(subspeed);
-		//$('#fleet-build-stat-supspeed-val').text(supspeed);
-		//$('#fleet-build-stat-miss-val').text(missChance);
-		//$('#fleet-build-stat-mass-val').text(mass);
-		//$('#fleet-build-stat-fcap-val').text(fighterCap);
+
+		// Weapons
+		// $('#fleet-build-stat-attack-val').text(attack);
+
+		// Shields
+		//$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
+
+		if(units.list[id].shipType == "SHIP_DEF") {
+			$('#fleet-build-stat-supspeed').css('display','none');
+			$('#fleet-build-stat-subspeed').css('display','none');
+		} else {
+			if(units.list[id].shipType != "SHIP_FIGHTER") {
+				//$('#fleet-build-stat-supspeed-val').text(supspeed);
+				$('#fleet-build-stat-supspeed').css('display','block');	
+			} else {
+				$('#fleet-build-stat-supspeed').css('display','none');
+			}
+
+			//$('#fleet-build-stat-subspeed-val').text(subspeed);
+			$('#fleet-build-stat-subspeed').css('display','block');
+		}
+
+		// Proba d'evitement
+		// $('#fleet-build-stat-miss-val').text(missChance);
+
+		// Masse
+		// $('#fleet-build-stat-mass-val').text(mass);
+
+		// Hangars
+		if(units.list[id].shipType == "SHIP_CARRIER") {
+			//$('#fleet-build-stat-fcap-val').text(fighterCap);
+			$('#fleet-build-stat-fcap').css("display","block");
+		} else {
+			$('#fleet-build-stat-fcap').css("display","none");
+		}
+		
+		// Evaluation
 		$('#fleet-build-stat-note-val').text(units.list[id].note);
 	}
 

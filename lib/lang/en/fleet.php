@@ -45,18 +45,18 @@
 		"SHIP_SHAPE": "Model",
 
 		// Types & Shapes
-		"SHIP_DEF": "Defences",
+		"SHIP_DEF": "Defence",
 		"SHIP_SAT_AG1": "AG-I Satellite",
 		"SHIP_SAT_AG2": "AG-II Satellite",
 		"SHIP_SAT_AG3": "AG-III Satellite",
 
-		"SHIP_BATTLECRUISER": "Battlecruisers",
+		"SHIP_BATTLECRUISER": "Battlecruiser",
 		"SHIP_BATTLECRUISER_SMALL": "Small",
 
-		"SHIP_CUIRASSE": "Battleships",
+		"SHIP_CUIRASSE": "Battleship",
 		"SHIP_CUIRASSE_SMALL": "Small",
 
-		"SHIP_FIGHTER": "Fighters",
+		"SHIP_FIGHTER": "Fighter",
 		"SHIP_FIGHTER_SMALL": "Light Interceptor",
 		"SHIP_FIGHTER_MEDIUM": "Heavy Interceptor",
 		"SHIP_FIGHTER_HUGE": "Bomber",

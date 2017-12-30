@@ -418,7 +418,6 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 					<span id="fleet-build-name"></span><img id="fleet-build-rename" href="<?php echo $cdnURL; ?>img/ui/rename.png"><br />
 					<?php echo '<span id="fleet-build-stat-attack">'.SHIP_ATTACK.' : <span id="fleet-build-stat-attack-val"></span></span><br />
 					<span id="fleet-build-stat-shield">'.SHIP_SHIELD.' : <span id="fleet-build-stat-shield-val"></span></span><br />
-					<span id="fleet-build-stat-role">'.SHIP_ROLE.' : <span id="fleet-build-stat-role-val"></span></span><br />
 					<span id="fleet-build-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-build-stat-subspeed-val"></span></span><br />
 					<span id="fleet-build-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-build-stat-supspeed-val"></span></span><br />
 					<span id="fleet-build-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-build-stat-miss-val"></span></span><br />
