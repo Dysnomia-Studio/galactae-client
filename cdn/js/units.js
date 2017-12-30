@@ -256,7 +256,7 @@ class units {
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
 		for(var i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name == "SHIP_DEF") { return; }
+			if(units.fleetList[i].name == "SHIP_DEF") { break; }
 			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');
 		}
 		$('#fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
