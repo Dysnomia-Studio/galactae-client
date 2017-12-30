@@ -1161,15 +1161,17 @@ select, input {
 	margin: 0.5em 0;
 }
 #fleet-build-cost span {
-	display: inline-block;
+	display: block;
 	width: calc(100% - 0.1em);
 }
 #fleet-build-cost span span {
 	float: right;
 	margin-left: 0.5em;
 	width: auto !important;
+	display: inline-block !important;
 }
 #fleet-build-name {
+	display: inline-block !important;
 	width: auto !important;
 	font-size: 1.2em;
 }
