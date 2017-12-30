@@ -1154,6 +1154,9 @@ select, input {
 	width: 200px;
 	height: 100%;
 }
+#fleet-build-rename {
+	max-height: 1.2em;
+}
 #fleet-build-cost span {
 	display: inline-block;
 	width: 100%;
