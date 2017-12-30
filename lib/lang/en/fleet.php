@@ -15,9 +15,9 @@
 	//== Details ==\\
 	define('FLEET_BUILD_NAME','Name');
 	define('FLEET_BUILD_TYPE','Type');
+	define('FLEET_BUILD_SHAPE','Model');
 	define('FLEET_BUILD_NOTE','Notation');
-	define('FLEET_BUILD_N_OWN','Number of owned');
-	define('FLEET_BUILD_CREATE','New model');
+	define('FLEET_BUILD_CREATE','New blueprint');
 	define('FLEET_TOTAL_COST','Total Cost');
 	define('FLEET_CREATE','Create');
 	define('SHIP_NAME','Name');

@@ -403,8 +403,8 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 					<tr>
 						<th><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
 						<th><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>
+						<th><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>
 						<th><?php echo FLEET_BUILD_NOTE; // Sa note estimée par le systeme		 ?></th>
-						<th><?php echo FLEET_BUILD_N_OWN; // Le nombre de ces vaisseaux possédés ?></th>
 					</tr>
 				</thead>
 				<tbody>
