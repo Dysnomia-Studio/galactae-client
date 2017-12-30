@@ -141,7 +141,7 @@ class units {
 			}
 
 			$('#fleet-build-list tbody').html(content);
-			units.selectUnit(0);
+			units.selectUnit();
 
 			$('#fleet-build-list').css('display','inline-block');
 
@@ -506,13 +506,17 @@ class units {
 		$('#fleet-type-create-stat-miss-val').text("X.X%"); // @ADD: Calc miss
 	}
 
-	static selectUnit(id) {
+	static selectUnit(id=units.currUnit) {
 		units.currUnit = id;
-		$('#fleet-build-stat-attack-val').text(units.list[id].attack);
+		$('#fleet-build-name').text(units.list[id].name);
+		//$('#fleet-build-stat-attack-val').text(attack);
 		$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
-		$('#fleet-build-stat-role-val').text(unitTypes[units.list[id].shipType]);
-		$('#fleet-build-stat-propulsion-val').text(units.list[id].engineType);
-		$('#fleet-build-stat-miss-val').text(units.list[id].missChance);
+		$('#fleet-build-stat-role-val').text(fleetTranslate[units.list[id].shipType]);
+		//$('#fleet-build-stat-subspeed-val').text(subspeed);
+		//$('#fleet-build-stat-supspeed-val').text(supspeed);
+		//$('#fleet-build-stat-miss-val').text(missChance);
+		//$('#fleet-build-stat-mass-val').text(mass);
+		//$('#fleet-build-stat-fcap-val').text(fighterCap);
 		$('#fleet-build-stat-note-val').text(units.list[id].note);
 	}
 

@@ -1154,6 +1154,14 @@ select, input {
 	width: 200px;
 	height: 100%;
 }
+#fleet-build-cost span {
+	display: inline-block;
+	width: 100%;
+}
+#fleet-build-cost span span {
+	float: right;
+	margin-left: 1em;
+}
 #fleet-build-create, #fleet-build-upgrade, #fleet-build-message, #fleet-build-count, #fleet-build-buttons {
 	width: 100%;
 	display: block;

@@ -40,4 +40,7 @@
 	define('NEWER_NEWS','Plus recent');
 	define('AT_NEXT_LVL','au niveau suivant');
 	define('CONFIRM','Valider');
+	// A no-bug measure
+	define('META_DESC','');
+	define('META_KEYS',''); 
 ?>
