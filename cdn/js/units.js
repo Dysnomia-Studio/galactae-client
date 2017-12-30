@@ -302,13 +302,17 @@ class units {
 			username: userData.username,
 			planet: userData.pid,
 			count: count,
-			unit: units.list[units.currUnit]._id,
-			fleet: units.fleetList[fleet]._id
+			unit: units.list[units.currUnit]._id
 		};
 
 		if(fleet == -1) {
 			unit.fleetName = units.fname;
-		}
+			unit.fleet = -1;
+		} else if(fleet == -2) {
+			unit.fleet = -2;
+		} else {
+			unit.fleet = units.fleetList[fleet]._id;
+		} 
 
 		socket.emit("unit-build", unit);
 		ui.closeTab("#fleet-ship-build");
