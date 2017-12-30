@@ -1157,6 +1157,9 @@ select, input {
 	overflow-y: auto;
     overflow-x: hidden;
 }
+#fleet-build-cost {
+	margin: 0.5em 0;
+}
 #fleet-build-cost span {
 	display: inline-block;
 	width: calc(100% - 0.1em);

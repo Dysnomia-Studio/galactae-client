@@ -506,8 +506,8 @@ class units {
 		$('#fleet-type-create-stat-miss-val').text("X.X%"); // @ADD: Calc miss
 	}
 
-	static selectUnit(id=units.currUnit) {
-		units.currUnit = id;
+	static selectUnit(id) {
+		units.currUnit = id = (id === undefined)?0:id;
 		if(units.list[id] === undefined) { return; }
 		$('#fleet-build-name').text(units.list[id].name);
 		//$('#fleet-build-stat-attack-val').text(attack);
