@@ -1,5 +1,4 @@
 class planetBack {
-
 	static init(type) {
 		/* DOM */
 		this.planet = document.getElementById('planet-back');	
@@ -27,7 +26,7 @@ class planetBack {
 		// Start rotate !
 		this.renderPlanet();
 		// Tell we loaded the planet
-		loadScreen.complete();
+		loadScreen.complete("pback");
 	}
 
 	static createPlanet() {
