@@ -441,14 +441,15 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 	</div>
 	<?php /* Fleet Orbit */ ?>
 	<div id="fleet-orbit">
-		<div id="fleet-orbit-table-content"></div>
+		<div id="fleet-orbit-content"></div>
 	</div>
 	<?php /* Fleet Moves */ ?>
 	<div id="fleet-move">
-		<div id="fleet-move-table-content"></div>
+		<div id="fleet-move-content"></div>
+	</div>
 	<?php /* Fleet Out */ ?>
 	<div id="fleet-out">
-		<div id="fleet-out-table-content"></div>
+		<div id="fleet-out-content"></div>
 	</div>
 </div>
 
@@ -525,7 +526,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 <div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.elanis.eu/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/details.polyfill.js"></script>
+<script type="text/javascript" src="<?php echo $cdnURL; ?>js/details-polyfill.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.keyframes.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/css_globe_perspectivetransform.js"></script>

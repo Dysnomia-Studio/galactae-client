@@ -610,7 +610,7 @@ class units {
 		var out = [];
 
 		for(var i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].position == planetData.adress && units.fleetList[i].orbitPosition != -1) {
+			if(units.fleetList[i].position == planetData.address && units.fleetList[i].orbitPosition != -1) {
 				orbit.push(units.fleetList[i]);
 			} else if(units.fleetList[i].orbitPosition == -1) {
 				moving.push(units.fleetList[i]);
@@ -623,12 +623,13 @@ class units {
 		var orbitDOM = "";
 		if(orbit.length != 0) {
 			for(var i=0; i<orbit.length; i++) {
+				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
 				orbitDOM = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + '</summary></details>';
 			}
 		} else {
 			orbitDOM = "<h1>" + fleetTranslate['no-orbit-unit'] + "</h1>";
 		}
-		$('#fleet-orbit-table-content').html(orbitDOM);
+		$('#fleet-orbit-content').html(orbitDOM);
 
 		// Moving
 		var movingDOM = "";
@@ -639,7 +640,7 @@ class units {
 		} else {
 			orbitDOM = "<h1>" + fleetTranslate['no-move-unit'] + "</h1>";
 		}
-		$('#fleet-move-table-content').html(orbitDOM);
+		$('#fleet-move-content').html(orbitDOM);
 
 		// Out
 		var outDOM = "";
@@ -650,6 +651,6 @@ class units {
 		} else {
 			orbitDOM = "<h1>" + fleetTranslate['no-out-unit'] + "</h1>";
 		}
-		$('#fleet-out-table-content').html(orbitDOM);
+		$('#fleet-out-content').html(orbitDOM);
 	}
 }
