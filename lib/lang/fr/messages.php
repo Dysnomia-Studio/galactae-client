@@ -68,7 +68,7 @@ translate['load'] = {
 	"maps": "Cartes",
 	"planet": "Planete",
 	"player": "Joueur",
-	"server": "Connexion au serveur ..."
+	"server": "Connexion au serveur ...",
 	"settings": "Paramètres",
 	"units": "Unités",
 };
