@@ -603,7 +603,7 @@ class units {
 	}
 
 	static drawFleetLists() {
-		if(planetData.adress == undefined) { return; }
+		if(planetData.address == undefined) { return; }
 
 		var orbit = [];
 		var moving = [];

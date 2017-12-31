@@ -43,7 +43,7 @@ translate["messages"] = {
 	"ENDED_RESEARCH": "Recherche Terminée",
 	"NEEDED_RESEARCH_MISSING": "Il vous reste des technologies a decouvrir afin de creer ce vaisseau.",
 	// Fleets & Units
-	"BUILDING_UNIT_OK": "La flotte commence son expansion"
+	"BUILDING_UNIT_OK": "La flotte commence son expansion",
 	"SHIP_HAS_INVALID_PARTS": "Votre vaisseau a des composants invalides",
 	"SHIP_HAS_WRONG_TYPE_OR_SHAPE": "Votre vaisseau est du mauvais type ou de la mauvaise forme",
 	"SHIP_HAS_EMPTY_FIELD": "Il manque certains composants dans votre vaisseau",

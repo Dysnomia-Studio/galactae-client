@@ -1232,6 +1232,10 @@ select, input {
 		margin-top: 1em;
 	}
 }
+#fleet-orbit h1, #fleet-move h1, #fleet-out h1 {
+	text-align: center;
+    width: 100%;
+}
 /**
  * Research
  */
