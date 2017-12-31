@@ -459,12 +459,12 @@ class units {
 				htmlContent += 'height: ' + shape[i][5] + 'px;';
 				htmlContent += '">';
 
-				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: research check
+				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: Entete
 					if(content[shape[i][0]][j] != "none" && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
-						htmlContent += '<option value="' + content[shape[i][0]][j] + '" selected>' + content[shape[i][0]][j] + '</option>'; // @ADD: pics
+						htmlContent += '<option value="' + content[shape[i][0]][j] + '" selected><img src="'+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png" alt="' + content[shape[i][0]][j] + '"></option>';
 					} else {
-						htmlContent += '<option value="' + content[shape[i][0]][j] + '">' + content[shape[i][0]][j] + '</option>'; // @ADD: pics
+						htmlContent += '<option value="' + content[shape[i][0]][j] + '"><img src="'+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png" alt="' + content[shape[i][0]][j] + '"></option>';
 					}
 				}
 
@@ -623,12 +623,18 @@ class units {
 		var orbitDOM = "";
 		if(orbit.length != 0) {
 			for(var i=0; i<orbit.length; i++) {
-				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
 				var totalcount = 0;
 				for(var j=0; j<orbit[i].units.length; j++) {
 					totalcount += orbit[i].units[j][1];
 				}
-				orbitDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
+				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
+				var content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
+
+				if(orbit[i].name== fleetTranslate["SHIP_DEF"]) { // Defence fleet always first
+					orbitDOM = content + orbitDOM;
+					continue;
+				}
+				orbitDOM += content;
 			}
 		} else {
 			orbitDOM = "<h1>" + fleetTranslate['no-orbit-unit'] + "</h1>";
@@ -639,7 +645,6 @@ class units {
 		var movingDOM = "";
 		if(moving.length != 0) {
 			for(var i=0; i<moving.length; i++) {
-				if(moving[i].name=="SHIP_DEF") { moving[i].name = fleetTranslate[moving[i].name]; }
 				var totalcount = 0;
 				for(var j=0; j<moving[i].units.length; j++) {
 					totalcount += moving[i].units[j][1];
@@ -655,7 +660,6 @@ class units {
 		var outDOM = "";
 		if(out.length != 0) {
 			for(var i=0; i<out.length; i++) {
-				if(out[i].name=="SHIP_DEF") { out[i].name = fleetTranslate[out[i].name]; }
 				var totalcount = 0;
 				for(var j=0; j<out[i].units.length; j++) {
 					totalcount += out[i].units[j][1];

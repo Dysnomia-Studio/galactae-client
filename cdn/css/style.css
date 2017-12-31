@@ -1233,7 +1233,7 @@ select, input {
 	}
 }
 #fleet-orbit, #fleet-move, #fleet-out {
-	margin: 1em;
+	margin: 1.5em;
 }
 #fleet-orbit h1, #fleet-move h1, #fleet-out h1 {
 	text-align: center;
@@ -1243,10 +1243,14 @@ select, input {
 	font-size: 1.3em;
 }
 #hud-fleet .html5_details > summary::before, #hud-fleet details > summary::before {
-  content:"+"; margin-right:"5px";
+	content:"+"; 
 }
 #hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary::before {
-  content:"-"
+	content:"-"
+}
+#hud-fleet summary::-webkit-details-marker {
+	opacity: 0;
+	width: 0;
 }
 .fleet-show-count {
 	float: right;
