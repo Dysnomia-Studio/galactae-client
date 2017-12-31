@@ -3,7 +3,7 @@
 	<div id="loading-overlay-back"></div>
 	<img id="loading-overlay-img" src="<?php echo $cdnURL; ?>img/load-gears.gif" alt="loading-overlay">
 	<div id="loading-overlay-text"><?php echo GAME_LOADING; ?><br/>
-		<span id="loading-overlay-desc"></span>
+		<span id="loading-overlay-desc"><?php echo DEFAULT_LOAD; ?></span>
 	</div>
 </div>
 <?php /* Planet View */ ?>

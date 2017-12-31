@@ -1,3 +1,6 @@
+<?php
+	define('DEFAULT_LOAD','Connexion au serveur ...');
+?>
 <script type="text/javascript">
 var translate = translate || {};
 
