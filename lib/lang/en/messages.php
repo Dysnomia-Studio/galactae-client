@@ -63,13 +63,13 @@ translate["messages"] = {
 };
 
 translate['load'] = {
-	"fleet": "Fleets",
-	"pictures": "Pictures",
-	"maps": "Maps",
-	"planet": "Planet",
-	"player": "Player",
+	"fleet": "Loading fleets",
+	"pictures": "Loading pictures",
+	"maps": "Loading maps",
+	"planet": "Loading planet data",
+	"player": "Loading player data",
 	"server": "Connecting to server ...",
-	"settings": "Settings",
-	"units": "Units",
+	"settings": "Loading settings",
+	"units": "Loading units",
 };
 </script>

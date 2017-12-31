@@ -130,6 +130,8 @@ $(window).on( "load",function() {
 		kick("not-connected");
 	}
 
+	$('#loading-overlay-desc').html(translate['load']["server"]);
+
 	// Load settings
 	settings.init();
 

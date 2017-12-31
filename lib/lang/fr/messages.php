@@ -63,13 +63,13 @@ translate["messages"] = {
 };
 
 translate['load'] = {
-	"fleet": "Flottes",
-	"pictures": "Images",
-	"maps": "Cartes",
-	"planet": "Planete",
-	"player": "Joueur",
+	"fleet": "Chargement des flottes",
+	"pictures": "Chargement des images",
+	"maps": "Chargement des cartes",
+	"planet": "Chargement des données de la planete",
+	"player": "Chargement des données du joueurs",
 	"server": "Connexion au serveur ...",
-	"settings": "Paramètres",
-	"units": "Unités",
+	"settings": "Chargement des paramètres",
+	"units": "Chargement des données unités",
 };
 </script>
