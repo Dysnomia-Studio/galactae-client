@@ -124,7 +124,7 @@ class loadScreen {
 	}
 }
 
-$(window).on( "load",function() {
+$(document).ready(function() {
 	// Basic Security ( ClientSide )
 	if(!existCookie('galactae-account-username') || !existCookie('galactae-account-id')) { //Why are you here ?!
 		kick("not-connected");
