@@ -1,14 +1,15 @@
 var loadStatus = 0;
-var loadEnd = 9;
+var loadEnd = 10;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
 // 3 -> Planet Back
 // 4 -> Units data
 // 5 -> Player data
-// 6 -> Settings
-// 7 -> Preload Pictures
-// 8 -> Map
-// 9 -> Fleet list
+// 6 -> Player data (2)
+// 7 -> Settings
+// 8 -> Preload Pictures
+// 9 -> Map
+// 10 -> Fleet list
 
 class loadScreen {
 	static show() {
@@ -16,6 +17,7 @@ class loadScreen {
 	}
 
 	static complete(title="") {
+		console.log(loadStatus + ' => ' + title);
 		if(++loadStatus>loadEnd) { return; } // Not needed if loading is already hided
 
 		if(loadStatus==loadEnd) {
@@ -27,7 +29,6 @@ class loadScreen {
 		if(translate['load'][title] !== undefined) {
 			$('#loading-overlay-desc').html(translate['load'][title]);
 		}
-		console.log(loadStatus + ' => ' + title);
 	}
 
 	static hide() {
