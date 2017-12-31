@@ -25,7 +25,7 @@ class loadScreen {
 		}
 
 		if(translate['load'][title] !== undefined) {
-			$('#loading-overlay-desc').html(loadTranslate[title]);
+			$('#loading-overlay-desc').html(translate['load'][title]);
 		}
 	}
 
