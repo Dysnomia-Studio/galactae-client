@@ -61,4 +61,15 @@ translate["messages"] = {
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",
 	"NO_LINKS": "Erreur: vous ne pouvez pas envoyer de lien sur le chat",
 };
+
+translate['load'] = {
+	"fleet": "Flottes",
+	"pictures": "Images",
+	"maps": "Cartes",
+	"planet": "Planete",
+	"player": "Joueur",
+	"server": "Connexion au serveur ..."
+	"settings": "Paramètres",
+	"units": "Unités",
+};
 </script>

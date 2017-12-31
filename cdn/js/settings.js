@@ -1,6 +1,6 @@
 class settings {
 	static init() {
-		loadScreen.complete();
+		loadScreen.complete("settings");
 	}
 	static loadUI() {
 		$("#hud-settings").click(function () {

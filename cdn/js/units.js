@@ -641,7 +641,7 @@ class units {
 				orbitDOM += content;
 			}
 		} else {
-			orbitDOM = "<h1>" + fleetTranslate['no-orbit-unit'] + "</h1>";
+			orbitDOM = "<h2>" + fleetTranslate['no-orbit-unit'] + "</h2>";
 		}
 		$('#fleet-orbit-content').html(orbitDOM);
 
@@ -656,7 +656,7 @@ class units {
 				movingDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + moving[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
 			}
 		} else {
-			movingDOM = "<h1>" + fleetTranslate['no-move-unit'] + "</h1>";
+			movingDOM = "<h2>" + fleetTranslate['no-move-unit'] + "</h2>";
 		}
 		$('#fleet-move-content').html(movingDOM);
 
@@ -671,7 +671,7 @@ class units {
 				outDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + out[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
 			}
 		} else {
-			outDOM = "<h1>" + fleetTranslate['no-out-unit'] + "</h1>";
+			outDOM = "<h2>" + fleetTranslate['no-out-unit'] + "</h2>";
 		}
 		$('#fleet-out-content').html(outDOM);
 	}

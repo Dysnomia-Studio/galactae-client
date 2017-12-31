@@ -38,20 +38,20 @@ class webSockets {
 			if(userData.research != undefined) {
 				research.drawPanel();
 			}
-			loadScreen.complete();
+			loadScreen.complete("planet");
 		});
 
 		//Sync the units data
 		socket.on('units-recieve-data',function(data) { 
 			units.refresh(data);
-			loadScreen.complete();
+			loadScreen.complete("units");
 		});
 
 		//Sync the fleet data
 		socket.on('fleet-recieve-data',function(data) { 
 			units.fleetList = data;
 			units.regenerateBuildFleetList();
-			loadScreen.complete();
+			loadScreen.complete("fleet");
 		});
 
 		//Sync the player data
@@ -64,7 +64,7 @@ class webSockets {
 				}
 			}
 			planet.MiscDrawUpdate();
-			loadScreen.complete();
+			loadScreen.complete("player");
 		});
 
 		//Launch the chat		
@@ -99,7 +99,7 @@ class webSockets {
 			socket.emit("game-disconnect",{username: userData.username, id: userData.id, pid: userData.pid});
 		});
 
-		loadScreen.complete();
+		loadScreen.complete("server");
 	}
 
 }

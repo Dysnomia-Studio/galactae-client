@@ -15,13 +15,17 @@ class loadScreen {
 		$('#loading-overlay').show();
 	}
 
-	static complete() {
+	static complete(title="") {
 		if(++loadStatus>loadEnd) { return; } // Not needed if loading is already hided
 
 		if(loadStatus==loadEnd) {
 			setTimeout(function() {
 				loadScreen.hide();
 			},100); // Mini timeout to avoid graphical bugs
+		}
+
+		if(translate['load'][title] !== undefined) {
+			$('#loading-overlay-desc').html(loadTranslate[title]);
 		}
 	}
 
@@ -105,7 +109,7 @@ class loadScreen {
 			(function (img, src) {
 				img.onload = function () {
 					if (++count == picList.length) {
-						loadScreen.complete()
+						loadScreen.complete('pictures');
 					}
 				};
 

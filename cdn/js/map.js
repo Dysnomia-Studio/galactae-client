@@ -52,7 +52,7 @@ class map {
 			map.openQuadrantMap($(this).attr('id').split('-')[3]);
 		});
 
-		loadScreen.complete();
+		loadScreen.complete("maps");
 	}
 
 	static openTab() {

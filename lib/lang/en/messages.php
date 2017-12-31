@@ -61,4 +61,15 @@ translate["messages"] = {
 	"NO_PM_YOU": "Error: you can't send a private message to yourself",
 	"NO_LINKS": "Error: sending links in chat is prohibited.",
 };
+
+translate['load'] = {
+	"fleet": "Fleets",
+	"pictures": "Pictures",
+	"maps": "Maps",
+	"planet": "Planet",
+	"player": "Player",
+	"server": "Connecting to server ...",
+	"settings": "Settings",
+	"units": "Units",
+};
 </script>
