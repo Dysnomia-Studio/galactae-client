@@ -624,7 +624,11 @@ class units {
 		if(orbit.length != 0) {
 			for(var i=0; i<orbit.length; i++) {
 				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
-				orbitDOM = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + '</summary></details>';
+				var totalcount = 0;
+				for(var j=0; j<orbit[i].units.length; j++) {
+					totalcount += orbit[i].units[j][1];
+				}
+				orbitDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
 			}
 		} else {
 			orbitDOM = "<h1>" + fleetTranslate['no-orbit-unit'] + "</h1>";
@@ -635,22 +639,32 @@ class units {
 		var movingDOM = "";
 		if(moving.length != 0) {
 			for(var i=0; i<moving.length; i++) {
-				movingDOM = '<details class="fleet-show-global"><summary class="fleet-show-name">' + moving[i].name + '</summary></details>';
+				if(moving[i].name=="SHIP_DEF") { moving[i].name = fleetTranslate[moving[i].name]; }
+				var totalcount = 0;
+				for(var j=0; j<moving[i].units.length; j++) {
+					totalcount += moving[i].units[j][1];
+				}
+				movingDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + moving[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
 			}
 		} else {
-			orbitDOM = "<h1>" + fleetTranslate['no-move-unit'] + "</h1>";
+			movingDOM = "<h1>" + fleetTranslate['no-move-unit'] + "</h1>";
 		}
-		$('#fleet-move-content').html(orbitDOM);
+		$('#fleet-move-content').html(movingDOM);
 
 		// Out
 		var outDOM = "";
 		if(out.length != 0) {
 			for(var i=0; i<out.length; i++) {
-				outDOM = '<details class="fleet-show-global"><summary class="fleet-show-name">' + out[i].name + '</summary></details>';
+				if(out[i].name=="SHIP_DEF") { out[i].name = fleetTranslate[out[i].name]; }
+				var totalcount = 0;
+				for(var j=0; j<out[i].units.length; j++) {
+					totalcount += out[i].units[j][1];
+				}
+				outDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + out[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
 			}
 		} else {
-			orbitDOM = "<h1>" + fleetTranslate['no-out-unit'] + "</h1>";
+			outDOM = "<h1>" + fleetTranslate['no-out-unit'] + "</h1>";
 		}
-		$('#fleet-out-content').html(orbitDOM);
+		$('#fleet-out-content').html(outDOM);
 	}
 }

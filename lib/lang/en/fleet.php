@@ -75,5 +75,7 @@
 		"no-orbit-unit": "No unit is in orbit of this planet",
 		"no-move-unit": "No fleet is moving",
 		"no-out-unit": "No unit in orbit of another planet",
+
+		"unit": "unit(s)",
 	};
 </script>

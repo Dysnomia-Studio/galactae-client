@@ -1239,11 +1239,17 @@ select, input {
 	text-align: center;
 	width: 100%;
 }
-#hud-fleet .html5_details > summary::before {
+#hud-fleet summary {
+	font-size: 1.3em;
+}
+#hud-fleet .html5_details > summary::before, #hud-fleet details > summary::before {
   content:"+"; margin-right:"5px";
 }
-#hud-fleet .html5_details.open > summary::before {
+#hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary::before {
   content:"-"
+}
+.fleet-show-count {
+	float: right;
 }
 /**
  * Research
