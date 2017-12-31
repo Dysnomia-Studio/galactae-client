@@ -14,6 +14,7 @@ class units {
 		units.fleetList = units.fleetList || {};
 
 		units.drawMain();
+		units.drawFleetLists();
 	}
 
 	static loadUI() {
@@ -122,6 +123,8 @@ class units {
 			units.lastType = type;
 		}
 
+		var unitCount = 0;
+
 		if(units.list.length!=0) {
 			$('#fleet-build-list-empty').css('display','none');
 
@@ -137,6 +140,7 @@ class units {
 					}
 
 					content += "<td>" + units.list[i].name + "</td><td>" + fleetTranslate[units.list[i].shipType] + "</td><td>" + fleetTranslate[units.list[i].shipShape] + "</td><td>" + units.list[i].note + "</td></tr>";
+					unitCount++;
 				}
 			}
 
@@ -156,7 +160,9 @@ class units {
 				$(this).addClass("fleet-build-list-active"); // Activer l'onglet cliqué
 				units.selectUnit($(this).attr('id'));
 			});
-		} else {
+		}
+
+		if(unitCount == 0) {
 			$('#fleet-build-list').css('display','none');
 
 			$('#fleet-build-stat').css('display','none');
@@ -594,5 +600,56 @@ class units {
 		} else {
 			ui.drawMessage(errorMessage); // @ADD: Translation
 		}
+	}
+
+	static drawFleetLists() {
+		if(planetData.adress == undefined) { return; }
+
+		var orbit = [];
+		var moving = [];
+		var out = [];
+
+		for(var i=0; i<units.fleetList.length; i++) {
+			if(units.fleetList[i].position == planetData.adress && units.fleetList[i].orbitPosition != -1) {
+				orbit.push(units.fleetList[i]);
+			} else if(units.fleetList[i].orbitPosition == -1) {
+				moving.push(units.fleetList[i]);
+			} else {
+				out.push(units.fleetList[i]);
+			}
+		}
+
+		// On orbit
+		var orbitDOM = "";
+		if(orbit.length != 0) {
+			for(var i=0; i<orbit.length; i++) {
+				orbitDOM = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + '</summary></details>';
+			}
+		} else {
+			orbitDOM = "<h1>" + fleetTranslate['no-orbit-unit'] + "</h1>";
+		}
+		$('#fleet-orbit-table-content').html(orbitDOM);
+
+		// Moving
+		var movingDOM = "";
+		if(moving.length != 0) {
+			for(var i=0; i<moving.length; i++) {
+				movingDOM = '<details class="fleet-show-global"><summary class="fleet-show-name">' + moving[i].name + '</summary></details>';
+			}
+		} else {
+			orbitDOM = "<h1>" + fleetTranslate['no-move-unit'] + "</h1>";
+		}
+		$('#fleet-move-table-content').html(orbitDOM);
+
+		// Out
+		var outDOM = "";
+		if(out.length != 0) {
+			for(var i=0; i<out.length; i++) {
+				outDOM = '<details class="fleet-show-global"><summary class="fleet-show-name">' + out[i].name + '</summary></details>';
+			}
+		} else {
+			orbitDOM = "<h1>" + fleetTranslate['no-out-unit'] + "</h1>";
+		}
+		$('#fleet-out-table-content').html(orbitDOM);
 	}
 }

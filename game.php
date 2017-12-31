@@ -415,7 +415,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>">
 
 				<div id="fleet-build-cost">
-					<span id="fleet-build-name"></span><img id="fleet-build-rename" href="<?php echo $cdnURL; ?>img/ui/rename.png"><br />
+					<span id="fleet-build-name"></span><img id="fleet-build-rename" src="<?php echo $cdnURL; ?>img/ui/rename.png"><br /><br />
 					<?php echo '<span id="fleet-build-stat-attack">'.SHIP_ATTACK.' : <span id="fleet-build-stat-attack-val"></span></span>
 					<span id="fleet-build-stat-shield">'.SHIP_SHIELD.' : <span id="fleet-build-stat-shield-val"></span></span>
 					<span id="fleet-build-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-build-stat-subspeed-val"></span></span>
@@ -441,15 +441,14 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 	</div>
 	<?php /* Fleet Orbit */ ?>
 	<div id="fleet-orbit">
-		<h1 style="text-align: center; color: white;"><?php echo SOON_AVAILABLE; ?></h1>
+		<div id="fleet-orbit-table-content"></div>
 	</div>
 	<?php /* Fleet Moves */ ?>
 	<div id="fleet-move">
-		<h1 style="text-align: center; color: white;"><?php echo SOON_AVAILABLE; ?></h1>
-	</div>
+		<div id="fleet-move-table-content"></div>
 	<?php /* Fleet Out */ ?>
 	<div id="fleet-out">
-		<h1 style="text-align: center; color: white;"><?php echo SOON_AVAILABLE; ?></h1>
+		<div id="fleet-out-table-content"></div>
 	</div>
 </div>
 
@@ -526,6 +525,7 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 <div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.elanis.eu/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $cdnURL; ?>js/details.polyfill.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.keyframes.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/css_globe_perspectivetransform.js"></script>

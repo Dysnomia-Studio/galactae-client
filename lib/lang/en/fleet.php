@@ -71,5 +71,9 @@
 		"fleet-build-openPanel": "Build this unit",
 		"fleet-build-type-copy": "Duplicate this model",
 		"fleet-build-type-delete": "Delete model",
+
+		"no-orbit-unit": "No unit is in orbit of this planet",
+		"no-move-unit": "No fleet is moving",
+		"no-out-unit": "No unit in orbit of another planet",
 	};
 </script>

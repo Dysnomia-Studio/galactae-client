@@ -43,6 +43,7 @@ translate["messages"] = {
 	"ENDED_RESEARCH": "Research unlocked",
 	"NEEDED_RESEARCH_MISSING": "You need to discover some technologies to create that ship.",
 	// Fleets & Units
+	"BUILDING_UNIT_OK": "Your fleet has begun expanding"
 	"SHIP_HAS_INVALID_PARTS": "Your ship has invalid components",
 	"SHIP_HAS_WRONG_TYPE_OR_SHAPE": "Your ship has wrong type or shape",
 	"SHIP_HAS_EMPTY_FIELD": "You forgot to choose a or multiple components",

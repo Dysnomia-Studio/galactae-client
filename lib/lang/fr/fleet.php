@@ -71,5 +71,9 @@
 		"fleet-build-openPanel": "Construire l'unité",
 		"fleet-build-type-copy": "Copier ce modele",
 		"fleet-build-type-delete": "Supprimer le modele",
+
+		"no-orbit-unit": "Aucune unité en orbite",
+		"no-move-unit": "Aucune flotte ne se déplace",
+		"no-out-unit": "Aucune unité en orbite d'une autre planète",
 	};
 </script>
