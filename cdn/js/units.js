@@ -462,9 +462,9 @@ class units {
 				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: Entete
 					if(content[shape[i][0]][j] != "none" && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
-						htmlContent += '<option value="' + content[shape[i][0]][j] + '" selected><img src="'+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png" alt="' + content[shape[i][0]][j] + '"></option>';
+						htmlContent += '<option value="' + content[shape[i][0]][j] + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top; width: ' + shape[i][4] + 'px; height: ' + shape[i][5] + 'px;" selected></option>';
 					} else {
-						htmlContent += '<option value="' + content[shape[i][0]][j] + '"><img src="'+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png" alt="' + content[shape[i][0]][j] + '"></option>';
+						htmlContent += '<option value="' + content[shape[i][0]][j] + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top; width: ' + shape[i][4] + 'px; height: ' + shape[i][5] + 'px;"></option>';
 					}
 				}
 
@@ -603,7 +603,11 @@ class units {
 	}
 
 	static drawFleetLists() {
-		if(planetData.address == undefined) { return; }
+		if(planetData.address == undefined) { 
+			setTimeout(function() {
+				units.drawFleetLists();
+			},1000); 
+		}
 
 		var orbit = [];
 		var moving = [];
