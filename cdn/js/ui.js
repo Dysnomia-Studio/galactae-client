@@ -25,6 +25,7 @@ class ui {
 	 */
 	static drawMessage(msg) {
 		// Translation
+		if(msg === undefined) { return; }
 		if((translate["messages"][msg] !=undefined) && (translate["messages"][msg] !="")) { msg = translate["messages"][msg]; }
 		// Draw the message
 		$("#messagePanel").text(msg);
