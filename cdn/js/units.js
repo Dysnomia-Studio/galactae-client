@@ -224,9 +224,9 @@ class units {
 			$("#" + costs[i].substring(0,costs[i].length-4)).css("display","block");
 
 			if(costs[i] != "fleet-ship-build-cost-time-val") {
-				$("#" + costs[i]).text(GetBetterUnit(Math.round(count * currUnit.cost[i])));
+				$("#" + costs[i]).text(GetBetterUnit(Math.round(count * parseFloat(currUnit.cost[i]))));
 			} else {
-				$("#" + costs[i]).text(getStringTime(count * currUnit.cost[i]));
+				$("#" + costs[i]).text(getStringTime(count * parseFloat(currUnit.cost[i])));
 			}
 		}
 	}

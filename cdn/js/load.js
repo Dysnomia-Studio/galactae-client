@@ -1,4 +1,14 @@
 var loadStatus = 0;
+var loadStatusArr = {
+	"settings": false,
+	"server": false,
+	"planet": false,
+	"units": false,
+	"player": false,
+	"fleet": false,
+	"maps": false,
+	"pictures": false,
+};
 var loadEnd = 12;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
@@ -27,8 +37,18 @@ class loadScreen {
 			},100); // Mini timeout to avoid graphical bugs
 		}
 
-		if(translate['load'][title] !== undefined) {
-			$('#loading-overlay-desc').html(translate['load'][title]);
+		// Loading texts
+		if(title != "") {
+			loadStatusArr[title] = true;
+
+			for(var i in loadStatusArr) {
+				if(loadStatusArr[i] == true) { continue; }
+
+				if(translate['load'][loadStatusArr[i]] !== undefined) {
+					$('#loading-overlay-desc').html(translate['load'][loadStatusArr[i]]);
+				}
+				break;
+			}
 		}
 	}
 
