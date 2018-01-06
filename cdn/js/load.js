@@ -44,12 +44,14 @@ class loadScreen {
 			for(var i in loadStatusArr) {
 				if(loadStatusArr[i] == true) { continue; }
 
-				if(translate['load'][loadStatusArr[i]] !== undefined) {
-					$('#loading-overlay-desc').html(translate['load'][loadStatusArr[i]]);
+				if(translate['load'][i] !== undefined) {
+					$('#loading-overlay-desc').html(translate['load'][i]);
 				}
 				break;
 			}
 		}
+
+		// @ADD: "Chargement: XX%"
 	}
 
 	static hide() {
