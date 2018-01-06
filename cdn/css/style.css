@@ -1857,6 +1857,18 @@ dl.infos dt {
 .opening .pos {
   transition-delay: 0s;
 }
+
+@keyframes planetShadow {
+	0% { box-shadow: inset -12px 0 5px rgba(0, 0, 0, 0.5); }
+	/* Haut */
+	25% { box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5); }
+	25.01% { box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5); }
+	50% { box-shadow: inset 12px 0 5px rgba(0, 0, 0, 0.5); }
+	/* Bas */
+	75% { box-shadow: inset 50px -15px 40px rgba(0, 0, 0, 0.5); }
+	75.01% { box-shadow: inset -50px -15px 40px rgba(0, 0, 0, 0.5); }
+	100% { box-shadow: inset -12px 0 5px rgba(0, 0, 0, 0.5); }
+}
 /* Responsive */
 @media screen and (max-width: 299px) {
 	#hud-map-system-universeBack {

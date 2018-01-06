@@ -282,23 +282,9 @@ class map {
 			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
 			$("#" + planets[i].address + " .pos .planet").css("background-image","url("+cdnURL+"/img/planets/front/" + planets[i].type + ".jpg)")
 
-			/* Shadow Anim */
-			$.keyframe.define([{
-				name: "planetShadow-" + planets[i].address,
-				'0%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
-				'25%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}, // Haut
-				'25.01%': { "box-shadow": "inset 0 0 2px rgba(0, 0, 0, 0.5)"}, // Haut
-				'50%': { "box-shadow": "inset 12px 0 5px rgba(0, 0, 0, 0.5)"},
-				'75%': { "box-shadow": "inset 50px -15px 40px rgba(0, 0, 0, 0.5)"}, // Bas
-				'75.01%': { "box-shadow": "inset -50px -15px 40px rgba(0, 0, 0, 0.5)"}, // Bas
-				'100%': { "box-shadow": "inset -12px 0 5px rgba(0, 0, 0, 0.5)"},
-			}]);
-			//@ADD: custom shadow
+			/* Set & Place shadow anim */
+			$("#" + planets[i].address + " .pos .planet").css("animation-name","planetShadow");
 
-			/* Set shadow anim */
-			$("#" + planets[i].address + " .pos .planet").css("animation-name","planetShadow-" + planets[i].address);
-
-			/* Place shadow anim */
 			var currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
 			$("#" + planets[i].address + " .pos .planet").css("animation-delay","" + currShadow + "s");
 

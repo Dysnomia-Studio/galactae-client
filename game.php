@@ -529,7 +529,6 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/details-polyfill.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.keyframes.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
