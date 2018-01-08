@@ -81,6 +81,8 @@ class units {
 				name += "-desc";
 			}
 
+			units.sortTypes = name;
+
 			units.drawMain();
 		});
 
