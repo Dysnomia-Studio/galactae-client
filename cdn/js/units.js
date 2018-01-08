@@ -13,6 +13,8 @@ class units {
 		units.currUnit = -1;
 		units.fleetList = units.fleetList || {};
 
+		units.sortTypes = "name";
+
 		units.drawMain();
 		units.drawFleetLists();
 	}
@@ -72,6 +74,16 @@ class units {
 				unit: units.list[units.currUnit]._id
 			});
 		});
+		$('#fleet-build-list thead tr th').click(function() {
+			var name = $(this).attr('id').substr('-')[4];
+
+			if(name == units.sortTypes) {
+				name += "-desc";
+			}
+
+			units.drawMain();
+		});
+
 		// Fleet build
 		$('#fleet-build-openPanel').click(function() {
 			preventFleetHUDClosing = true;
@@ -122,6 +134,26 @@ class units {
 		} else {
 			units.lastType = type;
 		}
+
+		// Sort
+		units.list.sort(function(a,b) {
+			var sort = units.sortType.split("-")[0];
+			var desc = units.sortType.split("-").length - 1;
+
+			if(a[units.sortTypes] > [units.sortTypes]) {
+				if(desc) {
+					return -1
+				}
+				return 1;
+			} else if(a[units.sortTypes] == [units.sortTypes]) {
+				return 0;
+			} else {
+				if(desc) {
+					return 1;
+				}
+				return -1;
+			}
+		});
 
 		var unitCount = 0;
 

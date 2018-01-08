@@ -1120,6 +1120,9 @@ select, input {
 #fleet-build-list th, #fleet-build-list td { 
 	display: block; 
 }
+#fleet-build-list thead tr th {
+	cursor: pointer;
+}
 #fleet-build-list thead tr {
 	height: 1.5em;
 	width: 97%; /* Fallback */
