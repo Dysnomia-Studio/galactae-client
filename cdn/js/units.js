@@ -137,21 +137,21 @@ class units {
 
 		// Sort
 		units.list.sort(function(a,b) {
-			var sort = units.sortType.split("-")[0];
-			var desc = units.sortType.split("-").length - 1;
+			var sort = units.sortTypes.split("-")[0];
+			var desc = units.sortTypes.split("-").length - 1;
 
 			if(a[units.sortTypes] > [units.sortTypes]) {
-				if(desc) {
-					return -1
-				}
-				return 1;
-			} else if(a[units.sortTypes] == [units.sortTypes]) {
-				return 0;
-			} else {
 				if(desc) {
 					return 1;
 				}
 				return -1;
+			} else if(a[units.sortTypes] == [units.sortTypes]) {
+				return 0;
+			} else {
+				if(desc) {
+					return -1;
+				}
+				return 1;
 			}
 		});
 

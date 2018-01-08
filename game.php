@@ -356,18 +356,8 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
-	<div id="hud-map-back">Back to parent</div>
-	<div id="hud-map-galaxy">
-		<div class="select-quadrant quadrant-top quadrant-left" id="hud-map-galaxy-0"></div>
-		<div class="select-quadrant quadrant-top quadrant-right" id="hud-map-galaxy-1"></div>
-		<div class="select-quadrant quadrant-bottom quadrant-left" id="hud-map-galaxy-2"></div>
-		<div class="select-quadrant quadrant-bottom quadrant-right" id="hud-map-galaxy-3"></div>
-	</div>
-	<div id="hud-map-quadrant">
-		<div id="hud-map-quadrant-current"></div>
-		<div id="hud-map-quadrant-others"></div>
-	</div>
-	<div id="hud-map-sector"></div>
+	<div id="hud-map-back">Back to sector</div>
+	<div id="hud-map-global"></div>
 	<div id="hud-map-system" class="opening view-2D">
         <div id="hud-map-system-universeBack">
           <div id="hud-map-system-galaxyBack">
@@ -403,10 +393,10 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 			<table id="fleet-build-list">
 				<thead>
 					<tr>
-						<th><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
-						<th><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>
-						<th><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>
-						<th><?php echo FLEET_BUILD_NOTE; // Sa note estimée par le systeme		 ?></th>
+						<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
+						<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>
+						<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>
+						<th id="fleet-build-list-type-note"><?php echo FLEET_BUILD_NOTE; // Sa note estimée par le systeme		 ?></th>
 					</tr>
 				</thead>
 				<tbody>
