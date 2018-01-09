@@ -11,48 +11,98 @@ var PLANET_SIZE_COEF = 9 / 7;
 var QUADRANT_SECTOR_COUNT = [20,13,16,20];
 
 class map {
-	static init() {
-		map.currentMap = "";
-		map.currentAddress = "";
+	static init(address) {
+		map.currentMap = (map.currentMap === undefined)?"global":map.currentMap;
+		map.currentAddress = (map.currentAddress === undefined)?address:map.currentAddress;
+		
+		map.xmlhttp    = (map.xmlhttp === undefined)?[]:map.xmlhttp;
+		map.xmlDoc     = (map.xmlDoc === undefined)?[]:map.xmlDoc;
+
+		var currentSector = map.currentAddress.split('-');
+		currentSector = [currentSector[0],currentSector[1]].join("-");
 
 		/**
 		 * Load XML
 		 */
-		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-			map.xmlhttp=new XMLHttpRequest();
-		} else { // code for IE6, IE5
-			map.xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		map.xmlhttp.onreadystatechange = function() {
-			if (this.readyState === XMLHttpRequest.DONE) {
-				if (this.status === 200) {
-					map.xmlDoc = new DOMParser().parseFromString(map.xmlhttp.responseText,'text/xml');
-				} else {
-					map.xmlDoc = "";
-					console.log('ERROR: CANNOT LOAD MAP');
-				}
-			}
-		}
-
-		map.xmlhttp.open("GET",cdnURL + "/maps/" + serverName + ".xml", true);
-		map.xmlhttp.send();
+		loadMapAndNeighborhood(currentSector);
 
 		/**
 		 * Global Map Events
 		 **/
 		$('#hud-map-back').click(function() {
-			map.backToParent();
-		});
-
-		/**
-		 * Galaxy Map Events
-		 */
-		$('#hud-map-galaxy .select-quadrant').click(function() {
-			map.openQuadrantMap($(this).attr('id').split('-')[3]);
+			var currentSector = map.currentAddress.split('-');
+			currentSector = [currentSector[0],currentSector[1]].join("-");
+			map.openSectorMap(currentSector);
 		});
 
 		loadScreen.complete("maps");
+	}
+
+	static loadMapAndNeighborhood(sector) {
+		var coords = sector.split('-'); 
+
+		// At borders ?
+		var top = parseInt(coords[0]) == 0;
+		var bottom = parseInt(coords[0]) == 9;
+		var left = parseInt(coords[1]) == 0;
+		var right = parseInt(coords[1]) == 9;
+
+		/**
+		 * Load all needed xml
+		 */
+		loadXML(sector);
+
+		if(!top) {
+			if(!left) { // Haut gauche
+				loadXML(coords[0]-1) + "-" + (coords[1]-1);
+			}
+			// Haut
+			loadXML(coords[0]-1) + "-" + (coords[1]);
+			if(!right) { // Haut droite
+				loadXML(coords[0]-1) + "-" + (coords[1]+1);
+			}
+		}
+
+		if(!left) { // Gauche
+			loadXML(coords[0]) + "-" + (coords[1]-1);
+		}
+
+		if(!right) { // Droite
+			loadXML(coords[0]) + "-" + (coords[1]+1);
+		}
+
+		if(!bottom) {
+			if(!left) { // Bas gauche
+				loadXML(coords[0]+1) + "-" + (coords[1]-1);
+			}
+			// Bas
+			loadXML(coords[0]+1) + "-" + (coords[1]);
+			if(!right) { // Bas droite
+				loadXML(coords[0]+1) + "-" + (coords[1]+1);
+			}
+		}
+	}
+
+	static loadXML(sector) {
+		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+			map.xmlhttp[sector] = new XMLHttpRequest();
+		} else { // code for IE6, IE5
+			map.xmlhttp[sector] = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		map.xmlhttp[sector].onreadystatechange = function() {
+			if (this.readyState === XMLHttpRequest.DONE) {
+				if (this.status === 200) {
+					map.xmlDoc[sector] = new DOMParser().parseFromString(map.xmlhttp[sector].responseText,'text/xml');
+				} else {
+					map.xmlDoc[sector] = "";
+					console.log('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
+				}
+			}
+		}
+
+		map.xmlhttp[sector].open("GET",cdnURL + "/maps/" + serverName + "/" + sector + ".xml", true);
+		map.xmlhttp[sector].send();
 	}
 
 	static openTab() {
@@ -79,21 +129,12 @@ class map {
 		}
 	}
 
-	static hideAllMaps() {
+	static resetMaps() {
 		/* Hide all maps */
-		$('#hud-map-galaxy').css('display','none');
-		$('#hud-map-quadrant').css('display','none');
-		$('#hud-map-sector').css('display','none');
+		$('#hud-map-global').css('display','none');
 		$('#hud-map-system').css('display','none');
 
 		/* Empty HTML to avoid bugs */
-		if(map.currentMap!="quadrant") {
-			$('#hud-map-quadrant-current').html('');
-			$('#hud-map-quadrant-others').html('');
-		}
-		if(map.currentMap!="sector") {
-			$('#hud-map-sector').html('');
-		}
 		if(map.currentMap!="system") {
 			$('#hud-map-system-solarFront').html('');
 		}		
@@ -298,7 +339,7 @@ class map {
 		$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
 
 		// Toggle Maps
-		map.hideAllMaps();
+		map.resetMaps();
 		map.currentAddress = address;
 		$('#hud-map-system').css('display','block');
 
@@ -349,204 +390,11 @@ class map {
 		});
 
 		// Back button
-		$('#hud-map-back').text(translate['map']['BACK_QUADRANT']);
-
-		// Toggle Maps
-		map.hideAllMaps();
-		map.currentAddress = address;
-		$('#hud-map-sector').css('display','block');
-	}
-
-	static openQuadrantMap(address) {
-		// Check Address
-		if(typeof(address) != "string" || address.split("-").length != 1) {
-			console.log('INVALID ADRESS FORMAT !');
-			return;
-		}
-
-		address = parseInt(address);
-
-		// Get XML
-		var quadrantXML = $(map.xmlDoc).find("quadrant#" + address)[0];
-		map.currentMap = "quadrant";
-
-		$('#hud-map-quadrant-current').html("");
-		$('#hud-map-quadrant-current').removeClass("quadrant-current-left quadrant-current-top quadrant-current-right quadrant-current-bottom");
-
-		// Generate sectors
-		for(var i=0; i<QUADRANT_SECTOR_COUNT[address]; i++) {
-			$('#hud-map-quadrant-current').append('<div class="quadrant-subsector" id="' + address + '-' + i + '"></div>');
-
-			var lines = [];
-
-			var baseleft = 0;
-			var basetop = 0;
-
-			var multleft = 0;
-			var multtop = 0;
-
-			// Positionning
-			switch(address) {
-				case 0: // Top left
-					lines = [5,5,5,5];
-
-					baseleft = 86.5;;
-					basetop = 85;
-
-					multleft = -13.5;
-					multtop = -15;
-
-					$('#hud-map-quadrant-current').addClass("quadrant-current-top quadrant-current-left");
-					break;
-				case 1: // Top right
-					lines = [4,4,3,2];
-
-					baseleft = 0;
-					basetop = 85;
-	
-					multleft = 13.5;
-					multtop = -15;
-
-					$('#hud-map-quadrant-current').addClass("quadrant-current-top quadrant-current-right");
-					break;
-				case 2: // Bottom left
-					lines = [4,4,4,3,1];
-
-					baseleft = 86.5;
-					basetop = 0;
-	
-					multleft = -13.5;
-					multtop = 15;
-
-					$('#hud-map-quadrant-current').addClass("quadrant-current-bottom quadrant-current-left");
-					break;
-				case 3: // Bottom right
-					lines = [4,4,4,4,4];
-
-					baseleft = 0;
-					basetop = 0;
-	
-					multleft = 13.5;
-					multtop = 15;
-
-					$('#hud-map-quadrant-current').addClass("quadrant-current-bottom quadrant-current-right");
-					break;
-				default:
-					return;
-			}
-
-			var mod = i;
-			var it = 0;
-			while(mod>=lines[it]) {
-				mod -= lines[it];
-				it ++;
-			}
-
-			var left = baseleft + (mod*multleft);
-			var top  = basetop + (it*multtop);
-			
-			$('#' + address + '-' + i).css('left',"" + left + "%");
-
-			$('#' + address + '-' + i).css('top',"" + top + "%");
-		}
-
-		// Background position
-		// & Quadrants position
-		var othersQuadrants = "";
-		
-		switch(address) {
-			case 0: // Top left
-				$('#hud-map-quadrant').css('background-position','  0%   0%');
-
-				$('#hud-map-quadrant-current').css('width', 'calc(82vw - 2px)');
-				$('#hud-map-quadrant-current').css('height','calc(45vw - 2px)');
-
-				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-bottom" id="2" style="width: calc(82vw - 1px); height: calc(100vh - 45vw - 1px);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-bottom" id="3" style="width: calc(18vw - 1px); height: calc(100vh - 45vw - 1px);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-top" id="1" style="width: calc(18vw - 1px); height: calc(45vw - 1px);"></div>';
-				break;
-			case 1: // Top right
-			    $('#hud-map-quadrant').css('background-position','100%   0%');
-
-				$('#hud-map-quadrant-current').css('width', '84.5vw');
-				$('#hud-map-quadrant-current').css('height','calc(45vw - 2px)');
-
-				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-bottom" id="3" style="width: calc(84.5vw - 1px); height: calc(100vh - 45vw - 1px);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-bottom" id="2" style="width: calc(15.5vw - 1px); height: calc(100vh - 45vw - 1px);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-top" id="0" style="width: calc(15.5vw - 1px); height: calc(45vw - 1px);"></div>';
-				break;
-			case 2: // Bottom left
-			    $('#hud-map-quadrant').css('background-position','  0% 100%');
-
-				$('#hud-map-quadrant-current').css('width', 'calc(82vw - 2px)');
-				$('#hud-map-quadrant-current').css('height','calc(50vw - 10vh)');
-
-				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-top" id="0" style="width: calc(82vw - 1px); height: calc(100vh - 50vw + 10vh);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-top" id="1" style="width: 18vw; height: calc(100vh - 50vw + 10vh);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-bottom" id="3" style="width: 18vw; height: calc(50vw - 10vh - 1px);"></div>';
-				break;
-			case 3: // Bottom right
-			    $('#hud-map-quadrant').css('background-position','100% 100%');
-
-				$('#hud-map-quadrant-current').css('width', '84.5vw');
-				$('#hud-map-quadrant-current').css('height','calc(50vw - 10vh)');
-
-				othersQuadrants += '<div class="quadrant-other quadrant-other-right quadrant-other-top" id="1" style="width: calc(84.5vw - 1px); height: calc(100vh - 50vw + 10vh);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-top" id="0" style="width: 15.5vw; height: calc(100vh - 50vw + 10vh);"></div>';
-				othersQuadrants += '<div class="quadrant-other quadrant-other-left quadrant-other-bottom" id="2" style="width: 15.5vw; height: calc(50vw - 10vh - 1px);"></div>';
-				break;
-			default:
-				return;
-		}
-
-		$('#hud-map-quadrant-others').html(othersQuadrants);
-
-		// Open sector
-		$('.quadrant-subsector').click(function() {
-			map.openSectorMap($(this).attr('id'));
-		});
-
-		$('.quadrant-other').click(function() {
-			map.openQuadrantMap($(this).attr('id'));
-		});
-
-		// Back button
-		$('#hud-map-back').text(translate['map']['BACK_GALAXY']);
-
-		// Toggle Maps
-		map.hideAllMaps();
-		map.currentAddress = ""+address;
-		$('#hud-map-quadrant').css('display','block');
-	}
-
-	static openGalacticMap() {
-		map.currentMap = "galaxy";
-
-		// Toggle Maps
-		map.hideAllMaps();
-		map.currentAddress = "";
-
-		// Back button
 		$('#hud-map-back').css('display','none');
 
-		$('#hud-map-galaxy').css('display','block');
-	}
-
-	static backToParent() {
-		var currAddressParts = map.currentAddress.split('-');
-
-		switch(map.currentMap) {
-			case "system":
-				map.openSectorMap(currAddressParts[0] + '-' + currAddressParts[1]);
-				break;
-			case "sector":
-				map.openQuadrantMap(currAddressParts[0]);
-				break;
-			case "quadrant":
-				map.openGalacticMap();
-				break;
-			default:
-				// Do nothing
-		}
+		// Toggle Maps
+		map.resetMaps();
+		map.currentAddress = address;
+		$('#hud-map-sector').css('display','block');
 	}
 }

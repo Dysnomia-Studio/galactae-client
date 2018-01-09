@@ -139,8 +139,12 @@ class units {
 
 		// Sort
 		units.list.sort(function(a,b) {
-			var sort = units.sortTypes.split("-")[0];
 			var desc = units.sortTypes.split("-").length - 1;
+			if(desc) {
+				var sort = units.sortTypes.split("-")[0];
+			} else {
+				var sort = units.sortTypes;
+			}
 
 			if(a[units.sortTypes] > [units.sortTypes]) {
 				if(desc) {

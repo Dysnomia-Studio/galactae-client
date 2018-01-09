@@ -86,6 +86,9 @@ class planet {
 			planetData[key] = data.data[key];
 		}
 
+		// Chargement de la map
+		map.init(planetData.adress);
+
 		userData.pid = planetData._id;
 
 		// Edit Data
