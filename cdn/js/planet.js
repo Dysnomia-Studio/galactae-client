@@ -87,7 +87,7 @@ class planet {
 		}
 
 		// Chargement de la map
-		map.init(planetData.adress);
+		map.init(planetData.address);
 
 		userData.pid = planetData._id;
 

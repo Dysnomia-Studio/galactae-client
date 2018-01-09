@@ -24,7 +24,7 @@ class map {
 		/**
 		 * Load XML
 		 */
-		loadMapAndNeighborhood(currentSector);
+		map.loadMapAndNeighborhood(currentSector);
 
 		/**
 		 * Global Map Events
@@ -50,35 +50,35 @@ class map {
 		/**
 		 * Load all needed xml
 		 */
-		loadXML(sector);
+		map.loadXML(sector);
 
 		if(!top) {
 			if(!left) { // Haut gauche
-				loadXML(coords[0]-1) + "-" + (coords[1]-1);
+				map.loadXML(coords[0]-1) + "-" + (coords[1]-1);
 			}
 			// Haut
-			loadXML(coords[0]-1) + "-" + (coords[1]);
+			map.loadXML(coords[0]-1) + "-" + (coords[1]);
 			if(!right) { // Haut droite
-				loadXML(coords[0]-1) + "-" + (coords[1]+1);
+				map.loadXML(coords[0]-1) + "-" + (coords[1]+1);
 			}
 		}
 
 		if(!left) { // Gauche
-			loadXML(coords[0]) + "-" + (coords[1]-1);
+			map.loadXML(coords[0]) + "-" + (coords[1]-1);
 		}
 
 		if(!right) { // Droite
-			loadXML(coords[0]) + "-" + (coords[1]+1);
+			map.loadXML(coords[0]) + "-" + (coords[1]+1);
 		}
 
 		if(!bottom) {
 			if(!left) { // Bas gauche
-				loadXML(coords[0]+1) + "-" + (coords[1]-1);
+				map.loadXML(coords[0]+1) + "-" + (coords[1]-1);
 			}
 			// Bas
-			loadXML(coords[0]+1) + "-" + (coords[1]);
+			map.loadXML(coords[0]+1) + "-" + (coords[1]);
 			if(!right) { // Bas droite
-				loadXML(coords[0]+1) + "-" + (coords[1]+1);
+				map.loadXML(coords[0]+1) + "-" + (coords[1]+1);
 			}
 		}
 	}
