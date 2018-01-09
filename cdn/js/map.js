@@ -42,10 +42,12 @@ class map {
 		var coords = sector.split('-'); 
 
 		// At borders ?
-		var top = parseInt(coords[0]) == 0;
-		var bottom = parseInt(coords[0]) == 9;
-		var left = parseInt(coords[1]) == 0;
-		var right = parseInt(coords[1]) == 9;
+		coords[0] = parseInt(coords[0]);
+		coords[1] = parseInt(coords[1]);
+		var top = coords[0] == 0;
+		var bottom = coords[0] == 9;
+		var left = coords[1] == 0;
+		var right = coords[1] == 9;
 
 		/**
 		 * Load all needed xml
@@ -54,36 +56,37 @@ class map {
 
 		if(!top) {
 			if(!left) { // Haut gauche
-				map.loadXML(coords[0]-1) + "-" + (coords[1]-1);
+				map.loadXML((coords[0]-1) + "-" + (coords[1]-1));
 			}
 			// Haut
-			map.loadXML(coords[0]-1) + "-" + (coords[1]);
+			map.loadXML((coords[0]-1) + "-" + (coords[1]));
 			if(!right) { // Haut droite
-				map.loadXML(coords[0]-1) + "-" + (coords[1]+1);
+				map.loadXML((coords[0]-1) + "-" + (coords[1]+1));
 			}
 		}
 
 		if(!left) { // Gauche
-			map.loadXML(coords[0]) + "-" + (coords[1]-1);
+			map.loadXML((coords[0]) + "-" + (coords[1]-1));
 		}
 
 		if(!right) { // Droite
-			map.loadXML(coords[0]) + "-" + (coords[1]+1);
+			map.loadXML((coords[0]) + "-" + (coords[1]+1));
 		}
 
 		if(!bottom) {
 			if(!left) { // Bas gauche
-				map.loadXML(coords[0]+1) + "-" + (coords[1]-1);
+				map.loadXML((coords[0]+1) + "-" + (coords[1]-1));
 			}
 			// Bas
-			map.loadXML(coords[0]+1) + "-" + (coords[1]);
+			map.loadXML((coords[0]+1) + "-" + (coords[1]));
 			if(!right) { // Bas droite
-				map.loadXML(coords[0]+1) + "-" + (coords[1]+1);
+				map.loadXML((coords[0]+1) + "-" + (coords[1]+1));
 			}
 		}
 	}
 
 	static loadXML(sector) {
+		console.log('LOADING ' + sector);
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp[sector] = new XMLHttpRequest();
 		} else { // code for IE6, IE5
