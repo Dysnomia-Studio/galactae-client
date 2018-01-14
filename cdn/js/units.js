@@ -216,7 +216,7 @@ class units {
 
 				var currentFleetName = units.list[0].name;
 				for(var i=0; i<units.list.length; i++) {
-					if(units.list[i]._id == unitBuildingID) {
+					if(units.list[i]._id == planetData.unitBuildingID) {
 						currentFleetName = units.list[i].name;
 					}
 				}
