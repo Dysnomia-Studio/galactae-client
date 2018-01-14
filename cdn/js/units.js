@@ -145,25 +145,36 @@ class units {
 		var oldCurr = units.list[units.currUnit];
 		units.list.sort(function(a,b) {
 			var desc = units.sortTypes.split("-").length - 1;
-			if(desc) {
-				var sort = units.sortTypes.split("-")[0];
+			var sort = units.sortTypes.split("-")[0];
+
+			if(!Number.isInteger(a[sort])) {
+				var Na = a[sort].toLowerCase();
+				var Nb = b[sort].toLowerCase();
 			} else {
-				var sort = units.sortTypes;
+				var Na = a[sort];
+				var Nb = b[sort];
 			}
 
-			if(a[units.sortTypes] > [units.sortTypes]) {
-				if(desc) {
-					return 1;
-				}
-				return -1;
-			} else if(a[units.sortTypes] == [units.sortTypes]) {
-				return 0;
-			} else {
+			console.log(Na);
+			console.log(Nb);
+			console.log(Na > Nb);
+			console.log(Na == Nb);
+
+			if(Na > Nb) {
 				if(desc) {
 					return -1;
 				}
 				return 1;
+			} 
+
+			if(Na == Nb) {
+				return 0;
 			}
+
+			if(desc) {
+				return 1;
+			}
+			return -1;
 		});
 
 		for(var i=0; i<units.list; i++) {
