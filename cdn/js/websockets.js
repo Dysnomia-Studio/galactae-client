@@ -68,7 +68,7 @@ class webSockets {
 		});
 
 		//Launch the chat		
-		chat.launch();
+		chat.init();
 
 		// Alerts
 		socket.on('server-alert', function(message) {
