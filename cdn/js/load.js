@@ -97,9 +97,6 @@ class loadScreen {
 			cdnURL + 'img/ui/profil.png',
 			cdnURL + 'img/ui/messages.png',
 			cdnURL + 'img/ui/chat.png',
-			
-			// Map
-			cdnURL + 'img/map/galaxy.jpg',
 		];
 
 		// Buildings
