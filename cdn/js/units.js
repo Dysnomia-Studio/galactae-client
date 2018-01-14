@@ -227,7 +227,7 @@ class units {
 							icon: cdnURL+"img/favicon.png",
 							body: translate["messages"]['ENDED_UNIT_01'] + planetData.unitBuildingCount + translate["messages"]['ENDED_UNIT_02'] + currentFleetName + translate["messages"]['ENDED_UNIT_03']
 						});
-						units.drawMain(id);
+						units.sync();
 					},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
 				} else {
 					units.unitPanelTimeout = setTimeout(function() {
@@ -235,7 +235,7 @@ class units {
 							icon: cdnURL+"img/favicon.png",
 							body: translate["messages"]['ENDED_UNIT_01'] + planetData.unitBuildingCount + translate["messages"]['ENDED_UNIT_02'] + currentFleetName + translate["messages"]['ENDED_UNIT_03']
 						});
-						units.drawMain(id);
+						units.sync();
 					},(((dateEnd.getHours() - dateNow.getHours())*60 + (dateEnd.getMinutes() - dateNow.getMinutes()))*60 + (dateEnd.getSeconds() + 5 - dateNow.getSeconds()))*1000); // Refresh 5 sec after end
 				}
 			} 
