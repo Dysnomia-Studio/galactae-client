@@ -21,7 +21,7 @@
 	<div id="planet-current">
 		<?php /* Buildings ( Details ) */ ?>
 		<div id="building-area">
-			<span type="button" id="building-quit" onclick="ui.buildPanelHide()">X</span>	
+			<span type="button" id="building-quit" onclick="planet.buildPanelHide()">X</span>	
 			<h1 id="building-name"></h1>
 			<h4 id="building-level"></h4>
 			<div id="building-info">	
@@ -57,38 +57,38 @@
 		<?php /* Ground Building */ ?>
 		<div class="building-ground">
 			<span id="building-ground-title"><?php echo PLANET_BUILDING; ?></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/carriere.png" class="building-list-building" id="carriere" onclick="ui.buildPanelOpen(0)" alt="carriere">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/carriere.png" class="building-list-building" id="carriere" onclick="planet.buildPanelOpen(0)" alt="carriere">
 			<span id="lvl-carriere"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/metallurgy.png" class="building-list-building" id="metallurgy" onclick="ui.buildPanelOpen(1)" alt="metallurgy">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/metallurgy.png" class="building-list-building" id="metallurgy" onclick="planet.buildPanelOpen(1)" alt="metallurgy">
 			<span id="lvl-metallurgy"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/living.png" class="building-list-building" id="living" onclick="ui.buildPanelOpen(2)" alt="living">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/living.png" class="building-list-building" id="living" onclick="planet.buildPanelOpen(2)" alt="living">
 			<span id="lvl-living"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/serre.png" class="building-list-building" id="serre" onclick="ui.buildPanelOpen(3)" alt="serre">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/serre.png" class="building-list-building" id="serre" onclick="planet.buildPanelOpen(3)" alt="serre">
 			<span id="lvl-serre"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/solar.png" class="building-list-building" id="solar" onclick="ui.buildPanelOpen(4)" alt="solar">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/solar.png" class="building-list-building" id="solar" onclick="planet.buildPanelOpen(4)" alt="solar">
 			<span id="lvl-solar"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/warehouse.png" class="building-list-building" id="warehouse" onclick="ui.buildPanelOpen(5)" alt="warehouse">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/warehouse.png" class="building-list-building" id="warehouse" onclick="planet.buildPanelOpen(5)" alt="warehouse">
 			<span id="lvl-warehouse"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/headquarter.png" class="building-list-building" id="headquarter" onclick="ui.buildPanelOpen(6)" alt="headquarter">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/headquarter.png" class="building-list-building" id="headquarter" onclick="planet.buildPanelOpen(6)" alt="headquarter">
 			<span id="lvl-headquarter"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/launchpad.png" class="building-list-building" id="launchpad" onclick="ui.buildPanelOpen(7)" alt="launchpad">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/launchpad.png" class="building-list-building" id="launchpad" onclick="planet.buildPanelOpen(7)" alt="launchpad">
 			<span id="lvl-launchpad"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/research.png" class="building-list-building" id="research" onclick="ui.buildPanelOpen(8)" alt="research">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/research.png" class="building-list-building" id="research" onclick="planet.buildPanelOpen(8)" alt="research">
 			<span id="lvl-research"></span>
 		</div>
 
 		<?php /* Space Building */ ?>
 		<div class="building-space">
 			<span id="building-space-title"><?php echo ORBITAL_BUILDING; ?></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/radar.png" class="building-list-building" id="radar" onclick="ui.buildPanelOpen(9)" alt="radar">
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/radar.png" class="building-list-building" id="radar" onclick="planet.buildPanelOpen(9)" alt="radar">
 				<span id="lvl-radar"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/tank.png" class="building-list-building" id="tank" onclick="ui.buildPanelOpen(10)" alt="tank">
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/tank.png" class="building-list-building" id="tank" onclick="planet.buildPanelOpen(10)" alt="tank">
 				<span id="lvl-tank"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/shipyard.png" class="building-list-building" id="shipyard" onclick="ui.buildPanelOpen(11)" alt="shipyard">
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/shipyard.png" class="building-list-building" id="shipyard" onclick="planet.buildPanelOpen(11)" alt="shipyard">
 				<span id="lvl-shipyard"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/trade.png" class="building-list-building" id="trade" onclick="ui.buildPanelOpen(12)" alt="trade">
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/trade.png" class="building-list-building" id="trade" onclick="planet.buildPanelOpen(12)" alt="trade">
 				<span id="lvl-trade"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/he3exp.png" class="building-list-building" id="he3exp" onclick="ui.buildPanelOpen(13)" alt="he3exp">
+				<img src="<?php echo $cdnURL; ?>img/buildings/icons/he3exp.png" class="building-list-building" id="he3exp" onclick="planet.buildPanelOpen(13)" alt="he3exp">
 				<span id="lvl-he3exp"></span>
 		</div>
 	</div>

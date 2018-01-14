@@ -1,7 +1,7 @@
 var chatChannel = "hud-chat-global";
 
 class chat {
-	static launch() {
+	static init() {
 		/**
 		 * Envoi d'un message
 		 */
