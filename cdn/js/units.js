@@ -142,6 +142,7 @@ class units {
 		}
 
 		// Sort
+		var oldCurr = units.list[units.currUnit];
 		units.list.sort(function(a,b) {
 			var desc = units.sortTypes.split("-").length - 1;
 			if(desc) {
@@ -164,6 +165,13 @@ class units {
 				return 1;
 			}
 		});
+
+		for(var i=0; i<units.list; i++) {
+			if(units.list[i]._id == oldCurr._id) {
+				units.currUnit = i;
+				break;
+			}
+		}
 
 		var unitCount = 0;
 
