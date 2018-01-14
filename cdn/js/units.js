@@ -147,18 +147,23 @@ class units {
 			var desc = units.sortTypes.split("-").length - 1;
 			var sort = units.sortTypes.split("-")[0];
 
-			if(!Number.isInteger(a[sort])) {
-				var Na = a[sort].toLowerCase();
-				var Nb = b[sort].toLowerCase();
-			} else {
-				var Na = a[sort];
-				var Nb = b[sort];
-			}
+			var Na = a[sort];
+			var Nb = b[sort];
 
-			console.log(Na);
-			console.log(Nb);
-			console.log(Na > Nb);
-			console.log(Na == Nb);
+			if(!Number.isInteger(Na)) {
+				if(fleetTranslate[Na] !== undefined) {
+					Na = fleetTranslate[Na];
+				}
+				if(fleetTranslate[Nb] !== undefined) {
+					Nb = fleetTranslate[Nb];
+				}
+
+				Na = Na.toLowerCase();
+				Nb = Nb.toLowerCase();
+			} else {
+				Na = a[sort];
+				Nb = b[sort];
+			}
 
 			if(Na > Nb) {
 				if(desc) {
