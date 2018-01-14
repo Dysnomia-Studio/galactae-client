@@ -79,7 +79,7 @@ class units {
 			});
 		});
 		$('#fleet-build-list thead tr th').click(function() {
-			var name = $(this).attr('id').substr('-')[4];
+			var name = $(this).attr('id').split('-')[4];
 
 			if(name == units.sortTypes) {
 				name += "-desc";
