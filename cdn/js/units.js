@@ -203,6 +203,7 @@ class units {
 			}
 
 			if(planetData.unitBuildingEndTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
+				var dateNow = new Date();
 				var dateEnd = new Date(planetData.unitBuildingEndTime + planet.deltaNow);
 				var dateTom = new Date(Date.now() + (24*60*60*1000));
 
