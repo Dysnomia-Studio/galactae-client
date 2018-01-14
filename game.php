@@ -418,8 +418,6 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 					<span id="fleet-build-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-build-stat-note-val"></span></span>'; ?>
 				</div>
 	
-				<span id="fleet-build-message" style="display: block;"></span>
-
 				<div id="fleet-build-buttons">
 
 					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.png" alt="build">
@@ -428,6 +426,8 @@ if($userData['lastViewedNews'] < $lastNews[0]['blog_id']) {
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>
+
+				<span id="fleet-build-message" style="display: block;"></span>
 			</div>
 		</div>
 	</div>

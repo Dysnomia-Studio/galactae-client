@@ -27,6 +27,11 @@ translate["messages"] = {
 	"BUILD_FINISH_THE": "Building finish the",
 	"BUILD_FINISH_AT": "at",
 	"ANOTHER_IN_BUILD": "Another building is already being build",
+	// Unit Notifs
+	"ENDED_UNIT_TITLE": "Units Ended !",
+	"ENDED_UNIT_01": "Your ",
+	"ENDED_UNIT_02": " units of model ",
+	"ENDED_UNIT_03": " are now finished.",
 	// Building Notifs
 	"ENDED_BUILDING_TITLE": "Building finished !",
 	"ENDED_BUILDING_01": "Your ",

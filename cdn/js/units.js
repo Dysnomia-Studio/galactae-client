@@ -25,6 +25,10 @@ class units {
 		// Fleet panels close events
 		$("#hud-fleet-close").click(function() {
 			if(preventFleetHUDClosing) { return; }
+			if(units.unitPanelTimeout != -1) {
+				clearTimeout(units.unitPanelInterval);
+				units.unitPanelTimeout = -1;
+			}
 			ui.closeTab("#hud-fleet");
 			ui.fleet = false;
 		});
@@ -191,6 +195,50 @@ class units {
 			$('#fleet-build-message').css('display','block');
 			$('#fleet-build-count').css('display','block');
 			$('#fleet-build-upgrade').css('display','block');
+
+			// Time left
+			if(units.unitPanelTimeout != -1) {
+				clearTimeout(units.unitPanelInterval);
+				units.unitPanelTimeout = -1;
+			}
+
+			if(planetData.unitBuildingEndTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
+				var dateEnd = new Date(planetData.unitBuildingEndTime + planet.deltaNow);
+				var dateTom = new Date(Date.now() + (24*60*60*1000));
+
+				if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
+					$('#fleet-build-message').html(translate["messages"]["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+				} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
+					$('#fleet-build-message').html(translate["messages"]["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+				} else {
+					$('#fleet-build-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
+				}
+
+				var currentFleetName = units.list[0].name;
+				for(var i=0; i<units.list.length; i++) {
+					if(units.list[i]._id == unitBuildingID) {
+						currentFleetName = units.list[i].name;
+					}
+				}
+
+				if(dateTom.toLocaleDateString() != dateEnd.toLocaleDateString()) {
+					units.unitPanelTimeout = setTimeout(function() {
+						ui.notify("Galactae: " + translate["messages"]['ENDED_UNIT_TITLE'], {
+							icon: cdnURL+"img/favicon.png",
+							body: translate["messages"]['ENDED_UNIT_01'] + planetData.unitBuildingCount + translate["messages"]['ENDED_UNIT_02'] + currentFleetName + translate["messages"]['ENDED_UNIT_03']
+						});
+						units.drawMain(id);
+					},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
+				} else {
+					units.unitPanelTimeout = setTimeout(function() {
+						ui.notify("Galactae: " + translate["messages"]['ENDED_UNIT_TITLE'], {
+							icon: cdnURL+"img/favicon.png",
+							body: translate["messages"]['ENDED_UNIT_01'] + planetData.unitBuildingCount + translate["messages"]['ENDED_UNIT_02'] + currentFleetName + translate["messages"]['ENDED_UNIT_03']
+						});
+						units.drawMain(id);
+					},(((dateEnd.getHours() - dateNow.getHours())*60 + (dateEnd.getMinutes() - dateNow.getMinutes()))*60 + (dateEnd.getSeconds() + 5 - dateNow.getSeconds()))*1000); // Refresh 5 sec after end
+				}
+			} 
 
 			// Fleet Build
 			$('#fleet-build-list tbody tr').click(function() {
