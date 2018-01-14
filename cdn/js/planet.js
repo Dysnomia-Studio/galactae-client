@@ -95,6 +95,9 @@ class planet {
 		// Chargement de la map
 		map.init(planetData.address);
 
+		// Chargement des unites (utiles pour le cooldown)
+		units.drawMain();
+
 		userData.pid = planetData._id;
 
 		// Edit Data
