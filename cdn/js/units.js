@@ -246,7 +246,7 @@ class units {
 					}
 				}
 
-				if(dateTom.toLocaleDateString() != dateEnd.toLocaleDateString()) {
+				if(dateNow.toLocaleDateString() != dateEnd.toLocaleDateString()) {
 					units.unitPanelTimeout = setTimeout(function() {
 						units.drawMain();
 					},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
