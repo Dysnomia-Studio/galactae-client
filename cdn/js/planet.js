@@ -120,7 +120,7 @@ class planet {
 				});
 				planet.sync();
 				autobuildingrefresh = -1;
-			},planetData.nextBuildingTime-Date.now()+planet.deltaNow+1);
+			},planetData.nextBuildingTime-Date.now()+planet.deltaNow+5000); // Wait 5 sec
 		}
 		
 		// Refresh buildPanel
