@@ -328,6 +328,10 @@ class ui {
 					units.unitPanelTimeout = -1;
 				}
 
+				$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
+
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
 			} else {
@@ -349,6 +353,10 @@ class ui {
 					clearTimeout(units.unitPanelInterval);
 					units.unitPanelTimeout = -1;
 				}
+
+				$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
 
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
@@ -372,6 +380,10 @@ class ui {
 					units.unitPanelTimeout = -1;
 				}
 				
+				$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
+
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
 			} else {
