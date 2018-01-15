@@ -46,10 +46,36 @@ class units {
 			$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
-			$("#fleet-build").css('display',($(this).attr('id')=="fleet-build-button")?"block":"none");
-			$("#fleet-orbit").css('display',($(this).attr('id')=="fleet-orbit-button")?"block":"none");
-			$("#fleet-move").css('display',($(this).attr('id')=="fleet-move-button")?"block":"none");
-			$("#fleet-out").css('display',($(this).attr('id')=="fleet-out-button")?"block":"none");
+			$("#hud-bottom-button-units").removeClass('hud-bottom-active');
+			$("#hud-bottom-button-fleets").removeClass('hud-bottom-active');
+			$("#hud-bottom-button-radar").removeClass('hud-bottom-active');
+
+			if($(this).attr('id')=="fleet-build-button") {
+				$("#hud-bottom-button-units").addClass('hud-bottom-active');
+				$("#fleet-build").css('display',"block");
+			} else {
+				$("#fleet-build").css('display',"none");
+			}
+
+			if($(this).attr('id')=="fleet-orbit-button") {
+				$("#hud-bottom-button-fleets").addClass('hud-bottom-active');
+				$("#fleet-orbit").css('display',"block");
+			} else {
+				$("#fleet-orbit").css('display',"none");
+			}
+
+			if($(this).attr('id')=="fleet-move-button") {
+				$("#hud-bottom-button-radar").addClass('hud-bottom-active');
+				$("#fleet-move").css('display',"block");
+			} else {
+				$("#fleet-move").css('display',"none");
+			}
+
+			if($(this).attr('id')=="fleet-out-button") {
+				$("#fleet-out").css('display',"block");
+			} else {
+				$("#fleet-out").css('display',"none");
+			}
 		});
 		// Fleet submenus
 		$("#fleet-build-choice li").click(function() {
