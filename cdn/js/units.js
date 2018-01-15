@@ -51,21 +51,21 @@ class units {
 			$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
 
 			if($(this).attr('id')=="fleet-build-button") {
-				$("#hud-bottom-button-units").addClass('hud-bottom-active');
+				$("#hud-bottom-button-units img").addClass('hud-bottom-active');
 				$("#fleet-build").css('display',"block");
 			} else {
 				$("#fleet-build").css('display',"none");
 			}
 
 			if($(this).attr('id')=="fleet-orbit-button") {
-				$("#hud-bottom-button-fleets").addClass('hud-bottom-active');
+				$("#hud-bottom-button-fleets img").addClass('hud-bottom-active');
 				$("#fleet-orbit").css('display',"block");
 			} else {
 				$("#fleet-orbit").css('display',"none");
 			}
 
 			if($(this).attr('id')=="fleet-move-button") {
-				$("#hud-bottom-button-radar").addClass('hud-bottom-active');
+				$("#hud-bottom-button-radar img").addClass('hud-bottom-active');
 				$("#fleet-move").css('display',"block");
 			} else {
 				$("#fleet-move").css('display',"none");
