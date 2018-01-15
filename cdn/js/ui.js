@@ -278,6 +278,9 @@ class ui {
 	}
 	/************ BOUTONS ************/
 	static hudBottomButtons() {
+		$("#hud-bottom a").click(function() {
+			$(this).find("img").toggleClass('hud-bottom-active');
+		});
 		$("#hud-bottom-button-chat").click(function() {
 			if(ui.chat) {
 				ui.closeTab("#hud-chat");
