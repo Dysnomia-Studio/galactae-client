@@ -46,9 +46,9 @@ class units {
 			$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
-			$("#hud-bottom-button-units").removeClass('hud-bottom-active');
-			$("#hud-bottom-button-fleets").removeClass('hud-bottom-active');
-			$("#hud-bottom-button-radar").removeClass('hud-bottom-active');
+			$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
+			$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
+			$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
 
 			if($(this).attr('id')=="fleet-build-button") {
 				$("#hud-bottom-button-units").addClass('hud-bottom-active');
