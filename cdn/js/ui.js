@@ -340,6 +340,9 @@ class ui {
 				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 				$("#fleet-build-button").addClass("ul-choice-line-li-active");
 
+				$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
+
 				$("#fleet-orbit").css('display',"none");
 				$("#fleet-build").css('display',"block");
 				$("#fleet-move").css('display',"none");
@@ -366,6 +369,9 @@ class ui {
 				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 				$("#fleet-orbit-button").addClass("ul-choice-line-li-active");
 
+				$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
+
 				$("#fleet-orbit").css('display',"block");
 				$("#fleet-build").css('display',"none");
 				$("#fleet-move").css('display',"none");
@@ -391,6 +397,9 @@ class ui {
 				
 				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 				$("#fleet-move-button").addClass("ul-choice-line-li-active");
+
+				$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
+				$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
 
 				$("#fleet-orbit").css('display',"none");
 				$("#fleet-build").css('display',"none");
