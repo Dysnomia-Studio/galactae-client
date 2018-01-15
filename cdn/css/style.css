@@ -580,7 +580,6 @@ select, input {
 	height: 2vw;
 	min-height: 20px;
 	margin: 0.3em 0.2em 0.1em 0.2em;
-	opacity: 1;
 }
 #hud-bottom img:hover, .hud-bottom-active:hover {
 	opacity: 0.8;
