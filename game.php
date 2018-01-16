@@ -342,7 +342,7 @@ $lastNews = $mongoDB->getCondContent('galactae','announces',
 );
 
 $max = 0;
-if(isset($lastNews[0]))) {
+if(isset($lastNews[0])) {
 	for($lastNews as $key => $value) {
 		$value = (array) $value;
 		if($value['blog_id'] > $max) {
