@@ -41,7 +41,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 	}
 
 	$userData = $mongoDB->getCondContent('galactae','user_list',
-		["_id" => $sess_data['user_id']],
+		["_id" => $sess_data['user_id']]
 	);
 
 	if(isset($userData[0])) {
