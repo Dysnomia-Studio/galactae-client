@@ -58,26 +58,24 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	</style>
 
 	<?php
-	$limit = ($news_needed<10)?0:($news_needed - 10);
+	$newsList= $sqlDB->getCondContent('galactae','announces',
+		['onGame' => 1]
+	);
 	
-	$newsList = $sqlDB->selectQuery(
-		"SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT :searched_id, 10",
-		[ "searched_id" => $limit ]);
-
-	$prev = -1;
 	$curr = [];
 	$next = -1;
+	$prev = -1;
+	$found = false;
+	foreach ($newsList as $key => $value) {
+		$value = (array) $value;
 
-	/* Search the needed elements */
-	foreach ($newsList as $key => $news) {
-		if($news['blog_id'] < $news_needed) {
-			$prev = $news['blog_id'];
-		} elseif ($news['blog_id'] == $news_needed) {
-			$curr = $news;
-		} else {
-			$next = $news['blog_id'];
-			break; // Stop it, we got all
-		}
+		if($found) { $next = ((array) $prev)['_id']; break; }
+
+		if($curr != []) { $prev = $curr['_id']; }
+		
+		$curr = $value;
+
+		if($curr["_id"] == $news_needed) { $found = true; }
 	}
 
 	if($curr == [] || !isset($curr['blog_title_'.$_SESSION['lang']])) {
