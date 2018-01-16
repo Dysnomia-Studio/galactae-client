@@ -345,8 +345,8 @@ $max = 0;
 if(isset($lastNews[0])) {
 	foreach($lastNews as $key => $value) {
 		$value = (array) $value;
-		if($value['blog_id'] > $max) {
-			$max = $value['blog_id'];
+		if($value['_id'] > $max) {
+			$max = $value['_id'];
 		}
 	}
 }
