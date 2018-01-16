@@ -18,7 +18,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 	); 
 	
 	if(isset($sess_data[0])) {
-		$sess_data = $sess_data[0];
+		$sess_data = (array) $sess_data[0];
 	}
 	
 	if(isset($sess_data['user_id']) && isset($sess_data['user_session_expiration']) && ((int) $sess_data['user_session_expiration'] > time())) {
@@ -45,7 +45,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 	);
 
 	if(isset($userData[0])) {
-		$userData = $userData[0];
+		$userData = (array) $userData[0];
 	}
 
 	if(!isset($userData['user_name'])) { // Verif d'existance du compte SQL
@@ -59,7 +59,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 	);
 
 	if(isset($srv_data[0])) {
-		$srv_data = $srv_data[0];
+		$srv_data = (array) $srv_data[0];
 	}
 
 	if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==1) {
@@ -69,7 +69,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		]);
 
 		if(isset($userPrivileges[0])) {
-			$userPrivileges = $userPrivileges[0];
+			$userPrivileges = (array) $userPrivileges[0];
 		}
 
 		if(!isset($userPrivileges['user_whitelist']) || ((int) $userPrivileges['user_whitelist']!=1)) {
@@ -86,7 +86,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		]);
 
 	if(isset($data2[0])) {
-		$data2 = $data2[0];
+		$data2 = (array) $data2[0];
 	}
 
 	// Create account if needed
