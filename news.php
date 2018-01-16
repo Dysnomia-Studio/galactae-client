@@ -16,10 +16,13 @@ $cache = 'cache/news-'.$news_needed.'.html';
 $expire = time() - 600; // 10 min
 
 /* Say to SQL server, we seen a newer news */
-$newsList = $sqlDB->updateQuery(
-	"UPDATE user_list SET lastViewedNews = :viewedNews  WHERE user_id = :user_id AND lastViewedNews < :viewedNews",
-	[ "user_id" => $userData['user_id'],
-	  "viewedNews" => $news_needed ]);
+$mongoDB->updateContent('galactae','sessions',
+	['user_id' => $userData['user_id']],
+	[ '$set' => [
+		 	'viewedNews' => $news_needed
+		]
+	]		
+);
 
 if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);

@@ -48,10 +48,10 @@ $manager->executeBulkWrite($dbname.'.users', $bulkUsers);
 $manager->executeBulkWrite($dbname.'.planets', $bulkPlanets);
 
 // Share game-id to SQL server
-$sqlDB->addContent('user_game_id',[
-		["user_id",$userData['user_id']],
-		["game_id",$users_gameId],
-		["server_name",$dbname]
+$mongoDB->addContent('galactae','game_ids',[
+		"user_id" => $userData['user_id'],
+		"game_id" => $users_gameId,
+		"server_name" =>$dbname
 	]);
 
 $_SESSION['game_id'] = $users_gameId;
