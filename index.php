@@ -30,7 +30,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		$mongoDB->updateContent('galactae','sessions',
 			['user_session_uid' => $_COOKIE['galactae-phpsessid']],
 			[ '$set' => [
-				 	'user_session_expiration' => (time()+$expTime),
+				 	'user_session_expiration' => (time()+2678400),
 					'user_session_lang' => $lang->getLanguage()
 				]
 			]		
