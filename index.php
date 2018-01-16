@@ -40,7 +40,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		die();
 	}
 
-	$userData = $mongoDB->getCondContent('galactae','user_list',
+	$userData = $mongoDB->getCondContent('galactae','users',
 		["_id" => $sess_data['user_id']]
 	);
 
