@@ -69,7 +69,10 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	foreach ($newsList as $key => $value) {
 		$value = (array) $value;
 
-		if($found) { $next = ((array) $prev)['_id']; break; }
+		if($found) { 
+			$next = $value['_id']; 
+			break; 
+		}
 
 		if($curr != []) { $prev = $curr['_id']; }
 		
