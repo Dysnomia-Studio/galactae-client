@@ -16,8 +16,8 @@ $cache = 'cache/news-'.$news_needed.'.html';
 $expire = time() - 600; // 10 min
 
 /* Say to SQL server, we seen a newer news */
-$mongoDB->updateContent('galactae','sessions',
-	['user_id' => $userData['user_id']],
+$mongoDB->updateContent('galactae','users',
+	['_id' => $userData['_id']],
 	[ '$set' => [
 		 	'viewedNews' => $news_needed
 		]
