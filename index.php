@@ -64,7 +64,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 
 	if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==1) {
 		$userPrivileges = $mongoDB->getCondContent('galactae','privileges',[
-			"user_id" => $userData['user_id'],
+			"_id" => $userData['_id'],
 			"server_name" => $dbname
 		]);
 
@@ -81,7 +81,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 
 	// SQL Get User game id Data
 	$data2 = $mongoDB->getCondContent('galactae','game_ids',[
-		"user_id" => $userData['user_id'],
+		"_id" => $userData['_id'],
 		"server_name" => $dbname
 		]);
 
