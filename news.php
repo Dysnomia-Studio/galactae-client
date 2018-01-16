@@ -58,7 +58,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	</style>
 
 	<?php
-	$newsList= $sqlDB->getCondContent('galactae','announces',
+	$newsList = $mongoDB->getCondContent('galactae','announces',
 		['onGame' => 1]
 	);
 	
