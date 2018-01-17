@@ -79,15 +79,21 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		}
 	}
 
-	// SQL Get User game id Data
+	// Get User game id Data
 	$data2 = $mongoDB->getCondContent('galactae','game_ids',[
 		"user_id" => $userData['_id'],
 		"server_name" => $dbname
-		]);
+	]);
+
+	var_dump($data2);
 
 	if(isset($data2[0])) {
 		$data2 = (array) $data2[0];
 	}
+
+	var_dump($data2);
+
+	die();
 
 	// Create account if needed
 	if(!isset($data2['game_id']) || $data2['game_id']=="-1") { // Verif d'existance du compte ( côté SQL )
