@@ -84,19 +84,10 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		"user_id" => (string) $userData['_id'],
 		"server_name" => $dbname
 	]);
-	var_dump($userData['_id']);
-	echo "
-	".$dbname."
-	";
-	var_dump($data2);
 
 	if(isset($data2[0])) {
 		$data2 = (array) $data2[0];
 	}
-
-	var_dump($data2);
-
-	die();
 
 	// Create account if needed
 	if(!isset($data2['game_id']) || $data2['game_id']=="-1") { // Verif d'existance du compte ( côté SQL )
