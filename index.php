@@ -81,7 +81,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 
 	// SQL Get User game id Data
 	$data2 = $mongoDB->getCondContent('galactae','game_ids',[
-		"_id" => $userData['_id'],
+		"user_id" => $userData['_id'],
 		"server_name" => $dbname
 		]);
 
