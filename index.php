@@ -84,7 +84,9 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		"user_id" => $userData['_id'],
 		"server_name" => $dbname
 	]);
-
+	echo $userData['_id']."
+	".$dbname."
+	";
 	var_dump($data2);
 
 	if(isset($data2[0])) {
