@@ -94,7 +94,7 @@ class chat {
 						$("#chat_message").val("@"+ $(this).text() + " ");
 						break;
 					case KEYBOARD.RMOUSE:
-						var win = window.open("https://***REMOVED***/profil?name="+$(this).text(), '_blank');
+						var win = window.open("https://galactae.eu/profil?u="+$(this).text(), '_blank');
 						win.focus();
 						break;
 					default:
