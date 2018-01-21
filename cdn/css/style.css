@@ -1073,7 +1073,7 @@ select, input {
 #fleet-type-create-close {
 	 z-index: 100;
 }
-#hud-fleet-close, #hud-research-close, #hud-ranks-close, #hud-news-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close { cursor: url(../img/mouse_pointer.png), pointer; }
+#hud-fleet-close, #hud-research-close, #hud-map-close, #hud-ranks-close, #hud-news-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close { cursor: url(../img/mouse_pointer.png), pointer; }
 #hud-fleet-close {
 	position: absolute;
 	top: 0.52vw;
@@ -1084,7 +1084,7 @@ select, input {
 	top: 1vw;
 	right: 0.89vw;
 }
-#hud-research-close {
+#hud-research-close, #hud-map-close {
 	position: fixed;
     top: 4vw;
     right: 1vh;

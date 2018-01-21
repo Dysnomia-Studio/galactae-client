@@ -311,6 +311,11 @@ class ui {
 				}
 			}
 		});
+		$("#hud-map-close").click(function() {
+			if(ui.map) {
+				map.closeTab();
+			}
+		});
 		$("#hud-bottom-button-researchs").click(function() {
 			if(ui.research) {
 				research.closeUI();
