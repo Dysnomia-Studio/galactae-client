@@ -70,6 +70,13 @@ class webSockets {
 		//Launch the chat		
 		chat.init();
 
+		socket.on('server-mute', function(data) {
+			chat.sm("<span style=\"color: #438dce;\">" + translate["messages"]['CHAT_MUTED'] + " " + getStringTime(data.muteTime) + " " + translate["messages"]['CHAT_MUTED_REASON'] + " :</span> " + " " + data.message);
+		});
+		socket.on('server-unmute', function() {
+			chat.sm("<span style=\"color: #438dce;\">" + translate["messages"]['CHAT_UNMUTED'] +"</span>");
+		});
+
 		// Alerts
 		socket.on('server-alert', function(message) {
 			ui.drawMessage(message);

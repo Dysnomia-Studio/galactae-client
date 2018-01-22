@@ -46,6 +46,10 @@ translate["messages"] = {
 	"RESTARTING_SERVER": "Restarting game servers ...",
 	"DOUBLE_ACCOUNTS_CONNECTED": "You're already connected with this account on another game-client.",
 	"SYSTEM_MESSAGE": "Message Systeme:",
+	// Chat Mute
+	"CHAT_MUTED": "You've been muted for",
+	"CHAT_UNMUTED": "You've been unmuted",
+	"CHAT_MUTED_REASON": "for the reason",
 	// Research
 	"MISSING_PARENTS": "Recherches parentes manquantes",
 	"ENDED_RESEARCH": "Research unlocked",
