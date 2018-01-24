@@ -364,7 +364,7 @@ class units {
 			if(costs[i] != "fleet-ship-build-cost-time-val") {
 				$("#" + costs[i]).text(GetBetterUnit(Math.round(count * parseFloat(currUnit.cost[i]))));
 			} else {
-				$("#" + costs[i]).text(getStringTime(count * parseFloat(currUnit.cost[i])));
+				$("#" + costs[i]).text(getStringTime(count * parseFloat(currUnit.cost[i]) * (1 - buildLvlUnitBuildingSpeedBonus * planetData.Buildings[7])));
 			}
 		}
 	}

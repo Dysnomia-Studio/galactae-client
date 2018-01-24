@@ -19,6 +19,8 @@ var heliumStorageRatio = 0.2;
 var electricity = [2080000,165000,550000];
 var habGen = [25447,419910,-170000];
 
+var buildLvlUnitBuildingSpeedBonus = 0.005;
+
 /**
  * Buildings
  */
