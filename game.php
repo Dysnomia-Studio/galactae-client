@@ -299,7 +299,7 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#chat" id="hud-bottom-button-chat"><img src="<?php echo $cdnURL; ?>img/ui/chat.png" alt="chat"></a>
+			<a href="#chat" id="hud-bottom-button-chat"><img src="<?php echo $cdnURL; ?>img/ui/chat.svg" alt="chat"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_CHAT; ?></span>
 			</span>
@@ -428,7 +428,7 @@ if($userData['lastViewedNews'] < $max) {
 				<div id="fleet-build-buttons">
 
 					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.svg" alt="build">
-					<img id="fleet-build-type-copy" src="./cdn/img/ui/copy.png" alt="copy">
+					<img id="fleet-build-type-copy" src="./cdn/img/ui/copy.svg" alt="copy">
 					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.png alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
