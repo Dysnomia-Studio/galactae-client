@@ -255,7 +255,7 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#ally" id="hud-bottom-button-ally"><img src="<?php echo $cdnURL; ?>img/ui/ally.png" alt="ally"></a>
+			<a href="#ally" id="hud-bottom-button-ally"><img src="<?php echo $cdnURL; ?>img/ui/ally.svg" alt="ally"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_ALLY; ?></span>
 			</span>
@@ -427,7 +427,7 @@ if($userData['lastViewedNews'] < $max) {
 	
 				<div id="fleet-build-buttons">
 
-					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.png" alt="build">
+					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.svg" alt="build">
 					<img id="fleet-build-type-copy" src="./cdn/img/ui/copy.png" alt="copy">
 					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.png alt="delete">
 					<br/>

@@ -62,8 +62,6 @@ class loadScreen {
 		var picList = [
 			// Research
 			//cdnURL + 'img/ui/research.png', Disabled because already preloaded in HUD
-			// Buildings
-			cdnURL + 'img/buildings/arrow.png',
 			// Misc UI
 			cdnURL + 'img/ui/hud-top.png',
 			cdnURL + 'img/ui/hud-bottom-left.png',
