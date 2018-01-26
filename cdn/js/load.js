@@ -93,7 +93,6 @@ class loadScreen {
 			cdnURL + 'img/ui/ranks.png',
 			cdnURL + 'img/ui/profil.png',
 			cdnURL + 'img/ui/messages.png',
-			cdnURL + 'img/ui/chat.png',
 		];
 
 		// Buildings
