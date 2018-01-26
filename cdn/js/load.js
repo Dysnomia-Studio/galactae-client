@@ -86,7 +86,6 @@ class loadScreen {
 			cdnURL + 'img/ui/units.png',
 			cdnURL + 'img/ui/fleets.png',
 			cdnURL + 'img/ui/radar.png',
-			cdnURL + 'img/ui/ally.png',
 			cdnURL + 'img/ui/rapports.png',
 			// HUD BOTTOM RIGHT
 			cdnURL + 'img/ui/quests.png',
