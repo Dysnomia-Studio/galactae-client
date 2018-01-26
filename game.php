@@ -57,7 +57,7 @@
 		<?php /* Ground Building */ ?>
 		<div class="building-ground">
 			<span id="building-ground-title"><?php echo PLANET_BUILDING; ?></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/carriere.png" class="building-list-building" id="carriere" onclick="planet.buildPanelOpen(0)" alt="carriere">
+			<img src="<?php echo $cdnURL; ?>img/buildings/icons/carriere.svg" onerror="this.src='<?php echo $cdnURL; ?>img/buildings/icons/carriere.png'" class="building-list-building" id="carriere" onclick="planet.buildPanelOpen(0)" alt="carriere">
 			<span id="lvl-carriere"></span>
 			<img src="<?php echo $cdnURL; ?>img/buildings/icons/metallurgy.png" class="building-list-building" id="metallurgy" onclick="planet.buildPanelOpen(1)" alt="metallurgy">
 			<span id="lvl-metallurgy"></span>
