@@ -75,13 +75,11 @@ class loadScreen {
 			cdnURL + 'img/ui/population.png',
 			cdnURL + 'img/ui/research.png',
 			cdnURL + 'img/ui/moral.png',
-			cdnURL + 'img/ui/electricity.png',
 			cdnURL + 'img/ui/money.png',
 			cdnURL + 'img/ui/minerals.png',
 
 			cdnURL + 'img/ui/settings.png',
 			// HUD BOTTOM LEFT
-			cdnURL + 'img/ui/map.png',
 			cdnURL + 'img/ui/researchs.png',
 			cdnURL + 'img/ui/units.png',
 			cdnURL + 'img/ui/fleets.png',
@@ -91,8 +89,6 @@ class loadScreen {
 			cdnURL + 'img/ui/quests.png',
 			cdnURL + 'img/ui/trade.png',
 			cdnURL + 'img/ui/ranks.png',
-			cdnURL + 'img/ui/profil.png',
-			cdnURL + 'img/ui/messages.png',
 		];
 
 		// Buildings

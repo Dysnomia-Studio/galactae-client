@@ -116,7 +116,7 @@ class map {
 		map.xmlhttp[sector].open("GET",cdnURL + "/maps/" + serverName + "/" + sector + ".xml", true);
 		map.xmlhttp[sector].send();
 
-		drawSector(sector);
+		map.drawSector(sector);
 	}
 
 	static openTab() {
