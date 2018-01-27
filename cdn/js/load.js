@@ -80,10 +80,8 @@ class loadScreen {
 
 			cdnURL + 'img/ui/settings.png',
 			// HUD BOTTOM LEFT
-			cdnURL + 'img/ui/researchs.png',
 			cdnURL + 'img/ui/units.png',
 			cdnURL + 'img/ui/fleets.png',
-			cdnURL + 'img/ui/rapports.png',
 			// HUD BOTTOM RIGHT
 			cdnURL + 'img/ui/trade.png',
 		];
