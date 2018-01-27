@@ -60,8 +60,6 @@ class loadScreen {
 
 	static picturePreload() {
 		var picList = [
-			// Research
-			//cdnURL + 'img/ui/research.png', Disabled because already preloaded in HUD
 			// Misc UI
 			cdnURL + 'img/ui/hud-top.png',
 			cdnURL + 'img/ui/hud-bottom-left.png',
@@ -73,17 +71,12 @@ class loadScreen {
 
 			// HUD TOP
 			cdnURL + 'img/ui/population.png',
-			cdnURL + 'img/ui/research.png',
 			cdnURL + 'img/ui/moral.png',
 			cdnURL + 'img/ui/money.png',
 			cdnURL + 'img/ui/minerals.png',
 
-			cdnURL + 'img/ui/settings.png',
-			// HUD BOTTOM LEFT
-			cdnURL + 'img/ui/units.png',
+			// HUD BOTTOM
 			cdnURL + 'img/ui/fleets.png',
-			// HUD BOTTOM RIGHT
-			cdnURL + 'img/ui/trade.png',
 		];
 
 		// Buildings

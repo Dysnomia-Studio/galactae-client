@@ -117,7 +117,7 @@
 			</span>
 		</span>
 
-		<img height="15" src="<?php echo $cdnURL; ?>img/ui/research.png" alt="research">
+		<img height="15" src="<?php echo $cdnURL; ?>img/ui/research.svg" alt="research">
 		<span class="nmb" id="research_nmb">1</span>
 
 		<img height="15" src="<?php echo $cdnURL; ?>img/ui/moral.png" alt="moral">
@@ -139,7 +139,7 @@
 	</div>
 
 	<div id="hud-top-center">
-		<img id="hud-settings" height="20" src="<?php echo $cdnURL; ?>img/ui/settings.png" alt="settings">
+		<img id="hud-settings" height="20" src="<?php echo $cdnURL; ?>img/ui/settings.svg" alt="settings">
 		<span id="hud-planet-prev" onclick="planet.prev();">&#9664;</span>
 		<span id="hud-planet-name">SomeLongName</span>
 		<span id="hud-planet-next" onclick="planet.next();">&#9654;</span>
@@ -237,7 +237,7 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#units" id="hud-bottom-button-units"><img src="<?php echo $cdnURL; ?>img/ui/units.png" alt="units"></a>
+			<a href="#units" id="hud-bottom-button-units"><img src="<?php echo $cdnURL; ?>img/ui/units.svg" alt="units"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_UNITS; ?></span>
 			</span>
@@ -275,7 +275,7 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#trade" id="hud-bottom-button-trade"><img src="<?php echo $cdnURL; ?>img/ui/trade.png" alt="trade"></a>
+			<a href="#trade" id="hud-bottom-button-trade"><img src="<?php echo $cdnURL; ?>img/ui/trade.svg" alt="trade"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_TRADE; ?></span>
 			</span>
