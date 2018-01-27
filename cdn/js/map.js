@@ -367,12 +367,14 @@ class map {
 	}
 
 	static drawSector(sector) {
+		$("#sect-" + sector).remove();
+
 		// Get XML
 		var sectorXML = $(map.xmlDoc[sector])[0];
 		var systemList = $(sectorXML).find("sy");
 
 		// Generate Content
-		var content = "";
+		var content = "<div id='sect-" + sector + "'>";
 
 		for(var i=0; i<systemList.length; i++) {
 			var starList = $(systemList[i]).find("st");
@@ -388,10 +390,12 @@ class map {
 
 			content += '<span id="' + $(systemList[i]).attr('id') + '" class="sector-subsystem ' + starBType + '" ';
 
-			content += 'style="left: ' + (parseInt($(systemList[i]).attr('x')) * 10) + '%; top: ' + (parseInt($(systemList[i]).attr('y')) * 10) + '%;"></span>';
+			content += 'style="left: ' + (parseFloat($(systemList[i]).attr('x')) * 10) + '%; top: ' + (parseFloat($(systemList[i]).attr('y')) * 10) + '%;"></span>';
 		}
 
-		$('#hud-map-sector').html(content);
+		content += "</div>";
+
+		$('#hud-map-global').append(content);
 	}
 
 	static openGlobalMap(address) {
