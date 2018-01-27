@@ -1432,10 +1432,9 @@ a[class="research-search"] {
 	width: 20000px;
 	height: 20000px;
 
-	top: calc(50vh - 10000px);
-	left: calc(50vw - 10000px);
+	top: 0;
+	left: 0;
 
-	display: none;
 	z-index: -1;
 	zoom: 0.9;
 }

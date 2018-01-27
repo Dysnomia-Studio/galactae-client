@@ -8,8 +8,6 @@ var STAR_ECART = 2.25;
 var PLANET_SIZE_BASE = 3;
 var PLANET_SIZE_COEF = 9 / 7;
 
-var QUADRANT_SECTOR_COUNT = [20,13,16,20];
-
 class map {
 	static init(address) {
 		map.currentMap = (map.currentMap === undefined)?"global":map.currentMap;
@@ -106,6 +104,7 @@ class map {
 			if (this.readyState === XMLHttpRequest.DONE) {
 				if (this.status === 200) {
 					map.xmlDoc[sector] = new DOMParser().parseFromString(map.xmlhttp[sector].responseText,'text/xml');
+					map.drawSector(sector);
 				} else {
 					map.xmlDoc[sector] = "";
 					console.log('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
@@ -115,8 +114,6 @@ class map {
 
 		map.xmlhttp[sector].open("GET",cdnURL + "/maps/" + serverName + "/" + sector + ".xml", true);
 		map.xmlhttp[sector].send();
-
-		map.drawSector(sector);
 	}
 
 	static openTab() {
@@ -406,6 +403,8 @@ class map {
 		}
 		map.currentMap = "sector";
 
+		// ADD: Center current adress
+
 		// Events
 		$('.sector-subsystem').click(function() {
 			map.openSolarSystemMap($(this).attr('id'));
@@ -417,6 +416,6 @@ class map {
 		// Toggle Maps
 		map.resetMaps();
 		map.currentAddress = address;
-		$('#hud-map-sector').css('display','block');
+		$('#hud-map-global').css('display','block');
 	}
 }
