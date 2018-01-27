@@ -32,8 +32,17 @@ class map {
 		$('#hud-map-back').click(function() {
 			var currentSector = map.currentAddress.split('-');
 			currentSector = [currentSector[0],currentSector[1]].join("-");
-			map.openSectorMap(currentSector);
+			map.openGlobalMap(currentSector);
 		});
+		/**
+		 * Move & zoom
+		 */
+
+
+		// @ADD: Move map
+		// @ADD: Dynamic auto load with moves
+		// @ADD: Dynamic auto generate with moves
+
 
 		loadScreen.complete("maps");
 	}
@@ -86,6 +95,7 @@ class map {
 	}
 
 	static loadXML(sector) {
+		if(map.xmlhttp["10-12"] !== undefined) { return; } // Already loaded or loading
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp[sector] = new XMLHttpRequest();
 		} else { // code for IE6, IE5
@@ -105,6 +115,8 @@ class map {
 
 		map.xmlhttp[sector].open("GET",cdnURL + "/maps/" + serverName + "/" + sector + ".xml", true);
 		map.xmlhttp[sector].send();
+
+		drawSector(sector);
 	}
 
 	static openTab() {
@@ -152,29 +164,32 @@ class map {
 			return;
 		}
 
+		var sector = address.split('-');
+		sector = [currentSector[0],currentSector[1]].join("-");
+
 		map.currentMap = "system";
 		$('#hud-map-system-solarFront').html("");
 
 		// Parse XML
-		var systemXML = $(map.xmlDoc).find("system#" + address)[0];
+		var systemXML = $(map.xmlDoc[sector]).find("system#" + address)[0];
 
 		var stars = [];
-		var starsXML = $(systemXML).find("star");
+		var starsXML = $(systemXML).find("st");
 		for(var i=0; i< starsXML.length; i++) {
 			stars[i] = {};
 			stars[i].address = $(starsXML[i]).attr('id');
-			stars[i].size    = (STAR_SIZE_BASE + STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('size')));
-			stars[i].type    = $(starsXML[i]).attr('type');
+			stars[i].size    = (STAR_SIZE_BASE + STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('sz')));
+			stars[i].type    = $(starsXML[i]).attr('t');
 		}
 
 		var planets = [];
-		var planetsXML = $(systemXML).find("planet");
+		var planetsXML = $(systemXML).find("p");
 		for(var i=0; i< planetsXML.length; i++) {
 			planets[i] = {};
 			planets[i].address = $(planetsXML[i]).attr('id');
-			planets[i].size    = $(planetsXML[i]).attr('size');
-			planets[i].type    = $(planetsXML[i]).attr('type');
-			planets[i].gtype   = $(planetsXML[i]).attr('gtype');
+			planets[i].size    = $(planetsXML[i]).attr('sz');
+			planets[i].type    = $(planetsXML[i]).attr('t');
+			planets[i].gtype   = $(planetsXML[i]).attr('gt');
 		}
 
 		/**
@@ -351,40 +366,41 @@ class map {
 		});
 	}
 
-	static openSectorMap(address) {
-		// Check Address
-		if(typeof(address) != "string" || address.split("-").length != 2) {
-			console.log('INVALID ADRESS FORMAT !');
-			return;
-		}
-
+	static drawSector(sector) {
 		// Get XML
-		var sectorXML = $(map.xmlDoc).find("sector#" + address)[0];
-		map.currentMap = "sector";
-
-		var systemList = $(sectorXML).find("system");
+		var sectorXML = $(map.xmlDoc[sector])[0];
+		var systemList = $(sectorXML).find("sy");
 
 		// Generate Content
 		var content = "";
 
 		for(var i=0; i<systemList.length; i++) {
-			var starList = $(systemList[i]).find("star");
+			var starList = $(systemList[i]).find("st");
 			var starBType = "";
 			var starBSize = 0;
 
 			for(var currStar=0; currStar<starList.length; currStar++) {
-				if($(starList[currStar]).attr('size') > starBSize) {
-					starBType = $(starList[currStar]).attr('type');
-					starBSize = $(starList[currStar]).attr('size');
+				if($(starList[currStar]).attr('sz') > starBSize) {
+					starBType = $(starList[currStar]).attr('t');
+					starBSize = $(starList[currStar]).attr('sz');
 				}
 			}
 
 			content += '<span id="' + $(systemList[i]).attr('id') + '" class="sector-subsystem ' + starBType + '" ';
 
-			content += 'style="left: ' + $(systemList[i]).attr('x') + '%; top: ' + $(systemList[i]).attr('y') + '%;"></span>';
+			content += 'style="left: ' + (parseInt($(systemList[i]).attr('x')) * 10) + '%; top: ' + (parseInt($(systemList[i]).attr('y')) * 10) + '%;"></span>';
 		}
 
 		$('#hud-map-sector').html(content);
+	}
+
+	static openGlobalMap(address) {
+		// Check Address
+		if(typeof(address) != "string" || address.split("-").length != 2) {
+			console.log('INVALID ADRESS FORMAT !');
+			return;
+		}
+		map.currentMap = "sector";
 
 		// Events
 		$('.sector-subsystem').click(function() {

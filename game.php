@@ -36,7 +36,7 @@
 					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
 					<span class="building-cost-item" id="building-cost-titanium">Ti <span id="building-cost-titanium-val"></span></span>
 					<br/>
-					<span class="building-cost-item" id="building-cost-energy"><img src="./cdn/img/ui/electricity.png" alt="electricity" > <span id="building-cost-energy-val"></span></span>
+					<span class="building-cost-item" id="building-cost-energy"><img src="./cdn/img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
 					<span class="building-cost-item" id="building-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
 					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
@@ -124,7 +124,7 @@
 		<span class="nmb" id="moral_nmb">1</span>
 
 		<span class="hud-top-tooltip">
-			<img height="15" src="<?php echo $cdnURL; ?>img/ui/electricity.png" alt="electricity">
+			<img height="15" src="<?php echo $cdnURL; ?>img/ui/electricity.svg" alt="electricity">
 			<span class="nmb" id="electricity_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="electricity-tooltips">
@@ -225,7 +225,7 @@
 <div id="hud-bottom">
 	<div id="hud-bottom-left">
 		<span class="hud-bottom-tooltip">
-			<a href="#map" id="hud-bottom-button-map"><img src="<?php echo $cdnURL; ?>img/ui/map.png" alt="map"></a>
+			<a href="#map" id="hud-bottom-button-map"><img src="<?php echo $cdnURL; ?>img/ui/map.svg" alt="map"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MAP; ?></span>
 			</span>
@@ -287,13 +287,13 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#profil" id="hud-bottom-button-profil"><img src="<?php echo $cdnURL; ?>img/ui/profil.png" alt="profil"></a>
+			<a href="#profil" id="hud-bottom-button-profil"><img src="<?php echo $cdnURL; ?>img/ui/profil.svg" alt="profil"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_PROFIL; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#messages" id="hud-bottom-button-messages"><img src="<?php echo $cdnURL; ?>img/ui/messages.png" alt="messages"></a>
+			<a href="#messages" id="hud-bottom-button-messages"><img src="<?php echo $cdnURL; ?>img/ui/messages.svg" alt="messages"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MESSAGES; ?></span>
 			</span>
@@ -363,7 +363,7 @@ if($userData['lastViewedNews'] < $max) {
 <?php /* Map */ ?>
 <div id="hud-map">
 	<span id="hud-map-close">X</span>
-	<div id="hud-map-back">Back to sector</div>
+	<div id="hud-map-back">Back to global map</div>
 	<div id="hud-map-global"></div>
 	<div id="hud-map-system" class="opening view-2D">
         <div id="hud-map-system-universeBack">
@@ -429,7 +429,7 @@ if($userData['lastViewedNews'] < $max) {
 
 					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.svg" alt="build">
 					<img id="fleet-build-type-copy" src="./cdn/img/ui/copy.svg" alt="copy">
-					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.png alt="delete">
+					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.svg alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>

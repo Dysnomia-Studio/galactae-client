@@ -1410,31 +1410,34 @@ a[class="research-search"] {
 	z-index: 150;
 }
 
-#hud-map-galaxy, #hud-map-quadrant, #hud-map-system {
+#hud-map-system {
 	width: 100%;
 	height: 100%;
 
 	margin: 0;
 	padding: 0;
-}
-#hud-map-quadrant, #hud-map-sector, #hud-map-system {
+
 	display: none;
 }
 /**
  * Sector Map
  */
-#hud-map-sector {
-	width: 98%;
-	height: calc(100vh - 8vw);
-
-	position: relative;
-
-	margin: 4vw 1%;
+#hud-map-global {
+	position: fixed;
+	margin: 0;
 	padding: 0;
 
-	/* Opacity */
-	background: rgba(0,0,0,0.25);
-	box-shadow: 0px 0px 5vw 0px rgba(0,0,0,0.5);
+	user-select : none; /* No text selectable because of dragging */
+
+	width: 20000px;
+	height: 20000px;
+
+	top: calc(50vh - 10000px);
+	left: calc(50vw - 10000px);
+
+	display: none;
+	z-index: -1;
+	zoom: 0.9;
 }
 .sector-subsystem {
 	position: absolute;
@@ -1443,43 +1446,43 @@ a[class="research-search"] {
 
 	border-radius: 0.25em;
 }
-#hud-map-sector .yellowDwarf {
+#hud-map-global .yellowDwarf {
   background-color: #FB7209;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 0.8em rgba(255, 160, 60, 0.8);
 }
-#hud-map-sector .redDwarf, .redGiant, .redSuperGient {
+#hud-map-global .redDwarf, .redGiant, .redSuperGient {
   background: linear-gradient(to bottom right, #b30000, #fb3636);
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 0.8em rgba(255, 60, 60, 0.8);
 }
-#hud-map-sector .whiteDwarf {
+#hud-map-global .whiteDwarf {
   background-color: #e6e3a0;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 0.8em rgba(255,255,255, 0.8);
 }
-#hud-map-sector .brownDwarf {
+#hud-map-global .brownDwarf {
   background-color: #38200e;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 0.8em rgba(255,160, 60, 0.8);
 }
-#hud-map-sector .blueWhiteGiant {
+#hud-map-global .blueWhiteGiant {
   background-color: #acd2ff;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 0.8em rgba(255,255,255, 0.8);
 }
-#hud-map-sector .blueGiant {
+#hud-map-global .blueGiant {
   background-color: #459aff;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 0.8em rgba( 80, 80,100, 0.8);
 }
-#hud-map-sector .blackHole {
+#hud-map-global .blackHole {
   background-color: #000000;
   background-repeat: no-repeat;
   background-size: cover;
