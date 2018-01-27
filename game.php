@@ -249,7 +249,7 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#radar" id="hud-bottom-button-radar"><img src="<?php echo $cdnURL; ?>img/ui/radar.png" alt="radar"></a>
+			<a href="#radar" id="hud-bottom-button-radar"><img src="<?php echo $cdnURL; ?>img/ui/radar.svg" alt="radar"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RADAR; ?></span>
 			</span>
@@ -269,7 +269,7 @@
 	</div>
 	<div id="hud-bottom-right">
 		<span class="hud-bottom-tooltip">
-			<a href="#quests" id="hud-bottom-button-quests"><img src="<?php echo $cdnURL; ?>img/ui/quests.png" alt="quests"></a>
+			<a href="#quests" id="hud-bottom-button-quests"><img src="<?php echo $cdnURL; ?>img/ui/quests.svg" alt="quests"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_QUEST; ?></span>
 			</span>
@@ -281,7 +281,7 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?php echo $cdnURL; ?>img/ui/ranks.png" alt="ranks"></a>
+			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?php echo $cdnURL; ?>img/ui/ranks.svg" alt="ranks"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RANKS; ?></span>
 			</span>
