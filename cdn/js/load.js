@@ -99,7 +99,7 @@ class loadScreen {
 		for(var i in backPlanetList) {
 			picList.push(cdnURL + "img/planets/back/" + backPlanetList[i] + '.png')
 		}
-		var frontPlanetList = [0,1,
+		var frontPlanetList = [0,1,2,3,4,
 			101,102,103,104,105,106,107,108,109,110,111,112,
 			501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,
 			901,42,
