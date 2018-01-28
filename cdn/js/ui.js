@@ -263,19 +263,19 @@ class ui {
 			$('#hud-bottom-button-researchs').removeClass('hud-bottom-active');
 		}
 		// Fleet build
-		if($("#fleet-build").css('display') == "block") {
+		if($('#hud-fleet').css('display') == "block" && $("#fleet-build").css('display') == "block") {
 			$('#hud-bottom-button-units').addClass('hud-bottom-active');
 		} else {
 			$('#hud-bottom-button-units').removeClass('hud-bottom-active');
 		}
-		// Fleet move
-		if($("#fleet-move").css('display') == "block") {
+		// Fleet orbit
+		if($('#hud-fleet').css('display') == "block" && $("#fleet-orbit").css('display') == "block") {
 			$('#hud-bottom-button-fleets').addClass('hud-bottom-active');
 		} else {
 			$('#hud-bottom-button-fleets').removeClass('hud-bottom-active');
 		}
-		// Fleet out
-		if($("#fleet-out").css('display') == "block") {
+		// Fleet move
+		if($('#hud-fleet').css('display') == "block" && $("#fleet-move").css('display') == "block") {
 			$('#hud-bottom-button-radar').addClass('hud-bottom-active');
 		} else {
 			$('#hud-bottom-button-radar').removeClass('hud-bottom-active');
