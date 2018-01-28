@@ -403,6 +403,8 @@ class ui {
 
 				$("#fleet-build").css('display',"block");
 				$("#fleet-build-button").addClass("ul-choice-line-li-active");
+
+				ui.updateBottom();
 			}
 		});
 		$("#hud-bottom-button-fleets").click(function() {
@@ -413,6 +415,8 @@ class ui {
 
 				$("#fleet-orbit").css('display',"block");
 				$("#fleet-orbit-button").addClass("ul-choice-line-li-active");
+
+				ui.updateBottom();
 			}
 		});
 		$("#hud-bottom-button-radar").click(function() {
@@ -423,6 +427,8 @@ class ui {
 
 				$("#fleet-move").css('display',"block");
 				$("#fleet-move-button").addClass("ul-choice-line-li-active");
+
+				ui.updateBottom();
 			}
 		});
 	}
