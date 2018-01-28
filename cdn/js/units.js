@@ -29,10 +29,6 @@ class units {
 				clearTimeout(units.unitPanelInterval);
 				units.unitPanelTimeout = -1;
 			}
-
-			$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
-			$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
-			$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
 			
 			ui.closeTab("#hud-fleet");
 			ui.fleet = false;
@@ -51,26 +47,19 @@ class units {
 			$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
-			$("#hud-bottom-button-units img").removeClass('hud-bottom-active');
-			$("#hud-bottom-button-fleets img").removeClass('hud-bottom-active');
-			$("#hud-bottom-button-radar img").removeClass('hud-bottom-active');
-
 			if($(this).attr('id')=="fleet-build-button") {
-				$("#hud-bottom-button-units img").addClass('hud-bottom-active');
 				$("#fleet-build").css('display',"block");
 			} else {
 				$("#fleet-build").css('display',"none");
 			}
 
 			if($(this).attr('id')=="fleet-orbit-button") {
-				$("#hud-bottom-button-fleets img").addClass('hud-bottom-active');
 				$("#fleet-orbit").css('display',"block");
 			} else {
 				$("#fleet-orbit").css('display',"none");
 			}
 
 			if($(this).attr('id')=="fleet-move-button") {
-				$("#hud-bottom-button-radar img").addClass('hud-bottom-active');
 				$("#fleet-move").css('display',"block");
 			} else {
 				$("#fleet-move").css('display',"none");
@@ -81,6 +70,8 @@ class units {
 			} else {
 				$("#fleet-out").css('display',"none");
 			}
+
+			ui.updateBottom();
 		});
 		// Fleet submenus
 		$("#fleet-build-choice li").click(function() {

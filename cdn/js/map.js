@@ -129,7 +129,7 @@ class map {
 	}
 
 	static closeTab() {
-		ui.closeTab("#hud-map",false);
+		ui.closeTab("#hud-map");
 		$("#research-button").css('display','block');
 		ui.map = false;
 
