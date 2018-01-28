@@ -38,6 +38,8 @@ class ui {
 	static load() {
 		planet.init();
 
+		ui.updateBottom();
+
 		// Panels
 		ui.renaming = false;
 		ui.menu = false;
