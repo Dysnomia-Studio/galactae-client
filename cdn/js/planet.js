@@ -526,6 +526,11 @@ class planet {
 	 * @param      {string}  id      Building ID
 	 */
 	static buildPanelOpen(id) {
+		if(id == planet.buildPanel) {
+			ui.buildPanelHide();
+			return;
+		}
+
 		planet.buildPanel = id;
 		var dateNow = new Date();
 
@@ -681,7 +686,7 @@ class planet {
 				break;
 			case 4: // Solar panel
 				title = translate['planet-ui']['production'];
-				icon = '<img height="15" src="'+cdnURL+'img/ui/electricity.png" alt="electricity">';
+				icon = '<img height="15" src="'+cdnURL+'img/ui/electricity.svg" alt="electricity">';
 				value = GetBetterUnit(energyProd,'Wh');
 				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
@@ -695,7 +700,7 @@ class planet {
 				break;
 			case 8: // Research Center
 				title = translate['planet-ui']['production'];
-				icon = '<img height="15" src="'+cdnURL+'img/ui/research.png" alt="research">';
+				icon = '<img height="15" src="'+cdnURL+'img/ui/research.svg" alt="research">';
 				value = GetBetterUnit(researchProd,'/h'); 
 				valuep1 = ' (+ ' + GetBetterUnit(researchProd1 - researchProd,'/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
