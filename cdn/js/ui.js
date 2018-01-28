@@ -326,15 +326,13 @@ class ui {
 	}
 	/************ BOUTONS ************/
 	static hudBottomButtons() {
-		$('#hud-bottom a').click(function() {
-			ui.updateBottom();
-		});
 		$("#hud-bottom-button-chat").click(function() {
 			if(ui.chat) {
 				ui.closeTab("#hud-chat");
 				ui.chat = false;
 			} else {
 				$("#hud-chat").css('display','block');
+				ui.updateBottom();
 				ui.chat = true;
 			}
 		});
@@ -344,6 +342,7 @@ class ui {
 				ui.ranks = false;
 			} else {
 				$("#hud-ranks").css('display','block');
+				ui.updateBottom();
 				ui.ranks = true;
 
 				$('#hud-ranks-frame').attr('src',$('#hud-ranks-frame').attr('src'));		
@@ -357,6 +356,7 @@ class ui {
 				if(ui.research) {
 					research.closeUI();
 				}
+				ui.updateBottom();
 			}
 		});
 		$("#hud-map-close").click(function() {
@@ -372,6 +372,7 @@ class ui {
 				if(ui.map) {
 					map.closeTab();
 				}
+				ui.updateBottom();
 			}
 		});
 
