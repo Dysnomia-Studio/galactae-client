@@ -527,7 +527,7 @@ class planet {
 	 */
 	static buildPanelOpen(id) {
 		if(id == planet.buildPanel) {
-			ui.buildPanelHide();
+			planet.buildPanelHide();
 			return;
 		}
 
