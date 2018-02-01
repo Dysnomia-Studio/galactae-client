@@ -8,6 +8,9 @@ var STAR_ECART = 2.25;
 var PLANET_SIZE_BASE = 3;
 var PLANET_SIZE_COEF = 9 / 7;
 
+var MAP_SIZE_HEIGHT = 40000;
+var MAP_SIZE_WIDTH = 50000;
+
 var mapPrevMouse = [0,0];
 
 class map {
@@ -28,6 +31,11 @@ class map {
 	    event.preventDefault();
 	}
 	
+	/**
+	 * Map init
+	 *
+	 * @param      {string}  address  The address
+	 */
 	static init(address) {
 		map.currentMap = (map.currentMap === undefined)?"global":map.currentMap;
 		map.currentAddress = (map.currentAddress === undefined)?address:map.currentAddress;
@@ -93,14 +101,14 @@ class map {
 			$('#hud-map-global').css('zoom',zoom);
 		});
 
-		// @ADD: Move map
-		// @ADD: Dynamic auto load with moves
-		// @ADD: Dynamic auto generate with moves
-
-
 		loadScreen.complete("maps");
 	}
 
+	/**
+	 * Move the ui
+	 *
+	 * @param      {2D vector}  pos     The position
+	 */
 	static moveUI(pos) {
 		$("#hud-map-global").css("left",pos[0]);
 		$("#hud-map-global").css("top",pos[1]);
@@ -111,12 +119,61 @@ class map {
 		if(parseInt($("#hud-map-global").css("top")) > 0) {
 			$("#hud-map-global").css("top", 0);
 		}
-		if(parseInt($("#hud-map-global").css("left")) < $(document).width()-50000) {
-			$("#hud-map-global").css("left", $(document).width()-50000*$("#hud-map-global").css("zoom"));
+		if(parseInt($("#hud-map-global").css("left")) < $(document).width()-MAP_SIZE_WIDTH) {
+			$("#hud-map-global").css("left", $(document).width()-MAP_SIZE_WIDTH*$("#hud-map-global").css("zoom"));
 		}
-		if(parseInt($("#hud-map-global").css("top")) < $(document).height()-40000) {
-			$("#hud-map-global").css("top", $(document).height()-40000*$("#hud-map-global").css("zoom"));
+		if(parseInt($("#hud-map-global").css("top")) < $(document).height()-MAP_SIZE_HEIGHT) {
+			$("#hud-map-global").css("top", $(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom"));
 		}
+
+		// At borders ?
+		var coords = map.currentAddress.split('-');
+		coords[0] = parseInt(coords[0]);
+		coords[1] = parseInt(coords[1]);
+
+		var topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
+		var bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
+		var leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
+		var rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
+
+		var top = coords[0] == 0 || (topDist > $(document).height() * 2);
+		var bottom = coords[0] == 9 || (bottomDist > $(document).height() * 2);
+		var left = coords[1] == 0 || (leftDist > $(document).height() * 2);
+		var right = coords[1] == 9 || (rightDist > $(document).height() * 2);
+
+		/**
+		 * Load all needed xml
+		 */
+		if(!top) {
+			if(!left) { // Haut gauche
+				map.loadXML((coords[0]-1) + "-" + (coords[1]-1));
+			}
+			// Haut
+			map.loadXML((coords[0]-1) + "-" + (coords[1]));
+			if(!right) { // Haut droite
+				map.loadXML((coords[0]-1) + "-" + (coords[1]+1));
+			}
+		}
+
+		if(!left) { // Gauche
+			map.loadXML((coords[0]) + "-" + (coords[1]-1));
+		}
+
+		if(!right) { // Droite
+			map.loadXML((coords[0]) + "-" + (coords[1]+1));
+		}
+
+		if(!bottom) {
+			if(!left) { // Bas gauche
+				map.loadXML((coords[0]+1) + "-" + (coords[1]-1));
+			}
+			// Bas
+			map.loadXML((coords[0]+1) + "-" + (coords[1]));
+			if(!right) { // Bas droite
+				map.loadXML((coords[0]+1) + "-" + (coords[1]+1));
+			}
+		}
+
 	}
 
 	/**
