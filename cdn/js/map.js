@@ -127,7 +127,7 @@ class map {
 		}
 
 		// Set current address 
-		map.currentAddress = Math.floor(((-pos[1])/MAP_SIZE_WIDTH)*10) + "-" + Math.floor(((-pos[0])/MAP_SIZE_HEIGHT)*10) + "-?-?";
+		map.currentAddress = Math.floor(((-pos[0])/MAP_SIZE_WIDTH)*10) + "-" + Math.floor(((-pos[1])/MAP_SIZE_HEIGHT)*10) + "-?-?";
 
 		// At borders ?
 		var coords = map.currentAddress.split('-');
