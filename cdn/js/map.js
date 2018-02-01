@@ -340,7 +340,7 @@ class map {
 		$('#hud-map-system-solarFront').html("");
 
 		// Parse XML
-		var systemXML = $(map.xmlDoc[sector]).find("system#" + address)[0];
+		var systemXML = $(map.xmlDoc[sector]).find("sy#" + address)[0];
 
 		var stars = [];
 		var starsXML = $(systemXML).find("st");
