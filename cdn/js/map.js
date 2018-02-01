@@ -51,6 +51,8 @@ class map {
 		 */
 		map.loadMap(currentSector);
 
+		map.focusAddress(map.currentAddress);
+
 		/**
 		 * Global Map Events
 		 **/
@@ -571,6 +573,24 @@ class map {
 	}
 
 	/**
+	 * Focus an adress
+	 *
+	 * @param      {string}  address  The address
+	 */
+	static focusAddress(address) {
+		if(typeof(address) != "string" || address.split("-").length != 2) {
+			console.log('INVALID ADRESS FORMAT !');
+			return;
+		}
+		
+		var coords = address.split('-');
+		$('#hud-map-global').css({
+			left: (parseInt(coords[0]) + 0.5) * MAP_SIZE_WIDTH/10,
+			top:  (parseInt(coords[1]) + 0.5) * MAP_SIZE_HEIGHT/10
+		});
+	}
+
+	/**
 	 * Opens a global map.
 	 *
 	 * @param      {string}  address  The address
@@ -583,11 +603,7 @@ class map {
 		}
 		map.currentMap = "sector";
 
-		var coords = address.split('-');
-		$('#hud-map-global').css({
-			left: (parseInt(coords[0]) + 0.5) * MAP_SIZE_WIDTH/10,
-			top:  (parseInt(coords[1]) + 0.5) * MAP_SIZE_HEIGHT/10
-		});
+		map.focusAdress(address);
 
 		// Events
 		$('.sector-subsystem').click(function() {
