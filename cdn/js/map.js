@@ -64,7 +64,7 @@ class map {
 		});
 		$("#hud-map-global").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
-				var pos = $("#hud-map-globalh").position();
+				var pos = $("#hud-map-global").position();
 				map.moveUI([pos.left + (e.pageX - mapPrevMouse[0]),
 								pos.top + (e.pageY - mapPrevMouse[1])]);
 			}
