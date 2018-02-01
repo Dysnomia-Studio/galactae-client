@@ -5,20 +5,20 @@ var researchPrevMouse = [0,0];
 
 class research {
 	static touchHandler(event) {
-	    var touch = event.changedTouches[0];
+		var touch = event.changedTouches[0];
 
-	    var simulatedEvent = document.createEvent("MouseEvent");
-	        simulatedEvent.initMouseEvent({
-	        touchstart: "mousedown",
-	        touchmove: "mousemove",
-	        touchend: "mouseup"
-	    }[event.type], true, true, window, 1,
-	        touch.screenX, touch.screenY,
-	        touch.clientX, touch.clientY, false,
-	        false, false, false, 0, null);
+		var simulatedEvent = document.createEvent("MouseEvent");
+			simulatedEvent.initMouseEvent({
+			touchstart: "mousedown",
+			touchmove: "mousemove",
+			touchend: "mouseup"
+		}[event.type], true, true, window, 1,
+			touch.screenX, touch.screenY,
+			touch.clientX, touch.clientY, false,
+			false, false, false, 0, null);
 
-	    touch.target.dispatchEvent(simulatedEvent);
-	    event.preventDefault();
+		touch.target.dispatchEvent(simulatedEvent);
+		event.preventDefault();
 	}
 
 	/**
@@ -158,10 +158,10 @@ class research {
 	/**
 	 * Draws a node.
 	 *
-	 * @param      {string}  key     The node name
-	 * @param      {number}  x       Node center position x
-	 * @param      {number}  y       Node center position y
-	 * @param      {string}  parent  The parent
+	 * @param	  {string}  key	 The node name
+	 * @param	  {number}  x	   Node center position x
+	 * @param	  {number}  y	   Node center position y
+	 * @param	  {string}  parent  The parent
 	 */
 	static drawNode(key) {
 		if( $('#'+key+'-node').length ) { return; }
@@ -207,8 +207,8 @@ class research {
 	/**
 	 * Draws a link between 2 nodes
 	 *
-	 * @param      {string}  child   The child
-	 * @param      {string}  parent  The parent
+	 * @param	  {string}  child   The child
+	 * @param	  {string}  parent  The parent
 	 */
 	static drawLink(child,parent) {
 		if(child=="" || parent=="") { return; }
@@ -228,19 +228,19 @@ class research {
 		else { color = 'rgba(14,198,198,0.2)'; }
 
 		var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
-	    newLine.setAttribute('stroke',color);
-	    newLine.setAttribute('stroke-width','2');
-	    newLine.setAttribute('x1',x1);
-	    newLine.setAttribute('y1',y1);
-	    newLine.setAttribute('x2',x2);
-	    newLine.setAttribute('y2',y2);
-	    $("#hud-research-links").append(newLine);
+		newLine.setAttribute('stroke',color);
+		newLine.setAttribute('stroke-width','2');
+		newLine.setAttribute('x1',x1);
+		newLine.setAttribute('y1',y1);
+		newLine.setAttribute('x2',x2);
+		newLine.setAttribute('y2',y2);
+		$("#hud-research-links").append(newLine);
 	}
 	/**
 	 * Determines ability to research.
 	 *
-	 * @param      {<type>}   key     The research name
-	 * @return     {boolean}  True if able to research, False otherwise.
+	 * @param	  {<type>}   key	 The research name
+	 * @return	 {boolean}  True if able to research, False otherwise.
 	 */
 	static canResearch(key) {
 		var parents = researchList[key].parents;
@@ -293,8 +293,8 @@ class research {
 	/**
 	 * Determines if searched.
 	 *
-	 * @param      {string}   key     The research name
-	 * @return     {boolean}  True if searched, False otherwise.
+	 * @param	  {string}   key	 The research name
+	 * @return	 {boolean}  True if searched, False otherwise.
 	 */
 	static isSearched(key) {
 		return (userData.research[key]==-1 || key=="researchCenter");

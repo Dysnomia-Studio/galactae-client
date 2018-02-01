@@ -15,33 +15,33 @@ var mapPrevMouse = [0,0];
 
 class map {
 	static touchHandler(event) {
-	    var touch = event.changedTouches[0];
+		var touch = event.changedTouches[0];
 
-	    var simulatedEvent = document.createEvent("MouseEvent");
-	        simulatedEvent.initMouseEvent({
-	        touchstart: "mousedown",
-	        touchmove: "mousemove",
-	        touchend: "mouseup"
-	    }[event.type], true, true, window, 1,
-	        touch.screenX, touch.screenY,
-	        touch.clientX, touch.clientY, false,
-	        false, false, false, 0, null);
+		var simulatedEvent = document.createEvent("MouseEvent");
+		simulatedEvent.initMouseEvent({
+			touchstart: "mousedown",
+			touchmove: "mousemove",
+			touchend: "mouseup"
+		}[event.type], true, true, window, 1,
+			touch.screenX, touch.screenY,
+			touch.clientX, touch.clientY, false,
+			false, false, false, 0, null);
 
-	    touch.target.dispatchEvent(simulatedEvent);
-	    event.preventDefault();
+		touch.target.dispatchEvent(simulatedEvent);
+		event.preventDefault();
 	}
 	
 	/**
 	 * Map init
 	 *
-	 * @param      {string}  address  The address
+	 * @param	  {string}  address  The address
 	 */
 	static init(address) {
 		map.currentMap = (map.currentMap === undefined)?"global":map.currentMap;
 		map.currentAddress = (map.currentAddress === undefined)?address:map.currentAddress;
 		
-		map.xmlhttp    = (map.xmlhttp === undefined)?[]:map.xmlhttp;
-		map.xmlDoc     = (map.xmlDoc === undefined)?[]:map.xmlDoc;
+		map.xmlhttp	= (map.xmlhttp === undefined)?[]:map.xmlhttp;
+		map.xmlDoc	 = (map.xmlDoc === undefined)?[]:map.xmlDoc;
 
 		var currentSector = map.currentAddress.split('-');
 		currentSector = [currentSector[0],currentSector[1]].join("-");
@@ -61,6 +61,7 @@ class map {
 			currentSector = [currentSector[0],currentSector[1]].join("-");
 			map.openGlobalMap(currentSector);
 		});
+
 		/**
 		 * Move & zoom
 		 */
@@ -109,7 +110,7 @@ class map {
 	/**
 	 * Move the ui
 	 *
-	 * @param      {2D vector}  pos     The position
+	 * @param	  {2D vector}  pos	 The position
 	 */
 	static moveUI(pos) {
 		$("#hud-map-global").css("left",pos[0]);
@@ -183,7 +184,7 @@ class map {
 	/**
 	 * Loads a map.
 	 *
-	 * @param      {string}  sector  The sector
+	 * @param	  {string}  sector  The sector
 	 */
 	static loadMap(sector) {
 		if($(document).width() > 1920) { // 4K Only loader, it's slow, but needed to make game working
@@ -196,7 +197,7 @@ class map {
 	/**
 	 * Loads a map and neighborhood.
 	 *
-	 * @param      {string}  sector  The sector
+	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector) {
 		var coords = sector.split('-'); 
@@ -248,7 +249,7 @@ class map {
 	/**
 	 * Loads a xml.
 	 *
-	 * @param      {string}  sector  The sector
+	 * @param	  {string}  sector  The sector
 	 */
 	static loadXML(sector) {
 		if(map.xmlhttp[sector] !== undefined) { return; } // Already loaded or loading
@@ -324,7 +325,7 @@ class map {
 	/**
 	 * Opens a solar system map.
 	 *
-	 * @param      {string}  address  The address
+	 * @param	  {string}  address  The address
 	 */
 	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
 		// Check Address
@@ -347,8 +348,8 @@ class map {
 		for(var i=0; i< starsXML.length; i++) {
 			stars[i] = {};
 			stars[i].address = $(starsXML[i]).attr('id');
-			stars[i].size    = (STAR_SIZE_BASE + STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('sz')));
-			stars[i].type    = $(starsXML[i]).attr('t');
+			stars[i].size	= (STAR_SIZE_BASE + STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('sz')));
+			stars[i].type	= $(starsXML[i]).attr('t');
 		}
 
 		var planets = [];
@@ -356,8 +357,8 @@ class map {
 		for(var i=0; i< planetsXML.length; i++) {
 			planets[i] = {};
 			planets[i].address = $(planetsXML[i]).attr('id');
-			planets[i].size    = $(planetsXML[i]).attr('sz');
-			planets[i].type    = $(planetsXML[i]).attr('t');
+			planets[i].size	= $(planetsXML[i]).attr('sz');
+			planets[i].type	= $(planetsXML[i]).attr('t');
 			planets[i].gtype   = $(planetsXML[i]).attr('gt');
 		}
 
@@ -411,7 +412,7 @@ class map {
 				orbitSize[1] = orbitSize[2] = stars[0].size * STAR_ECART + (stars[1].size + stars[2].size)/2 * STAR_ECART;
 			
 			} else { // Sort by size or same 2 first stars or same 3 stars
-			    if(stars[0].size - stars[1].size < 1) { // If 2 biggers are almost same size
+				if(stars[0].size - stars[1].size < 1) { // If 2 biggers are almost same size
 					orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * STAR_ECART;
 
 					orbitSize[2] = 2 * orbitSize[1] + stars[2].size/2 * STAR_ECART;
@@ -538,7 +539,7 @@ class map {
 	/**
 	 * Draws a sector.
 	 *
-	 * @param      {string}  sector  The sector
+	 * @param	  {string}  sector  The sector
 	 */
 	static drawSector(sector) {
 		$("#sect-" + sector).remove();
@@ -580,7 +581,7 @@ class map {
 	/**
 	 * Focus an adress
 	 *
-	 * @param      {string}  address  The address
+	 * @param	  {string}  address  The address
 	 */
 	static focusAddress(address) {
 		if(typeof(address) != "string" || address.split("-").length < 2) {
@@ -598,7 +599,7 @@ class map {
 	/**
 	 * Opens a global map.
 	 *
-	 * @param      {string}  address  The address
+	 * @param	  {string}  address  The address
 	 */
 	static openGlobalMap(address) {
 		// Check Address
@@ -608,7 +609,7 @@ class map {
 		}
 		map.currentMap = "sector";
 
-		map.focusAdress(address);
+		map.focusAddress(address);
 
 		// Back button
 		$('#hud-map-back').css('display','none');
