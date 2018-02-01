@@ -41,7 +41,7 @@ class map {
 		/**
 		 * Load XML
 		 */
-		loadMap(sector);
+		map.loadMap(sector);
 
 		/**
 		 * Global Map Events
@@ -55,21 +55,21 @@ class map {
 		 * Move & zoom
 		 */
 		$("#hud-map-global").on('touchstart touchmove touchend touchcancel', function(e) {
-			research.touchHandler(e);
+			map.touchHandler(e);
 		});
 
 		$("#hud-map-global").on('touchstart', function(e) {
-			researchPrevMouse[0] = e.pageX;
-			researchPrevMouse[1] = e.pageY;
+			mapPrevMouse[0] = e.pageX;
+			mapPrevMouse[1] = e.pageY;
 		});
 		$("#hud-map-global").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				var pos = $("#hud-map-globalh").position();
-				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
-								pos.top + (e.pageY - researchPrevMouse[1])]);
+				map.moveUI([pos.left + (e.pageX - mapPrevMouse[0]),
+								pos.top + (e.pageY - mapPrevMouse[1])]);
 			}
-			researchPrevMouse[0] = e.pageX;
-			researchPrevMouse[1] = e.pageY;
+			mapPrevMouse[0] = e.pageX;
+			mapPrevMouse[1] = e.pageY;
 		});
 		$('#hud-map-global').bind('mousewheel', function(e){
 			var zoom = parseFloat($('#hud-map-global').css('zoom'));
@@ -85,8 +85,8 @@ class map {
 			if(zoom > 1.75) { return; }
 
 			var pos = $("#hud-map-global").position();
-			pos.left = ((pos.left - researchPrevMouse[0])/(zoom - coef) * zoom) + researchPrevMouse[0];
-			pos.top = ((pos.top - researchPrevMouse[1])/(zoom - coef) * zoom) + researchPrevMouse[1];
+			pos.left = ((pos.left - mapPrevMouse[0])/(zoom - coef) * zoom) + mapPrevMouse[0];
+			pos.top = ((pos.top - mapPrevMouse[1])/(zoom - coef) * zoom) + mapPrevMouse[1];
 			$("#hud-map-global").css("left",pos.left);
 			$("#hud-map-global").css("top" ,pos.top );
 					
@@ -99,6 +99,24 @@ class map {
 
 
 		loadScreen.complete("maps");
+	}
+
+	static moveUI(pos) {
+		$("#hud-map-global").css("left",pos[0]);
+		$("#hud-map-global").css("top",pos[1]);
+
+		if(parseInt($("#hud-map-global").css("left")) > 0) {
+			$("#hud-map-global").css("left", 0);
+		}
+		if(parseInt($("#hud-map-global").css("top")) > 0) {
+			$("#hud-map-global").css("top", 0);
+		}
+		if(parseInt($("#hud-map-global").css("left")) < $(document).width()-50000) {
+			$("#hud-map-global").css("left", $(document).width()-50000*$("#hud-map-global").css("zoom"));
+		}
+		if(parseInt($("#hud-map-global").css("top")) < $(document).height()-40000) {
+			$("#hud-map-global").css("top", $(document).height()-40000*$("#hud-map-global").css("zoom"));
+		}
 	}
 
 	/**
