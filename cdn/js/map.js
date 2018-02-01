@@ -126,6 +126,9 @@ class map {
 			$("#hud-map-global").css("top", $(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom"));
 		}
 
+		// Set current address 
+		map.currentAddress = Math.floor(((-pos[0])/MAP_SIZE_HEIGHT)/10) + "-" + Math.floor(((-pos[1])/MAP_SIZE_WIDTH)/10) + "-?-?";
+
 		// At borders ?
 		var coords = map.currentAddress.split('-');
 		coords[0] = parseInt(coords[0]);
@@ -136,7 +139,7 @@ class map {
 		var leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
 		var rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
 
-		var top = coords[0] == 0 || (topDist > $(document).height() * 2);
+		var top =  coords[0] == 0 || (topDist > $(document).height() * 2);
 		var bottom = coords[0] == 9 || (bottomDist > $(document).height() * 2);
 		var left = coords[1] == 0 || (leftDist > $(document).height() * 2);
 		var right = coords[1] == 9 || (rightDist > $(document).height() * 2);
