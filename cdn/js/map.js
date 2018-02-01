@@ -181,7 +181,7 @@ class map {
 	/**
 	 * Loads a map.
 	 *
-	 * @param      {<type>}  sector  The sector
+	 * @param      {string}  sector  The sector
 	 */
 	static loadMap(sector) {
 		if($(document).width() > 1920) { // 4K Only loader, it's slow, but needed to make game working
@@ -194,7 +194,7 @@ class map {
 	/**
 	 * Loads a map and neighborhood.
 	 *
-	 * @param      {<type>}  sector  The sector
+	 * @param      {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector) {
 		var coords = sector.split('-'); 
@@ -583,7 +583,11 @@ class map {
 		}
 		map.currentMap = "sector";
 
-		// ADD: Center current adress
+		var coords = address.split('-');
+		$('#hud-map-global').css({
+			left: (parseInt(coords[0]) + 0.5) * MAP_SIZE_WIDTH/10,
+			top:  (parseInt(coords[1]) + 0.5) * MAP_SIZE_HEIGHT/10
+		});
 
 		// Events
 		$('.sector-subsystem').click(function() {
