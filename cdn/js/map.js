@@ -173,7 +173,6 @@ class map {
 				map.loadXML((coords[0]+1) + "-" + (coords[1]+1));
 			}
 		}
-
 	}
 
 	/**
@@ -247,7 +246,7 @@ class map {
 	 * @param      {string}  sector  The sector
 	 */
 	static loadXML(sector) {
-		if(map.xmlhttp["10-12"] !== undefined) { return; } // Already loaded or loading
+		if(map.xmlhttp[sector] !== undefined) { return; } // Already loaded or loading
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp[sector] = new XMLHttpRequest();
 		} else { // code for IE6, IE5
