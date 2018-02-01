@@ -1,10 +1,9 @@
 var RESEARCH_DIV_SIZE = 10000;
 var RESEARCH_DIV_DISTANCE = 500;
 var RESEARCH_DIV_DELTA_DISTANCE = 100;
-var prevMouse = [0,0];
+var researchPrevMouse = [0,0];
 
 class research {
-
 	static touchHandler(event) {
 	    var touch = event.changedTouches[0];
 
@@ -34,17 +33,17 @@ class research {
 		});
 
 		$("#hud-research").on('touchstart', function(e) {
-			prevMouse[0] = e.pageX;
-			prevMouse[1] = e.pageY;
+			researchPrevMouse[0] = e.pageX;
+			researchPrevMouse[1] = e.pageY;
 		});
 		$("#hud-research").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				var pos = $("#hud-research").position();
-				research.moveUI([pos.left + (e.pageX - prevMouse[0]),
-								pos.top + (e.pageY - prevMouse[1])]);
+				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
+								pos.top + (e.pageY - researchPrevMouse[1])]);
 			}
-			prevMouse[0] = e.pageX;
-			prevMouse[1] = e.pageY;
+			researchPrevMouse[0] = e.pageX;
+			researchPrevMouse[1] = e.pageY;
 		});
 		$('#hud-research-content').bind('mousewheel', function(e){
 			var zoom = parseFloat($('#hud-research-content').css('zoom'));
@@ -60,8 +59,8 @@ class research {
 			if(zoom > 1.75) { return; }
 
 			var pos = $("#hud-research").position();
-			pos.left = ((pos.left - prevMouse[0])/(zoom - coef) * zoom) + prevMouse[0];
-			pos.top = ((pos.top - prevMouse[1])/(zoom - coef) * zoom) + prevMouse[1];
+			pos.left = ((pos.left - researchPrevMouse[0])/(zoom - coef) * zoom) + researchPrevMouse[0];
+			pos.top = ((pos.top - researchPrevMouse[1])/(zoom - coef) * zoom) + researchPrevMouse[1];
 			$("#hud-research").css("left",pos.left);
 			$("#hud-research").css("top" ,pos.top );
 					

@@ -8,7 +8,26 @@ var STAR_ECART = 2.25;
 var PLANET_SIZE_BASE = 3;
 var PLANET_SIZE_COEF = 9 / 7;
 
+var mapPrevMouse = [0,0];
+
 class map {
+	static touchHandler(event) {
+	    var touch = event.changedTouches[0];
+
+	    var simulatedEvent = document.createEvent("MouseEvent");
+	        simulatedEvent.initMouseEvent({
+	        touchstart: "mousedown",
+	        touchmove: "mousemove",
+	        touchend: "mouseup"
+	    }[event.type], true, true, window, 1,
+	        touch.screenX, touch.screenY,
+	        touch.clientX, touch.clientY, false,
+	        false, false, false, 0, null);
+
+	    touch.target.dispatchEvent(simulatedEvent);
+	    event.preventDefault();
+	}
+	
 	static init(address) {
 		map.currentMap = (map.currentMap === undefined)?"global":map.currentMap;
 		map.currentAddress = (map.currentAddress === undefined)?address:map.currentAddress;
@@ -22,7 +41,7 @@ class map {
 		/**
 		 * Load XML
 		 */
-		map.loadMapAndNeighborhood(currentSector);
+		loadMap(sector);
 
 		/**
 		 * Global Map Events
@@ -35,7 +54,44 @@ class map {
 		/**
 		 * Move & zoom
 		 */
+		$("#hud-map-global").on('touchstart touchmove touchend touchcancel', function(e) {
+			research.touchHandler(e);
+		});
 
+		$("#hud-map-global").on('touchstart', function(e) {
+			researchPrevMouse[0] = e.pageX;
+			researchPrevMouse[1] = e.pageY;
+		});
+		$("#hud-map-global").mousemove(function(e) {
+			if(ui.mouseStatus[1]==1) {
+				var pos = $("#hud-map-globalh").position();
+				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
+								pos.top + (e.pageY - researchPrevMouse[1])]);
+			}
+			researchPrevMouse[0] = e.pageX;
+			researchPrevMouse[1] = e.pageY;
+		});
+		$('#hud-map-global').bind('mousewheel', function(e){
+			var zoom = parseFloat($('#hud-map-global').css('zoom'));
+
+			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+				var coef = 0.05; // Scroll up
+			} else {			
+				var coef = -0.05; // Scroll down
+			}
+
+			zoom += coef;
+			if(zoom < 0.5) { return; }
+			if(zoom > 1.75) { return; }
+
+			var pos = $("#hud-map-global").position();
+			pos.left = ((pos.left - researchPrevMouse[0])/(zoom - coef) * zoom) + researchPrevMouse[0];
+			pos.top = ((pos.top - researchPrevMouse[1])/(zoom - coef) * zoom) + researchPrevMouse[1];
+			$("#hud-map-global").css("left",pos.left);
+			$("#hud-map-global").css("top" ,pos.top );
+					
+			$('#hud-map-global').css('zoom',zoom);
+		});
 
 		// @ADD: Move map
 		// @ADD: Dynamic auto load with moves
@@ -45,6 +101,24 @@ class map {
 		loadScreen.complete("maps");
 	}
 
+	/**
+	 * Loads a map.
+	 *
+	 * @param      {<type>}  sector  The sector
+	 */
+	static loadMap(sector) {
+		if($(document).width() > 1920) { // 4K Only loader, it's slow, but needed to make game working
+			map.loadMapAndNeighborhood(currentSector);
+		} else { // Full HD and lower screens
+			map.loadXML(sector);
+		}
+	}
+
+	/**
+	 * Loads a map and neighborhood.
+	 *
+	 * @param      {<type>}  sector  The sector
+	 */
 	static loadMapAndNeighborhood(sector) {
 		var coords = sector.split('-'); 
 
@@ -92,6 +166,11 @@ class map {
 		}
 	}
 
+	/**
+	 * Loads a xml.
+	 *
+	 * @param      {string}  sector  The sector
+	 */
 	static loadXML(sector) {
 		if(map.xmlhttp["10-12"] !== undefined) { return; } // Already loaded or loading
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -116,6 +195,9 @@ class map {
 		map.xmlhttp[sector].send();
 	}
 
+	/**
+	 * Opens map tab.
+	 */
 	static openTab() {
 		$("#hud-map").css('display','block');
 		ui.closeTab("#hud-research",false); /* A no-bug fix */
@@ -128,6 +210,9 @@ class map {
 		ui.chat = false;
 	}
 
+	/**
+	 * Closes map tab.
+	 */
 	static closeTab() {
 		ui.closeTab("#hud-map");
 		$("#research-button").css('display','block');
@@ -140,6 +225,9 @@ class map {
 		}
 	}
 
+	/**
+	 * Reset maps display
+	 */
 	static resetMaps() {
 		/* Hide all maps */
 		$('#hud-map-global').css('display','none');
@@ -154,6 +242,11 @@ class map {
 		$('#hud-map-back').css('display','block');
 	}
 
+	/**
+	 * Opens a solar system map.
+	 *
+	 * @param      {string}  address  The address
+	 */
 	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
 		// Check Address
 		if(typeof(address) != "string" || address.split("-").length != 3) {
@@ -363,6 +456,11 @@ class map {
 		});
 	}
 
+	/**
+	 * Draws a sector.
+	 *
+	 * @param      {string}  sector  The sector
+	 */
 	static drawSector(sector) {
 		$("#sect-" + sector).remove();
 
@@ -395,6 +493,11 @@ class map {
 		$('#hud-map-global').append(content);
 	}
 
+	/**
+	 * Opens a global map.
+	 *
+	 * @param      {string}  address  The address
+	 */
 	static openGlobalMap(address) {
 		// Check Address
 		if(typeof(address) != "string" || address.split("-").length != 2) {
