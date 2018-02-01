@@ -41,7 +41,7 @@ class map {
 		/**
 		 * Load XML
 		 */
-		map.loadMap(sector);
+		map.loadMap(currentSector);
 
 		/**
 		 * Global Map Events
