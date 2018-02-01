@@ -141,10 +141,10 @@ class map {
 		var leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
 		var rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
 
-		var top =  coords[0] == 0 || (topDist > $(document).height() * 2);
-		var bottom = coords[0] == 9 || (bottomDist > $(document).height() * 2);
-		var left = coords[1] == 0 || (leftDist > $(document).height() * 2);
-		var right = coords[1] == 9 || (rightDist > $(document).height() * 2);
+		var top =  coords[0] == 0 || (topDist > $(document).height() * 1.5);
+		var bottom = coords[0] == 9 || (bottomDist > $(document).height() * 1.5);
+		var left = coords[1] == 0 || (leftDist > $(document).height() * 1.5);
+		var right = coords[1] == 9 || (rightDist > $(document).height() * 1.5);
 
 		/**
 		 * Load all needed xml
@@ -334,7 +334,7 @@ class map {
 		}
 
 		var sector = address.split('-');
-		sector = [currentSector[0],currentSector[1]].join("-");
+		sector = [sector[0],sector[1]].join("-");
 
 		map.currentMap = "system";
 		$('#hud-map-system-solarFront').html("");
@@ -570,6 +570,11 @@ class map {
 		content += "</div>";
 
 		$('#hud-map-global').append(content);
+
+		// Events
+		$('#sect-' + sector + ' .sector-subsystem').click(function() {
+			map.openSolarSystemMap($(this).attr('id'));
+		});
 	}
 
 	/**
@@ -578,15 +583,15 @@ class map {
 	 * @param      {string}  address  The address
 	 */
 	static focusAddress(address) {
-		if(typeof(address) != "string" || address.split("-").length != 2) {
+		if(typeof(address) != "string" || address.split("-").length < 2) {
 			console.log('INVALID ADRESS FORMAT !');
 			return;
 		}
 		
 		var coords = address.split('-');
 		$('#hud-map-global').css({
-			left: (parseInt(coords[0]) + 0.5) * MAP_SIZE_WIDTH/10,
-			top:  (parseInt(coords[1]) + 0.5) * MAP_SIZE_HEIGHT/10
+			left: -(parseInt(coords[0]) + 0.5) * MAP_SIZE_WIDTH/10,
+			top:  -(parseInt(coords[1]) + 0.5) * MAP_SIZE_HEIGHT/10
 		});
 	}
 
@@ -604,11 +609,6 @@ class map {
 		map.currentMap = "sector";
 
 		map.focusAdress(address);
-
-		// Events
-		$('.sector-subsystem').click(function() {
-			map.openSolarSystemMap($(this).attr('id'));
-		});
 
 		// Back button
 		$('#hud-map-back').css('display','none');
