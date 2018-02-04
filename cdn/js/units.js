@@ -391,7 +391,9 @@ class units {
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
 		for(var i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; }
+			if(units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; } // Def fleet
+			if(units.fleetList[i].position != planetData.address || units.fleetList[i].orbitPosition != 0) { continue; } // Moving/Out fleets
+
 			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');
 		}
 		$('#fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
