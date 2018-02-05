@@ -605,8 +605,8 @@ class units {
 	            $("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
 	            	+ 'left: ' + shape[id][2] + 'px;'
 	            	+ 'top: ' + shape[id][3] + 'px;'
-	            	+ 'width: ' + shape[id][4] + 'px;'
-	            	+ 'height: ' + shape[id][5] + 'px;'
+	            	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
+	            	+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
 	            	+ '"></dl>');
 
 	            $("#part-selecting-seen-" + id).append('<dt><a href="#">' + selected.text() + 
@@ -618,8 +618,10 @@ class units {
 
 	            options.each(function(){
 	                $("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#">' + 
-	                    $(this).text() + '<span class="value">' + 
-	                    $(this).val() + '</span></a></li>');
+	                    '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top;display: block;'
+	                	+ 'width: ' + shape[id][4] + 'px;'
+	            		+ 'height: ' + shape[id][5] + 'px;'
+	                    + '"></span></a></dt></a></li>');
 	            });
 
 	           $("#part-selecting-seen-" + id + " dt a").click(function() {

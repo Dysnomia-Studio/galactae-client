@@ -25,8 +25,8 @@ a, body {
 .dropdown a, .dropdown a:visited { color:#816c5b; text-decoration:none; outline:none;}
 .dropdown a:hover { color:#5d4617;}
 .dropdown dt a:hover, .dropdown dt a:focus { color:#5d4617; }
-.dropdown dt a {background: url(arrow.png) no-repeat scroll right center; display:block; padding-right:20px;
-                border:1px solid #d4ca9a; width:30px;}
+.dropdown dt a {background: url(arrow.png) no-repeat scroll right center; display:block;
+                border:1px solid transparent; width:50px;}
 .dropdown dt a span {cursor:pointer; display:block; padding:5px;}
 .dropdown dd ul { color:#C5C0B0; display:none;
                   left:0px; padding:5px 0px; position:absolute; top:2px; width:50px; list-style:none;}
