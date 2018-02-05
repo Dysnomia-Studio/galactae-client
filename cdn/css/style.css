@@ -19,19 +19,21 @@ a, body {
 	color: white;
 }
 /* Dropdown */
+.dropdown { margin: 0; }
 .dropdown dd, .dropdown dt, .dropdown ul { margin:0px; padding:0px; }
 .dropdown dd { position:relative; }
 .dropdown a, .dropdown a:visited { color:#816c5b; text-decoration:none; outline:none;}
 .dropdown a:hover { color:#5d4617;}
-.dropdown dt a:hover, .dropdown dt a:focus { color:#5d4617; border: 1px solid #5d4617;}
-.dropdown dt a {background:#e4dfcb url(arrow.png) no-repeat scroll right center; display:block; padding-right:20px;
+.dropdown dt a:hover, .dropdown dt a:focus { color:#5d4617; }
+.dropdown dt a {background: url(arrow.png) no-repeat scroll right center; display:block; padding-right:20px;
                 border:1px solid #d4ca9a; width:30px;}
 .dropdown dt a span {cursor:pointer; display:block; padding:5px;}
-.dropdown dd ul { background:#e4dfcb none repeat scroll 0 0; border:1px solid #d4ca9a; color:#C5C0B0; display:none;
+.dropdown dd ul { color:#C5C0B0; display:none;
                   left:0px; padding:5px 0px; position:absolute; top:2px; width:50px; list-style:none;}
 .dropdown span.value { display:none;}
-.dropdown dd ul li a { padding:5px; display:block;}
-.dropdown dd ul li a:hover { background-color:#d0c9af;}
+.dropdown dd ul li a { padding:5px; display:block; background-color: #0b1012;}
+.dropdown dd ul li a:over { padding:5px; display:block; background-color: #0b1012;}
+
 
 /* Fix for opera */
 select, input {
@@ -1047,9 +1049,6 @@ select, input {
 	/* Disable arrow */
 	-webkit-appearance: none;
     -moz-appearance: none;
-}
-.part-selecting option {
-	background-color: #0b1012;
 }
 #fleet-type-create-schematic * {
 	fill: #0b1012; 

@@ -643,7 +643,7 @@ class units {
 		$('#fleet-type-create-schematic').html(svgContent);
 
 		// Events
-		$('.part-selecting').on("change",function() { 
+		$('#fleet-type-create-selects select').on("change",function() { 
 			var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 			var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
 			
@@ -740,7 +740,7 @@ class units {
 		}
 
 		/* Get All parts */
-		var parts = $('#fleet-type-create-selects').children();
+		var parts = $('#fleet-type-create-selects select');
 		for(var i=0; i<parts.length; i++) {
 			var name = $(parts[i]).attr('partName');
 			var type = $(parts[i]).attr('partType');
