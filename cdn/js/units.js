@@ -600,6 +600,9 @@ class units {
 				let id = i;
 	            var source = $("#part-selecting-hidden-" + id);
 	            var selected = source.find("option[selected]");
+	            if(source.find("option[selected]")[0] === undefined) {
+	            	selected = source.find("option")[0];
+	            }
 	            var options = $("option", source);
 	            
 	            $("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
