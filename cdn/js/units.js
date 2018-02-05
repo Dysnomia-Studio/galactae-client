@@ -584,7 +584,7 @@ class units {
 			// Draw HTML
 			if(shape[i][0]!="struct") {
 				/* Hidden Select */
-				var hiddenSelect = '<select id="part-selecting-hidden-' + i + '" class="part-selecting" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
+				var hiddenSelect = '<select id="part-selecting-hidden-' + i + '" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
 				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: Entete
 					if(content[shape[i][0]][j] != "none" && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
@@ -602,7 +602,7 @@ class units {
 	            var selected = source.find("option[selected]");
 	            var options = $("option", source);
 	            
-	            $("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="dropdown" style="'
+	            $("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
 	            	+ 'left: ' + shape[id][2] + 'px;'
 	            	+ 'top: ' + shape[id][3] + 'px;'
 	            	+ 'width: ' + shape[id][4] + 'px;'
