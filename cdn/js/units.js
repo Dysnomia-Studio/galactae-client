@@ -548,7 +548,7 @@ class units {
 
 	static drawShipShape(shape,content,unitsParts=[]) {
 		var svgContent = "";
-		var htmlContent = "";
+		$('#fleet-type-create-selects').html("");
 
 		for(var i=0; i<shape.length; i++) {
 			// Draw shape
@@ -583,27 +583,64 @@ class units {
 
 			// Draw HTML
 			if(shape[i][0]!="struct") {
-				htmlContent += '<select class="part-selecting" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="';
-				htmlContent += 'left: ' + shape[i][2] + 'px;';
-				htmlContent += 'top: ' + shape[i][3] + 'px;';
-				htmlContent += 'width: ' + shape[i][4] + 'px;';
-				htmlContent += 'height: ' + shape[i][5] + 'px;';
-				htmlContent += '">';
-
+				/* Hidden Select */
+				var hiddenSelect = '<select id="part-selecting-hidden-' + i + '" class="part-selecting" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
 				for(var j=0; j<content[shape[i][0]].length; j++) { //@ADD: Entete
 					if(content[shape[i][0]][j] != "none" && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
-						htmlContent += '<option value="' + content[shape[i][0]][j] + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top; width: ' + shape[i][4] + 'px; height: ' + shape[i][5] + 'px;" selected></option>';
+						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top; width: ' + shape[i][4] + 'px; height: ' + shape[i][5] + 'px;" selected></option>';
 					} else {
-						htmlContent += '<option value="' + content[shape[i][0]][j] + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top; width: ' + shape[i][4] + 'px; height: ' + shape[i][5] + 'px;"></option>';
+						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + content[shape[i][0]][j] + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top; width: ' + shape[i][4] + 'px; height: ' + shape[i][5] + 'px;"></option>';
 					}
 				}
+				hiddenSelect += '</select>';
+				$('#fleet-type-create-selects').append(hiddenSelect);
 
-				htmlContent += '</select>';
+				/* Seen Select */
+				let id = i;
+	            var source = $("#part-selecting-hidden-" + id);
+	            var selected = source.find("option[selected]");
+	            var options = $("option", source);
+	            
+	            $("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="dropdown" style="'
+	            	+ 'left: ' + shape[id][2] + 'px;'
+	            	+ 'top: ' + shape[id][3] + 'px;'
+	            	+ 'width: ' + shape[id][4] + 'px;'
+	            	+ 'height: ' + shape[id][5] + 'px;'
+	            	+ '"></dl>');
+
+	            $("#part-selecting-seen-" + id).append('<dt><a href="#">' + selected.text() + 
+	                '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top;display: block;'
+	                	+ 'width: ' + shape[id][4] + 'px;'
+	            		+ 'height: ' + shape[id][5] + 'px;'
+	                    + '"></span></a></dt>');
+	            $("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
+
+	            options.each(function(){
+	                $("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#">' + 
+	                    $(this).text() + '<span class="value">' + 
+	                    $(this).val() + '</span></a></li>');
+	            });
+
+	           $("#part-selecting-seen-" + id + " dt a").click(function() {
+	                $("#part-selecting-seen-" + id + " dd ul").toggle();
+	            });
+	            $(document).bind('click', function(e) {
+	                var $clicked = $(e.target);
+	                if(! $clicked.parents().hasClass("dropdown"))
+	                    $("#part-selecting-seen-" + id + " dd ul").hide();
+	            });    
+	            $("#part-selecting-seen-" + id + " dd ul li a").click(function() {
+	                var text = $(this).html();
+	                $("#part-selecting-seen-" + id + " dt a").html(text);
+	                $("#part-selecting-seen-" + id + " dd ul").hide();
+	                
+	                var source = $("#part-selecting-hidden-" + id);
+	                source.val($(this).find("span.value").html())
+	            });
 			}
 		}
 		$('#fleet-type-create-schematic').html(svgContent);
-		$('#fleet-type-create-selects').html(htmlContent);
 
 		// Events
 		$('.part-selecting').on("change",function() { 
