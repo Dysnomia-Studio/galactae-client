@@ -611,16 +611,16 @@ class units {
 
 	            $("#part-selecting-seen-" + id).append('<dt><a href="#">' + selected.text() + 
 	                '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top;display: block;'
-	                	+ 'width: ' + shape[id][4] + 'px;'
-	            		+ 'height: ' + shape[id][5] + 'px;'
+	                	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
+	            		+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
 	                    + '"></span></a></dt>');
 	            $("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
 
 	            options.each(function(){
 	                $("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#">' + 
 	                    '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top;display: block;'
-	                	+ 'width: ' + shape[id][4] + 'px;'
-	            		+ 'height: ' + shape[id][5] + 'px;'
+	                	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
+	            		+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
 	                    + '"></span></a></dt></a></li>');
 	            });
 
