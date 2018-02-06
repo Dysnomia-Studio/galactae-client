@@ -613,7 +613,7 @@ class units {
 	            	+ '"></dl>');
 
 	            $("#part-selecting-seen-" + id).append('<dt><a href="#">'
-	                    + '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top;display: block;'
+	                    + '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
 	                	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
 	            		+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
 	                    + '"></span></a></dt>');
@@ -621,7 +621,7 @@ class units {
 
 	            options.each(function(){
 	                $("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#">' + 
-	                    '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id')  + '.png\'); background-size: 100%;background-repeat: no-repeat;background-position: left top;display: block;'
+	                    '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id')  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
 	                	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
 	            		+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
 	                    + '"></span></a></dt></a></li>');

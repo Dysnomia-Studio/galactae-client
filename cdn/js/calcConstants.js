@@ -206,8 +206,9 @@ var researchPos = {
 	prop_main:			[4313,3933],
 	prop_vSolaire:		[3600,4250],
 	prop_ions:			[5922,4114],
-	prop_vsl:			[6918,4196],
-	prop_hyperespace:	[7800,4150],
+	prop_plasma:		[6918,4196],
+	prop_vsl:			[7800,4150],
+	prop_hyperespace:	[8700,4100],
 	prop_manoeuvre:		[4813,3433],
 	prop_advManoeuvre:	[5000,3000],
 	// Construction et production
@@ -262,6 +263,7 @@ var researchList = {
 	prop_main: 			{ cost: 380, parents: ["thermodynamique","misc_mecStellaire"] },
 	prop_vSolaire: 		{ cost: 2300, parents: ["prop_main","misc_phySolaire"] },
 	prop_ions: 			{ cost: 2000, parents: ["prop_main","misc_phyQuantique"] },
+	prop_plasma:		{ cost: 2500, parents: ["prop_ions","misc_phyQuantique"] },
 	prop_vsl: 			{ cost: 15000, parents: ["prop_ions","misc_advTelemetrie"] },
 	prop_hyperespace: 	{ cost: 35000, parents: ["prop_vsl"] },
 	prop_manoeuvre: 	{ cost: 450, parents: ["prop_main"] },
@@ -365,6 +367,7 @@ var shipResearchDependencies = {
 	hyperespace: "prop_hyperespace",
 
 	ion: "prop_ions",
+	pplasma: "prop_plasma"
 	vsolaire: "prop_vSolaire",
 };
 var unitTypes = [
@@ -427,7 +430,7 @@ var shipShapesDetails = {
 			content: {
 				cannon: ["railgun","laser","plasma"],
 				rocketLauncher: ["explosive","nuke","antimater"],
-				sub_propulsion: ["ion"],
+				sub_propulsion: ["ion","pplasma"],
 				sup_propulsion: ["vsl","hyperespace"],
 				shield: ["none","magnetic","turret"],
 			},
@@ -453,7 +456,7 @@ var shipShapesDetails = {
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
-				sub_propulsion: ["ion"],
+				sub_propulsion: ["ion","pplasma"],
 				sup_propulsion: ["vsl","hyperespace"],
 				shield: ["none","magnetic","turret","singularity","projector"],
 			},
@@ -475,7 +478,7 @@ var shipShapesDetails = {
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
-				sub_propulsion: ["ion","vsolaire"],
+				sub_propulsion: ["vsolaire","ion"],
 			},
 			stats: {
 				mass: 0,
@@ -494,7 +497,7 @@ var shipShapesDetails = {
 			],
 			content: {
 				cannon: ["railgun","laser","plasma"],
-				sub_propulsion: ["ion","vsolaire"],
+				sub_propulsion: ["vsolaire","ion"],
 			},
 			stats: {
 				mass: 0,
@@ -520,7 +523,7 @@ var shipShapesDetails = {
 			content: {
 				cloak: ["none"],
 				scanner: ["none"],
-				sub_propulsion: ["ion","vsolaire"],
+				sub_propulsion: ["vsolaire","ion","pplasma"],
 				sup_propulsion: ["vsl","hyperespace"],
 			},
 			stats: {
@@ -549,7 +552,7 @@ var shipShapesDetails = {
 			],
 			content: {
 				hangar: ["none"],
-				sub_propulsion: ["ion"],
+				sub_propulsion: ["ion","pplasma"],
 				sup_propulsion: ["vsl","hyperespace"],
 				shield: ["none","magnetic","turret","projector"],
 			},
@@ -602,6 +605,7 @@ var shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	plasma: 		[ 10, 15,  7,  8,0.15,0],
 	// Propulsions subluminiques
 	ion: 			[ 80, 60, 40,  5,0.25,0],
+	plasma: 		[130, 90, 60, 10,0.40,0],
 	vsolaire: 		[120, 45, 35, 15,0.35,0],
 	// Propulsions supraluminiques
 	vsl: 			[ 65,120, 60, 20,0.55,  80],
