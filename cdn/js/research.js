@@ -177,7 +177,7 @@ class research {
 			content += '<h2>' + translate['research'][key].name + '</h2>';
 			content += '<span class="research-desc">' + translate['research'][key].desc + '</span>';
 			if(!research.isSearched(key)) {
-				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.png" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
+				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
 				if(planetData.currResearch!=key) {
 					content += '<a class="research-search" id="'+key+'" src="#research">Rechercher</a>'; // @ADD: Logo
 				} else {
@@ -189,7 +189,7 @@ class research {
 		} else {
 			content += '<h2>???</h2>';
 			content += '<span class="research-desc">' + research.getMissingParents(key) + '</span>';
-			content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.png" alt="research">?/?</span>';
+			content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">?/?</span>';
 		}
 
 		$('#hud-research-content').append(content);
@@ -323,6 +323,6 @@ class research {
  			research.sync();
  		}
  		
- 		$("#"+planetData.currResearch+"-node .research-cost").html("<img height=\"20\" src=\""+cdnURL+"img/ui/research.png\" alt=\"research\">" + Math.floor(userData.research[planetData.currResearch]) +"/"+researchList[planetData.currResearch].cost);
+ 		$("#"+planetData.currResearch+"-node .research-cost").html("<img height=\"20\" src=\""+cdnURL+"img/ui/research.svg\" alt=\"research\">" + Math.floor(userData.research[planetData.currResearch]) +"/"+researchList[planetData.currResearch].cost);
  	}
 }
