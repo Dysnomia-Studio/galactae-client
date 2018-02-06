@@ -54,11 +54,15 @@ a, body {
 .dropdown span.value { display: none; }
 .dropdown dd ul li a { 
 	border: 1px solid #0EC6C6; 
+	border-bottom: 1px solid transparent;
 	padding: 5px;
 	display: block; 
 	background-color: #0b1012;
 	z-index: 100000;
     position: relative;
+}
+.dropdown dd ul li a:last-child {
+	border-bottom: 1px solid #0EC6C6;
 }
 .dropdown dd ul li a:hover { background-color: #131b1f; }
 
