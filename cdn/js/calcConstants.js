@@ -367,7 +367,7 @@ var shipResearchDependencies = {
 	hyperespace: "prop_hyperespace",
 
 	ion: "prop_ions",
-	pplasma: "prop_plasma"
+	pplasma: "prop_plasma",
 	vsolaire: "prop_vSolaire",
 };
 var unitTypes = [
