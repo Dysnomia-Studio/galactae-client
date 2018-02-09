@@ -76,8 +76,8 @@ class map {
 		$("#hud-map-global").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				var pos = $("#hud-map-global").position();
-				map.moveUI([pos.left + (e.pageX - mapPrevMouse[0]),
-								pos.top + (e.pageY - mapPrevMouse[1])], true);
+				map.moveUI([(e.pageX - mapPrevMouse[0]),
+								(e.pageY - mapPrevMouse[1])], true);
 			}
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
@@ -114,7 +114,7 @@ class map {
 	 */
 	static moveUI(pos, diff=false) {
 		if(diff) {
-			oldPos = $("#hud-map-global").position();
+			var oldPos = $("#hud-map-global").position();
 			oldPos = [oldPos.left, oldPos.top];
 
 			pos[0] += oldPos[0];
