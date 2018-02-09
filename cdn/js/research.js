@@ -119,7 +119,7 @@ class research {
 			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom");
 		}
 
-		$("#hud-map-global").css({
+		$("#hud-research").css({
 			left: pos[0],
 			top: pos[1]
 		});
