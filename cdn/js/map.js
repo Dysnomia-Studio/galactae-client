@@ -134,23 +134,9 @@ class map {
 			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom");
 		}
 
-		if(diff) {
-			$("#hud-map-global").clone()
-	            .css({
-	                position: 'fixed',
-	                zIndex: 0,
-	                top: oldPos[0],
-	                left: oldPos[1],
-					transform: "translate(" + (parseInt(pos[0]) - parseInt(oldPos[0])) + "px," + (parseInt(pos[1]) - parseInt(oldPos[1])) + "px)",
-            		transition: "0s"
-	            }).attr("id","hud-map-global-clone").appendTo( $('#hud-map'));
-		}
-
 		$("#hud-map-global").css({
 			left: pos[0],
 			top: pos[1]
-		}).promise().done(function() {
-			$("#hud-map-global-clone").remove();
 		});
 
 		// Set current address 

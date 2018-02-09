@@ -109,18 +109,23 @@ class research {
 		$("#hud-research").css("left",pos[0]);
 		$("#hud-research").css("top",pos[1]);
 
-		if(parseInt($("#hud-research").css("left")) > 0) {
-			$("#hud-research").css("left", 0);
+		if(parseInt(pos[0]) > 0) {
+			pos[0] = 0;
 		}
-		if(parseInt($("#hud-research").css("top")) > 0) {
-			$("#hud-research").css("top", 0);
+		if(parseInt(pos[1]) > 0) {
+			pos[1] = 0;
 		}
-		if(parseInt($("#hud-research").css("left")) < $(document).width()-RESEARCH_DIV_SIZE) {
-			$("#hud-research").css("left", $(document).width()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"));
+		if(parseInt(pos[0]) < ($(document).width()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"))) {
+			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom");
 		}
-		if(parseInt($("#hud-research").css("top")) < $(document).height()-RESEARCH_DIV_SIZE) {
-			$("#hud-research").css("top", $(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"));
+		if(parseInt(pos[1]) < ($(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"))) {
+			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom");
 		}
+
+		$("#hud-map-global").css({
+			left: pos[0],
+			top: pos[1]
+		});
 	}
 	/**
 	 * Draws research UI
