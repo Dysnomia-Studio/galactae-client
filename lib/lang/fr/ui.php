@@ -33,7 +33,7 @@
 
 	//== OTHER ==\\
 	define('GAME_LOADING','Chargement du jeu ...');
-	define('PORTRAIT_ERROR','Il est necessaire d\'avoir un ecran en orientation paysage pour pouvoir jouer');
+	define('PORTRAIT_ERROR','Il est nécessaire d\'avoir un écran en orientation paysage pour pouvoir jouer.');
 	define('CREATED_BY','Crée par');
 	define('SOON_AVAILABLE','Bientot Disponible ...');
 	define('OLDER_NEWS','Plus ancien');

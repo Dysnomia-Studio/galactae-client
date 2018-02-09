@@ -77,7 +77,7 @@ class map {
 			if(ui.mouseStatus[1]==1) {
 				var pos = $("#hud-map-global").position();
 				map.moveUI([pos.left + (e.pageX - mapPrevMouse[0]),
-								pos.top + (e.pageY - mapPrevMouse[1])]);
+								pos.top + (e.pageY - mapPrevMouse[1])], true);
 			}
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
@@ -112,22 +112,46 @@ class map {
 	 *
 	 * @param	  {2D vector}  pos	 The position
 	 */
-	static moveUI(pos) {
-		$("#hud-map-global").css("left",pos[0]);
-		$("#hud-map-global").css("top",pos[1]);
+	static moveUI(pos, diff=false) {
+		if(diff) {
+			oldPos = $("#hud-map-global").position();
+			oldPos = [oldPos.left, oldPos.top];
 
-		if(parseInt($("#hud-map-global").css("left")) > 0) {
-			$("#hud-map-global").css("left", 0);
+			pos[0] += oldPos[0];
+			pos[1] += oldPos[1];
 		}
-		if(parseInt($("#hud-map-global").css("top")) > 0) {
-			$("#hud-map-global").css("top", 0);
+
+		if(parseInt(pos[0]) > 0) {
+			pos[0] = 0;
 		}
-		if(parseInt($("#hud-map-global").css("left")) < $(document).width()-MAP_SIZE_WIDTH) {
-			$("#hud-map-global").css("left", $(document).width()-MAP_SIZE_WIDTH*$("#hud-map-global").css("zoom"));
+		if(parseInt(pos[1]) > 0) {
+			pos[1] = 0;
 		}
-		if(parseInt($("#hud-map-global").css("top")) < $(document).height()-MAP_SIZE_HEIGHT) {
-			$("#hud-map-global").css("top", $(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom"));
+		if(parseInt(pos[0]) < ($(document).width()-MAP_SIZE_WIDTH*$("#hud-map-global").css("zoom"))) {
+			pos[0] = $(document).width()-MAP_SIZE_WIDTH*$("#hud-map-global").css("zoom");
 		}
+		if(parseInt(pos[1]) < ($(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom"))) {
+			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom");
+		}
+
+		if(diff) {
+			$("#hud-map-global").clone()
+	            .css({
+	                position: 'fixed',
+	                zIndex: 0,
+	                top: oldPos[0],
+	                left: oldPos[1],
+					transform: "translate(" + (parseInt(pos[0]) - parseInt(oldPos[0])) + "px," + (parseInt(pos[1]) - parseInt(oldPos[1])) + "px)",
+            		transition: "0s"
+	            }).attr("id","hud-map-global-clone").appendTo( $('#hud-map'));
+		}
+
+		$("#hud-map-global").css({
+			left: pos[0],
+			top: pos[1]
+		}).promise().done(function() {
+			$("#hud-map-global-clone").remove();
+		});
 
 		// Set current address 
 		map.currentAddress = Math.floor(((-pos[0])/MAP_SIZE_WIDTH)*10) + "-" + Math.floor(((-pos[1])/MAP_SIZE_HEIGHT)*10) + "-?-?";
