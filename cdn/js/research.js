@@ -106,9 +106,6 @@ class research {
 	 * Move the UI
 	 */
 	static moveUI(pos) {
-		$("#hud-research").css("left",pos[0]);
-		$("#hud-research").css("top",pos[1]);
-
 		if(parseInt(pos[0]) > 0) {
 			pos[0] = 0;
 		}

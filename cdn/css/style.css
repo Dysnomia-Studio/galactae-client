@@ -622,6 +622,8 @@ select, input {
 	color: #93fcfc;
 
 	z-index: 1000;
+
+	user-select: none;
 }
 
 #hud-bottom img {
