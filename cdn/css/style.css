@@ -878,6 +878,9 @@ select, input, summary {
 #fleet-orbit, #fleet-move, #fleet-out, #fleet-type-create, #fleet-ship-build { /* Tabs hidden by default */
 	display: none;
 }
+#fleet-orbit, #fleet-move, #fleet-out {
+	height: calc(100% - 4em);
+}
 .ul-choice-line-li-active {
 	background-color: #0EC6C6 !important;
 	color:#222222 !important;
@@ -1327,6 +1330,9 @@ select, input, summary {
 }
 .fleet-show-count {
 	float: right;
+}
+.fleet-show-global {
+	margin-right: 1em;
 }
 /**
  * Research
@@ -1964,7 +1970,6 @@ dl.infos dt {
 	height: 100%;
 }
 
-
 @media (min-height: 531px) {
 	/**
 	 * Width: 5em
@@ -1973,7 +1978,6 @@ dl.infos dt {
 	 * Decalage lvl haut: 4em;
 	 * Decalage lvl gauche : 1.5em;
 	 */
-
 
 	.building-list-building {
 		transform: rotate(-45deg);

@@ -50,6 +50,8 @@ class ui {
 		ui.chat = ($('#hud-chat').css('display')=="block");
 		ui.ranks = false;
 		ui.news = false;
+		ui.bonusStreak = 0;
+		ui.bonusStreakBest = 0;
 
 		ui.mouseStatus = [0,0,0,0];
 
@@ -113,6 +115,11 @@ class ui {
 		$("#day-bonus-later").click(function() {
 			ui.closeTab("#day-bonus");
 		});
+
+		var dateNow = new Date();
+		setTimeout(function() {
+			ui.dailyBonus(ui.bonusStreak+1, ui.bonusStreakBest+1);
+		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
 
 		// Sécurité
 		//Block Inspect Element when 
@@ -434,7 +441,10 @@ class ui {
 		});
 	}
 	/********** DAILY BONUS **********/
-	static dailyBonus(streak,best) {	
+	static dailyBonus(streak,best) {
+		ui.bonusStreak = streak;
+		ui.bonusStreak = best;
+
 		$('#day-bonus-current').html(streak);
 		$('#day-bonus-best').html(best);
 

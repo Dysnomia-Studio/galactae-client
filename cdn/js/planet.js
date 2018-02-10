@@ -629,7 +629,7 @@ class planet {
 
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
-			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
+			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
 		} else if(planet.enoughResources>0) { // No enought Ressources
 			var dateEnd = new Date(Date.now() + planet.enoughResources*3600*1000);
 			var dateTom = new Date(Date.now() + (24*60*60*1000));
@@ -644,7 +644,7 @@ class planet {
 
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
-			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
+			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
 		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
 			$('#building-message').html(translate["messages"]["ANOTHER_IN_BUILD"]);
 			planet.buildPanelInterval = setTimeout(function() {
