@@ -17,6 +17,7 @@
 	define('FLEET_BUILD_TYPE','Type');
 	define('FLEET_BUILD_SHAPE','Modele');
 	define('FLEET_BUILD_NOTE','Evaluation');
+	define('FLEET_BUILD_COUNT','Nombre');
 	define('FLEET_BUILD_CREATE','Nouveau plan');
 	define('FLEET_TOTAL_COST','Coût Total');
 	define('FLEET_CREATE','Creer');

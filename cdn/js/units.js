@@ -806,12 +806,12 @@ class units {
 				}
 				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
 				var content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary>'
-					+ '<table><thead>' + $('#fleet-build-list thead').html() + '</thead><tbody>';
+					+ '<table class="unit-list-table">' + fleetListHeader + '<tbody>';
 
 				var active = true;
-				for(var allUnitsId=0; allUnitsId<units.list.length; i++) {
+				for(var allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
 					var count = -1;
-					for(var fleetUnitId=0; fleetUnitId<orbit[i].units.length; i++) {
+					for(var fleetUnitId=0; fleetUnitId<orbit[i].units.length; fleetUnitId++) {
 						if(orbit[i].units[fleetUnitId][0] == units.list[allUnitsId]._id) {
 							count = orbit[i].units[fleetUnitId][1];
 							break;
@@ -826,7 +826,7 @@ class units {
 						content+= "<tr id=\""+ i +"\">";
 					}
 
-					content += "<td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + units.list[allUnitsId].note + "</td></tr>";
+					content += "<td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + count + "</td></tr>";
 				}
 
 				content += '</tbody></table></details>';

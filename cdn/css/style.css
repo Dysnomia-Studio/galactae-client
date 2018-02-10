@@ -1166,40 +1166,40 @@ select, input {
 	height: 100%;
 	border-spacing: 0;
 }
-#fleet-build-list {
+.unit-list-table {
 	white-space: nowrap;
 }
-#fleet-build-list thead, #fleet-build-list tbody, #fleet-build-list tr, 
-#fleet-build-list th, #fleet-build-list td { 
+.unit-list-table thead, .unit-list-table tbody, .unit-list-table tr, 
+.unit-list-table th, .unit-list-table td { 
 	display: block; 
 }
-#fleet-build-list thead tr th {
+.unit-list-table thead tr th {
 	cursor: pointer;
 }
-#fleet-build-list thead tr {
+.unit-list-table thead tr {
 	height: 1.5em;
 	width: 97%; /* Fallback */
 	width: calc(100% - 16px);
 }
-#fleet-build-list tr:after {  /* clearing float */
+.unit-list-table tr:after {  /* clearing float */
     content: ' ';
     display: block;
     visibility: hidden;
     clear: both;
 }
-#fleet-build-list tbody {
+.unit-list-table tbody {
 	padding-right: 20px;
 	width: calc(100% - 20px);
 	height: calc(100% - 1.5em);
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
-#fleet-build-list td, #fleet-build-list th {
+.unit-list-table td, .unit-list-table th {
 	text-align: center;
 	width: 24.5%;
 	float: left;
 }
-#fleet-build-list tbody tr {
+.unit-list-table tbody tr {
 	border: 1px solid transparent;
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
@@ -1313,6 +1313,12 @@ select, input {
 }
 .fleet-show-count {
 	float: right;
+}
+.fleet-show-global .unit-list-table {
+	width: 100%;
+	margin-right: 10px;
+	height: 100%;
+	border-spacing: 0;
 }
 /**
  * Research
