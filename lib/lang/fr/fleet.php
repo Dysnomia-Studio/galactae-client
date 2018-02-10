@@ -15,9 +15,9 @@
 	//== Details ==\\
 	define('FLEET_BUILD_NAME','Nom');
 	define('FLEET_BUILD_TYPE','Type');
+	define('FLEET_BUILD_SHAPE','Modele');
 	define('FLEET_BUILD_NOTE','Evaluation');
-	define('FLEET_BUILD_N_OWN','Nombre possédés');
-	define('FLEET_BUILD_CREATE','Nouveau modele');
+	define('FLEET_BUILD_CREATE','Nouveau plan');
 	define('FLEET_TOTAL_COST','Coût Total');
 	define('FLEET_CREATE','Creer');
 	define('SHIP_NAME','Nom');
@@ -45,7 +45,7 @@
 		"SHIP_SHAPE": "Modèle",
 
 		// Types & Shapes
-		"SHIP_DEF": "Défenses",
+		"SHIP_DEF": "Défense",
 		"SHIP_SAT_AG1": "Satellite AG-I",
 		"SHIP_SAT_AG2": "Satellite AG-II",
 		"SHIP_SAT_AG3": "Satellite AG-III",
@@ -71,5 +71,11 @@
 		"fleet-build-openPanel": "Construire l'unité",
 		"fleet-build-type-copy": "Copier ce modele",
 		"fleet-build-type-delete": "Supprimer le modele",
+
+		"no-orbit-unit": "Aucune unité en orbite",
+		"no-move-unit": "Aucune flotte ne se déplace",
+		"no-out-unit": "Aucune unité en orbite d'une autre planète",
+
+		"unit": "unité(s)",
 	};
 </script>

@@ -1,3 +1,6 @@
+<?php
+	define('DEFAULT_LOAD','Connexion au serveur ...');
+?>
 <script type="text/javascript">
 var translate = translate || {};
 
@@ -6,6 +9,7 @@ translate["messages"] = {
 	"BUILD_OK": "Le bâtiment commence son amélioration !",
 	"BUILD_ERROR": "Erreur lors de la tentative d'amélioration",
 	"BUILDING_ERROR_ALREADY": "Un bâtiment est déjà en construction",
+	"UNIT_ERROR_ALREADY": "Une unité est déjà en construction",
 	"BUILDING_ERROR_MAXIMUM": "Niveau maximum déjà atteint",
 	"BUILDING_ERROR_COST": "Pas assez de ressources disponibles",
 	"BUILDING_ERROR_ENERGY": "Production energetique insuffisante",
@@ -23,6 +27,11 @@ translate["messages"] = {
 	"BUILD_FINISH_THE": "Fin de la construction le",
 	"BUILD_FINISH_AT": "à",
 	"ANOTHER_IN_BUILD": "Un autre bâtiment est déjà en construction",
+	// Unit Notifs
+	"ENDED_UNIT_TITLE": "Unités Terminées !",
+	"ENDED_UNIT_01": "Vos ",
+	"ENDED_UNIT_02": " unités de modele ",
+	"ENDED_UNIT_03": " sont maintenant terminés.",
 	// Building Notifs
 	"ENDED_BUILDING_TITLE": "Bâtiment Terminé !",
 	"ENDED_BUILDING_01": "Votre ",
@@ -37,24 +46,42 @@ translate["messages"] = {
 	"RESTARTING_SERVER": "Redemarrage des serveurs de jeu ...",
 	"DOUBLE_ACCOUNTS_CONNECTED": "Vous êtes connecté plusieurs fois sur le jeu en même temps.",
 	"SYSTEM_MESSAGE": "Message Systeme:",
+	// Chat Mute
+	"CHAT_MUTED": "Vous ne pouvez plus parler pendant",
+	"CHAT_UNMUTED": "Vous pouvez de nouveau parler.",
+	"CHAT_MUTED_REASON": "pour la raison",
 	// Research
 	"MISSING_PARENTS": "Recherches parentes manquantes",
 	"ENDED_RESEARCH": "Recherche Terminée",
 	"NEEDED_RESEARCH_MISSING": "Il vous reste des technologies a decouvrir afin de creer ce vaisseau.",
 	// Fleets & Units
+	"BUILDING_UNIT_OK": "La flotte commence son expansion",
 	"SHIP_HAS_INVALID_PARTS": "Votre vaisseau a des composants invalides",
 	"SHIP_HAS_WRONG_TYPE_OR_SHAPE": "Votre vaisseau est du mauvais type ou de la mauvaise forme",
 	"SHIP_HAS_EMPTY_FIELD": "Il manque certains composants dans votre vaisseau",
 	"SHIP_HAS_NO_NAME": "Votre vaisseau n'a pas de nom",
-	"SHIP_NAME_ALREADY_EXISTS": "Un modele de vaisseau avec ce nom est déjà enregistré dans votre liste",
-	"SHIP_TYPE_ALREADY_EXISTS": "Ce modele de vaisseau est déjà enregistré dans votre liste",
-	"MODEL_DELETE_USED_BY_UNITS": "Ce modele est déjà utilisé par une ou plusieurs unités, vous devez les améliorer ou les détruire pour supprimer ce modèle",
-	"MODEL_DELETED": "Modèle de vaisseau supprimé !",
+	"SHIP_NAME_ALREADY_EXISTS": "Un plan de vaisseau avec ce nom est déjà enregistré dans votre liste",
+	"SHIP_TYPE_ALREADY_EXISTS": "Vous avez déjà un plan comportant ce modèle avec ces modules enregistré dans votre liste",
+	"MODEL_DELETE_USED_BY_UNITS": "Ce plan est déjà utilisé par une ou plusieurs unités, vous devez les améliorer ou les détruire afin de pouvoir le supprimer",
+	"MODEL_DELETED": "Plan de vaisseau supprimé !",
 	"FLEET_MAX_REACHED": "Nombre de flottes maximales atteintes",
 	"FLEET_NAME_ALREADY_EXISTS": "Une autre flotte avec ce nom appartient déjà à cette planète",
+	"BUILDING_ERROR_INVALID_FLEET": "Erreur: la flotte où construire ces unités n'existe pas",
+	"BUILDING_ERROR_FLEET_SIZE": "Erreur: capacité maximale d'unités de la flotte depassée",
 	// Errors message
 	"PLY_NOT_FOUND": "Erreur: joueur introuvable",
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",
 	"NO_LINKS": "Erreur: vous ne pouvez pas envoyer de lien sur le chat",
+};
+
+translate['load'] = {
+	"fleet": "Chargement des flottes",
+	"pictures": "Chargement des images",
+	"maps": "Chargement des cartes",
+	"planet": "Chargement des données de la planete",
+	"player": "Chargement des données du joueurs",
+	"server": "Connexion au serveur ...",
+	"settings": "Chargement des paramètres",
+	"units": "Chargement des données unités",
 };
 </script>

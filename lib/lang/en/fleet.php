@@ -15,9 +15,9 @@
 	//== Details ==\\
 	define('FLEET_BUILD_NAME','Name');
 	define('FLEET_BUILD_TYPE','Type');
+	define('FLEET_BUILD_SHAPE','Model');
 	define('FLEET_BUILD_NOTE','Notation');
-	define('FLEET_BUILD_N_OWN','Number of owned');
-	define('FLEET_BUILD_CREATE','New model');
+	define('FLEET_BUILD_CREATE','New blueprint');
 	define('FLEET_TOTAL_COST','Total Cost');
 	define('FLEET_CREATE','Create');
 	define('SHIP_NAME','Name');
@@ -45,18 +45,18 @@
 		"SHIP_SHAPE": "Model",
 
 		// Types & Shapes
-		"SHIP_DEF": "Defences",
+		"SHIP_DEF": "Defence",
 		"SHIP_SAT_AG1": "AG-I Satellite",
 		"SHIP_SAT_AG2": "AG-II Satellite",
 		"SHIP_SAT_AG3": "AG-III Satellite",
 
-		"SHIP_BATTLECRUISER": "Battlecruisers",
+		"SHIP_BATTLECRUISER": "Battlecruiser",
 		"SHIP_BATTLECRUISER_SMALL": "Small",
 
-		"SHIP_CUIRASSE": "Battleships",
+		"SHIP_CUIRASSE": "Battleship",
 		"SHIP_CUIRASSE_SMALL": "Small",
 
-		"SHIP_FIGHTER": "Fighters",
+		"SHIP_FIGHTER": "Fighter",
 		"SHIP_FIGHTER_SMALL": "Light Interceptor",
 		"SHIP_FIGHTER_MEDIUM": "Heavy Interceptor",
 		"SHIP_FIGHTER_HUGE": "Bomber",
@@ -71,5 +71,11 @@
 		"fleet-build-openPanel": "Build this unit",
 		"fleet-build-type-copy": "Duplicate this model",
 		"fleet-build-type-delete": "Delete model",
+
+		"no-orbit-unit": "No unit is in orbit of this planet",
+		"no-move-unit": "No fleet is moving",
+		"no-out-unit": "No unit in orbit of another planet",
+
+		"unit": "unit(s)",
 	};
 </script>

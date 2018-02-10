@@ -33,11 +33,14 @@
 
 	//== OTHER ==\\
 	define('GAME_LOADING','Chargement du jeu ...');
-	define('PORTRAIT_ERROR','Il est necessaire d\'avoir un ecran en orientation paysage pour pouvoir jouer');
+	define('PORTRAIT_ERROR','Il est nécessaire d\'avoir un écran en orientation paysage pour pouvoir jouer.');
 	define('CREATED_BY','Crée par');
 	define('SOON_AVAILABLE','Bientot Disponible ...');
 	define('OLDER_NEWS','Plus ancien');
 	define('NEWER_NEWS','Plus recent');
 	define('AT_NEXT_LVL','au niveau suivant');
 	define('CONFIRM','Valider');
+	// A no-bug measure
+	define('META_DESC','');
+	define('META_KEYS',''); 
 ?>

@@ -16,10 +16,13 @@ $cache = 'cache/news-'.$news_needed.'.html';
 $expire = time() - 600; // 10 min
 
 /* Say to SQL server, we seen a newer news */
-$newsList = $sqlDB->updateQuery(
-	"UPDATE user_list SET lastViewedNews = :viewedNews  WHERE user_id = :user_id AND lastViewedNews < :viewedNews",
-	[ "user_id" => $userData['user_id'],
-	  "viewedNews" => $news_needed ]);
+$mongoDB->updateContent('galactae','users',
+	['_id' => $userData['_id']],
+	[ '$set' => [
+		 	'viewedNews' => $news_needed
+		]
+	]		
+);
 
 if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
@@ -55,26 +58,27 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	</style>
 
 	<?php
-	$limit = ($news_needed<10)?0:($news_needed - 10);
+	$newsList = $mongoDB->getCondContent('galactae','announces',
+		['onGame' => 1]
+	);
 	
-	$newsList = $sqlDB->selectQuery(
-		"SELECT * FROM announces WHERE onGame = 1 ORDER BY blog_id LIMIT :searched_id, 10",
-		[ "searched_id" => $limit ]);
-
-	$prev = -1;
 	$curr = [];
 	$next = -1;
+	$prev = -1;
+	$found = false;
+	foreach ($newsList as $key => $value) {
+		$value = (array) $value;
 
-	/* Search the needed elements */
-	foreach ($newsList as $key => $news) {
-		if($news['blog_id'] < $news_needed) {
-			$prev = $news['blog_id'];
-		} elseif ($news['blog_id'] == $news_needed) {
-			$curr = $news;
-		} else {
-			$next = $news['blog_id'];
-			break; // Stop it, we got all
+		if($found) { 
+			$next = $value['_id']; 
+			break; 
 		}
+
+		if($curr != []) { $prev = $curr['_id']; }
+		
+		$curr = $value;
+
+		if($curr["_id"] == $news_needed) { $found = true; }
 	}
 
 	if($curr == [] || !isset($curr['blog_title_'.$_SESSION['lang']])) {

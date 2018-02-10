@@ -11,6 +11,7 @@
 		prop_main:			{ name: "Propulsion", desc: "" },
 		prop_vSolaire:		{ name: "Solar sail", desc: "" },
 		prop_ions:			{ name: "Ion engines", desc: "" },
+		prop_plasma: 		{ name: "Plasma engines", desc: "" },
 		prop_vsl:			{ name: "Faster Than Light (FTL) speed", desc: "" },
 		prop_hyperespace:	{ name: "Hyperspace", desc: "" },
 		prop_manoeuvre:		{ name: "Bow thrusters", desc: "" },

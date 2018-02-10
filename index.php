@@ -5,20 +5,20 @@ include_once('gvars.php');
 <link rel="shortcut icon" type="image/png" href="<?php echo $cdnURL; ?>img/favicon.png"/>
 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
 <?php
-if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
+if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 	// No PHPSESSID
 	if(!(isset($_COOKIE['galactae-phpsessid']))) {
 		echo '<script> window.location="https://galactae.eu/login"; </script>';
 		die();
 	}
 
-	// SQL Get User Data
-	$sess_data = $sqlDB->getCondContent("user_session",[
-		["user_session_uid", $_COOKIE['galactae-phpsessid'], "str"]
-	],0,1,"user_id"); 
+	// Get User Data
+	$sess_data = $mongoDB->getCondContent('galactae','sessions',
+			['user_session_uid' => $_COOKIE['galactae-phpsessid']]
+	); 
 	
-	if($sess_data!=false && isset($sess_data[0])) {
-		$sess_data = $sess_data[0];
+	if(isset($sess_data[0])) {
+		$sess_data = (array) $sess_data[0];
 	}
 	
 	if(isset($sess_data['user_id']) && isset($sess_data['user_session_expiration']) && ((int) $sess_data['user_session_expiration'] > time())) {
@@ -27,30 +27,25 @@ if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
 			die();
 		}
 
-		if($lang->getLanguage() != $sess_data['user_session_lang']) {
-			$sqlDB->updateContent('user_session',
-				[
-				 	["user_session_expiration",time()+2678400,"int"],
-					["user_session_lang",$sess_data['user_session_lang'],"str"] 
-				],
-				[ ["user_session_uid",$_COOKIE['galactae-phpsessid'],"str"] ]
-			);
-		} else {
-			$sqlDB->updateContent('user_session',
-				[ ["user_session_expiration",time()+2678400,"int"] ],
-				[ ["user_session_uid",$_COOKIE['galactae-phpsessid'],"str"] ]);
-		}
+		$mongoDB->updateContent('galactae','sessions',
+			['user_session_uid' => $_COOKIE['galactae-phpsessid']],
+			[ '$set' => [
+				 	'user_session_expiration' => (time()+2678400),
+					'user_session_lang' => $lang->getLanguage()
+				]
+			]		
+		);
 	} else {
 	    echo '<script> window.location="https://galactae.eu/login"; </script>';
 		die();
 	}
 
-	$userData = $sqlDB->getCondContent("user_list",[
-		["user_id",$sess_data['user_id'],"int"],
-		],0,1,"user_id");
+	$userData = $mongoDB->getCondContent('galactae','users',
+		["_id" => $sess_data['user_id']]
+	);
 
-	if($userData!=false && isset($userData[0])) {
-		$userData = $userData[0];
+	if(isset($userData[0])) {
+		$userData = (array) $userData[0];
 	}
 
 	if(!isset($userData['user_name'])) { // Verif d'existance du compte SQL
@@ -59,22 +54,22 @@ if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
 	}
 
 	// SQL Get Server Data
-	$srv_data = $sqlDB->getCondContent("server_list",[
-		["server_name", $dbname, "str"]
-	],0,1,"server_name");
+	$srv_data = $mongoDB->getCondContent('galactae','servers',
+		["server_name" => $dbname]
+	);
 
-	if($srv_data!=false && isset($srv_data[0])) {
-		$srv_data = $srv_data[0];
+	if(isset($srv_data[0])) {
+		$srv_data = (array) $srv_data[0];
 	}
 
 	if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==1) {
-		$userPrivileges = $sqlDB->getCondContent("user_privileges",[
-			["user_id",$userData['user_id'],"int"],
-			["server_name",$dbname,"str"]
-		],0,1000,"server_name");
+		$userPrivileges = $mongoDB->getCondContent('galactae','privileges',[
+			"_id" => $userData['_id'],
+			"server_name" => $dbname
+		]);
 
-		if($userPrivileges!=false && isset($userPrivileges[0])) {
-			$userPrivileges = $userPrivileges[0];
+		if(isset($userPrivileges[0])) {
+			$userPrivileges = (array) $userPrivileges[0];
 		}
 
 		if(!isset($userPrivileges['user_whitelist']) || ((int) $userPrivileges['user_whitelist']!=1)) {
@@ -84,14 +79,14 @@ if(isset($sqlDB)) { //Maybe we don't have SQL connection ...
 		}
 	}
 
-	// SQL Get User game id Data
-	$data2 = $sqlDB->getCondContent("user_game_id",[
-		["user_id",$userData['user_id'],"int"],
-		["server_name",$dbname,"str"]
-		],0,1,"user_id");
+	// Get User game id Data
+	$data2 = $mongoDB->getCondContent('galactae','game_ids',[
+		"user_id" => (string) $userData['_id'],
+		"server_name" => $dbname
+	]);
 
-	if($data2!=false && isset($data2[0])) {
-		$data2 = $data2[0];
+	if(isset($data2[0])) {
+		$data2 = (array) $data2[0];
 	}
 
 	// Create account if needed

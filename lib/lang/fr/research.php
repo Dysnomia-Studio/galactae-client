@@ -11,6 +11,7 @@
 		prop_main:			{ name: "Propulsion", desc: "" },
 		prop_vSolaire:		{ name: "Voile solaire", desc: "" },
 		prop_ions:			{ name: "Moteurs a ions", desc: "" },
+		prop_plasma: 		{ name: "Moteurs à Plasma", desc: "" },
 		prop_vsl:			{ name: "Vitesse Supraluminique (VSL)", desc: "" },
 		prop_hyperespace:	{ name: "Hyperespace", desc: "" },
 		prop_manoeuvre:		{ name: "Propulseurs de manoeuvre", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (2% de chance d'evitement)" },
