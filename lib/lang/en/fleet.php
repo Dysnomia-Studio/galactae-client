@@ -17,6 +17,7 @@
 	define('FLEET_BUILD_TYPE','Type');
 	define('FLEET_BUILD_SHAPE','Model');
 	define('FLEET_BUILD_NOTE','Notation');
+	define('FLEET_BUILD_COUNT','Count');
 	define('FLEET_BUILD_CREATE','New blueprint');
 	define('FLEET_TOTAL_COST','Total Cost');
 	define('FLEET_CREATE','Create');

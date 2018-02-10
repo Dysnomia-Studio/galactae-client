@@ -1,3 +1,6 @@
+<script type="text/javascript">
+	"use strict";
+</script>
 <?php /* Loading Overlay */ ?>
 <div id="loading-overlay">
 	<div id="loading-overlay-back"></div>
@@ -397,7 +400,7 @@ if($userData['lastViewedNews'] < $max) {
 		</ul>
 		<div id="fleet-build-content">
 			<h2 id="fleet-build-list-empty"><?php echo FLEET_NO_MODEL; ?></h2>
-			<table id="fleet-build-list">
+			<table id="fleet-build-list" class="unit-list-table">
 				<thead>
 					<tr>
 						<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
@@ -492,6 +495,12 @@ if($userData['lastViewedNews'] < $max) {
 	<script type="text/javascript">
 		var unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
 		var unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
+		var fleetListHeader = '<thead><tr>'
+						+ '<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>'
+						+ '<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>'
+						+ '<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>'
+						+ '<th id="fleet-build-list-type-note"><?php echo FLEET_BUILD_COUNT; // Sa note estimée par le systeme		 ?></th>'
+						+ '<th style="color: transparent;">_</th></tr></thead>'; // On est obligé d'avoir du contenu sur chaque colonne pour que le design ne bug pas
 	</script>
 	
 	<select id="fleet-ship-build-fleetSelect" class="ui-large-button">
