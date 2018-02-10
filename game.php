@@ -500,7 +500,7 @@ if($userData['lastViewedNews'] < $max) {
 						+ '<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>'
 						+ '<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>'
 						+ '<th id="fleet-build-list-type-note"><?php echo FLEET_BUILD_COUNT; // Sa note estimée par le systeme		 ?></th>'
-						+ '</tr></thead>';
+						+ '<th></th></tr></thead>';
 	</script>
 	
 	<select id="fleet-ship-build-fleetSelect" class="ui-large-button">

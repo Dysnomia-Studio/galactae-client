@@ -808,7 +808,6 @@ class units {
 				var content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary>'
 					+ '<table class="unit-list-table">' + fleetListHeader + '<tbody>';
 
-				var active = true;
 				for(var allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
 					var count = -1;
 					for(var fleetUnitId=0; fleetUnitId<orbit[i].units.length; fleetUnitId++) {
@@ -819,14 +818,7 @@ class units {
 					}
 					if(count < 0) { continue; }
 
-					if(active) {
-						content+= "<tr id=\""+ i +"\" class=\"fleet-build-list-active\">";
-						active = false;
-					} else {
-						content+= "<tr id=\""+ i +"\">";
-					}
-
-					content += "<td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + count + "</td></tr>";
+					content+= "<tr id=\""+ i +"\"><td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + count + "</td><td></td></tr>";
 				}
 
 				content += '</tbody></table></details>';

@@ -1166,6 +1166,22 @@ select, input {
 	height: 100%;
 	border-spacing: 0;
 }
+#fleet-build-list tbody {
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+#fleet-build-list td, #fleet-build-list th {
+	width: 24.5%;
+}
+.fleet-show-global .unit-list-table {
+	width: 100%;
+	margin-right: 10px;
+	height: 100%;
+	border-spacing: 0;
+}
+.fleet-show-global .unit-list-table td, .fleet-show-global .unit-list-table th {
+	width: 19.5%;
+}
 .unit-list-table {
 	white-space: nowrap;
 }
@@ -1191,12 +1207,9 @@ select, input {
 	padding-right: 20px;
 	width: calc(100% - 20px);
 	height: calc(100% - 1.5em);
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 .unit-list-table td, .unit-list-table th {
 	text-align: center;
-	width: 24.5%;
 	float: left;
 }
 .unit-list-table tbody tr {
@@ -1313,12 +1326,6 @@ select, input {
 }
 .fleet-show-count {
 	float: right;
-}
-.fleet-show-global .unit-list-table {
-	width: 100%;
-	margin-right: 10px;
-	height: 100%;
-	border-spacing: 0;
 }
 /**
  * Research
