@@ -1,3 +1,6 @@
+<script type="text/javascript">
+	"use strict";
+</script>
 <?php /* Loading Overlay */ ?>
 <div id="loading-overlay">
 	<div id="loading-overlay-back"></div>
