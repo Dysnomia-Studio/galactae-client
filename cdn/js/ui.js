@@ -116,11 +116,6 @@ class ui {
 			ui.closeTab("#day-bonus");
 		});
 
-		var dateNow = new Date();
-		setTimeout(function() {
-			ui.dailyBonus(ui.bonusStreak+1, ui.bonusStreakBest+1);
-		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
-
 		// Sécurité
 		//Block Inspect Element when 
 		//right click
@@ -480,6 +475,11 @@ class ui {
 			$("#day-bonus-desc .day-bonus-active").removeClass("day-bonus-active"); //Retirer les classes actives
 			$(this).addClass("day-bonus-active"); // Activer l'onglet cliqué
 		});
+
+		var dateNow = new Date();
+		setTimeout(function() {
+			ui.dailyBonus(ui.bonusStreak+1, ui.bonusStreakBest+1);
+		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
 	}
 	static notify(txt,options={}) {
 		// Voyons si le navigateur supporte les notifications
