@@ -818,7 +818,7 @@ class units {
 					}
 					if(count < 0) { continue; }
 
-					content+= "<tr id=\""+ i +"\"><td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + count + "</td><td></td></tr>";
+					content+= "<tr id=\""+ units.list[allUnitsId]._id +"\"><td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + count + "</td><td></td></tr>";
 				}
 
 				content += '</tbody></table></details>';
