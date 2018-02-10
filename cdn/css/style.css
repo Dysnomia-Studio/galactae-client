@@ -67,7 +67,7 @@ a, body {
 .dropdown dd ul li a:hover { background-color: #131b1f; }
 
 /* Fix for opera */
-select, input {
+select, input, summary {
 	outline: none;
 }
 /**
@@ -1313,6 +1313,7 @@ select, input {
 }
 #hud-fleet summary {
 	font-size: 1.3em;
+	user-select: none;
 }
 #hud-fleet .html5_details > summary::before, #hud-fleet details > summary::before {
 	content:"+"; 
