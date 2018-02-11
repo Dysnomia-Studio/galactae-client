@@ -437,8 +437,9 @@ class ui {
 	}
 	/********** DAILY BONUS **********/
 	static dailyBonus(streak,best) {
-		ui.bonusStreak = streak;
-		ui.bonusStreakBest = best;
+		// "0 + ..." prevent using the same variable
+		ui.bonusStreak = 0 + streak; 
+		ui.bonusStreakBest = 0 + best;
 
 		$('#day-bonus-current').html(streak);
 		$('#day-bonus-best').html(best);

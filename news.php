@@ -19,7 +19,7 @@ $expire = time() - 600; // 10 min
 $mongoDB->updateContent('galactae','users',
 	['_id' => $userData['_id']],
 	[ '$set' => [
-		 	'viewedNews' => $news_needed
+		 	'lastViewedNews' => $news_needed
 		]
 	]		
 );
