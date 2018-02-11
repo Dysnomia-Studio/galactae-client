@@ -279,7 +279,7 @@ class map {
 					console.log('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
 				}
 			}
-		}
+		};
 
 		map.xmlhttp[sector].open("GET",cdnURL + "/maps/" + serverName + "/" + sector + ".xml", true);
 		map.xmlhttp[sector].send();
@@ -291,7 +291,6 @@ class map {
 	static openTab() {
 		$("#hud-map").css('display','block');
 		ui.closeTab("#hud-research",false); /* A no-bug fix */
-		$("#research-button").css('display','none');
 		ui.map = true;
 
 		// On cache le chat et memorise son statut pour plus tard	
@@ -304,11 +303,16 @@ class map {
 	 * Closes map tab.
 	 */
 	static closeTab() {
+		// Reset planet view
+		$('#planet-current').css('display','block');
+		$('#planet-other').css('display','none');
+		planetBack.init(planetData.planetType);
+
+		// Close tab
 		ui.closeTab("#hud-map");
-		$("#research-button").css('display','block');
 		ui.map = false;
 
-		// Re-affichage du chat si necessaire
+		// Draw chat if needed
 		if(!ui.chat) {
 			$("#hud-chat").css('display',(ui.mapChat)?"block":"none");
 			ui.chat = ui.mapChat;
@@ -322,6 +326,8 @@ class map {
 		/* Hide all maps */
 		$('#hud-map-global').css('display','none');
 		$('#hud-map-system').css('display','none');
+
+		$("#hud-map").css('display','block');
 
 		/* Empty HTML to avoid bugs */
 		if(map.currentMap!="system") {
@@ -532,6 +538,15 @@ class map {
 			// @ADD: Rings & Moons
 		}	
 
+		// View info
+		$('#hud-map-system .planet').click(function() {
+			socket.emit("planet-ask-mapData", { 
+				id: userData.id,
+				username: userData.username,
+				pAddress: $(this).parent().parent().attr('id')
+			});
+		});
+
 		// Back button
 		$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
 
@@ -628,5 +643,27 @@ class map {
 		map.resetMaps();
 		map.currentAddress = address;
 		$('#hud-map-global').css('display','block');
+	}
+
+	static openPlanetInfos(pData) {
+		if(typeof(address) != "string" || address.split("-").length != 4) {
+			console.log('INVALID ADRESS FORMAT !');
+			return;
+		}
+		map.currentMap = "planet";
+
+		// Set background
+		planetBack.init(pData.planetType);
+
+		// Set informations
+
+
+		// Toggle Maps
+		map.resetMaps();
+
+		$("#hud-map").css('display','none');
+
+		$('#planet-current').css('display','none');
+		$('#planet-other').css('display','block');
 	}
 }

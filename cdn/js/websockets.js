@@ -40,6 +40,9 @@ class webSockets {
 			}
 			loadScreen.complete("planet");
 		});
+		socket.on('planet-recieve-mapData',function(data) { 
+			map.openPlanetInfos(data);
+		});
 
 		//Sync the units data
 		socket.on('units-recieve-data',function(data) { 

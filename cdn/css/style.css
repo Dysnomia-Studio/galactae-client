@@ -35,8 +35,8 @@ a, body {
 }
 .dropdown dt a {
 	display: block;
-    border: 1px solid transparent; 
-    width: 50px;
+	border: 1px solid transparent; 
+	width: 50px;
 }
 .dropdown dt a span {
 	cursor: pointer; 
@@ -45,11 +45,11 @@ a, body {
 }
 .dropdown dd ul { 
 	display: none;
-    left: 0px;
-    position: absolute; 
-    top: 2px; 
-    width: 50px; 
-    list-style: none;
+	left: 0px;
+	position: absolute; 
+	top: 2px; 
+	width: 50px; 
+	list-style: none;
 }
 .dropdown span.value { display: none; }
 .dropdown dd ul li a { 
@@ -59,7 +59,7 @@ a, body {
 	display: block; 
 	background-color: #0b1012;
 	z-index: 100000;
-    position: relative;
+	position: relative;
 }
 .dropdown dd ul li a:last-child {
 	border-bottom: 1px solid #0EC6C6;
@@ -121,50 +121,50 @@ select, input, summary {
  * Scrollbar
  */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+	width: 4px;
+	height: 4px;
 }
 ::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
+	width: 0px;
+	height: 0px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0EC6C6;
-  border: 0px none #000000;
-  border-radius: 50px;
+	background: #0EC6C6;
+	border: 0px none #000000;
+	border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #19ffff;
+	background: #19ffff;
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #00ffff;
+	background: #00ffff;
 }
 ::-webkit-scrollbar-track {
-  background: #333333;
-  border: 0px none #000000;
-  border-radius: 50px;
+	background: #333333;
+	border: 0px none #000000;
+	border-radius: 50px;
 }
 ::-webkit-scrollbar-track:hover {
-  background: #444444;
+	background: #444444;
 }
 ::-webkit-scrollbar-track:active {
-  background: #666666;
+	background: #666666;
 }
 ::-webkit-scrollbar-corner {
-  background: transparent;
+	background: transparent;
 }
 /**
  * Choix de gouvernement 
  */
 #gvt-choicelist {
-    position: fixed;
-    top: 0;
-    left: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
 
-    width: 100vw;
-    height: 100vh;
+	width: 100vw;
+	height: 100vh;
 
-    background-color: #0b1012;
+	background-color: #0b1012;
 }
 .gvt-mainText {
 	width: 100%;
@@ -182,12 +182,12 @@ select, input, summary {
 	text-align: center;
 }
 .gvt-desc {
-    position: absolute;
-    bottom: calc(10px + 1.25em + 0.8em + 1.25em + 10px);
-    vertical-align: middle;
-    height: calc(100% - 7em - 2em); /* Total - bottom ( 2*3.5 ) - top */
-    overflow-x: auto;
-    font-size: 0.9em;
+	position: absolute;
+	bottom: calc(10px + 1.25em + 0.8em + 1.25em + 10px);
+	vertical-align: middle;
+	height: calc(100% - 7em - 2em); /* Total - bottom ( 2*3.5 ) - top */
+	overflow-x: auto;
+	font-size: 0.9em;
 }
 .gvt-desc p {
 	margin: 0;
@@ -433,8 +433,8 @@ select, input, summary {
 	list-style: none;
 
 	margin: 0;
-    padding: 0;
-    height: 95%;
+	padding: 0;
+	height: 95%;
 }
 #hud-top-center span, #hud-top-center img {
 	display: inline-block;
@@ -585,8 +585,8 @@ select, input, summary {
 	display: block;
 	position: relative;
 
-    top: 0;
-    right: 75%;
+	top: 0;
+	right: 75%;
 
 	width: 150px;
 	background-color: #222222;
@@ -683,7 +683,7 @@ select, input, summary {
 	display: block;
 	position: relative;
 
-    top: -1vw;
+	top: -1vw;
 
 	background-color: #222222;
 	text-align: center !important;
@@ -954,7 +954,7 @@ select, input, summary {
 @media (min-width: 630px) and (min-height: 430px) {
 	#fleet-ship-build {
 		left: calc(50vw - 16em); /* calc((100vw - (18em / 45 * 80))/2); */
-		top: calc(50vh - 9em); /*  calc((100vh - 18em)/2); */
+		top: calc(50vh - 9em); /* calc((100vh - 18em)/2); */
 		width: 32em; /* calc(18em / 45 * 80); */
 		height: 18em;
 		padding: 1em 1.78em; /* 1 / 45 * 80 ~ 1.777778 */
@@ -1015,7 +1015,7 @@ select, input, summary {
 	}
 }
 #fleet-ship-build-count::-webkit-inner-spin-button { /* Retirer les fleches */
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
 #fleet-ship-build-name {
 	position: absolute;
@@ -1084,7 +1084,7 @@ select, input, summary {
 
 	/* Disable arrow */
 	-webkit-appearance: none;
-    -moz-appearance: none;
+	-moz-appearance: none;
 }
 #fleet-type-create-schematic * {
 	fill: #0b1012; 
@@ -1136,8 +1136,8 @@ select, input, summary {
 }
 #hud-research-close, #hud-map-close {
 	position: fixed;
-    top: 4vw;
-    right: 1vh;
+	top: 4vw;
+	right: 1vh;
 
 	z-index: 10;
 }
@@ -1170,8 +1170,8 @@ select, input, summary {
 	border-spacing: 0;
 }
 #fleet-build-list tbody {
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
+	overflow-y: auto; /* Trigger vertical scroll */
+	overflow-x: hidden; /* Hide the horizontal scroll */
 }
 #fleet-build-list td, #fleet-build-list th {
 	width: 24.5%;
@@ -1200,11 +1200,11 @@ select, input, summary {
 	width: 97%; /* Fallback */
 	width: calc(100% - 16px);
 }
-.unit-list-table tr:after {  /* clearing float */
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
+.unit-list-table tr:after { /* clearing float */
+	content: ' ';
+	display: block;
+	visibility: hidden;
+	clear: both;
 }
 .unit-list-table tbody {
 	padding-right: 20px;
@@ -1220,14 +1220,14 @@ select, input, summary {
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
 .fleet-build-list-active {
-    border: 1px solid #0EC6C6 !important;
+	border: 1px solid #0EC6C6 !important;
 }
 #fleet-build-info {
 	width: 200px;
 	height: 100%;
 	padding-right: 0.3em;
 	overflow-y: auto;
-    overflow-x: hidden;
+	overflow-x: hidden;
 }
 #fleet-build-cost {
 	margin: 0.5em 0;
@@ -1252,7 +1252,7 @@ select, input, summary {
 	margin-left: 0.2em;
 }
 #fleet-build-create,#fleet-build-message, #fleet-build-count, #fleet-build-buttons {
-	width: calc(100% -  0.3em);
+	width: calc(100% - 0.3em);
 	display: block;
 	margin: 0.2em;
 }
@@ -1264,8 +1264,8 @@ select, input, summary {
 	font-size: 0.9em;
 	margin: 0.2em;
 	height: calc(100% - 2em - 3em - 3em - 0.4em); /* Total - Parent padding - Bouton du dessus - Count - Bouton du dessous - somme des padding */
-    overflow-y: auto;
-    overflow-x: hidden;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 #fleet-build-buttons img {
 	max-height: 1.8em;
@@ -1317,12 +1317,14 @@ select, input, summary {
 #hud-fleet summary {
 	font-size: 1.3em;
 	user-select: none;
+
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 #hud-fleet .html5_details > summary::before, #hud-fleet details > summary::before {
 	content:"+"; 
 }
 #hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary::before {
-	content:"-"
+	content:"-";
 }
 #hud-fleet summary::-webkit-details-marker {
 	opacity: 0;
@@ -1356,6 +1358,23 @@ select, input, summary {
 }
 #hud-research-content, #hud-research-links {
 	background-color: #0b1012;
+}
+@keyframes researchActive {
+	0% {
+		box-shadow: 0 0 0 #0EC6C6;
+	}
+	50% {
+		box-shadow: 0 0 2em #0EC6C6;
+	}
+	100% {
+		box-shadow: 0 0 0 #0EC6C6;
+	} 
+}
+.current-research-node {
+	box-shadow: 0 0 2em #0EC6C6;
+	animation-name: researchActive;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 .research-node {
 	color: #93fcfb;
@@ -1452,7 +1471,7 @@ a[class="research-search"] {
  */
 #hud-map {
 	background-image: url(../img/map/background.jpg);
-    background-size: cover;
+	background-size: cover;
 
 	position: fixed;
 	margin: 0;
@@ -1513,46 +1532,46 @@ a[class="research-search"] {
 	border-radius: 0.25em;
 }
 #hud-map-global .yellowDwarf {
-  background-color: #FB7209;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 0.8em rgba(255, 160, 60, 0.8);
+	background-color: #FB7209;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 0.8em rgba(255, 160, 60, 0.8);
 }
 #hud-map-global .redDwarf, .redGiant, .redSuperGient {
-  background: linear-gradient(to bottom right, #b30000, #fb3636);
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 0.8em rgba(255, 60, 60, 0.8);
+	background: linear-gradient(to bottom right, #b30000, #fb3636);
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 0.8em rgba(255, 60, 60, 0.8);
 }
 #hud-map-global .whiteDwarf {
-  background-color: #e6e3a0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 0.8em rgba(255,255,255, 0.8);
+	background-color: #e6e3a0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 0.8em rgba(255,255,255, 0.8);
 }
 #hud-map-global .brownDwarf {
-  background-color: #38200e;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 0.8em rgba(255,160, 60, 0.8);
+	background-color: #38200e;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 0.8em rgba(255,160, 60, 0.8);
 }
 #hud-map-global .blueWhiteGiant {
-  background-color: #acd2ff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 0.8em rgba(255,255,255, 0.8);
+	background-color: #acd2ff;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 0.8em rgba(255,255,255, 0.8);
 }
 #hud-map-global .blueGiant {
-  background-color: #459aff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 0.8em rgba( 80, 80,100, 0.8);
+	background-color: #459aff;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 0.8em rgba( 80, 80,100, 0.8);
 }
 #hud-map-global .blackHole {
-  background-color: #000000;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 0.8em rgba(255,160, 60, 0.8);
+	background-color: #000000;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 0.8em rgba(255,160, 60, 0.8);
 }
 
 /**
@@ -1593,97 +1612,97 @@ a[class="research-search"] {
 	transform-style: preserve-3d;
 }
 .orbit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform-style: preserve-3d;
-  animation-name: orbit;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	transform-style: preserve-3d;
+	animation-name: orbit;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 .orbit .orbit {
-  animation-name: suborbit;
+	animation-name: suborbit;
 }
 .pos {
-  position: absolute;
-  top: 50%;
-  width: 2em;
-  height: 2em;
-  margin-top: -1em;
-  margin-left: -1em;
-  transform-style: preserve-3d;
-  animation-name: invert;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+	position: absolute;
+	top: 50%;
+	width: 2em;
+	height: 2em;
+	margin-top: -1em;
+	margin-left: -1em;
+	transform-style: preserve-3d;
+	animation-name: invert;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 .star, .planet, .satelite {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1em;
-  height: 1em;
-  margin-top: -0.5em;
-  margin-left: -0.5em;
-  border-radius: 50%;
-  transform-style: preserve-3d;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1em;
+	height: 1em;
+	margin-top: -0.5em;
+	margin-left: -0.5em;
+	border-radius: 50%;
+	transform-style: preserve-3d;
 }
 #hud-map-system .yellowDwarf {
-  background-color: #FB7209;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+	background-color: #FB7209;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
 }
 #hud-map-system .redDwarf, .redGiant, .redSuperGient {
-  background: linear-gradient(to bottom right, #b30000, #fb3636);
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 60px rgba(255, 60, 60, 0.9);
+	background: linear-gradient(to bottom right, #b30000, #fb3636);
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 60px rgba(255, 60, 60, 0.9);
 }
 #hud-map-system .whiteDwarf {
-  background-color: #e6e3a0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
+	background-color: #e6e3a0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
 }
 #hud-map-system .brownDwarf {
-  background-color: #38200e;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+	background-color: #38200e;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
 }
 #hud-map-system .blueWhiteGiant {
-  background-color: #acd2ff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
+	background-color: #acd2ff;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
 }
 #hud-map-system .blueGiant {
-  background-color: #459aff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 60px rgba(80, 80, 100, 0.8);
+	background-color: #459aff;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 60px rgba(80, 80, 100, 0.8);
 }
 #hud-map-system .blackHole {
-  background-color: #000000;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+	background-color: #000000;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
 }
 .planet {
-  background-color: #202020;
-  background-repeat: no-repeat;
-  background-size: cover;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+	background-color: #202020;
+	background-repeat: no-repeat;
+	background-size: cover;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 .ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	box-sizing: border-box;
 }
 /* Animations */
 @keyframes orbit {
@@ -1718,115 +1737,115 @@ a[class="research-search"] {
 .view-3D .opening .planet,
 .view-3D .opening .satelite,
 .view-3D .opening .ring {
-  transition-duration: 4s;
+	transition-duration: 4s;
 }
 #hud-map-system-universeBack.opening .star {
-  box-shadow: 0 0 0 rgba(255, 160, 60, 0);
+	box-shadow: 0 0 0 rgba(255, 160, 60, 0);
 }
 /* 2D View */
 .view-2D .star {
-  transform-style: flat;
+	transform-style: flat;
 }
 .view-2D .orbit {
-  transform-style: flat;
+	transform-style: flat;
 }
 .view-2D .star,
 .view-2D .ring {
-  transform: rotateX(0deg);
+	transform: rotateX(0deg);
 }
 .view-2D .planet,
 .view-2D .satelite {
-  transform: rotateX(90deg);
+	transform: rotateX(90deg);
 }
 /* 3D View */
 .view-3D .star {
-  transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 .view-3D .orbit {
-  transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 .view-3D #hud-map-system-solarFront {
-  transform: rotateX(75deg);
+	transform: rotateX(75deg);
 }
 .view-3D .star {
-  transform: rotateX(-90deg);
+	transform: rotateX(-90deg);
 }
 .view-3D .ring {
-  transform: rotateX(90deg);
+	transform: rotateX(90deg);
 }
 .view-3D .planet,
 .view-3D .satelite,
 .view-3D .orbit .star {
-  transform: rotateX(0deg);
+	transform: rotateX(0deg);
 }
 
 #hud-map-system-solarFront {
-  width: 100%;
+	width: 100%;
 }
 .view-2D #hud-map-system-solarFront {
-  font-size: 26%;
+	font-size: 26%;
 }
 .view-3D #hud-map-system-solarFront {
-  font-size: 62%;
+	font-size: 62%;
 }
 
 /* Infos de la planete */
 dl.infos {
-  position: absolute;
-  display: block;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  margin-top: -90%;
-  margin-left: 90%;
-  padding-left: 100%;
-  transform-origin: 100% 100%;
-  transform-style: preserve-3d;
-  transform: rotateX(90deg);
+	position: absolute;
+	display: block;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	margin-top: -90%;
+	margin-left: 90%;
+	padding-left: 100%;
+	transform-origin: 100% 100%;
+	transform-style: preserve-3d;
+	transform: rotateX(90deg);
 }
 dl.infos:before {
-  position: absolute;
-  content: '';
-  width: 15px;
-  height: 30px;
-  left: 15px;
-  bottom: 0;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  transform-style: preserve-3d;
-  transform: skew(-45deg, 0deg);
-  box-shadow: inset 1px 1px black;
+	position: absolute;
+	content: '';
+	width: 15px;
+	height: 30px;
+	left: 15px;
+	bottom: 0;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	transform-style: preserve-3d;
+	transform: skew(-45deg, 0deg);
+	box-shadow: inset 1px 1px black;
 }
 dl.infos dt {
-  position: absolute;
-  left: 50px;
-  margin-bottom: 26px;
-  bottom: 30px;
-  color: #FFF;
-  font-size: 14px;
-  text-shadow: 1px 1px 2px black;
+	position: absolute;
+	left: 50px;
+	margin-bottom: 26px;
+	bottom: 30px;
+	color: #FFF;
+	font-size: 14px;
+	text-shadow: 1px 1px 2px black;
 }
 .star .infos,
 .orbit .infos {
-  display: block;
-  opacity: 1;
-  transform: rotateX(0deg);
+	display: block;
+	opacity: 1;
+	transform: rotateX(0deg);
 }
 .orbit .orbit {
-  border: 1px solid rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(255, 255, 255, 0.8);
 }
 /* transitions */
 .pos {
-  transition-property: top, left;
+	transition-property: top, left;
 }
 #hud-map-system-solarFront, .orbit,
 .planet,
 .satelite,
 .ring {
-  transition-property: width, height, top, left, margin-left, margin-top, webkit-transform;
+	transition-property: width, height, top, left, margin-left, margin-top, webkit-transform;
 }
 .star, .icon {
-  transition-property: width, height, webkit-transform;
+	transition-property: width, height, webkit-transform;
 }
 #hud-map-system-solarFront,
 .star,
@@ -1837,18 +1856,18 @@ dl.infos dt {
 .ring,
 .infos,
 .icon {
-  transition-duration: .8s;
-  transition-timing-function: ease-in-out;
+	transition-duration: .8s;
+	transition-timing-function: ease-in-out;
 }
 #hud-map-system-solarFront,
 .star,
 .planet,
 .satelite,
 .ring {
-  transition-delay: 0s;
+	transition-delay: 0s;
 }
 .pos {
-  transition-delay: 1s;
+	transition-delay: 1s;
 }
 .opening #hud-map-system-solarFront,
 .opening .star,
@@ -1859,11 +1878,11 @@ dl.infos dt {
 .opening .ring,
 .opening .infos,
 .opening dl.infos {
-  transition-duration: 0s;
-  transition-delay: 0s;
+	transition-duration: 0s;
+	transition-delay: 0s;
 }
 .opening .pos {
-  transition-delay: 0s;
+	transition-delay: 0s;
 }
 
 @keyframes planetShadow {
@@ -2245,7 +2264,7 @@ dl.infos dt {
 		left: 36vh;
 	}
 	#lvl-headquarter {
-		top: calc(39vh - 22.5vh + 62vh  - 0.9em);
+		top: calc(39vh - 22.5vh + 62vh - 0.9em);
 		left: 25vh;
 	}
 	#lvl-launchpad {
@@ -2346,7 +2365,7 @@ dl.infos dt {
  */
 @media all and (min-width: 650px) and (min-height: 450px) {
 	#building-area {
-		top:  calc(50vh - 205px);
+		top: calc(50vh - 205px);
 		left: calc(50vw - 305px);
 
 		background-image: url(../img/ui/build-panel.png);
@@ -2456,9 +2475,9 @@ dl.infos dt {
 	top: 2em;
 }
 #building-message {
-    text-align: center;
-    font-size: 0.9em;
-    bottom: 0.5em;
+	text-align: center;
+	font-size: 0.9em;
+	bottom: 0.5em;
 }
 #building-orders img {
 	height: 1.3em;
