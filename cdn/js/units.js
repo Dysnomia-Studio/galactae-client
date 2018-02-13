@@ -479,10 +479,10 @@ class units {
 		var selectContent = "<option disabled>" + fleetTranslate['SHIP_TYPE'] + "</option>";
 
 		for(var i=0; i<unitTypes.length; i++) {
-			var disabled = false;
+			var disabled = true;
 			for(var index in shipShapesDetails[unitTypes[i]]) {
-				if(shipResearchDependencies[index] != undefined && !research.isSearched(shipResearchDependencies[index])) { 
-					disabled = true;
+				if(shipResearchDependencies[index] == undefined || research.isSearched(shipResearchDependencies[index])) { 
+					disabled = false;
 				}
 			}
 

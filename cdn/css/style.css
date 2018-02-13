@@ -1373,6 +1373,7 @@ select, input, summary {
 .current-research-node {
 	box-shadow: 0 0 2em #0EC6C6;
 	animation-name: researchActive;
+	animation-duration: 2s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
@@ -1387,7 +1388,7 @@ select, input, summary {
 
 	font-size: 0.8em;
 	width: 200px;
-	padding-bottom: 1em;
+	padding: 0.5em;
 }
 .research-node h2 {
 	font-size: 1.3em;
