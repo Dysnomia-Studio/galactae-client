@@ -1229,14 +1229,14 @@ select, input, summary {
 	overflow-y: auto;
 	overflow-x: hidden;
 }
-#fleet-build-cost {
+#fleet-build-stat {
 	margin: 0.5em 0;
 }
-#fleet-build-cost span {
+#fleet-build-stat span {
 	display: block;
 	width: calc(100% - 0.1em);
 }
-#fleet-build-cost span span {
+#fleet-build-stat span span {
 	float: right;
 	margin-left: 0.5em;
 	width: auto !important;
@@ -1258,14 +1258,6 @@ select, input, summary {
 }
 #fleet-build-message {
 	text-align: center;
-}
-#fleet-build-stat {
-	color: #EEEEEE;
-	font-size: 0.9em;
-	margin: 0.2em;
-	height: calc(100% - 2em - 3em - 3em - 0.4em); /* Total - Parent padding - Bouton du dessus - Count - Bouton du dessous - somme des padding */
-	overflow-y: auto;
-	overflow-x: hidden;
 }
 #fleet-build-buttons img {
 	max-height: 1.8em;

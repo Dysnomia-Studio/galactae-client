@@ -239,8 +239,9 @@ class units {
 
 			$('#fleet-build-stat').css('display','block');
 			$('#fleet-build-message').css('display','block');
-			$('#fleet-build-count').css('display','block');
 			$('#fleet-build-upgrade').css('display','block');
+
+			$('#fleet-build-message').html("");
 
 			// Time left
 			if(units.unitPanelTimeout != -1) {
@@ -293,10 +294,9 @@ class units {
 
 		if(unitCount == 0) {
 			$('#fleet-build-list').css('display','none');
-
+			
 			$('#fleet-build-stat').css('display','none');
 			$('#fleet-build-message').css('display','none');
-			$('#fleet-build-count').css('display','none');
 			$('#fleet-build-upgrade').css('display','none');
 
 			$('#fleet-build-list-empty').css('display','inline-block');
