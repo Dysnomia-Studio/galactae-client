@@ -294,7 +294,7 @@ class units {
 
 		if(unitCount == 0) {
 			$('#fleet-build-list').css('display','none');
-			
+
 			$('#fleet-build-stat').css('display','none');
 			$('#fleet-build-message').css('display','none');
 			$('#fleet-build-upgrade').css('display','none');
@@ -306,6 +306,11 @@ class units {
 	static drawNewFleetPanel() {
 		$('#fleet-newFleet-name').val("");
 		$('#fleet-newFleet-panel').css('display','block');
+		$('#fleet-newFleet-name').keypress(function(e) {
+			if(e.which == 13) {
+				units.validFleetName();
+			}
+		});
 		preventUnitBuildPanelClose = true;
 	}
 
@@ -421,6 +426,12 @@ class units {
 		if(units.list[units.currUnit].shipType == "SHIP_DEF") {
 			$('#fleet-ship-build-fleetSelect').css('display','none');
 		}
+
+		$('#fleet-ship-build-count').keypress(function(e) {
+			if(e.which == 13) {
+				units.askUnitBuild();
+			}
+		});
 
 		// Draw panel
 		$("#fleet-ship-build").css('display','block');	
