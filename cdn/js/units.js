@@ -239,7 +239,7 @@ class units {
 
 			$('#fleet-build-stat').css('display','block');
 			$('#fleet-build-message').css('display','block');
-			$('#fleet-build-upgrade').css('display','block');
+			$('#fleet-build-buttons').css('display','block');
 
 			$('#fleet-build-message').html("");
 
@@ -297,7 +297,7 @@ class units {
 
 			$('#fleet-build-stat').css('display','none');
 			$('#fleet-build-message').css('display','none');
-			$('#fleet-build-upgrade').css('display','none');
+			$('#fleet-build-buttons').css('display','none');
 
 			$('#fleet-build-list-empty').css('display','inline-block');
 		}
@@ -367,10 +367,11 @@ class units {
 
 	static getMaxShips() {
 		var currUnit = units.list[units.currUnit];
-		var max = Math.floor(planetData.resources[2] / currUnit.cost[0])
+		var transitionTable = [3,2,5,4];
+		var max = Math.floor(planetData.resources[3] / currUnit.cost[0]); // 3 = transitionTable[0]
 
 		for(var i=1; i<4; i++) {
-			var currMax = Math.floor(planetData.resources[2 + i] / currUnit.cost[i]);
+			var currMax = Math.floor(planetData.resources[transitionTable[i]] / currUnit.cost[i]);
 			if(currMax < max) {
 				max = currMax;
 			}
@@ -396,7 +397,7 @@ class units {
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
 		for(var i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; } // Def fleet
+			if(units.fleetList[i].name == "SHIP_DEF" || units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; } // Def fleet
 			if(units.fleetList[i].position != planetData.address || units.fleetList[i].orbitPosition != 0) { continue; } // Moving/Out fleets
 
 			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');

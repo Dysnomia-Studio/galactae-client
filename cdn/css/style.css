@@ -857,6 +857,7 @@ select, input, summary {
 	border-radius: 5px;
 	list-style: none;
 	padding: 0;
+	user-select: none;
 }
 .ul-choice-line li {
 	display: table-cell;
