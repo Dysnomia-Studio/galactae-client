@@ -198,7 +198,7 @@ class map {
 	 */
 	static loadMap(sector) {
 		if($(document).width() > 1920) { // 4K Only loader, it's slow, but needed to make game working
-			map.loadMapAndNeighborhood(currentSector);
+			map.loadMapAndNeighborhood(sector);
 		} else { // Full HD and lower screens
 			map.loadXML(sector);
 		}

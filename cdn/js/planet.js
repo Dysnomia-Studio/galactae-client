@@ -599,6 +599,9 @@ class planet {
 					cost.habitants + habProd - habCons - cost.habitants_difference));
 		}
 		/* Temps */
+		if(id > 8) { // Faster if shipyard have higher lvl
+			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
+		}
 		$("#building-cost-time-val").html(getStringTime(cost.time));
 
 		/* Bouton upgrade ou message */
