@@ -372,17 +372,21 @@ select, input, summary {
  */
 #settings-menu {
 	position: fixed;
-	top: calc(50% - 145px);
-	left: calc(50% - 125px);
-	width: 290px;
-	height: 250px;
+	top: 3vw;
+	left: 28vw;
+	width: 20vw;
+
+	padding: 1vw;
+
 	display: none;
-	background-image: url(../img/ui/hud-chat.png);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+
 	text-align: center;
-	font-size: 1.4em;
+	font-size: 1.1em;
+
+	background-color: #0b1012;
+	border: 1px solid #0EC6C6;
+	border-top: 0px solid transparent; 
+
 	z-index: 200;
 }
 #settings-menu a {
