@@ -311,7 +311,6 @@
 </div>
 <?php /* ESC */ ?>
 <div id="settings-menu">
-	<a href="#close-settings-tabs" id="close-settings-tabs">X</a><br/>
 	<a href="https://galactae.eu/portal"><?php echo PORTAL; ?></a><br/>
 	<a href="https://galactae.eu/profil"><?php echo PROFIL; ?></a><br/>
 	<a href="https://galactae.eu/forum"><?php echo FORUM; ?></a><br/>

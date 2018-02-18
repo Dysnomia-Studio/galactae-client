@@ -11,9 +11,5 @@ class settings {
 			}
 			ui.menu = !(ui.menu);
 		});
-		$("#close-settings-tabs").click(function() {
-			ui.closeTab("#settings-menu");
-			ui.menu = false;
-		});
 	}
 }
