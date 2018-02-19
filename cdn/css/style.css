@@ -1337,6 +1337,8 @@ select, input, summary {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 
+	list-style-type: none; /* Only for hiding arrow on firefox */
+
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
 #hud-fleet .html5_details > summary::before, #hud-fleet details > summary::before {
