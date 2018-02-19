@@ -107,6 +107,10 @@ select, input, summary {
 	text-align: center;
 	display: none;
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	
 	background-color: rgba(11,17,19,1);
 	border: 1px solid #0d8384;
 
@@ -419,6 +423,9 @@ select, input, summary {
 	color: #93fcfc;
 
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 #hud-top-left {
 	width: calc(22vw - 3em);
@@ -553,6 +560,9 @@ select, input, summary {
 	position: fixed;
 
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 	
 	top: 0.2vw;
 }
@@ -628,6 +638,9 @@ select, input, summary {
 	z-index: 1000;
 
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 #hud-bottom img {
@@ -862,6 +875,9 @@ select, input, summary {
 	list-style: none;
 	padding: 0;
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 .ul-choice-line li {
 	display: table-cell;
@@ -1163,6 +1179,9 @@ select, input, summary {
 	height: calc(100% - 3em - 2em); /* Total - Top - padding */
 	padding: 1em 2em;
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 #fleet-build-list, #fleet-build-info {
 	display: inline-block;
@@ -1314,6 +1333,9 @@ select, input, summary {
 #hud-fleet summary {
 	font-size: 1.3em;
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
