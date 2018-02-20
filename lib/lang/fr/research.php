@@ -13,9 +13,11 @@
 		prop_ions:			{ name: "Moteurs a ions", desc: "" },
 		prop_plasma: 		{ name: "Moteurs à Plasma", desc: "" },
 		prop_vsl:			{ name: "Vitesse Supraluminique (VSL)", desc: "" },
+		prop_wd: 			{ name: "Generateur de saut (Warp Drive)", desc: ""},
 		prop_hyperespace:	{ name: "Hyperespace", desc: "" },
 		prop_manoeuvre:		{ name: "Propulseurs de manoeuvre", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (2% de chance d'evitement)" },
 		prop_advManoeuvre:	{ name: "Propulseur de manoeuvres avancés", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (5% de chance d'evitement)" },
+		prop_suprastability:{ name: "Stabilité des moteurs interstellaires", desc: "Augmente de 50% la precision du calcul de l'heure d'arrivée estimée d'une flotte." },
 		// Construction et production
 		cp_mecanisation:	{ name: "Mecanisation", desc: "-5% de temps de construction unités" },
 		cp_tracteur:		{ name: "Rayon Tracteur", desc: "-5% de temps de construction pour unités et bâtments spatiaux" },

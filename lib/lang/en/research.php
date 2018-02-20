@@ -12,10 +12,12 @@
 		prop_vSolaire:		{ name: "Solar sail", desc: "" },
 		prop_ions:			{ name: "Ion engines", desc: "" },
 		prop_plasma: 		{ name: "Plasma engines", desc: "" },
-		prop_vsl:			{ name: "Faster Than Light (FTL) speed", desc: "" },
+		prop_vsl:			{ name: "Faster Than Light speed (FTL)", desc: "" },
+		prop_wd: 			{ name: "Warp Drive", desc: "" },
 		prop_hyperespace:	{ name: "Hyperspace", desc: "" },
 		prop_manoeuvre:		{ name: "Bow thrusters", desc: "" },
 		prop_advManoeuvre:	{ name: "Advanced bow thrusters", desc: "" },
+		prop_suprastability:{ name: "Interstellar engines stability", desc: "" },
 		// Construction et production
 		cp_mecanisation:	{ name: "Automation", desc: "" },
 		cp_tracteur:		{ name: "Tractive beam", desc: "" },
