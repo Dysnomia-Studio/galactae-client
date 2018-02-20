@@ -272,7 +272,7 @@ var researchList = {
 	prop_hyperespace: 	{ cost: 35000, parents: ["prop_wd"] },
 	prop_manoeuvre: 	{ cost: 450, parents: ["prop_main"] },
 	prop_advManoeuvre: 	{ cost: 700, parents: ["prop_manoeuvre"] },
-	prop_suprastability:{ cost: 5000, parents: ["prop_vsl","misc_phySolaire"] },
+	prop_suprastability:{ cost: 5000, parents: ["prop_vsl"] },
 	// Construction et production
 	cp_mecanisation: 	{ cost: 120, parents: ["industrialistion"] },
 	cp_tracteur: 	 	{ cost: 150, parents: ["industrialistion"] },
