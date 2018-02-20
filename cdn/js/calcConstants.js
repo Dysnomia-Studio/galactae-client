@@ -210,7 +210,7 @@ var researchPos = {
 	prop_plasma:		[6918,4196],
 	prop_vsl:			[7800,4150],
 	prop_wd:			[8700,4100],
-	prop_hyperespace:	[9600,4050],
+	prop_hyperespace:	[8750,3000],
 	prop_manoeuvre:		[4813,3433],
 	prop_advManoeuvre:	[5000,3000],
 	prop_suprastability:[7850,3850],
