@@ -210,10 +210,10 @@ var researchPos = {
 	prop_plasma:		[6918,4196],
 	prop_vsl:			[7800,4150],
 	prop_wd:			[8700,4100],
-	prop_hyperespace:	[8750,3000],
+	prop_hyperespace:	[8750,3300],
 	prop_manoeuvre:		[4813,3433],
 	prop_advManoeuvre:	[5000,3000],
-	prop_suprastability:[7850,3850],
+	prop_suprastability:[7850,3550],
 	// Construction et production
 	cp_mecanisation:	[6000,4600],
 	cp_tracteur:		[6300,4950],

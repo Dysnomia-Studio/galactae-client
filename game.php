@@ -356,7 +356,7 @@ if(isset($lastNews[0])) {
 if($userData['lastViewedNews'] < $max) {
 	echo '<div id="hud-news" style="display: block;">';
 } else {
-	echo '<div id="hud-news" style="display: none;">';
+	echo '<div id="hud-news">';
 }
 ?>
 	<span id="hud-news-close">X</span>
