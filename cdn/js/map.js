@@ -101,6 +101,9 @@ class map {
 					
 			$('#hud-map-global').css('zoom',zoom);
 		});
+		$('#hud-map-focus').on('click', function() {
+			map.focusAddress(map.currentAddress);
+		});
 
 		loadScreen.complete("maps");
 	}

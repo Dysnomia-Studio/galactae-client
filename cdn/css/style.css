@@ -1579,9 +1579,14 @@ a[class="research-search"] {
 	left: 3em;
 	font-weight: bold;
 	cursor: url(../img/mouse_pointer.png), pointer;
-	display: none;
 
 	z-index: 155;
+}
+#hud-map-back {
+	display: none;
+}
+#hud-map-focus {
+	display: block;
 }
 #hud-map-system {
 	width: 100%;
