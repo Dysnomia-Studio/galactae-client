@@ -102,7 +102,7 @@ class map {
 			$('#hud-map-global').css('zoom',zoom);
 		});
 		$('#hud-map-focus').on('click', function() {
-			map.focusAddress(map.currentAddress);
+			map.focusAddress(map.currentAddress = planetData.address);
 		});
 
 		loadScreen.complete("maps");
@@ -139,9 +139,6 @@ class map {
 			left: pos[0],
 			top: pos[1]
 		});
-
-		// Set current address 
-		map.currentAddress = Math.floor(((-pos[0])/MAP_SIZE_WIDTH)*10) + "-" + Math.floor(((-pos[1])/MAP_SIZE_HEIGHT)*10) + "-?-?";
 
 		// At borders ?
 		var coords = map.currentAddress.split('-');
