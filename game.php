@@ -366,6 +366,7 @@ if($userData['lastViewedNews'] < $max) {
 <div id="hud-map">
 	<span id="hud-map-close">X</span>
 	<div id="hud-map-back">Back to global map</div>
+	<div id="hud-map-focus">Focus current sector</div>
 	<div id="hud-map-global"></div>
 	<div id="hud-map-system" class="opening view-2D">
         <div id="hud-map-system-universeBack">

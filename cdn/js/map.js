@@ -49,8 +49,6 @@ class map {
 		/**
 		 * Load XML
 		 */
-		map.loadMap(currentSector);
-
 		map.focusAddress(map.currentAddress);
 
 		/**
@@ -261,7 +259,7 @@ class map {
 	 *
 	 * @param	  {string}  sector  The sector
 	 */
-	static loadXML(sector) {
+	static loadXML(sector, callback) {
 		if(map.xmlhttp[sector] !== undefined) { return; } // Already loaded or loading
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp[sector] = new XMLHttpRequest();
@@ -274,6 +272,9 @@ class map {
 				if (this.status === 200) {
 					map.xmlDoc[sector] = new DOMParser().parseFromString(map.xmlhttp[sector].responseText,'text/xml');
 					map.drawSector(sector);
+					if(callback !== undefined) {
+						callback();
+					}
 				} else {
 					map.xmlDoc[sector] = "";
 					console.log('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
@@ -332,10 +333,7 @@ class map {
 		/* Empty HTML to avoid bugs */
 		if(map.currentMap!="system") {
 			$('#hud-map-system-solarFront').html('');
-		}		
-
-		/* Show back button */
-		$('#hud-map-back').css('display','block');
+		}
 	}
 
 	/**
@@ -548,7 +546,8 @@ class map {
 		});
 
 		// Back button
-		$('#hud-map-back').text(translate['map']['BACK_SECTOR']);
+		$('#hud-map-back').css('display','block');
+		$('#hud-map-focus').css('display','none');
 
 		// Toggle Maps
 		map.resetMaps();
@@ -615,10 +614,24 @@ class map {
 		}
 		
 		var coords = address.split('-');
-		$('#hud-map-global').css({
-			left: -(parseInt(coords[0]) + 0.5) * MAP_SIZE_WIDTH/10,
-			top:  -(parseInt(coords[1]) + 0.5) * MAP_SIZE_HEIGHT/10
-		});
+		var sector = coords[0] + "-" + coords[1];
+		var system = [coords[0],coords[1],coords[2]].join("-");
+
+		if(map.xmlDoc[sector] === undefined) {
+			map.loadMap(sector, function() {
+				var systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
+				var newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
+				var newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
+
+				map.moveUI([newX, newY]);
+			});
+		} else {
+			var systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
+			var newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
+			var newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
+
+			map.moveUI([newX, newY]);
+		}
 	}
 
 	/**
@@ -638,6 +651,7 @@ class map {
 
 		// Back button
 		$('#hud-map-back').css('display','none');
+		$('#hud-map-focus').css('display','block');
 
 		// Toggle Maps
 		map.resetMaps();

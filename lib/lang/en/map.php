@@ -1,14 +1,4 @@
-<script type="text/javascript">
-var translate = translate || {};
-
-translate["map"] = {
-	"GALAXY": "Galaxy",
-	"QUADRANT": "Quadrant",
-	"SECTOR": "Sector",
-	"SOLAR_SYSTEM": "System",
-
-	"BACK_GALAXY": "Back to galaxy",
-	"BACK_QUADRANT": "Back to quadrant",
-	"BACK_SECTOR": "Back to sector",
-};
-</script>
+<?php
+	define('MAP_BACK_GLOBAL_MAP','Back to global map');
+	define('MAP_FOCUS_CURRENT_SYSTEM','Focus current planet\'s system');
+?>
