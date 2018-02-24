@@ -1573,7 +1573,7 @@ a[class="research-search"] {
 
 	user-select : none;
 }
-#hud-map-back {
+#hud-map-back, #hud-map-focus {
 	position: fixed;
 	top: 3.5vw;
 	left: 3em;

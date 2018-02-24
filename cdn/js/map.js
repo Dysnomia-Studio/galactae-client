@@ -194,11 +194,11 @@ class map {
 	 *
 	 * @param	  {string}  sector  The sector
 	 */
-	static loadMap(sector) {
+	static loadMap(sector,callback) {
 		if($(document).width() > 1920) { // 4K Only loader, it's slow, but needed to make game working
-			map.loadMapAndNeighborhood(sector);
+			map.loadMapAndNeighborhood(sector,callback);
 		} else { // Full HD and lower screens
-			map.loadXML(sector);
+			map.loadXML(sector,callback);
 		}
 	}
 
@@ -207,7 +207,7 @@ class map {
 	 *
 	 * @param	  {string}  sector  The sector
 	 */
-	static loadMapAndNeighborhood(sector) {
+	static loadMapAndNeighborhood(sector,callback) {
 		var coords = sector.split('-'); 
 
 		// At borders ?
@@ -221,35 +221,35 @@ class map {
 		/**
 		 * Load all needed xml
 		 */
-		map.loadXML(sector);
+		map.loadXML(sector,callback);
 
 		if(!top) {
 			if(!left) { // Haut gauche
-				map.loadXML((coords[0]-1) + "-" + (coords[1]-1));
+				map.loadXML((coords[0]-1) + "-" + (coords[1]-1),callback);
 			}
 			// Haut
-			map.loadXML((coords[0]-1) + "-" + (coords[1]));
+			map.loadXML((coords[0]-1) + "-" + (coords[1]),callback);
 			if(!right) { // Haut droite
-				map.loadXML((coords[0]-1) + "-" + (coords[1]+1));
+				map.loadXML((coords[0]-1) + "-" + (coords[1]+1),callback);
 			}
 		}
 
 		if(!left) { // Gauche
-			map.loadXML((coords[0]) + "-" + (coords[1]-1));
+			map.loadXML((coords[0]) + "-" + (coords[1]-1),callback);
 		}
 
 		if(!right) { // Droite
-			map.loadXML((coords[0]) + "-" + (coords[1]+1));
+			map.loadXML((coords[0]) + "-" + (coords[1]+1),callback);
 		}
 
 		if(!bottom) {
 			if(!left) { // Bas gauche
-				map.loadXML((coords[0]+1) + "-" + (coords[1]-1));
+				map.loadXML((coords[0]+1) + "-" + (coords[1]-1),callback);
 			}
 			// Bas
-			map.loadXML((coords[0]+1) + "-" + (coords[1]));
+			map.loadXML((coords[0]+1) + "-" + (coords[1]),callback);
 			if(!right) { // Bas droite
-				map.loadXML((coords[0]+1) + "-" + (coords[1]+1));
+				map.loadXML((coords[0]+1) + "-" + (coords[1]+1),callback);
 			}
 		}
 	}
