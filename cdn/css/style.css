@@ -968,6 +968,10 @@ select, input, summary {
 	color: #EEEEEE;
 	height: 40px;
 }
+#hud-fleet-close {
+	position: absolute;
+	right: 0.89vw;
+}
 @media all and (min-width: 900px) {
 	#hud-fleet {
 		position: fixed;
@@ -976,10 +980,15 @@ select, input, summary {
 		width: 80vw;
 		height: 45vw;
 
+		z-index: 100;
+
 		background: url(../img/ui/window.png);
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 100%;
+	}
+	#hud-fleet-close {
+		top: 1vh;
 	}
 }
 @media all and (max-width: 900px) { /* Mobile and small screens*/
@@ -994,6 +1003,9 @@ select, input, summary {
 		padding-bottom: calc(35px + 0.4em);
 
 		background-color: #0b1012;
+	}
+	#hud-fleet-close {
+		top: 35px;
 	}
 }
 #hud-fleet {
@@ -1188,11 +1200,6 @@ select, input, summary {
 	 z-index: 100;
 }
 #hud-fleet-close, #hud-research-close, #hud-map-close, #hud-ranks-close, #hud-news-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close, #settings-tabs-close { cursor: url(../img/mouse_pointer.png), pointer; }
-#hud-fleet-close {
-	position: absolute;
-	top: 35px;
-	right: 0.89vw;
-}
 #hud-ranks-close, #hud-news-close {
 	position: absolute;
 	top: 1vw;
