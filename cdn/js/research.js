@@ -187,6 +187,7 @@ class research {
 		if(research.canResearch(key)) {
 			content += '<h2>' + translate['research'][key].name + '</h2>';
 			content += '<span class="research-desc">' + translate['research'][key].desc + '</span>';
+			content += '<div class="research-bottom">';
 			if(!research.isSearched(key)) {
 				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
 				if(planetData.currResearch!=key) {
@@ -197,10 +198,11 @@ class research {
 			} else {
 				content += '<p class="research-ok">' + translate['research']['tech_owned'] + '</p>';
 			}
+			content += "</div>";
 		} else {
 			content += '<h2>???</h2>';
 			content += '<span class="research-desc">' + research.getMissingParents(key) + '</span>';
-			content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">?/?</span>';
+			content += '<div class="research-bottom"><span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">?/?</span></div>';
 		}
 
 		$('#hud-research-content').append(content);
