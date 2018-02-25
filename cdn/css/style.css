@@ -1459,13 +1459,17 @@ select, input, summary {
 
 	font-size: 0.8em;
 	width: 200px;
-	padding: 0.5em;
+	padding: 1em;
 }
 .research-node h2 {
 	font-size: 1.3em;
 	text-align: center;
 	margin: 0;
 	min-height: 50px;
+}
+.research-desc {
+	text-align: justify;
+    display: inline-block;
 }
 .research-bottom {
 	margin-top: 0.5em;

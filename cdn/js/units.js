@@ -292,6 +292,19 @@ class units {
 			});
 		}
 
+		// Check if we can create fleet
+		var disabledButton = true;
+		for(var i=0; i<unitTypes.length; i++) {
+			for(var index in shipShapesDetails[unitTypes[i]]) {
+				if(shipResearchDependencies[index] == undefined || research.isSearched(shipResearchDependencies[index])) { 
+					disabledButton = false;
+					break;
+				}
+			}
+			if(!disabledButton) { break; }
+		}
+		$('#fleet-build-create').attr("disabled",disabledButton);
+
 		if(unitCount == 0) {
 			$('#fleet-build-list').css('display','none');
 
@@ -488,22 +501,28 @@ class units {
 		$('#fleet-type-create-schematic').html("");
 		$('#fleet-type-create-selects').html("");
 
-		var selectContent = "<option disabled>" + fleetTranslate['SHIP_TYPE'] + "</option>";
-
+		var selectContent = "";
 		for(var i=0; i<unitTypes.length; i++) {
 			var disabled = true;
 			for(var index in shipShapesDetails[unitTypes[i]]) {
 				if(shipResearchDependencies[index] == undefined || research.isSearched(shipResearchDependencies[index])) { 
 					disabled = false;
+					break;
 				}
 			}
+			if(disabled) { continue; }
 
-			if(!disabled && selectedType != unitTypes[i]) {
+			if(selectedType != unitTypes[i]) {
 				selectContent += '<option value="' + unitTypes[i] + '">' + fleetTranslate[unitTypes[i]] + '</option>';
-			} else if(!disabled && selectedType == unitTypes[i]) {
+			} else {
 				selectContent += '<option value="' + unitTypes[i] + '" selected>' + fleetTranslate[unitTypes[i]] + '</option>';
 			}
 		}
+
+		if(selectContent == "") { // No shape searched
+			return;
+		}
+		selectContent = "<option disabled>" + fleetTranslate['SHIP_TYPE'] + "</option>" + selectContent;
 
 		$('#fleet-type-create-shipType').html(selectContent);
 

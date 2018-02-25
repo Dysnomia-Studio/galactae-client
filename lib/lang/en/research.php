@@ -61,5 +61,6 @@
 		misc_em:			{ name: "Electromagnetism", desc: ""},
 		// Messages
 		tech_owned: "Already searched technology",
+		ongoing: 	"Research in progress ...",
 	};
 </script>

@@ -193,10 +193,10 @@ class research {
 				if(planetData.currResearch!=key) {
 					content += '<a class="research-search" id="'+key+'" src="#research">Rechercher</a>'; // @ADD: Logo
 				} else {
-					content += '<span class="research-search">Recherche en cours ...</span>';
+					content += '<span class="research-search">' + translate['research']['tech_owned'] + 'Recherche en cours ...</span>';
 				}
 			} else {
-				content += '<p class="research-ok">' + translate['research']['tech_owned'] + '</p>';
+				content += '<p class="research-ok">' + translate['research']['ongoing'] + '</p>';
 			}
 			content += "</div>";
 		} else {
