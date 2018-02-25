@@ -304,9 +304,9 @@ class units {
 			if(!disabledButton) { break; }
 		}
 		if(disabledButton) {
-			$('#fleet-build-create').attr("display","none");
+			$('#fleet-build-create').css("display","none");
 		} else {
-			$('#fleet-build-create').attr("display","block");
+			$('#fleet-build-create').css("display","block");
 		}
 
 		if(unitCount == 0) {
