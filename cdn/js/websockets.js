@@ -64,6 +64,7 @@ class webSockets {
 
 				if(key=="research") {
 					research.drawPanel();
+					units.drawMain(); // Because type creation is disabled when no research
 				}
 			}
 			planet.MiscDrawUpdate();
