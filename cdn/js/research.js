@@ -92,6 +92,14 @@ class research {
 		// On cache la planete et la map
 		ui.closeTab("#planet",false);
 		ui.closeTab("#hud-map",false); /* A no-bug fix */
+		// On centre sur la recherche courante
+		if(researchPos[planetData.currResearch] !== undefined) {
+			var newUIPos = [
+				$(document).width()/2  - researchPos[planetData.currResearch][0]*$("#hud-research-content").css("zoom"),
+				$(document).height()/2 - researchPos[planetData.currResearch][1]*$("#hud-research-content").css("zoom")
+			];
+			research.moveUI(newUIPos);
+		}
 		// On affiche le panel de recherches
 		$("#hud-research").css('display','block');
 		// On cache le chat et memorise son statut pour plus tard	
@@ -111,11 +119,11 @@ class research {
 		if(parseInt(pos[1]) > 0) {
 			pos[1] = 0;
 		}
-		if(parseInt(pos[0]) < ($(document).width()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"))) {
-			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom");
+		if(parseInt(pos[0]) < ($(document).width()-RESEARCH_DIV_SIZE*$("#hud-research-content").css("zoom"))) {
+			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*$("#hud-research-content").css("zoom");
 		}
 		if(parseInt(pos[1]) < ($(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"))) {
-			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom");
+			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*$("#hud-research-content").css("zoom");
 		}
 
 		$("#hud-research").css({

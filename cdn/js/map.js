@@ -55,9 +55,7 @@ class map {
 		 * Global Map Events
 		 **/
 		$('#hud-map-back').click(function() {
-			var currentSector = map.currentAddress.split('-');
-			currentSector = [currentSector[0],currentSector[1]].join("-");
-			map.openGlobalMap(currentSector);
+			map.openGlobalMap(map.currentAddress);
 		});
 
 		/**
@@ -408,10 +406,6 @@ class map {
 				orbitSize[0] = 0;
 
 				orbitSize[1] = stars[0].size * STAR_ECART + stars[1].size * STAR_ECART/2;
-
-				console.log(stars[0]);
-				console.log(stars[1]);
-				console.log(orbitSize[1]);
 			}
 
 			firstPlanet =  orbitSize[1] + stars[1].size * STAR_ECART/2;
