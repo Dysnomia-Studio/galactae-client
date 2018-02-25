@@ -1487,6 +1487,7 @@ a[class="research-search"] {
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
 .research-ok {
+	width: 100%;
 	text-align: center;
 }
 /**
