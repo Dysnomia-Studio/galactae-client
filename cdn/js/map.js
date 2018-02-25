@@ -78,7 +78,7 @@ class map {
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
 		});
-		$('#hud-map-global').bind('mousewheel', function(e){
+		$('#hud-map-global').on('mousewheel', function(e){
 			var zoom = parseFloat($('#hud-map-global').css('zoom'));
 
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {

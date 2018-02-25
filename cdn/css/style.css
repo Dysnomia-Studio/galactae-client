@@ -1468,9 +1468,8 @@ select, input, summary {
 	min-height: 50px;
 }
 .research-cost {
-	position: absolute;
-	right: 5px;
-	bottom: 5px;
+	float: right;
+	margin-top: 0.5em;
 }
 .research-search {
 	position: absolute;

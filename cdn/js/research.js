@@ -44,7 +44,9 @@ class research {
 			researchPrevMouse[0] = e.pageX;
 			researchPrevMouse[1] = e.pageY;
 		});
-		$('#hud-research-content').bind('mousewheel', function(e){
+
+		//var mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		$('#hud-research-content').on("mousewheel", function(e){
 			var zoom = parseFloat($('#hud-research-content').css('zoom'));
 
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
