@@ -114,11 +114,11 @@ class loadScreen {
 		for (var i=0; i < picList.length; i++) {
 			(function (img, src) {
 				img.onload = function () {
+					$(".loading-overlay-bar-secondary .loading-overlay-bar-value").text((++count) + "/" + picList.length);
+					$(".loading-overlay-bar-secondary .loading-overlay-bar-content").css("width", Math.round(count/picList.length*100) + "%");
 					if (count == picList.length) {
 						loadScreen.complete('pictures');
 					}
-					$(".loading-overlay-bar-secondary .loading-overlay-bar-value").text((++count) + "/" + picList.length);
-					$(".loading-overlay-bar-secondary .loading-overlay-bar-content").css("width", Math.round(count/picList.length*100) + "%");
 				};
 
 				// Use the following callback methods to debug
