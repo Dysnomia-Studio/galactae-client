@@ -62,5 +62,6 @@
 		// Messages
 		tech_owned: "Already searched technology",
 		ongoing: 	"Research in progress ...",
+		search: 	"Research",
 	};
 </script>

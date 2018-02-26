@@ -483,10 +483,7 @@ class map {
 		for(var i=0; i<planets.length; i++) {
 			// Create DOM
 			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>');
-			$("#" + planets[i].address + " .pos .planet").append('<dl class="infos">' +
-						'<dt></dt>' + // @ADD: Name
-						'<dd></dd>' + // @ADD: Player & Address
-				'</dl>');
+			// @ADD: Menu
 
 			// Set Size
 			$("#" + planets[i].address).css("font-size","" + (PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF) + "em");

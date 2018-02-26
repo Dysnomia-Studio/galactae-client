@@ -62,5 +62,6 @@
 		// Messages
 		tech_owned: "Technologie possédée",
 		ongoing: 	"Recherche en cours ...",
+		search: 	"Rechercher",
 	};
 </script>
