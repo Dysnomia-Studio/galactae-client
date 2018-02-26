@@ -2,11 +2,19 @@
 	"use strict";
 </script>
 <?php /* Loading Overlay */ ?>
-<div id="loading-overlay">
+<div id="loading-overlay" style="/*display: none;*/">
 	<div id="loading-overlay-back"></div>
-	<img id="loading-overlay-img" src="<?php echo $cdnURL; ?>img/load-gears.gif" alt="loading-overlay">
-	<div id="loading-overlay-text"><?php echo GAME_LOADING; ?><br/>
+	<svg id="loading-overlay-img" width="150px" height="150px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#0EC6C6" stroke-width="4" r="45" stroke-dasharray="212.05750411731105 72.68583470577035" transform="rotate(64 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1.5s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg>
+	<div id="loading-overlay-text"><span id="loading-overlay-main"><?php echo GAME_LOADING; ?></span><br/>
+		<div class="loading-overlay-bar loading-overlay-bar-primary">
+			<div class="loading-overlay-bar-value">0%</div>
+			<div class="loading-overlay-bar-content"></div>
+		</div>
 		<span id="loading-overlay-desc"><?php echo DEFAULT_LOAD; ?></span>
+		<div class="loading-overlay-bar loading-overlay-bar-secondary">
+			<div class="loading-overlay-bar-value">0/0</div>
+			<div class="loading-overlay-bar-content"></div>
+		</div>
 	</div>
 </div>
 <?php /* Planet View */ ?>

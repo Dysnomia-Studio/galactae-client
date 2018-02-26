@@ -44,14 +44,21 @@ class loadScreen {
 			for(var i in loadStatusArr) {
 				if(loadStatusArr[i] == true) { continue; }
 
+				$(".loading-overlay-bar-secondary").css('display','none');
+				if(i=="pictures") {
+					$(".loading-overlay-bar-secondary").css('display','block');
+				}
+
 				if(translate['load'][i] !== undefined) {
 					$('#loading-overlay-desc').html(translate['load'][i]);
 				}
 				break;
 			}
-		}
 
-		// @ADD: "Chargement: XX%"
+			var percentage = Math.round(loadStatus/loadEnd*100);
+			$(".loading-overlay-bar-primary .loading-overlay-bar-value").text(percentage + "%");
+			$(".loading-overlay-bar-primary .loading-overlay-bar-content").css("width", percentage + "%");
+		}
 	}
 
 	static hide() {
@@ -107,10 +114,11 @@ class loadScreen {
 		for (var i=0; i < picList.length; i++) {
 			(function (img, src) {
 				img.onload = function () {
-					$('#loading-overlay-desc').html(translate['load']["pictures"] + " (" + (++count) + "/" + picList.length + ")");
 					if (count == picList.length) {
 						loadScreen.complete('pictures');
 					}
+					$(".loading-overlay-bar-secondary .loading-overlay-bar-value").text((++count) + "/" + picList.length);
+					$(".loading-overlay-bar-secondary .loading-overlay-bar-content").css("width", Math.round(count/picList.length*100) + "%");
 				};
 
 				// Use the following callback methods to debug
