@@ -634,11 +634,6 @@ class map {
 	 * @param	  {string}  address  The address
 	 */
 	static openGlobalMap(address) {
-		// Check Address
-		if(typeof(address) != "string" || address.split("-").length != 2) {
-			console.log('INVALID ADRESS FORMAT !');
-			return;
-		}
 		map.currentMap = "sector";
 
 		map.focusAddress(address);
