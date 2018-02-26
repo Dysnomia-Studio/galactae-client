@@ -4,7 +4,7 @@
 <?php /* Loading Overlay */ ?>
 <div id="loading-overlay" style="/*display: none;*/">
 	<div id="loading-overlay-back"></div>
-	<svg id="loading-overlay-img" width="150px" height="150px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#0EC6C6" stroke-width="4" r="45" stroke-dasharray="212.05750411731105 72.68583470577035" transform="rotate(64 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1.5s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg>
+	<img id="loading-overlay-img" src="<?php echo $cdnURL; ?>img/load-pic.gif">
 	<div id="loading-overlay-text"><span id="loading-overlay-main"><?php echo GAME_LOADING; ?></span><br/>
 		<div class="loading-overlay-bar loading-overlay-bar-primary">
 			<div class="loading-overlay-bar-value">0%</div>
@@ -47,8 +47,8 @@
 					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
 					<span class="building-cost-item" id="building-cost-titanium">Ti <span id="building-cost-titanium-val"></span></span>
 					<br/>
-					<span class="building-cost-item" id="building-cost-energy"><img src="./cdn/img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
-					<span class="building-cost-item" id="building-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
+					<span class="building-cost-item" id="building-cost-energy"><img src="<?php echo $cdnURL; ?>img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
+					<span class="building-cost-item" id="building-cost-population"><img src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
 					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
 				<br/>
@@ -438,9 +438,9 @@ if($userData['lastViewedNews'] < $max) {
 	
 				<div id="fleet-build-buttons">
 
-					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.svg" alt="build">
-					<img id="fleet-build-type-copy" src="./cdn/img/ui/copy.svg" alt="copy">
-					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.svg alt="delete">
+					<img id="fleet-build-openPanel" src="<?php echo $cdnURL; ?>img/ui/build.svg" alt="build">
+					<img id="fleet-build-type-copy" src="<?php echo $cdnURL; ?>img/ui/copy.svg" alt="copy">
+					<img id="fleet-build-type-delete" src=<?php echo $cdnURL; ?>img/ui/delete.svg alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>
@@ -494,7 +494,7 @@ if($userData['lastViewedNews'] < $max) {
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-aluminium">Al <span id="fleet-ship-build-cost-aluminium-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-copper">Cu <span id="fleet-ship-build-cost-copper-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-titanium">Ti <span id="fleet-ship-build-cost-titanium-val">XXXt</span></p>
-		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-time"><?php echo TIME; ?>: <span id="fleet-ship-build-cost-time-val">00:00:00</span></p>
 	</div>
 
