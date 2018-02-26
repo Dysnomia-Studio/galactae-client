@@ -107,7 +107,7 @@ class loadScreen {
 		for (var i=0; i < picList.length; i++) {
 			(function (img, src) {
 				img.onload = function () {
-					$('#loading-overlay-desc').html(translate['load'][i] + " (" + (++count) + "/" + picList.length + ")");
+					$('#loading-overlay-desc').html(translate['load']["pictures"] + " (" + (++count) + "/" + picList.length + ")");
 					if (count == picList.length) {
 						loadScreen.complete('pictures');
 					}
