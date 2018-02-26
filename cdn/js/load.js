@@ -9,8 +9,6 @@ var loadStatusArr = {
 	"maps": false,
 	"pictures": false,
 };
-var loadedPics = 0;
-var loadedPicsMax = 0;
 var loadEnd = 12;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
@@ -47,11 +45,7 @@ class loadScreen {
 				if(loadStatusArr[i] == true) { continue; }
 
 				if(translate['load'][i] !== undefined) {
-					if(i == "pictures") {
-						$('#loading-overlay-desc').html(translate['load'][i] + " (" + loadedPics + "/" + loadedPicsMax + ")");
-					} else {
-						$('#loading-overlay-desc').html(translate['load'][i]);
-					}
+					$('#loading-overlay-desc').html(translate['load'][i]);
 				}
 				break;
 			}
@@ -110,11 +104,11 @@ class loadScreen {
 		}
 
 		var count = 0;
-		loadedPicsMax = picList.length;
 		for (var i=0; i < picList.length; i++) {
 			(function (img, src) {
 				img.onload = function () {
-					if (++count == picList.length) {
+					$('#loading-overlay-desc').html(translate['load'][i] + " (" + (++count) + "/" + picList.length + ")");
+					if (count == picList.length) {
 						loadScreen.complete('pictures');
 					}
 				};
