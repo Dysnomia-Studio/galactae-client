@@ -202,10 +202,10 @@ class ui {
 				ui.closeTab("#hud-ranks")
 				ui.ranks = false;
 			} else if(ui.map==true) {
-				if(map.currentMap == "" || map.currentMap == "galaxy") {
+				if(map.currentMap == "" || map.currentMap == "global") {
 					map.closeTab();
 				} else {
-					map.backToParent();
+					map.openGlobalMap(map.currentAddress);
 				}
 				
 			} else if(planet.buildPanel!=-1) {
