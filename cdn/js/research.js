@@ -68,6 +68,11 @@ class research {
 			$('#hud-research-content').css('zoom',zoom);
 		});
 
+		$('#researchCenter-node').click(function() {
+			research.closeUI();
+			planet.buildPanelOpen(8);
+		});
+
 		if(ui.research) {
 			$("#hud-research").css('display','block');
 		}
