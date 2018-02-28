@@ -681,7 +681,12 @@ class units {
 	                if($(source).attr("parttype") == "sub_propulsion" ||
 	                	$(source).attr("parttype") == "sup_propulsion") {
 
-	                	$('#fleet-type-create-selects *[parttype=' + (source).attr("parttype") +']').val($(this).find("span.value").html());
+	                	var selects = $('#fleet-type-create-selects *[parttype=' + (source).attr("parttype") +']');
+	                	for(var i=0; i < selects.length; i++) {
+	                		$(selects[i]).val($(this).find("span.value").html());
+
+	                		$("#" + $(selects[i]).attr('id').split('hidden').join("seen") + " dt a").html(text);
+	                	}
 	                } else {
 	                	source.val($(this).find("span.value").html());
 	                }
