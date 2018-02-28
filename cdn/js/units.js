@@ -676,7 +676,15 @@ class units {
 	                $("#part-selecting-seen-" + id + " dd ul").hide();
 	                
 	                var source = $("#part-selecting-hidden-" + id);
-	                source.val($(this).find("span.value").html())
+	                
+
+	                if($(source).attr("parttype") == "sub_propulsion" ||
+	                	$(source).attr("parttype") == "sup_propulsion") {
+
+	                	$('#fleet-type-create-selects *[parttype=' + (source).attr("parttype") +']').val($(this).find("span.value").html());
+	                } else {
+	                	source.val($(this).find("span.value").html());
+	                }
 	            });
 			}
 		}
