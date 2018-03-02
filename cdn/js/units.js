@@ -677,11 +677,10 @@ class units {
 	                
 	                var source = $("#part-selecting-hidden-" + id);
 	                
-
 	                if($(source).attr("parttype") == "sub_propulsion" ||
 	                	$(source).attr("parttype") == "sup_propulsion") {
 
-	                	var selects = $('#fleet-type-create-selects *[parttype=' + (source).attr("parttype") +']');
+	                	var selects = $('#fleet-type-create-selects select[parttype=' + $(source).attr("parttype") +']');
 	                	for(var i=0; i < selects.length; i++) {
 	                		$(selects[i]).val($(this).find("span.value").html());
 
