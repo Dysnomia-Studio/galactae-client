@@ -682,7 +682,7 @@ class units {
 						for(var i=0; i < selects.length; i++) {
 							$(selects[i]).val($(this).attr("val"));
 
-							for(var i=0; i<$(this)[0].style.length; i++) {
+							for(var j=0; j<$(this)[0].style.length; j++) {
 								console.log($(this)[0].style[i]);
 								console.log($(this)[0].style[$(this)[0].style[i]]);
 								$("#" + $(selects[i]).attr('id').split('hidden').join("seen") + " dt a")[0].style[$(this)[0].style[i]] = $(this)[0].style[$(this)[0].style[i]];
