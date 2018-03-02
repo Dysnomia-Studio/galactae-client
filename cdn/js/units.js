@@ -670,8 +670,6 @@ class units {
 				});	
 				$("#part-selecting-seen-" + id + " dd ul li a").click(function() {
 					$("#part-selecting-seen-" + id + " dd ul").hide();
-
-					console.info($(this)[0].style);
 					
 					var source = $("#part-selecting-hidden-" + id);
 					
@@ -679,22 +677,18 @@ class units {
 						$(source).attr("parttype") == "sup_propulsion") {
 
 						var selects = $('#fleet-type-create-selects select[parttype=' + $(source).attr("parttype") +']');
-						for(var i=0; i < selects.length; i++) {
-							$(selects[i]).val($(this).attr("val"));
+						for(var currSelect=0; currSelect < selects.length; currSelect++) {
+							$(selects[currSelect]).val($(this).attr("value"));
 
-							for(var j=0; j<$(this)[0].style.length; j++) {
-								console.log($(this)[0].style[i]);
-								console.log($(this)[0].style[$(this)[0].style[i]]);
-								$("#" + $(selects[i]).attr('id').split('hidden').join("seen") + " dt a")[0].style[$(this)[0].style[i]] = $(this)[0].style[$(this)[0].style[i]];
+							for(var currStyle=0; currStyle<$(this)[0].style.length; currStyle++) {
+								$("#" + $(selects[currSelect]).attr('id').split('hidden').join("seen") + " dt a")[0].style[$(this)[0].style[currStyle]] = $(this)[0].style[$(this)[0].style[currStyle]];
 							}
 						}
 					} else {
-						source.val($(this).attr("val"));
+						source.val($(this).attr("value"));
 
-						for(var i=0; i<$(this)[0].style.length; i++) {
-							console.log($(this)[0].style[i]);
-							console.log($(this)[0].style[$(this)[0].style[i]]);
-							$("#part-selecting-seen-" + id + " dt a")[0].style[$(this)[0].style[i]] = $(this)[0].style[$(this)[0].style[i]];
+						for(var currSelect=0; currSelect<$(this)[0].style.length; currSelect++) {
+							$("#part-selecting-seen-" + id + " dt a")[0].style[$(this)[0].style[currSelect]] = $(this)[0].style[$(this)[0].style[currSelect]];
 						}
 					}
 				});
@@ -806,10 +800,6 @@ class units {
 			var type = $(parts[i]).attr('partType');
 			var value =  $(parts[i]).val();
 
-			console.log(name);
-			console.log(type);
-			console.log(value);
-
 			if(value==undefined || value.split(' ').join('')=="") {
 				errors++;
 				errorMessage = "SHIP_HAS_EMPTY_FIELD";
@@ -828,8 +818,7 @@ class units {
 		if(errors==0) {
 			ui.closeTab("#fleet-type-create",false);
 			preventFleetHUDClosing = false;
-			console.info(ship);
-			//socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
+			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
 		} else {
 			ui.drawMessage(errorMessage); // @ADD: Translation
 		}
