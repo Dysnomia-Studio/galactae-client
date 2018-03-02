@@ -37,10 +37,7 @@ a, body {
 	display: block;
 	border: 1px solid transparent; 
 	width: 50px;
-}
-.dropdown dt a span {
 	cursor: pointer; 
-	display: block; 
 	padding: 5px;
 }
 .dropdown dd ul { 
@@ -51,7 +48,6 @@ a, body {
 	width: 50px; 
 	list-style: none;
 }
-.dropdown span.value { display: none; }
 .dropdown dd ul li a { 
 	border: 1px solid #0EC6C6; 
 	border-bottom: 1px solid transparent;

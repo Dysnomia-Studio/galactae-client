@@ -633,63 +633,71 @@ class units {
 
 				/* Seen Select */
 				let id = i;
-	            var source = $("#part-selecting-hidden-" + id);
-	            var selected = source.find("option[selected]");
-	            if(selected[0] === undefined) {
-	            	selected = $(source.find("option")[0]);
-	            }
-	            var options = $("option", source);
-	            
-	            $("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
-	            	+ 'left: ' + shape[id][2] + 'px;'
-	            	+ 'top: ' + shape[id][3] + 'px;'
-	            	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
-	            	+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
-	            	+ '"></dl>');
+				var source = $("#part-selecting-hidden-" + id);
+				var selected = source.find("option[selected]");
+				if(selected[0] === undefined) {
+					selected = $(source.find("option")[0]);
+				}
+				var options = $("option", source);
+				
+				$("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
+					+ 'left: ' + shape[id][2] + 'px;'
+					+ 'top: ' + shape[id][3] + 'px;'
+					+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
+					+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
+					+ '"></dl>');
 
-	            $("#part-selecting-seen-" + id).append('<dt><a href="#">'
-	                    + '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-	                	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
-	            		+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
-	                    + '"></span></a></dt>');
-	            $("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
+				$("#part-selecting-seen-" + id).append('<dt><a href="#" value="' + selected.val()  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
+						+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
+						+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
+						+ '"></a></dt>');
+				$("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
 
-	            options.each(function(){
-	                $("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#">' + 
-	                    '<span style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id')  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-	                	+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
-	            		+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
-	                    + '"></span></a></dt></a></li>');
-	            });
+				options.each(function(){
+					$("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#" value="' + $(this).attr('id')  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id') + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
+						+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
+						+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
+						+ '"></a></li>');
+				});
 
-	           $("#part-selecting-seen-" + id + " dt a").click(function() {
-	                $("#part-selecting-seen-" + id + " dd ul").toggle();
-	            });
-	            $(document).bind('click', function(e) {
-	                var $clicked = $(e.target);
-	                if(! $clicked.parents().hasClass("dropdown"))
-	                    $("#part-selecting-seen-" + id + " dd ul").hide();
-	            });    
-	            $("#part-selecting-seen-" + id + " dd ul li a").click(function() {
-	                var text = $(this).html();
-	                $("#part-selecting-seen-" + id + " dt a").html(text);
-	                $("#part-selecting-seen-" + id + " dd ul").hide();
-	                
-	                var source = $("#part-selecting-hidden-" + id);
-	                
-	                if($(source).attr("parttype") == "sub_propulsion" ||
-	                	$(source).attr("parttype") == "sup_propulsion") {
+			   $("#part-selecting-seen-" + id + " dt a").click(function() {
+					$("#part-selecting-seen-" + id + " dd ul").toggle();
+				});
+				$(document).bind('click', function(e) {
+					var $clicked = $(e.target);
+					if(! $clicked.parents().hasClass("dropdown"))
+						$("#part-selecting-seen-" + id + " dd ul").hide();
+				});	
+				$("#part-selecting-seen-" + id + " dd ul li a").click(function() {
+					$("#part-selecting-seen-" + id + " dd ul").hide();
 
-	                	var selects = $('#fleet-type-create-selects select[parttype=' + $(source).attr("parttype") +']');
-	                	for(var i=0; i < selects.length; i++) {
-	                		$(selects[i]).val($(this).find("span.value").html());
+					console.info($(this)[0].style);
+					
+					var source = $("#part-selecting-hidden-" + id);
+					
+					if($(source).attr("parttype") == "sub_propulsion" ||
+						$(source).attr("parttype") == "sup_propulsion") {
 
-	                		$("#" + $(selects[i]).attr('id').split('hidden').join("seen") + " dt a").html(text);
-	                	}
-	                } else {
-	                	source.val($(this).find("span.value").html());
-	                }
-	            });
+						var selects = $('#fleet-type-create-selects select[parttype=' + $(source).attr("parttype") +']');
+						for(var i=0; i < selects.length; i++) {
+							$(selects[i]).val($(this).attr("val"));
+
+							for(var i=0; i<$(this)[0].style.length; i++) {
+								console.log($(this)[0].style[i]);
+								console.log($(this)[0].style[$(this)[0].style[i]]);
+								$("#" + $(selects[i]).attr('id').split('hidden').join("seen") + " dt a")[0].style[$(this)[0].style[i]] = $(this)[0].style[$(this)[0].style[i]];
+							}
+						}
+					} else {
+						source.val($(this).attr("val"));
+
+						for(var i=0; i<$(this)[0].style.length; i++) {
+							console.log($(this)[0].style[i]);
+							console.log($(this)[0].style[$(this)[0].style[i]]);
+							$("#part-selecting-seen-" + id + " dt a")[0].style[$(this)[0].style[i]] = $(this)[0].style[$(this)[0].style[i]];
+						}
+					}
+				});
 			}
 		}
 		$('#fleet-type-create-schematic').html(svgContent);
@@ -798,10 +806,14 @@ class units {
 			var type = $(parts[i]).attr('partType');
 			var value =  $(parts[i]).val();
 
+			console.log(name);
+			console.log(type);
+			console.log(value);
+
 			if(value==undefined || value.split(' ').join('')=="") {
 				errors++;
 				errorMessage = "SHIP_HAS_EMPTY_FIELD";
-				break;
+				//break;
 			}
 
 			if(type==undefined || type.split(' ').join('')=="") {
@@ -816,7 +828,8 @@ class units {
 		if(errors==0) {
 			ui.closeTab("#fleet-type-create",false);
 			preventFleetHUDClosing = false;
-			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
+			console.info(ship);
+			//socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
 		} else {
 			ui.drawMessage(errorMessage); // @ADD: Translation
 		}
