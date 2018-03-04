@@ -490,10 +490,14 @@ class map {
 
 			// Set Orbit, planet position and anim duration
 			// !! Percentage of solar system size !! \\
-			var orbitSize = i * ((1/planets.length) * 0.5 + 0.045); // 49.5 a 90% du systeme
+			var orbitSize = i * ((1/planets.length) * 0.5 + 0.05);
+			// (de la place allouée aux planetes)
+			// i = 0 =>  0%
+			// i = 9 => 90%
+			// imax de 0%, 30%, 42%, ..., 90%
 
 			// Anim duration
-			var orbitDuration = (2 + orbitSize) * 360; // in seconds
+			var orbitDuration = (2 + orbitSize) * 360 * 6; // in seconds - Le facteur *6 est necessaire afin d'avoir une propulsion qui prendra au pire 30 min de trajet d'un bout a l'autre du systeme (ici on aura ~37min d'orbite pour la plus eloignée) et qui saura rattrapper une planete a pleine vitesse
 			$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");

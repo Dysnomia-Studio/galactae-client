@@ -611,7 +611,7 @@ var shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	plasma: 		[ 10, 15,  7,  8,0.15,0],
 	// Propulsions subluminiques
 	ion: 			[ 80, 60, 40,  5,0.25,0],
-	plasma: 		[130, 90, 60, 10,0.40,0],
+	pplasma: 		[130, 90, 60, 10,0.40,0],
 	vsolaire: 		[120, 45, 35, 15,0.35,0],
 	// Propulsions supraluminiques
 	vsl: 			[ 65,120, 60, 20,0.55,  80],
@@ -619,4 +619,25 @@ var shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	hyperespace: 	[100,160,115, 30,0.75, 160],
 	
 	none: [0,0,0,0,0,0],
+};
+
+var shipPartsSpeed = {
+	// Propulsions subluminiques
+	ion: 			[ -0.000046, 0.0096, 0],
+	plasma: 		[ -0.000045, 0.0090, 0],
+	vsolaire: 		[ -0.000040, 0.0080, 0],
+	// Propulsions supraluminiques
+	vsl: 			[    -0.027,   7.23, 0.001],
+	wd: 			[    -0.016,   5.13, 0.001],
+	hyperespace: 	[    -0.014,   3.68, 0.001],
+};
+var fuelCost = {
+	// Propulsions subluminiques
+	ion: 			 18312,
+	plasma: 		 15696,
+	vsolaire: 		     0,
+	// Propulsions supraluminiques
+	vsl: 			327615,
+	wd: 			290127,
+	hyperespace: 	254919,
 };
