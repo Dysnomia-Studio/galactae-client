@@ -60,6 +60,7 @@ class planet {
 		planet.buildPanel = -1; // Current opened building
 		planet.buildPanelInterval = -1; // Time before next client auto update
 		planet.enoughResources = -1; // Time before enought ressources
+		planet.deltaNow = 0; // Security measure
 	}
 
 	/**
