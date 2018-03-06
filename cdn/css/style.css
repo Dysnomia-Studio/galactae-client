@@ -66,6 +66,10 @@ a, body {
 select, input, summary {
 	outline: none;
 }
+/* Fix for firefox */
+#hud-research-content, #hud-map-global { /* Only needed for firefox custom zoom */
+	-moz-transform-origin: left top;
+}
 /**
  * Game version & Copyright
  */
@@ -1480,9 +1484,6 @@ select, input, summary {
 }
 #hud-research-content, #hud-research-links {
 	background-color: #0b1012;
-}
-#hud-research-content {
-	-moz-transform-origin: left top;
 }
 @keyframes researchActive {
 	0% {
