@@ -54,8 +54,8 @@ class research {
 			}
 
 			research.zoom += coef;
-			if(research.zoom < 0.5) { return; }
-			if(research.zoom > 1.75) { return; }
+			if(research.zoom < 0.5) { research.zoom -= coef; return; }
+			if(research.zoom > 1.75) { research.zoom -= coef; return; }
 
 			var pos = $("#hud-research").position();
 			pos.left = ((pos.left - researchPrevMouse[0])/(research.zoom - coef) * research.zoom) + researchPrevMouse[0];
