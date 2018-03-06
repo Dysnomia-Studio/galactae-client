@@ -45,27 +45,26 @@ class research {
 			researchPrevMouse[1] = e.pageY;
 		});
 
-		//var mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
-		$('#hud-research-content').on("mousewheel", function(e){
-			var zoom = parseFloat($('#hud-research-content').css('zoom'));
-
+		var mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		$('#hud-research-content').on(mousewheelevt, function(e){
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
 				var coef = 0.05; // Scroll up
 			} else {			
 				var coef = -0.05; // Scroll down
 			}
 
-			zoom += coef;
-			if(zoom < 0.5) { return; }
-			if(zoom > 1.75) { return; }
+			research.zoom += coef;
+			if(research.zoom < 0.5) { return; }
+			if(research.zoom > 1.75) { return; }
 
 			var pos = $("#hud-research").position();
-			pos.left = ((pos.left - researchPrevMouse[0])/(zoom - coef) * zoom) + researchPrevMouse[0];
-			pos.top = ((pos.top - researchPrevMouse[1])/(zoom - coef) * zoom) + researchPrevMouse[1];
+			pos.left = ((pos.left - researchPrevMouse[0])/(research.zoom - coef) * research.zoom) + researchPrevMouse[0];
+			pos.top = ((pos.top - researchPrevMouse[1])/(research.zoom - coef) * research.zoom) + researchPrevMouse[1];
 			$("#hud-research").css("left",pos.left);
 			$("#hud-research").css("top" ,pos.top );
 					
-			$('#hud-research-content').css('zoom',zoom);
+			$('#hud-research-content').css('zoom',research.zoom);
+			$('#hud-research-content').css('-moz-transform','scale(' + research.zoom + ')');
 		});
 
 		$('#researchCenter-node').click(function() {
@@ -102,8 +101,8 @@ class research {
 		// On centre sur la recherche courante
 		if(researchPos[planetData.currResearch] !== undefined) {
 			var newUIPos = [
-				$(document).width()/2  - researchPos[planetData.currResearch][0]*$("#hud-research-content").css("zoom"),
-				$(document).height()/2 - researchPos[planetData.currResearch][1]*$("#hud-research-content").css("zoom")
+				$(document).width()/2  - researchPos[planetData.currResearch][0]*research.zoom,
+				$(document).height()/2 - researchPos[planetData.currResearch][1]*research.zoom
 			];
 			research.moveUI(newUIPos);
 		}
@@ -126,11 +125,11 @@ class research {
 		if(parseInt(pos[1]) > 0) {
 			pos[1] = 0;
 		}
-		if(parseInt(pos[0]) < ($(document).width()-RESEARCH_DIV_SIZE*$("#hud-research-content").css("zoom"))) {
-			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*$("#hud-research-content").css("zoom");
+		if(parseInt(pos[0]) < ($(document).width()-RESEARCH_DIV_SIZE*research.zoom)) {
+			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*$research.zoom;
 		}
-		if(parseInt(pos[1]) < ($(document).height()-RESEARCH_DIV_SIZE*$("#hud-research").css("zoom"))) {
-			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*$("#hud-research-content").css("zoom");
+		if(parseInt(pos[1]) < ($(document).height()-RESEARCH_DIV_SIZE*research.zoom)) {
+			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*research.zoom;
 		}
 
 		$("#hud-research").css({
@@ -142,8 +141,8 @@ class research {
 	 * Draws research UI
 	 */
 	static drawPanel() {
-		var zoom = $('#hud-research-content').css('zoom');
-		$('#hud-research-content').css('zoom',1);
+		$('#hud-research-content').css('zoom', 1);
+		$('#hud-research-content').css('-moz-transform','scale(1)');
 
 		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
 		$('#hud-research').css("opacity",0);
@@ -169,7 +168,8 @@ class research {
 		$('#hud-research').css("opacity",1);
 
 		research.loadUI();
-		$('#hud-research-content').css('zoom',zoom);
+		$('#hud-research-content').css('zoom',research.zoom);
+		$('#hud-research-content').css('-moz-transform','scale(' + research.zoom + ')');
 	}
 	/**
 	 * Draws a node.
