@@ -128,7 +128,7 @@ class research {
 			pos[1] = 0;
 		}
 		if(parseInt(pos[0]) < ($(document).width()-RESEARCH_DIV_SIZE*research.zoom)) {
-			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*$research.zoom;
+			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*research.zoom;
 		}
 		if(parseInt(pos[1]) < ($(document).height()-RESEARCH_DIV_SIZE*research.zoom)) {
 			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*research.zoom;
