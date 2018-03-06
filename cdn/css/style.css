@@ -1481,6 +1481,9 @@ select, input, summary {
 #hud-research-content, #hud-research-links {
 	background-color: #0b1012;
 }
+#hud-research-content {
+	-moz-transform-origin: left top;
+}
 @keyframes researchActive {
 	0% {
 		box-shadow: 0 0 0 #0EC6C6;

@@ -25,8 +25,6 @@ class research {
 	 * Loader for research UI
 	 */
 	static loadUI() {
-		research.zoom = 1;
-		
 		$("#hud-research-close").click(function() { research.closeUI(); });
 
 		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
@@ -143,6 +141,8 @@ class research {
 	 * Draws research UI
 	 */
 	static drawPanel() {
+		if(research.zoom === undefined) { research.zoom = 1; }
+
 		$('#hud-research-content').css('zoom', 1);
 		$('#hud-research-content').css('-moz-transform','scale(1)');
 
