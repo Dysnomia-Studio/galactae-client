@@ -43,6 +43,8 @@ class map {
 		map.xmlhttp	= (map.xmlhttp === undefined)?[]:map.xmlhttp;
 		map.xmlDoc	 = (map.xmlDoc === undefined)?[]:map.xmlDoc;
 
+		map.zoom = 1;
+
 		var currentSector = map.currentAddress.split('-');
 		currentSector = [currentSector[0],currentSector[1]].join("-");
 
@@ -78,26 +80,27 @@ class map {
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
 		});
-		$('#hud-map-global').on('mousewheel', function(e){
-			var zoom = parseFloat($('#hud-map-global').css('zoom'));
 
+		var mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		$('#hud-map-global').on(mousewheelevt, function(e){
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-				var coef = 0.05; // Scroll up
+				var coef = 0.03; // Scroll up
 			} else {			
-				var coef = -0.05; // Scroll down
+				var coef = -0.03; // Scroll down
 			}
 
-			zoom += coef;
-			if(zoom < 0.5) { return; }
-			if(zoom > 1.75) { return; }
+			map.zoom += coef;
+			if(map.zoom < 0.5) { map.zoom -= coef; return; }
+			if(map.zoom > 1.75) { map.zoom -= coef; return; }
 
 			var pos = $("#hud-map-global").position();
-			pos.left = ((pos.left - mapPrevMouse[0])/(zoom - coef) * zoom) + mapPrevMouse[0];
-			pos.top = ((pos.top - mapPrevMouse[1])/(zoom - coef) * zoom) + mapPrevMouse[1];
+			pos.left = ((pos.left - mapPrevMouse[0])/(map.zoom - coef) * map.zoom) + mapPrevMouse[0];
+			pos.top = ((pos.top - mapPrevMouse[1])/(map.zoom - coef) * map.zoom) + mapPrevMouse[1];
 			$("#hud-map-global").css("left",pos.left);
 			$("#hud-map-global").css("top" ,pos.top );
 					
-			$('#hud-map-global').css('zoom',zoom);
+			$('#hud-map-global').css('zoom',map.zoom);
+			$('#hud-map-global').css('-moz-transform','scale(' + map.zoom + ')');
 		});
 		$('#hud-map-focus').on('click', function() {
 			map.focusAddress(map.currentAddress = planetData.address);
@@ -126,11 +129,11 @@ class map {
 		if(parseInt(pos[1]) > 0) {
 			pos[1] = 0;
 		}
-		if(parseInt(pos[0]) < ($(document).width()-MAP_SIZE_WIDTH*$("#hud-map-global").css("zoom"))) {
-			pos[0] = $(document).width()-MAP_SIZE_WIDTH*$("#hud-map-global").css("zoom");
+		if(parseInt(pos[0]) < ($(document).width()-MAP_SIZE_WIDTH*map.zoom)) {
+			pos[0] = $(document).width()-MAP_SIZE_WIDTH*map.zoom;
 		}
-		if(parseInt(pos[1]) < ($(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom"))) {
-			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*$("#hud-map-global").css("zoom");
+		if(parseInt(pos[1]) < ($(document).height()-MAP_SIZE_HEIGHT*map.zoom)) {
+			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
 		$("#hud-map-global").css({
