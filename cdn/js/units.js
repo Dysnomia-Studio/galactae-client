@@ -103,6 +103,7 @@ class units {
 				username: userData.username,
 				unit: units.list[units.currUnit]._id
 			});
+			$('#fleet-typeDelete-panel').css('display','none');
 		});
 		$('#fleet-typeDelete-no').click(function() {
 			$('#fleet-typeDelete-panel').css('display','none');
