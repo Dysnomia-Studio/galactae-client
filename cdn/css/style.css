@@ -1156,7 +1156,7 @@ select, input, summary {
 	max-width: 30%;
 	word-break: break-all;
 }
-#fleet-newFleet-panel {
+#fleet-newFleet-panel, #fleet-typeDelete-panel {
 	width: 224px;
 	height: 124px;
 
@@ -1176,6 +1176,22 @@ select, input, summary {
 	margin: 5px 10px;
 	padding: 0;
 	text-align: center;
+}
+#fleet-typeDelete-panel {
+	padding: 0.5em;
+
+	text-align: center;
+}
+#fleet-typeDelete-panel input {
+	width: calc(50% - 14px);
+	position: absolute;
+	bottom: 0.5em;
+}
+#fleet-typeDelete-yes {
+	left: 0.5em;
+}
+#fleet-typeDelete-no {
+	right: 0.5em;
 }
 #fleet-type-create-shipType, #fleet-type-create-shipShape, #fleet-type-create-name {
 	z-index: 10;

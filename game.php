@@ -522,6 +522,11 @@ if($userData['lastViewedNews'] < $max) {
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
 	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
+<div id="fleet-typeDelete-panel">
+	Souhaitez vous vraiment supprimer ce modèle ?<br/>
+	<input id="fleet-typeDelete-yes" class="ui-large-button" type="submit" value="Oui">
+	<input id="fleet-typeDelete-no" class="ui-large-button" type="submit" value="Non">
+</div>
 <?php /* Researchs */ ?>
 <div id="hud-research">
 	<span id="hud-research-close">X</span>

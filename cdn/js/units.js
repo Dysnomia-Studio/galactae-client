@@ -94,11 +94,19 @@ class units {
 			units.drawCreateTypePanel(units.currUnit);
 		});
 		$('#fleet-build-type-delete').click(function() {
+			$('#fleet-typeDelete-panel').css('display','block');
+			preventFleetHUDClosing = true;
+		});
+		$('#fleet-typeDelete-yes').click(function() {
 			socket.emit("unit-type-delete", { 
 				id: userData.id,
 				username: userData.username,
 				unit: units.list[units.currUnit]._id
 			});
+		});
+		$('#fleet-typeDelete-no').click(function() {
+			$('#fleet-typeDelete-panel').css('display','none');
+			preventFleetHUDClosing = false;
 		});
 		$('#fleet-build-list thead tr th').click(function() {
 			var name = $(this).attr('id').split('-')[4];
