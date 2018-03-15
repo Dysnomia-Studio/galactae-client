@@ -72,6 +72,8 @@ translate["messages"] = {
 	"PLY_NOT_FOUND": "Erreur: joueur introuvable",
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",
 	"NO_LINKS": "Erreur: vous ne pouvez pas envoyer de lien sur le chat",
+	// Anti Self XSS Warning
+	"selfXSSWarn": "Attention: si quelqu'un vous dit de coller quelque chose ici, c'est a 150% une arnaque, ce genre d'attaques appelés \"Self XSS\" sont fait pour prendre le contrôle de votre compte.",
 };
 
 translate['load'] = {

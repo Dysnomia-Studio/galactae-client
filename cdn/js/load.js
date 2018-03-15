@@ -151,4 +151,6 @@ $(document).ready(function() {
 
 	// On se connecte au serveur node et on verifie l'identité du client ( Serveur )
 	webSockets.createConnection();
+
+	console.log(translate["messages"]["selfXSSWarn"]);
 });
