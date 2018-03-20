@@ -29,6 +29,7 @@ class research {
 
 		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
 			research.touchHandler(e);
+			return true;
 		});
 
 		$("#hud-research").on('touchstart', function(e) {

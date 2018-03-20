@@ -1597,7 +1597,7 @@ a[class="research-search"] {
 	}
 }
 
-@media (max-width: 749px), (max-height: 50vw) {
+@media (max-width: 749px), (max-height: 40vw) {
 	#hud-ranks, #hud-news {
 		display: none;
 
