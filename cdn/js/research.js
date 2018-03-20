@@ -18,7 +18,7 @@ class research {
 			false, false, false, 0, null);
 
 		touch.target.dispatchEvent(simulatedEvent);
-		event.preventDefault();
+		//event.preventDefault();
 	}
 
 	/**
@@ -29,7 +29,6 @@ class research {
 
 		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
 			research.touchHandler(e);
-			return true;
 		});
 
 		$("#hud-research").on('touchstart', function(e) {
