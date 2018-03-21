@@ -68,6 +68,10 @@ translate["messages"] = {
 	"FLEET_NAME_ALREADY_EXISTS": "Une autre flotte avec ce nom appartient déjà à cette planète",
 	"BUILDING_ERROR_INVALID_FLEET": "Erreur: la flotte où construire ces unités n'existe pas",
 	"BUILDING_ERROR_FLEET_SIZE": "Erreur: capacité maximale d'unités de la flotte depassée",
+	"IN_BUILDING_FLEET": "Erreur: La file de construction de votre flotte n'est pas terminée.",
+	"ALREADY_MOVING_FLEET": "Erreur: Votre flotte se déplace déjà.",
+	"NO_ENOUGHT_CARRIER": "Erreur: Pas assez de place pour transporter vos chasseurs.",
+	"CANT_MAKE_SUPRAMOVE": "Erreur: Certains de vos vaisseaux ne sont pas capable de voyages interstellaires.",
 	// Errors message
 	"PLY_NOT_FOUND": "Erreur: joueur introuvable",
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",

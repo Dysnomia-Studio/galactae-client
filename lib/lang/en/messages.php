@@ -68,6 +68,10 @@ translate["messages"] = {
 	"FLEET_NAME_ALREADY_EXISTS": "Another fleet with this name already belong to this planet",
 	"BUILDING_ERROR_INVALID_FLEET": "Error: units fleet doesn't exists",
 	"BUILDING_ERROR_FLEET_SIZE": "Error: fleet maximum units capacity exceeded",
+	"IN_BUILDING_FLEET": "Error: Your fleet building list isn't finish.",
+	"ALREADY_MOVING_FLEET": "Error: Your fleet is already moving.",
+	"NO_ENOUGHT_CARRIER": "Error: You haven't enough carrier capacity.",
+	"CANT_MAKE_SUPRAMOVE": "Error: Some of your ships can't move to another system.",
 	// Errors message
 	"PLY_NOT_FOUND": "Error: player not found",
 	"NO_PM_YOU": "Error: you can't send a private message to yourself",
