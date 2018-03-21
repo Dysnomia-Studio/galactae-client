@@ -19,40 +19,40 @@ a, body {
 	color: white;
 }
 /* Dropdown */
-.dropdown { 
-	margin: 0; 
+.dropdown {
+	margin: 0;
 }
-.dropdown dd, .dropdown dt, .dropdown ul { 
-	margin: 0px; 
-	padding: 0px; 
+.dropdown dd, .dropdown dt, .dropdown ul {
+	margin: 0px;
+	padding: 0px;
 }
-.dropdown dd { 
-	position: relative; 
+.dropdown dd {
+	position: relative;
 }
-.dropdown a, .dropdown a:visited { 
-	text-decoration: none; 
+.dropdown a, .dropdown a:visited {
+	text-decoration: none;
 	outline: none;
 }
 .dropdown dt a {
 	display: block;
-	border: 1px solid transparent; 
+	border: 1px solid transparent;
 	width: 50px;
-	cursor: pointer; 
+	cursor: pointer;
 	padding: 5px;
 }
-.dropdown dd ul { 
+.dropdown dd ul {
 	display: none;
 	left: 0px;
-	position: absolute; 
-	top: 2px; 
-	width: 50px; 
+	position: absolute;
+	top: 2px;
+	width: 50px;
 	list-style: none;
 }
-.dropdown dd ul li a { 
-	border: 1px solid #0EC6C6; 
+.dropdown dd ul li a {
+	border: 1px solid #0EC6C6;
 	border-bottom: 1px solid transparent;
 	padding: 5px;
-	display: block; 
+	display: block;
 	background-color: #0b1012;
 	z-index: 100000;
 	position: relative;
@@ -158,7 +158,7 @@ select, input, summary {
 	background: transparent;
 }
 /**
- * Choix de gouvernement 
+ * Choix de gouvernement
  */
 #gvt-choicelist {
 	position: fixed;
@@ -443,7 +443,7 @@ select, input, summary {
 
 	background-color: #0b1012;
 	border: 1px solid #0EC6C6;
-	border-top: 0px solid transparent; 
+	border-top: 0px solid transparent;
 
 	z-index: 200;
 }
@@ -884,7 +884,7 @@ select, input, summary {
 }
 @media (max-width: 1049px) {
 	#hud-chat {
-		background-color: #0b1012; 
+		background-color: #0b1012;
 
 		width: 100vw;
 		height: 100vh;
@@ -1218,7 +1218,7 @@ select, input, summary {
 	top: 0;
 	left: 0;
 
-	width: 800px; 
+	width: 800px;
 	height: 450px;
 }
 .part-selecting {
@@ -1234,7 +1234,7 @@ select, input, summary {
 	-moz-appearance: none;
 }
 #fleet-type-create-schematic * {
-	fill: #0b1012; 
+	fill: #0b1012;
 	stroke-width: 1;
 	/*fill-opacity: 0;*/
 }
@@ -1333,9 +1333,9 @@ select, input, summary {
 .unit-list-table {
 	white-space: nowrap;
 }
-.unit-list-table thead, .unit-list-table tbody, .unit-list-table tr, 
-.unit-list-table th, .unit-list-table td { 
-	display: block; 
+.unit-list-table thead, .unit-list-table tbody, .unit-list-table tr,
+.unit-list-table th, .unit-list-table td {
+	display: block;
 }
 .unit-list-table thead tr th {
 	cursor: pointer;
@@ -1419,8 +1419,8 @@ select, input, summary {
 #fleet-build-desc {
  	color: transparent;
 }
-#fleet-build-openPanel:hover ~ #fleet-build-desc, 
-	#fleet-build-type-copy:hover ~ #fleet-build-desc, 
+#fleet-build-openPanel:hover ~ #fleet-build-desc,
+	#fleet-build-type-copy:hover ~ #fleet-build-desc,
 	#fleet-build-type-delete:hover ~ #fleet-build-desc {
 
 	color: inherit;
@@ -1463,7 +1463,7 @@ select, input, summary {
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
 #hud-fleet .html5_details > summary::before, #hud-fleet details > summary::before {
-	content:"+"; 
+	content:"+";
 }
 #hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary::before {
 	content:"-";
@@ -1510,7 +1510,7 @@ select, input, summary {
 	}
 	100% {
 		box-shadow: 0 0 0 #0EC6C6;
-	} 
+	}
 }
 .current-research-node {
 	box-shadow: 0 0 2em #0EC6C6;
@@ -1755,7 +1755,7 @@ a[class="research-search"] {
 }
 
 /**
- * Solar system Map 
+ * Solar system Map
  * Inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
  */
 #hud-map-system {
@@ -1778,7 +1778,7 @@ a[class="research-search"] {
 	height: 100%;
 	background-position: center 40%;
 	background-repeat: no-repeat;
-	background-size: cover; 
+	background-size: cover;
 }
 #hud-map-system-galaxyBack {
 	position: relative;
@@ -1891,7 +1891,7 @@ a[class="research-search"] {
 	}
 	100% {
 		transform: rotateZ(-360deg);
-	} 
+	}
 }
 @keyframes suborbit {
 	0% {
@@ -1899,7 +1899,7 @@ a[class="research-search"] {
 	}
 	100% {
 		transform: rotateX(90deg) rotateZ(-360deg);
-	} 
+	}
 }
 @keyframes invert {
 	0% {
@@ -1907,7 +1907,7 @@ a[class="research-search"] {
 	}
 	100% {
 		transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
-	} 
+	}
 }
 
 /* Opening */
@@ -2079,38 +2079,38 @@ dl.infos dt {
 /* Responsive */
 @media screen and (max-width: 299px) {
 	#hud-map-system-universeBack {
-		font-size: 20%; 
-	} 
+		font-size: 20%;
+	}
 }
 @media screen and (min-width: 300px) {
 	#hud-map-system-universeBack {
 		font-size: 24%;
-	} 
+	}
 }
 @media screen and (min-width: 500px) {
 	#hud-map-system-universeBack {
 		font-size: 36%;
-	} 
+	}
 }
 @media screen and (min-width: 600px) {
 	#hud-map-system-universeBack {
 		font-size: 44%;
-	} 
+	}
 }
 @media screen and (min-width: 760px) {
 	#hud-map-system-universeBack {
 		font-size: 58%;
-	} 
+	}
 }
 @media screen and (min-width: 1000px) {
 	#hud-map-system-universeBack {
 		font-size: 73%;
-	} 
+	}
 }
 @media screen and (min-width: 1300px) {
 	#hud-map-system-universeBack {
 		font-size: 100%;
-	} 
+	}
 }
 
 /**
