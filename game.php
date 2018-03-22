@@ -471,7 +471,7 @@ if($userData['lastViewedNews'] < $max) {
 		<select id="fleet-type-create-shipShape" class="ui-large-select" onchange="units.changeShipShape();"></select>
 		<input type="text" id="fleet-type-create-name" placeholder="<?php echo SHIP_NAME; ?>" class="ui-large-button" required/>
 
-		<svg id="fleet-type-create-schematic" width="800px" height="450px"></svg>
+		<svg id="fleet-type-create-schematic" viewBox="0 0 800 450" preserveAspectRatio="none"></svg>
 		<div id="fleet-type-create-selects"></div>
 
 		<div id="fleet-type-create-cost">

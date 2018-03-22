@@ -70,6 +70,7 @@ select, input, summary {
 #hud-research-content, #hud-map-global { /* Only needed for firefox custom zoom */
 	-moz-transform-origin: left top;
 }
+
 /**
  * Game version & Copyright
  */
@@ -1068,15 +1069,41 @@ select, input, summary {
 }
 #fleet-type-create {
 	position: fixed;
-	left: calc(50vw - 400px); /* calc((100vw - 800px)/2); */
-	top: calc(50vh - 225px); /* calc((100vh - 450px)/2); */
-	width: 800px;
-	height: 450px;
-	background: url(../img/ui/window.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100%;
 	z-index: 101;
+}
+#fleet-type-create-submit {
+	display: block;
+	position: absolute;
+	width: 170px;
+}
+@media (min-width:  801px) and (min-height: 501px) {
+	#fleet-type-create {
+		left: calc(50vw - 400px); /* calc((100vw - 800px)/2); */
+		top: calc(50vh - 225px); /* calc((100vh - 450px)/2); */
+		width: 800px;
+		height: 450px;
+		background: url(../img/ui/window.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}
+	#fleet-type-create-submit {
+		bottom: 25px;
+		right: 25px;
+	}
+}
+@media (max-width:  800px) , (max-height: 500px) {
+	#fleet-type-create {
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #0b1012;
+	}
+	#fleet-type-create-submit {
+		bottom: 55px;
+		right: 25px;
+	}
 }
 #fleet-ship-build {
 	position: fixed;
@@ -1233,6 +1260,10 @@ select, input, summary {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
+#fleet-type-create-schematic {
+	max-width: 100%;
+	max-height: 100%;
+}
 #fleet-type-create-schematic * {
 	fill: #0b1012;
 	stroke-width: 1;
@@ -1259,13 +1290,6 @@ select, input, summary {
 	right: 0;
 	width: 300px;
 	height: 100%;
-}
-#fleet-type-create-submit {
-	display: block;
-	position: absolute;
-	bottom: 25px;
-	right: 25px;
-	width: 170px;
 }
 #fleet-type-create-close {
 	 z-index: 100;
