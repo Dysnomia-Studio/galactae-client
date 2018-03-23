@@ -3,7 +3,7 @@
 	
 	translate['research'] = {
 		// Noeud Central
-		researchCenter:		{ name: "Research Center", desc: "" },
+		researchCenter:		{ name: "Research Center", desc: "Research centers works together or alone to discover new skills or technologies usefull to the whole nation." },
 		industrialistion:	{ name: "Industrialisation", desc: "" },
 		phyContemporaine:	{ name: "Contemporary Physics", desc: "" },
 		thermodynamique:	{ name: "Thermodynamics", desc: "" },
@@ -19,11 +19,11 @@
 		prop_advManoeuvre:	{ name: "Advanced bow thrusters", desc: "" },
 		prop_suprastability:{ name: "Interstellar engines stability", desc: "" },
 		// Construction et production
-		cp_mecanisation:	{ name: "Automation", desc: "" },
-		cp_tracteur:		{ name: "Tractive beam", desc: "" },
-		cp_materielTp:		{ name: "Material transportation", desc: "" },
-		cp_dbRaffinage:		{ name: "Double refining", desc: "" },
-		cp_molecular_compression: { name: "Molecular compression", desc: "" },
+		cp_mecanisation:	{ name: "Automation", desc: "5% less time to build an unit" },
+		cp_tracteur:		{ name: "Tractive beam", desc: "5% less time to build an unit or a space buildings" },
+		cp_materielTp:		{ name: "Material transportation", desc: "10% less time to build an unit or a space buildings" },
+		cp_dbRaffinage:		{ name: "Double refining", desc: "2 times more likely to find rare minerals" },
+		cp_molecular_compression: { name: "Molecular compression", desc: "Raise a little bit storage limits" },
 		// Armes
 		wep_railgun:		{ name: "Railgun cannon", desc: "" },
 		wep_nuke:			{ name: "Nuclear weapons", desc: "" },

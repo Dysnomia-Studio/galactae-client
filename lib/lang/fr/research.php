@@ -3,7 +3,7 @@
 	
 	translate['research'] = {
 		// Noeud Central
-		researchCenter:		{ name: "Centre de recherches", desc: "Les centres de recherches travaillent sur un domaine choisi par le dirigeant afin de débloquer des techniques ou des technologies bénéfiques à la nation." },
+		researchCenter:		{ name: "Centre de recherches", desc: "Les centres de recherches travaillent ensemble ou seul afin de débloquer des techniques ou des technologies bénéfiques à la nation." },
 		industrialistion:	{ name: "Industrialisation", desc: "" },
 		phyContemporaine:	{ name: "Physique Contemporaine", desc: "" },
 		thermodynamique:	{ name: "Thermodynamique", desc: "" },
