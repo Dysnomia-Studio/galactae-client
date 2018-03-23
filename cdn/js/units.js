@@ -624,6 +624,7 @@ class units {
 
 					svgContent += '" ></polygon>';
 			}
+			$('#fleet-type-create-schematic').html(svgContent);
 
 			// Draw HTML
 			if(shape[i][0]!="struct") {
@@ -707,7 +708,6 @@ class units {
 				});
 			}
 		}
-		$('#fleet-type-create-schematic').html(svgContent);
 
 		// Events
 		$('#fleet-type-create-selects select').on("change",function() { 
