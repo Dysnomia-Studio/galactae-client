@@ -649,25 +649,27 @@ class units {
 				}
 				var options = $("option", source);
 
-				var w = ((parseInt(shape[id][4]-12))/800)*100
-				var h = ((parseInt(shape[id][5]-12))/450)*100
+				var selw = $("#fleet-type-create-schematic").width();
+				var selh = $("#fleet-type-create-schematic").height();
+				var w = shape[id][4]/800*selw - 12;
+				var h = shape[id][5]/450*selh - 12;
 				$("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
-					+ 'left: ' + ((shape[id][2])/800)*100 + '%;'
-					+ 'top: ' + ((shape[id][3])/450)*100 + '%;'
-					+ 'width: ' + w + '%;'
-					+ 'height: ' + h + '%;'
+					+ 'left: ' + ((shape[id][2])/800)*selw + 'px;'
+					+ 'top: ' + ((shape[id][3])/450)*selh + 'px;'
+					+ 'width: ' + w + 'px;'
+					+ 'height: ' + h + 'px;'
 					+ '"></dl>');
 
 				$("#part-selecting-seen-" + id).append('<dt><a href="#" value="' + selected.val()  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-						+ 'width: ' + $("#part-selecting-seen-" + id).width() + 'px;'
-						+ 'height: ' + $("#part-selecting-seen-" + id).height() + 'px;'
+						+ 'width: ' + w + 'px;'
+						+ 'height: ' + h + 'px;'
 						+ '"></a></dt>');
 				$("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
 
 				options.each(function(){
 					$("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#" value="' + $(this).attr('id')  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id') + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-						+ 'width: ' + $("#part-selecting-seen-" + id).width() + 'px;'
-						+ 'height: ' + $("#part-selecting-seen-" + id).height() + 'px;'
+						+ 'width: ' + w + 'px;'
+						+ 'height: ' + h + 'px;'
 						+ '"></a></li>');
 				});
 
