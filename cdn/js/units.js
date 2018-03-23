@@ -648,24 +648,26 @@ class units {
 					selected = $(source.find("option")[0]);
 				}
 				var options = $("option", source);
-				
+
+				var w = ((parseInt(shape[id][4]-12))/800)*100
+				var h = ((parseInt(shape[id][5]-12))/450)*100
 				$("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
-					+ 'left: ' + shape[id][2] + 'px;'
-					+ 'top: ' + shape[id][3] + 'px;'
-					+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
-					+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
+					+ 'left: ' + ((shape[id][2])/800)*100 + '%;'
+					+ 'top: ' + ((shape[id][3])/450)*100 + '%;'
+					+ 'width: ' + w + '%;'
+					+ 'height: ' + h + '%;'
 					+ '"></dl>');
 
 				$("#part-selecting-seen-" + id).append('<dt><a href="#" value="' + selected.val()  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-						+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
-						+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
+						+ 'width: ' + $("#part-selecting-seen-" + id).width() + 'px;'
+						+ 'height: ' + $("#part-selecting-seen-" + id).height() + 'px;'
 						+ '"></a></dt>');
 				$("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
 
 				options.each(function(){
 					$("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#" value="' + $(this).attr('id')  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id') + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-						+ 'width: ' + (parseInt(shape[id][4]-12)) + 'px;'
-						+ 'height: ' + (parseInt(shape[id][5]-12)) + 'px;'
+						+ 'width: ' + $("#part-selecting-seen-" + id).width() + 'px;'
+						+ 'height: ' + $("#part-selecting-seen-" + id).height() + 'px;'
 						+ '"></a></li>');
 				});
 
