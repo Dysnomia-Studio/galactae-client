@@ -120,7 +120,7 @@ class units {
 			$('#fleet-type-rename').css('display','block');
 			preventFleetHUDClosing = true;
 		});
-		$('#fleet-build-rename-submit').click(function() {
+		$('#fleet-type-rename-submit').click(function() {
 			if($('#fleet-type-rename-newName').val() == "") { return; }
 
 			socket.emit("unit-type-rename", { 

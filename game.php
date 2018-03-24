@@ -488,6 +488,7 @@ if($userData['lastViewedNews'] < $max) {
 </div>
 
 <div id="fleet-type-rename">
+	<span id="fleet-type-rename-close">X</span>
 	<p>Nouveau nom pour <span id="fleet-type-rename-name">SHIPNAME</span></p>
 	<input id="fleet-type-rename-newName" class="ui-large-button" type="text" placeholder="Nouveau nom">
 	<input id="fleet-type-rename-submit" class="ui-large-button" type="submit" value="Renommer">
