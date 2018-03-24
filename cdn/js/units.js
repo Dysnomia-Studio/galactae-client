@@ -80,19 +80,19 @@ class units {
 
 			units.drawMain($(this).attr('shipType'));
 		});
-		// Fleet type create
+		// Type create
 		$('#fleet-type-create-form').submit(function(e) {
 			 e.preventDefault();
 			 units.createNewType();
 		});
-
-		// Fleet create
 		$('#fleet-build-create').click(function() {
 			units.drawCreateTypePanel();
 		});
+		// Type copy
 		$('#fleet-build-type-copy').click(function() {
 			units.drawCreateTypePanel(units.currUnit);
 		});
+		// Type delete
 		$('#fleet-build-type-delete').click(function() {
 			$('#fleet-typeDelete-panel').css('display','block');
 			preventFleetHUDClosing = true;
@@ -104,11 +104,39 @@ class units {
 				unit: units.list[units.currUnit]._id
 			});
 			$('#fleet-typeDelete-panel').css('display','none');
+			preventFleetHUDClosing = false;
 		});
 		$('#fleet-typeDelete-no').click(function() {
 			$('#fleet-typeDelete-panel').css('display','none');
 			preventFleetHUDClosing = false;
 		});
+		// Type rename
+		$('#fleet-build-rename').click(function() {
+			var oldName = units.list[units.currUnit].name;
+
+			$('#fleet-type-rename-name').text(oldName);
+			$('#fleet-type-rename-newName').val(oldName);
+
+			$('#fleet-type-rename').css('display','block');
+			preventFleetHUDClosing = true;
+		});
+		$('#fleet-build-rename-submit').click(function() {
+			if($('#fleet-type-rename-newName').val() == "") { return; }
+
+			socket.emit("unit-type-rename", { 
+				id: userData.id,
+				username: userData.username,
+				shipId: units.list[units.currUnit]._id,
+				shipNewName: $('#fleet-type-rename-newName').val()
+			});
+			$('#fleet-build-rename').css('display','none');
+			preventFleetHUDClosing = false;
+		});
+		$('#fleet-build-rename-close').click(function() {
+			$('#fleet-build-rename').css('display','none');
+			preventFleetHUDClosing = false;
+		});
+		// Changement d'unite dans la liste
 		$('#fleet-build-list thead tr th').click(function() {
 			var name = $(this).attr('id').split('-')[4];
 

@@ -486,6 +486,13 @@ if($userData['lastViewedNews'] < $max) {
 		<input type="submit" id="fleet-type-create-submit" class="ui-large-button" value="<?php echo FLEET_CREATE; ?>">
 	</form>
 </div>
+
+<div id="fleet-type-rename" style="display: block;">
+	<p>Nouveau nom pour <span id="fleet-type-rename-name">SHIPNAME</span></p>
+	<input id="fleet-type-rename-newName" class="ui-large-button" type="text" placeholder="Nouveau nom">
+	<input id="fleet-type-rename-submit" class="ui-large-button" type="submit" value="Renommer">
+</div>
+
 <div id="fleet-ship-build">
 	<span id="fleet-ship-build-close">X</span>
 	<div class="fleet-ship-build-cost">
