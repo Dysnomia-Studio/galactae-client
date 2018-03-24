@@ -129,11 +129,11 @@ class units {
 				shipId: units.list[units.currUnit]._id,
 				shipNewName: $('#fleet-type-rename-newName').val()
 			});
-			$('#fleet-build-rename').css('display','none');
+			$('#fleet-type-rename').css('display','none');
 			preventFleetHUDClosing = false;
 		});
-		$('#fleet-build-rename-close').click(function() {
-			$('#fleet-build-rename').css('display','none');
+		$('#fleet-type-rename-close').click(function() {
+			$('#fleet-type-rename').css('display','none');
 			preventFleetHUDClosing = false;
 		});
 		// Changement d'unite dans la liste
