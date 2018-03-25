@@ -7,10 +7,14 @@ class units {
 	}
 
 	static refresh(data) {
-		if(units.list != data) {
-			units.srvlist = data;
+		units.list = data;
+
+		for(var i=0; i<units.list.length; i++) {
+			if(units.list[i]._id.substr(0,14) == "SHIP_WEP_MINES") {
+				units.list.splice(i,1);
+				i--;
+			}
 		}
-		units.list = units.srvlist;
 
 		// Mines
 		if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES"])) {
