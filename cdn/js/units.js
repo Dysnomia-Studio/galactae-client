@@ -884,8 +884,8 @@ class units {
 			$('#fleet-build-type-copy').css('display','none');
 			$('#fleet-build-type-delete').css('display','none');
 		} else {
-			$('#fleet-build-type-copy').css('display','block');
-			$('#fleet-build-type-delete').css('display','block');
+			$('#fleet-build-type-copy').css('display','inline-block');
+			$('#fleet-build-type-delete').css('display','inline-block');
 		}
 	}
 
