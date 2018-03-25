@@ -727,14 +727,14 @@ class units {
 					+ 'height: ' + h + 'px;'
 					+ '"></dl>');
 
-				$("#part-selecting-seen-" + id).append('<dt><a href="#" value="' + selected.val()  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
+				$("#part-selecting-seen-" + id).append('<dt><a href="#" value="' + selected.val()  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.svg\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
 						+ 'width: ' + w + 'px;'
 						+ 'height: ' + h + 'px;'
 						+ '"></a></dt>');
 				$("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
 
 				options.each(function(){
-					$("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#" value="' + $(this).attr('id')  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id') + '.png\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
+					$("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#" value="' + $(this).attr('id')  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id') + '.svg\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
 						+ 'width: ' + w + 'px;'
 						+ 'height: ' + h + 'px;'
 						+ '"></a></li>');
