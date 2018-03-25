@@ -697,7 +697,7 @@ class units {
 				/* Hidden Select */
 				var hiddenSelect = '<select id="part-selecting-hidden-' + i + '" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
 				for(var j=0; j<content[shape[i][0]].length; j++) {
-					if(content[shape[i][0]][j] != "none" && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
+					if(content[shape[i][0]][j] != "none" && shipResearchDependencies[content[shape[i][0]][j]] !== undefined && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
 						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '" selected>';
 					} else {

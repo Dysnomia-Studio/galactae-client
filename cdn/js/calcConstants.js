@@ -350,6 +350,9 @@ var shipResearchDependencies = {
 	// Cloak
 	
 	// Scanners
+
+	// Hangar
+	hangarDouble: "hangar_double",
 	
 	// Propulsion
 	vsl: "prop_vsl",
