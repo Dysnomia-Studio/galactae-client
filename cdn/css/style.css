@@ -12,8 +12,8 @@
 
 body {
 	background-color: black;
-	font-family: 'Titillium Web', sans-serif;
 	cursor: url(../img/mouse_cursor.png), auto;
+	font-family: 'Titillium Web', sans-serif;
 }
 a, body {
 	color: white;
@@ -23,15 +23,15 @@ a, body {
 	margin: 0;
 }
 .dropdown dd, .dropdown dt, .dropdown ul {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 .dropdown dd {
 	position: relative;
 }
 .dropdown a, .dropdown a:visited {
-	text-decoration: none;
 	outline: none;
+	text-decoration: none;	
 }
 .dropdown dt a {
 	display: block;

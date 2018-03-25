@@ -1,12 +1,13 @@
 // Stars: 4.8 to 12 em
 // in XML from 0 to 37
 var STAR_SIZE_BASE = 4;
-var STAR_SIZE_COEF = 8 / 37;
+var STAR_SIZE_COEF = 2 / 37;
 var STAR_ECART = 2.25;
 
 // Planets: 4 to 15 em
-var PLANET_SIZE_BASE = 3;
-var PLANET_SIZE_COEF = 9 / 7;
+var PLANET_SIZE_BASE = 3 / 2;
+var PLANET_SIZE_COEF = 9 / 14;
+var PLANET_ECART = 2.5;
 
 var MAP_SIZE_HEIGHT = 40000;
 var MAP_SIZE_WIDTH = 50000;
@@ -462,61 +463,59 @@ class map {
 				}
 
 				/* Orbit */
-				$("#" + stars[i].address).css("height","" + orbitSize[i] + "rem");
-				$("#" + stars[i].address).css("width","" + orbitSize[i] + "rem");
+				$("#" + stars[i].address).css("height","" +orbitSize[i] + "vh");
+				$("#" + stars[i].address).css("width","" + orbitSize[i] + "vh");
 
-				$("#" + stars[i].address).css("margin-top","-" + (orbitSize[i]/2) + "rem");
-				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "rem");
+				$("#" + stars[i].address).css("margin-top","-" + (orbitSize[i]/2) + "vh");
+				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "vh");
 
 				/* Star Pos */
 				var orbitDuration = orbitSize[i] * 36; // in seconds
 				var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
-				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "rem * " + Math.sin(posAng) + "))");
-				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "rem * " + Math.cos(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "vh * " + Math.sin(posAng) + "))");
+				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "vh * " + Math.cos(posAng) + "))");
 			}
 
 			// Set Size
-			$("#" + stars[i].address).css("font-size","" + stars[i].size + "rem");
+			$("#" + stars[i].address).css("font-size","" + stars[i].size + "vh");
 		}
 
 		/**
 		 * Planets creation
 		 */
+		orbitSize = firstPlanet;
 		for(var i=0; i<planets.length; i++) {
 			// Create DOM
 			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>');
 			// @ADD: Menu
 
 			// Set Size
-			$("#" + planets[i].address).css("font-size","" + (PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF) + "em");
+			var size = PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF;
+			$("#" + planets[i].address).css("font-size","" + size + "vh");
 
-			// Set Orbit, planet position and anim duration
-			// !! Percentage of solar system size !! \\
-			var orbitSize = i * ((1/planets.length) * 0.5 + 0.05);
-			// (de la place allouée aux planetes)
-			// i = 0 =>  0%
-			// i = 9 => 90%
-			// imax de 0%, 30%, 42%, ..., 90%
+			if(i!=0) {
+				orbitSize += (PLANET_SIZE_BASE + parseFloat(planets[i - 1].size)*PLANET_SIZE_COEF) * PLANET_ECART/2 + size * PLANET_ECART/2;
+			}
 
 			// Anim duration
-			var orbitDuration = (2 + orbitSize) * 360 * 6; // in seconds - Le facteur *6 est necessaire afin d'avoir une propulsion qui prendra au pire 30 min de trajet d'un bout a l'autre du systeme (ici on aura ~37min d'orbite pour la plus eloignée) et qui saura rattrapper une planete a pleine vitesse
+			var orbitDuration = (2 + orbitSize) * 100;
 			$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
 
 			/* Orbit */
-			$("#" + planets[i].address).css("height","calc(" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)");
-			$("#" + planets[i].address).css("width","calc(" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)");
+			$("#" + planets[i].address).css("height", orbitSize + "vh");
+			$("#" + planets[i].address).css("width", orbitSize + "vh");
 
-			$("#" + planets[i].address).css("margin-top","calc(-0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
-			$("#" + planets[i].address).css("margin-left","calc(-0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem))");
+			$("#" + planets[i].address).css("margin-top","-" + (orbitSize/2) + "vh");
+			$("#" + planets[i].address).css("margin-left","-" + (orbitSize/2) + "vh");
 
 			/* Planet Pos */
 			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 			
-			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + Math.sin(posAng) + " * 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
-			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + Math.cos(posAng) + " * 0.5 * (" + orbitSize + " * (100vh - " + firstPlanet + "rem) + " + firstPlanet + "rem)))");
+			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + Math.sin(posAng) + " * 0.5 * (" + orbitSize + "vh)))");
+			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + Math.cos(posAng) + " * 0.5 * (" + orbitSize + "vh)))");
 
 			/* Planet Img */
 			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
