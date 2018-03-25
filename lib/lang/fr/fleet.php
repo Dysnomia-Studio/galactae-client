@@ -51,6 +51,10 @@
 		"SHIP_SAT_AG2": "Satellite AG-II",
 		"SHIP_SAT_AG3": "Satellite AG-III",
 
+		"SHIP_WEP_MINES": "Mines spatiales",
+		"SHIP_WEP_MINES_IEM": "Mines électromagnetiques",
+		"SHIP_WEP_MINES_NUKE": "Mines nucléaires",
+
 		"SHIP_BATTLECRUISER": "Croiseur",
 		"SHIP_BATTLECRUISER_SMALL": "Petit",
 
