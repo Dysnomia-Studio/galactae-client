@@ -41,22 +41,6 @@ var buildingMaxLvl = [
 	15,	// Commerce
 	25	// Mine He3
 ];
-var buildingPointCoef = [
-	3, 	// Carriere
-	3,	// Metallurgie
-	4,	// Habitations
-	4,	// Serres
-	4,	// Centrales Solaires
-	2,	// Entrepôts
-	10,	// Etat Major
-	7,	// Centre de lancement
-	8,	// Centre de recherches
-	4,	// Radar
-	2,	// Reservoir
-	8,	// Chantier naval
-	6,	// Commerce
-	3,	// Mine He3
-];
 var buildCost = {
 	aluminium: [
 		// Ground building
@@ -557,7 +541,7 @@ var shipShapesDetails = {
 				["sup_propulsion","rect"  , 40,225, 50, 50,"prop_2"],
 			],
 			content: {
-				hangar: ["none"],
+				hangar: ["none","hangarSimple","hangarDouble"],
 				sub_propulsion: ["ion","pplasma"],
 				sup_propulsion: ["vsl","wd","hyperespace"],
 				shield: ["none","magnetic","turret","projector"],
@@ -646,14 +630,14 @@ var fighterWeight = {
 	SHIP_FIGHTER_SMALL: 1,
 	SHIP_FIGHTER_MEDIUM: 2,
 	SHIP_FIGHTER_BOMBER: 2,
-}
+};
 
 var hangarSize = {
 	hangarSimple: 40,
 	hangarDouble: 75,
-}
+};
 
 var hangarMiss = {
 	hangarSimple:   0,
 	hangarDouble: -10,
-}
+};
