@@ -15,6 +15,7 @@ class units {
 				_id: "SHIP_WEP_MINES",
 				name: fleetTranslate["SHIP_WEP_MINES"],
 				note: 0, // @ADD: Note
+				cost: shipCost["SHIP_WEP_MINES"],
 				shipShape: "SHIP_WEP_MINES",
 				shipType: "SHIP_DEF",
 			});
@@ -24,6 +25,7 @@ class units {
 				_id: "SHIP_WEP_MINES_IEM",
 				name: fleetTranslate["SHIP_WEP_MINES_IEM"],
 				note: 0, // @ADD: Note
+				cost: shipCost["SHIP_WEP_MINES_IEM"],
 				shipShape: "SHIP_WEP_MINES_IEM",
 				shipType: "SHIP_DEF",
 			});
@@ -33,6 +35,7 @@ class units {
 				_id: "SHIP_WEP_MINES_NUKE",
 				name: fleetTranslate["SHIP_WEP_MINES_NUKE"],
 				note: 0, // @ADD: Note
+				cost: shipCost["SHIP_WEP_MINES_NUKE"],
 				shipShape: "SHIP_WEP_MINES_NUKE",
 				shipType: "SHIP_DEF",
 			});
@@ -880,7 +883,7 @@ class units {
 		$('#fleet-build-stat-note-val').text(units.list[id].note);
 
 		// Boutons
-		if(units.list[id].shipType.substr(0,14) == "SHIP_WEP_MINES") {
+		if(units.list[id].shipShape.substr(0,14) == "SHIP_WEP_MINES") {
 			$('#fleet-build-type-copy').css('display','none');
 			$('#fleet-build-type-delete').css('display','none');
 		} else {
