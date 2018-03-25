@@ -633,11 +633,11 @@ var shipPartsSpeed = {
 };
 var fuelCost = {
 	// Propulsions subluminiques
-	ion: 			 18312,
-	plasma: 		 15696,
-	vsolaire: 		     0,
+	ion: 			10682,
+	plasma: 		 7244,
+	vsolaire: 		    0,
 	// Propulsions supraluminiques
-	vsl: 			327615,
-	wd: 			290127,
-	hyperespace: 	254919,
+	vsl: 			32761,
+	wd: 			29012,
+	hyperespace: 	25491,
 };

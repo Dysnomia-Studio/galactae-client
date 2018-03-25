@@ -9,6 +9,35 @@ class units {
 	static refresh(data) {
 		units.list = data;
 
+		// Mines
+		if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES"])) {
+			units.list.push({
+				_id: "SHIP_WEP_MINES",
+				name: fleetTranslate["SHIP_WEP_MINES"],
+				note: 0, // @ADD: Note
+				shipShape: "SHIP_WEP_MINES",
+				shipType: "SHIP_DEF",
+			});
+		}
+		if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES_IEM"])) {
+			units.list.push({
+				_id: "SHIP_WEP_MINES_IEM",
+				name: fleetTranslate["SHIP_WEP_MINES_IEM"],
+				note: 0, // @ADD: Note
+				shipShape: "SHIP_WEP_MINES_IEM",
+				shipType: "SHIP_DEF",
+			});
+		}
+		if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES_NUKE"])) {
+			units.list.push({
+				_id: "SHIP_WEP_MINES_NUKE",
+				name: fleetTranslate["SHIP_WEP_MINES_NUKE"],
+				note: 0, // @ADD: Note
+				shipShape: "SHIP_WEP_MINES_NUKE",
+				shipType: "SHIP_DEF",
+			});
+		}
+
 		units.fname = "";
 		units.currUnit = -1;
 		units.fleetList = units.fleetList || {};
@@ -136,7 +165,7 @@ class units {
 			$('#fleet-type-rename').css('display','none');
 			preventFleetHUDClosing = false;
 		});
-		// Changement d'unite dans la liste
+		// Nouveau tri
 		$('#fleet-build-list thead tr th').click(function() {
 			var name = $(this).attr('id').split('-')[4];
 
@@ -746,23 +775,51 @@ class units {
 		 });
 	}
 
-	static updateStats(content,stats) {
-		// Hide some things if needed
-		$('#fleet-type-create-cost div').css('display','block');
+	static updateStatsDiv(div, type, shape, parts) {
+		for(var i=0; i<partList.length; i++) {
+			var option = $(partList[i]).find("option:selected");
+
+		    // Hide some things if needed
+			$('#fleet-type-create-cost div').css('display','block');
+
+			switch($(partList[i]).attr('parttype')) {
+				case "sub_propulsion":
+
+					break;
+				case "sup_propulsion":
+
+					break;
+				case "shield":
+
+					break;
+				case "cloak":
+
+					break;
+				case "scanner":
+
+					break;
+				case "cannon":
+
+					break;
+				case "rocketLauncher":
+
+					break;
+				case "hangar":
+
+					break;
+				default:
+					// Do nothing
+			}
+		}
 
 		if(content['sub_propulsion']==undefined) {
 			$('#fleet-type-create-stat-subspeed').css('display','none');
-			$('#fleet-type-create-stat-subspeed-val').html(0 + " km/s"); // @ADD: Subspeed value
 		}
 		if(content['sup_propulsion']==undefined) {
 			$('#fleet-type-create-stat-supspeed').css('display','none');
-			$('#fleet-type-create-stat-supspeed-val').html(0 + " pc/s"); // @ADD: Supspeed value
 		}
 		if(content['fighterHangar']==undefined) {
 			$('#fleet-type-create-stat-fcap').css('display','none');
-		} else {
-			// @ADD: Hangar Capacity
-			// $('#fleet-type-create-stat-fcap-val').text();
 		}
 
 		// Masse
@@ -773,6 +830,10 @@ class units {
 
 		// Miss chance
 		$('#fleet-type-create-stat-miss-val').text("X.X%"); // @ADD: Calc miss
+	}
+
+	static updateStats(content,stats) {
+		var partList = $('#fleet-type-create-selects select');
 	}
 
 	static selectUnit(id) {
@@ -817,6 +878,15 @@ class units {
 		
 		// Evaluation
 		$('#fleet-build-stat-note-val').text(units.list[id].note);
+
+		// Boutons
+		if(units.list[id].shipType.substr(0,14) == "SHIP_WEP_MINES") {
+			$('#fleet-build-type-copy').css('display','none');
+			$('#fleet-build-type-delete').css('display','none');
+		} else {
+			$('#fleet-build-type-copy').css('display','block');
+			$('#fleet-build-type-delete').css('display','block');
+		}
 	}
 
 	static createNewType() {
