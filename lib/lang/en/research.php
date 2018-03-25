@@ -29,6 +29,8 @@
 		wep_nuke:			{ name: "Nuclear weapons", desc: "" },
 		wep_laser:			{ name: "Laser weapons", desc: "" },
 		wep_plasma:			{ name: "Plasma weapons", desc: "" },
+		// Hangar
+		hangarDouble:		{ name: "Double Hangar", desc: "" },
 		// Mines
 		wep_mines:			{ name: "Mine", desc: "" },
 		wep_mines_nuke:		{ name: "Nuclear Mine", desc: "" },
