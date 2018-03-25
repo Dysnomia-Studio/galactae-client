@@ -791,7 +791,7 @@ class units {
 
 		for(var p=0; p<partList.length; p++) {
 			parts.push({
-				type: $(partList[i]).attr("parttype"),
+				type: $(partList[p]).attr("parttype"),
 				tech: $(partList[p]).find("option:selected").value,
 			})
 		}
@@ -806,7 +806,7 @@ class units {
 			"hangar": 0,
 		};
 
-		var miss = 100; // @ADD: Calc miss
+		var miss = 0; // @ADD: Calc miss
 
 		for(var i=0; i<parts.length; i++) {
 		    // Hide some things if needed
@@ -855,7 +855,7 @@ class units {
 		$(div + '-note-val').text(note); 
 
 		// Miss chance
-		$(div + '-miss-val').text(miss);
+		$(div + '-miss-val').text(miss + "%");
 	}
 
 	static selectUnit(id) {

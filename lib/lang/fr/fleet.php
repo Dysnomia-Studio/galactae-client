@@ -27,7 +27,7 @@
 	define('SHIP_ROLE','Role');
 	define('SHIP_SUBSPEED','Vitesse Interplanetaire');
 	define('SHIP_SUPSPEED','Vitesse Interstellaire');
-	define('SHIP_MISS_CHANCE','Probabilité d\'évitement');
+	define('SHIP_MISS_CHANCE','Chance d\'évitement');
 	define('SHIP_MASS','Masse');
 	define('SHIP_FCAP','Capacité chasseurs');
 
