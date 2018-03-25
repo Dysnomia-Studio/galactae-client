@@ -7,38 +7,40 @@ class units {
 	}
 
 	static refresh(data) {
-		units.list = data;
+		if(units.list != data) {
+			units.list = data;
 
-		// Mines
-		if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES"])) {
-			units.list.push({
-				_id: "SHIP_WEP_MINES",
-				name: fleetTranslate["SHIP_WEP_MINES"],
-				note: 0, // @ADD: Note
-				cost: shipCosts["SHIP_WEP_MINES"],
-				shipShape: "SHIP_WEP_MINES",
-				shipType: "SHIP_DEF",
-			});
-		}
-		if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES_IEM"])) {
-			units.list.push({
-				_id: "SHIP_WEP_MINES_IEM",
-				name: fleetTranslate["SHIP_WEP_MINES_IEM"],
-				note: 0, // @ADD: Note
-				cost: shipCosts["SHIP_WEP_MINES_IEM"],
-				shipShape: "SHIP_WEP_MINES_IEM",
-				shipType: "SHIP_DEF",
-			});
-		}
-		if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES_NUKE"])) {
-			units.list.push({
-				_id: "SHIP_WEP_MINES_NUKE",
-				name: fleetTranslate["SHIP_WEP_MINES_NUKE"],
-				note: 0, // @ADD: Note
-				cost: shipCosts["SHIP_WEP_MINES_NUKE"],
-				shipShape: "SHIP_WEP_MINES_NUKE",
-				shipType: "SHIP_DEF",
-			});
+			// Mines
+			if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES"])) {
+				units.list.push({
+					_id: "SHIP_WEP_MINES",
+					name: fleetTranslate["SHIP_WEP_MINES"],
+					note: 0, // @ADD: Note
+					cost: shipCosts["SHIP_WEP_MINES"],
+					shipShape: "SHIP_WEP_MINES",
+					shipType: "SHIP_DEF",
+				});
+			}
+			if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES_IEM"])) {
+				units.list.push({
+					_id: "SHIP_WEP_MINES_IEM",
+					name: fleetTranslate["SHIP_WEP_MINES_IEM"],
+					note: 0, // @ADD: Note
+					cost: shipCosts["SHIP_WEP_MINES_IEM"],
+					shipShape: "SHIP_WEP_MINES_IEM",
+					shipType: "SHIP_DEF",
+				});
+			}
+			if(research.isSearched(shipResearchDependencies["SHIP_WEP_MINES_NUKE"])) {
+				units.list.push({
+					_id: "SHIP_WEP_MINES_NUKE",
+					name: fleetTranslate["SHIP_WEP_MINES_NUKE"],
+					note: 0, // @ADD: Note
+					cost: shipCosts["SHIP_WEP_MINES_NUKE"],
+					shipShape: "SHIP_WEP_MINES_NUKE",
+					shipType: "SHIP_DEF",
+				});
+			}
 		}
 
 		units.fname = "";

@@ -437,9 +437,8 @@ if($userData['lastViewedNews'] < $max) {
 				</div>
 	
 				<div id="fleet-build-buttons">
-
-					<img id="fleet-build-openPanel" src="<?php echo $cdnURL; ?>img/ui/build.svg" alt="build">
 					<img id="fleet-build-type-copy" src="<?php echo $cdnURL; ?>img/ui/copy.svg" alt="copy">
+					<img id="fleet-build-openPanel" src="<?php echo $cdnURL; ?>img/ui/build.svg" alt="build">
 					<img id="fleet-build-type-delete" src=<?php echo $cdnURL; ?>img/ui/delete.svg alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
