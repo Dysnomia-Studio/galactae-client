@@ -1320,12 +1320,13 @@ select, input, summary {
 #fleet-type-create-schematic .hangar {
 	stroke: #ff2a2a;
 }
-#fleet-type-create-cost {
+#fleet-type-create-stat {
 	position: absolute;
-	top: 10px;
+	top: 0;
 	right: 0;
-	width: 300px;
-	height: 100%;
+	max-width: 300px;
+	padding: 1.5em 0.5em 0 0.5em;
+	text-align: right;
 }
 #fleet-type-create-close {
 	 z-index: 100;

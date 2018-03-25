@@ -473,7 +473,7 @@ if($userData['lastViewedNews'] < $max) {
 		<svg id="fleet-type-create-schematic" viewBox="0 0 800 450" preserveAspectRatio="none"></svg>
 		<div id="fleet-type-create-selects"></div>
 
-		<div id="fleet-type-create-cost">
+		<div id="fleet-type-create-stat">
 				<?php echo '<div id="fleet-type-create-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-type-create-stat-subspeed-val"></span><br /></div>
 			<div id="fleet-type-create-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-type-create-stat-supspeed-val"></span><br /></div>
 			<div id="fleet-type-create-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-type-create-stat-miss-val"></span><br /></div>

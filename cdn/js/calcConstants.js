@@ -641,3 +641,19 @@ var fuelCost = {
 	wd: 			29012,
 	hyperespace: 	25491,
 };
+
+var fighterWeight = {
+	SHIP_FIGHTER_SMALL: 1,
+	SHIP_FIGHTER_MEDIUM: 2,
+	SHIP_FIGHTER_BOMBER: 2,
+}
+
+var hangarSize = {
+	hangarSimple: 40,
+	hangarDouble: 75,
+}
+
+var hangarMiss = {
+	hangarSimple:   0,
+	hangarDouble: -10,
+}

@@ -494,7 +494,9 @@ class map {
 			var size = PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF;
 			$("#" + planets[i].address).css("font-size","" + size + "vh");
 
-			if(i!=0) {
+			if(i==0) {
+				orbitSize += size * PLANET_ECART/2;
+			} else {
 				orbitSize += (PLANET_SIZE_BASE + parseFloat(planets[i - 1].size)*PLANET_SIZE_COEF) * PLANET_ECART/2 + size * PLANET_ECART/2;
 			}
 

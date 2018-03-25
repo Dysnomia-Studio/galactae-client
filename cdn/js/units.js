@@ -640,7 +640,7 @@ class units {
 			$('#fleet-type-create-shipShape').html(selectShipShape);
 
 			units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content'],unitsParts);
-			units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
+			units.updateTypeCreateStats();
 		} else {
 			$("#fleet-type-create-shipType").val($("#fleet-type-create-shipType option:first").val());
 			$('#fleet-type-create-shipType option[value='+type+']').css("display","none");
@@ -654,7 +654,7 @@ class units {
 		$($('#fleet-type-create-name').get(0)).val('');
 
 		units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
-		units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
+		units.updateTypeCreateStats();
 	}
 
 	static drawShipShape(shape,content,unitsParts=[]) {
@@ -778,72 +778,84 @@ class units {
 
 		// Events
 		$('#fleet-type-create-selects select').on("change",function() { 
-			var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
-			var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
-			
-			units.updateStats(shipShapesDetails[type][shape]['content'],shipShapesDetails[type][shape]['stats']);
-		 });
+			units.updateTypeCreateStats();
+		});
 	}
 
-	static updateStatsDiv(div, type, shape, parts) {
-		for(var i=0; i<partList.length; i++) {
-			var option = $(partList[i]).find("option:selected");
+	static updateTypeCreateStats() {
+		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
+		var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
+		var partList = $('#fleet-type-create-selects select');
+		
+		var parts = [];
 
+		for(var p=0; p<partList.length; p++) {
+			parts.push({
+				type: $(partList[i]).attr("parttype"),
+				tech: $(partList[p]).find("option:selected").value,
+			})
+		}
+
+		units.updateStats("#fleet-type-create-stat", type, shape, parts);
+	}
+
+	static updateStats(div, type, shape, parts, note) {
+		var modules = {
+			"sub_propulsion": false,
+			"sup_propulsion": false,
+			"hangar": 0,
+		};
+
+		var miss = 100; // @ADD: Calc miss
+
+		for(var i=0; i<parts.length; i++) {
 		    // Hide some things if needed
-			$('#fleet-type-create-cost div').css('display','block');
+			$(div + ' div').css('display','block');
 
-			switch($(partList[i]).attr('parttype')) {
+			switch(parts[i].parttype) {
 				case "sub_propulsion":
 
+					modules['sub_propulsion'] = true;
 					break;
 				case "sup_propulsion":
 
-					break;
-				case "shield":
-
-					break;
-				case "cloak":
-
-					break;
-				case "scanner":
-
-					break;
-				case "cannon":
-
-					break;
-				case "rocketLauncher":
-
+					modules['sup_propulsion'] = true;
 					break;
 				case "hangar":
-
+					modules['hangar'] += hangarSize[parts.tech];
+					miss -= hangarMiss[parts.tech];
 					break;
 				default:
 					// Do nothing
 			}
 		}
 
-		if(content['sub_propulsion']==undefined) {
-			$('#fleet-type-create-stat-subspeed').css('display','none');
+		if(!modules['sub_propulsion']) {
+			$(div + '-subspeed').css('display','none');
 		}
-		if(content['sup_propulsion']==undefined) {
-			$('#fleet-type-create-stat-supspeed').css('display','none');
+		if(!modules['sup_propulsion']) {
+			$(div + '-supspeed').css('display','none');
 		}
-		if(content['fighterHangar']==undefined) {
-			$('#fleet-type-create-stat-fcap').css('display','none');
+		if(modules['hangar'] == 0) {
+			$(div + '-fcap').css('display','none');
+		} else {
+			$(div + '-fcap-val').text(modules['hangar']);
 		}
 
+		// Calcul des données si données
+		if(note === undefined) {
+			note = "X.X"; // @ADD: Calc note
+		}
+		var mass = 0; // @ADD: Calc mass
+		
 		// Masse
-		$('#fleet-type-create-stat-mass-val').html(GetBetterUnit(stats['mass'],"t")); // @ADD: Calc Mass
+		$(div + '-mass-val').html(GetBetterUnit(mass,"t"));
 
 		// Note
-		$('#fleet-type-create-stat-note-val').text("X.X"); // @ADD: Calc note
+		$(div + '-note-val').text(note); 
 
 		// Miss chance
-		$('#fleet-type-create-stat-miss-val').text("X.X%"); // @ADD: Calc miss
-	}
-
-	static updateStats(content,stats) {
-		var partList = $('#fleet-type-create-selects select');
+		$(div + '-miss-val').text(miss);
 	}
 
 	static selectUnit(id) {
@@ -857,37 +869,7 @@ class units {
 		// Shields
 		//$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
 
-		if(units.list[id].shipType == "SHIP_DEF") {
-			$('#fleet-build-stat-supspeed').css('display','none');
-			$('#fleet-build-stat-subspeed').css('display','none');
-		} else {
-			if(units.list[id].shipType != "SHIP_FIGHTER") {
-				//$('#fleet-build-stat-supspeed-val').text(supspeed);
-				$('#fleet-build-stat-supspeed').css('display','block');	
-			} else {
-				$('#fleet-build-stat-supspeed').css('display','none');
-			}
-
-			//$('#fleet-build-stat-subspeed-val').text(subspeed);
-			$('#fleet-build-stat-subspeed').css('display','block');
-		}
-
-		// Proba d'evitement
-		// $('#fleet-build-stat-miss-val').text(missChance);
-
-		// Masse
-		// $('#fleet-build-stat-mass-val').text(mass);
-
-		// Hangars
-		if(units.list[id].shipType == "SHIP_CARRIER") {
-			//$('#fleet-build-stat-fcap-val').text(fighterCap);
-			$('#fleet-build-stat-fcap').css("display","block");
-		} else {
-			$('#fleet-build-stat-fcap').css("display","none");
-		}
-		
-		// Evaluation
-		$('#fleet-build-stat-note-val').text(units.list[id].note);
+		units.updateStats("#fleet-build-stat", units.list[id].shipType, units.list[id].shipShape, units.list[id].parts, units.list[id].note);
 
 		// Boutons
 		if(units.list[id].shipShape.substr(0,14) == "SHIP_WEP_MINES") {
