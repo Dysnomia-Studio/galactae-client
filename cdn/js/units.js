@@ -893,9 +893,11 @@ class units {
 		if(units.list[id].shipShape.substr(0,14) == "SHIP_WEP_MINES") {
 			$('#fleet-build-type-copy').css('display','none');
 			$('#fleet-build-type-delete').css('display','none');
+			$('#fleet-build-rename').css('display','none');
 		} else {
 			$('#fleet-build-type-copy').css('display','inline-block');
 			$('#fleet-build-type-delete').css('display','inline-block');
+			$('#fleet-build-rename').css('display','inline-block');
 		}
 	}
 

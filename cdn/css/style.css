@@ -1470,7 +1470,7 @@ select, input, summary {
 #fleet-build-buttons {
 	text-align: center;
 }
-#fleet-build-copy {
+#fleet-build-type-copy {
 	float: left;
 }
 #fleet-build-type-delete {
