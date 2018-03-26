@@ -800,6 +800,8 @@ class units {
 	}
 
 	static updateStats(div, type, shape, parts, note) {
+		if(shape.substr(0,14) == "SHIP_WEP_MINES") { return; }
+
 		var modules = {
 			"sub_propulsion": false,
 			"sup_propulsion": false,
