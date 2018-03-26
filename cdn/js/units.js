@@ -771,15 +771,12 @@ class units {
 							$("#part-selecting-seen-" + id + " dt a")[0].style[$(this)[0].style[currSelect]] = $(this)[0].style[$(this)[0].style[currSelect]];
 						}
 					}
+
+					units.updateTypeCreateStats();
 				});
 			}
 		}
 		$('#fleet-type-create-schematic').html(svgContent);
-
-		// Events
-		$('#fleet-type-create-selects select').on("change",function() { 
-			units.updateTypeCreateStats();
-		});
 	}
 
 	static updateTypeCreateStats() {
@@ -792,53 +789,74 @@ class units {
 		for(var p=0; p<partList.length; p++) {
 			parts.push({
 				type: $(partList[p]).attr("parttype"),
-				tech: $(partList[p]).find("option:selected").value,
-			})
+				tech: $(partList[p]).find("option:selected").val(),
+			});
 		}
 
 		units.updateStats("#fleet-type-create-stat", type, shape, parts);
 	}
 
 	static updateStats(div, type, shape, parts, note) {
-		if(shape.substr(0,14) == "SHIP_WEP_MINES") { return; }
+		if(parts === undefined) { parts = []; } // Mines only
 
 		var modules = {
-			"sub_propulsion": false,
+			"sub_propulsion": 0,
 			"sup_propulsion": false,
 			"hangar": 0,
 		};
 
 		var miss = 0; // @ADD: Calc miss
 
+		// Hide some things if needed
+		$(div + ' div').css('display','block');
+
 		for(var i=0; i<parts.length; i++) {
-		    // Hide some things if needed
-			$(div + ' div').css('display','block');
+			if(parts[i].tech == "none") { continue; }
 
-			switch(parts[i].parttype) {
+			switch(parts[i].type) {
 				case "sub_propulsion":
-
-					modules['sub_propulsion'] = true;
+					if(modules['sub_propulsion'] == 0) {
+						modules['sub_propulsion'] = 0; // @ADD: Calc subspeed
+						modules['sub_propulsion'] *= 1000; // Passage de km en m
+					} else {
+						modules['sub_propulsion'] *= 1.5;
+					}
 					break;
 				case "sup_propulsion":
-
-					modules['sup_propulsion'] = true;
+					if(modules['sup_propulsion'] == 0) {
+						modules['sup_propulsion'] = shipPartsSpeed[parts[i].tech][0]*10000 
+							+ shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
+						console.log(modules['sup_propulsion']);
+						modules['sup_propulsion'] = 30675/(modules['sup_propulsion'] * 3600);
+						console.log(modules['sup_propulsion']);
+						modules['sup_propulsion'] = modules['sup_propulsion'].toFixed(3);
+						console.log(modules['sup_propulsion']);
+					} else {
+						modules['sup_propulsion'] *= 1.5;
+					}
 					break;
 				case "hangar":
-					modules['hangar'] += hangarSize[parts.tech];
-					miss -= hangarMiss[parts.tech];
+					modules['hangar'] += hangarSize[parts[i].tech];
+					miss -= hangarMiss[parts[i].tech];
 					break;
 				default:
 					// Do nothing
 			}
 		}
 
-		if(!modules['sub_propulsion']) {
+		if(modules['sub_propulsion'] == 0) {
 			$(div + '-subspeed').css('display','none');
+		} else {
+			$(div + '-subspeed-val').text(GetBetterUnit(modules['sub_propulsion'],"m/s"));
 		}
+
 		if(!modules['sup_propulsion']) {
 			$(div + '-supspeed').css('display','none');
+		} else {
+			$(div + '-supspeed-val').text(modules['sup_propulsion'] + "pc/s");
 		}
-		if(modules['hangar'] == 0) {
+
+		if(type != "SHIP_CARRIER") {
 			$(div + '-fcap').css('display','none');
 		} else {
 			$(div + '-fcap-val').text(modules['hangar']);
