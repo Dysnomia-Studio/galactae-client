@@ -16,7 +16,11 @@ $user = [
 	"dayBonusBest" => 0,
 	"lastBonus" => 0,
 	"points" => 47,
-	"beginnerProtectEnd" => ((time() + ($beginnerProtectionDuration * 24 * 60 * 60)) * 1000)
+	"beginnerProtectEnd" => ((time() + ($beginnerProtectionDuration * 24 * 60 * 60)) * 1000),
+	"research" => [],
+	"lastResearchUpdate" => 0,
+	"lastAction" => 0,
+	"money" => 0,
 ];
 
 $planet = [
@@ -31,7 +35,11 @@ $planet = [
 	"lastResourcesUpdate" => time()*1000,
 	"lastUnitUpdate" => time()*1000,
 	"currResearch" => "",
-	"points" => 47
+	"points" => 47,
+	"address" => "0-0-0-P1", // @ADD: Search available address
+	"unitBuildingID" => "-1",
+	"unitBuildingCount" => -1,
+	"unitBuildingEndTime"  => -1,
 ];
 
 $user['planetlist'] = [new MongoDB\BSON\ObjectID($planet['_id'])];
