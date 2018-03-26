@@ -1439,7 +1439,7 @@ select, input, summary {
 	margin: 0.5em 0;
 }
 #fleet-build-stat div span {
-	text-align: right;
+	float: right;
 }
 #fleet-build-name {
 	display: inline-block !important;
