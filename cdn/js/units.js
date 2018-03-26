@@ -826,11 +826,8 @@ class units {
 					if(modules['sup_propulsion'] == 0) {
 						modules['sup_propulsion'] = shipPartsSpeed[parts[i].tech][0]*10000 
 							+ shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
-						console.log(modules['sup_propulsion']);
 						modules['sup_propulsion'] = 30675/(modules['sup_propulsion'] * 3600);
-						console.log(modules['sup_propulsion']);
 						modules['sup_propulsion'] = modules['sup_propulsion'].toFixed(3);
-						console.log(modules['sup_propulsion']);
 					} else {
 						modules['sup_propulsion'] *= 1.5;
 					}
@@ -854,6 +851,10 @@ class units {
 			$(div + '-supspeed').css('display','none');
 		} else {
 			$(div + '-supspeed-val').text(modules['sup_propulsion'] + "pc/s");
+		}
+
+		if(modules['sup_propulsion'] == 0 && modules['sub_propulsion'] == 0) {
+			$(div + '-engines').css('display','none');
 		}
 
 		if(type != "SHIP_CARRIER") {

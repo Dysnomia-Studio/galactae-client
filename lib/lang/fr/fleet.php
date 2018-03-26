@@ -25,7 +25,7 @@
 	define('SHIP_ATTACK','Attaque');
 	define('SHIP_SHIELD','Bouclier');
 	define('SHIP_ROLE','Role');
-	define('SHIP_SPEEDS','Moteurs');
+	define('SHIP_SPEEDS','Moteur(s)');
 	define('SHIP_SUBSPEED','Interplanetaire');
 	define('SHIP_SUPSPEED','Interstellaire');
 	define('SHIP_MISS_CHANCE','Chance d\'évitement');

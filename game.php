@@ -428,7 +428,7 @@ if($userData['lastViewedNews'] < $max) {
 					<span id="fleet-build-name"></span><img id="fleet-build-rename" src="<?php echo $cdnURL; ?>img/ui/rename.svg"><br /><br />
 					<?php echo '<div id="fleet-build-stat-attack">'.SHIP_ATTACK.' : <span id="fleet-build-stat-attack-val"></span></div>
 					<div id="fleet-build-stat-shield">'.SHIP_SHIELD.' : <span id="fleet-build-stat-shield-val"></span></div>
-					<div><u>'.SHIP_SPEEDS.'</u>
+					<div id="fleet-build-stat-engines"><u>'.SHIP_SPEEDS.'</u>
 						<div id="fleet-build-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-build-stat-subspeed-val"></span></div>
 						<div id="fleet-build-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-build-stat-supspeed-val"></span></div>
 					</div>
