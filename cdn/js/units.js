@@ -801,7 +801,7 @@ class units {
 
 		var modules = {
 			"sub_propulsion": 0,
-			"sup_propulsion": false,
+			"sup_propulsion": 0,
 			"hangar": 0,
 		};
 
@@ -850,7 +850,7 @@ class units {
 			$(div + '-subspeed-val').text(GetBetterUnit(modules['sub_propulsion'],"m/s"));
 		}
 
-		if(!modules['sup_propulsion']) {
+		if(modules['sup_propulsion'] == 0) {
 			$(div + '-supspeed').css('display','none');
 		} else {
 			$(div + '-supspeed-val').text(modules['sup_propulsion'] + "pc/s");

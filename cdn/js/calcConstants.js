@@ -645,6 +645,6 @@ var hangarSize = {
 };
 
 var hangarMiss = {
-	hangarSimple:   0,
+	hangarSimple:  -2,
 	hangarDouble: -10,
 };

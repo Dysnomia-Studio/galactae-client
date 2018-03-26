@@ -1438,15 +1438,8 @@ select, input, summary {
 #fleet-build-stat {
 	margin: 0.5em 0;
 }
-#fleet-build-stat span {
-	display: block;
-	width: calc(100% - 0.1em);
-}
-#fleet-build-stat span span {
-	float: right;
-	margin-left: 0.5em;
-	width: auto !important;
-	display: inline-block !important;
+#fleet-build-stat div span {
+	text-align: right;
 }
 #fleet-build-name {
 	display: inline-block !important;
