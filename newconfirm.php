@@ -58,7 +58,7 @@ $manager->executeBulkWrite($dbname.'.planets', $bulkPlanets);
 // Share game-id to SQL server
 $mongoDB->addContent('galactae','game_ids',[
 		"user_id" => (string) $userData['_id'],
-		"game_id" => $users_gameId,
+		"game_id" => (string) $users_gameId,
 		"server_name" =>$dbname
 	]);
 
