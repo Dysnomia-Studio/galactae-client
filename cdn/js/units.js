@@ -887,19 +887,19 @@ class units {
 		units.updateStats("#fleet-build-stat", units.list[id].shipType, units.list[id].shipShape, units.list[id].parts, units.list[id].note);
 
 		// Weapons
-		var armes = {};
-		for(var i=0; i<units.list[id].parts.length; i++) {
-			if(units.list[id].parts[i].type != "cannon" && units.list[id].parts[i].type != "rocketLauncher") { continue; }
-			if(armes[units.list[id].parts[i].tech] === undefined) {
-				armes[units.list[id].parts[i].tech] = 1;
-			} else {
-				armes[units.list[id].parts[i].tech]++;
-			}
-		}
 		var armesText = "";
 		if(units.list[id].shipShape.substr(0,14) != "SHIP_WEP_MINES") {
+			var armes = {};
+			for(var i=0; i<units.list[id].parts.length; i++) {
+				if(units.list[id].parts[i].type != "cannon" && units.list[id].parts[i].type != "rocketLauncher") { continue; }
+				if(armes[units.list[id].parts[i].tech] === undefined) {
+					armes[units.list[id].parts[i].tech] = 1;
+				} else {
+					armes[units.list[id].parts[i].tech]++;
+				}
+			}
 			for(var i in armes) {
-				if(armes != "") { armesText += ", "}
+				if(armesText != "") { armesText += ", "}
 				var translate = fleetTranslate[i];
 				if(translate === undefined) {
 					translate = fleetTranslate["missile_" + i];
