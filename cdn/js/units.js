@@ -899,7 +899,7 @@ class units {
 			var translate = fleetTranslate[i];
 			if(translate === undefined && units.list[id].parts[i].shape.substr(0,14) == "SHIP_WEP_MINES") {
 				translate = fleetTranslate["mine_" + i];
-			} else if() {
+			} else if(translate === undefined) {
 				translate = fleetTranslate["missile_" + i];
 			}
 			armesText += armes[i] + "x" + i;
