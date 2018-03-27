@@ -22,7 +22,7 @@
 	define('FLEET_TOTAL_COST','Coût Total');
 	define('FLEET_CREATE','Creer');
 	define('SHIP_NAME','Nom');
-	define('SHIP_ATTACK','Attaque');
+	define('SHIP_WEAPONS','Armes');
 	define('SHIP_SHIELD','Bouclier');
 	define('SHIP_ROLE','Role');
 	define('SHIP_SPEEDS','Moteur(s)');
@@ -72,6 +72,19 @@
 
 		"SHIP_CARRIER": "Transporteur",
 		"SHIP_CARRIER_MEDIUM": "Moyen",
+
+		// Armes
+		"railgun": "Canon Electrique",
+		"laser": "Canon Laser",
+		"plasma": "Canon Plasma",
+		"mine_explosive": "Mine Conventionnelle",
+		"mine_nuke": "Mine Nucléaire",
+		"mine_iem": "Mine Electromagnetique",
+		"mine_antimater": "Mine à antimatière",
+		"missile_explosive": "Missile Conventionnel",
+		"missile_nuke": "Missile Nucléaire",
+		"missile_iem": "Missile Electromagnetique",
+		"missile_antimater": "Missile à antimatière",
 
 		// Texts
 		"fleet-build-openPanel": "Construire l'unité",

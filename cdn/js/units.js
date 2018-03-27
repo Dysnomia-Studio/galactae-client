@@ -854,7 +854,7 @@ class units {
 		}
 
 		if(modules['sup_propulsion'] == 0 && modules['sub_propulsion'] == 0) {
-			$(div + '-engines').css('display','none');
+			$(div + '-speed').css('display','none');
 		}
 
 		if(type != "SHIP_CARRIER") {
@@ -885,7 +885,26 @@ class units {
 		$('#fleet-build-name').text(units.list[id].name);
 
 		// Weapons
-		// $('#fleet-build-stat-attack-val').text(attack);
+		var armes = {};
+		for(var i=0; i<units.list[id].parts.length; i++) {
+			if(armes[units.list[id].parts[i].tech] === undefined) {
+				armes[units.list[id].parts[i].tech] = 1;
+			} else {
+				armes[units.list[id].parts[i].tech]++;
+			}
+		}
+		var armesText = "";
+		for(var i in armes) {
+			if(armes != "") { armesText += ", "}
+			var translate = fleetTranslate[i];
+			if(translate === undefined && units.list[id].parts[i].shape.substr(0,14) == "SHIP_WEP_MINES") {
+				translate = fleetTranslate["mine_" + i];
+			} else if() {
+				translate = fleetTranslate["missile_" + i];
+			}
+			armesText += armes[i] + "x" + i;
+		}
+		$('#fleet-build-stat-attack-val').text(armesText);
 
 		// Shields
 		//$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
