@@ -892,6 +892,7 @@ class units {
 			var armes = {};
 			for(var i=0; i<units.list[id].parts.length; i++) {
 				if(units.list[id].parts[i].type != "cannon" && units.list[id].parts[i].type != "rocketLauncher") { continue; }
+				if(units.list[id].parts[i].tech == "none") { continue; }
 				if(armes[units.list[id].parts[i].tech] === undefined) {
 					armes[units.list[id].parts[i].tech] = 1;
 				} else {
@@ -914,7 +915,28 @@ class units {
 		}
 
 		// Shields
-		//$('#fleet-build-stat-shield-val').text(units.list[id].shieldType);
+		var shieldText = "";
+		if(units.list[id].shipShape.substr(0,14) != "SHIP_WEP_MINES") {
+			var shields = {};
+			for(var i=0; i<units.list[id].parts.length; i++) {
+				if(units.list[id].parts[i].type != "shield") { continue; }
+				if(units.list[id].parts[i].tech == "none") { continue; }
+				if(shields[units.list[id].parts[i].tech] === undefined) {
+					shields[units.list[id].parts[i].tech] = 1;
+				} else {
+					shields[units.list[id].parts[i].tech]++;
+				}
+			}
+			for(var i in shields) {
+				if(shieldText != "") { shieldText += ", "}
+				shieldText += shields[i] + "x " + fleetTranslate[i];
+			}
+		}
+		if(shieldText != "") {
+			$('#fleet-build-stat-shield-val').text(shieldText);
+		} else {
+			$('#fleet-build-stat-shield').css('display','none');
+		}
 
 		// Boutons
 		if(units.list[id].shipShape.substr(0,14) == "SHIP_WEP_MINES") {

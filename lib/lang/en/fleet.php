@@ -23,7 +23,7 @@
 	define('FLEET_CREATE','Create');
 	define('SHIP_NAME','Name');
 	define('SHIP_WEAPONS','Weapons');
-	define('SHIP_SHIELD','Shield');
+	define('SHIP_SHIELD','Defences');
 	define('SHIP_ROLE','Role');
 	define('SHIP_SPEEDS','Engine(s)');
 	define('SHIP_SUBSPEED','Interplanetary');
@@ -81,6 +81,12 @@
 		"missile_nuke": "Nuclear Missile",
 		"missile_iem": "Electromagnetic Missile",
 		"missile_antimater": "Antimater Missile",
+
+		// Defenses
+		"magnetic": "Magnetic shield",
+		"turret": "Counter-Missile turrets",
+		"projector": "Magnetic shield projector",
+		"singularity": "Singularity system",
 
 		// Texts
 		"fleet-build-openPanel": "Build this unit",
