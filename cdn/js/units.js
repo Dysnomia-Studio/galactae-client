@@ -904,7 +904,7 @@ class units {
 				if(translate === undefined) {
 					translate = fleetTranslate["missile_" + i];
 				}
-				armesText += armes[i] + "x" + translate;
+				armesText += armes[i] + "x " + translate;
 			}
 		}
 		if(armesText != "") {
