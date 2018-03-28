@@ -106,20 +106,18 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 				<th>Alliance</th>
 			</tr>";
 
-		for($j=0; $j<$plyPerPage; $j++) {
-			$curr = $base + $j;
-			if($curr>($plyNum-1)) { break; }
+		for($currPlayer=$base; $currPlayer<($base + $plyPerPage) && $currPlayer<$plyNum; $currPlayer++) {
 			echo "
 			<tr>
-				<td>".($curr + 1)."</td>
-				<td>".$playerList[$curr]["name"]."</td>
-				<td>".$playerList[$curr]["points"]."</td>
-				<td>".count($playerList[$curr]["planetlist"])."</td>";
+				<td>".($currPlayer + 1)."</td>
+				<td>".$playerList[$currPlayer]["name"]."</td>
+				<td>".$playerList[$currPlayer]["points"]."</td>
+				<td>".count($playerList[$currPlayer]["planetlist"])."</td>";
 
-				if($playerList[$curr]["ally"]=="") {
+				if($playerList[$currPlayer]["ally"]=="") {
 					echo "<td>-</td>";
 				} else {
-				echo "<td>".$playerList[$curr]["ally"]."</td>";
+				echo "<td>".$playerList[$currPlayer]["ally"]."</td>";
 				}
 
 			echo "</tr>";
@@ -129,9 +127,9 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 		if($pageCount>1) {
 			echo "Page: ";
-			for($pagination=0; $pagination<$pageCount; $pagination++) {
-				if($pagination != 0) { echo " "; }
-				if($pagination == $pageNum) {
+			for($pagination=1; $pagination<=$pageCount; $pagination++) {
+				if($pagination != 1) { echo " "; }
+				if($pagination == ($pageNum + 1)) {
 					echo '<b><a href="ranks.php?page='.$pagination.'">'.$pagination.'</a></b>';
 				} else {
 					echo '<a href="ranks.php?page='.$pagination.'">'.$pagination.'</a> ';
