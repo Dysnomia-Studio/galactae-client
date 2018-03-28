@@ -132,9 +132,9 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			for($pagination=0; $pagination<$pageCount; $pagination++) {
 				if($pagination != 0) { echo " "; }
 				if($pagination == $pageNum) {
-					echo '<b><a href="ranks.php?page='.$i.'">'.$i.'</a></b>';
+					echo '<b><a href="ranks.php?page='.$pagination.'">'.$pagination.'</a></b>';
 				} else {
-					echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
+					echo '<a href="ranks.php?page='.$pagination.'">'.$pagination.'</a> ';
 				}
 			}
 		}
