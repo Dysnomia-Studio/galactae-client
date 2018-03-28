@@ -11,6 +11,12 @@ include_once('gvars.php');
 		color: white;
 		background-color: transparent !important;
 	}
+	a {
+		text-decoration: none;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
 </style>
 
 <?php
