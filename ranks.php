@@ -91,9 +91,9 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	/**
 	 * Generate cache
 	 */
-	for($i=0; $i<$pageCount; $i++) {
-		$base = $i * $plyPerPage;
-		$cache = 'cache/ranks/'.$type.'-'.($i+1).'.html';
+	for($page=0; $page<$pageCount; $page++) {
+		$base = $page * $plyPerPage;
+		$cache = 'cache/ranks/'.$type.'-'.($page+1).'.html';
 
 		ob_start();
 
@@ -127,22 +127,24 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 		echo "</table>";
 
+		if($pageCount>1) {
+			echo "Page: ";
+			for($pagination=0; $pagination<$pageCount; $pagination++) {
+				if($pagination != 0) { echo " "; }
+				if($pagination == $page) {
+					echo '<b><a href="ranks.php?page='.$i.'">'.$i.'</a></b>';
+				} else {
+					echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
+				}
+			}
+		}
+
 		$page = ob_get_contents(); // copie du contenu du tampon dans une chaîne
         ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
         
         file_put_contents($cache, $page); // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache)
 
         echo $page ; // on affiche notre page :D 
-	}
-
-	/**
-	 * Pagination
-	 */
-	if($pageCount>1) {
-		echo "Page: ";
-		for($i=1; $i<($pageCount+1); $i++) {
-			echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
-		}
 	}
 }
 ?>
