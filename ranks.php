@@ -54,11 +54,11 @@ switch ($_GET['type']) {
 $plyPerPage = 20;
 $pageCount = ceil($plyNum / $plyPerPage);
 /* Which page to display ? */
-$page = (isset($_GET['page']))?(int)$_GET['page']:1;
-if($page < 1) { $page = 1; } 
-elseif($page > $pageCount) { $page = $pageCount; }
+$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']:1;
+if($pageDemandee < 1) { $pageDemandee = 1; } 
+elseif($pageDemandee > $pageCount) { $pageDemandee = $pageCount; }
 
-$cache = 'cache/ranks/'.$type.'-'.$page.'.html';
+$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
 $expire = time() - 600; // 10 min
 
 /**
@@ -91,9 +91,9 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	/**
 	 * Generate cache
 	 */
-	for($page=0; $page<$pageCount; $page++) {
-		$base = $page * $plyPerPage;
-		$cache = 'cache/ranks/'.$type.'-'.($page+1).'.html';
+	for($pageNum=0; $pageNum<$pageCount; $pageNum++) {
+		$base = $pageNum * $plyPerPage;
+		$cache = 'cache/ranks/'.$type.'-'.($pageNum+1).'.html';
 
 		ob_start();
 
@@ -131,7 +131,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			echo "Page: ";
 			for($pagination=0; $pagination<$pageCount; $pagination++) {
 				if($pagination != 0) { echo " "; }
-				if($pagination == $page) {
+				if($pagination == $pageNum) {
 					echo '<b><a href="ranks.php?page='.$i.'">'.$i.'</a></b>';
 				} else {
 					echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
@@ -139,12 +139,14 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			}
 		}
 
-		$page = ob_get_contents(); // copie du contenu du tampon dans une chaîne
+		$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne
         ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
         
-        file_put_contents($cache, $page); // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache)
+        file_put_contents($cache, $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($cache)
 
-        echo $page ; // on affiche notre page :D 
+        if($pageNum == $pageDemandee) {
+        	echo $pageContent ; // on affiche notre page :D 
+        }
 	}
 }
 ?>
