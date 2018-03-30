@@ -11,5 +11,11 @@ class settings {
 			}
 			ui.menu = !(ui.menu);
 		});
+		$(document).click(function(e) {
+			if(ui.menu && e.target.id != "settings-menu" && e.target.id != "hud-settings") {
+				ui.closeTab("#settings-menu", false);
+				ui.menu = !(ui.menu);
+			}
+		});
 	}
 }
