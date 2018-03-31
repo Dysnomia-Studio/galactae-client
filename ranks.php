@@ -76,9 +76,7 @@ switch ($_GET['type']) {
 			$player = json_decode(json_encode($player), true);
 			if(!isset($player["sectorPointsAddresses"])) { continue; }
 			for($i=0; $i<count($player["sectorPointsAddresses"]); $i++) {
-				echo "for";
 				if($player["sectorPointsAddresses"][$i] == $sector) {
-					echo "if";
 					array_push($playerList, [
 						"name" => $player["name"],
 						"points" => $player["sectorPointsValue"][$i],
@@ -96,9 +94,9 @@ switch ($_GET['type']) {
 
 		$pageCount = ceil($plyNum / $plyPerPage);
 		/* Which page to display ? */
-		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']:1;
-		if($pageDemandee < 1) { $pageDemandee = 1; } 
-		elseif($pageDemandee > $pageCount) { $pageDemandee = $pageCount; }
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:1;
+		if($pageDemandee < 0) { $pageDemandee = 0; } 
+		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
 
 		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
 		break;
@@ -116,9 +114,9 @@ switch ($_GET['type']) {
 
 		$pageCount = ceil($plyNum / $plyPerPage);
 		/* Which page to display ? */
-		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']:1;
-		if($pageDemandee < 1) { $pageDemandee = 1; } 
-		elseif($pageDemandee > $pageCount) { $pageDemandee = $pageCount; }
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:1;
+		if($pageDemandee < 0) { $pageDemandee = 0; } 
+		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
 
 		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
 		break;
