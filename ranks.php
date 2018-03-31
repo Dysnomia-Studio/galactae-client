@@ -76,9 +76,9 @@ switch ($_GET['type']) {
 			for($i=0; $i<count($player["sectorPointsAddresses"]); $i++) {
 				if($player["sectorPointsAddresses"][$i] == $sector) {
 					array_push($playerList, [
-						"name": $player["name"],
-						"points": $player["sectorPointsValue"][$i],
-						"planets": $player["sectorPointsPcount"][$i]
+						"name" => $player["name"],
+						"points" => $player["sectorPointsValue"][$i],
+						"planets" => $player["sectorPointsPcount"][$i]
 					]);
 
 					break;
