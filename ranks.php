@@ -141,7 +141,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			// To array
 			for ($i=0; $i < $plyNum; $i++) { 
 				$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
-				$playerList[$i]["pcount"] = count($playerList[$currPlayer]["planetlist"]);
+				$playerList[$i]["pcount"] = count($playerList[$i]["planetlist"]);
 			}
 		break;
 	}
@@ -176,7 +176,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 				<td>".($currPlayer + 1)."</td>
 				<td>".$playerList[$currPlayer]["name"]."</td>
 				<td>".$playerList[$currPlayer]["points"]."</td>
-				<td>".$playerList[$i]["pcount"]."</td>";
+				<td>".$playerList[$currPlayer]["pcount"]."</td>";
 
 				if($playerList[$currPlayer]["ally"]=="") {
 					echo "<td>-</td>";
