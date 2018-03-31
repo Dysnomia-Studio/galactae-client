@@ -40,6 +40,7 @@ function sortPlayers($a,$b) {
 $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
 $plyPerPage = 20;
 $type = "";
+$cache = "";
 
 switch ($_GET['type']) {
 	case 'sector-players':
@@ -110,6 +111,11 @@ switch ($_GET['type']) {
 		$cursor = $manager->executeQuery($dbname.'.users', $query);
 		$playerList = $cursor->toArray();
 
+		for ($i=0; $i < $plyNum; $i++) { 
+			$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
+			$playerList[$i]["pcount"] = count($playerList[$i]["planetlist"]);
+		}
+
 		$plyNum = count($playerList);
 
 		$pageCount = ceil($plyNum / $plyPerPage);
@@ -131,23 +137,6 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
 } else {
 	/**
-	 * Check and sort players
-	 */
-	switch ($type) {
-		case 'galaxy-players':
-		default:
-			// Refresh user points
-			
-
-			// To array
-			for ($i=0; $i < $plyNum; $i++) { 
-				$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
-				$playerList[$i]["pcount"] = count($playerList[$i]["planetlist"]);
-			}
-		break;
-	}
-
-	/**
 	 * Trier par points
 	 */
 	usort($playerList,"sortPlayers");
@@ -158,7 +147,6 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	 */
 	for($pageNum=0; $pageNum<$pageCount; $pageNum++) {
 		$base = $pageNum * $plyPerPage;
-		$cache = 'cache/ranks/'.$type.'-'.($pageNum+1).'.html';
 
 		ob_start();
 
