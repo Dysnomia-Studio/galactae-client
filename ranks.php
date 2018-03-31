@@ -79,16 +79,15 @@ switch ($_GET['type']) {
 				if($player["sectorPointsAddresses"][$i] == $sector) {
 					array_push($playerList, [
 						"name" => $player["name"],
+						"ally" => $player["ally"],
 						"points" => $player["sectorPointsValue"][$i],
-						"planets" => $player["sectorPointsPcount"][$i]
+						"pcount" => $player["sectorPointsPcount"][$i]
 					]);
 
 					break;
 				}
 			}
 		}
-
-		var_dump($playerList);
 
 		$plyNum = count($playerList);
 
@@ -142,6 +141,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			// To array
 			for ($i=0; $i < $plyNum; $i++) { 
 				$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
+				$playerList[$i]["pcount"] = count($playerList[$currPlayer]["planetlist"]);
 			}
 		break;
 	}
@@ -149,7 +149,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	/**
 	 * Trier par points
 	 */
-	usort($playerList,"sortPlayers");
+	usort($playerList,"sortPlayers");œ
 
 
 	/**
@@ -176,7 +176,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 				<td>".($currPlayer + 1)."</td>
 				<td>".$playerList[$currPlayer]["name"]."</td>
 				<td>".$playerList[$currPlayer]["points"]."</td>
-				<td>".count($playerList[$currPlayer]["planetlist"])."</td>";
+				<td>".$playerList[$i]["pcount"]."</td>";
 
 				if($playerList[$currPlayer]["ally"]=="") {
 					echo "<td>-</td>";
