@@ -39,8 +39,8 @@ function sortPlayers($a,$b) {
  */
 $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
 $plyPerPage = 20;
-$type = "";
 $cache = "";
+$cachePattern = "";
 
 switch ($_GET['type']) {
 	case 'sector-players':
@@ -95,11 +95,12 @@ switch ($_GET['type']) {
 
 		$pageCount = ceil($plyNum / $plyPerPage);
 		/* Which page to display ? */
-		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:1;
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
 		if($pageDemandee < 0) { $pageDemandee = 0; } 
 		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
 
 		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
+		$cachePattern = 'cache/ranks/'.$type.'-'.$sector.'-';
 		break;
 	case 'galaxy-players':
 	default:
@@ -120,11 +121,12 @@ switch ($_GET['type']) {
 
 		$pageCount = ceil($plyNum / $plyPerPage);
 		/* Which page to display ? */
-		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:1;
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
 		if($pageDemandee < 0) { $pageDemandee = 0; } 
 		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
 
 		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
+		$cachePattern = 'cache/ranks/'.$type.'-';
 		break;
 }
 
@@ -147,6 +149,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	 */
 	for($pageNum=0; $pageNum<$pageCount; $pageNum++) {
 		$base = $pageNum * $plyPerPage;
+		$cache = $cachePattern.$pageNum.'.html';
 
 		ob_start();
 
