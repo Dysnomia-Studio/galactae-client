@@ -38,10 +38,63 @@ function sortPlayers($a,$b) {
  * Cache Vars
  */
 $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
+$plyPerPage = 20;
 
 switch ($_GET['type']) {
 	case 'sector-players':
 		$type = "sector-players";
+		$sector = "5-5";
+		if(isset($_GET['sector'])) {
+			$coordonnees = explode("-", $_GET['type']);
+
+			if(count($coordonnees) == 2) {
+				if((int) $coordonnees[0] > 9) {
+					$coordonnees[0] = 9;
+				}
+				if((int) $coordonnees[1] > 9) {
+					$coordonnees[1] = 9;
+				}
+				if((int) $coordonnees[0] < 0) {
+					$coordonnees[0] = 0;
+				}
+				if((int) $coordonnees[1] < 0) {
+					$coordonnees[1] = 0;
+				}
+
+				$sector = $coordonnees[0].'-'.$coordonnees[1];
+			}
+		}
+
+		// Get data from db
+		$filter = array();
+		$query = new MongoDB\Driver\Query($filter);
+		$cursor = $manager->executeQuery($dbname.'.users', $query);
+		$playerTmpList = $cursor->toArray();
+		$playerList = array();
+
+		foreach ($playerTmpList as $player) {
+			for($i=0; $i<count($player["sectorPointsAddresses"]); $i++) {
+				if($player["sectorPointsAddresses"][$i] == $sector) {
+					array_push($playerList, [
+						"name": $player["name"],
+						"points": $player["sectorPointsValue"][$i],
+						"planets": $player["sectorPointsPcount"][$i]
+					]);
+
+					break;
+				}
+			}
+		}
+
+		$plyNum = count($playerList);
+
+		$pageCount = ceil($plyNum / $plyPerPage);
+		/* Which page to display ? */
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']:1;
+		if($pageDemandee < 1) { $pageDemandee = 1; } 
+		elseif($pageDemandee > $pageCount) { $pageDemandee = $pageCount; }
+
+		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
 		break;
 	case 'galaxy-players':
 	default:
@@ -54,17 +107,17 @@ switch ($_GET['type']) {
 		$playerList = $cursor->toArray();
 
 		$plyNum = count($playerList);
+
+		$pageCount = ceil($plyNum / $plyPerPage);
+		/* Which page to display ? */
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']:1;
+		if($pageDemandee < 1) { $pageDemandee = 1; } 
+		elseif($pageDemandee > $pageCount) { $pageDemandee = $pageCount; }
+
+		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
 		break;
 }
 
-$plyPerPage = 20;
-$pageCount = ceil($plyNum / $plyPerPage);
-/* Which page to display ? */
-$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']:1;
-if($pageDemandee < 1) { $pageDemandee = 1; } 
-elseif($pageDemandee > $pageCount) { $pageDemandee = $pageCount; }
-
-$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
 $expire = time() - 600; // 10 min
 
 /**
@@ -86,13 +139,14 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			for ($i=0; $i < $plyNum; $i++) { 
 				$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
 			}
-
-			/**
-			 * Trier par points
-			 */
-			usort($playerList,"sortPlayers");
 		break;
 	}
+
+	/**
+	 * Trier par points
+	 */
+	usort($playerList,"sortPlayers");
+
 
 	/**
 	 * Generate cache

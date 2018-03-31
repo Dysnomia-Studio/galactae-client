@@ -342,7 +342,7 @@
 	</form>
 </div>
 <?php /* Ranks */ ?>
-<div id="hud-ranks" style="display: block;">
+<div id="hud-ranks">
 	<ul class="ul-choice-line ranks-ul">
 		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active">Galaxie - Joueur</li>
 		<li choice="sector-players" id="ranks-secPly-button">Secteur - Joueur</li>
