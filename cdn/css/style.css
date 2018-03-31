@@ -992,9 +992,9 @@ select, input, summary {
 	border-right: 1px solid #0EC6C6;
 }
 .ul-choice-line li:last-child { border: 0; }
-.fleet-ul1 {
+.fleet-ul1, .ranks-ul {
 	margin-left: 25px;
-	width: calc(100% - 55px);
+	width: calc(100% - 75px);
 }
 #fleet-orbit, #fleet-move, #fleet-out, #fleet-type-create, #fleet-ship-build { /* Tabs hidden by default */
 	display: none;
@@ -1620,10 +1620,10 @@ a[class="research-search"] {
 	text-align: center;
 }
 /**
- * Ranks
+ * News
  */
 @media (min-width: 750px) and (min-height: 40vw) {
-	#hud-ranks, #hud-news {
+	#hud-news {
 		display: none;
 
 		position: fixed;
@@ -1638,10 +1638,10 @@ a[class="research-search"] {
 		background-size: 100%;
 	}
 
-	#hud-ranks iframe, #hud-news iframe {
+	#hud-news iframe {
 		height: 88%;
 	}
-	#hud-ranks iframe, #hud-news iframe {
+	#hud-news iframe {
 		width: 94%;
 
 		margin: 3%;
@@ -1652,7 +1652,7 @@ a[class="research-search"] {
 }
 
 @media (max-width: 749px), (max-height: 40vw) {
-	#hud-ranks, #hud-news {
+	#hud-news {
 		display: none;
 
 		position: fixed;
@@ -1665,10 +1665,10 @@ a[class="research-search"] {
 		background-color: #0b1012;
 	}
 
-	#hud-ranks iframe, #hud-news iframe {
+	#hud-news iframe {
 		height: 85%;
 	}
-	#hud-ranks iframe, #hud-news iframe {
+	#hud-news iframe {
 		width: calc(100% - 3em);
 		height: calc(100% - 40px - 0.4em);
 
@@ -1684,7 +1684,70 @@ a[class="research-search"] {
 	}
 }
 
-#hud-ranks, #hud-news {
+#hud-news {
+	z-index: 100;
+}
+
+/**
+ * Ranks
+ */
+@media (min-width: 750px) and (min-height: 40vw) {
+	#hud-ranks {
+		display: none;
+
+		position: fixed;
+		left: 15vw;
+		top: calc(50vh - 20vw); /* calc((100vh - 40vw)/2); */
+		width: 70vw;
+		height: 40vw;
+
+		background: url(../img/ui/window.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}
+
+	#hud-ranks iframe {
+		height: calc(94% - 3em);
+		width: 94%;
+
+		margin: 0 3% 3% 3%;
+
+		border: 0;
+		overflow-x: auto;
+	}
+}
+
+@media (max-width: 749px), (max-height: 40vw) {
+	#hud-ranks {
+		display: none;
+
+		position: fixed;
+		left: 0;
+		top: 0;
+
+		width: 100vw;
+		height: 100vh;
+
+		background-color: #0b1012;
+	}
+
+	#hud-ranks iframe {
+		width: calc(100% - 3em);
+		height: calc(100% - 40px - 0.4em - 3em);
+
+		margin: 3em 1.5em calc(35px + 0.4em) 1.5em;
+
+		position: fixed;
+		top: 0;
+		left: 0;
+
+		border: 0;
+		overflow-x: auto;
+	}
+}
+
+#hud-ranks {
 	z-index: 100;
 }
 /**

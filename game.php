@@ -342,7 +342,14 @@
 	</form>
 </div>
 <?php /* Ranks */ ?>
-<div id="hud-ranks">
+<div id="hud-ranks" style="display: block;">
+	<ul class="ul-choice-line ranks-ul">
+		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active">Galaxie - Joueur</li>
+		<li choice="sector-players" id="ranks-secPly-button">Secteur - Joueur</li>
+		<li choice="galaxy-alliance" id="ranks-galAly-button">Galaxie - Alliance</li>
+		<li choice="sector-alliance" id="ranks-secAly-button">Secteur - Alliance</li>
+	</ul>
+
 	<span id="hud-ranks-close">X</span>
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
 </div>

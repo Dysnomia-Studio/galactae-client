@@ -116,6 +116,14 @@ class ui {
 			ui.closeTab("#day-bonus");
 		});
 
+		// Ranks
+		$(".ranks-ul li").click(function() {
+			$(".ranks-ul .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
+			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
+
+			$('#hud-ranks-frame').attr("src", "ranks.php?type=" + $(this).attr("choice"));
+		});
+
 		// Sécurité
 		//Block Inspect Element when 
 		//right click

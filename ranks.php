@@ -40,9 +40,9 @@ function sortPlayers($a,$b) {
 $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
 
 switch ($_GET['type']) {
-	/*case 'sector-players':
-		$type = "galaxy-players";
-		break;*/
+	case 'sector-players':
+		$type = "sector-players";
+		break;
 	case 'galaxy-players':
 	default:
 		$type = "galaxy-players";
