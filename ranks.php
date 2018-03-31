@@ -111,12 +111,12 @@ switch ($_GET['type']) {
 		$cursor = $manager->executeQuery($dbname.'.users', $query);
 		$playerList = $cursor->toArray();
 
+		$plyNum = count($playerList);
+
 		for ($i=0; $i < $plyNum; $i++) { 
 			$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
 			$playerList[$i]["pcount"] = count($playerList[$i]["planetlist"]);
 		}
-
-		$plyNum = count($playerList);
 
 		$pageCount = ceil($plyNum / $plyPerPage);
 		/* Which page to display ? */
