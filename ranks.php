@@ -74,10 +74,11 @@ switch ($_GET['type']) {
 
 		foreach ($playerTmpList as $player) {
 			$player = json_decode(json_encode($player), true);
-			var_dump($player["sectorPointsAddresses"]);
 			if(!isset($player["sectorPointsAddresses"])) { continue; }
 			for($i=0; $i<count($player["sectorPointsAddresses"]); $i++) {
+				echo "for";
 				if($player["sectorPointsAddresses"][$i] == $sector) {
+					echo "if";
 					array_push($playerList, [
 						"name" => $player["name"],
 						"points" => $player["sectorPointsValue"][$i],
@@ -88,6 +89,8 @@ switch ($_GET['type']) {
 				}
 			}
 		}
+
+		var_dump($playerList);
 
 		$plyNum = count($playerList);
 
