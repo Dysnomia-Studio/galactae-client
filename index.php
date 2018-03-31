@@ -67,7 +67,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 
 	if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==1) {
 		$userPrivileges = $mongoDB->getCondContent('galactae','privileges',[
-			"_id" => $userData['_id'],
+			"user_id" => $userData['_id'],
 			"server_name" => $dbname
 		]);
 
