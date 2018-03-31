@@ -149,7 +149,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	/**
 	 * Trier par points
 	 */
-	usort($playerList,"sortPlayers");œ
+	usort($playerList,"sortPlayers");
 
 
 	/**
