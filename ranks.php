@@ -74,7 +74,7 @@ switch ($_GET['type']) {
 
 		foreach ($playerTmpList as $player) {
 			$player = json_decode(json_encode($player), true);
-			var_dump($player);
+			var_dump($player["sectorPointsAddresses"];
 			if(!isset($player["sectorPointsAddresses"])) { continue; }
 			for($i=0; $i<count($player["sectorPointsAddresses"]); $i++) {
 				if($player["sectorPointsAddresses"][$i] == $sector) {
