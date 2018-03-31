@@ -39,6 +39,7 @@ function sortPlayers($a,$b) {
  */
 $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
 $plyPerPage = 20;
+$type = "";
 
 switch ($_GET['type']) {
 	case 'sector-players':
