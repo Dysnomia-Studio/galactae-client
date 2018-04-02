@@ -29,6 +29,11 @@
 		wep_nuke:			{ name: "Armes nucléaires", desc: "" },
 		wep_laser:			{ name: "Armes lasers", desc: "" },
 		wep_plasma:			{ name: "Armes plasma", desc: "" },
+		// Shields & Defenses
+		def_turret:			{ name: "Tourelles anti-projectiles", desc: "" },
+		def_shield_magnetic:{ name: "Bouclier magnetique", desc: "" },
+		def_shield_projector:{ name: "Projecteur de bouclier", desc: "" },
+		def_shield_singularity:{ name: "Systeme à Singularité", desc: "" },
 		// Hangar
 		hangarDouble:		{ name: "Hangar Double", desc: "" },
 		// Mines
