@@ -3,7 +3,7 @@
 	
 	translate['research'] = {
 		// Noeud Central
-		researchCenter:		{ name: "Centre de recherches", desc: "" },
+		researchCenter:		{ name: "Centre de recherches", desc: "Les centres de recherches travaillent ensemble ou seul afin de débloquer des techniques ou des technologies bénéfiques à la nation." },
 		industrialistion:	{ name: "Industrialisation", desc: "" },
 		phyContemporaine:	{ name: "Physique Contemporaine", desc: "" },
 		thermodynamique:	{ name: "Thermodynamique", desc: "" },
@@ -13,9 +13,11 @@
 		prop_ions:			{ name: "Moteurs a ions", desc: "" },
 		prop_plasma: 		{ name: "Moteurs à Plasma", desc: "" },
 		prop_vsl:			{ name: "Vitesse Supraluminique (VSL)", desc: "" },
+		prop_wd: 			{ name: "Generateur de saut (Warp Drive)", desc: ""},
 		prop_hyperespace:	{ name: "Hyperespace", desc: "" },
 		prop_manoeuvre:		{ name: "Propulseurs de manoeuvre", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (2% de chance d'evitement)" },
 		prop_advManoeuvre:	{ name: "Propulseur de manoeuvres avancés", desc: "Ces propulseurs permettent d'eviter les mines et les missiles (5% de chance d'evitement)" },
+		prop_suprastability:{ name: "Stabilité des moteurs interstellaires", desc: "Augmente de 50% la precision du calcul de l'heure d'arrivée estimée d'une flotte." },
 		// Construction et production
 		cp_mecanisation:	{ name: "Mecanisation", desc: "-5% de temps de construction unités" },
 		cp_tracteur:		{ name: "Rayon Tracteur", desc: "-5% de temps de construction pour unités et bâtments spatiaux" },
@@ -27,6 +29,13 @@
 		wep_nuke:			{ name: "Armes nucléaires", desc: "" },
 		wep_laser:			{ name: "Armes lasers", desc: "" },
 		wep_plasma:			{ name: "Armes plasma", desc: "" },
+		// Shields & Defenses
+		def_turret:			{ name: "Tourelles anti-projectiles", desc: "" },
+		def_shield_magnetic:{ name: "Bouclier magnetique", desc: "" },
+		def_shield_projector:{ name: "Projecteur de bouclier", desc: "" },
+		def_shield_singularity:{ name: "Systeme à Singularité", desc: "" },
+		// Hangar
+		hangarDouble:		{ name: "Hangar Double", desc: "" },
 		// Mines
 		wep_mines:			{ name: "Mines", desc: "" },
 		wep_mines_nuke:		{ name: "Mines nucléaires", desc: "" },
@@ -59,5 +68,7 @@
 		misc_em:			{ name: "Electromagnetisme", desc: ""},
 		// Messages
 		tech_owned: "Technologie possédée",
+		ongoing: 	"Recherche en cours ...",
+		search: 	"Rechercher",
 	};
 </script>

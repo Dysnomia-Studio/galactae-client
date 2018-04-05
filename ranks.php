@@ -11,6 +11,12 @@ include_once('gvars.php');
 		color: white;
 		background-color: transparent !important;
 	}
+	a {
+		text-decoration: none;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
 </style>
 
 <?php
@@ -32,11 +38,70 @@ function sortPlayers($a,$b) {
  * Cache Vars
  */
 $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
+$plyPerPage = 20;
+$cache = "";
+$cachePattern = "";
 
 switch ($_GET['type']) {
-	/*case 'sector-players':
-		$type = "galaxy-players";
-		break;*/
+	case 'sector-players':
+		$type = "sector-players";
+		$sector = "5-5";
+		if(isset($_GET['sector'])) {
+			$coordonnees = explode("-", $_GET['type']);
+
+			if(count($coordonnees) == 2) {
+				if((int) $coordonnees[0] > 9) {
+					$coordonnees[0] = 9;
+				}
+				if((int) $coordonnees[1] > 9) {
+					$coordonnees[1] = 9;
+				}
+				if((int) $coordonnees[0] < 0) {
+					$coordonnees[0] = 0;
+				}
+				if((int) $coordonnees[1] < 0) {
+					$coordonnees[1] = 0;
+				}
+
+				$sector = $coordonnees[0].'-'.$coordonnees[1];
+			}
+		}
+
+		// Get data from db
+		$filter = array();
+		$query = new MongoDB\Driver\Query($filter);
+		$cursor = $manager->executeQuery($dbname.'.users', $query);
+		$playerTmpList = $cursor->toArray();
+		$playerList = array();
+
+		foreach ($playerTmpList as $player) {
+			$player = json_decode(json_encode($player), true);
+			if(!isset($player["sectorPointsAddresses"])) { continue; }
+			for($i=0; $i<count($player["sectorPointsAddresses"]); $i++) {
+				if($player["sectorPointsAddresses"][$i] == $sector) {
+					array_push($playerList, [
+						"name" => $player["name"],
+						"ally" => $player["ally"],
+						"points" => $player["sectorPointsValue"][$i],
+						"pcount" => $player["sectorPointsPcount"][$i]
+					]);
+
+					break;
+				}
+			}
+		}
+
+		$plyNum = count($playerList);
+
+		$pageCount = ceil($plyNum / $plyPerPage);
+		/* Which page to display ? */
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
+		if($pageDemandee < 0) { $pageDemandee = 0; } 
+		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
+
+		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
+		$cachePattern = 'cache/ranks/'.$type.'-'.$sector.'-';
+		break;
 	case 'galaxy-players':
 	default:
 		$type = "galaxy-players";
@@ -48,17 +113,23 @@ switch ($_GET['type']) {
 		$playerList = $cursor->toArray();
 
 		$plyNum = count($playerList);
+
+		for ($i=0; $i < $plyNum; $i++) { 
+			$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
+			$playerList[$i]["pcount"] = count($playerList[$i]["planetlist"]);
+		}
+
+		$pageCount = ceil($plyNum / $plyPerPage);
+		/* Which page to display ? */
+		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
+		if($pageDemandee < 0) { $pageDemandee = 0; } 
+		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
+
+		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
+		$cachePattern = 'cache/ranks/'.$type.'-';
 		break;
 }
 
-$plyPerPage = 20;
-$pageCount = ceil($plyNum / $plyPerPage);
-/* Which page to display ? */
-$page = (isset($_GET['page']))?(int)$_GET['page']:1;
-if($page < 1) { $page = 1; } 
-elseif($page > $pageCount) { $page = $pageCount; }
-
-$cache = 'cache/ranks/'.$type.'-'.$page.'.html';
 $expire = time() - 600; // 10 min
 
 /**
@@ -68,32 +139,17 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
 } else {
 	/**
-	 * Check and sort players
+	 * Trier par points
 	 */
-	switch ($type) {
-		case 'galaxy-players':
-		default:
-			// Refresh user points
-			
+	usort($playerList,"sortPlayers");
 
-			// To array
-			for ($i=0; $i < $plyNum; $i++) { 
-				$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
-			}
-
-			/**
-			 * Trier par points
-			 */
-			usort($playerList,"sortPlayers");
-		break;
-	}
 
 	/**
 	 * Generate cache
 	 */
-	for($i=0; $i<$pageCount; $i++) {
-		$base = $i * $plyPerPage;
-		$cache = 'cache/ranks/'.$type.'-'.($i+1).'.html';
+	for($pageNum=0; $pageNum<$pageCount; $pageNum++) {
+		$base = $pageNum * $plyPerPage;
+		$cache = $cachePattern.$pageNum.'.html';
 
 		ob_start();
 
@@ -106,20 +162,18 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 				<th>Alliance</th>
 			</tr>";
 
-		for($j=0; $j<$plyPerPage; $j++) {
-			$curr = $base + $j;
-			if($curr>($plyNum-1)) { break; }
+		for($currPlayer=$base; $currPlayer<($base + $plyPerPage) && $currPlayer<$plyNum; $currPlayer++) {
 			echo "
 			<tr>
-				<td>".($curr + 1)."</td>
-				<td>".$playerList[$curr]["name"]."</td>
-				<td>".$playerList[$curr]["points"]."</td>
-				<td>".count($playerList[$curr]["planetlist"])."</td>";
+				<td>".($currPlayer + 1)."</td>
+				<td>".$playerList[$currPlayer]["name"]."</td>
+				<td>".$playerList[$currPlayer]["points"]."</td>
+				<td>".$playerList[$currPlayer]["pcount"]."</td>";
 
-				if($playerList[$curr]["ally"]=="") {
+				if($playerList[$currPlayer]["ally"]=="") {
 					echo "<td>-</td>";
 				} else {
-				echo "<td>".$playerList[$curr]["ally"]."</td>";
+				echo "<td>".$playerList[$currPlayer]["ally"]."</td>";
 				}
 
 			echo "</tr>";
@@ -127,22 +181,26 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 		echo "</table>";
 
-		$page = ob_get_contents(); // copie du contenu du tampon dans une chaîne
+		if($pageCount>1) {
+			echo "Page: ";
+			for($pagination=1; $pagination<=$pageCount; $pagination++) {
+				if($pagination != 1) { echo " "; }
+				if($pagination == ($pageNum + 1)) {
+					echo '<b><a href="ranks.php?page='.$pagination.'">'.$pagination.'</a></b>';
+				} else {
+					echo '<a href="ranks.php?page='.$pagination.'">'.$pagination.'</a> ';
+				}
+			}
+		}
+
+		$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne
         ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
         
-        file_put_contents($cache, $page); // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache)
+        file_put_contents($cache, $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($cache)
 
-        echo $page ; // on affiche notre page :D 
-	}
-
-	/**
-	 * Pagination
-	 */
-	if($pageCount>1) {
-		echo "Page: ";
-		for($i=1; $i<($pageCount+1); $i++) {
-			echo '<a href="ranks.php?page='.$i.'">'.$i.'</a> ';
-		}
+        if($pageNum == $pageDemandee) {
+        	echo $pageContent ; // on affiche notre page :D 
+        }
 	}
 }
 ?>

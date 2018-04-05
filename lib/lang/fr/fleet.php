@@ -22,12 +22,13 @@
 	define('FLEET_TOTAL_COST','Coût Total');
 	define('FLEET_CREATE','Creer');
 	define('SHIP_NAME','Nom');
-	define('SHIP_ATTACK','Attaque');
-	define('SHIP_SHIELD','Bouclier');
+	define('SHIP_WEAPONS','Armes');
+	define('SHIP_SHIELD','Défenses');
 	define('SHIP_ROLE','Role');
-	define('SHIP_SUBSPEED','Vitesse Interplanetaire');
-	define('SHIP_SUPSPEED','Vitesse Interstellaire');
-	define('SHIP_MISS_CHANCE','Probabilité d\'évitement');
+	define('SHIP_SPEEDS','Moteur(s)');
+	define('SHIP_SUBSPEED','Interplanetaire');
+	define('SHIP_SUPSPEED','Interstellaire');
+	define('SHIP_MISS_CHANCE','Chance d\'évitement');
 	define('SHIP_MASS','Masse');
 	define('SHIP_FCAP','Capacité chasseurs');
 
@@ -51,6 +52,10 @@
 		"SHIP_SAT_AG2": "Satellite AG-II",
 		"SHIP_SAT_AG3": "Satellite AG-III",
 
+		"SHIP_WEP_MINES": "Mines spatiales",
+		"SHIP_WEP_MINES_IEM": "Mines électromagnetiques",
+		"SHIP_WEP_MINES_NUKE": "Mines nucléaires",
+
 		"SHIP_BATTLECRUISER": "Croiseur",
 		"SHIP_BATTLECRUISER_SMALL": "Petit",
 
@@ -67,6 +72,21 @@
 
 		"SHIP_CARRIER": "Transporteur",
 		"SHIP_CARRIER_MEDIUM": "Moyen",
+
+		// Armes
+		"railgun": "Canon Electrique",
+		"laser": "Canon Laser",
+		"plasma": "Canon Plasma",
+		"missile_explosive": "Missile Conventionnel",
+		"missile_nuke": "Missile Nucléaire",
+		"missile_iem": "Missile Electromagnetique",
+		"missile_antimater": "Missile à antimatière",
+
+		// Defenses
+		"magnetic": "Bouclier magnetique",
+		"turret": "Tourelles anti-projectiles",
+		"projector": "Projecteur de bouclier magnetique",
+		"singularity": "Systeme à Singularité",
 
 		// Texts
 		"fleet-build-openPanel": "Construire l'unité",

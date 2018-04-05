@@ -1,14 +1,4 @@
-<script type="text/javascript">
-var translate = translate || {};
-
-translate["map"] = {
-	"GALAXY": "Galaxie",
-	"QUADRANT": "Quadrant",
-	"SECTOR": "Secteur",
-	"SOLAR_SYSTEM": "Systeme",
-
-	"BACK_GALAXY": "Retour à la galaxie",
-	"BACK_QUADRANT": "Retour au quadrant",
-	"BACK_SECTOR": "Retour au secteur",
-};
-</script>
+<?php
+	define('MAP_BACKTO_GLOBAL_MAP','Retour à la carte globale');
+	define('MAP_FOCUS_CURRENT_SYSTEM','Centrer sur le systeme courant');
+?>

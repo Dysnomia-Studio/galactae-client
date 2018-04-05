@@ -2,11 +2,19 @@
 	"use strict";
 </script>
 <?php /* Loading Overlay */ ?>
-<div id="loading-overlay">
+<div id="loading-overlay" style="/*display: none;*/">
 	<div id="loading-overlay-back"></div>
-	<img id="loading-overlay-img" src="<?php echo $cdnURL; ?>img/load-gears.gif" alt="loading-overlay">
-	<div id="loading-overlay-text"><?php echo GAME_LOADING; ?><br/>
+	<svg id="loading-overlay-img" width="150px" height="150px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#0EC6C6" stroke-width="4" r="45" stroke-dasharray="212.05750411731105 72.68583470577035" transform="rotate(64 50 50)"></circle></svg>
+	<div id="loading-overlay-text"><span id="loading-overlay-main"><?php echo GAME_LOADING; ?></span><br/>
+		<div class="loading-overlay-bar loading-overlay-bar-primary">
+			<div class="loading-overlay-bar-value">0%</div>
+			<div class="loading-overlay-bar-content"></div>
+		</div>
 		<span id="loading-overlay-desc"><?php echo DEFAULT_LOAD; ?></span>
+		<div class="loading-overlay-bar loading-overlay-bar-secondary">
+			<div class="loading-overlay-bar-value">0/0</div>
+			<div class="loading-overlay-bar-content"></div>
+		</div>
 	</div>
 </div>
 <?php /* Planet View */ ?>
@@ -39,8 +47,8 @@
 					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
 					<span class="building-cost-item" id="building-cost-titanium">Ti <span id="building-cost-titanium-val"></span></span>
 					<br/>
-					<span class="building-cost-item" id="building-cost-energy"><img src="./cdn/img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
-					<span class="building-cost-item" id="building-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
+					<span class="building-cost-item" id="building-cost-energy"><img src="<?php echo $cdnURL; ?>img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
+					<span class="building-cost-item" id="building-cost-population"><img src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
 					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
 				<br/>
@@ -311,7 +319,6 @@
 </div>
 <?php /* ESC */ ?>
 <div id="settings-menu">
-	<a href="#close-settings-tabs" id="close-settings-tabs">X</a><br/>
 	<a href="https://galactae.eu/portal"><?php echo PORTAL; ?></a><br/>
 	<a href="https://galactae.eu/profil"><?php echo PROFIL; ?></a><br/>
 	<a href="https://galactae.eu/forum"><?php echo FORUM; ?></a><br/>
@@ -336,6 +343,13 @@
 </div>
 <?php /* Ranks */ ?>
 <div id="hud-ranks">
+	<ul class="ul-choice-line ranks-ul">
+		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active">Galaxie - Joueur</li>
+		<li choice="sector-players" id="ranks-secPly-button">Secteur - Joueur</li>
+		<li choice="galaxy-alliance" id="ranks-galAly-button">Galaxie - Alliance</li>
+		<li choice="sector-alliance" id="ranks-secAly-button">Secteur - Alliance</li>
+	</ul>
+
 	<span id="hud-ranks-close">X</span>
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
 </div>
@@ -357,7 +371,7 @@ if(isset($lastNews[0])) {
 if($userData['lastViewedNews'] < $max) {
 	echo '<div id="hud-news" style="display: block;">';
 } else {
-	echo '<div id="hud-news" style="display: none;">';
+	echo '<div id="hud-news">';
 }
 ?>
 	<span id="hud-news-close">X</span>
@@ -366,7 +380,8 @@ if($userData['lastViewedNews'] < $max) {
 <?php /* Map */ ?>
 <div id="hud-map">
 	<span id="hud-map-close">X</span>
-	<div id="hud-map-back">Back to global map</div>
+	<div id="hud-map-back"><?php echo MAP_BACKTO_GLOBAL_MAP; ?></div>
+	<div id="hud-map-focus"><?php echo MAP_FOCUS_CURRENT_SYSTEM; ?></div>
 	<div id="hud-map-global"></div>
 	<div id="hud-map-system" class="opening view-2D">
         <div id="hud-map-system-universeBack">
@@ -416,23 +431,24 @@ if($userData['lastViewedNews'] < $max) {
 			<div id="fleet-build-info">
 				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>">
 
-				<div id="fleet-build-cost">
+				<div id="fleet-build-stat">
 					<span id="fleet-build-name"></span><img id="fleet-build-rename" src="<?php echo $cdnURL; ?>img/ui/rename.svg"><br /><br />
-					<?php echo '<span id="fleet-build-stat-attack">'.SHIP_ATTACK.' : <span id="fleet-build-stat-attack-val"></span></span>
-					<span id="fleet-build-stat-shield">'.SHIP_SHIELD.' : <span id="fleet-build-stat-shield-val"></span></span>
-					<span id="fleet-build-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-build-stat-subspeed-val"></span></span>
-					<span id="fleet-build-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-build-stat-supspeed-val"></span></span>
-					<span id="fleet-build-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-build-stat-miss-val"></span></span>
-					<span id="fleet-build-stat-mass">'.SHIP_MASS.' : <span id="fleet-build-stat-mass-val"></span></span>
-					<span id="fleet-build-stat-fcap">'.SHIP_FCAP.' : <span id="fleet-build-stat-fcap-val"></span></span>
-					<span id="fleet-build-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-build-stat-note-val"></span></span>'; ?>
+					<?php echo '<div id="fleet-build-stat-attack"><u>'.SHIP_WEAPONS.' :</u> <span id="fleet-build-stat-attack-val"></span></div>
+					<div id="fleet-build-stat-shield"><u>'.SHIP_SHIELD.' :</u> <span id="fleet-build-stat-shield-val"></span></div>
+					<div id="fleet-build-stat-speed"><u>'.SHIP_SPEEDS.'</u>
+						<div id="fleet-build-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-build-stat-subspeed-val"></span></div>
+						<div id="fleet-build-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-build-stat-supspeed-val"></span></div>
+					</div>
+					<div id="fleet-build-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-build-stat-miss-val"></span></div>
+					<div id="fleet-build-stat-mass">'.SHIP_MASS.' : <span id="fleet-build-stat-mass-val"></span></div>
+					<div id="fleet-build-stat-fcap">'.SHIP_FCAP.' : <span id="fleet-build-stat-fcap-val"></span></div>
+					<div id="fleet-build-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-build-stat-note-val"></span></div>'; ?>
 				</div>
 	
 				<div id="fleet-build-buttons">
-
-					<img id="fleet-build-openPanel" src="./cdn/img/ui/build.svg" alt="build">
-					<img id="fleet-build-type-copy" src="./cdn/img/ui/copy.svg" alt="copy">
-					<img id="fleet-build-type-delete" src=./cdn/img/ui/delete.svg alt="delete">
+					<img id="fleet-build-type-copy" src="<?php echo $cdnURL; ?>img/ui/copy.svg" alt="copy">
+					<img id="fleet-build-openPanel" src="<?php echo $cdnURL; ?>img/ui/build.svg" alt="build">
+					<img id="fleet-build-type-delete" src=<?php echo $cdnURL; ?>img/ui/delete.svg alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>
@@ -463,10 +479,10 @@ if($userData['lastViewedNews'] < $max) {
 		<select id="fleet-type-create-shipShape" class="ui-large-select" onchange="units.changeShipShape();"></select>
 		<input type="text" id="fleet-type-create-name" placeholder="<?php echo SHIP_NAME; ?>" class="ui-large-button" required/>
 
-		<svg id="fleet-type-create-schematic" width="800px" height="450px"></svg>
+		<svg id="fleet-type-create-schematic" viewBox="0 0 800 450" preserveAspectRatio="none"></svg>
 		<div id="fleet-type-create-selects"></div>
 
-		<div id="fleet-type-create-cost">
+		<div id="fleet-type-create-stat">
 				<?php echo '<div id="fleet-type-create-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-type-create-stat-subspeed-val"></span><br /></div>
 			<div id="fleet-type-create-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-type-create-stat-supspeed-val"></span><br /></div>
 			<div id="fleet-type-create-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-type-create-stat-miss-val"></span><br /></div>
@@ -478,15 +494,23 @@ if($userData['lastViewedNews'] < $max) {
 		<input type="submit" id="fleet-type-create-submit" class="ui-large-button" value="<?php echo FLEET_CREATE; ?>">
 	</form>
 </div>
+
+<div id="fleet-type-rename">
+	<span id="fleet-type-rename-close">X</span>
+	<p>Nouveau nom pour <span id="fleet-type-rename-name">SHIPNAME</span></p>
+	<input id="fleet-type-rename-newName" class="ui-large-button" type="text" placeholder="Nouveau nom">
+	<input id="fleet-type-rename-submit" class="ui-large-button" type="submit" value="Renommer">
+</div>
+
 <div id="fleet-ship-build">
 	<span id="fleet-ship-build-close">X</span>
 	<div class="fleet-ship-build-cost">
 		<h4><?php echo FLEET_TOTAL_COST; ?></h4>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-iron">Fe <span id="fleet-ship-build-cost-iron-val">XXXt</span></p>
-		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-aluminium">Al <span id="fleet-ship-build-cost-aluminium-val">XXXt</p></span>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-aluminium">Al <span id="fleet-ship-build-cost-aluminium-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-copper">Cu <span id="fleet-ship-build-cost-copper-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-titanium">Ti <span id="fleet-ship-build-cost-titanium-val">XXXt</span></p>
-		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="./cdn/img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-time"><?php echo TIME; ?>: <span id="fleet-ship-build-cost-time-val">00:00:00</span></p>
 	</div>
 
@@ -514,6 +538,11 @@ if($userData['lastViewedNews'] < $max) {
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
 	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
+<div id="fleet-typeDelete-panel">
+	Souhaitez vous vraiment supprimer ce modèle ?<br/>
+	<input id="fleet-typeDelete-yes" class="ui-large-button" type="submit" value="Oui">
+	<input id="fleet-typeDelete-no" class="ui-large-button" type="submit" value="Non">
+</div>
 <?php /* Researchs */ ?>
 <div id="hud-research">
 	<span id="hud-research-close">X</span>
@@ -531,7 +560,7 @@ if($userData['lastViewedNews'] < $max) {
 	<span id="day-bonus-later"><?php echo DAY_BONUS_LATER; ?></span>
 </div>
 <?php /* Game Version & Copyright */ ?>
-<div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
+<div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/details-polyfill.js"></script>
