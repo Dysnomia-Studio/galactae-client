@@ -51,12 +51,12 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		$userData = (array) $userData[0];
 	}
 
-	if(!isset($userData['user_name'])) { // Verif d'existance du compte SQL
+	if(!isset($userData['user_name'])) { // Verif d'existance du compte sur la BDD Principale
 	    echo '<script> window.location="https://galactae.eu/login"; </script>';
 		die();
 	}
 
-	// SQL Get Server Data
+	// Get Server Data
 	$srv_data = $mongoDB->getCondContent('galactae','servers',
 		["server_name" => $dbname]
 	);
@@ -76,8 +76,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 		}
 
 		if(!isset($userPrivileges['user_whitelist']) || ((int) $userPrivileges['user_whitelist']!=1)) {
-			echo '<script> window.location="https://galactae.eu/portal"; </script>';
-			//@ADD: Message - Serveur en maintenance
+			echo '<script> window.location="https://galactae.eu/portal?kickmsg=MAINTENANCE_ONGOING"; </script>';
 			die();
 		}
 	}
@@ -93,7 +92,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 	}
 
 	// Create account if needed
-	if(!isset($data2['game_id']) || $data2['game_id']=="-1") { // Verif d'existance du compte ( côté SQL )
+	if(!isset($data2['game_id']) || $data2['game_id']=="-1") { // Verif d'existance du compte de jeu par rapport a l'id global
 	    if(isset($_POST['choice'])) {
 			$choice = (int) $_POST['choice'];
 		} else {
@@ -131,7 +130,7 @@ if(isset($mongoDB)) { //Maybe we don't have mongo connection ...
 			</script>';
 		include_once('game.php');
 	}
-} else { // SQL Connect Check end
+} else { // Mongo Connect Check end
 	echo '<script> window.location="https://galactae.eu"; </script>';
 	die();
 }
