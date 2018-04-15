@@ -579,7 +579,7 @@ if($userData['lastViewedNews'] < $max) {
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/units.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/websockets.js"></script>
 <?php /* Launch Game ! */ ?>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>/js/load.js"></script>
+<script type="text/javascript" src="<?php echo $cdnURL; ?>js/load.js"></script>
 </body>
 <?php /* Block Portrait Screens */ ?>
 <div id="portrait-warn"><h1><?php echo PORTRAIT_ERROR; ?></h1></div>
