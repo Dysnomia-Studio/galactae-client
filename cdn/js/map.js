@@ -135,38 +135,26 @@ class map {
 			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
+		var translate = false;
+		function stepMove() {
+			if(!translate) {
+				$("#hud-map-global").css({
+					"transform": "translate(" + (pos[0] - oldPos[0]) + "px, " + (pos[1] - oldPos[1]) + "px)"
+				});
 
+				translate = true;
 
-		var start = null;
-		var diffPos = [
-			oldPos[0] - pos[0],
-			oldPos[1] - pos[1]
-		];
-		function stepMove(timestamp) {
-			if (!start) { start = timestamp; }
+				window.requestAnimationFrame(stepMove);
+			} else {
+				$("#hud-map-global").css({
+					left: pos[0],
+					top: pos[1]
+				});
 
-			var progress = timestamp - start;
-
-			var newLeft = pos[0];
-			if(progress < diffPos[0] && diffPos[0] > 0) {
-				newLeft = oldPos[0] + progress;
-			} else if(progress < diffPos[0] && diffPos[0] < 0) {
-				newLeft = oldPos[0] - progress;
+				$("#hud-map-global").css({
+					"transform": ""
+				});
 			}
-
-			var newTop = pos[1];
-			if(progress < diffPos[1] && diffPos[1] > 0) {
-				newTop = oldPos[1] + progress;
-			} else if(progress < diffPos[1] && diffPos[1] < 0) {
-				newTop = oldPos[1] - progress;
-			}
-
-			$("#hud-map-global").css({
-				left: newLeft,
-				top: newTop
-			});
-
-			if (newLeft != pos[0] || newTop != pos[1]) { window.requestAnimationFrame(stepMove); }
 		}
 		window.requestAnimationFrame(stepMove);
 
