@@ -74,7 +74,6 @@ class map {
 		});
 		$("#hud-map-global").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
-				var pos = $("#hud-map-global").position();
 				map.moveUI([(e.pageX - mapPrevMouse[0]),
 								(e.pageY - mapPrevMouse[1])], true);
 			}
@@ -83,11 +82,10 @@ class map {
 		});
 
 		var mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
-		$('#hud-map-global').on(mousewheelevt, function(e){
+		$('#hud-map-global').on(mousewheelevt, function(e) {
+			var coef = -0.03; // Scroll down
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-				var coef = 0.03; // Scroll up
-			} else {			
-				var coef = -0.03; // Scroll down
+				coef = 0.03; // Scroll up
 			}
 
 			map.zoom += coef;
@@ -116,8 +114,8 @@ class map {
 	 * @param	  {2D vector}  pos	 The position
 	 */
 	static moveUI(pos, diff=false) {
+		var oldPos = $("#hud-map-global").position();
 		if(diff) {
-			var oldPos = $("#hud-map-global").position();
 			oldPos = [oldPos.left, oldPos.top];
 
 			pos[0] += oldPos[0];
@@ -137,10 +135,40 @@ class map {
 			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
-		$("#hud-map-global").css({
-			left: pos[0],
-			top: pos[1]
-		});
+
+
+		var start = null;
+		var diffPos = [
+			oldPos[0] - pos[0],
+			oldPos[1] - pos[1]
+		];
+		function stepMove(timestamp) {
+			if (!start) { start = timestamp; }
+
+			var progress = timestamp - start;
+
+			var newLeft = pos[0];
+			if(progress < diffPos[0] && diffPos[0] > 0) {
+				newLeft = oldPos[0] + progress;
+			} else if(progress < diffPos[0] && diffPos[0] < 0) {
+				newLeft = oldPos[0] - progress;
+			}
+
+			var newTop = pos[1];
+			if(progress < diffPos[1] && diffPos[1] > 0) {
+				newTop = oldPos[1] + progress;
+			} else if(progress < diffPos[1] && diffPos[1] < 0) {
+				newTop = oldPos[1] - progress;
+			}
+
+			$("#hud-map-global").css({
+				left: newLeft,
+				top: newTop
+			});
+
+			if (newLeft != pos[0] || newTop != pos[1]) { window.requestAnimationFrame(stepMove); }
+		}
+		window.requestAnimationFrame(stepMove);
 
 		// At borders ?
 		var coords = map.currentAddress.split('-');
@@ -470,7 +498,6 @@ class map {
 				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "vh");
 
 				/* Star Pos */
-				var orbitDuration = orbitSize[i] * 36; // in seconds
 				var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
 				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "vh * " + Math.sin(posAng) + "))");
@@ -521,7 +548,7 @@ class map {
 
 			/* Planet Img */
 			$("#" + planets[i].address + " .pos").append("<div class=\"planet\"></div>");
-			$("#" + planets[i].address + " .pos .planet").css("background-image","url("+cdnURL+"/img/planets/front/" + planets[i].type + ".jpg)")
+			$("#" + planets[i].address + " .pos .planet").css("background-image","url("+cdnURL+"/img/planets/front/" + planets[i].type + ".jpg)");
 
 			/* Set & Place shadow anim */
 			$("#" + planets[i].address + " .pos .planet").css("animation-name","planetShadow");

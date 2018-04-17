@@ -12,17 +12,21 @@ if(!is_int((int) $news_needed)) {
 	die();
 }
 
+$news_needed = (int) $news_needed;
+
 $cache = 'cache/news-'.$news_needed.'.html';
 $expire = time() - 600; // 10 min
 
-/* Say to SQL server, we seen a newer news */
-$mongoDB->updateContent('galactae','users',
-	['_id' => $userData['_id']],
-	[ '$set' => [
-		 	'lastViewedNews' => $news_needed
-		]
-	]		
-);
+/* Say to db server, we seen a newer news */
+if($userData['lastViewedNews'] < $news_needed) {
+	$mongoDB->updateContent('galactae','users',
+		['_id' => $userData['_id']],
+		[ '$set' => [
+			 	'lastViewedNews' => $news_needed
+			]
+		]		
+	);
+}
 
 if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
