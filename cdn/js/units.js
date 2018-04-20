@@ -65,7 +65,7 @@ class units {
 		$("#hud-fleet-close").click(function() {
 			if(preventFleetHUDClosing) { return; }
 			if(units.unitPanelTimeout != -1) {
-				clearTimeout(units.unitPanelInterval);
+				clearTimeout(units.unitPanelTimeout);
 				units.unitPanelTimeout = -1;
 			}
 			
@@ -321,7 +321,7 @@ class units {
 
 			// Time left
 			if(units.unitPanelTimeout != -1) {
-				clearTimeout(units.unitPanelInterval);
+				clearTimeout(units.unitPanelTimeout);
 				units.unitPanelTimeout = -1;
 			}
 
@@ -486,7 +486,9 @@ class units {
 		units.updateBuildCost();
 	}
 
-	static regenerateBuildFleetList() {
+	static regenerateBuildFleetList(data) {
+		units.fleetList = data;
+
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
 		for(var i=0; i<units.fleetList.length; i++) {

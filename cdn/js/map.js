@@ -158,6 +158,8 @@ class map {
 		}
 		window.requestAnimationFrame(stepMove);
 
+		//@ADD: display none/block on sectors
+
 		// At borders ?
 		var coords = map.currentAddress.split('-');
 		coords[0] = parseInt(coords[0]);
