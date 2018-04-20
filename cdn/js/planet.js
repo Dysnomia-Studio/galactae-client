@@ -25,7 +25,7 @@ var planetData = { //Not complete but some are needed on init because of bugs
 	id: userData.pid,
 	resources: {},
 	Buildings: {},
-}
+};
 
 var buildings;
 var currentBuilding;
@@ -115,9 +115,9 @@ class planet {
 		// Create timeout: sync where the next building is ended
 		if(planetData.nextBuildingTime != -1) {
 			autobuildingrefresh = setTimeout(function() {	
-				ui.notify("Galactae: " + translate["messages"]['ENDED_BUILDING_TITLE'], {
+				ui.notify("Galactae: " + translate.messages['ENDED_BUILDING_TITLE'], {
 					icon: cdnURL+"img/favicon.png",
-					body: translate["messages"]['ENDED_BUILDING_01'] + translate['buildings'][planetData.nextBuilding].name + translate["messages"]['ENDED_BUILDING_02'] + (planetData.Buildings[planetData.nextBuilding]+1)
+					body: translate.messages['ENDED_BUILDING_01'] + translate.buildings[planetData.nextBuilding].name + translate.messages['ENDED_BUILDING_02'] + (planetData.Buildings[planetData.nextBuilding]+1)
 				});
 				planet.sync();
 				autobuildingrefresh = -1;
@@ -278,10 +278,10 @@ class planet {
 		storageHelium1 = (heliumProd[0]*Math.pow((buildings[10]+1),2)  + heliumProd[1]*(buildings[10]+1)  + heliumProd[2])*(storageRatio[0]*Math.log((buildings[10]+1)) + storageRatio[1])*heliumStorageRatio;
 
 		if(research.isSearched("cp_molecular_compression")) {
-			mineralStorageBase *= researchBonus["cp_molecular_compression"];
-			metalsStorageBase *= researchBonus["cp_molecular_compression"];
-			storageHelium *= researchBonus["cp_molecular_compression"];
-			storageHelium1 *= researchBonus["cp_molecular_compression"];
+			mineralStorageBase *= researchBonus.cp_molecular_compression;
+			metalsStorageBase *= researchBonus.cp_molecular_compression;
+			storageHelium *= researchBonus.cp_molecular_compression;
+			storageHelium1 *= researchBonus.cp_molecular_compression;
 		}
 
 		// Energy
@@ -324,8 +324,8 @@ class planet {
 			metalProdBaseTemp = 0;
 		}
 
-		if(planetData.resources[0]>=mineralStorageBase 
-			&& mineralProdBaseTemp > metalProdBaseTemp) { // Si on a tout les minerais
+		if(planetData.resources[0]>=mineralStorageBase && 
+			mineralProdBaseTemp > metalProdBaseTemp) { // Si on a tout les minerais
 			mineralProdBaseTemp = metalProdBaseTemp;
 		} else if(planetData.resources[0]==0 && metalProdBaseTemp > mineralProdBaseTemp) {
 			metalProdBaseTemp = mineralProdBaseTemp;
@@ -454,8 +454,9 @@ class planet {
 	}
 
 	static getTimeBeforeBuild(building) {
-		if(planetData.nextBuilding==building) { var cost = planet.getBuildCost(building,planetData.Buildings[building] + 2); } 
-		else							{ var cost = planet.getBuildCost(building,planetData.Buildings[building] + 1); }
+		var cost;
+		if(planetData.nextBuilding==building) { cost = planet.getBuildCost(building,planetData.Buildings[building] + 2); } 
+		else							      { cost = planet.getBuildCost(building,planetData.Buildings[building] + 1); }
 		var costs = [
 			["building-cost-iron",cost.iron],
 			["building-cost-aluminium",cost.aluminium],
@@ -496,7 +497,7 @@ class planet {
 		for(var i=1; i<14; i++) {
 			var timeCurrent = planet.getTimeBeforeBuild(i);
 			if(timeCurrent < timeLeft && timeCurrent!=0) {
-				var timeLeft = timeCurrent;
+				timeLeft = timeCurrent;
 			}
 		}
 
@@ -542,22 +543,19 @@ class planet {
 		}
 
 		 //Next level cost
-		if(planetData.nextBuilding==id) { 
-			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 2);		
-		} 
-		else { 
-			var cost = planet.getBuildCost(id,planetData.Buildings[id] + 1);
-		}
+		 var cost;
+		if(planetData.nextBuilding==id) { cost = planet.getBuildCost(id,planetData.Buildings[id] + 2); } 
+		else							{ cost = planet.getBuildCost(id,planetData.Buildings[id] + 1); }
 
 		var max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
 		var max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
 
 		/* Planet Construction Tab */
-		$("#building-name").text(translate["buildings"][id].name);
-		$("#building-level").text(translate["messages"]['LEVEL'] + ' ' +  planetData.Buildings[id]);
-		$("#building-desc").text(translate["buildings"][id].desc);
+		$("#building-name").text(translate.buildings[id].name);
+		$("#building-level").text(translate.messages['LEVEL'] + ' ' +  planetData.Buildings[id]);
+		$("#building-desc").text(translate.buildings[id].desc);
 		$("#building-area").css("display","block");
-		$("#building-img").attr("src",cdnURL+"img/buildings/desc/"+translate["buildings"][id].id+".jpg");
+		$("#building-img").attr("src",cdnURL+"img/buildings/desc/" + translate.buildings[id].id + ".jpg");
 		$("#building-area input").id=id;
 		$('#building-cost').css('display', 'block');
 
@@ -608,9 +606,9 @@ class planet {
 		/* Bouton upgrade ou message */
 		// Defaut Value
 		if(planetData.Buildings[id]==0) {
-			$('#building-upgrade').val(translate["messages"]["BUILD"]);
+			$('#building-upgrade').val(translate.messages["BUILD"]);
 		} else {
-			$('#building-upgrade').val(translate["messages"]["UPGRADE"]);
+			$('#building-upgrade').val(translate.messages["UPGRADE"]);
 		}
 		$("#building-upgrade").attr("onclick","");
 		$('#building-upgrade').css('display', 'none');
@@ -618,18 +616,18 @@ class planet {
 
 		// Edits
 		if(max) { // Max Level
-			$('#building-message').html(translate["messages"]["UPGRADE_MAX"]);
+			$('#building-message').html(translate.messages["UPGRADE_MAX"]);
 			$('#building-cost').css('display', 'none');
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			var dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
 			var dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-				$('#building-message').html(translate["messages"]["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
 			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-				$('#building-message').html(translate["messages"]["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
 			} else {
-				$('#building-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 			}
 
 			planet.buildPanelInterval = setTimeout(function() {
@@ -640,18 +638,18 @@ class planet {
 			var dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["ENOUGH_RESOURCES_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
 			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["ENOUGH_RESOURCES_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
 			} else {
-				$('#building-message').html(translate["messages"]["ENOUGH_RESOURCES_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["ENOUGH_RESOURCES_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["ENOUGH_RESOURCES_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["ENOUGH_RESOURCES_AT"] + " " + dateEnd.toLocaleTimeString());
 			}
 
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
 		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
-			$('#building-message').html(translate["messages"]["ANOTHER_IN_BUILD"]);
+			$('#building-message').html(translate.messages["ANOTHER_IN_BUILD"]);
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
 			},planetData.nextBuildingTime - (Date.now() + planet.deltaNow + 1000));
@@ -762,7 +760,7 @@ class planet {
 	 * @return     {array}   cost    The final cost
 	 */
 	static getBuildCost(build,level) {
-		if(build < 0 || build > globalConst["buildingNumber"]) { return; }
+		if(build < 0 || build > globalConst.buildingNumber) { return; }
 
 		var retour = {
 			aluminium: 	Math.round(buildCost["aluminium"][build][0]*Math.pow(level,2) +		buildCost["aluminium"][build][1]*level + 	buildCost["aluminium"][build][2]),

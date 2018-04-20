@@ -129,7 +129,7 @@ class units {
 		});
 		// Type copy
 		$('#fleet-build-type-copy').click(function() {
-			units.drawCreateTypePanel(units.currUnit);
+			units.drawCreateTypePanel();
 		});
 		// Type delete
 		$('#fleet-build-type-delete').click(function() {
@@ -195,7 +195,7 @@ class units {
 		});
 		$('#fleet-newFleet-submit').click(function() {
 			units.validFleetName();
-		})
+		});
 
 		$('#fleet-ship-build-upgrade').click(function() {
 			units.askUnitBuild();
@@ -331,11 +331,11 @@ class units {
 				var dateTom = new Date(Date.now() + (24*60*60*1000));
 
 				if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-					$('#fleet-build-message').html(translate["messages"]["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+					$('#fleet-build-message').html(translate.messages["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
 				} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-					$('#fleet-build-message').html(translate["messages"]["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+					$('#fleet-build-message').html(translate.messages["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
 				} else {
-					$('#fleet-build-message').html(translate["messages"]["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate["messages"]["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
+					$('#fleet-build-message').html(translate.messages["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 				}
 
 				var currentFleetName = units.list[0].name;
@@ -351,9 +351,9 @@ class units {
 					},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
 				} else {
 					units.unitPanelTimeout = setTimeout(function() {
-						ui.notify("Galactae: " + translate["messages"]['ENDED_UNIT_TITLE'], {
+						ui.notify("Galactae: " + translate.messages['ENDED_UNIT_TITLE'], {
 							icon: cdnURL+"img/favicon.png",
-							body: translate["messages"]['ENDED_UNIT_01'] + planetData.unitBuildingCount + translate["messages"]['ENDED_UNIT_02'] + currentFleetName + translate["messages"]['ENDED_UNIT_03']
+							body: translate.messages['ENDED_UNIT_01'] + planetData.unitBuildingCount + translate.messages['ENDED_UNIT_02'] + currentFleetName + translate.messages['ENDED_UNIT_03']
 						});
 						planet.sync();
 					},(((dateEnd.getHours() - dateNow.getHours())*60 + (dateEnd.getMinutes() - dateNow.getMinutes()))*60 + (dateEnd.getSeconds() + 5 - dateNow.getSeconds()))*1000); // Refresh 5 sec after end
@@ -535,8 +535,8 @@ class units {
 		var count = parseInt($("#fleet-ship-build-count").val());
 		var fleet = parseInt($("#fleet-ship-build-fleetSelect option").filter(':selected').attr("id"));
 		
-		if(fleet==NaN || fleet==undefined || (fleet==-2 && units.list[units.currUnit].shipType != "SHIP_DEF")) { return; }
-		if(count==NaN || count==undefined || units.currUnit==-1) { return; }
+		if(isNaN(fleet) || fleet==undefined || (fleet==-2 && units.list[units.currUnit].shipType != "SHIP_DEF")) { return; }
+		if(isNaN(count) || count==undefined || units.currUnit==-1) { return; }
 		if(preventUnitBuildPanelClose) { return; }
 
 		var unit = { 
@@ -562,7 +562,7 @@ class units {
 		preventFleetHUDClosing = false;
 	}
 
-	static drawCreateTypePanel(unit=-1) {
+	static drawCreateTypePanel() {
 		var unitsParts = [];
 		var selectedType = "";
 		var selectedShape = "";
@@ -639,7 +639,7 @@ class units {
 			
 			$('#fleet-type-create-shipShape').html(selectShipShape);
 
-			units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content'],unitsParts);
+			units.drawShipShape(shipShapesDetails[type][shape].svg,shipShapesDetails[type][shape].content,unitsParts);
 			units.updateTypeCreateStats();
 		} else {
 			$("#fleet-type-create-shipType").val($("#fleet-type-create-shipType option:first").val());
@@ -647,13 +647,13 @@ class units {
 		}
 	}
 
-	static changeShipShape(id) {
+	static changeShipShape() {
 		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
 
 		$($('#fleet-type-create-name').get(0)).val('');
 
-		units.drawShipShape(shipShapesDetails[type][shape]['svg'],shipShapesDetails[type][shape]['content']);
+		units.drawShipShape(shipShapesDetails[type][shape].svg,shipShapesDetails[type][shape].content);
 		units.updateTypeCreateStats();
 	}
 
@@ -720,24 +720,26 @@ class units {
 				var selh = $("#fleet-type-create-schematic").height();
 				var w = shape[id][4]/800*selw - 12;
 				var h = shape[id][5]/450*selh - 12;
-				$("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="'
-					+ 'left: ' + ((shape[id][2])/800)*selw + 'px;'
-					+ 'top: ' + ((shape[id][3])/450)*selh + 'px;'
-					+ 'width: ' + w + 'px;'
-					+ 'height: ' + h + 'px;'
-					+ '"></dl>');
+				$("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
+					'left: ' + ((shape[id][2])/800)*selw + 'px;' +
+					'top: ' + ((shape[id][3])/450)*selh + 'px;' +
+					'width: ' + w + 'px;' +
+					'height: ' + h + 'px;' +
+					'"></dl>');
 
-				$("#part-selecting-seen-" + id).append('<dt><a href="#" value="' + selected.val()  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.svg\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-						+ 'width: ' + w + 'px;'
-						+ 'height: ' + h + 'px;'
-						+ '"></a></dt>');
-				$("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>')
+				$("#part-selecting-seen-" + id).append('<dt><a href="#" value="' + selected.val()  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.val()  + '.svg\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;' +
+						'width: ' + w + 'px;' +
+						'height: ' + h + 'px;' +
+						'"></a></dt>');
+				$("#part-selecting-seen-" + id).append('<dd><ul></ul></dd>');
 
-				options.each(function(){
-					$("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#" value="' + $(this).attr('id')  + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id') + '.svg\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;'
-						+ 'width: ' + w + 'px;'
-						+ 'height: ' + h + 'px;'
-						+ '"></a></li>');
+				options.each(function() {
+					$("#part-selecting-seen-" + id + " dd ul").append('<li><a href="#" value="' + $(this).attr('id')  + '"' +
+						'style="background-image: url(\''+ cdnURL + 'img/units-modules/' + $(this).attr('id') + '.svg\');' +
+						'background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;' +
+						'width: ' + w + 'px;' +
+						'height: ' + h + 'px;' +
+						'"></a></li>');
 				});
 
 			   $("#part-selecting-seen-" + id + " dt a").click(function() {
@@ -815,25 +817,25 @@ class units {
 
 			switch(parts[i].type) {
 				case "sub_propulsion":
-					if(modules['sub_propulsion'] == 0) {
-						modules['sub_propulsion'] = 0; // @ADD: Calc subspeed
-						modules['sub_propulsion'] *= 1000; // Passage de km en m
+					if(modules.sub_propulsion == 0) {
+						modules.sub_propulsion = 0; // @ADD: Calc subspeed
+						modules.sub_propulsion *= 1000; // Passage de km en m
 					} else {
-						modules['sub_propulsion'] *= 1.5;
+						modules.sub_propulsion *= 1.5;
 					}
 					break;
 				case "sup_propulsion":
-					if(modules['sup_propulsion'] == 0) {
-						modules['sup_propulsion'] = shipPartsSpeed[parts[i].tech][0]*10000 
-							+ shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
-						modules['sup_propulsion'] = 30675/(modules['sup_propulsion'] * 3600);
-						modules['sup_propulsion'] = modules['sup_propulsion'].toFixed(3);
+					if(modules.sup_propulsion == 0) {
+						modules.sup_propulsion = shipPartsSpeed[parts[i].tech][0]*10000 +
+							shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
+						modules.sup_propulsion = 30675/(modules.sup_propulsion * 3600);
+						modules.sup_propulsion = modules.sup_propulsion.toFixed(3);
 					} else {
-						modules['sup_propulsion'] *= 1.5;
+						modules.sup_propulsion *= 1.5;
 					}
 					break;
 				case "hangar":
-					modules['hangar'] += hangarSize[parts[i].tech];
+					modules.hangar += hangarSize[parts[i].tech];
 					miss -= hangarMiss[parts[i].tech];
 					break;
 				default:
@@ -841,26 +843,26 @@ class units {
 			}
 		}
 
-		if(modules['sub_propulsion'] == 0) {
+		if(modules.sub_propulsion == 0) {
 			$(div + '-subspeed').css('display','none');
 		} else {
-			$(div + '-subspeed-val').text(GetBetterUnit(modules['sub_propulsion'],"m/s"));
+			$(div + '-subspeed-val').text(GetBetterUnit(modules.sub_propulsion,"m/s"));
 		}
 
-		if(modules['sup_propulsion'] == 0) {
+		if(modules.sup_propulsion == 0) {
 			$(div + '-supspeed').css('display','none');
 		} else {
-			$(div + '-supspeed-val').text(modules['sup_propulsion'] + "pc/s");
+			$(div + '-supspeed-val').text(modules.sup_propulsion + "pc/s");
 		}
 
-		if(modules['sup_propulsion'] == 0 && modules['sub_propulsion'] == 0) {
+		if(modules.sup_propulsion == 0 && modules.sub_propulsion == 0) {
 			$(div + '-speed').css('display','none');
 		}
 
 		if(type != "SHIP_CARRIER") {
 			$(div + '-fcap').css('display','none');
 		} else {
-			$(div + '-fcap-val').text(modules['hangar']);
+			$(div + '-fcap-val').text(moduleshangar);
 		}
 
 		// Calcul des données si données
@@ -900,7 +902,7 @@ class units {
 				}
 			}
 			for(var i in armes) {
-				if(armesText != "") { armesText += ", "}
+				if(armesText != "") { armesText += ", "; }
 				var translate = fleetTranslate[i];
 				if(translate === undefined) {
 					translate = fleetTranslate["missile_" + i];
@@ -928,7 +930,7 @@ class units {
 				}
 			}
 			for(var i in shields) {
-				if(shieldText != "") { shieldText += ", "}
+				if(shieldText != "") { shieldText += ", "; }
 				shieldText += shields[i] + "x " + fleetTranslate[i];
 			}
 		}
@@ -1026,8 +1028,9 @@ class units {
 					totalcount += orbit[i].units[j][1];
 				}
 				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
-				var content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary>'
-					+ '<table class="unit-list-table">' + fleetListHeader + '<tbody>';
+				var content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + 
+					'<span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate.unit + '</span></summary>' +
+					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
 
 				for(var allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
 					var count = -1;

@@ -76,10 +76,10 @@ class webSockets {
 		chat.init();
 
 		socket.on('server-mute', function(data) {
-			chat.sm("<span style=\"color: #438dce;\">" + translate["messages"]['CHAT_MUTED'] + " " + getStringTime(data.muteTime) + " " + translate["messages"]['CHAT_MUTED_REASON'] + " :</span> " + " " + data.message);
+			chat.sm("<span style=\"color: #438dce;\">" + translate.messages.CHAT_MUTED + " " + getStringTime(data.muteTime) + " " + translate.messages.HAT_MUTED_REASON + " :</span> " + " " + data.message);
 		});
 		socket.on('server-unmute', function() {
-			chat.sm("<span style=\"color: #438dce;\">" + translate["messages"]['CHAT_UNMUTED'] +"</span>");
+			chat.sm("<span style=\"color: #438dce;\">" + translate.messages.CHAT_UNMUTED +"</span>");
 		});
 
 		// Alerts
@@ -88,7 +88,7 @@ class webSockets {
 		});
 		socket.on('server-general-alert', function(message) {
 			ui.drawMessage(message);
-			chat.sm("<span style=\"color: #438dce;\">" + translate["messages"]['SYSTEM_MESSAGE'] +"</span> " + " " + message);
+			chat.sm("<span style=\"color: #438dce;\">" + translate.messages.SYSTEM_MESSAGE +"</span> " + " " + message);
 		});
 
 		// Daily bonus !
