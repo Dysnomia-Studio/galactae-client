@@ -487,7 +487,9 @@ class units {
 	}
 
 	static regenerateBuildFleetList(data) {
-		units.fleetList = data;
+		if(data !== undefined) {
+			units.fleetList = data;
+		}
 
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
