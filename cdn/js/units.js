@@ -489,11 +489,11 @@ class units {
 	static regenerateBuildFleetList() {
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
-		for(var i=0; i<data.length; i++) {
-			if(data[i].name == "SHIP_DEF" || data[i].name == fleetTranslate["SHIP_DEF"]) { continue; } // Def fleet
-			if(data[i].position != planetData.address || data[i].orbitPosition != 0) { continue; } // Moving/Out fleets
+		for(var i=0; i<units.fleetList.length; i++) {
+			if(units.fleetList[i].name == "SHIP_DEF" || units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; } // Def fleet
+			if(units.fleetList[i].position != planetData.address || units.fleetList[i].orbitPosition != 0) { continue; } // Moving/Out fleets
 
-			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + data[i].name + '</option>');
+			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');
 		}
 		$('#fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
 	}
