@@ -30,6 +30,10 @@ class settings {
 						"medium",
 						"low"
 					]
+				},
+				map3D: {
+					default: true,
+					type: "checkbox"
 				}
 			},
 			sounds: {
@@ -87,5 +91,8 @@ class settings {
 				ui.menu = !(ui.menu);
 			}
 		});
+	}
+	static get(settingName) {
+		
 	}
 }

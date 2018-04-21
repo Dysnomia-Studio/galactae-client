@@ -553,12 +553,45 @@ class map {
 		}	
 
 		// View info
-		$('#hud-map-system .planet').click(function() {
-			socket.emit("planet-ask-mapData", { 
-				id: userData.id,
-				username: userData.username,
-				pAddress: $(this).parent().parent().attr('id')
+		$('#hud-map-system .planet').click(function(e) {
+			$('#map-planet-menu').css({
+				"left": e.pageX + $('#map-planet-menu').width()/2,
+				"top":  e.pageY + $('#map-planet-menu').height()/2,
 			});
+			$('#map-planet-menu').css('display','block');
+		});
+		$(document).click(function(e) {
+			if(!$(e.target).hasClass("planet") && !$(e.target).hasClass("pos")) {
+				$('#map-planet-menu').css('display','none');
+			}
+		});
+		$('#map-planet-menu img').click(function(e) {
+			switch(e.target.id) {
+				case "map-planet-menu-infos":
+					socket.emit("planet-ask-mapData", { 
+						id: userData.id,
+						username: userData.username,
+						pAddress: $(this).parent().parent().attr('id')
+					});
+					break;
+				case "map-planet-menu-move":
+					units.openMovePanel(2);
+					break;
+				case "map-planet-menu-attack":
+					units.openMovePanel(1);
+					break;
+				case "map-planet-menu-defend":
+					units.openMovePanel(0);
+					break;
+				case "map-planet-menu-spy":
+					units.openMovePanel(3);
+					break;
+				case "map-planet-menu-trade":
+					trade.openPlanetPanel();
+					break;
+			}
+
+			$('#map-planet-menu').css('display','none');
 		});
 
 		// Back button
