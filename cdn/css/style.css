@@ -2286,6 +2286,26 @@ dl.infos dt {
 	height: 100%;
 }
 
+@media (min-height: 601px) {
+	#building-ground-title {
+		position: absolute;
+		top: calc(50vh + 12em + 2.5em); /* calc(50vh + ((24em)/2) + 2.5em); */
+		left: 2em;
+		width: 16em;
+		text-align: center;
+	}
+}
+@media (max-height: 600px) {
+	#building-ground-title {
+		position: absolute;
+		top: 35px;
+		left: 4vh;
+		width: 60vh;
+		text-align: center;
+		font-size: 0.9em;
+	}
+}
+
 @media (min-height: 531px) {
 	/**
 	 * Width: 5em
@@ -2303,13 +2323,6 @@ dl.infos dt {
 	/**
 	 * Ground building
 	 */
-	#building-ground-title {
-		position: absolute;
-		top: calc(50vh + 12em + 2.5em); /* calc(50vh + ((24em)/2) + 2.5em); */
-		left: 2em;
-		width: 16em;
-		text-align: center;
-	}
 	#carriere {
 		top: calc(50vh - 12em + 0em);
 		left: 8em;
@@ -2479,14 +2492,6 @@ dl.infos dt {
 	/**
 	 * Ground building
 	 */
-	#building-ground-title {
-		position: absolute;
-		top: calc(39vh + 22.5vh + 6vh + 3em); /* calc(39vh + ((55vh)/2) + 6vh + 3em) */
-		left: 4vh;
-		width: 60vh;
-		text-align: center;
-		font-size: 0.9em;
-	}
 	#carriere {
 		top: calc(39vh - 22.5vh + 0vh);
 		left: 22vh;
