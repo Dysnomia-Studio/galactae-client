@@ -862,7 +862,7 @@ class units {
 		if(type != "SHIP_CARRIER") {
 			$(div + '-fcap').css('display','none');
 		} else {
-			$(div + '-fcap-val').text(moduleshangar);
+			$(div + '-fcap-val').text(modules.hangar);
 		}
 
 		// Calcul des données si données
