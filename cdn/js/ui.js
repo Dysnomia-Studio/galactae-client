@@ -26,7 +26,7 @@ class ui {
 	static drawMessage(msg) {
 		// Translation
 		if(msg === undefined) { return; }
-		if((translate["messages"][msg] !=undefined) && (translate["messages"][msg] !="")) { msg = translate["messages"][msg]; }
+		if((translate.messages[msg] !=undefined) && (translate.messages[msg] !="")) { msg = translate.messages[msg]; }
 		// Draw the message
 		$("#messagePanel").text(msg);
 		$("#messagePanel").fadeIn(1000);
@@ -75,7 +75,7 @@ class ui {
 
 		//Rename planet
 		$("#hud-planet-name").click(function() {
-			ui.planetNameSwitchToInput()
+			ui.planetNameSwitchToInput();
 		});
 		//HUD Buttons
 		ui.hudBottomButtons();
@@ -173,8 +173,8 @@ class ui {
 		});
 
 		// Display none if needed	
-		if(document.getElementById('hud-top-left').scrollWidth
-			<= Math.round($('#hud-top-left').width())) {
+		if(document.getElementById('hud-top-left').scrollWidth <=
+			Math.round($('#hud-top-left').width())) {
 			$('#hud-top-left-moveRight').css('display','none');
 			$('#hud-top-left-moveLeft').css('display','none');
 		} else {
@@ -182,8 +182,8 @@ class ui {
 			$('#hud-top-left-moveLeft').css('display','block');
 		}
 
-		if(document.getElementById('hud-top-right').scrollWidth
-			<= Math.round($('#hud-top-right').width())) {
+		if(document.getElementById('hud-top-right').scrollWidth <=
+			Math.round($('#hud-top-right').width())) {
 			$('#hud-top-right-moveRight').css('display','none');
 			$('#hud-top-right-moveLeft').css('display','none');
 		} else {
@@ -207,7 +207,7 @@ class ui {
 				ui.closeTab("#hud-fleet");
 				ui.fleet= false;
 			} else if(ui.ranks==true) {
-				ui.closeTab("#hud-ranks")
+				ui.closeTab("#hud-ranks");
 				ui.ranks = false;
 			} else if(ui.map==true) {
 				if(map.currentMap == "" || map.currentMap == "global") {
@@ -237,10 +237,10 @@ class ui {
 
 		// Planetes suivantes/precedente
 		if(e.which === KEYBOARD.LARROW && !($("#chat_message").is(":focus"))) { // Gauche
-			planet.prev()
+			planet.prev();
 		}
 		if(e.which === KEYBOARD.RARROW && !($("#chat_message").is(":focus"))) { // Droite
-			planet.next()
+			planet.next();
 		}
 	}
 	/**
@@ -325,7 +325,7 @@ class ui {
 		var $span = $("<span>", {
 			text: elt.val(),
 			id: "hud-planet-name"
-		});;
+		});
 		elt.replaceWith($span);
 		$span.on("click", ui.planetNameSwitchToInput);
 		if(ui.oldname!=newname) {

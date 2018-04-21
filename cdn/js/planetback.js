@@ -137,7 +137,7 @@ class planetBack {
 					var x0 = x * cosY - z * sinY;
 					var z0 = z * cosY + x * sinY;
 					var y0 = y * cosX - z0 * sinX;
-					var z0 = z0 * cosX + y * sinX;
+						z0 = z0 * cosX + y * sinX;
 
 					planetBack.calc.vertices[j][i].px = x0 * (1 + (z0 / 4000));
 					planetBack.calc.vertices[j][i].py = y0 * (1 + (z0 / 4000));

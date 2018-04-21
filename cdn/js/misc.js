@@ -3,8 +3,8 @@ var connectTimeout = -1;
 function kick(msg,time=0,canBeCanceled=false) {
     var message;
 
-	if(msg!="" && translate['messages'][msg] != undefined) {
-        message = message = translate['messages'][msg];
+	if(msg!="" && translate.messages[msg] != undefined) {
+        message = message = translate.messages[msg];
     } else if(msg==undefined) {
         message = "";
     } else {
@@ -45,8 +45,8 @@ function GetBetterUnit(nmbr,unit="",max=0) {
 	var signe = false;
 
 	if(newnbr<0) {
-		newnbr = -newnbr
-		var signe = true;
+		newnbr = -newnbr;
+		signe = true;
 	}
 
 	while(newnbr>=1000) {
@@ -57,15 +57,19 @@ function GetBetterUnit(nmbr,unit="",max=0) {
 	if(signe) {
 		newnbr = -newnbr;
 	}
+
+    var end;
 	if(unitId==0) {
-	var end = Math.round(newnbr)+unit;
+	   end = Math.round(newnbr)+unit;
 	} else { 
-	var end = (Math.round(newnbr*10)/10)+units[unitId]+unit;
-	};
+	   end = (Math.round(newnbr*10)/10)+units[unitId]+unit;
+	}
+
 	if((nmbr>=max && max!=0) || nmbr<=0) {
 		end = "<span class=\"max-value\">" + end + "</span>";
 	}
-	return end
+
+	return end;
 }
 
 /* getStringTime

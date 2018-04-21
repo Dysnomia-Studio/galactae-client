@@ -97,8 +97,8 @@ PerspectiveTransform.prototype = (function(){
         }else{
             if(det1<=0||det2<=0) return true;
         }
-        var det1 = _getDeterminant(this.topRight, this.bottomRight, this.bottomLeft);
-        var det2 = _getDeterminant(this.bottomLeft, this.topLeft, this.topRight);
+        det1 = _getDeterminant(this.topRight, this.bottomRight, this.bottomLeft);
+        det2 = _getDeterminant(this.bottomLeft, this.topLeft, this.topRight);
         if(this.useBackFacing){
             if(det1*det2<=0) return true;
         }else{
@@ -149,14 +149,14 @@ PerspectiveTransform.prototype = (function(){
         var kmax, sum;
         var row;
         var col = [];
-        var i, j, k, tmp;
+        var tmp, k;
         for(var j = 0; j < 8; j++) {
             for(var i = 0; i < 8; i++)  col[i] = aM[i][j];
             for(i = 0; i < 8; i++) {
                 row = aM[i];
                 kmax = i<j?i:j;
                 sum = 0.0;
-                for(var k = 0; k < kmax; k++) sum += row[k] * col[k];
+                for(k = 0; k < kmax; k++) sum += row[k] * col[k];
                 row[j] = col[i] -= sum;
             }
             var p = j;
@@ -184,8 +184,8 @@ PerspectiveTransform.prototype = (function(){
             for(i = 0; i < k; i++) arr[i] -= arr[k] * aM[i][k];
         }
 
-         return this.calcStyle = 'matrix3d(' + arr[0].toFixed(9) + ',' + arr[3].toFixed(9) + ', 0,' + arr[6].toFixed(9) + ',' + arr[1].toFixed(9) + ',' + arr[4].toFixed(9) + ', 0,' + arr[7].toFixed(9) + ',0, 0, 1, 0,' + arr[2].toFixed(9) + ',' + arr[5].toFixed(9) + ', 0, 1)';
-
+        this.calcStyle = 'matrix3d(' + arr[0].toFixed(9) + ',' + arr[3].toFixed(9) + ', 0,' + arr[6].toFixed(9) + ',' + arr[1].toFixed(9) + ',' + arr[4].toFixed(9) + ', 0,' + arr[7].toFixed(9) + ',0, 0, 1, 0,' + arr[2].toFixed(9) + ',' + arr[5].toFixed(9) + ', 0, 1)';
+        return this.calcStyle;
     }
 
     function update(style) {
@@ -198,7 +198,8 @@ PerspectiveTransform.prototype = (function(){
         }
 
         // use toFixed() just in case the Number became something like 3.10000001234e-9
-        return this.style[PerspectiveTransform.transformStyleName] = style;
+        this.style[PerspectiveTransform.transformStyleName] = style;
+        return this.style;
     }
 
     _setTransformStyleName();
@@ -216,5 +217,5 @@ PerspectiveTransform.prototype = (function(){
         return PerspectiveTransform;
     });
 }(typeof define === "function" && define.amd ? define : function (app) {
-    window["PerspectiveTransform"] = app();
+    window.PerspectiveTransform = app();
 }));

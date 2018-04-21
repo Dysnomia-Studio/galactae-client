@@ -49,8 +49,8 @@ class loadScreen {
 					$(".loading-overlay-bar-secondary").css('display','block');
 				}
 
-				if(translate['load'][i] !== undefined) {
-					$('#loading-overlay-desc').html(translate['load'][i]);
+				if(translate.load[i] !== undefined) {
+					$('#loading-overlay-desc').html(translate.load[i]);
 				}
 				break;
 			}
@@ -138,7 +138,7 @@ $(document).ready(function() {
 		kick("not-connected");
 	}
 
-	$('#loading-overlay-desc').html(translate['load']["server"]);
+	$('#loading-overlay-desc').html(translate.load["server"]);
 
 	// Load settings
 	settings.init();
@@ -152,5 +152,5 @@ $(document).ready(function() {
 	// On se connecte au serveur node et on verifie l'identité du client ( Serveur )
 	webSockets.createConnection();
 
-	console.log("%c" + translate["messages"]["selfXSSWarn"],'font-size: 2em; font-weight: bold; color: red;');
+	console.log("%c" + translate.messages["selfXSSWarn"],'font-size: 2em; font-weight: bold; color: red;');
 });
