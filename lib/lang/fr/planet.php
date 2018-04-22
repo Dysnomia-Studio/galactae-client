@@ -26,7 +26,7 @@
 	define('ORBITAL_BUILDING','Constructions en Orbite');
 ?>
 <script type="text/javascript">
-	let translate = translate || {};
+	var translate = translate || {};
 
 	translate['buildings'] = [
 		// ground

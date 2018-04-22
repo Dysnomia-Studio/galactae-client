@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	let translate = translate || {};
+	var translate = translate || {};
 	
 	translate['research'] = {
 		// Noeud Central

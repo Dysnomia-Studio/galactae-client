@@ -135,14 +135,14 @@ class map {
 			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
-		let translate = false;
+		let translated = false;
 		function stepMove() {
-			if(!translate) {
+			if(!translated) {
 				$("#hud-map-global").css({
 					"transform": "translate(" + (pos[0] - oldPos[0]) + "px, " + (pos[1] - oldPos[1]) + "px)"
 				});
 
-				translate = true;
+				translated = true;
 
 				window.requestAnimationFrame(stepMove);
 			} else {

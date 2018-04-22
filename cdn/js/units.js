@@ -903,11 +903,11 @@ class units {
 			}
 			for(let i in armes) {
 				if(armesText != "") { armesText += ", "; }
-				let translate = fleetTranslate[i];
-				if(translate === undefined) {
-					translate = fleetTranslate["missile_" + i];
+				let translation = fleetTranslate[i];
+				if(translation === undefined) {
+					translation = fleetTranslate["missile_" + i];
 				}
-				armesText += armes[i] + "x " + translate;
+				armesText += armes[i] + "x " + translation;
 			}
 		}
 		if(armesText != "") {
