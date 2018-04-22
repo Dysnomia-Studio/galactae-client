@@ -185,14 +185,15 @@ class research {
 		if( $('#'+key+'-node').length ) { return; }
 
 		// Place this node
+		let content;
 		if(planetData.currResearch==key) {
-			let content = '<div class="research-node current-research-node" id="' + key + '-node">';
+			content = '<div class="research-node current-research-node" id="' + key + '-node">';
 		} else {
-			let content = '<div class="research-node" id="' + key + '-node">';
+			content = '<div class="research-node" id="' + key + '-node">';
 		}
 
 		if(research.canResearch(key)) {
-			content += '<h2>' + translate['research'][key].name + '</h2>';
+			content += '<h2>' + translate.research[key].name + '</h2>';
 			content += '<span class="research-desc">' + translate['research'][key].desc + '</span>';
 			content += '<div class="research-bottom">';
 			if(!research.isSearched(key)) {
