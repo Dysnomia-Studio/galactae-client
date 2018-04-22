@@ -60,7 +60,7 @@ function drawCookiePreventionPanel() {
 		</div>
 		<script type="text/javascript">
 			document.getElementById("cookie-prevent-close").addEventListener("click",function() {
-				var cookie = document.getElementById("cookie-prevent");
+				let cookie = document.getElementById("cookie-prevent");
 				cookie.parentNode.removeChild(cookie);
 				setCookie("cookies_accepted",1,<?php echo $config['cookies-prevention-valid-time']; ?>);
 			})

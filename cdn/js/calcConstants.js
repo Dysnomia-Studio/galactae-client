@@ -1,4 +1,4 @@
-var globalConst = {
+let globalConst = {
 	buildingNumber: 	14,
 	maxFleetSize:   300000, // Number of people
 }
@@ -6,26 +6,26 @@ var globalConst = {
 /**
  * Production
  */
-var planetRatios = [
+let planetRatios = [
 	{ironRatio: 0.35, aluRatio: 0.50, copperRatio: 0.04, titanRatio: 0.10}, // Earth type
 ];
 
-var mineralProd = 	[2,-2,145];
-var metalProd = 	[1.85,-3,139];
-var heliumProd = 	[190,-424,500];
+let mineralProd = 	[2,-2,145];
+let metalProd = 	[1.85,-3,139];
+let heliumProd = 	[190,-424,500];
 
-var storageRatio = [47.52,8.29];
-var heliumStorageRatio = 0.2;
+let storageRatio = [47.52,8.29];
+let heliumStorageRatio = 0.2;
 
-var electricity = [2080000,165000,550000];
-var habGen = [25447,419910,-170000];
+let electricity = [2080000,165000,550000];
+let habGen = [25447,419910,-170000];
 
-var buildLvlUnitBuildingSpeedBonus = 0.005;
+let buildLvlUnitBuildingSpeedBonus = 0.005;
 
 /**
  * Buildings
  */
-var buildingMaxLvl = [
+let buildingMaxLvl = [
 	25,	// Carriere
 	25,	// Metallurgie
 	25,	// Habitations
@@ -41,7 +41,7 @@ var buildingMaxLvl = [
 	15,	// Commerce
 	25	// Mine He3
 ];
-var buildCost = {
+let buildCost = {
 	aluminium: [
 		// Ground building
 		[0,0,0], // Quarry
@@ -172,8 +172,8 @@ var buildCost = {
 /**
  * Research
  */
-var researchProduction = [-0.05,12,-8];
-var researchBonus = {
+let researchProduction = [-0.05,12,-8];
+let researchBonus = {
 	// Bonus construction
 	cp_mecanisation: -0.05,
 	cp_tracteur: 	 -0.05,
@@ -181,7 +181,7 @@ var researchBonus = {
 	cp_molecular_compression: 1.1,
 };
 
-var researchPos = {
+let researchPos = {
 	// Noeud Central
 	researchCenter:		[5000,5000],
 	industrialistion:	[5563,5000],
@@ -247,7 +247,7 @@ var researchPos = {
 	misc_calcGravit:	[4500,6500],
 	misc_em:			[4300,5600],
 };
-var researchList = {
+let researchList = {
 	// Noeud Central
 	researchCenter: 	{ cost: 0, parents: [] },
 	industrialistion: 	{ cost: 8, parents: ["researchCenter"] },		
@@ -316,8 +316,8 @@ var researchList = {
 /**
  * Units
  */
-var hqFleetCount = [2,5,9,14,20,0]; // Last entry to prevent bugs
-var shipResearchDependencies = {
+let hqFleetCount = [2,5,9,14,20,0]; // Last entry to prevent bugs
+let shipResearchDependencies = {
 	// Satelites shapes
 	SHIP_SAT_AG1: "wep_sat_ag1",
 	SHIP_SAT_AG2: "wep_sat_ag2",
@@ -377,7 +377,7 @@ var shipResearchDependencies = {
 	pplasma: "prop_plasma",
 	vsolaire: "prop_vSolaire",
 };
-var unitTypes = [
+let unitTypes = [
 	"SHIP_DEF",
 	"SHIP_BATTLECRUISER",
 	"SHIP_CUIRASSE",
@@ -386,7 +386,7 @@ var unitTypes = [
 	"SHIP_CARRIER"
 ];
 
-var shipShapesDetails = {
+let shipShapesDetails = {
 	SHIP_DEF: {
 		SHIP_SAT_AG1: {
 			svg: [
@@ -570,7 +570,7 @@ var shipShapesDetails = {
 	},
 };
 
-var shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
+let shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	/**
 	 * Ship shapes
 	 */
@@ -630,7 +630,7 @@ var shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	none: [0,0,0,0,0,0],
 };
 
-var shipPartsSpeed = {
+let shipPartsSpeed = {
 	// Propulsions subluminiques
 	ion: 			[ -0.000046, 0.0096, 0],
 	plasma: 		[ -0.000045, 0.0090, 0],
@@ -640,7 +640,7 @@ var shipPartsSpeed = {
 	wd: 			[    -0.016,   5.13, 0.001],
 	hyperespace: 	[    -0.014,   3.68, 0.001],
 };
-var fuelCost = {
+let fuelCost = {
 	// Propulsions subluminiques
 	ion: 			10682,
 	plasma: 		 7244,
@@ -651,18 +651,18 @@ var fuelCost = {
 	hyperespace: 	25491,
 };
 
-var fighterWeight = {
+let fighterWeight = {
 	SHIP_FIGHTER_SMALL: 1,
 	SHIP_FIGHTER_MEDIUM: 2,
 	SHIP_FIGHTER_BOMBER: 2,
 };
 
-var hangarSize = {
+let hangarSize = {
 	hangarSimple: 40,
 	hangarDouble: 75,
 };
 
-var hangarMiss = {
+let hangarMiss = {
 	hangarSimple:  -2,
 	hangarDouble: -10,
 };

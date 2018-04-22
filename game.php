@@ -517,9 +517,9 @@ if($userData['lastViewedNews'] < $max) {
 	<span id="fleet-ship-build-name">This isn't a ship name</span>
 
 	<script type="text/javascript">
-		var unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
-		var unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
-		var fleetListHeader = '<thead><tr>'
+		let unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
+		let unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
+		let fleetListHeader = '<thead><tr>'
 						+ '<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>'
 						+ '<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>'
 						+ '<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>'

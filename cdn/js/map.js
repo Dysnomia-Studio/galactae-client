@@ -1,24 +1,24 @@
 // Stars: 4.8 to 12 em
 // in XML from 0 to 37
-var STAR_SIZE_BASE = 4;
-var STAR_SIZE_COEF = 2 / 37;
-var STAR_ECART = 2.25;
+let STAR_SIZE_BASE = 4;
+let STAR_SIZE_COEF = 2 / 37;
+let STAR_ECART = 2.25;
 
 // Planets: 4 to 15 em
-var PLANET_SIZE_BASE = 3 / 2;
-var PLANET_SIZE_COEF = 9 / 14;
-var PLANET_ECART = 2.5;
+let PLANET_SIZE_BASE = 3 / 2;
+let PLANET_SIZE_COEF = 9 / 14;
+let PLANET_ECART = 2.5;
 
-var MAP_SIZE_HEIGHT = 40000;
-var MAP_SIZE_WIDTH = 50000;
+let MAP_SIZE_HEIGHT = 40000;
+let MAP_SIZE_WIDTH = 50000;
 
-var mapPrevMouse = [0,0];
+let mapPrevMouse = [0,0];
 
 class map {
 	static touchHandler(event) {
-		var touch = event.changedTouches[0];
+		let touch = event.changedTouches[0];
 
-		var simulatedEvent = document.createEvent("MouseEvent");
+		let simulatedEvent = document.createEvent("MouseEvent");
 		simulatedEvent.initMouseEvent({
 			touchstart: "mousedown",
 			touchmove: "mousemove",
@@ -46,7 +46,7 @@ class map {
 
 		map.zoom = 1;
 
-		var currentSector = map.currentAddress.split('-');
+		let currentSector = map.currentAddress.split('-');
 		currentSector = [currentSector[0],currentSector[1]].join("-");
 
 		/**
@@ -81,9 +81,9 @@ class map {
 			mapPrevMouse[1] = e.pageY;
 		});
 
-		var mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
 		$('#hud-map-global').on(mousewheelevt, function(e) {
-			var coef = -0.03; // Scroll down
+			let coef = -0.03; // Scroll down
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
 				coef = 0.03; // Scroll up
 			}
@@ -92,7 +92,7 @@ class map {
 			if(map.zoom < 0.5) { map.zoom -= coef; return; }
 			if(map.zoom > 1.75) { map.zoom -= coef; return; }
 
-			var pos = $("#hud-map-global").position();
+			let pos = $("#hud-map-global").position();
 			pos.left = ((pos.left - mapPrevMouse[0])/(map.zoom - coef) * map.zoom) + mapPrevMouse[0];
 			pos.top = ((pos.top - mapPrevMouse[1])/(map.zoom - coef) * map.zoom) + mapPrevMouse[1];
 			$("#hud-map-global").css("left",pos.left);
@@ -114,7 +114,7 @@ class map {
 	 * @param	  {2D vector}  pos	 The position
 	 */
 	static moveUI(pos, diff=false) {
-		var oldPos = $("#hud-map-global").position();
+		let oldPos = $("#hud-map-global").position();
 		if(diff) {
 			oldPos = [oldPos.left, oldPos.top];
 
@@ -135,7 +135,7 @@ class map {
 			pos[1] = $(document).height()-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
-		var translate = false;
+		let translate = false;
 		function stepMove() {
 			if(!translate) {
 				$("#hud-map-global").css({
@@ -161,19 +161,19 @@ class map {
 		//@ADD: display none/block on sectors
 
 		// At borders ?
-		var coords = map.currentAddress.split('-');
+		let coords = map.currentAddress.split('-');
 		coords[0] = parseInt(coords[0]);
 		coords[1] = parseInt(coords[1]);
 
-		var topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
-		var bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
-		var leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
-		var rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
+		let topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
+		let bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
+		let leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
+		let rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
 
-		var top =  coords[0] == 0 || (topDist > $(document).height() * 1.5);
-		var bottom = coords[0] == 9 || (bottomDist > $(document).height() * 1.5);
-		var left = coords[1] == 0 || (leftDist > $(document).height() * 1.5);
-		var right = coords[1] == 9 || (rightDist > $(document).height() * 1.5);
+		let top =  coords[0] == 0 || (topDist > $(document).height() * 1.5);
+		let bottom = coords[0] == 9 || (bottomDist > $(document).height() * 1.5);
+		let left = coords[1] == 0 || (leftDist > $(document).height() * 1.5);
+		let right = coords[1] == 9 || (rightDist > $(document).height() * 1.5);
 
 		/**
 		 * Load all needed xml
@@ -228,15 +228,15 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector,callback) {
-		var coords = sector.split('-'); 
+		let coords = sector.split('-'); 
 
 		// At borders ?
 		coords[0] = parseInt(coords[0]);
 		coords[1] = parseInt(coords[1]);
-		var top = coords[0] == 0;
-		var bottom = coords[0] == 9;
-		var left = coords[1] == 0;
-		var right = coords[1] == 9;
+		let top = coords[0] == 0;
+		let bottom = coords[0] == 9;
+		let left = coords[1] == 0;
+		let right = coords[1] == 9;
 
 		/**
 		 * Load all needed xml
@@ -368,27 +368,27 @@ class map {
 			return;
 		}
 
-		var sector = address.split('-');
+		let sector = address.split('-');
 		sector = [sector[0],sector[1]].join("-");
 
 		map.currentMap = "system";
 		$('#hud-map-system-solarFront').html("");
 
 		// Parse XML
-		var systemXML = $(map.xmlDoc[sector]).find("sy#" + address)[0];
+		let systemXML = $(map.xmlDoc[sector]).find("sy#" + address)[0];
 
-		var stars = [];
-		var starsXML = $(systemXML).find("st");
-		for(var i=0; i< starsXML.length; i++) {
+		let stars = [];
+		let starsXML = $(systemXML).find("st");
+		for(let i=0; i< starsXML.length; i++) {
 			stars[i] = {};
 			stars[i].address = $(starsXML[i]).attr('id');
 			stars[i].size	= (STAR_SIZE_BASE + STAR_SIZE_COEF * parseFloat($(starsXML[i]).attr('sz')));
 			stars[i].type	= $(starsXML[i]).attr('t');
 		}
 
-		var planets = [];
-		var planetsXML = $(systemXML).find("p");
-		for(var i=0; i< planetsXML.length; i++) {
+		let planets = [];
+		let planetsXML = $(systemXML).find("p");
+		for(let i=0; i< planetsXML.length; i++) {
 			planets[i] = {};
 			planets[i].address = $(planetsXML[i]).attr('id');
 			planets[i].size	= $(planetsXML[i]).attr('sz');
@@ -399,8 +399,8 @@ class map {
 		/**
 		 * Stars drawing
 		 */
-		var firstPlanet = 0; // var needed to know where to place the planets
-		var orbitSize = [];
+		let firstPlanet = 0; // let needed to know where to place the planets
+		let orbitSize = [];
 
 		// Sort by size 
 		stars.sort(function(a,b) {
@@ -457,7 +457,7 @@ class map {
 		}
 
 		// Then, we place it in HTML
-		for(var i=0; i<stars.length; i++) {
+		for(let i=0; i<stars.length; i++) {
 			if(orbitSize[i]==0) {
 				// Create DOM
 				$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
@@ -467,7 +467,7 @@ class map {
 				// Set Orbit, star position and anim duration
 
 				// Anim duration
-				var orbitDuration = orbitSize[i] * 36; // in seconds
+				let orbitDuration = orbitSize[i] * 36; // in seconds
 				$("#" + stars[i].address).css("animation-duration","" + orbitDuration + "s");
 				$("#" + stars[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
 
@@ -488,7 +488,7 @@ class map {
 				$("#" + stars[i].address).css("margin-left","-" + (orbitSize[i]/2) + "vh");
 
 				/* Star Pos */
-				var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+				let posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
 				$("#" + stars[i].address + " .pos").css("top","calc(50% + (" + (orbitSize[i]/2) + "vh * " + Math.sin(posAng) + "))");
 				$("#" + stars[i].address + " .pos").css("left","calc(50% + (" + (orbitSize[i]/2) + "vh * " + Math.cos(posAng) + "))");
@@ -502,13 +502,13 @@ class map {
 		 * Planets creation
 		 */
 		orbitSize = firstPlanet;
-		for(var i=0; i<planets.length; i++) {
+		for(let i=0; i<planets.length; i++) {
 			// Create DOM
 			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>');
 			// @ADD: Menu
 
 			// Set Size
-			var size = PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF;
+			let size = PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF;
 			$("#" + planets[i].address).css("font-size","" + size + "vh");
 
 			if(i==0) {
@@ -518,7 +518,7 @@ class map {
 			}
 
 			// Anim duration
-			var orbitDuration = (2 + orbitSize) * 100;
+			let orbitDuration = (2 + orbitSize) * 100;
 			$("#" + planets[i].address).css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos").css("animation-duration","" + orbitDuration + "s");
 			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
@@ -531,7 +531,7 @@ class map {
 			$("#" + planets[i].address).css("margin-left","-" + (orbitSize/2) + "vh");
 
 			/* Planet Pos */
-			var posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+			let posAng = (Date.now()%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 			
 			$("#" + planets[i].address + " .pos").css("top","calc(50% + (" + Math.sin(posAng) + " * 0.5 * (" + orbitSize + "vh)))");
 			$("#" + planets[i].address + " .pos").css("left","calc(50% + (" + Math.cos(posAng) + " * 0.5 * (" + orbitSize + "vh)))");
@@ -543,7 +543,7 @@ class map {
 			/* Set & Place shadow anim */
 			$("#" + planets[i].address + " .pos .planet").css("animation-name","planetShadow");
 
-			var currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
+			let currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
 			$("#" + planets[i].address + " .pos .planet").css("animation-delay","" + currShadow + "s");
 
 			$("#" + planets[i].address + " .pos .planet").css("animation-duration","" + orbitDuration + "s");
@@ -618,18 +618,18 @@ class map {
 		$("#sect-" + sector).remove();
 
 		// Get XML
-		var sectorXML = $(map.xmlDoc[sector])[0];
-		var systemList = $(sectorXML).find("sy");
+		let sectorXML = $(map.xmlDoc[sector])[0];
+		let systemList = $(sectorXML).find("sy");
 
 		// Generate Content
-		var content = "<div id='sect-" + sector + "'>";
+		let content = "<div id='sect-" + sector + "'>";
 
-		for(var i=0; i<systemList.length; i++) {
-			var starList = $(systemList[i]).find("st");
-			var starBType = "";
-			var starBSize = 0;
+		for(let i=0; i<systemList.length; i++) {
+			let starList = $(systemList[i]).find("st");
+			let starBType = "";
+			let starBSize = 0;
 
-			for(var currStar=0; currStar<starList.length; currStar++) {
+			for(let currStar=0; currStar<starList.length; currStar++) {
 				if($(starList[currStar]).attr('sz') > starBSize) {
 					starBType = $(starList[currStar]).attr('t');
 					starBSize = $(starList[currStar]).attr('sz');
@@ -662,22 +662,22 @@ class map {
 			return;
 		}
 		
-		var coords = address.split('-');
-		var sector = coords[0] + "-" + coords[1];
-		var system = [coords[0],coords[1],coords[2]].join("-");
+		let coords = address.split('-');
+		let sector = coords[0] + "-" + coords[1];
+		let system = [coords[0],coords[1],coords[2]].join("-");
 
 		if(map.xmlDoc[sector] === undefined) {
 			map.loadMap(sector, function() {
-				var systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
-				var newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
-				var newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
+				let systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
+				let newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
+				let newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
 
 				map.moveUI([newX, newY]);
 			});
 		} else {
-			var systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
-			var newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
-			var newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
+			let systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
+			let newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
+			let newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
 
 			map.moveUI([newX, newY]);
 		}

@@ -1,5 +1,5 @@
-var preventFleetHUDClosing = false;
-var preventUnitBuildPanelClose = false;
+let preventFleetHUDClosing = false;
+let preventUnitBuildPanelClose = false;
 
 class units {
 	static sync() {
@@ -9,7 +9,7 @@ class units {
 	static refresh(data) {
 		units.list = data;
 
-		for(var i=0; i<units.list.length; i++) {
+		for(let i=0; i<units.list.length; i++) {
 			if(units.list[i]._id.substr(0,14) == "SHIP_WEP_MINES") {
 				units.list.splice(i,1);
 				i--;
@@ -151,7 +151,7 @@ class units {
 		});
 		// Type rename
 		$('#fleet-build-rename').click(function() {
-			var oldName = units.list[units.currUnit].name;
+			let oldName = units.list[units.currUnit].name;
 
 			$('#fleet-type-rename-name').text(oldName);
 			$('#fleet-type-rename-newName').val(oldName);
@@ -177,7 +177,7 @@ class units {
 		});
 		// Nouveau tri
 		$('#fleet-build-list thead tr th').click(function() {
-			var name = $(this).attr('id').split('-')[4];
+			let name = $(this).attr('id').split('-')[4];
 
 			if(name == units.sortTypes) {
 				name += "-desc";
@@ -240,13 +240,13 @@ class units {
 		}
 
 		// Sort
-		var oldCurr = units.list[units.currUnit];
+		let oldCurr = units.list[units.currUnit];
 		units.list.sort(function(a,b) {
-			var desc = units.sortTypes.split("-").length - 1;
-			var sort = units.sortTypes.split("-")[0];
+			let desc = units.sortTypes.split("-").length - 1;
+			let sort = units.sortTypes.split("-")[0];
 
-			var Na = a[sort];
-			var Nb = b[sort];
+			let Na = a[sort];
+			let Nb = b[sort];
 
 			if(!Number.isInteger(Na)) {
 				if(fleetTranslate[Na] !== undefined) {
@@ -280,21 +280,21 @@ class units {
 			return -1;
 		});
 
-		for(var i=0; i<units.list; i++) {
+		for(let i=0; i<units.list; i++) {
 			if(units.list[i]._id == oldCurr._id) {
 				units.currUnit = i;
 				break;
 			}
 		}
 
-		var unitCount = 0;
+		let unitCount = 0;
 
 		if(units.list.length!=0) {
 			$('#fleet-build-list-empty').css('display','none');
 
-			var content = "";
-			var active = true;
-			for(var i=0; i<units.list.length; i++) {
+			let content = "";
+			let active = true;
+			for(let i=0; i<units.list.length; i++) {
 				if(type=="SHIP_ALL" || type==units.list[i].shipType) {
 					if(active) {
 						content+= "<tr id=\""+ i +"\" class=\"fleet-build-list-active\">";
@@ -326,9 +326,9 @@ class units {
 			}
 
 			if(planetData.unitBuildingEndTime > (Date.now() + planet.deltaNow)) { // An unit is building
-				var dateNow = new Date();
-				var dateEnd = new Date(planetData.unitBuildingEndTime + planet.deltaNow);
-				var dateTom = new Date(Date.now() + (24*60*60*1000));
+				let dateNow = new Date();
+				let dateEnd = new Date(planetData.unitBuildingEndTime + planet.deltaNow);
+				let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 				if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
 					$('#fleet-build-message').html(translate.messages["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
@@ -338,8 +338,8 @@ class units {
 					$('#fleet-build-message').html(translate.messages["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 				}
 
-				var currentFleetName = units.list[0].name;
-				for(var i=0; i<units.list.length; i++) {
+				let currentFleetName = units.list[0].name;
+				for(let i=0; i<units.list.length; i++) {
 					if(units.list[i]._id == planetData.unitBuildingID) {
 						currentFleetName = units.list[i].name;
 					}
@@ -369,9 +369,9 @@ class units {
 		}
 
 		// Check if we can create fleet
-		var disabledButton = true;
-		for(var i=0; i<unitTypes.length; i++) {
-			for(var index in shipShapesDetails[unitTypes[i]]) {
+		let disabledButton = true;
+		for(let i=0; i<unitTypes.length; i++) {
+			for(let index in shipShapesDetails[unitTypes[i]]) {
 				if(shipResearchDependencies[index] == undefined || research.isSearched(shipResearchDependencies[index])) { 
 					disabledButton = false;
 					break;
@@ -408,7 +408,7 @@ class units {
 	}
 
 	static fleetExists(fname) {
-		for(var i in units.fleetList) {
+		for(let i in units.fleetList) {
 			if(units.fleetList.name == fname) {
 				return true;
 			}
@@ -417,7 +417,7 @@ class units {
 	}
 
 	static validFleetName() {
-		var fname = $('#fleet-newFleet-name').val();
+		let fname = $('#fleet-newFleet-name').val();
 
 		if(fname == "") { return; }
 		if(units.fleetExists(fname)) { return; }
@@ -429,7 +429,7 @@ class units {
 	}
 
 	static updateBuildCost() {
-		var costs = [
+		let costs = [
 			"fleet-ship-build-cost-aluminium-val",
 			"fleet-ship-build-cost-iron-val",
 			"fleet-ship-build-cost-titanium-val",
@@ -438,12 +438,12 @@ class units {
 			"fleet-ship-build-cost-population-val",
 		];
 
-		var currUnit = units.list[units.currUnit];
-		var count = parseInt($("#fleet-ship-build-count").val());
+		let currUnit = units.list[units.currUnit];
+		let count = parseInt($("#fleet-ship-build-count").val());
 
 		if($("#fleet-ship-build-count").val() == "" || count < 1) { count = 1; }
 
-		for(var i in costs) {
+		for(let i in costs) {
 			if(currUnit.cost[i] == 0) { 
 				$("#" + costs[i].substring(0,costs[i].length-4)).css("display","none");
 				continue;
@@ -459,12 +459,12 @@ class units {
 	}
 
 	static getMaxShips() {
-		var currUnit = units.list[units.currUnit];
-		var transitionTable = [3,2,5,4];
-		var max = Math.floor(planetData.resources[3] / currUnit.cost[0]); // 3 = transitionTable[0]
+		let currUnit = units.list[units.currUnit];
+		let transitionTable = [3,2,5,4];
+		let max = Math.floor(planetData.resources[3] / currUnit.cost[0]); // 3 = transitionTable[0]
 
-		for(var i=1; i<4; i++) {
-			var currMax = Math.floor(planetData.resources[transitionTable[i]] / currUnit.cost[i]);
+		for(let i=1; i<4; i++) {
+			let currMax = Math.floor(planetData.resources[transitionTable[i]] / currUnit.cost[i]);
 			if(currMax < max) {
 				max = currMax;
 			}
@@ -478,7 +478,7 @@ class units {
 	}
 
 	static updateCount(count) {
-		var max = units.getMaxShips();
+		let max = units.getMaxShips();
 		if(count > max) {
 			$("#fleet-ship-build-count").val(max);
 		}
@@ -489,7 +489,7 @@ class units {
 	static regenerateBuildFleetList() {
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
-		for(var i=0; i<units.fleetList.length; i++) {
+		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name == "SHIP_DEF" || units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; } // Def fleet
 			if(units.fleetList[i].position != planetData.address || units.fleetList[i].orbitPosition != 0) { continue; } // Moving/Out fleets
 
@@ -503,7 +503,7 @@ class units {
 		$('#fleet-ship-build-fleetSelect').css('display','block');
 
 		units.fname = "";
-		var currUnit = units.list[units.currUnit];
+		let currUnit = units.list[units.currUnit];
 
 		// Name
 		$("#fleet-ship-build-name").text(currUnit.name);
@@ -532,14 +532,14 @@ class units {
 	}
 
 	static askUnitBuild() {
-		var count = parseInt($("#fleet-ship-build-count").val());
-		var fleet = parseInt($("#fleet-ship-build-fleetSelect option").filter(':selected').attr("id"));
+		let count = parseInt($("#fleet-ship-build-count").val());
+		let fleet = parseInt($("#fleet-ship-build-fleetSelect option").filter(':selected').attr("id"));
 		
 		if(isNaN(fleet) || fleet==undefined || (fleet==-2 && units.list[units.currUnit].shipType != "SHIP_DEF")) { return; }
 		if(isNaN(count) || count==undefined || units.currUnit==-1) { return; }
 		if(preventUnitBuildPanelClose) { return; }
 
-		var unit = { 
+		let unit = { 
 			id: userData.id,
 			username: userData.username,
 			planet: userData.pid,
@@ -563,12 +563,12 @@ class units {
 	}
 
 	static drawCreateTypePanel() {
-		var unitsParts = [];
-		var selectedType = "";
-		var selectedShape = "";
+		let unitsParts = [];
+		let selectedType = "";
+		let selectedShape = "";
 
 		if(units.currUnit != -1 && units.list[units.currUnit] != undefined) { 
-			for(var i in units.list[units.currUnit].parts) {
+			for(let i in units.list[units.currUnit].parts) {
 				unitsParts[units.list[units.currUnit].parts[i].name] = units.list[units.currUnit].parts[i].tech;
 			}
 
@@ -581,10 +581,10 @@ class units {
 		$('#fleet-type-create-schematic').html("");
 		$('#fleet-type-create-selects').html("");
 
-		var selectContent = "";
-		for(var i=0; i<unitTypes.length; i++) {
-			var disabled = true;
-			for(var index in shipShapesDetails[unitTypes[i]]) {
+		let selectContent = "";
+		for(let i=0; i<unitTypes.length; i++) {
+			let disabled = true;
+			for(let index in shipShapesDetails[unitTypes[i]]) {
 				if(shipResearchDependencies[index] == undefined || research.isSearched(shipResearchDependencies[index])) { 
 					disabled = false;
 					break;
@@ -616,13 +616,13 @@ class units {
 	}
 	
 	static changeShipType(unitsParts=[],selectedShape="") {
-		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
-		var shape = "";
+		let type  = $("#fleet-type-create-shipType option").filter(":selected").val();
+		let shape = "";
 
 		$($('#fleet-type-create-name').get(0)).val('');
 
-		var selectShipShape = "";
-		for(var index in shipShapesDetails[type]) {
+		let selectShipShape = "";
+		for(let index in shipShapesDetails[type]) {
 			if(shape=="") { shape = index; }
 			if(shipResearchDependencies[index] != undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
 			if(index == selectedShape) {
@@ -648,8 +648,8 @@ class units {
 	}
 
 	static changeShipShape() {
-		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
-		var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
+		let type  = $("#fleet-type-create-shipType option").filter(":selected").val();
+		let shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
 
 		$($('#fleet-type-create-name').get(0)).val('');
 
@@ -658,10 +658,10 @@ class units {
 	}
 
 	static drawShipShape(shape,content,unitsParts=[]) {
-		var svgContent = "";
+		let svgContent = "";
 		$('#fleet-type-create-selects').html("");
 
-		for(var i=0; i<shape.length; i++) {
+		for(let i=0; i<shape.length; i++) {
 			// Draw shape
 			switch(shape[i][1]) {
 				case "rect":
@@ -676,7 +676,7 @@ class units {
 				case "path":
 					svgContent += '<path class="' + shape[i][0] + '" d="';
 
-					for(var j=2; j<shape[i].length; j++) {
+					for(let j=2; j<shape[i].length; j++) {
 						svgContent += shape[i][j] + " ";
 					}
 
@@ -685,7 +685,7 @@ class units {
 				default: // Poly
 					svgContent += '<polygon class="' + shape[i][0] + '" points="';
 
-					for(var j=2; j<shape[i].length; j+=2) {
+					for(let j=2; j<shape[i].length; j+=2) {
 						svgContent += shape[i][j] + "," + shape[i][j+1] + " ";
 					}
 
@@ -695,8 +695,8 @@ class units {
 			// Draw HTML
 			if(shape[i][0]!="struct") {
 				/* Hidden Select */
-				var hiddenSelect = '<select id="part-selecting-hidden-' + i + '" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
-				for(var j=0; j<content[shape[i][0]].length; j++) {
+				let hiddenSelect = '<select id="part-selecting-hidden-' + i + '" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
+				for(let j=0; j<content[shape[i][0]].length; j++) {
 					if(content[shape[i][0]][j] != "none" && shipResearchDependencies[content[shape[i][0]][j]] !== undefined && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
 						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '" selected>';
@@ -709,17 +709,17 @@ class units {
 
 				/* Seen Select */
 				let id = i;
-				var source = $("#part-selecting-hidden-" + id);
-				var selected = source.find("option[selected]");
+				let source = $("#part-selecting-hidden-" + id);
+				let selected = source.find("option[selected]");
 				if(selected[0] === undefined) {
 					selected = $(source.find("option")[0]);
 				}
-				var options = $("option", source);
+				let options = $("option", source);
 
-				var selw = $("#fleet-type-create-schematic").width();
-				var selh = $("#fleet-type-create-schematic").height();
-				var w = shape[id][4]/800*selw - 12;
-				var h = shape[id][5]/450*selh - 12;
+				let selw = $("#fleet-type-create-schematic").width();
+				let selh = $("#fleet-type-create-schematic").height();
+				let w = shape[id][4]/800*selw - 12;
+				let h = shape[id][5]/450*selh - 12;
 				$("#fleet-type-create-selects").append('<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
 					'left: ' + ((shape[id][2])/800)*selw + 'px;' +
 					'top: ' + ((shape[id][3])/450)*selh + 'px;' +
@@ -746,30 +746,30 @@ class units {
 					$("#part-selecting-seen-" + id + " dd ul").toggle();
 				});
 				$(document).bind('click', function(e) {
-					var $clicked = $(e.target);
+					let $clicked = $(e.target);
 					if(! $clicked.parents().hasClass("dropdown"))
 						$("#part-selecting-seen-" + id + " dd ul").hide();
 				});	
 				$("#part-selecting-seen-" + id + " dd ul li a").click(function() {
 					$("#part-selecting-seen-" + id + " dd ul").hide();
 					
-					var source = $("#part-selecting-hidden-" + id);
+					let source = $("#part-selecting-hidden-" + id);
 					
 					if($(source).attr("parttype") == "sub_propulsion" ||
 						$(source).attr("parttype") == "sup_propulsion") {
 
-						var selects = $('#fleet-type-create-selects select[parttype=' + $(source).attr("parttype") +']');
-						for(var currSelect=0; currSelect < selects.length; currSelect++) {
+						let selects = $('#fleet-type-create-selects select[parttype=' + $(source).attr("parttype") +']');
+						for(let currSelect=0; currSelect < selects.length; currSelect++) {
 							$(selects[currSelect]).val($(this).attr("value"));
 
-							for(var currStyle=0; currStyle<$(this)[0].style.length; currStyle++) {
+							for(let currStyle=0; currStyle<$(this)[0].style.length; currStyle++) {
 								$("#" + $(selects[currSelect]).attr('id').split('hidden').join("seen") + " dt a")[0].style[$(this)[0].style[currStyle]] = $(this)[0].style[$(this)[0].style[currStyle]];
 							}
 						}
 					} else {
 						source.val($(this).attr("value"));
 
-						for(var currSelect=0; currSelect<$(this)[0].style.length; currSelect++) {
+						for(let currSelect=0; currSelect<$(this)[0].style.length; currSelect++) {
 							$("#part-selecting-seen-" + id + " dt a")[0].style[$(this)[0].style[currSelect]] = $(this)[0].style[$(this)[0].style[currSelect]];
 						}
 					}
@@ -782,13 +782,13 @@ class units {
 	}
 
 	static updateTypeCreateStats() {
-		var type  = $("#fleet-type-create-shipType option").filter(":selected").val();
-		var shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
-		var partList = $('#fleet-type-create-selects select');
+		let type  = $("#fleet-type-create-shipType option").filter(":selected").val();
+		let shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
+		let partList = $('#fleet-type-create-selects select');
 		
-		var parts = [];
+		let parts = [];
 
-		for(var p=0; p<partList.length; p++) {
+		for(let p=0; p<partList.length; p++) {
 			parts.push({
 				type: $(partList[p]).attr("parttype"),
 				tech: $(partList[p]).find("option:selected").val(),
@@ -801,18 +801,18 @@ class units {
 	static updateStats(div, type, shape, parts, note) {
 		if(parts === undefined) { parts = []; } // Mines only
 
-		var modules = {
+		let modules = {
 			"sub_propulsion": 0,
 			"sup_propulsion": 0,
 			"hangar": 0,
 		};
 
-		var miss = 0; // @ADD: Calc miss
+		let miss = 0; // @ADD: Calc miss
 
 		// Hide some things if needed
 		$(div + ' div').css('display','block');
 
-		for(var i=0; i<parts.length; i++) {
+		for(let i=0; i<parts.length; i++) {
 			if(parts[i].tech == "none") { continue; }
 
 			switch(parts[i].type) {
@@ -869,7 +869,7 @@ class units {
 		if(note === undefined) {
 			note = "X.X"; // @ADD: Calc note
 		}
-		var mass = 0; // @ADD: Calc mass
+		let mass = 0; // @ADD: Calc mass
 		
 		// Masse
 		$(div + '-mass-val').html(GetBetterUnit(mass,"t"));
@@ -889,10 +889,10 @@ class units {
 		units.updateStats("#fleet-build-stat", units.list[id].shipType, units.list[id].shipShape, units.list[id].parts, units.list[id].note);
 
 		// Weapons
-		var armesText = "";
+		let armesText = "";
 		if(units.list[id].shipShape.substr(0,14) != "SHIP_WEP_MINES") {
-			var armes = {};
-			for(var i=0; i<units.list[id].parts.length; i++) {
+			let armes = {};
+			for(let i=0; i<units.list[id].parts.length; i++) {
 				if(units.list[id].parts[i].type != "cannon" && units.list[id].parts[i].type != "rocketLauncher") { continue; }
 				if(units.list[id].parts[i].tech == "none") { continue; }
 				if(armes[units.list[id].parts[i].tech] === undefined) {
@@ -901,9 +901,9 @@ class units {
 					armes[units.list[id].parts[i].tech]++;
 				}
 			}
-			for(var i in armes) {
+			for(let i in armes) {
 				if(armesText != "") { armesText += ", "; }
-				var translate = fleetTranslate[i];
+				let translate = fleetTranslate[i];
 				if(translate === undefined) {
 					translate = fleetTranslate["missile_" + i];
 				}
@@ -917,10 +917,10 @@ class units {
 		}
 
 		// Shields
-		var shieldText = "";
+		let shieldText = "";
 		if(units.list[id].shipShape.substr(0,14) != "SHIP_WEP_MINES") {
-			var shields = {};
-			for(var i=0; i<units.list[id].parts.length; i++) {
+			let shields = {};
+			for(let i=0; i<units.list[id].parts.length; i++) {
 				if(units.list[id].parts[i].type != "shield") { continue; }
 				if(units.list[id].parts[i].tech == "none") { continue; }
 				if(shields[units.list[id].parts[i].tech] === undefined) {
@@ -929,7 +929,7 @@ class units {
 					shields[units.list[id].parts[i].tech]++;
 				}
 			}
-			for(var i in shields) {
+			for(let i in shields) {
 				if(shieldText != "") { shieldText += ", "; }
 				shieldText += shields[i] + "x " + fleetTranslate[i];
 			}
@@ -953,14 +953,15 @@ class units {
 	}
 
 	static createNewType() {
-		var errors = 0;
-		var errorMessage = "";
+		let errors = 0;
+		let errorMessage = "";
 		
-		var ship = {
+		let ship = {
 			name: $("#fleet-type-create-name").val(),
 			type: $("#fleet-type-create-shipType option").filter(":selected").val(),
 			shape: $("#fleet-type-create-shipShape option").filter(":selected").val()
 		};
+		
 		/* Checks ... */
 		if(ship.name.split(' ').join('')=="") {
 			errors ++;
@@ -968,16 +969,16 @@ class units {
 		}
 
 		/* Get All parts */
-		var parts = $('#fleet-type-create-selects select');
-		for(var i=0; i<parts.length; i++) {
-			var name = $(parts[i]).attr('partName');
-			var type = $(parts[i]).attr('partType');
-			var value =  $(parts[i]).val();
+		let parts = $('#fleet-type-create-selects select');
+		for(let i=0; i<parts.length; i++) {
+			let name = $(parts[i]).attr('partName');
+			let type = $(parts[i]).attr('partType');
+			let value =  $(parts[i]).val();
 
 			if(value==undefined || value.split(' ').join('')=="") {
 				errors++;
 				errorMessage = "SHIP_HAS_EMPTY_FIELD";
-				//break;
+				break;
 			}
 
 			if(type==undefined || type.split(' ').join('')=="") {
@@ -990,6 +991,7 @@ class units {
 		}
 		
 		if(errors==0) {
+			console.log("send");
 			ui.closeTab("#fleet-type-create",false);
 			preventFleetHUDClosing = false;
 			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
@@ -1005,11 +1007,11 @@ class units {
 			},1000); 
 		}
 
-		var orbit = [];
-		var moving = [];
-		var out = [];
+		let orbit = [];
+		let moving = [];
+		let out = [];
 
-		for(var i=0; i<units.fleetList.length; i++) {
+		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].position == planetData.address && units.fleetList[i].orbitPosition != -1) {
 				orbit.push(units.fleetList[i]);
 			} else if(units.fleetList[i].orbitPosition == -1) {
@@ -1020,21 +1022,21 @@ class units {
 		}
 
 		// On orbit
-		var orbitDOM = "";
+		let orbitDOM = "";
 		if(orbit.length != 0) {
-			for(var i=0; i<orbit.length; i++) {
-				var totalcount = 0;
-				for(var j=0; j<orbit[i].units.length; j++) {
+			for(let i=0; i<orbit.length; i++) {
+				let totalcount = 0;
+				for(let j=0; j<orbit[i].units.length; j++) {
 					totalcount += orbit[i].units[j][1];
 				}
 				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
-				var content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + 
+				let content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + 
 					'<span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate.unit + '</span></summary>' +
 					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
 
-				for(var allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
-					var count = -1;
-					for(var fleetUnitId=0; fleetUnitId<orbit[i].units.length; fleetUnitId++) {
+				for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
+					let count = -1;
+					for(let fleetUnitId=0; fleetUnitId<orbit[i].units.length; fleetUnitId++) {
 						if(orbit[i].units[fleetUnitId][0] == units.list[allUnitsId]._id) {
 							count = orbit[i].units[fleetUnitId][1];
 							break;
@@ -1059,11 +1061,11 @@ class units {
 		$('#fleet-orbit-content').html(orbitDOM);
 
 		// Moving
-		var movingDOM = "";
+		let movingDOM = "";
 		if(moving.length != 0) {
-			for(var i=0; i<moving.length; i++) {
-				var totalcount = 0;
-				for(var j=0; j<moving[i].units.length; j++) {
+			for(let i=0; i<moving.length; i++) {
+				let totalcount = 0;
+				for(let j=0; j<moving[i].units.length; j++) {
 					totalcount += moving[i].units[j][1];
 				}
 				movingDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + moving[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
@@ -1074,11 +1076,11 @@ class units {
 		$('#fleet-move-content').html(movingDOM);
 
 		// Out
-		var outDOM = "";
+		let outDOM = "";
 		if(out.length != 0) {
-			for(var i=0; i<out.length; i++) {
-				var totalcount = 0;
-				for(var j=0; j<out[i].units.length; j++) {
+			for(let i=0; i<out.length; i++) {
+				let totalcount = 0;
+				for(let j=0; j<out[i].units.length; j++) {
 					totalcount += out[i].units[j][1];
 				}
 				outDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + out[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';

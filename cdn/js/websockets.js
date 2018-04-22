@@ -1,4 +1,4 @@
-var socket;
+let socket;
 
 class webSockets {
 	static createConnection() {
@@ -60,7 +60,7 @@ class webSockets {
 
 		//Sync the player data
 		socket.on('player-recieve-data',function(data) {
-			for(var key in data) {
+			for(let key in data) {
 				userData[key] = data[key];
 
 				if(key=="research") {

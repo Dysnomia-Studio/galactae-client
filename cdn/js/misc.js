@@ -1,7 +1,7 @@
-var connectTimeout = -1;
+let connectTimeout = -1;
 
 function kick(msg,time=0,canBeCanceled=false) {
-    var message;
+    let message;
 
 	if(msg!="" && translate.messages[msg] != undefined) {
         message = message = translate.messages[msg];
@@ -27,7 +27,7 @@ function kick(msg,time=0,canBeCanceled=false) {
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
@@ -39,10 +39,10 @@ Reduire un nombre
 INPUT: nmbr ( int )
 OUTPUT: reduced number ( string ) */
 function GetBetterUnit(nmbr,unit="",max=0) {
-	var units = ["","K","M","G","T","P","E","Z","Y"];
-	var unitId = 0;
-	var newnbr = nmbr;
-	var signe = false;
+	let units = ["","K","M","G","T","P","E","Z","Y"];
+	let unitId = 0;
+	let newnbr = nmbr;
+	let signe = false;
 
 	if(newnbr<0) {
 		newnbr = -newnbr;
@@ -58,7 +58,7 @@ function GetBetterUnit(nmbr,unit="",max=0) {
 		newnbr = -newnbr;
 	}
 
-    var end;
+    let end;
 	if(unitId==0) {
 	   end = Math.round(newnbr)+unit;
 	} else { 
@@ -78,13 +78,13 @@ INPUT: temps en heures (int)
 OUTPUT: Temps lisible (string)
 */
 function getStringTime(number) {
-	var hours = (number<10)?"0"+Math.floor(number):Math.floor(number);
-	var min = ((number*60)%60<10)?"0"+Math.floor((number*60)%60):Math.floor((number*60)%60);
-	var sec = ((number*3600)%60<10)?"0"+Math.floor((number*3600)%60):Math.floor((number*3600)%60);
+	let hours = (number<10)?"0"+Math.floor(number):Math.floor(number);
+	let min = ((number*60)%60<10)?"0"+Math.floor((number*60)%60):Math.floor((number*60)%60);
+	let sec = ((number*3600)%60<10)?"0"+Math.floor((number*3600)%60):Math.floor((number*3600)%60);
 	return hours+":"+min+":"+sec;
 }
 
-var charList = [
+let charList = [
     // a    
     ["à","&agrave;"],
     ["á","&aacute;"],
@@ -153,14 +153,14 @@ var charList = [
  * @return     {<type>}  normalized string
  */
 function normalizeText(str) {
-    for(var i=0; i<charList.length; i++) {
+    for(let i=0; i<charList.length; i++) {
     	str = str.split(charList[i][0]).join(charList[i][1]);
     }
 
 	return str;
 }
 function unNormalizeText(str) {
-    for(var i=0; i<charList.length; i++) {
+    for(let i=0; i<charList.length; i++) {
         str = str.split(charList[i][1]).join(charList[i][0]);
     }
 

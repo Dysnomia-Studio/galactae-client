@@ -47,19 +47,19 @@ class planetBack {
 
 		this.calc.vertices = [];
 
-		var phi0 = 0;
-		var phiMax = 2* Math.PI;
+		let phi0 = 0;
+		let phiMax = 2* Math.PI;
 
-		var theta0 = 0;
-		var thetaMax = Math.PI;
+		let theta0 = 0;
+		let thetaMax = Math.PI;
 
 		/* Let's calc all vertices ! */
-		for (var y=0; y<=this.calc.Yparts; y++) {
-			var verticesRow = [];
+		for (let y=0; y<=this.calc.Yparts; y++) {
+			let verticesRow = [];
 
-			for (var x=0; x<=this.calc.Xparts; x++) {
-				var u = x / this.calc.Xparts;
-				var v = 0.05 + y/this.calc.Yparts*0.9;
+			for (let x=0; x<=this.calc.Xparts; x++) {
+				let u = x / this.calc.Xparts;
+				let v = 0.05 + y/this.calc.Yparts*0.9;
 
 				verticesRow.push({
 					x: -this.planet.radius * Math.cos( phi0 + u * phiMax ) * Math.sin( theta0 + v * thetaMax ),
@@ -73,10 +73,10 @@ class planetBack {
 		}
 
 		/* Now place all the faces of the planet */
-		for (var y=0; y < this.calc.Yparts; y++) {
-			for (var x = 0; x < this.calc.Xparts; ++x ) {
+		for (let y=0; y < this.calc.Yparts; y++) {
+			for (let x = 0; x < this.calc.Xparts; ++x ) {
 				/* Create element */
-			    var elt = document.createElement('div');
+			    let elt = document.createElement('div');
 			    /* Size and place */
 			    elt.style.width = this.calc.partWidth + 'px';
 			    elt.style.height = this.calc.partHeight + 'px';
@@ -88,8 +88,8 @@ class planetBack {
 			    elt.bottomLeft = this.calc.vertices[y+1][x];
 			    elt.bottomRight = this.calc.vertices[y+1][x+1];
 			    /* Bg image */
-			    var bgX = x*(-this.calc.partWidth);
-			    var bgY = y*(-this.calc.partHeight);
+			    let bgX = x*(-this.calc.partWidth);
+			    let bgY = y*(-this.calc.partHeight);
 			    elt.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
 			    /* Add it to the HTML Code */
 			    this.planetContent.appendChild(elt);
@@ -102,7 +102,7 @@ class planetBack {
 		/* Empty Vars */
 		this.contentDOM = [];
 		/* Remove DOM Elements */
-		var elt;
+		let elt;
 		while (elt = this.planetContent.firstChild) {
 			this.planetContent.removeChild(elt);
 		}
@@ -122,21 +122,21 @@ class planetBack {
 	static rotatePlanet() {
 		if(planetBack.tick^=1) {
 			// Calc all angles only one time
-			var sinX = Math.sin(planetBack.calc.lat/180*Math.PI);
-			var sinY = Math.sin((planetBack.calc.long-270)/180*Math.PI);
-			var cosX = Math.cos(planetBack.calc.lat/180*Math.PI);
-			var cosY = Math.cos((planetBack.calc.long-270)/180*Math.PI);
+			let sinX = Math.sin(planetBack.calc.lat/180*Math.PI);
+			let sinY = Math.sin((planetBack.calc.long-270)/180*Math.PI);
+			let cosX = Math.cos(planetBack.calc.lat/180*Math.PI);
+			let cosY = Math.cos((planetBack.calc.long-270)/180*Math.PI);
 
 			// Calc rotate
-			for(var j=0; j<=planetBack.calc.Yparts; j++) {
-				for(var i=0; i<=planetBack.calc.Xparts; i++) {
-					var x = planetBack.calc.vertices[j][i].x;
-					var y = planetBack.calc.vertices[j][i].y;
-					var z = planetBack.calc.vertices[j][i].z;
+			for(let j=0; j<=planetBack.calc.Yparts; j++) {
+				for(let i=0; i<=planetBack.calc.Xparts; i++) {
+					let x = planetBack.calc.vertices[j][i].x;
+					let y = planetBack.calc.vertices[j][i].y;
+					let z = planetBack.calc.vertices[j][i].z;
 
-					var x0 = x * cosY - z * sinY;
-					var z0 = z * cosY + x * sinY;
-					var y0 = y * cosX - z0 * sinX;
+					let x0 = x * cosY - z * sinY;
+					let z0 = z * cosY + x * sinY;
+					let y0 = y * cosX - z0 * sinX;
 						z0 = z0 * cosX + y * sinX;
 
 					planetBack.calc.vertices[j][i].px = x0 * (1 + (z0 / 4000));
@@ -145,17 +145,17 @@ class planetBack {
 			}
 
 			// Apply Rotate
-			for(var y=0; y<planetBack.calc.Yparts; y++) {
-				for(var x=0; x<planetBack.calc.Xparts; x++) {
-					var elt = planetBack.contentDOM[planetBack.calc.Xparts*y + x];
-					var pos = [
+			for(let y=0; y<planetBack.calc.Yparts; y++) {
+				for(let x=0; x<planetBack.calc.Xparts; x++) {
+					let elt = planetBack.contentDOM[planetBack.calc.Xparts*y + x];
+					let pos = [
 						elt.topLeft,
 						elt.topRight,
 						elt.bottomLeft,
 						elt.bottomRight
 					];
 
-					for(var i=0; i<3; i++) {
+					for(let i=0; i<3; i++) {
 						planetBack.expandVector(pos[i],pos[i+1]);
 					}
 					planetBack.expandVector(pos[3],pos[0]);
@@ -176,8 +176,8 @@ class planetBack {
 	            }
 			}
 		} else {
-	        for (var i=0; i<planetBack.contentDOM.length; i++) {
-	            var perspectiveTransform = planetBack.contentDOM[i].perspectiveTransform;
+	        for (let i=0; i<planetBack.contentDOM.length; i++) {
+	            let perspectiveTransform = planetBack.contentDOM[i].perspectiveTransform;
 	            if(!perspectiveTransform.hasError) {
 	                perspectiveTransform.update();
 	            } else {
@@ -188,9 +188,9 @@ class planetBack {
 	}
 
 	static expandVector(u,v) {
-		var deltaX = v.px - u.px;
-		var deltaY = v.py - u.py;
-		var delta = Math.pow(deltaX,2) + Math.pow(deltaY,2);
+		let deltaX = v.px - u.px;
+		let deltaY = v.py - u.py;
+		let delta = Math.pow(deltaX,2) + Math.pow(deltaY,2);
 
 		if(delta===0) {
 			u.tx = u.px;
@@ -201,7 +201,7 @@ class planetBack {
 			return; // Don't calc with the other method ...
 		}
 
-	    var DeltaI = 1.5 / Math.sqrt(delta);
+	    let DeltaI = 1.5 / Math.sqrt(delta);
 
 	    deltaX *= DeltaI; 
 	    deltaY *= DeltaI;

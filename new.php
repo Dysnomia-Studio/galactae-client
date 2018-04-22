@@ -52,12 +52,12 @@ if(!isset($mongoData['name'])) { // Verif d'existance du compte ( côté Mongo )
 
 <script type="text/javascript">
 	window.addEventListener('load',function() {
-		var choice = document.getElementById('choice');
-		var choice1 = document.getElementById('choosebtn1');
-		var choice2 = document.getElementById('choosebtn2');
-		var choice3 = document.getElementById('choosebtn3');
-		var confirm = document.getElementById('gvt-confbtn');
-		var form = document.getElementById('choose');
+		let choice = document.getElementById('choice');
+		let choice1 = document.getElementById('choosebtn1');
+		let choice2 = document.getElementById('choosebtn2');
+		let choice3 = document.getElementById('choosebtn3');
+		let confirm = document.getElementById('gvt-confbtn');
+		let form = document.getElementById('choose');
 
 		function setActive(chx) {
 			choice1.className = "gvt-choosebtn gvt-btn";

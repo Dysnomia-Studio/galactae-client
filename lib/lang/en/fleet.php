@@ -41,7 +41,7 @@
 	define('FLEET_NO_MODEL','You hav\'nt models yet');
 ?>
 <script type="text/javascript">
-	var fleetTranslate = {
+	let fleetTranslate = {
 		// Titles
 		"SHIP_TYPE": "Type",
 		"SHIP_SHAPE": "Model",

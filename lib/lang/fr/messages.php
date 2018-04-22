@@ -2,7 +2,7 @@
 	define('DEFAULT_LOAD','Connexion au serveur ...');
 ?>
 <script type="text/javascript">
-var translate = translate || {};
+let translate = translate || {};
 
 translate["messages"] = {
 	// Building

@@ -1,5 +1,5 @@
-var loadStatus = 0;
-var loadStatusArr = {
+let loadStatus = 0;
+let loadStatusArr = {
 	"settings": false,
 	"server": false,
 	"planet": false,
@@ -9,7 +9,7 @@ var loadStatusArr = {
 	"maps": false,
 	"pictures": false,
 };
-var loadEnd = 12;
+let loadEnd = 12;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
 // 3 -> Planet Back (Planet)
@@ -41,7 +41,7 @@ class loadScreen {
 		if(title != "") {
 			loadStatusArr[title] = true;
 
-			for(var i in loadStatusArr) {
+			for(let i in loadStatusArr) {
 				if(loadStatusArr[i] == true) { continue; }
 
 				$(".loading-overlay-bar-secondary").css('display','none');
@@ -55,7 +55,7 @@ class loadScreen {
 				break;
 			}
 
-			var percentage = Math.round(loadStatus/loadEnd*100);
+			let percentage = Math.round(loadStatus/loadEnd*100);
 			$(".loading-overlay-bar-primary .loading-overlay-bar-value").text(percentage + "%");
 			$(".loading-overlay-bar-primary .loading-overlay-bar-content").css("width", percentage + "%");
 		}
@@ -66,7 +66,7 @@ class loadScreen {
 	}
 
 	static picturePreload() {
-		var picList = [
+		let picList = [
 			// Misc UI
 			cdnURL + 'img/ui/hud-top.png',
 			cdnURL + 'img/ui/hud-bottom-left.png',
@@ -87,33 +87,33 @@ class loadScreen {
 		];
 
 		// Buildings
-		for(var i=0; i<buildingsNames.length; i++) {
+		for(let i=0; i<buildingsNames.length; i++) {
 			// Panel picture
 			picList.push(cdnURL + "img/buildings/desc/" + buildingsNames[i] + '.jpg');
 		}
 
 		// Planets
-		var backPlanetList = [0];
-		for(var i in backPlanetList) {
-			picList.push(cdnURL + "img/planets/back/" + backPlanetList[i] + '.png')
+		let backPlanetList = [0];
+		for(let i in backPlanetList) {
+			picList.push(cdnURL + "img/planets/back/" + backPlanetList[i] + '.png');
 		}
-		var frontPlanetList = [0,1,2,3,4,
+		let frontPlanetList = [0,1,2,3,4,
 			101,102,103,104,105,106,107,108,109,110,111,112,
 			501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,
 			901,42,
 			1000,1001];
-		for(var i in frontPlanetList) {
-			picList.push(cdnURL + "img/planets/front/" + frontPlanetList[i] + '.jpg')
+		for(let i in frontPlanetList) {
+			picList.push(cdnURL + "img/planets/front/" + frontPlanetList[i] + '.jpg');
 		}
-		var haloPlanetList = [];
-		for(var i in haloPlanetList) {
-			picList.push(cdnURL + "img/planets/halo/" + haloPlanetList[i] + '.png')
+		let haloPlanetList = [];
+		for(let i in haloPlanetList) {
+			picList.push(cdnURL + "img/planets/halo/" + haloPlanetList[i] + '.png');
 		}
 
-		var count = 0;
-		for (var i=0; i < picList.length; i++) {
+		let count = 0;
+		for (let i=0; i < picList.length; i++) {
 			(function (img, src) {
-				img.onload = function () {
+				img.onload = function() {
 					$(".loading-overlay-bar-secondary .loading-overlay-bar-value").text((++count) + "/" + picList.length);
 					$(".loading-overlay-bar-secondary .loading-overlay-bar-content").css("width", Math.round(count/picList.length*100) + "%");
 					if (count == picList.length) {

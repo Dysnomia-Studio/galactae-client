@@ -1,7 +1,7 @@
 /**
  * Keyboard keys constants
  */
-var KEYBOARD = {};
+let KEYBOARD = {};
 KEYBOARD.LMOUSE = 1;
 KEYBOARD.MMOUSE = 2;
 KEYBOARD.RMOUSE = 3;
@@ -105,7 +105,7 @@ class ui {
 
 		//Bonus Quotidien
 		$("#day-bonus-confirm").click(function() {
-			var choice = 1;
+			let choice = 1;
 			if($("#day-bonus-2").hasClass("day-bonus-active")) {
 				choice = 2;
 			}
@@ -145,28 +145,28 @@ class ui {
 	static loadHUDButtons() {
 		// HUD Top right
 		$('#hud-top-right-moveLeft').click(function() {
-			var scroll = $('#hud-top-right').scrollLeft();
+			let scroll = $('#hud-top-right').scrollLeft();
 			scroll -= 20;
 			if(scroll<0) { scroll=0; }
 			$('#hud-top-right').scrollLeft(scroll);
 		});
 
 		$('#hud-top-right-moveRight').click(function() {
-			var scroll = $('#hud-top-right').scrollLeft();
+			let scroll = $('#hud-top-right').scrollLeft();
 			scroll += 20;
 			if(scroll>$('#hud-top-right').width()) { scroll=$('#hud-top-right').width(); }
 			$('#hud-top-right').scrollLeft(scroll);
 		});
 		// HUD Top left
 		$('#hud-top-left-moveLeft').click(function() {
-			var scroll = $('#hud-top-left').scrollLeft();
+			let scroll = $('#hud-top-left').scrollLeft();
 			scroll -= 20;
 			if(scroll<0) { scroll=0; }
 			$('#hud-top-left').scrollLeft(scroll);
 		});
 
 		$('#hud-top-left-moveRight').click(function() {
-			var scroll = $('#hud-top-left').scrollLeft();
+			let scroll = $('#hud-top-left').scrollLeft();
 			scroll += 20;
 			if(scroll>$('#hud-top-left').width()) { scroll=$('#hud-top-left').width(); }
 			$('#hud-top-left').scrollLeft(scroll);
@@ -251,7 +251,7 @@ class ui {
 	static closeTab(tab,sound=true) {
 		$(tab).css('display','none');
 		if(sound) {
-			var closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
+			let closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
 			closeUISound.volume = 0.5;
 			closeUISound.play();
 		}
@@ -306,9 +306,9 @@ class ui {
 
 	/********** PLANET NAME **********/
 	static planetNameSwitchToInput() {
-		var elt = $("#hud-planet-name");
+		let elt = $("#hud-planet-name");
 		ui.oldname = elt.text();
-		var $input = $("<input>", {
+		let $input = $("<input>", {
 			val: elt.text(),
 			type: "text",
 			id: "hud-planet-name"
@@ -320,9 +320,9 @@ class ui {
 		ui.renaming = true;
 	}
 	static planetNameSwitchToSpan() {
-		var elt = $("#hud-planet-name");
-		var newname = elt.val();
-		var $span = $("<span>", {
+		let elt = $("#hud-planet-name");
+		let newname = elt.val();
+		let $span = $("<span>", {
 			text: elt.val(),
 			id: "hud-planet-name"
 		});
@@ -454,8 +454,8 @@ class ui {
 
 		// What's the bonus today ?
 		streak=streak%30;
-		var credits = 15;
-		var helium = 0;
+		let credits = 15;
+		let helium = 0;
 
 		$("#day-bonus-choice").css('display','none');
 
@@ -474,7 +474,7 @@ class ui {
 			credits = 1000;
 		} // @ADD: generate random special bonus
 		
-		var desc = "<tr><td class=\"day-bonus-active\" id=\"day-bonus-1\">" + credits + " credits galactiques</td>";
+		let desc = "<tr><td class=\"day-bonus-active\" id=\"day-bonus-1\">" + credits + " credits galactiques</td>";
 
 		if(helium!=0) {
 			$("#day-bonus-choice").css('display','block');
@@ -491,7 +491,7 @@ class ui {
 			$(this).addClass("day-bonus-active"); // Activer l'onglet cliqué
 		});
 
-		var dateNow = new Date();
+		let dateNow = new Date();
 		setTimeout(function() {
 			ui.dailyBonus(ui.bonusStreak+1, ui.bonusStreakBest+1);
 		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
@@ -503,7 +503,7 @@ class ui {
 		// Voyons si l'utilisateur est OK pour recevoir des notifications
 		else if (Notification.permission === "granted") {
 		// Si c'est ok, créons une notification
-			var notification = new Notification(txt,options);
+			let notification = new Notification(txt,options);
 		}
 
 		// Sinon, nous avons besoin de la permission de l'utilisateur
@@ -518,7 +518,7 @@ class ui {
 
 				// Si l'utilisateur est OK, on crée une notification
 				if (permission === "granted") {
-					var notification = new Notification(txt,options);
+					let notification = new Notification(txt,options);
 				}
 			});
 		}

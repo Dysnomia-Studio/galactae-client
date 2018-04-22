@@ -1,4 +1,4 @@
-var chatChannel = "hud-chat-global";
+let chatChannel = "hud-chat-global";
 
 class chat {
 	static init() {
@@ -9,11 +9,11 @@ class chat {
 	        e.preventDefault(); // On évite le rechargement de la page lors de la validation du formulaire
 	        
 	        // On recupere le message et on vide le input
-	        var message = $('#chat_message').val();
+	        let message = $('#chat_message').val();
 	        $('#chat_message').val('');
 
 	        // Quelques verifs pour empecher les messages inutiles
-	        var blockSend = false;
+	        let blockSend = false;
 
 	        if(message.charAt(0)=="@" && message.substr(1,userData.username.length).toLowerCase()==userData.username.toLowerCase()) {
 	        	chat.sm('NO_PM_YOU');
@@ -61,7 +61,7 @@ class chat {
 		$('#'+chatChannel).scrollTop($('#'+chatChannel).height());
 
 		if(data.sound) {
-			var pmSound = new Audio('snd/ui/private_message.mp3');
+			let pmSound = new Audio('snd/ui/private_message.mp3');
 			pmSound.volume = 0.2;
 			pmSound.play();
 		}
@@ -94,7 +94,7 @@ class chat {
 						$("#chat_message").val("@"+ $(this).text() + " ");
 						break;
 					case KEYBOARD.RMOUSE:
-						var win = window.open("https://galactae.eu/profil?u="+$(this).text(), '_blank');
+						let win = window.open("https://galactae.eu/profil?u="+$(this).text(), '_blank');
 						win.focus();
 						break;
 					default:

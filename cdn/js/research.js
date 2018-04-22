@@ -1,13 +1,13 @@
-var RESEARCH_DIV_SIZE = 10000;
-var RESEARCH_DIV_DISTANCE = 500;
-var RESEARCH_DIV_DELTA_DISTANCE = 100;
-var researchPrevMouse = [0,0];
+let RESEARCH_DIV_SIZE = 10000;
+let RESEARCH_DIV_DISTANCE = 500;
+let RESEARCH_DIV_DELTA_DISTANCE = 100;
+let researchPrevMouse = [0,0];
 
 class research {
 	static touchHandler(event) {
-		var touch = event.changedTouches[0];
+		let touch = event.changedTouches[0];
 
-		var simulatedEvent = document.createEvent("MouseEvent");
+		let simulatedEvent = document.createEvent("MouseEvent");
 			simulatedEvent.initMouseEvent({
 			touchstart: "mousedown",
 			touchmove: "mousemove",
@@ -37,7 +37,7 @@ class research {
 		});
 		$("#hud-research").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
-				var pos = $("#hud-research").position();
+				let pos = $("#hud-research").position();
 				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
 								pos.top + (e.pageY - researchPrevMouse[1])]);
 			}
@@ -45,19 +45,19 @@ class research {
 			researchPrevMouse[1] = e.pageY;
 		});
 
-		var mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
 		$('#hud-research-content').on(mousewheelevt, function(e){
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-				var coef = 0.03; // Scroll up
+				let coef = 0.03; // Scroll up
 			} else {			
-				var coef = -0.03; // Scroll down
+				let coef = -0.03; // Scroll down
 			}
 
 			research.zoom += coef;
 			if(research.zoom < 0.5) { research.zoom -= coef; return; }
 			if(research.zoom > 1.75) { research.zoom -= coef; return; }
 
-			var pos = $("#hud-research").position();
+			let pos = $("#hud-research").position();
 			pos.left = ((pos.left - researchPrevMouse[0])/(research.zoom - coef) * research.zoom) + researchPrevMouse[0];
 			pos.top = ((pos.top - researchPrevMouse[1])/(research.zoom - coef) * research.zoom) + researchPrevMouse[1];
 			$("#hud-research").css("left",pos.left);
@@ -100,7 +100,7 @@ class research {
 		ui.closeTab("#hud-map",false); /* A no-bug fix */
 		// On centre sur la recherche courante
 		if(researchPos[planetData.currResearch] !== undefined) {
-			var newUIPos = [
+			let newUIPos = [
 				$(document).width()/2  - researchPos[planetData.currResearch][0]*research.zoom,
 				$(document).height()/2 - researchPos[planetData.currResearch][1]*research.zoom
 			];
@@ -153,15 +153,15 @@ class research {
 		$('#hud-research-content').html('<svg id="hud-research-links" width="10000px" height="10000px"></svg>');
 
 		// Create nodes
-		for(var key in researchPos) {
+		for(let key in researchPos) {
 			research.drawNode(key);
 		}
 
 		// Link Them
-		for(var key in researchList) {
-			var current = researchList[key];
+		for(let key in researchList) {
+			let current = researchList[key];
 
-			for(var i=0; i<current.parents.length; i++) {
+			for(let i=0; i<current.parents.length; i++) {
 				research.drawLink(key,current.parents[i]);
 			}
 		}
@@ -186,9 +186,9 @@ class research {
 
 		// Place this node
 		if(planetData.currResearch==key) {
-			var content = '<div class="research-node current-research-node" id="' + key + '-node">';
+			let content = '<div class="research-node current-research-node" id="' + key + '-node">';
 		} else {
-			var content = '<div class="research-node" id="' + key + '-node">';
+			let content = '<div class="research-node" id="' + key + '-node">';
 		}
 
 		if(research.canResearch(key)) {
@@ -235,19 +235,19 @@ class research {
 
 		if( !($('#'+child+'-node').length) || !($('#'+parent+'-node').length) ) { return; }
 
-		var childPos = $('#' + child + '-node').position();
-		var parentPos = $('#' + parent + '-node').position();
+		let childPos = $('#' + child + '-node').position();
+		let parentPos = $('#' + parent + '-node').position();
 
-		var x1 = parseInt(childPos.left) + (parseInt($('#' + child + '-node').width())/2);
-		var y1 = parseInt(childPos.top) + (parseInt($('#' + child + '-node').height())/2);
-		var x2 = parseInt(parentPos.left) + (parseInt($('#' + parent + '-node').width())/2);
-		var y2 = parseInt(parentPos.top) + (parseInt($('#' + parent + '-node').height())/2);
-		var color; //default 
+		let x1 = parseInt(childPos.left) + (parseInt($('#' + child + '-node').width())/2);
+		let y1 = parseInt(childPos.top) + (parseInt($('#' + child + '-node').height())/2);
+		let x2 = parseInt(parentPos.left) + (parseInt($('#' + parent + '-node').width())/2);
+		let y2 = parseInt(parentPos.top) + (parseInt($('#' + parent + '-node').height())/2);
+		let color; //default 
 
 		if(research.isSearched(parent)) { color = '#0EC6C6'; } 
 		else { color = 'rgba(14,198,198,0.2)'; }
 
-		var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+		let newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
 		newLine.setAttribute('stroke',color);
 		newLine.setAttribute('stroke-width','2');
 		newLine.setAttribute('x1',x1);
@@ -263,9 +263,9 @@ class research {
 	 * @return	 {boolean}  True if able to research, False otherwise.
 	 */
 	static canResearch(key) {
-		var parents = researchList[key].parents;
+		let parents = researchList[key].parents;
 
-		for(var i=0; i<parents.length; i++) {
+		for(let i=0; i<parents.length; i++) {
 			if(userData.research[parents[i]]==undefined) { userData.research[parents[i]]=0; } // No bug then
 			/**
 			 * Research Status:
@@ -282,11 +282,11 @@ class research {
 	}
 
 	static getMissingParents(key) {
-		var parents = researchList[key].parents;
-		var oneParentOK = false;
-		var missingParents = "";
+		let parents = researchList[key].parents;
+		let oneParentOK = false;
+		let missingParents = "";
 
-		for(var i=0; i<parents.length; i++) {
+		for(let i=0; i<parents.length; i++) {
 			if(userData.research[parents[i]]==undefined) { userData.research[parents[i]]=0; } // No bug then
 			/**
 			 * Research Status:
