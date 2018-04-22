@@ -1,4 +1,4 @@
-let socket;
+var socket;
 
 class webSockets {
 	static createConnection() {
