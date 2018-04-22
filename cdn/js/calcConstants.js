@@ -1,7 +1,7 @@
 let globalConst = {
 	buildingNumber: 	14,
 	maxFleetSize:   300000, // Number of people
-}
+};
 
 /**
  * Production
