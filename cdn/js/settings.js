@@ -3,7 +3,7 @@ class settings {
 		this.settingsList = {
 			general: {
 				language: { 
-					default: "", // @ADD: Langue actuelle du jeu
+					default: "en", // @ADD: Langue actuelle du jeu
 					type: "select",
 					choices: [
 						"fr",
@@ -93,6 +93,24 @@ class settings {
 		});
 	}
 	static get(settingName) {
+		let val;
+		if((val = getCookie("galactae_settings_" + settingName)) != "") {
+			return val;
+		}
 		
+		words = settingName.split("_");
+		val = this.settingsList;
+		for(let i in words) {
+			if(val[words[i]] === undefined) { console.log("ERROR: Invalid setting name - " + settingName); return ""; }
+			val = val[words[i]];
+		}
+
+		return val.default;
+	}
+	static set(settingName,value) {
+		return setCookie("galactae_settings_" + settingName, value, 365); //@ADD: Time depends on remember me
+	}
+	static test(settingName,value) {
+		return this.get(settingName) == value;
 	}
 }

@@ -12,6 +12,9 @@ let PLANET_ECART = 2.5;
 let MAP_SIZE_HEIGHT = 40000;
 let MAP_SIZE_WIDTH = 50000;
 
+let MAP_STAR_SIZE_BASE = 5;
+let MAP_STAR_SIZE_RATIO = 0.08;
+
 let mapPrevMouse = [0,0];
 
 class map {
@@ -615,15 +618,19 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static drawSector(sector) {
-		$("#sect-" + sector).remove();
-
 		// Get XML
 		let sectorXML = $(map.xmlDoc[sector])[0];
 		let systemList = $(sectorXML).find("sy");
 
-		// Generate Content
-		let content = "<div id='sect-" + sector + "'>";
+		function makeSVGElt(tagName, args) {
+			var el= document.createElementNS('http://www.w3.org/2000/svg', tagName);
+			for (let i in args) {
+				el.setAttribute(i, args[i]);
+			}
+			return el;
+		}
 
+		// Generate Content
 		for(let i=0; i<systemList.length; i++) {
 			let starList = $(systemList[i]).find("st");
 			let starBType = "";
@@ -636,19 +643,14 @@ class map {
 				}
 			}
 
-			content += '<span id="' + $(systemList[i]).attr('id') + '" class="sector-subsystem ' + starBType + '" ';
-
-			content += 'style="left: ' + (parseFloat($(systemList[i]).attr('x')) * 10) + '%; top: ' + (parseFloat($(systemList[i]).attr('y')) * 10) + '%;"></span>';
+			var circle = makeSVGElt('circle', {
+				id: $(systemList[i]).attr("id"), 
+				cx: Math.round(parseFloat($(systemList[i]).attr('x')/10) * MAP_SIZE_WIDTH), 
+				cy: Math.round(parseFloat($(systemList[i]).attr('y')/10) * MAP_SIZE_HEIGHT), 
+				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO), 
+				fill: 'url(#' + starBType + ')'});
+			document.getElementById('hud-map-global').appendChild(circle);	
 		}
-
-		content += "</div>";
-
-		$('#hud-map-global').append(content);
-
-		// Events
-		$('#sect-' + sector + ' .sector-subsystem').click(function() {
-			map.openSolarSystemMap($(this).attr('id'));
-		});
 	}
 
 	/**

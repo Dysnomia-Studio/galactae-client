@@ -991,7 +991,6 @@ class units {
 		}
 		
 		if(errors==0) {
-			console.log("send");
 			ui.closeTab("#fleet-type-create",false);
 			preventFleetHUDClosing = false;
 			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });

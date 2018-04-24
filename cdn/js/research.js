@@ -47,10 +47,9 @@ class research {
 
 		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
 		$('#hud-research-content').on(mousewheelevt, function(e){
+			let coef = -0.03;
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-				let coef = 0.03; // Scroll up
-			} else {			
-				let coef = -0.03; // Scroll down
+				coef = 0.03; // Scroll up
 			}
 
 			research.zoom += coef;
