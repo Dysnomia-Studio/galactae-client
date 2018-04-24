@@ -385,21 +385,21 @@ if($userData['lastViewedNews'] < $max) {
 	<svg height="40000" width="50000" id="hud-map-global" style="left: -27576.2px; top: -22302.7px;">
 		<defs>
 			<radialGradient id="redDwarf" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-				<stop stop-opacity="1" stop-color="#b30000" offset="0"></stop>
-				<stop stop-opacity="0.9" stop-color="#FB3637" offset="0.4"></stop>
-				<stop stop-opacity="0.8" stop-color="#FB3637" offset="0.6"></stop>
+				<stop stop-opacity="1" stop-color="#ff0a0b" offset="0"></stop>
+				<stop stop-opacity="0.9" stop-color="#ff0a0b" offset="0.4"></stop>
+				<stop stop-opacity="0.8" stop-color="#FB3637" offset="0.45"></stop>
 				<stop stop-opacity="0" stop-color="#FB3637" offset="1"></stop>
 			</radialGradient>
 			<radialGradient id="redGiant" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-				<stop stop-opacity="1" stop-color="#b30000" offset="0"></stop>
-				<stop stop-opacity="0.9" stop-color="#FB3637" offset="0.4"></stop>
-				<stop stop-opacity="0.8" stop-color="#FB3637" offset="0.6"></stop>
+				<stop stop-opacity="1" stop-color="#ff0a0b" offset="0"></stop>
+				<stop stop-opacity="0.9" stop-color="#ff0a0b" offset="0.4"></stop>
+				<stop stop-opacity="0.8" stop-color="#FB3637" offset="0.45"></stop>
 				<stop stop-opacity="0" stop-color="#FB3637" offset="1"></stop>
 			</radialGradient>
 			<radialGradient id="redSuperGient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-				<stop stop-opacity="1" stop-color="#b30000" offset="0"></stop>
-				<stop stop-opacity="0.9" stop-color="#FB3637" offset="0.4"></stop>
-				<stop stop-opacity="0.8" stop-color="#FB3637" offset="0.6"></stop>
+				<stop stop-opacity="1" stop-color="#ff0a0b" offset="0"></stop>
+				<stop stop-opacity="0.9" stop-color="#ff0a0b" offset="0.4"></stop>
+				<stop stop-opacity="0.8" stop-color="#FB3637" offset="0.45"></stop>
 				<stop stop-opacity="0" stop-color="#FB3637" offset="1"></stop>
 			</radialGradient>
 
