@@ -92,15 +92,20 @@ class map {
 			}
 
 			map.zoom += coef;
-			if(map.zoom < 0.5) { map.zoom -= coef; return; }
+			if(map.zoom < 0.75) { map.zoom -= coef; return; }
 			if(map.zoom > 1.75) { map.zoom -= coef; return; }
 
 			let pos = $("#hud-map-global").position();
-			pos.left = ((pos.left - mapPrevMouse[0])/(map.zoom - coef) * map.zoom) + mapPrevMouse[0];
-			pos.top = ((pos.top - mapPrevMouse[1])/(map.zoom - coef) * map.zoom) + mapPrevMouse[1];
+			//pos.left = pos.left - mapPrevMouse[0]*coef;
+			//pos.top = pos.top - mapPrevMouse[1]*coef;
+			pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
+			pos.top = pos.top + mapPrevMouse[1] - mapPrevMouse[1]*((map.zoom)/(map.zoom - coef));
 			$("#hud-map-global").css("left",pos.left);
 			$("#hud-map-global").css("top" ,pos.top );
 					
+			$('#hud-map-global').width($('#hud-map-global').width() * map.zoom / (map.zoom - coef));
+			$('#hud-map-global').height($('#hud-map-global').height() * map.zoom / (map.zoom - coef));
+
 			$('#hud-map-global').css('zoom',map.zoom);
 			$('#hud-map-global').css('-moz-transform','scale(' + map.zoom + ')');
 		});
