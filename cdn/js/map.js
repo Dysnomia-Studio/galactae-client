@@ -649,7 +649,12 @@ class map {
 				cy: Math.round(parseFloat($(systemList[i]).attr('y')/10) * MAP_SIZE_HEIGHT), 
 				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO), 
 				fill: 'url(#' + starBType + ')'});
-			document.getElementById('hud-map-global').appendChild(circle);	
+			document.getElementById('hud-map-global').appendChild(circle);
+
+			// Events
+			$('#' + $(systemList[i]).attr("id")).click(function() {
+				map.openSolarSystemMap($(this).attr('id'));
+			});	
 		}
 	}
 
