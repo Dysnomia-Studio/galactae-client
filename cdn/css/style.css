@@ -2189,9 +2189,14 @@ a[class="research-search"] {
 	max-width: 15em;
 }
 #map-planet-menu img {
+	background: rgb(0,0,0,0.3);
 	width: 5em;
 	transform: rotate(45deg);
 	position: absolute;
+}
+#map-planet-menu img:hover {
+	background: rgb(147,252,252,0.3);
+	cursor: pointer;
 }
 /* Note: Picture width is about 7.07 em when rotated */
 #map-planet-menu-infos {
