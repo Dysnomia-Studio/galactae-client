@@ -98,7 +98,7 @@ class ui {
 			ui.ranks = false;
 		});
 
-		$("#hud-news-close").click(function() {
+		$("#news-close").click(function() {
 			ui.closeTab("#hud-news");
 			ui.news = false;
 		});
@@ -369,7 +369,7 @@ class ui {
 				ui.updateBottom();
 			}
 		});
-		$("#hud-map-close").click(function() {
+		$("#map-close").click(function() {
 			if(ui.map) {
 				map.closeTab();
 			}

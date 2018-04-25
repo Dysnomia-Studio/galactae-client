@@ -60,22 +60,22 @@ class map {
 		/**
 		 * Global Map Events
 		 **/
-		$('#hud-map-back').click(function() {
+		$('#map-back').click(function() {
 			map.openGlobalMap(map.currentAddress);
 		});
 
 		/**
 		 * Move & zoom
 		 */
-		$("#hud-map-global").on('touchstart touchmove touchend touchcancel', function(e) {
+		$("#map-global").on('touchstart touchmove touchend touchcancel', function(e) {
 			map.touchHandler(e);
 		});
 
-		$("#hud-map-global").on('touchstart', function(e) {
+		$("#map-global").on('touchstart', function(e) {
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
 		});
-		$("#hud-map-global").mousemove(function(e) {
+		$("#map-global").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				map.moveUI([(e.pageX - mapPrevMouse[0]),
 								(e.pageY - mapPrevMouse[1])], true);
@@ -85,7 +85,7 @@ class map {
 		});
 
 		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
-		$('#hud-map-global').on(mousewheelevt, function(e) {
+		$('#map-global').on(mousewheelevt, function(e) {
 			let coef = -0.03; // Scroll down
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
 				coef = 0.03; // Scroll up
@@ -95,21 +95,19 @@ class map {
 			if(map.zoom < 0.75) { map.zoom -= coef; return; }
 			if(map.zoom > 1.75) { map.zoom -= coef; return; }
 
-			let pos = $("#hud-map-global").position();
-			//pos.left = pos.left - mapPrevMouse[0]*coef;
-			//pos.top = pos.top - mapPrevMouse[1]*coef;
+			let pos = $("#map-global").position();
 			pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
 			pos.top = pos.top + mapPrevMouse[1] - mapPrevMouse[1]*((map.zoom)/(map.zoom - coef));
-			$("#hud-map-global").css("left",pos.left);
-			$("#hud-map-global").css("top" ,pos.top );
+			$("#map-global").css("left",pos.left);
+			$("#map-global").css("top" ,pos.top );
 					
-			$('#hud-map-global').width($('#hud-map-global').width() * map.zoom / (map.zoom - coef));
-			$('#hud-map-global').height($('#hud-map-global').height() * map.zoom / (map.zoom - coef));
+			$('#map-global').width($('#map-global').width() * map.zoom / (map.zoom - coef));
+			$('#map-global').height($('#map-global').height() * map.zoom / (map.zoom - coef));
 
-			$('#hud-map-global').css('zoom',map.zoom);
-			$('#hud-map-global').css('-moz-transform','scale(' + map.zoom + ')');
+			$('#map-global').css('zoom',map.zoom);
+			$('#map-global').css('-moz-transform','scale(' + map.zoom + ')');
 		});
-		$('#hud-map-focus').on('click', function() {
+		$('#map-focus').on('click', function() {
 			map.focusAddress(map.currentAddress = planetData.address);
 		});
 
@@ -122,7 +120,7 @@ class map {
 	 * @param	  {2D vector}  pos	 The position
 	 */
 	static moveUI(pos, diff=false) {
-		let oldPos = $("#hud-map-global").position();
+		let oldPos = $("#map-global").position();
 		if(diff) {
 			oldPos = [oldPos.left, oldPos.top];
 
@@ -146,7 +144,7 @@ class map {
 		let translated = false;
 		function stepMove() {
 			if(!translated) {
-				$("#hud-map-global").css({
+				$("#map-global").css({
 					"transform": "translate(" + (pos[0] - oldPos[0]) + "px, " + (pos[1] - oldPos[1]) + "px)"
 				});
 
@@ -154,12 +152,12 @@ class map {
 
 				window.requestAnimationFrame(stepMove);
 			} else {
-				$("#hud-map-global").css({
+				$("#map-global").css({
 					left: pos[0],
 					top: pos[1]
 				});
 
-				$("#hud-map-global").css({
+				$("#map-global").css({
 					"transform": ""
 				});
 			}
@@ -353,14 +351,14 @@ class map {
 	 */
 	static resetMaps() {
 		/* Hide all maps */
-		$('#hud-map-global').css('display','none');
-		$('#hud-map-system').css('display','none');
+		$('#map-global').css('display','none');
+		$('#map-system').css('display','none');
 
 		$("#hud-map").css('display','block');
 
 		/* Empty HTML to avoid bugs */
 		if(map.currentMap!="system") {
-			$('#hud-map-system-solarFront').html('');
+			$('#map-system-solarFront').html('');
 		}
 	}
 
@@ -380,7 +378,7 @@ class map {
 		sector = [sector[0],sector[1]].join("-");
 
 		map.currentMap = "system";
-		$('#hud-map-system-solarFront').html("");
+		$('#map-system-solarFront').html("");
 
 		// Parse XML
 		let systemXML = $(map.xmlDoc[sector]).find("sy#" + address)[0];
@@ -468,9 +466,9 @@ class map {
 		for(let i=0; i<stars.length; i++) {
 			if(orbitSize[i]==0) {
 				// Create DOM
-				$("#hud-map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
+				$("#map-system-solarFront").append("<div class=\"star " + stars[i].type + "\" id=\"" + stars[i].address + "\"></div>");
 			} else {
-				$("#hud-map-system-solarFront").append('<div class="orbit" id="' + stars[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>');	
+				$("#map-system-solarFront").append('<div class="orbit" id="' + stars[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>');	
 
 				// Set Orbit, star position and anim duration
 
@@ -512,8 +510,7 @@ class map {
 		orbitSize = firstPlanet;
 		for(let i=0; i<planets.length; i++) {
 			// Create DOM
-			$("#hud-map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>');
-			// @ADD: Menu
+			$("#map-system-solarFront").append('<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>');
 
 			// Set Size
 			let size = PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF;
@@ -561,13 +558,15 @@ class map {
 		}	
 
 		// View info
-		$('#hud-map-system .planet').click(function(e) {
+		function planetClick(e) {
 			$('#map-planet-menu').css({
-				"left": e.pageX + $('#map-planet-menu').width()/2,
-				"top":  e.pageY + $('#map-planet-menu').height()/2,
+				"left": e.pageX,
+				"top":  e.pageY,
 			});
 			$('#map-planet-menu').css('display','block');
-		});
+		}
+		$('#map-system .planet').click(planetClick);
+
 		$(document).click(function(e) {
 			if(!$(e.target).hasClass("planet") && !$(e.target).hasClass("pos")) {
 				$('#map-planet-menu').css('display','none');
@@ -603,15 +602,15 @@ class map {
 		});
 
 		// Back button
-		$('#hud-map-back').css('display','block');
-		$('#hud-map-focus').css('display','none');
+		$('#map-back').css('display','block');
+		$('#map-focus').css('display','none');
 
 		// Toggle Maps
 		map.resetMaps();
 		map.currentAddress = address;
-		$('#hud-map-system').css('display','block');
+		$('#map-system').css('display','block');
 
-		$("#hud-map-system").removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
+		$("#map-system").removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
 			$(this).removeClass('hide-UI').addClass("set-speed");
 			$(this).dequeue();
 		});
@@ -654,7 +653,7 @@ class map {
 				cy: Math.round(parseFloat($(systemList[i]).attr('y')/10) * MAP_SIZE_HEIGHT), 
 				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO), 
 				fill: 'url(#' + starBType + ')'});
-			document.getElementById('hud-map-global').appendChild(circle);
+			document.getElementById('map-global').appendChild(circle);
 
 			// Events
 			$('#' + $(systemList[i]).attr("id")).click(function() {
@@ -706,13 +705,13 @@ class map {
 		map.focusAddress(address);
 
 		// Back button
-		$('#hud-map-back').css('display','none');
-		$('#hud-map-focus').css('display','block');
+		$('#map-back').css('display','none');
+		$('#map-focus').css('display','block');
 
 		// Toggle Maps
 		map.resetMaps();
 		map.currentAddress = address;
-		$('#hud-map-global').css('display','block');
+		$('#map-global').css('display','block');
 	}
 
 	static openPlanetInfos(pData) {

@@ -25,7 +25,7 @@ class research {
 	 * Loader for research UI
 	 */
 	static loadUI() {
-		$("#hud-research-close").click(function() { research.closeUI(); });
+		$("#research-close").click(function() { research.closeUI(); });
 
 		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
 			research.touchHandler(e);
@@ -46,7 +46,7 @@ class research {
 		});
 
 		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
-		$('#hud-research-content').on(mousewheelevt, function(e){
+		$('#research-content').on(mousewheelevt, function(e){
 			let coef = -0.03;
 			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
 				coef = 0.03; // Scroll up
@@ -62,8 +62,8 @@ class research {
 			$("#hud-research").css("left",pos.left);
 			$("#hud-research").css("top" ,pos.top );
 					
-			$('#hud-research-content').css('zoom',research.zoom);
-			$('#hud-research-content').css('-moz-transform','scale(' + research.zoom + ')');
+			$('#research-content').css('zoom',research.zoom);
+			$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
 		});
 
 		$('#researchCenter-node').click(function() {
@@ -142,14 +142,14 @@ class research {
 	static drawPanel() {
 		if(research.zoom === undefined) { research.zoom = 1; }
 
-		$('#hud-research-content').css('zoom', 1);
-		$('#hud-research-content').css('-moz-transform','scale(1)');
+		$('#research-content').css('zoom', 1);
+		$('#research-content').css('-moz-transform','scale(1)');
 
 		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
 		$('#hud-research').css("opacity",0);
 		$('#hud-research').css("display","block");
 		// Reset panel content
-		$('#hud-research-content').html('<svg id="hud-research-links" width="10000px" height="10000px"></svg>');
+		$('#research-content').html('<svg id="research-links" width="10000px" height="10000px"></svg>');
 
 		// Create nodes
 		for(let key in researchPos) {
@@ -169,8 +169,8 @@ class research {
 		$('#hud-research').css("opacity",1);
 
 		research.loadUI();
-		$('#hud-research-content').css('zoom',research.zoom);
-		$('#hud-research-content').css('-moz-transform','scale(' + research.zoom + ')');
+		$('#research-content').css('zoom',research.zoom);
+		$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
 	}
 	/**
 	 * Draws a node.
@@ -212,7 +212,7 @@ class research {
 			content += '<div class="research-bottom"><span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">?/?</span></div>';
 		}
 
-		$('#hud-research-content').append(content);
+		$('#research-content').append(content);
 
 		// Position
 		$('#' + key + '-node').css("left",  researchPos[key][0]- ($('#' + key + '-node').height())/2 );
@@ -254,7 +254,7 @@ class research {
 		newLine.setAttribute('y1',y1);
 		newLine.setAttribute('x2',x2);
 		newLine.setAttribute('y2',y2);
-		$("#hud-research-links").append(newLine);
+		$("#research-links").append(newLine);
 	}
 	/**
 	 * Determines ability to research.

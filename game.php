@@ -374,15 +374,15 @@ if($userData['lastViewedNews'] < $max) {
 	echo '<div id="hud-news">';
 }
 ?>
-	<span id="hud-news-close">X</span>
-	<iframe id="hud-news-frame" src="news.php?n=<?php echo $max; ?>"></iframe>
+	<span id="news-close">X</span>
+	<iframe id="news-frame" src="news.php?n=<?php echo $max; ?>"></iframe>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
-	<span id="hud-map-close">X</span>
-	<div id="hud-map-back"><?php echo MAP_BACKTO_GLOBAL_MAP; ?></div>
-	<div id="hud-map-focus"><?php echo MAP_FOCUS_CURRENT_SYSTEM; ?></div>
-	<svg height="40000" width="50000" id="hud-map-global" style="left: -27576.2px; top: -22302.7px;">
+	<span id="map-close">X</span>
+	<div id="map-back"><?php echo MAP_BACKTO_GLOBAL_MAP; ?></div>
+	<div id="map-focus"><?php echo MAP_FOCUS_CURRENT_SYSTEM; ?></div>
+	<svg height="40000" width="50000" id="map-global" style="left: -27576.2px; top: -22302.7px;">
 		<defs>
 			<radialGradient id="redDwarf" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
 				<stop stop-opacity="1" stop-color="#ff0a0b" offset="0"></stop>
@@ -446,10 +446,18 @@ if($userData['lastViewedNews'] < $max) {
 			</radialGradient>
 		</defs>
 	</svg>
-	<div id="hud-map-system" class="opening view-2D">
-        <div id="hud-map-system-universeBack">
-          <div id="hud-map-system-galaxyBack">
-            <div id="hud-map-system-solarFront">
+	<div id="map-system" class="opening view-2D">
+        <div id="map-system-universeBack">
+          <div id="map-system-galaxyBack">
+            <div id="map-system-solarFront">
+            </div>
+            <div id="map-planet-menu">
+            	<img id="map-planet-menu-infos" src="<?php echo $cdnURL; ?>img/ui/planet-infos.svg">
+            	<img id="map-planet-menu-move" src="<?php echo $cdnURL; ?>img/ui/fleet-move.svg">
+            	<img id="map-planet-menu-attack" src="<?php echo $cdnURL; ?>img/ui/fleet-attack.svg">
+            	<img id="map-planet-menu-defend" src="<?php echo $cdnURL; ?>img/ui/fleet-defend.svg">
+            	<img id="map-planet-menu-spy" src="<?php echo $cdnURL; ?>img/ui/planet-spy.svg">
+            	<img id="map-planet-menu-trade" src="<?php echo $cdnURL; ?>img/ui/planet-trade.svg">
             </div>
           </div>
         </div>
@@ -457,7 +465,7 @@ if($userData['lastViewedNews'] < $max) {
 </div>
 <?php /* Fleet */ ?>
 <div id="hud-fleet">
-	<span id="hud-fleet-close">X</span>
+	<span id="fleet-close">X</span>
 
 	<ul class="ul-choice-line fleet-ul1">
 		<li id="fleet-build-button" class="ul-choice-line-li-active"><?php echo FLEET_BUILD; ?></li>
@@ -608,9 +616,9 @@ if($userData['lastViewedNews'] < $max) {
 </div>
 <?php /* Researchs */ ?>
 <div id="hud-research">
-	<span id="hud-research-close">X</span>
-	<div id="hud-research-content">
-		<svg id="hud-research-links" width="10000px" height="10000px"></svg>
+	<span id="research-close">X</span>
+	<div id="research-content">
+		<svg id="research-links" width="10000px" height="10000px"></svg>
 	</div>
 </div>
 <?php /* Bonus quotidien */ ?>
@@ -638,6 +646,7 @@ if($userData['lastViewedNews'] < $max) {
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/planetback.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/research.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/settings.js"></script>
+<script type="text/javascript" src="<?php echo $cdnURL; ?>js/trade.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/ui.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/units.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/websockets.js"></script>

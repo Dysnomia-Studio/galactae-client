@@ -62,7 +62,7 @@ class units {
 		units.lastType = "SHIP_ALL";
 
 		// Fleet panels close events
-		$("#hud-fleet-close").click(function() {
+		$("#fleet-close").click(function() {
 			if(preventFleetHUDClosing) { return; }
 			if(units.unitPanelTimeout != -1) {
 				clearTimeout(units.unitPanelTimeout);
@@ -1088,5 +1088,9 @@ class units {
 			outDOM = "<h2>" + fleetTranslate['no-out-unit'] + "</h2>";
 		}
 		$('#fleet-out-content').html(outDOM);
+	}
+
+	static openMovePanel(moveType) {
+		
 	}
 }
