@@ -36,7 +36,7 @@ a, body {
 	box-sizing: content-box;
 	border: 1px solid transparent;
 	width: 60px;
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 	padding: 5px;
 }
 .dropdown dd ul {
@@ -1434,7 +1434,7 @@ select, input, summary {
 	display: block;
 }
 .unit-list-table thead tr th {
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 .unit-list-table thead tr {
 	height: 1.5em;
@@ -2196,7 +2196,7 @@ a[class="research-search"] {
 }
 #map-planet-menu img:hover {
 	background: rgb(147,252,252,0.3);
-	cursor: pointer;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 /* Note: Picture width is about 7.07 em when rotated */
 #map-planet-menu-infos {
@@ -2757,7 +2757,8 @@ a[class="research-search"] {
 	max-height: 50%;
 }
 #building-img {
-	display: inline-block;
+    display: inline-block;
+    float: left; 
 }
 #building-cost, #buildings-bonus {
 	width: calc(75% - 1em);
