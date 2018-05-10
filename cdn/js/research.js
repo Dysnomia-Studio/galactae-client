@@ -198,12 +198,12 @@ class research {
 			if(!research.isSearched(key)) {
 				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
 				if(planetData.currResearch!=key) {
-					content += '<a class="research-search" id="'+key+'" src="#research">' + translate['research']['search'] + '</a>';
+					content += '<a class="research-search" id="'+key+'" src="#research">' + translate['research'].searchs + '</a>';
 				} else {
-					content += '<span class="research-search">' + translate['research']['ongoing'] + '</span>';
+					content += '<span class="research-search">' + translate['research'].ongoing + '</span>';
 				}
 			} else {
-				content += '<p class="research-ok">' + translate['research']['tech_owned'] + '</p>';
+				content += '<p class="research-ok">' + translate['research'].tech_owned + '</p>';
 			}
 			content += "</div>";
 		} else {
