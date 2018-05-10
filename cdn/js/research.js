@@ -185,7 +185,7 @@ class research {
 
 		// Place this node
 		let content;
-		if(planetData.currResearch==key) {
+		if(planetData.currResearch==key && !research.isSearched(key)) {
 			content = '<div class="research-node current-research-node" id="' + key + '-node">';
 		} else {
 			content = '<div class="research-node" id="' + key + '-node">';
