@@ -535,8 +535,8 @@ class units {
 		let count = parseInt($("#fleet-ship-build-count").val());
 		let fleet = parseInt($("#fleet-ship-build-fleetSelect option").filter(':selected').attr("id"));
 		
-		if(isNaN(fleet) || fleet==undefined || (fleet==-2 && units.list[units.currUnit].shipType != "SHIP_DEF")) { return; }
-		if(isNaN(count) || count==undefined || units.currUnit==-1) { return; }
+		if(Number.isNaN(fleet) || fleet==undefined || (fleet==-2 && units.list[units.currUnit].shipType != "SHIP_DEF")) { return; }
+		if(Number.isNaN(count) || count==undefined || units.currUnit==-1) { return; }
 		if(preventUnitBuildPanelClose) { return; }
 
 		let unit = { 

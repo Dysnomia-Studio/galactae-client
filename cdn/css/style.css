@@ -2190,7 +2190,7 @@ a[class="research-search"] {
 }
 #map-planet-menu img {
 	background: rgb(0,0,0,0.3);
-	width: 5em;
+	width: 2.5rem;
 	transform: rotate(45deg);
 	position: absolute;
 }
@@ -2200,28 +2200,28 @@ a[class="research-search"] {
 }
 /* Note: Picture width is about 7.07 em when rotated */
 #map-planet-menu-infos {
-	left: -3.05em;
-	top: -5.55em;
+	left: -1.5rem;
+	top: -2.75rem;
 }
 #map-planet-menu-move {
-	left: 0.7em;
-	top: -9.15em;
+	left: 0.35rem;
+	top: -4.55rem;
 }
 #map-planet-menu-attack {
-	left: -6.85em;
-	top: -9.15em;
+	left: -3.45rem;
+	top: -4.55rem;
 }
 #map-planet-menu-defend {
-	left: -6.85em;
-	top: -1.8em;
+	left: -3.45rem;
+	top: -0.9rem;
 }
 #map-planet-menu-trade {
-	left: 0.7em;
-	top: -1.8em;
+	left: 0.35rem;
+	top: -0.9rem;
 }
 #map-planet-menu-spy {
-	left: -3.05em;
-	top: 1.85em;
+	left: -1.55rem;
+	top: 0.9rem;
 }
 
 /**
