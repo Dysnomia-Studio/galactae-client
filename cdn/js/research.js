@@ -152,12 +152,12 @@ class research {
 		$('#research-content').html('<svg id="research-links" width="10000px" height="10000px"></svg>');
 
 		// Create nodes
-		for(let key in researchPos) {
+		for(let key in userData.research) {
 			research.drawNode(key);
 		}
 
 		// Link Them
-		for(let key in researchList) {
+		for(let key in userData.research) {
 			let current = researchList[key];
 
 			for(let i=0; i<current.parents.length; i++) {
