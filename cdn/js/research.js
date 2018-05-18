@@ -198,7 +198,7 @@ class research {
 			if(!research.isSearched(key)) {
 				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
 				if(planetData.currResearch!=key) {
-					content += '<a class="research-search" id="'+key+'" src="#research">' + translate['research'].searchs + '</a>';
+					content += '<a class="research-search" id="'+key+'" src="#research">' + translate['research'].search + '</a>';
 				} else {
 					content += '<span class="research-search">' + translate['research'].ongoing + '</span>';
 				}
