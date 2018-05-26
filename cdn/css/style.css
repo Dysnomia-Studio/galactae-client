@@ -2820,17 +2820,17 @@ a[class="research-search"] {
 @media (min-width: 1000px) {
 	#notifications-panel {
 		max-height: calc(100vh - 5vw - 2.6em);
-		bottom: calc(2vw + 2.3em);
+		bottom: calc(2vw + 3em);
 	}
 	#notifications-closeAll {
-		bottom: calc(20px + 1.7em);;
+		bottom: calc(2vw + 1.7em);;
 	}
 }
 
 @media (max-width: 999px) {
 	#notifications-panel {
 		max-height: calc(100vh - 50px - 2.6em);
-		bottom: calc(20px + 2.3em);
+		bottom: calc(20px + 3em);
 	}
 	#notifications-closeAll {
 		bottom: calc(20px + 1.7em);;

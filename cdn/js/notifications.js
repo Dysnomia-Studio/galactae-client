@@ -35,10 +35,12 @@ class notifications {
 		}
 	}
 
-	static notifyOnGame(type, text) {
+	static notifyOnGame(type, text, options={}) {
 		$('#notifications-panel').html('<div class="notif-elt notif-' + type + '"></div>' + $('#notifications-panel').html());
 
 		// @TODO: Ajouter message de description
+
+		// @TODO: Ajouter attributs données dans options
 
 		ui.notifCount++;
 		ui.updatePageTitle();
@@ -46,7 +48,7 @@ class notifications {
 		notifications.gameNotifAddEvents();
 	}
 
-	static notify(type, args) {
+	static notify(type, args={}) {
 		var title = "";
 		var osOpt = { icon: cdnURL + "img/favicon.png" };
 		var desc = "";
@@ -58,11 +60,11 @@ class notifications {
 
 			case "building":
 				title = translate.messages['ENDED_BUILDING_TITLE'];
-				desc = osOpt.body = translate.messages['ENDED_BUILDING_01'] + args.name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
+				desc = osOpt.body = translate.messages['ENDED_BUILDING_01'] + translate['buildings'][args.building].name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
 
 			case "research":
 				title = "Galactae: " + translate.messages['ENDED_RESEARCH'];
-				desc = translate["messages"]['ENDED_RESEARCH'] + ": " + args.name;
+				desc = translate["messages"]['ENDED_RESEARCH'] + ": " + translate.research[args.name].name;
 
 			case "unit":
 				title = "Galactae: " + translate.messages['ENDED_UNIT_TITLE'];
@@ -77,7 +79,7 @@ class notifications {
 			notifications.notifyOnOS("Galactae: " + title, osOpt);
 		}
 
-		notifications.notifyOnGame(type, gameOpt);
+		notifications.notifyOnGame(type, desc, args);
 	}
 
 	static gameNotifAddEvents() {
@@ -99,11 +101,13 @@ class notifications {
 	static gameNotifClick() {
 		// Open needed windows
 		if($(this).hasClass('notif-mail')) {
-
+			// @TODO
 		} else if($(this).hasClass('notif-building')) {
-
+			// @TODO
+		} else if($(this).hasClass('notif-research')) {
+			research.openUI();
 		}
-		// @TODO
+		
 
 		// Remove element
 		$(this).remove();
