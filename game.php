@@ -630,6 +630,10 @@ if($userData['lastViewedNews'] < $max) {
 	<span id="day-bonus-confirm"><?php echo DAY_BONUS_CONFIRM; ?></span>
 	<span id="day-bonus-later"><?php echo DAY_BONUS_LATER; ?></span>
 </div>
+<?php /* Notifications */ ?>
+<div id="notifications-panel">
+	<span id="notifications-closeAll">☒</span>
+</div>
 <?php /* Game Version & Copyright */ ?>
 <div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
