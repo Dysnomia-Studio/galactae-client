@@ -90,6 +90,9 @@ class webSockets {
 			ui.drawMessage(message);
 			chat.sm("<span style=\"color: #438dce;\">" + translate.messages.SYSTEM_MESSAGE +"</span> " + " " + message);
 		});
+		socket.on('notification', function(data) {
+			notifications.notify(data.type, data.args);
+		});
 
 		// Daily bonus !
 		socket.on('day-bonus', function(data) {

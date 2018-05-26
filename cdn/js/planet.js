@@ -115,7 +115,7 @@ class planet {
 		// Create timeout: sync where the next building is ended
 		if(planetData.nextBuildingTime != -1) {
 			autobuildingrefresh = setTimeout(function() {	
-				ui.notify("Galactae: " + translate.messages['ENDED_BUILDING_TITLE'], {
+				notifications.notifyToOS("Galactae: " + translate.messages['ENDED_BUILDING_TITLE'], {
 					icon: cdnURL+"img/favicon.png",
 					body: translate.messages['ENDED_BUILDING_01'] + translate.buildings[planetData.nextBuilding].name + translate.messages['ENDED_BUILDING_02'] + (planetData.Buildings[planetData.nextBuilding]+1)
 				});
@@ -512,7 +512,7 @@ class planet {
 		$('#hud-planet-name').text(planetData.name);
 
 		//Page Title
-		document.title = userData.username + " - " + planetData.name;
+		ui.updatePageTitle();
 
 		
 		if(planetData.planetType!=undefined) {

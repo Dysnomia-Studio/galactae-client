@@ -53,6 +53,8 @@ class ui {
 		ui.bonusStreak = 0;
 		ui.bonusStreakBest = 0;
 
+		ui.notifCount = 0;
+
 		ui.mouseStatus = [0,0,0,0];
 
 		$('body').on('mousedown', function(event) {
@@ -124,6 +126,9 @@ class ui {
 			$('#hud-ranks-frame').attr("src", "ranks.php?type=" + $(this).attr("choice"));
 		});
 
+		// Notifs
+		notifications.gameNotifAddEvents();
+
 		// Sécurité
 		//Block Inspect Element when 
 		//right click
@@ -140,6 +145,15 @@ class ui {
 				return false;
 			}
 		});
+	}
+
+	static updatePageTitle() {
+		let notifString = "";
+		if(ui.notifCount != 0) {
+			notifString = "("+ui.notifCount+") ";
+		}
+
+		document.title = notifString + userData.username + " - " + planetData.name;
 	}
 
 	static loadHUDButtons() {
@@ -495,36 +509,6 @@ class ui {
 		setTimeout(function() {
 			ui.dailyBonus(ui.bonusStreak+1, ui.bonusStreakBest+1);
 		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
-	}
-	static notify(txt,options={}) {
-		// Voyons si le navigateur supporte les notifications
-		if (!("Notification" in window)) { return; }
-
-		// Voyons si l'utilisateur est OK pour recevoir des notifications
-		else if (Notification.permission === "granted") {
-		// Si c'est ok, créons une notification
-			let notification = new Notification(txt,options);
-		}
-
-		// Sinon, nous avons besoin de la permission de l'utilisateur
-		// Note : Chrome n'implémente pas la propriété statique permission
-		// Donc, nous devons vérifier s'il n'y a pas 'denied' à la place de 'default'
-		else if (Notification.permission !== 'denied') {
-			Notification.requestPermission(function (permission) {
-			    // Quelque soit la réponse de l'utilisateur, nous nous assurons de stocker cette information
-				if(!('permission' in Notification)) {
-					Notification.permission = permission;
-				}
-
-				// Si l'utilisateur est OK, on crée une notification
-				if (permission === "granted") {
-					let notification = new Notification(txt,options);
-				}
-			});
-		}
-
-		// Comme ça, si l'utlisateur a refusé toute notification, et que vous respectez ce choix,
-		// il n'y a pas besoin de l'ennuyer à nouveau.
 	}
 }
 
