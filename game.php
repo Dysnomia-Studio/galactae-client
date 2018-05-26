@@ -642,6 +642,7 @@ if($userData['lastViewedNews'] < $max) {
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/chat.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/map.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/misc.js"></script>
+<script type="text/javascript" src="<?php echo $cdnURL; ?>js/notifications.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/planet.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/planetback.js"></script>
 <script type="text/javascript" src="<?php echo $cdnURL; ?>js/research.js"></script>

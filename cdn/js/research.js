@@ -336,10 +336,6 @@ class research {
  		
  		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
  			userData.research[planetData.currResearch] = -1;
-			notifications.notifyToOS("Galactae: " + translate["messages"]['ENDED_RESEARCH'], {
-				icon: cdnURL+"img/favicon.png",
-				body: translate["messages"]['ENDED_RESEARCH'] + ": " + translate['research'][planetData.currResearch].name
-			});
  			research.sync();
  		}
  		
