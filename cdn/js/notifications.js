@@ -64,11 +64,11 @@ class notifications {
 
 			case "research":
 				title = "Galactae: " + translate.messages['ENDED_RESEARCH'];
-				desc = translate["messages"]['ENDED_RESEARCH'] + ": " + translate.research[args.name].name;
+				desc = translate["messages"]['ENDED_RESEARCH'] + ": " + translate.research[args.research].name;
 
 			case "unit":
 				title = "Galactae: " + translate.messages['ENDED_UNIT_TITLE'];
-				desc = translate.messages['ENDED_UNIT_01'] + args.count + translate.messages['ENDED_UNIT_02'] + args.fname + translate.messages['ENDED_UNIT_03'];
+				desc = translate.messages['ENDED_UNIT_01'] + args.unitCount + translate.messages['ENDED_UNIT_02'] + args.unitName + translate.messages['ENDED_UNIT_03'];
 
 			default:
 				// Do nothing

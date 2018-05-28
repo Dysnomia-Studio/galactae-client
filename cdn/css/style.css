@@ -2819,7 +2819,7 @@ a[class="research-search"] {
 
 @media (min-width: 1000px) {
 	#notifications-panel {
-		max-height: calc(100vh - 5vw - 2.6em);
+		max-height: calc(100vh - 5vw - 3.5em);
 		bottom: calc(2vw + 3em);
 	}
 	#notifications-closeAll {
@@ -2829,7 +2829,7 @@ a[class="research-search"] {
 
 @media (max-width: 999px) {
 	#notifications-panel {
-		max-height: calc(100vh - 50px - 2.6em);
+		max-height: calc(100vh - 50px - 3.5em);
 		bottom: calc(20px + 3em);
 	}
 	#notifications-closeAll {

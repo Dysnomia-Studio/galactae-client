@@ -336,6 +336,7 @@ class research {
  		
  		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
  			userData.research[planetData.currResearch] = -1;
+
  			research.sync();
  		}
  		
