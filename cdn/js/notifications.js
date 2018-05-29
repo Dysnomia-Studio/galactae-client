@@ -57,19 +57,19 @@ class notifications {
 			case "attack":
 				title = translate.messages['ATTACK_INCOMING_TITLE'];
 				desc = translate.messages['ATTACK_INCOMING_01'] + getStringTime(args.arriveTime);
-
+				break;
 			case "building":
 				title = translate.messages['ENDED_BUILDING_TITLE'];
-				desc = osOpt.body = translate.messages['ENDED_BUILDING_01'] + translate['buildings'][args.building].name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
-
+				desc = translate.messages['ENDED_BUILDING_01'] + translate['buildings'][args.building].name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
+				break;
 			case "research":
 				title = "Galactae: " + translate.messages['ENDED_RESEARCH'];
 				desc = translate["messages"]['ENDED_RESEARCH'] + ": " + translate.research[args.research].name;
-
+				break;
 			case "unit":
 				title = "Galactae: " + translate.messages['ENDED_UNIT_TITLE'];
 				desc = translate.messages['ENDED_UNIT_01'] + args.unitCount + translate.messages['ENDED_UNIT_02'] + args.unitName + translate.messages['ENDED_UNIT_03'];
-
+				break;
 			default:
 				// Do nothing
 		}
