@@ -2862,6 +2862,12 @@ a[class="research-search"] {
 .notif-mail {
 	background: url(../img/ui/messages.svg);
 }
+.notif-research {
+	background: url(../img/ui/researchs.svg);
+}
+.notif-unit {
+	background: url(../img/ui/units.svg);
+}
 .notif-elt {
     background-position: 25% 20%;
     background-size: 90%;
