@@ -30,6 +30,10 @@ include_once(DIR_CTRL.'auth.php');
 	<body>
 		<?php
 			var_dump($pageData);
+			var_dump(DIR_VIEW.$pageData['pageName']);
+			var_dump(file_exists(DIR_VIEW.$pageData['pageName']));
+			var_dump(DIR_CTRL.$pageData['pageName']);
+			var_dump(file_exists(DIR_CTRL.$pageData['pageName']));
 
 			include_once(FILE_CONFIG);
 
