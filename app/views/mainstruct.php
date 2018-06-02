@@ -34,9 +34,6 @@ include_once(DIR_CTRL.'auth.php');
 			include_once(FILE_CONFIG);
 
 			if(file_exists(DIR_VIEW.$pageData['pageName']) || file_exists(DIR_CTRL.$pageData['pageName'])) {
-				if($pageData['writeCache'] && $enableCache) {
-					ob_start(); // ouverture du tampon
-				}
 
 				if(file_exists(DIR_CTRL.$pageData['pageName'])) {
 					include(DIR_CTRL.$pageData['pageName']);
