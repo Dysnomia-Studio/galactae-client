@@ -1,6 +1,5 @@
 <?php
 $noscript=true;
-include_once('gvars.php');
 ?>
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css?family=Titillium+Web');

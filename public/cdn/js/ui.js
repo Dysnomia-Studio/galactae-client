@@ -471,8 +471,6 @@ class ui {
 		let credits = 15;
 		let helium = 0;
 
-		$("#day-bonus-choice").css('display','none');
-
 		if(streak==1) { credits = 15; }
 		else if(streak==2) { credits = 25; }
 		else if(streak==3) { credits = 50; }
@@ -491,7 +489,6 @@ class ui {
 		let desc = "<tr><td class=\"day-bonus-active\" id=\"day-bonus-1\">" + credits + " credits galactiques</td>";
 
 		if(helium!=0) {
-			$("#day-bonus-choice").css('display','block');
 			desc += "<td id=\"day-bonus-2\">" + helium + "t de Helium 3</td>";
 		}
 

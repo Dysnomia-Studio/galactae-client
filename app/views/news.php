@@ -1,6 +1,5 @@
 <?php
 $noscript=true;
-include_once('gvars.php');
 
 if(!isset($_GET['n'])) {
 	die();
@@ -15,7 +14,6 @@ if(!is_int((int) $news_needed)) {
 $news_needed = (int) $news_needed;
 
 $cache = 'cache/news-'.$news_needed.'.html';
-$expire = time() - 600; // 10 min
 
 /* Say to db server, we seen a newer news */
 if($userData['lastViewedNews'] < $news_needed) {
@@ -28,7 +26,7 @@ if($userData['lastViewedNews'] < $news_needed) {
 	);
 }
 
-if(file_exists($cache) && filemtime($cache) > $expire) {
+if(file_exists($cache)) {
 	readfile($cache);
 } else {
 	ob_start();
