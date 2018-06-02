@@ -1,7 +1,7 @@
 <?php
 class ServerListManager extends MongoInterface {
 	public function getLastNewsNumber() {
-		$data = $this->getCondContent('galactae','announces',
+		$lastNews = $this->getCondContent('galactae','announces',
 				['onGame' => 1]
 		);
 
