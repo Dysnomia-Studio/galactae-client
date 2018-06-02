@@ -1,5 +1,5 @@
 <?php
-if($pageData['pageName'] != "news.php" || $pageData['pageName'] != "ranks.php") {
+if($pageData['pageName'] != "news.php" && $pageData['pageName'] != "ranks.php") {
 	$pageData['pageName'] = "";
 }
 
