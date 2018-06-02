@@ -20,9 +20,9 @@ $session_data = $usermng->getUserBySession($_COOKIE['galactae-phpsessid']);
 $browser = new Browser();
 if(isset($session_data['user_id'], 
 		$session_data['user_session_expiration'],
-		$sess_data['user_agent']) 
+		$session_data['user_agent']) 
 		&& ((int) $session_data['user_session_expiration'] > time()
-		&& $sess_data['user_agent'] == $browser->getPlatform().'-'.$browser->getBrowser())) {
+		&& $session_data['user_agent'] == $browser->getPlatform().'-'.$browser->getBrowser())) {
 
 	$usermng->updateUserSession();
 } else {
