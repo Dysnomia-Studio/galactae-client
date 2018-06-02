@@ -8,7 +8,7 @@ function redirect($page) {
 			echo '<script> window.location="https://galactae.eu"; </script>';
 			break;
 		case 'login':
-			//echo '<script> window.location="https://galactae.eu/login"; </script>';
+			echo '<script> window.location="https://galactae.eu/login"; </script>';
 			break;
 		case 'maintenance':
 			echo '<script> window.location="https://galactae.eu/portal?kickmsg=MAINTENANCE_ONGOING"; </script>';
@@ -17,17 +17,6 @@ function redirect($page) {
 			break;
 	}
 
-	global $session_data;
-	global $userData;
-	global $srv_data;
-	global $userGameData;
-
-	var_dump($_COOKIE['galactae-phpsessid']);
-	var_dump($session_data);
-	var_dump($userData);
-	var_dump($srv_data);
-	var_dump($userGameData);
-	
 	die();
 }
 ?>
