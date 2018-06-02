@@ -357,21 +357,7 @@
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
 </div>
 <?php /* News */
-$lastNews = $mongoDB->getCondContent('galactae','announces',
-		['onGame' => 1]
-);
-
-$max = 0;
-if(isset($lastNews[0])) {
-	foreach($lastNews as $key => $value) {
-		$value = (array) $value;
-		if($value['_id'] > $max) {
-			$max = $value['_id'];
-		}
-	}
-}
-
-if($userData['lastViewedNews'] < $max) {
+if($userData['lastViewedNews'] < $lastNewsNumber) {
 	echo '<div id="hud-news" style="display: block;">';
 } else {
 	echo '<div id="hud-news">';
