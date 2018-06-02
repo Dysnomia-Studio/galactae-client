@@ -7,6 +7,7 @@ $beginnerProtectionDuration = 7;
 
 if(!isset($noscript)) {
 ?>
+<script type="text/javascript" src="<?= $cdnURL ?>js/cookies.js"></script>
 <script type="text/javascript">
 	let userData = {
 		username: "",
