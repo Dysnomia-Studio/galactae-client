@@ -17,4 +17,12 @@ class NewsManager extends MongoInterface {
 
 		return $lastNewsNumber;
 	}
+
+	public function getAllGamesNews() {
+		$gameNews = $this->getCondContent('galactae','announces',
+				['onGame' => 1]
+		);
+		
+		return $gameNews;
+	}
 }

@@ -65,4 +65,14 @@ class UserManager extends MongoInterface {
 			["user_id" => $uid], 
 			["game_id" => $gid]);
 	}
+
+	public function updateUserLastNews($uid, $newsId) {
+		$this->updateContent('galactae','users',
+			['_id' => $uid],
+			[ '$set' => [
+				 	'lastViewedNews' => $newsId
+				]
+			]		
+		);
+	}
 }

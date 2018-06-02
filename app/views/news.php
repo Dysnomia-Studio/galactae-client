@@ -17,13 +17,8 @@ $cache = 'cache/news-'.$news_needed.'.html';
 
 /* Say to db server, we seen a newer news */
 if($userData['lastViewedNews'] < $news_needed) {
-	$mongoDB->updateContent('galactae','users',
-		['_id' => $userData['_id']],
-		[ '$set' => [
-			 	'lastViewedNews' => $news_needed
-			]
-		]		
-	);
+	$userMngr = new UserManager();
+	$userMngr->getLastNewsNumber($userData['_id'], $news_needed);
 }
 
 if(file_exists($cache)) {
@@ -60,9 +55,8 @@ if(file_exists($cache)) {
 	</style>
 
 	<?php
-	$newsList = $mongoDB->getCondContent('galactae','announces',
-		['onGame' => 1]
-	);
+	$newsMng = new NewsManager();
+	$newsList = $newsMng->getAllGamesNews();
 	
 	$curr = [];
 	$next = -1;
