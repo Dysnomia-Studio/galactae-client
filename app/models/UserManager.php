@@ -1,0 +1,68 @@
+<?php
+class UserManager extends MongoInterface {
+	public function getUserBySession($id) {
+		$data = $this->getCondContent('galactae','sessions',
+			['user_session_uid' => $id]
+		);
+
+		if(isset($data[0])) {
+			$data = (array) $data[0];
+		}
+
+		return $data;
+	}
+
+	public function updateUserSession() {
+		$this->updateContent('galactae','sessions',
+			['user_session_uid' => $_COOKIE['galactae-phpsessid']],
+			[ '$set' => [
+				 	'user_session_expiration' => (time()+2678400)
+				]
+			]		
+		);
+	}
+
+	public function getGlobalUserById($id) {
+		$data = $this->getCondContent('galactae','users',
+			["_id" => $id]
+		);
+
+		if(isset($data[0])) {
+			$data = (array) $data[0];
+		}
+
+		return $data;
+	}
+
+	public function getUserPrivileges($id, $servName) {
+		$data = $this->getCondContent('galactae','privileges',[
+			"user_id" => $id,
+			"server_name" => $servName
+		]);
+
+		if(isset($data[0])) {
+			$data = (array) $data[0];
+		}
+
+		return $data;
+	}
+
+	public function getUserGameData($id, $servName) {
+		$data = $this->getCondContent('galactae','game_ids',[
+			"user_id" => (string) $id,
+			"server_name" => $servName
+		]);
+
+		if(isset($data[0])) {
+			$data = (array) $data[0];
+		}
+
+		return $data;
+	}
+
+	public function updateUserGameData($uid, $gid) {
+		$this->updateContent('galactae','game_ids', 
+			["user_id" => $uid], 
+			["game_id" => $gid]);
+	}
+}
