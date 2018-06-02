@@ -1,5 +1,5 @@
 <?php
-class ServerListManager extends MongoInterface {
+class NewsManager extends MongoInterface {
 	public function getLastNewsNumber() {
 		echo "0";
 		$lastNews = $this->getCondContent('galactae','announces',
