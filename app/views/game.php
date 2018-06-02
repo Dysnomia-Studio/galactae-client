@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	"use strict";
 </script>
-<script type="text/javascript" src="'.$cdnURL.'js/cookies.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/cookies.js"></script>
 <script type="text/javascript">
 		setGvars("<?= $userGameData['game_id'] ?>","<?= $userGameData['user_name'] ?>");
 </script>
