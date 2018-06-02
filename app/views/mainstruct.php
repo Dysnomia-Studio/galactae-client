@@ -29,6 +29,8 @@ include_once(DIR_CTRL.'auth.php');
 	</head>
 	<body>
 		<?php
+			var_dump($pageData);
+
 			include_once(FILE_CONFIG);
 
 			if(file_exists(DIR_VIEW.$pageData['pageName']) || file_exists(DIR_CTRL.$pageData['pageName'])) {
