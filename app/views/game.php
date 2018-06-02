@@ -51,8 +51,8 @@
 					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
 					<span class="building-cost-item" id="building-cost-titanium">Ti <span id="building-cost-titanium-val"></span></span>
 					<br/>
-					<span class="building-cost-item" id="building-cost-energy"><img src="<?php echo $cdnURL; ?>img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
-					<span class="building-cost-item" id="building-cost-population"><img src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
+					<span class="building-cost-item" id="building-cost-energy"><img src="<?= $cdnURL ?>img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
+					<span class="building-cost-item" id="building-cost-population"><img src="<?= $cdnURL ?>img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
 					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
 				<br/>
@@ -72,38 +72,38 @@
 		<?php /* Ground Building */ ?>
 		<div class="building-ground">
 			<span id="building-ground-title"><?php echo PLANET_BUILDING; ?></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/carriere.svg" class="building-list-building" id="carriere" onclick="planet.buildPanelOpen(0)" alt="carriere">
+			<img src="<?= $cdnURL ?>img/buildings/icons/carriere.svg" class="building-list-building" id="carriere" onclick="planet.buildPanelOpen(0)" alt="carriere">
 			<span id="lvl-carriere"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/metallurgy.svg" class="building-list-building" id="metallurgy" onclick="planet.buildPanelOpen(1)" alt="metallurgy">
+			<img src="<?= $cdnURL ?>img/buildings/icons/metallurgy.svg" class="building-list-building" id="metallurgy" onclick="planet.buildPanelOpen(1)" alt="metallurgy">
 			<span id="lvl-metallurgy"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/living.svg" class="building-list-building" id="living" onclick="planet.buildPanelOpen(2)" alt="living">
+			<img src="<?= $cdnURL ?>img/buildings/icons/living.svg" class="building-list-building" id="living" onclick="planet.buildPanelOpen(2)" alt="living">
 			<span id="lvl-living"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/serre.svg" class="building-list-building" id="serre" onclick="planet.buildPanelOpen(3)" alt="serre">
+			<img src="<?= $cdnURL ?>img/buildings/icons/serre.svg" class="building-list-building" id="serre" onclick="planet.buildPanelOpen(3)" alt="serre">
 			<span id="lvl-serre"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/solar.svg" class="building-list-building" id="solar" onclick="planet.buildPanelOpen(4)" alt="solar">
+			<img src="<?= $cdnURL ?>img/buildings/icons/solar.svg" class="building-list-building" id="solar" onclick="planet.buildPanelOpen(4)" alt="solar">
 			<span id="lvl-solar"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/warehouse.svg" class="building-list-building" id="warehouse" onclick="planet.buildPanelOpen(5)" alt="warehouse">
+			<img src="<?= $cdnURL ?>img/buildings/icons/warehouse.svg" class="building-list-building" id="warehouse" onclick="planet.buildPanelOpen(5)" alt="warehouse">
 			<span id="lvl-warehouse"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/headquarter.svg" class="building-list-building" id="headquarter" onclick="planet.buildPanelOpen(6)" alt="headquarter">
+			<img src="<?= $cdnURL ?>img/buildings/icons/headquarter.svg" class="building-list-building" id="headquarter" onclick="planet.buildPanelOpen(6)" alt="headquarter">
 			<span id="lvl-headquarter"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/launchpad.svg" class="building-list-building" id="launchpad" onclick="planet.buildPanelOpen(7)" alt="launchpad">
+			<img src="<?= $cdnURL ?>img/buildings/icons/launchpad.svg" class="building-list-building" id="launchpad" onclick="planet.buildPanelOpen(7)" alt="launchpad">
 			<span id="lvl-launchpad"></span>
-			<img src="<?php echo $cdnURL; ?>img/buildings/icons/research.svg" class="building-list-building" id="research" onclick="planet.buildPanelOpen(8)" alt="research">
+			<img src="<?= $cdnURL ?>img/buildings/icons/research.svg" class="building-list-building" id="research" onclick="planet.buildPanelOpen(8)" alt="research">
 			<span id="lvl-research"></span>
 		</div>
 
 		<?php /* Space Building */ ?>
 		<div class="building-space">
 			<span id="building-space-title"><?php echo ORBITAL_BUILDING; ?></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/radar.svg" class="building-list-building" id="radar" onclick="planet.buildPanelOpen(9)" alt="radar">
+				<img src="<?= $cdnURL ?>img/buildings/icons/radar.svg" class="building-list-building" id="radar" onclick="planet.buildPanelOpen(9)" alt="radar">
 				<span id="lvl-radar"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/tank.svg" class="building-list-building" id="tank" onclick="planet.buildPanelOpen(10)" alt="tank">
+				<img src="<?= $cdnURL ?>img/buildings/icons/tank.svg" class="building-list-building" id="tank" onclick="planet.buildPanelOpen(10)" alt="tank">
 				<span id="lvl-tank"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/shipyard.svg" class="building-list-building" id="shipyard" onclick="planet.buildPanelOpen(11)" alt="shipyard">
+				<img src="<?= $cdnURL ?>img/buildings/icons/shipyard.svg" class="building-list-building" id="shipyard" onclick="planet.buildPanelOpen(11)" alt="shipyard">
 				<span id="lvl-shipyard"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/trade.svg" class="building-list-building" id="trade" onclick="planet.buildPanelOpen(12)" alt="trade">
+				<img src="<?= $cdnURL ?>img/buildings/icons/trade.svg" class="building-list-building" id="trade" onclick="planet.buildPanelOpen(12)" alt="trade">
 				<span id="lvl-trade"></span>
-				<img src="<?php echo $cdnURL; ?>img/buildings/icons/he3exp.svg" class="building-list-building" id="he3exp" onclick="planet.buildPanelOpen(13)" alt="he3exp">
+				<img src="<?= $cdnURL ?>img/buildings/icons/he3exp.svg" class="building-list-building" id="he3exp" onclick="planet.buildPanelOpen(13)" alt="he3exp">
 				<span id="lvl-he3exp"></span>
 		</div>
 	</div>
@@ -120,7 +120,7 @@
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
 		<span class="hud-top-tooltip">
-			<img height="15" src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population">
+			<img height="15" src="<?= $cdnURL ?>img/ui/population.png" alt="population">
 			<span class="nmb" id="population_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="population-tooltips">
@@ -132,14 +132,14 @@
 			</span>
 		</span>
 
-		<img height="15" src="<?php echo $cdnURL; ?>img/ui/research.svg" alt="research">
+		<img height="15" src="<?= $cdnURL ?>img/ui/research.svg" alt="research">
 		<span class="nmb" id="research_nmb">1</span>
 
-		<img height="15" src="<?php echo $cdnURL; ?>img/ui/moral.png" alt="moral">
+		<img height="15" src="<?= $cdnURL ?>img/ui/moral.png" alt="moral">
 		<span class="nmb" id="moral_nmb">1</span>
 
 		<span class="hud-top-tooltip">
-			<img height="15" src="<?php echo $cdnURL; ?>img/ui/electricity.svg" alt="electricity">
+			<img height="15" src="<?= $cdnURL ?>img/ui/electricity.svg" alt="electricity">
 			<span class="nmb" id="electricity_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="electricity-tooltips">
@@ -154,7 +154,7 @@
 	</div>
 
 	<div id="hud-top-center">
-		<img id="hud-settings" height="20" src="<?php echo $cdnURL; ?>img/ui/settings.svg" alt="settings">
+		<img id="hud-settings" height="20" src="<?= $cdnURL ?>img/ui/settings.svg" alt="settings">
 		<span id="hud-planet-prev" onclick="planet.prev();">&#9664;</span>
 		<span id="hud-planet-name">SomeLongName</span>
 		<span id="hud-planet-next" onclick="planet.next();">&#9654;</span>
@@ -163,7 +163,7 @@
 	<div id="hud-top-right">
 		<span id="hud-top-right-moveLeft">&#9664;</span>
 		<span class="hud-top-tooltip">
-			<img height="20" src="<?php echo $cdnURL; ?>img/ui/minerals.png" alt="minerals">
+			<img height="20" src="<?= $cdnURL ?>img/ui/minerals.png" alt="minerals">
 			<span class="nmb" id="minerals_nmb">1</span>
 			<span class="hud-top-tooltip-wrapper">
 				<span class="hud-top-tooltip-content" id="minerals-tooltips">
@@ -240,43 +240,43 @@
 <div id="hud-bottom">
 	<div id="hud-bottom-left">
 		<span class="hud-bottom-tooltip">
-			<a href="#map" id="hud-bottom-button-map"><img src="<?php echo $cdnURL; ?>img/ui/map.svg" alt="map"></a>
+			<a href="#map" id="hud-bottom-button-map"><img src="<?= $cdnURL ?>img/ui/map.svg" alt="map"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MAP; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#researchs" id="hud-bottom-button-researchs"><img src="<?php echo $cdnURL; ?>img/ui/researchs.svg" alt="researchs"></a>
+			<a href="#researchs" id="hud-bottom-button-researchs"><img src="<?= $cdnURL ?>img/ui/researchs.svg" alt="researchs"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RESEARCH; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#units" id="hud-bottom-button-units"><img src="<?php echo $cdnURL; ?>img/ui/units.svg" alt="units"></a>
+			<a href="#units" id="hud-bottom-button-units"><img src="<?= $cdnURL ?>img/ui/units.svg" alt="units"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_UNITS; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?php echo $cdnURL; ?>img/ui/fleets.png" alt="fleets"></a>
+			<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?= $cdnURL ?>img/ui/fleets.png" alt="fleets"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_FLEETS; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#radar" id="hud-bottom-button-radar"><img src="<?php echo $cdnURL; ?>img/ui/radar.svg" alt="radar"></a>
+			<a href="#radar" id="hud-bottom-button-radar"><img src="<?= $cdnURL ?>img/ui/radar.svg" alt="radar"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RADAR; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#ally" id="hud-bottom-button-ally"><img src="<?php echo $cdnURL; ?>img/ui/ally.svg" alt="ally"></a>
+			<a href="#ally" id="hud-bottom-button-ally"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_ALLY; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?php echo $cdnURL; ?>img/ui/rapports.svg" alt="rapports"></a>
+			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>
@@ -284,37 +284,37 @@
 	</div>
 	<div id="hud-bottom-right">
 		<span class="hud-bottom-tooltip">
-			<a href="#quests" id="hud-bottom-button-quests"><img src="<?php echo $cdnURL; ?>img/ui/quests.svg" alt="quests"></a>
+			<a href="#quests" id="hud-bottom-button-quests"><img src="<?= $cdnURL ?>img/ui/quests.svg" alt="quests"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_QUEST; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#trade" id="hud-bottom-button-trade"><img src="<?php echo $cdnURL; ?>img/ui/trade.svg" alt="trade"></a>
+			<a href="#trade" id="hud-bottom-button-trade"><img src="<?= $cdnURL ?>img/ui/trade.svg" alt="trade"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_TRADE; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?php echo $cdnURL; ?>img/ui/ranks.svg" alt="ranks"></a>
+			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?= $cdnURL ?>img/ui/ranks.svg" alt="ranks"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RANKS; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#profil" id="hud-bottom-button-profil"><img src="<?php echo $cdnURL; ?>img/ui/profil.svg" alt="profil"></a>
+			<a href="#profil" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_PROFIL; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#messages" id="hud-bottom-button-messages"><img src="<?php echo $cdnURL; ?>img/ui/messages.svg" alt="messages"></a>
+			<a href="#messages" id="hud-bottom-button-messages"><img src="<?= $cdnURL ?>img/ui/messages.svg" alt="messages"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MESSAGES; ?></span>
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#chat" id="hud-bottom-button-chat"><img src="<?php echo $cdnURL; ?>img/ui/chat.svg" alt="chat"></a>
+			<a href="#chat" id="hud-bottom-button-chat"><img src="<?= $cdnURL ?>img/ui/chat.svg" alt="chat"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_CHAT; ?></span>
 			</span>
@@ -342,7 +342,7 @@
 	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
 	<form action="#chat_text" method="post" id="chat_form">
 		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
-		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?php echo $cdnURL; ?>img/ui/chat-voice.png" alt="voice"></a>
+		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?= $cdnURL ?>img/ui/chat-voice.png" alt="voice"></a>
 	</form>
 </div>
 <?php /* Ranks */ ?>
@@ -456,12 +456,12 @@ if($userData['lastViewedNews'] < $max) {
             <div id="map-system-solarFront">
             </div>
             <div id="map-planet-menu">
-            	<img id="map-planet-menu-infos" src="<?php echo $cdnURL; ?>img/ui/planet-infos.svg">
-            	<img id="map-planet-menu-move" src="<?php echo $cdnURL; ?>img/ui/fleet-move.svg">
-            	<img id="map-planet-menu-attack" src="<?php echo $cdnURL; ?>img/ui/fleet-attack.svg">
-            	<img id="map-planet-menu-defend" src="<?php echo $cdnURL; ?>img/ui/fleet-defend.svg">
-            	<img id="map-planet-menu-spy" src="<?php echo $cdnURL; ?>img/ui/planet-spy.svg">
-            	<img id="map-planet-menu-trade" src="<?php echo $cdnURL; ?>img/ui/planet-trade.svg">
+            	<img id="map-planet-menu-infos" src="<?= $cdnURL ?>img/ui/planet-infos.svg">
+            	<img id="map-planet-menu-move" src="<?= $cdnURL ?>img/ui/fleet-move.svg">
+            	<img id="map-planet-menu-attack" src="<?= $cdnURL ?>img/ui/fleet-attack.svg">
+            	<img id="map-planet-menu-defend" src="<?= $cdnURL ?>img/ui/fleet-defend.svg">
+            	<img id="map-planet-menu-spy" src="<?= $cdnURL ?>img/ui/planet-spy.svg">
+            	<img id="map-planet-menu-trade" src="<?= $cdnURL ?>img/ui/planet-trade.svg">
             </div>
           </div>
         </div>
@@ -507,7 +507,7 @@ if($userData['lastViewedNews'] < $max) {
 				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>">
 
 				<div id="fleet-build-stat">
-					<span id="fleet-build-name"></span><img id="fleet-build-rename" src="<?php echo $cdnURL; ?>img/ui/rename.svg"><br /><br />
+					<span id="fleet-build-name"></span><img id="fleet-build-rename" src="<?= $cdnURL ?>img/ui/rename.svg"><br /><br />
 					<?php echo '<div id="fleet-build-stat-attack"><u>'.SHIP_WEAPONS.' :</u> <span id="fleet-build-stat-attack-val"></span></div>
 					<div id="fleet-build-stat-shield"><u>'.SHIP_SHIELD.' :</u> <span id="fleet-build-stat-shield-val"></span></div>
 					<div id="fleet-build-stat-speed"><u>'.SHIP_SPEEDS.'</u>
@@ -521,9 +521,9 @@ if($userData['lastViewedNews'] < $max) {
 				</div>
 	
 				<div id="fleet-build-buttons">
-					<img id="fleet-build-type-copy" src="<?php echo $cdnURL; ?>img/ui/copy.svg" alt="copy">
-					<img id="fleet-build-openPanel" src="<?php echo $cdnURL; ?>img/ui/build.svg" alt="build">
-					<img id="fleet-build-type-delete" src=<?php echo $cdnURL; ?>img/ui/delete.svg alt="delete">
+					<img id="fleet-build-type-copy" src="<?= $cdnURL ?>img/ui/copy.svg" alt="copy">
+					<img id="fleet-build-openPanel" src="<?= $cdnURL ?>img/ui/build.svg" alt="build">
+					<img id="fleet-build-type-delete" src=<?= $cdnURL ?>img/ui/delete.svg alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>
@@ -585,7 +585,7 @@ if($userData['lastViewedNews'] < $max) {
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-aluminium">Al <span id="fleet-ship-build-cost-aluminium-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-copper">Cu <span id="fleet-ship-build-cost-copper-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-titanium">Ti <span id="fleet-ship-build-cost-titanium-val">XXXt</span></p>
-		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="<?php echo $cdnURL; ?>img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="<?= $cdnURL ?>img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-time"><?php echo TIME; ?>: <span id="fleet-ship-build-cost-time-val">00:00:00</span></p>
 	</div>
 
@@ -641,26 +641,26 @@ if($userData['lastViewedNews'] < $max) {
 <?php /* Game Version & Copyright */ ?>
 <div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/details-polyfill.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/socket.min.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/css_globe_perspectivetransform.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/calcConstants.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/chat.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/map.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/misc.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/notifications.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/planet.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/planetback.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/research.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/settings.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/trade.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/ui.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/units.js"></script>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/websockets.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/planet.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/planetback.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/research.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/websockets.js"></script>
 <?php /* Launch Game ! */ ?>
-<script type="text/javascript" src="<?php echo $cdnURL; ?>js/load.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>
 </body>
 <?php /* Block Portrait Screens */ ?>
 <div id="portrait-warn"><h1><?php echo PORTRAIT_ERROR; ?></h1></div>
