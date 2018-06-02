@@ -1,9 +1,12 @@
 <?php
 class ServerListManager extends MongoInterface {
 	public function getLastNewsNumber() {
+		echo "0";
 		$lastNews = $this->getCondContent('galactae','announces',
 				['onGame' => 1]
 		);
+
+		echo "1";
 
 		$lastNewsNumber = 0;
 		if(isset($lastNews[0])) {
@@ -14,6 +17,8 @@ class ServerListManager extends MongoInterface {
 				}
 			}
 		}
+
+		echo "2";
 
 		return $lastNewsNumber;
 	}
