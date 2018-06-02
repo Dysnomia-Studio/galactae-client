@@ -3,7 +3,7 @@
 </script>
 <script type="text/javascript" src="'.$cdnURL.'js/cookies.js"></script>
 <script type="text/javascript">
-		setGvars("'.$data2['game_id'].'","'.$userData['user_name'].'");
+		setGvars("<?= $userGameData['game_id'] ?>","<?= $userGameData['user_name'] ?>");
 </script>
 <?php /* Loading Overlay */ ?>
 <div id="loading-overlay" style="/*display: none;*/">
