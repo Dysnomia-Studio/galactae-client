@@ -2,7 +2,7 @@
 	"use strict";
 </script>
 <script type="text/javascript">
-		setGvars("<?= $userGameData['game_id'] ?>","<?= $userGameData['user_name'] ?>");
+		setGvars("<?= $userGameData['game_id'] ?>","<?= $userGameData['name'] ?>");
 </script>
 <?php /* Loading Overlay */ ?>
 <div id="loading-overlay" style="/*display: none;*/">
