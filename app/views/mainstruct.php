@@ -9,13 +9,13 @@ include_once(DIR_CTRL.'auth.php');
 <!DOCTYPE html>
 <!-- 
 	Code by Elanis
-	Copyright 2018-<?= date('Y') ?> 
+	Copyright 2016-<?= date('Y') ?> 
 	Don't copy this without permission
 	I hope this code is readable.
 -->
 <html lang="<?= $lang->getLanguage(); ?>">
 	<head>
-		<title>Nom du site</title>
+		<title>Galactae: Space Age Dawn</title>
 		<meta charset="UTF-8">
 		<!-- On prepare le charset , les mots clés , le fichier css et l'icone du site -->
 		<meta name="keywords" content="">
