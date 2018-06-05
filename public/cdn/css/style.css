@@ -2807,6 +2807,8 @@ a[class="research-search"] {
 	overflow-y: auto;
 }
 #notifications-closeAll {
+	display: none;
+
 	position: fixed;
 	left: 0.25em;
 }

@@ -44,6 +44,7 @@ class notifications {
 
 		ui.notifCount++;
 		ui.updatePageTitle();
+		notifications.updateClearButtonDisplay();
 
 		notifications.gameNotifAddEvents();
 	}
@@ -88,6 +89,7 @@ class notifications {
 
 			ui.notifCount--;
 			ui.updatePageTitle();
+			notifications.updateClearButtonDisplay();
 		});
 
 		$('#notifications-closeAll').click(function() {
@@ -95,6 +97,7 @@ class notifications {
 
 			ui.notifCount = 0;
 			ui.updatePageTitle();
+			notifications.updateClearButtonDisplay();
 		});
 	}
 
@@ -111,5 +114,13 @@ class notifications {
 
 		// Remove element
 		$(this).remove();
+	}
+
+	static updateClearButtonDisplay() {
+		if(ui.notifCount == 0) {
+			$('#notifications-closeAll').css('display','none');
+		} else {
+			$('#notifications-closeAll').css('display','block');
+		}
 	}
 }
