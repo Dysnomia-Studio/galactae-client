@@ -1584,7 +1584,7 @@ select, input, summary {
 	left: calc(50vw - 5000px);
 
 	display: none;
-	z-index: -1;
+	z-index: 0;
 	zoom: 0.9;
 }
 #research-content, #research-links {
