@@ -22,10 +22,44 @@ class UserManager extends MongoInterface {
 		);
 	}
 
+	public function addSession($uid, $sessid, $browser) {
+		$this->addContent('galactae','sessions',[
+			'user_id' => $uid,
+			'user_session_uid' => $sessid,
+			'user_session_expiration' => (time()+2678400),
+			'user_agent' => $browser
+		]);
+	}
+
+	public function removeSessionByIds($uid, $sessid) {
+		$this->removeContent('galactae','sessions',[
+			'user_id' => $uid,
+			'user_session_uid' => $sessid
+		]);
+	}
+
 	public function getGlobalUserById($id) {
 		$data = $this->getCondContent('galactae','users',
 			["_id" => $id]
 		);
+
+		if(isset($data[0])) {
+			$data = (array) $data[0];
+		}
+
+		return $data;
+	}
+
+	public function getGlobalUserByCaseInsensitiveName($name) {
+		$data = $this->getCondContent('galactae','users',
+			['user_name' => new \MongoDB\BSON\Regex('^'.preg_quote($name).'$', 'i')]
+		);
+
+	    if(count($data)==0) { // Test avec le mail
+			$data = $this->getCondContent('galactae','users',
+				['user_mail' => new \MongoDB\BSON\Regex('^'.preg_quote($name).'$', 'i')]
+			);
+	    }
 
 		if(isset($data[0])) {
 			$data = (array) $data[0];
