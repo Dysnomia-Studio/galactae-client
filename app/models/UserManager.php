@@ -68,10 +68,45 @@ class UserManager extends MongoInterface {
 		return $data;
 	}
 
+	public function addGlobalUser($name, $mail, $passwd, $misc, $updates) {
+
+		$this->addContent('galactae','users',[
+			'user_name' => $name,
+			'user_mail' => $mail,
+			'user_passwd' => $passwd,
+			'newsletter_misc' => $misc,
+			'newsletter_updates' => $updates
+		]);
+
+		$conf_link = Security::hashPassword(time().$name);
+
+		$mongoDB->addContent('galactae','mailconfirmations',[
+			'user_name' => $data['user_name'],
+			'mailconfirm_uid' => $conf_link
+		]);
+
+		$conf_link = 'https://galactae.eu/mailconf?mid='.$conf_link.'&username='.$user_name;
+
+		
+		return $conf_link;
+	}
+
 	public function getUserPrivileges($id, $servName) {
 		$data = $this->getCondContent('galactae','privileges',[
 			"user_id" => $id,
 			"server_name" => $servName
+		]);
+
+		if(isset($data[0])) {
+			$data = (array) $data[0];
+		}
+
+		return $data;
+	}
+
+	public function getAllUserGameData($id) {
+		$data = $this->getCondContent('galactae','game_ids',[
+			"user_id" => (string) $id
 		]);
 
 		if(isset($data[0])) {

@@ -11,4 +11,8 @@ class ServerListManager extends MongoInterface {
 
 		return $data;
 	}
+
+	public function getAllServers() {
+		return $this->getCondContent('galactae','servers', []);
+	}
 }
