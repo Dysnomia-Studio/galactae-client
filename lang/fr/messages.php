@@ -77,7 +77,7 @@ translate["messages"] = {
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",
 	"NO_LINKS": "Erreur: vous ne pouvez pas envoyer de lien sur le chat",
 	// Anti Self XSS Warning
-	"selfXSSWarn": "Attention: si quelqu'un vous dit de coller quelque chose ici, c'est à 150% une arnaque, ce genre d'attaques appelés \"Self XSS\" sont fait pour prendre le contrôle de votre compte.",
+	"selfXSSWarn": "Attention: si quelqu'un vous dit de coller quelque chose ici, il y'a de grandes chances que ce soit une arnaque, ce genre d'attaques appelés \"Self XSS\" sont fait pour prendre le contrôle de votre compte. Soyez prudents !",
 };
 
 translate['load'] = {
