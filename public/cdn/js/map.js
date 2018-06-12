@@ -286,7 +286,10 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadXML(sector, callback) {
-		if(map.xmlhttp[sector] !== undefined) { return; } // Already loaded or loading
+		if(map.xmlhttp[sector] !== undefined) { console.info(map.xmlhttp[sector]); return; } // Already loaded or loading
+
+		console.log("Load: " + sector);
+
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp[sector] = new XMLHttpRequest();
 		} else { // code for IE6, IE5
@@ -622,6 +625,8 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static drawSector(sector) {
+		console.log(sector);
+
 		// Get XML
 		let sectorXML = $(map.xmlDoc[sector])[0];
 		let systemList = $(sectorXML).find("sy");

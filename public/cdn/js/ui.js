@@ -129,22 +129,28 @@ class ui {
 		// Notifs
 		notifications.gameNotifAddEvents();
 
-		// Sécurité
-		//Block Inspect Element when 
-		//right click
-		/*$(document).on("contextmenu",function(){
-			return false;
-		}); */
-		$(document).keydown(function(e){
-		//F12 => Firefox, Chrome, Edge
-			if(e.which === KEYBOARD.F12){
-				return false;
-			}
-			//CTRL + SHIFT + C => Opera
-			if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
-				return false;
-			}
-		});
+		// Prevent players putting code that can break their account security like Self XSS breachs
+			//Block Inspect Element when 
+			//right click
+			$(document).on("contextmenu",function(){
+				if(document.location.href.substr(11,3) !== "dev") {
+					return false;
+				}
+			});
+			$(document).keydown(function(e){
+			//F12 => Firefox, Chrome, Edge
+				if(e.which === KEYBOARD.F12){
+					if(document.location.href.substr(11,3) !== "dev") {
+						return false;
+					}
+				}
+				//CTRL + SHIFT + C => Opera
+				if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
+					if(document.location.href.substr(11,3) !== "dev") {
+						return false;
+					}
+				}
+			});
 	}
 
 	static updatePageTitle() {
