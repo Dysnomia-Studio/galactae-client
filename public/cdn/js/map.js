@@ -167,9 +167,9 @@ class map {
 		//@ADD: display none/block on sectors
 
 		// At borders ?
-		let coords = map.currentAddress.split('-');
-		coords[0] = parseInt(coords[0]);
-		coords[1] = parseInt(coords[1]);
+		let coords = [];
+		coords[0] = Math.floor((-$("#map-global").position().top)/($("#map-global").height()/10));
+		coords[1] = Math.floor((-$("#map-global").position().left)/($("#map-global").width()/10));
 
 		let topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
 		let bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
@@ -286,9 +286,7 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadXML(sector, callback) {
-		if(map.xmlhttp[sector] !== undefined) { console.info(map.xmlhttp[sector]); return; } // Already loaded or loading
-
-		console.log("Load: " + sector);
+		if(map.xmlhttp[sector] !== undefined) { return; } // Already loaded or loading
 
 		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 			map.xmlhttp[sector] = new XMLHttpRequest();
@@ -625,8 +623,6 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static drawSector(sector) {
-		console.log(sector);
-
 		// Get XML
 		let sectorXML = $(map.xmlDoc[sector])[0];
 		let systemList = $(sectorXML).find("sy");
