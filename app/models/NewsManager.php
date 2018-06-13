@@ -7,9 +7,9 @@ class NewsManager extends MongoInterface {
 
 		$lastNewsNumber = 0;
 		if(isset($lastNews[0])) {
-			foreach($lastNews as $key => $value) {
+			foreach($lastNews as $value) {
 				$value = (array) $value;
-				if($value['_id'] > $max) {
+				if($value['_id'] > $lastNewsNumber) {
 					$lastNewsNumber = $value['_id'];
 				}
 			}

@@ -80,7 +80,7 @@ class UserManager extends MongoInterface {
 
 		$conf_link = Security::hashPassword(time().$name);
 
-		$mongoDB->addContent('galactae','mailconfirmations',[
+		$this->addContent('galactae','mailconfirmations',[
 			'user_name' => $data['user_name'],
 			'mailconfirm_uid' => $conf_link
 		]);
