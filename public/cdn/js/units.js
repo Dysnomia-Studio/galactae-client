@@ -398,7 +398,7 @@ class units {
 
 	static fleetExists(fname) {
 		for(let i in units.fleetList) {
-			if(units.fleetList.name == fname) {
+			if(units.fleetList[i].name == fname) {
 				return true;
 			}
 		}
