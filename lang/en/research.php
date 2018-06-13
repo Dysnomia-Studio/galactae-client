@@ -47,7 +47,7 @@
 		// Battlecruiser
 		battlecruiser_small: { name: "Small battlecruiser", desc: "" },
 		// Cuirasse
-		cuirasse_small: 	{ name: "Small cuirasse", desc: "" },
+		cuirasse_small: 	{ name: "Small battleship", desc: "" },
 		// Corvet
 		corvet_small: 		{ name: "Small corvet", desc: "" },
 		// Carrier
