@@ -85,10 +85,7 @@ class UserManager extends MongoInterface {
 			'mailconfirm_uid' => $conf_link
 		]);
 
-		$conf_link = 'https://galactae.eu/mailconf?mid='.$conf_link.'&username='.$data['user_name'];
-
-		
-		return $conf_link;
+		return 'https://galactae.eu/mailconf?mid='.$conf_link.'&username='.$data['user_name'];
 	}
 
 	public function getUserPrivileges($id, $servName) {

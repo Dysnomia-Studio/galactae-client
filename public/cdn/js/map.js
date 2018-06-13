@@ -49,9 +49,6 @@ class map {
 
 		map.zoom = 1;
 
-		let currentSector = map.currentAddress.split('-');
-		currentSector = [currentSector[0],currentSector[1]].join("-");
-
 		/**
 		 * Load XML
 		 */

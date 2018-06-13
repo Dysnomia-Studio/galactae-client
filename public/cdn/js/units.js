@@ -338,13 +338,6 @@ class units {
 					$('#fleet-build-message').html(translate.messages["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 				}
 
-				let currentFleetName = units.list[0].name;
-				for(let i=0; i<units.list.length; i++) {
-					if(units.list[i]._id == planetData.unitBuildingID) {
-						currentFleetName = units.list[i].name;
-					}
-				}
-
 				if(dateNow.toLocaleDateString() != dateEnd.toLocaleDateString()) {
 					units.unitPanelTimeout = setTimeout(function() {
 						units.drawMain();

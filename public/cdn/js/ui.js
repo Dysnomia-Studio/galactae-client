@@ -350,7 +350,7 @@ class ui {
 		$span.on("click", ui.planetNameSwitchToInput);
 		if(ui.oldname!=newname) {
 			newname = normalizeText(newname);
-			socket.emit('planet-rename', { planet: userData.pid, username: userData.username, id: userData.id, name: elt.val() });
+			socket.emit('planet-rename', { planet: userData.pid, username: userData.username, id: userData.id, name: newname });
 		}
 		ui.renaming = false;
 	}
@@ -474,7 +474,7 @@ class ui {
 
 		// What's the bonus today ?
 		streak=streak%30;
-		let credits = 15;
+		let credits;
 		let helium = 0;
 
 		if(streak==1) { credits = 15; }
