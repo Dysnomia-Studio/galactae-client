@@ -136,8 +136,9 @@ class planet {
 		let time = 2/3600; // 2 sec
 
 		//Minerals
-		if(currentBuilding!=0)
-		planetData.resources[0] += mineralProdBase*time;
+		if(currentBuilding!=0) {
+			planetData.resources[0] += mineralProdBase*time;
+		}
 
 		//Helium 3
 		if(buildings[13]!=0 && currentBuilding!=13) { planetData.resources[1] += heliumProdBase*time; }
@@ -149,7 +150,7 @@ class planet {
 		    }
 
 			planetData.resources[0] -= (metalProdBase*time); //Consomation Algorithm
-		} else { // Do the max we can
+		} else if(currentBuilding!=1) { // Do the max we can
 		    for(let i=2; i<6; i++) {
 		    	planetData.resources[i] += planetData.resources[0]*ratios[i-2];
 		    }
@@ -172,7 +173,7 @@ class planet {
 					min = temp;
 				}
 			}
-			planetData.resources[0]+=min
+			planetData.resources[0]+=min;
 		    for(let i=2; i<6; i++) {
 		    	planetData.resources[i] -= min*ratios[i-2];
 		    }
