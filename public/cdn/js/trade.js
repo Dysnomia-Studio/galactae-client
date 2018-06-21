@@ -1,5 +1,1 @@
-class trade {
-	static openPlanetPanel() {
-
-	}
-}
+class trade{static openPlanetPanel(){}}
