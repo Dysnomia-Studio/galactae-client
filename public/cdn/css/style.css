@@ -1789,7 +1789,7 @@ a[class="research-search"] {
  * Maps
  */
 #hud-map {
-	background-image: url(../img/map/background.jpg);
+	background-image: url(../img/map-bg.jpg);
 	background-size: cover;
 
 	position: fixed;
@@ -2363,7 +2363,6 @@ a[class="research-search"] {
 		border-radius: 1.8em;
 		text-align: center;
 		background-color: rgb(11,16,18);
-		background-color: rgba(11,16,18,0.9);
 		border: 2px solid #0ec6c6;
 		z-index: 2;
 	}

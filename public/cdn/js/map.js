@@ -608,6 +608,7 @@ class map {
 		map.currentAddress = address;
 		$('#map-system').css('display','block');
 
+		// @ADD: depends on config
 		$("#map-system").removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
 			$(this).removeClass('hide-UI').addClass("set-speed");
 			$(this).dequeue();
