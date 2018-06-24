@@ -1420,7 +1420,6 @@ select, input, summary {
 .fleet-show-global .unit-list-table {
 	width: 100%;
 	margin-right: 10px;
-	height: 100%;
 	border-spacing: 0;
 }
 .fleet-show-global .unit-list-table td, .fleet-show-global .unit-list-table th {
@@ -1535,6 +1534,7 @@ select, input, summary {
 }
 #fleet-orbit, #fleet-move, #fleet-out {
 	margin: 1.5em;
+	overflow-y: auto;
 }
 #fleet-orbit h2, #fleet-move h2, #fleet-out h2 {
 	text-align: center;
