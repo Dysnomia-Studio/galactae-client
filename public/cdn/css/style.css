@@ -16,6 +16,9 @@ body {
 a, body {
 	color: white;
 }
+.text-important {
+	color: #0EC6C6;
+}
 /* Dropdown */
 .dropdown {
 	margin: 0;
