@@ -1981,6 +1981,9 @@ a[class="research-search"] {
 	background-size: cover;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
+
+	/* Prevent moving planet when hovering it */
+	box-sizing: border-box;
 }
 .planet:hover {
 	border: 1px solid rgb(14, 198, 198);

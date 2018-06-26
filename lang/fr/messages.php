@@ -22,11 +22,15 @@ translate["messages"] = {
 	"ENOUGH_RESOURCES_TOMORROW_AT": "Assez de ressources demain à",
 	"ENOUGH_RESOURCES_THE": "Assez de ressources le",
 	"ENOUGH_RESOURCES_AT": "à",
+	"ANOTHER_IN_BUILD": "Un autre bâtiment est déjà en construction",
+	// Build finish at ...
 	"BUILD_FINISH_TODAY_AT": "Fin de la construction aujourd'hui à",
 	"BUILD_FINISH_TOMORROW_AT": "Fin de la construction demain à",
 	"BUILD_FINISH_THE": "Fin de la construction le",
 	"BUILD_FINISH_AT": "à",
-	"ANOTHER_IN_BUILD": "Un autre bâtiment est déjà en construction",
+	// [Number] units "[Name]" are being build in fleet "[FleetName]" 
+	"UNIT_CURR_BUILD_01": "unités",
+	"UNIT_CURR_BUILD_02": "sont en construction dans la flotte",
 	// Unit Notifs
 	"ENDED_UNIT_TITLE": "Unités Terminées !",
 	"ENDED_UNIT_01": "Vos ",
