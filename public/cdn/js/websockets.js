@@ -54,7 +54,7 @@ class webSockets {
 		socket.on('fleet-recieve-data',function(data) {
 			units.fleetList = data;
 			units.regenerateBuildFleetList();
-			units.drawFleetLists();
+			units.refresh(units.list);
 			loadScreen.complete("fleet");
 		});
 
