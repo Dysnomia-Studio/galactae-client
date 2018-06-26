@@ -351,23 +351,23 @@ class units {
 				let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 				if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-					$('#fleet-build-message').html(" <span class=\"text-important\">" + planetData.unitBuildingCount + "</span> " + translate.messages["UNIT_CURR_BUILD_01"] + 
+					$('#fleet-build-message').html("<span class=\"text-important\">" + planetData.unitBuildingCount + "</span> " + translate.messages["UNIT_CURR_BUILD_01"] + 
 						" <span class=\"text-important\">" +	units.getUnitName(planetData.unitBuildingID) + "</span> " + 
 						translate.messages['UNIT_CURR_BUILD_02'] + 
 						" <span class=\"text-important\">" + units.getFleetName(planetData.unitBuildingFleetID) + "</span>. " +
-						translate.messages["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+						translate.messages["BUILD_FINISH_TODAY_AT"] + " <span class=\"text-important\">" + dateEnd.toLocaleTimeString() + "</span>");
 				} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-					$('#fleet-build-message').html(" <span class=\"text-important\">" + planetData.unitBuildingCount + "</span> " + translate.messages["UNIT_CURR_BUILD_01"] + 
+					$('#fleet-build-message').html("<span class=\"text-important\">" + planetData.unitBuildingCount + "</span> " + translate.messages["UNIT_CURR_BUILD_01"] + 
 						" <span class=\"text-important\">" +	units.getUnitName(planetData.unitBuildingID) + "</span> " + 
 						translate.messages['UNIT_CURR_BUILD_02'] + 
 						" <span class=\"text-important\">" + units.getFleetName(planetData.unitBuildingFleetID) + "</span>. " +
-						translate.messages["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+						translate.messages["BUILD_FINISH_TOMORROW_AT"] + " <span class=\"text-important\">" + dateEnd.toLocaleTimeString() + "</span>");
 				} else {
-					$('#fleet-build-message').html(" <span class=\"text-important\">" + planetData.unitBuildingCount + "</span> " + translate.messages["UNIT_CURR_BUILD_01"] + 
+					$('#fleet-build-message').html("<span class=\"text-important\">" + planetData.unitBuildingCount + "</span> " + translate.messages["UNIT_CURR_BUILD_01"] + 
 						" <span class=\"text-important\">" +	units.getUnitName(planetData.unitBuildingID) + "</span> " + 
 						translate.messages['UNIT_CURR_BUILD_02'] + 
 						" <span class=\"text-important\">" + units.getFleetName(planetData.unitBuildingFleetID) + "</span>. " +
-						translate.messages["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
+						translate.messages["BUILD_FINISH_THE"] + " <span class=\"text-important\">" + dateEnd.toLocaleDateString() + "</span> " + translate.messages["BUILD_FINISH_AT"] + " <span class=\"text-important\">" + dateEnd.toLocaleTimeString() + "</span>");
 				}
 
 				if(dateNow.toLocaleDateString() != dateEnd.toLocaleDateString()) {
