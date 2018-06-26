@@ -351,14 +351,23 @@ class units {
 				let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 				if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-					$('#fleet-build-message').html(planetData.unitBuildingCount + " " + translate.messages["UNIT_CURR_BUILD_01"] + " " + units.getUnitName(planetData.unitBuildingID) + " " +
-					translate.messages['UNIT_CURR_BUILD_02'] + " " + units.getFleetName(planetData.unitBuildingFmeetID) + "." + translate.messages["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+					$('#fleet-build-message').html(planetData.unitBuildingCount + " " + translate.messages["UNIT_CURR_BUILD_01"] + 
+						" \"" +	units.getUnitName(planetData.unitBuildingID) + " \"" + 
+						translate.messages['UNIT_CURR_BUILD_02'] + 
+						" \"" + units.getFleetName(planetData.unitBuildingFleetID) + "\"." +
+						translate.messages["BUILD_FINISH_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
 				} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-					$('#fleet-build-message').html(planetData.unitBuildingCount + " " + translate.messages["UNIT_CURR_BUILD_01"] + " " + units.getUnitName(planetData.unitBuildingID) + " " +
-					translate.messages['UNIT_CURR_BUILD_02'] + " " + units.getFleetName(planetData.unitBuildingFmeetID) + "." + translate.messages["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+					$('#fleet-build-message').html(planetData.unitBuildingCount + " " + translate.messages["UNIT_CURR_BUILD_01"] + 
+						" \"" +	units.getUnitName(planetData.unitBuildingID) + " \"" + 
+						translate.messages['UNIT_CURR_BUILD_02'] + 
+						" \"" + units.getFleetName(planetData.unitBuildingFleetID) + "\"." +
+						translate.messages["BUILD_FINISH_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
 				} else {
-					$('#fleet-build-message').html(planetData.unitBuildingCount + " " + translate.messages["UNIT_CURR_BUILD_01"] + " " + units.getUnitName(planetData.unitBuildingID) + " " +
-					translate.messages['UNIT_CURR_BUILD_02'] + " " + units.getFleetName(planetData.unitBuildingFmeetID) + "." + translate.messages["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
+					$('#fleet-build-message').html(planetData.unitBuildingCount + " " + translate.messages["UNIT_CURR_BUILD_01"] + 
+						" \"" +	units.getUnitName(planetData.unitBuildingID) + " \"" + 
+						translate.messages['UNIT_CURR_BUILD_02'] + 
+						" \"" + units.getFleetName(planetData.unitBuildingFleetID) + "\"." +
+						translate.messages["BUILD_FINISH_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["BUILD_FINISH_AT"] + " " + dateEnd.toLocaleTimeString());
 				}
 
 				if(dateNow.toLocaleDateString() != dateEnd.toLocaleDateString()) {
