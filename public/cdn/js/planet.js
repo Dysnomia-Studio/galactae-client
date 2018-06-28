@@ -620,11 +620,11 @@ class planet {
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-				$('#building-message').html(translate.messages["BUILD_FINISH_TODAY_AT"] + " <span class=\"text-important\">" + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["BUILD_FINISH_TODAY_AT"] + " <em>" + dateEnd.toLocaleTimeString() + "</em>");
 			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-				$('#building-message').html(translate.messages["BUILD_FINISH_TOMORROW_AT"] + " <span class=\"text-important\">" + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages["BUILD_FINISH_TOMORROW_AT"] + " <em>" + dateEnd.toLocaleTimeString() + "</em>");
 			} else {
-				$('#building-message').html(translate.messages["BUILD_FINISH_THE"] + " <span class=\"text-important\">" + dateEnd.toLocaleDateString() + "</span> " + translate.messages["BUILD_FINISH_AT"] + " <span class=\"text-important\">" + dateEnd.toLocaleTimeString() + "</span>");
+				$('#building-message').html(translate.messages["BUILD_FINISH_THE"] + " <em>" + dateEnd.toLocaleDateString() + "</em> " + translate.messages["BUILD_FINISH_AT"] + " <em>" + dateEnd.toLocaleTimeString() + "</em>");
 			}
 
 			planet.buildPanelInterval = setTimeout(function() {

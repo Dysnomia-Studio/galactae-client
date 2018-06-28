@@ -16,7 +16,7 @@ body {
 a, body {
 	color: white;
 }
-.text-important {
+em {
 	color: #0EC6C6;
 }
 /* Dropdown */
@@ -2663,6 +2663,11 @@ a[class="research-search"] {
 		background: rgb(147,252,252);
 		background: rgba(147,252,252,0);
 	}
+}
+
+.building-list-building:hover {
+	background: rgb(147,252,252);
+	background: rgba(147,252,252,0.1);
 }
 
 .building-list-active {
