@@ -66,10 +66,10 @@ switch ($_GET['type']) {
 			)		
 		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery($dbname.'.sectorRanks', $query);
+		$cursor = $manager->executeQuery($dbname.'.sectorranks', $query);
 		$playerList = $cursor->toArray();
 
-		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', "query" => array()]);
+		$cmd = new MongoDB\Driver\Command(["count" => 'sectorranks', "query" => array()]);
 		$result = $manager->executeCommand($dbname, $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
@@ -87,10 +87,10 @@ switch ($_GET['type']) {
 			)		
 		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery($dbname.'.globalRanks', $query);
+		$cursor = $manager->executeQuery($dbname.'.globalranks', $query);
 		$playerList = $cursor->toArray();
 
-		$cmd = new MongoDB\Driver\Command(["count" => 'globalRanks', "query" => array()]);
+		$cmd = new MongoDB\Driver\Command(["count" => 'globalranks', "query" => array()]);
 		$result = $manager->executeCommand($dbname, $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
@@ -121,6 +121,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 		</tr>';
 
 	var_dump($playerList);
+	var_dump($pageCount);
 
 	for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
 		echo '
@@ -142,7 +143,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	echo '</table>';
 
 	if($pageCount>1) {
-		echo 'Page: ';
+		echo 'Pages: ';
 		$type = (!empty($type))?'type='.$type.'&':'';
 
 		for($pagination=1; $pagination<=$pageCount; $pagination++) {
