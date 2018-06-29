@@ -73,7 +73,7 @@ switch ($_GET['type']) {
 		$result = $manager->executeCommand($dbname, $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
-		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
+		$cache = DIR_CACHE.'ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
 		break;
 	case 'galaxy-players':
 	default:
@@ -94,7 +94,7 @@ switch ($_GET['type']) {
 		$result = $manager->executeCommand($dbname, $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
-		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
+		$cache = DIR_CACHE.'ranks/'.$type.'-'.$pageDemandee.'.html';
 		break;
 }
 
