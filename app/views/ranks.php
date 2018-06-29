@@ -70,7 +70,8 @@ switch ($_GET['type']) {
 		$playerList = $cursor->toArray();
 
 		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', "query" => array()]);
-		$pageCount =  $manager->executeCommand($dbname, $cmd);
+		$result = $manager->executeCommand($dbname, $cmd);
+		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
 		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
 		break;
@@ -90,7 +91,8 @@ switch ($_GET['type']) {
 		$playerList = $cursor->toArray();
 
 		$cmd = new MongoDB\Driver\Command(["count" => 'globalRanks', "query" => array()]);
-		$pageCount =  $manager->executeCommand($dbname, $cmd);
+		$result = $manager->executeCommand($dbname, $cmd);
+		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
 		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
 		break;
