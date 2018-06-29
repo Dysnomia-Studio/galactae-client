@@ -69,6 +69,9 @@ switch ($_GET['type']) {
 		$cursor = $manager->executeQuery($dbname.'.sectorRanks', $query);
 		$playerList = $cursor->toArray();
 
+		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', "query" => array()]);
+		$pageCount =  $manager->executeCommand($dbname, $cmd);
+
 		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
 		break;
 	case 'galaxy-players':
@@ -85,6 +88,9 @@ switch ($_GET['type']) {
 		$query = new MongoDB\Driver\Query($filter);
 		$cursor = $manager->executeQuery($dbname.'.globalRanks', $query);
 		$playerList = $cursor->toArray();
+
+		$cmd = new MongoDB\Driver\Command(["count" => 'globalRanks', "query" => array()]);
+		$pageCount =  $manager->executeCommand($dbname, $cmd);
 
 		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
 		break;
@@ -111,6 +117,8 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			<th>Planetes</th>
 			<th>Alliance</th>
 		</tr>';
+
+	var_dump($playerList);
 
 	for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
 		echo '
