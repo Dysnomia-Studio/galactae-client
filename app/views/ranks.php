@@ -33,6 +33,9 @@ $cachePattern = '';
 $pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
 if($pageDemandee < 0) { $pageDemandee = 0; }
 
+$playerList = array();
+$pageCount = 0;
+
 switch ($_GET['type']) {
 	case 'sector-players':
 		$type = 'sector-players';
