@@ -22,17 +22,6 @@ $noscript=true;
 // Verif du client sur mongo
 $manager = new MongoDB\Driver\Manager($dburl);
 
-function sortPlayers($a,$b) {
-	$val1 = $a['points'];
-	$val2 = $b['points'];
-
-	if($val1 == $val2) {
-		return 0;
-	}
-
-	return ($val1 > $val2) ? -1 : 1;
-}
-
 /**
  * Cache Vars
  */
@@ -40,13 +29,16 @@ $_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
 $plyPerPage = 20;
 $cache = "";
 $cachePattern = "";
+/* Which page to display ? */
+$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
+if($pageDemandee < 0) { $pageDemandee = 0; }
 
 switch ($_GET['type']) {
 	case 'sector-players':
 		$type = "sector-players";
 		$sector = "5-5";
 		if(isset($_GET['sector'])) {
-			$coordonnees = explode("-", $_GET['type']);
+			$coordonnees = explode("-", $_GET['sector']);
 
 			if(count($coordonnees) == 2) {
 				if((int) $coordonnees[0] > 9) {
@@ -67,65 +59,34 @@ switch ($_GET['type']) {
 		}
 
 		// Get data from db
-		$filter = array();
+		$filter = array(
+			"rank" => array(
+				"$gt" => ($pageDemandee * $plyPerPage),
+				"$lte" => (($pageDemandee + 1) * $plyPerPage)
+			)		
+		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery($dbname.'.users', $query);
-		$playerTmpList = $cursor->toArray();
-		$playerList = array();
-
-		foreach ($playerTmpList as $player) {
-			$player = json_decode(json_encode($player), true);
-			if(!isset($player["sectorPointsAddresses"])) { continue; }
-			for($i=0; $i<count($player["sectorPointsAddresses"]); $i++) {
-				if($player["sectorPointsAddresses"][$i] == $sector) {
-					array_push($playerList, [
-						"name" => $player["name"],
-						"ally" => $player["ally"],
-						"points" => $player["sectorPointsValue"][$i],
-						"pcount" => $player["sectorPointsPcount"][$i]
-					]);
-
-					break;
-				}
-			}
-		}
-
-		$plyNum = count($playerList);
-
-		$pageCount = ceil($plyNum / $plyPerPage);
-		/* Which page to display ? */
-		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
-		if($pageDemandee < 0) { $pageDemandee = 0; } 
-		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
+		$cursor = $manager->executeQuery($dbname.'.sectorRanks', $query);
+		$playerList = $cursor->toArray();
 
 		$cache = 'cache/ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
-		$cachePattern = 'cache/ranks/'.$type.'-'.$sector.'-';
 		break;
 	case 'galaxy-players':
 	default:
 		$type = "galaxy-players";
 
 		// Get data from db
-		$filter = array();
+		$filter = array(
+			"rank" => array(
+				"$gt" => ($pageDemandee * $plyPerPage),
+				"$lte" => (($pageDemandee + 1) * $plyPerPage)
+			)		
+		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery($dbname.'.users', $query);
+		$cursor = $manager->executeQuery($dbname.'.globalRanks', $query);
 		$playerList = $cursor->toArray();
 
-		$plyNum = count($playerList);
-
-		for ($i=0; $i < $plyNum; $i++) { 
-			$playerList[$i] = json_decode(json_encode($playerList[$i]), true);
-			$playerList[$i]["pcount"] = count($playerList[$i]["planetlist"]);
-		}
-
-		$pageCount = ceil($plyNum / $plyPerPage);
-		/* Which page to display ? */
-		$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
-		if($pageDemandee < 0) { $pageDemandee = 0; } 
-		elseif($pageDemandee > ($pageCount - 1)) { $pageDemandee = ($pageCount -1); }
-
 		$cache = 'cache/ranks/'.$type.'-'.$pageDemandee.'.html';
-		$cachePattern = 'cache/ranks/'.$type.'-';
 		break;
 }
 
@@ -138,18 +99,8 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	readfile($cache);
 } else {
 	/**
-	 * Trier par points
-	 */
-	usort($playerList,"sortPlayers");
-
-
-	/**
 	 * Generate cache
 	 */
-	for($pageNum=0; $pageNum<$pageCount; $pageNum++) {
-		$base = $pageNum * $plyPerPage;
-		$cache = $cachePattern.$pageNum.'.html';
-
 		ob_start();
 
 		echo "<table style=\"width: 100%; text-align: center;\">
@@ -161,7 +112,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 				<th>Alliance</th>
 			</tr>";
 
-		for($currPlayer=$base; $currPlayer<($base + $plyPerPage) && $currPlayer<$plyNum; $currPlayer++) {
+		for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
 			echo "
 			<tr>
 				<td>".($currPlayer + 1)."</td>
@@ -182,12 +133,14 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 		if($pageCount>1) {
 			echo "Page: ";
+			$type = (!empty($type))?"type=".$type."&":"";
+
 			for($pagination=1; $pagination<=$pageCount; $pagination++) {
 				if($pagination != 1) { echo " "; }
 				if($pagination == ($pageNum + 1)) {
-					echo '<b><a href="ranks.php?page='.$pagination.'">'.$pagination.'</a></b>';
+					echo '<b><a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a></b>';
 				} else {
-					echo '<a href="ranks.php?page='.$pagination.'">'.$pagination.'</a> ';
+					echo '<a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a> ';
 				}
 			}
 		}
@@ -197,9 +150,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
         
         file_put_contents($cache, $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($cache)
 
-        if($pageNum == $pageDemandee) {
-        	echo $pageContent ; // on affiche notre page :D 
-        }
+        echo $pageContent ; // on affiche notre page :D 
 	}
 }
 ?>

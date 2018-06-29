@@ -17,6 +17,7 @@ a, body {
 	color: white;
 }
 em {
+	font-style: normal;
 	color: #0EC6C6;
 }
 /* Dropdown */
