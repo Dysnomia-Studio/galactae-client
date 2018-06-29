@@ -25,20 +25,20 @@ $manager = new MongoDB\Driver\Manager($dburl);
 /**
  * Cache Vars
  */
-$_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:"";
+$_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:'';
 $plyPerPage = 20;
-$cache = "";
-$cachePattern = "";
+$cache = '';
+$cachePattern = '';
 /* Which page to display ? */
 $pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
 if($pageDemandee < 0) { $pageDemandee = 0; }
 
 switch ($_GET['type']) {
 	case 'sector-players':
-		$type = "sector-players";
-		$sector = "5-5";
+		$type = 'sector-players';
+		$sector = '5-5';
 		if(isset($_GET['sector'])) {
-			$coordonnees = explode("-", $_GET['sector']);
+			$coordonnees = explode('-', $_GET['sector']);
 
 			if(count($coordonnees) == 2) {
 				if((int) $coordonnees[0] > 9) {
@@ -60,9 +60,9 @@ switch ($_GET['type']) {
 
 		// Get data from db
 		$filter = array(
-			"rank" => array(
-				"$gt" => ($pageDemandee * $plyPerPage),
-				"$lte" => (($pageDemandee + 1) * $plyPerPage)
+			'rank' => array(
+				'$gt' => ($pageDemandee * $plyPerPage),
+				'$lte' => (($pageDemandee + 1) * $plyPerPage)
 			)		
 		);
 		$query = new MongoDB\Driver\Query($filter);
@@ -73,13 +73,13 @@ switch ($_GET['type']) {
 		break;
 	case 'galaxy-players':
 	default:
-		$type = "galaxy-players";
+		$type = 'galaxy-players';
 
 		// Get data from db
 		$filter = array(
-			"rank" => array(
-				"$gt" => ($pageDemandee * $plyPerPage),
-				"$lte" => (($pageDemandee + 1) * $plyPerPage)
+			'rank' => array(
+				'$gt' => ($pageDemandee * $plyPerPage),
+				'$lte' => (($pageDemandee + 1) * $plyPerPage)
 			)		
 		);
 		$query = new MongoDB\Driver\Query($filter);
@@ -103,40 +103,40 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	 */
 	ob_start();
 
-	echo "<table style=\"width: 100%; text-align: center;\">
+	echo '<table style="width: 100%; text-align: center;">
 		<tr>
 			<th>Rang</th>
 			<th>Noms</th>
 			<th>Points</th>
 			<th>Planetes</th>
 			<th>Alliance</th>
-		</tr>";
+		</tr>';
 
 	for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
-		echo "
+		echo '
 		<tr>
-			<td>".($currPlayer + 1)."</td>
-			<td>".$playerList[$currPlayer]["name"]."</td>
-			<td>".$playerList[$currPlayer]["points"]."</td>
-			<td>".$playerList[$currPlayer]["pcount"]."</td>";
+			<td>'.($currPlayer + 1).'</td>
+			<td>'.$playerList[$currPlayer]['name'].'</td>
+			<td>'.$playerList[$currPlayer]['points'].'</td>
+			<td>'.$playerList[$currPlayer]['pcount'].'</td>';
 
-			if($playerList[$currPlayer]["ally"]=="") {
-				echo "<td>-</td>";
+			if($playerList[$currPlayer]['ally']=='') {
+				echo '<td>-</td>';
 			} else {
-			echo "<td>".$playerList[$currPlayer]["ally"]."</td>";
+			echo '<td>'.$playerList[$currPlayer]['ally'].'</td>';
 			}
 
-		echo "</tr>";
+		echo '</tr>';
 	}
 
-	echo "</table>";
+	echo '</table>';
 
 	if($pageCount>1) {
-		echo "Page: ";
-		$type = (!empty($type))?"type=".$type."&":"";
+		echo 'Page: ';
+		$type = (!empty($type))?'type='.$type.'&':'';
 
 		for($pagination=1; $pagination<=$pageCount; $pagination++) {
-			if($pagination != 1) { echo " "; }
+			if($pagination != 1) { echo ' '; }
 			if($pagination == ($pageNum + 1)) {
 				echo '<b><a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a></b>';
 			} else {
