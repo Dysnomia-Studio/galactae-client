@@ -101,56 +101,55 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	/**
 	 * Generate cache
 	 */
-		ob_start();
+	ob_start();
 
-		echo "<table style=\"width: 100%; text-align: center;\">
-			<tr>
-				<th>Rang</th>
-				<th>Noms</th>
-				<th>Points</th>
-				<th>Planetes</th>
-				<th>Alliance</th>
-			</tr>";
+	echo "<table style=\"width: 100%; text-align: center;\">
+		<tr>
+			<th>Rang</th>
+			<th>Noms</th>
+			<th>Points</th>
+			<th>Planetes</th>
+			<th>Alliance</th>
+		</tr>";
 
-		for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
-			echo "
-			<tr>
-				<td>".($currPlayer + 1)."</td>
-				<td>".$playerList[$currPlayer]["name"]."</td>
-				<td>".$playerList[$currPlayer]["points"]."</td>
-				<td>".$playerList[$currPlayer]["pcount"]."</td>";
+	for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
+		echo "
+		<tr>
+			<td>".($currPlayer + 1)."</td>
+			<td>".$playerList[$currPlayer]["name"]."</td>
+			<td>".$playerList[$currPlayer]["points"]."</td>
+			<td>".$playerList[$currPlayer]["pcount"]."</td>";
 
-				if($playerList[$currPlayer]["ally"]=="") {
-					echo "<td>-</td>";
-				} else {
-				echo "<td>".$playerList[$currPlayer]["ally"]."</td>";
-				}
+			if($playerList[$currPlayer]["ally"]=="") {
+				echo "<td>-</td>";
+			} else {
+			echo "<td>".$playerList[$currPlayer]["ally"]."</td>";
+			}
 
-			echo "</tr>";
-		}
+		echo "</tr>";
+	}
 
-		echo "</table>";
+	echo "</table>";
 
-		if($pageCount>1) {
-			echo "Page: ";
-			$type = (!empty($type))?"type=".$type."&":"";
+	if($pageCount>1) {
+		echo "Page: ";
+		$type = (!empty($type))?"type=".$type."&":"";
 
-			for($pagination=1; $pagination<=$pageCount; $pagination++) {
-				if($pagination != 1) { echo " "; }
-				if($pagination == ($pageNum + 1)) {
-					echo '<b><a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a></b>';
-				} else {
-					echo '<a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a> ';
-				}
+		for($pagination=1; $pagination<=$pageCount; $pagination++) {
+			if($pagination != 1) { echo " "; }
+			if($pagination == ($pageNum + 1)) {
+				echo '<b><a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a></b>';
+			} else {
+				echo '<a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a> ';
 			}
 		}
-
-		$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne
-        ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
-        
-        file_put_contents($cache, $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($cache)
-
-        echo $pageContent ; // on affiche notre page :D 
 	}
+
+	$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne
+    ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
+    
+    file_put_contents($cache, $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($cache)
+
+    echo $pageContent ; // on affiche notre page :D 
 }
 ?>
