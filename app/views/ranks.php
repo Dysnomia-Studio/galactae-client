@@ -158,7 +158,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			echo '<td>'.$player['points'].'</td>
 			<td>'.$player['planets'].'</td>';
 
-			if($player['ally']=='') {
+			if(!isset($player['ally']) || $player['ally']=='') {
 				echo '<td>-</td>';
 			} else {
 			echo '<td>'.$player['ally'].'</td>';
