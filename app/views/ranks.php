@@ -186,7 +186,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	window.addEventListener('load', function() {
 		let elts = document.getElementsByClassName("rank-name");
 		for(let i=0; i<elts.length; i++) {
-			if(elts[i].innerHTML == "<?= $userData['name'] ?>") {
+			if(elts[i].innerHTML == "<?= $userData['user_name'] ?>") {
 				elts[i].innerHTML = "<em>" + elts[i].innerHTML + "</em>";
 				break;
 			}
