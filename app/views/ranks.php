@@ -70,6 +70,15 @@ switch ($_GET['type']) {
 		$cursor = $manager->executeQuery($dbname.'.sectorranks', $query);
 		$playerList = $cursor->toArray();
 
+		var_dump($playerList);
+
+		$query = new MongoDB\Driver\Query(array());
+		$cursor = $manager->executeQuery($dbname.'.sectorranks', $query);
+		$playerList = $cursor->toArray();
+
+		var_dump($playerList);
+
+
 		$cmd = new MongoDB\Driver\Command(["count" => 'sectorranks', "query" => array()]);
 		$result = $manager->executeCommand($dbname, $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
