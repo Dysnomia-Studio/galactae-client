@@ -106,20 +106,12 @@ switch ($_GET['type']) {
 
 		var_dump($playerList);
 
-
-		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', 
-			"query" => array()]);
-		$result = $manager->executeCommand('galactae', $cmd);
-		var_dump($result);
-		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
-
 		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', 
 			"query" => array(
 				'server_name' => $dbname,
 				'sector' => $sector
 			)]);
 		$result = $manager->executeCommand('galactae', $cmd);
-		var_dump($result);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
 		$cache = DIR_CACHE.'ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
