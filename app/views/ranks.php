@@ -72,41 +72,10 @@ switch ($_GET['type']) {
 			'sector' => $sector
 		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
-		$playerList = $cursor->toArray();
-
-		var_dump($playerList);
-
-		$filter = array(
-			'server_name' => $dbname,
-			'sector' => $sector
-		);
-		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
-		$playerList = $cursor->toArray();
-
-		var_dump($playerList);
-
-		$filter = array(
-			'rank' => array(
-				'$gt' => ($pageDemandee * $plyPerPage),
-				'$lte' => (($pageDemandee + 1) * $plyPerPage)
-			),
-		);
-		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
-		$playerList = $cursor->toArray();
-
-		var_dump($playerList);
-
-		$filter = array();
-		$query = new MongoDB\Driver\Query($filter);
 		$cursor = $manager->executeQuery('galactae.sectorranks', $query);
 		$playerList = $cursor->toArray();
 
-		var_dump($playerList);
-
-		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', 
+		$cmd = new MongoDB\Driver\Command(["count" => 'sectorranks', 
 			"query" => array(
 				'server_name' => $dbname,
 				'sector' => $sector
@@ -129,10 +98,10 @@ switch ($_GET['type']) {
 			'server_name' => $dbname		
 		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery('galactae.globalRanks', $query);
+		$cursor = $manager->executeQuery('galactae.globalranks', $query);
 		$playerList = $cursor->toArray();
 
-		$cmd = new MongoDB\Driver\Command(["count" => 'globalRanks', "query" => array('server_name' => $dbname)]);
+		$cmd = new MongoDB\Driver\Command(["count" => 'globalranks', "query" => array('server_name' => $dbname)]);
 		$result = $manager->executeCommand('galactae', $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
