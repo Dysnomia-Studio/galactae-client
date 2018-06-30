@@ -64,23 +64,21 @@ switch ($_GET['type']) {
 			'rank' => array(
 				'$gt' => ($pageDemandee * $plyPerPage),
 				'$lte' => (($pageDemandee + 1) * $plyPerPage)
-			)		
+			),
+			'server_name' => $dbname,
+			'sector' => $sector
 		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery($dbname.'.sectorranks', $query);
+		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
 		$playerList = $cursor->toArray();
 
-		var_dump($playerList);
 
-		$query = new MongoDB\Driver\Query(array());
-		$cursor = $manager->executeQuery($dbname.'.sectorranks', $query);
-		$playerList = $cursor->toArray();
-
-		var_dump($playerList);
-
-
-		$cmd = new MongoDB\Driver\Command(["count" => 'sectorranks', "query" => array()]);
-		$result = $manager->executeCommand($dbname, $cmd);
+		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', 
+			"query" => array(
+				'server_name' => $dbname,
+				'sector' => $sector
+			)]);
+		$result = $manager->executeCommand('galactae', $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
 		$cache = DIR_CACHE.'ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
@@ -94,14 +92,15 @@ switch ($_GET['type']) {
 			'rank' => array(
 				'$gt' => ($pageDemandee * $plyPerPage),
 				'$lte' => (($pageDemandee + 1) * $plyPerPage)
-			)		
+			),
+			'server_name' => $dbname		
 		);
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery($dbname.'.globalranks', $query);
+		$cursor = $manager->executeQuery('galactae.globalRanks', $query);
 		$playerList = $cursor->toArray();
 
-		$cmd = new MongoDB\Driver\Command(["count" => 'globalranks', "query" => array()]);
-		$result = $manager->executeCommand($dbname, $cmd);
+		$cmd = new MongoDB\Driver\Command(["count" => 'globalRanks', "query" => array('server_name' => $dbname)]);
+		$result = $manager->executeCommand('galactae', $cmd);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
 		$cache = DIR_CACHE.'ranks/'.$type.'-'.$pageDemandee.'.html';
