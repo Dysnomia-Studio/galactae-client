@@ -13,7 +13,7 @@ if(!is_int((int) $news_needed)) {
 
 $news_needed = (int) $news_needed;
 
-$cache = 'cache/news-'.$news_needed.'.html';
+$cache = DIR_CACHE.'news-'.$news_needed.'.html';
 
 /* Say to db server, we seen a newer news */
 if($userData['lastViewedNews'] < $news_needed) {
