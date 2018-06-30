@@ -101,7 +101,7 @@ switch ($_GET['type']) {
 
 		$filter = array();
 		$query = new MongoDB\Driver\Query($filter);
-		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
+		$cursor = $manager->executeQuery('galactae.sectorranks', $query);
 		$playerList = $cursor->toArray();
 
 		var_dump($playerList);
