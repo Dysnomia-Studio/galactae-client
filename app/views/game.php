@@ -364,7 +364,7 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 }
 ?>
 	<span id="news-close">X</span>
-	<iframe id="news-frame" src="news.php?n=<?php echo $max; ?>"></iframe>
+	<iframe id="news-frame" src="news.php?n=<?php echo $lastNewsNumber; ?>"></iframe>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
