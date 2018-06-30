@@ -123,8 +123,8 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	ob_start();
 
 	function sortPlayers($a,$b) {
-		$val1 = $a['rank'];
-		$val2 = $b['rank'];
+		$val1 = $a->rank;
+		$val2 = $b->rank;
 
 		if($val1 == $val2) {
 			return 0;
