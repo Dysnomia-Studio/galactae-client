@@ -122,6 +122,18 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	 */
 	ob_start();
 
+	function sortPlayers($a,$b) {
+		$val1 = $a['rank'];
+		$val2 = $b['rank'];
+
+		if($val1 == $val2) {
+			return 0;
+		}
+
+		return ($val1 < $val2) ? -1 : 1;
+	}
+	usort($playerList,"sortPlayers");
+
 	echo '<table style="width: 100%; text-align: center;">
 		<tr>
 			<th>Rang</th>
