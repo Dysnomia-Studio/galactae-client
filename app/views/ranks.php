@@ -35,7 +35,7 @@ $pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
 if($pageDemandee < 0) { $pageDemandee = 0; }
 
 $playerList = array();
-$pageCount = 0;
+$plyCount = 0;
 
 switch ($_GET['type']) {
 	case 'sector-players':
@@ -81,7 +81,7 @@ switch ($_GET['type']) {
 				'sector' => $sector
 			)]);
 		$result = $manager->executeCommand('galactae', $cmd);
-		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
+		$plyCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
 		$cache = DIR_CACHE.'ranks/'.$type.'-'.$sector.'-'.$pageDemandee.'.html';
 		break;
@@ -103,7 +103,7 @@ switch ($_GET['type']) {
 
 		$cmd = new MongoDB\Driver\Command(["count" => 'globalranks', "query" => array('server_name' => $dbname)]);
 		$result = $manager->executeCommand('galactae', $cmd);
-		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
+		$plyCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
 		$cache = DIR_CACHE.'ranks/'.$type.'-'.$pageDemandee.'.html';
 		break;
@@ -132,26 +132,27 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 		</tr>';
 
 	var_dump($playerList);
-	var_dump($pageCount);
+	var_dump($plyCount);
 
 	for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
+		$player = json_decode(json_encode($playerList[$currPlayer]), true);
 		echo '
 		<tr>
 			<td>'.($currPlayer + 1).'</td>';
 
-			if(strtolower($playerList[$currPlayer]['name']) == strtolower($userData['user_name'])) {
-				echo '<td><em>'.$playerList[$currPlayer]['name'].'</em></td>';
+			if(strtolower($player['name']) == strtolower($userData['user_name'])) {
+				echo '<td><em>'.$player['name'].'</em></td>';
 			} else {
-				echo '<td>'.$playerList[$currPlayer]['name'].'</td>';
+				echo '<td>'.$player['name'].'</td>';
 			}
 
-			echo '<td>'.$playerList[$currPlayer]['points'].'</td>
-			<td>'.$playerList[$currPlayer]['pcount'].'</td>';
+			echo '<td>'.$player['points'].'</td>
+			<td>'.$player['pcount'].'</td>';
 
-			if($playerList[$currPlayer]['ally']=='') {
+			if($player['ally']=='') {
 				echo '<td>-</td>';
 			} else {
-			echo '<td>'.$playerList[$currPlayer]['ally'].'</td>';
+			echo '<td>'.$player['ally'].'</td>';
 			}
 
 		echo '</tr>';
@@ -159,11 +160,11 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 	echo '</table>';
 
-	if($pageCount>1) {
+	if($plyCount>$plyPerPage) {
 		echo 'Pages: ';
 		$type = (!empty($type))?'type='.$type.'&':'';
 
-		for($pagination=1; $pagination<=$pageCount; $pagination++) {
+		for($pagination=1; $pagination<=ceil($plyCount/$plyPerPage); $pagination++) {
 			if($pagination != 1) { echo ' '; }
 			if($pagination == ($pageNum + 1)) {
 				echo '<b><a href="ranks.php?'.$type.'page='.$pagination.'">'.$pagination.'</a></b>';
