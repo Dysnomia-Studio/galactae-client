@@ -127,9 +127,15 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 	for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
 		echo '
 		<tr>
-			<td>'.($currPlayer + 1).'</td>
-			<td>'.$playerList[$currPlayer]['name'].'</td>
-			<td>'.$playerList[$currPlayer]['points'].'</td>
+			<td>'.($currPlayer + 1).'</td>';
+
+			if(strtolower($playerList[$currPlayer]['name']) == strtolower($userData['user_name'])) {
+				echo '<td><em>'.$playerList[$currPlayer]['name'].'</em></td>';
+			} else {
+				echo '<td>'.$playerList[$currPlayer]['name'].'</td>';
+			}
+
+			echo '<td>'.$playerList[$currPlayer]['points'].'</td>
 			<td>'.$playerList[$currPlayer]['pcount'].'</td>';
 
 			if($playerList[$currPlayer]['ally']=='') {
