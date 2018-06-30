@@ -15,10 +15,13 @@ $noscript=true;
 		text-decoration: underline;
 	}
 </style>
-
 <?php
+/**
+ * @TODO: Do MVC !
+ */
+
 // Verif du client sur mongo
-$manager = new MongoDB\Driver\Manager($dburl);
+$manager = new MongoDB\Driver\Manager($config['mongoURL']);
 
 /**
  * Cache Vars
