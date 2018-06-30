@@ -126,10 +126,6 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 		$val1 = $a->rank;
 		$val2 = $b->rank;
 
-		if($val1 == $val2) {
-			return 0;
-		}
-
 		return ($val1 < $val2) ? -1 : 1;
 	}
 	usort($playerList,"sortPlayers");
@@ -147,15 +143,9 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 		$player = json_decode(json_encode($playerList[$currPlayer]), true);
 		echo '
 		<tr>
-			<td>'.($currPlayer + 1).'</td>';
-
-			if(strtolower($player['name']) == strtolower($userData['user_name'])) {
-				echo '<td><em>'.$player['name'].'</em></td>';
-			} else {
-				echo '<td>'.$player['name'].'</td>';
-			}
-
-			echo '<td>'.$player['points'].'</td>
+			<td>'.($currPlayer + 1).'</td>
+			<td class="rank-name">'.$player['name'].'</td>
+			<td>'.$player['points'].'</td>
 			<td>'.$player['planets'].'</td>';
 
 			if(!isset($player['ally']) || $player['ally']=='') {
@@ -191,3 +181,14 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
     echo $pageContent ; // on affiche notre page :D 
 }
 ?>
+
+<script>
+	window.addEventListener('load', function() {
+		for(let i in document.getElementsByClassName("rank-name")) {
+			if(i.innerHTML == "<?= $userData['name'] ?>") {
+				i.innerHTML = "<em>" + i.innerHTML + "</em>";
+				break;
+			}
+		}
+	});
+</script>
