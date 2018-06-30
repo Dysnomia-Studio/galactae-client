@@ -106,7 +106,10 @@ switch ($_GET['type']) {
 
 		var_dump($playerList);
 
-		$result = $manager->executeCommand('galactae', array());
+
+		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', 
+			"query" => array()]);
+		$result = $manager->executeCommand('galactae', $cmd);
 		var_dump($result);
 		$pageCount = json_decode(json_encode($result->toArray()[0]), true)['n'];
 
