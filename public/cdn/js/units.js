@@ -3,7 +3,9 @@ let preventUnitBuildPanelClose = false;
 
 class units {
 	static sync() {
-		socket.emit('units-ask-data', userData);
+		let data = userData;
+		data.planet = planetData.address;
+		socket.emit('units-ask-data', data);
 	}
 
 	static refresh(data) {
@@ -508,6 +510,22 @@ class units {
 	}
 
 	static regenerateBuildFleetList() {
+		units.fleetTimers = units.fleetTimers || [];
+		for(let i=0; i<units.fleetTimers.length; i++) {
+			clearTimeout(units.fleetTimers[i]);
+		}
+		units.fleetTimers = [];
+		let u = 0;
+		for(let i=0; i<units.fleetList.length; i++) {
+			if(units.fleetList[i].endMoveTime > 0) {
+				units.fleetTimers[u] = setTimeout(function() {
+					units.sync();
+				}, units.fleetList[i].endMoveTime-Date.now()+planet.deltaNow+5000); // Wait 5 sec
+
+				u++;
+			}
+		}
+
 		// Fleet list
 		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
 		for(let i=0; i<units.fleetList.length; i++) {
