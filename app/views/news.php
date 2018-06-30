@@ -13,7 +13,7 @@ if(!is_int((int) $news_needed)) {
 
 $news_needed = (int) $news_needed;
 
-$cache = 'cache/news-'.$news_needed.'.html';
+$cache = DIR_CACHE.'news-'.$news_needed.'.html';
 
 /* Say to db server, we seen a newer news */
 if($userData['lastViewedNews'] < $news_needed) {
@@ -27,8 +27,6 @@ if(file_exists($cache)) {
 	ob_start();
 	?>
 	<style type="text/css">
-		@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
-
 		body {
 			font-family: 'Titillium Web', sans-serif;
 			cursor: url(<?php echo $cdnURL; ?>img/mouse_cursor.png), auto;

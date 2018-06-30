@@ -64,7 +64,7 @@
 				</div>
 
 				<span id="building-message"></span>
-				<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
+				<input type="button" id="building-upgrade" class="ui-large-button" value="UPGRADE">
 			</div>
 		</div>
 
@@ -364,7 +364,7 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 }
 ?>
 	<span id="news-close">X</span>
-	<iframe id="news-frame" src="news.php?n=<?php echo $max; ?>"></iframe>
+	<iframe id="news-frame" src="news.php?n=<?php echo $lastNewsNumber; ?>"></iframe>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
