@@ -2,8 +2,6 @@
 $noscript=true;
 ?>
 <style type="text/css">
-	@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
-
 	body {
 		font-family: 'Titillium Web', sans-serif;
 		cursor: url(<?php echo $cdnURL; ?>img/mouse_cursor.png), auto;
