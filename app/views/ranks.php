@@ -131,9 +131,6 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			<th>Alliance</th>
 		</tr>';
 
-	var_dump($playerList);
-	var_dump($plyCount);
-
 	for($currPlayer=0; $currPlayer<count($playerList); $currPlayer++) {
 		$player = json_decode(json_encode($playerList[$currPlayer]), true);
 		echo '
@@ -147,7 +144,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 			}
 
 			echo '<td>'.$player['points'].'</td>
-			<td>'.$player['pcount'].'</td>';
+			<td>'.$player['planets'].'</td>';
 
 			if($player['ally']=='') {
 				echo '<td>-</td>';
