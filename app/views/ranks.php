@@ -180,7 +180,7 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
     file_put_contents($cache, $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($cache)
 }
 
-str_replace($userData['user_name'], '<em>'.$userData['user_name'].'</em>', $pageContent);
+$pageContent = str_replace($userData['user_name'], '<em>'.$userData['user_name'].'</em>', $pageContent);
 
 echo $pageContent; // on affiche notre page :D 
 ?>
