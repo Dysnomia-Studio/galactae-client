@@ -64,7 +64,7 @@
 				</div>
 
 				<span id="building-message"></span>
-				<input type="button" id="building-upgrade" class="ui-large-button" value="<?php echo UPGRADE; ?>">
+				<input type="button" id="building-upgrade" class="ui-large-button" value="UPGRADE">
 			</div>
 		</div>
 
