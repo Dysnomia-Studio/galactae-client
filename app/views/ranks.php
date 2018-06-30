@@ -75,6 +75,36 @@ switch ($_GET['type']) {
 		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
 		$playerList = $cursor->toArray();
 
+		var_dump($playerList);
+
+		$filter = array(
+			'server_name' => $dbname,
+			'sector' => $sector
+		);
+		$query = new MongoDB\Driver\Query($filter);
+		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
+		$playerList = $cursor->toArray();
+
+		var_dump($playerList);
+
+		$filter = array(
+			'rank' => array(
+				'$gt' => ($pageDemandee * $plyPerPage),
+				'$lte' => (($pageDemandee + 1) * $plyPerPage)
+			),
+		);
+		$query = new MongoDB\Driver\Query($filter);
+		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
+		$playerList = $cursor->toArray();
+
+		var_dump($playerList);
+
+		$filter = array();
+		$query = new MongoDB\Driver\Query($filter);
+		$cursor = $manager->executeQuery('galactae.sectorRanks', $query);
+		$playerList = $cursor->toArray();
+
+		var_dump($playerList);
 
 		$cmd = new MongoDB\Driver\Command(["count" => 'sectorRanks', 
 			"query" => array(
