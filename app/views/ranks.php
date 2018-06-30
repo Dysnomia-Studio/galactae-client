@@ -110,12 +110,13 @@ switch ($_GET['type']) {
 }
 
 $expire = time() - 600; // 10 min
+$pageContent = "";
 
 /**
  * Cache Code
  */
 if(file_exists($cache) && filemtime($cache) > $expire) {
-	readfile($cache);
+	$pageContent = file_get_contents($cache);
 } else {
 	/**
 	 * Generate cache
@@ -177,19 +178,9 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
     ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement
     
     file_put_contents($cache, $pageContent); // on écrit la chaîne précédemment récupérée ($pageContent) dans un fichier ($cache)
-
-    echo $pageContent ; // on affiche notre page :D 
 }
-?>
 
-<script>
-	window.addEventListener('load', function() {
-		let elts = document.getElementsByClassName("rank-name");
-		for(let i=0; i<elts.length; i++) {
-			if(elts[i].innerHTML == "<?= $userData['user_name'] ?>") {
-				elts[i].innerHTML = "<em>" + elts[i].innerHTML + "</em>";
-				break;
-			}
-		}
-	});
-</script>
+str_replace($userData['user_name'], '<em>'.$userData['user_name'].'</em>', $pageContent);
+
+echo $pageContent; // on affiche notre page :D 
+?>
