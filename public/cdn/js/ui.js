@@ -133,20 +133,20 @@ class ui {
 			//Block Inspect Element when 
 			//right click
 			$(document).on("contextmenu",function(){
-				if(document.location.href.substr(11,3) !== "dev") {
+				if(document.location.host.substr(3,3) !== "dev" && document.location.host !== "localhost") {
 					return false;
 				}
 			});
 			$(document).keydown(function(e){
 			//F12 => Firefox, Chrome, Edge
 				if(e.which === KEYBOARD.F12){
-					if(document.location.href.substr(11,3) !== "dev") {
+					if(document.location.host.substr(3,3) !== "dev" && document.location.host !== "localhost") {
 						return false;
 					}
 				}
 				//CTRL + SHIFT + C => Opera
 				if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
-					if(document.location.href.substr(11,3) !== "dev") {
+					if(document.location.host.substr(3,3) !== "dev" && document.location.host !== "localhost") {
 						return false;
 					}
 				}
