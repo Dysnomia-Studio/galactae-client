@@ -77,7 +77,7 @@ class planet {
 	 */
 	static refresh(data) {
 		// Keep planet id in a cookie
-		setCookie('galactae-account-pid', data.data._id, 1);
+		setCookie('galactae-account-pid', data.data.address, 1);
 
 		planet.deltaNow = data.sNow - Date.now();
 
@@ -99,7 +99,7 @@ class planet {
 		// Chargement des unites (utiles pour le cooldown)
 		units.drawMain();
 
-		userData.pid = planetData._id;
+		userData.pid = planetData.address;
 
 		// Edit Data
 		planet.BuildingDrawUpdate();
