@@ -59,7 +59,7 @@
 					<h4 id="building-bonus-title"></h4>
 					<span id="building-bonus">
 						<span id="building-bonus-icon"></span>
-						<span id="building-bonus-val">XXXt (+ XXt <?php echo AT_NEXT_LVL; ?>)</span>
+						<span id="building-bonus-val">XXXt (+ XXt)</span>
 					</span>
 				</div>
 
