@@ -284,6 +284,8 @@ class planet {
 		if(research.isSearched("cp_molecular_compression")) {
 			mineralStorageBase *= researchBonus.cp_molecular_compression;
 			metalsStorageBase *= researchBonus.cp_molecular_compression;
+			mineralStorageBase1 *= researchBonus.cp_molecular_compression;
+			metalsStorageBase1 *= researchBonus.cp_molecular_compression;
 			storageHelium *= researchBonus.cp_molecular_compression;
 			storageHelium1 *= researchBonus.cp_molecular_compression;
 		}

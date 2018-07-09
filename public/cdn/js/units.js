@@ -1130,6 +1130,8 @@ class units {
 	}
 
 	static openMovePanel(moveType) {
-		
+
+		// Display panel
+		$('#map-move-panel').css('display','block');
 	}
 }

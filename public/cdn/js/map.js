@@ -598,6 +598,9 @@ class map {
 
 			$('#map-planet-menu').css('display','none');
 		});
+		$('#map-move-panel-close').click(function() {
+			$('#map-move-panel').css('display','none');
+		});
 
 		// Back button
 		$('#map-back').css('display','block');
