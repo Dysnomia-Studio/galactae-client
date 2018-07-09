@@ -54,7 +54,7 @@
 					<span class="building-cost-item" id="building-cost-population"><img src="<?= $cdnURL ?>img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
 					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
-				<br/>
+				<br id="building-bonus-br" />
 				<div id="buildings-bonus">
 					<h4 id="building-bonus-title"></h4>
 					<span id="building-bonus">

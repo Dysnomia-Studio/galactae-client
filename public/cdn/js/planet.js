@@ -32,8 +32,12 @@ let currentBuilding;
 
 let ratio;
 let ratios;
+
 let metalsStorageBase; // Metaux
 let mineralStorageBase; // Minerais
+let metalsStorageBase1; // Metaux lvl + 1
+let mineralStorageBase1; // Minerais lvl + 1
+
 let storageHelium; // Helium 3
 let storageHelium1; // Helium 3 lvl + 1
  
@@ -265,6 +269,9 @@ class planet {
 
 		mineralStorageBase = (mineralProd[0]*Math.pow(buildings[5],2) + mineralProd[1]*buildings[5] + mineralProd[2])*warehouseBase;
 		metalsStorageBase  = (metalProd[0]*Math.pow(buildings[5],2)   + metalProd[1]*buildings[5]   + metalProd[2]  )*warehouseBase;
+
+		mineralStorageBase1 = (mineralProd[0]*Math.pow(buildings[5] + 1,2) + mineralProd[1]*(buildings[5] + 1) + mineralProd[2])*warehouseBase;
+		metalsStorageBase1  = (metalProd[0]*Math.pow(buildings[5] + 1,2)   + metalProd[1]*(buildings[5] + 1)   + metalProd[2]  )*warehouseBase;
 
 		if(buildings[10]!=0) {
 			storageHelium = (heliumProd[0]*Math.pow(buildings[10],2)  + heliumProd[1]*buildings[10]  + heliumProd[2])*(storageRatio[0]*Math.log(buildings[10]) + storageRatio[1])*heliumStorageRatio; // Helium 3
@@ -662,6 +669,8 @@ class planet {
 			value = "",
 			valuep1 = "";
 	
+		$('#building-bonus-br').css('display','block');
+
 		switch(id) {
 			case 0: // Quarry
 				title = translate['planet-ui']['production'];
@@ -690,6 +699,14 @@ class planet {
 				value = GetBetterUnit(energyProd,'Wh');
 				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
+			case 5: // Warehouse
+				title = translate['planet-ui']['storage'];
+				icon = translate['planet-ui']['min&met'];
+				value = GetBetterUnit(mineralStorageBase,'t') + "/" + GetBetterUnit(metalsStorageBase,'t') + translate['planet-ui']['total']; 
+				valuep1 = ' (+ ' + GetBetterUnit(mineralStorageBase1 - mineralStorageBase,'t') + "/+ " +  GetBetterUnit(metalsStorageBase1 - metalsStorageBase,'t')
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				$('#building-bonus-br').css('display','none');
 				break;
 			case 6: // Headquarters
 				title = translate['planet-ui']['availableFleets'];
