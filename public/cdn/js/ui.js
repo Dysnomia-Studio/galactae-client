@@ -406,61 +406,41 @@ class ui {
 			}
 		});
 
-		function hideFleetMenu() {
-			if(units.unitPanelTimeout != -1) {
-				clearTimeout(units.unitPanelInterval);
-				units.unitPanelTimeout = -1;
-			}
+		function fleetPanelToggle(elt) {
+			if(ui.fleet && !preventFleetHUDClosing && $("#" + elt).css('display') == "block") {
+				if(units.unitPanelTimeout != -1) {
+					clearTimeout(units.unitPanelInterval);
+					units.unitPanelTimeout = -1;
+				}
 
-			ui.closeTab("#hud-fleet");
-			ui.fleet = false;
-		}
-		function drawFleetMenu() {
-			$("#hud-fleet").css('display','block');
-			
-			$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
-
-			$("#fleet-orbit").css('display',"none");
-			$("#fleet-build").css('display',"none");
-			$("#fleet-move").css('display',"none");
-			$("#fleet-out").css('display',"none");
-			ui.fleet = true;
-		}
-		$("#hud-bottom-button-units").click(function() {
-			if(ui.fleet && !preventFleetHUDClosing && $("#fleet-build").css('display') == "block") {
-				hideFleetMenu();
+				ui.closeTab("#hud-fleet");
+				ui.fleet = false;
 			} else {
-				drawFleetMenu();
+				$("#hud-fleet").css('display','block');
+				
+				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 
-				$("#fleet-build").css('display',"block");
-				$("#fleet-build-button").addClass("ul-choice-line-li-active");
+				$("#fleet-orbit").css('display',"none");
+				$("#fleet-build").css('display',"none");
+				$("#fleet-move").css('display',"none");
+				$("#fleet-out").css('display',"none");
+				ui.fleet = true;
+
+				$("#" + elt).css('display',"block");
+				$("#" + elt + "-button").addClass("ul-choice-line-li-active");
 
 				ui.updateBottom();
 			}
+		}
+
+		$("#hud-bottom-button-units").click(function() {
+			fleetPanelToggle("fleet-build");
 		});
 		$("#hud-bottom-button-fleets").click(function() {
-			if(ui.fleet && !preventFleetHUDClosing && $("#fleet-orbit").css('display') == "block") {
-				hideFleetMenu();
-			} else {
-				drawFleetMenu();
-
-				$("#fleet-orbit").css('display',"block");
-				$("#fleet-orbit-button").addClass("ul-choice-line-li-active");
-
-				ui.updateBottom();
-			}
+			fleetPanelToggle("fleet-orbit");
 		});
 		$("#hud-bottom-button-radar").click(function() {
-			if(ui.fleet && !preventFleetHUDClosing && $("#fleet-move").css('display') == "block") {
-				 hideFleetMenu();
-			} else {
-				drawFleetMenu();
-
-				$("#fleet-move").css('display',"block");
-				$("#fleet-move-button").addClass("ul-choice-line-li-active");
-
-				ui.updateBottom();
-			}
+			fleetPanelToggle("fleet-move");
 		});
 	}
 	/********** DAILY BONUS **********/
