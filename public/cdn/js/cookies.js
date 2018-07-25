@@ -22,9 +22,5 @@ function getCookie(cname) {
 
 function existCookie(cname) {
     let content = getCookie(cname);
-    if (content != "" || content!=null) {
-        return true;
-    } else {
-        return false;
-    }
+    return (content != "" || content!=null);
 }
