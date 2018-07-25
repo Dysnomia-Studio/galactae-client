@@ -68,8 +68,13 @@ class UserManager extends MongoInterface {
 		return $data;
 	}
 
-	public function addGlobalUser($name, $mail, $passwd, $misc, $updates) {
+	public function getAllGlobalUsersByCaseInsensitiveName($name) {
+		return $this->getCondContent('galactae','users',
+			['user_name' => new \MongoDB\BSON\Regex('^'.preg_quote($name).'$', 'i')]
+		);
+	}
 
+	public function addGlobalUser($name, $mail, $passwd, $misc, $updates) {
 		$this->addContent('galactae','users',[
 			'user_name' => $name,
 			'user_mail' => $mail,
@@ -81,7 +86,7 @@ class UserManager extends MongoInterface {
 		$conf_link = Security::hashPassword(time().$name);
 
 		$this->addContent('galactae','mailconfirmations',[
-			'user_name' => $data['user_name'],
+			'user_name' => $name,
 			'mailconfirm_uid' => $conf_link
 		]);
 
@@ -105,11 +110,7 @@ class UserManager extends MongoInterface {
 		$data = $this->getCondContent('galactae','game_ids',[
 			"user_id" => (string) $id
 		]);
-
-		if(isset($data[0])) {
-			$data = (array) $data[0];
-		}
-
+		
 		return $data;
 	}
 
