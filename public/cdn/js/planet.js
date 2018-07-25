@@ -690,7 +690,6 @@ class planet {
 				break;
 			case 2: // Houses
 				title = translate['planet-ui']['population'];
-				icon = '';
 				value = GetBetterUnit(habProd,'');
 				valuep1 = ' (+ ' + GetBetterUnit(habProd1 - habProd,'') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
@@ -712,7 +711,6 @@ class planet {
 				break;
 			case 6: // Headquarters
 				title = translate['planet-ui']['availableFleets'];
-				icon = '';
 				value = hqFleetCount[planetData.Buildings[id] - 1];
 				valuep1 = ' (' + hqFleetCount[planetData.Buildings[id]]
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
