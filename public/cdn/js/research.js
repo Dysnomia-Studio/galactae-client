@@ -32,13 +32,6 @@ class research {
 
 			research.touchHandler(e);
 		});
-
-		$("#hud-research").on('touchstart', function(e) {
-			if(research.scaling) { return; }
-
-			researchPrevMouse[0] = e.pageX;
-			researchPrevMouse[1] = e.pageY;
-		});
 		$("#hud-research").mousemove(function(e) {
 			if(ui.mouseStatus[1]==1) {
 				let pos = $("#hud-research").position();
@@ -106,7 +99,7 @@ class research {
 	}
 
 	static makeZoom(coef) {
-		coef = parseFloat(coef);
+		coef = parseFloat(coef).toFixed(2);
 		research.zoom += coef;
 		if(research.zoom < 0.5) { research.zoom -= coef; return; }
 		if(research.zoom > 1.75) { research.zoom -= coef; return; }
