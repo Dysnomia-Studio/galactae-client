@@ -60,8 +60,12 @@ class research {
 		});
 
 		$('#research-content').on('touchstart', function(e) {
-			if(e.originalEvent.touches.length == 2) {
+			if(e.originalEvent.touches.length == 2 && !research.scaling) {
 				research.scaling = true;
+
+				research.dist = Math.hypot(
+					e.touches[0].pageX - e.touches[1].pageX,
+					e.touches[0].pageY - e.touches[1].pageY);
 			} else {
 				research.scaling = false;
 			}
@@ -74,8 +78,8 @@ class research {
 
 
 				let coef = (research.dist / newDist) - 1;
-				if(coef > 0.1) { coef = 0.1; }
-				if(coef < -0.1) { coef = -0.1; }
+				if(coef > 0.05) { coef = 0.05; }
+				if(coef < -0.05) { coef = -0.05; }
 				if(coef == 0) { return; }
 
 				console.log("research.dist: " + research.dist);
@@ -102,6 +106,7 @@ class research {
 	}
 
 	static makeZoom(coef) {
+		coef = parseFloat(coef);
 		research.zoom += coef;
 		if(research.zoom < 0.5) { research.zoom -= coef; return; }
 		if(research.zoom > 1.75) { research.zoom -= coef; return; }
