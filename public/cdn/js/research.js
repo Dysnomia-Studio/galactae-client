@@ -76,6 +76,7 @@ class research {
 				let coef = (research.dist / newDist) - 1;
 				if(coef > 0.1) { coef = 0.1; }
 				if(coef < -0.1) { coef = -0.1; }
+				if(coef == 0) { return; }
 
 				console.log("research.dist: " + research.dist);
 				console.log("newDist: " + newDist);
