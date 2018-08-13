@@ -82,10 +82,6 @@ class research {
 				if(coef < -0.05) { coef = -0.05; }
 				if(coef == 0) { return; }
 
-				console.log("research.dist: " + research.dist);
-				console.log("newDist: " + newDist);
-				console.log("coef: " + coef);
-
 				research.makeZoom(coef);
 
 				research.dist = newDist;
@@ -106,7 +102,7 @@ class research {
 	}
 
 	static makeZoom(coef) {
-		coef = parseFloat(coef).toFixed(2);
+		coef = parseFloat(parseFloat(coef).toFixed(2));
 		research.zoom += coef;
 		if(research.zoom < 0.5) { research.zoom -= coef; return; }
 		if(research.zoom > 1.75) { research.zoom -= coef; return; }

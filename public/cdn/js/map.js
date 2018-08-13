@@ -88,6 +88,50 @@ class map {
 				coef = 0.03; // Scroll up
 			}
 
+			map.makeZoom(coef);
+		});
+
+		$('#map-global').on('touchstart', function(e) {
+			if(e.originalEvent.touches.length == 2 && !map.scaling) {
+				map.scaling = true;
+
+				map.dist = Math.hypot(
+					e.touches[0].pageX - e.touches[1].pageX,
+					e.touches[0].pageY - e.touches[1].pageY);
+			} else {
+				map.scaling = false;
+			}
+		});
+		$('#map-global').on('touchmove', function(e) {
+			if(map.scaling) {
+				let newDist = Math.hypot(
+					e.touches[0].pageX - e.touches[1].pageX,
+					e.touches[0].pageY - e.touches[1].pageY);
+
+
+				let coef = (map.dist / newDist) - 1;
+				if(coef > 0.05) { coef = 0.05; }
+				if(coef < -0.05) { coef = -0.05; }
+				if(coef == 0) { return; }
+
+				map.makeZoom(coef);
+
+				map.dist = newDist;
+			}
+		});
+		$('#map-global').on('touchend', function(e) {
+			map.scaling = false;
+		});
+
+		$('#map-focus').on('click', function() {
+			map.focusAddress(map.currentAddress = planetData.address);
+		});
+
+		loadScreen.complete("maps");
+	}
+
+	static makeZoom(coef) {
+			coef = parseFloat(parseFloat(coef).toFixed(2));
 			map.zoom += coef;
 			if(map.zoom < 0.75) { map.zoom -= coef; return; }
 			if(map.zoom > 1.75) { map.zoom -= coef; return; }
@@ -103,12 +147,6 @@ class map {
 
 			$('#map-global').css('zoom',map.zoom);
 			$('#map-global').css('-moz-transform','scale(' + map.zoom + ')');
-		});
-		$('#map-focus').on('click', function() {
-			map.focusAddress(map.currentAddress = planetData.address);
-		});
-
-		loadScreen.complete("maps");
 	}
 
 	/**
