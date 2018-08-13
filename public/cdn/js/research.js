@@ -46,7 +46,7 @@ class research {
 		});
 
 
-		research.zoom = function(coef) {
+		research.makeZoom = function(coef) {
 			research.zoom += coef;
 			if(research.zoom < 0.5) { research.zoom -= coef; return; }
 			if(research.zoom > 1.75) { research.zoom -= coef; return; }
@@ -68,7 +68,7 @@ class research {
 				coef = 0.03; // Scroll up
 			}
 
-			research.zoom(coef);
+			research.makeZoom(coef);
 		});
 
 		$('#research-content').on('touchstart', function(e) {
@@ -92,7 +92,7 @@ class research {
 					coef = 0.03; // Scroll up
 				}
 
-				research.zoom(coef);
+				research.makeZoom(coef);
 
 				research.dist = newDist;
 			}
