@@ -235,9 +235,19 @@ class units {
 	}
 
 	static getUnitName(id) {
+		let currUnit = units.getUnitData(id);
+
+		if(currUnit.name !== undefined) {
+			return currUnit.name;
+		}
+
+		return "";
+	}
+
+	static getUnitData(id) {
 		for(let i=0; i<units.list.length; i++) {
 			if(units.list[i]._id == id) {
-				return units.list[i].name;
+				return units.list[i];
 			}
 		}
 
@@ -251,7 +261,7 @@ class units {
 			}
 		}
 
-		return "";
+		return {};
 	}
 
 	static drawMain(type="") {
@@ -1064,12 +1074,33 @@ class units {
 		if(orbit.length != 0) {
 			for(let i=0; i<orbit.length; i++) {
 				let totalcount = 0;
+				let fighterCount = 0;
+				let fighterCap = 0;
 				for(let j=0; j<orbit[i].units.length; j++) {
 					totalcount += orbit[i].units[j][1];
+
+					let currUnit = units.getUnitData(orbit[i].units[j][0]);
+					if(currUnit.shipType == "SHIP_FIGHTER") {
+						fighterCount += orbit[i].units[j][1];
+					} else if(currUnit.shipType == "SHIP_CARRIER") {
+						for(let p in currUnit.parts) {
+							if(currUnit.parts[p].type == "hangar") {
+								fighterCap += (hangarSize[currUnit.parts[p].tech] * orbit[i].units[j][1]);
+							}
+						}
+					}
 				}
+
 				if(orbit[i].name=="SHIP_DEF") { orbit[i].name = fleetTranslate[orbit[i].name]; }
-				let content = '<details class="fleet-show-global"><summary class="fleet-show-name">' + orbit[i].name + 
-					'<span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate.unit + '</span></summary>' +
+				let content = '<details class="fleet-show-global">' +
+					'<summary class="fleet-show-name">' + orbit[i].name +
+					'<span class="fleet-show-count">';
+				if(fighterCount != 0 || fighterCap != 0) { 
+					content += fleetTranslate['hangar'] + ': ' + fighterCount + '/' + fighterCap + ' - ';
+				}
+
+				content += totalcount + ' ' + fleetTranslate['unit'] + 
+					'</span></summary>' +
 					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
 
 				for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
@@ -1103,10 +1134,55 @@ class units {
 		if(moving.length != 0) {
 			for(let i=0; i<moving.length; i++) {
 				let totalcount = 0;
+				let fighterCount = 0;
+				let fighterCap = 0;
 				for(let j=0; j<moving[i].units.length; j++) {
 					totalcount += moving[i].units[j][1];
+
+					let currUnit = units.getUnitData(moving[i].units[j][0]);
+					if(currUnit.shipType == "SHIP_FIGHTER") {
+						fighterCount += moving[i].units[j][1];
+					} else if(currUnit.shipType == "SHIP_CARRIER") {
+						for(let p in currUnit.parts) {
+							if(currUnit.parts[p].type == "hangar") {
+								fighterCap += (hangarSize[currUnit.parts[p].tech] * moving[i].units[j][1]);
+							}
+						}
+					}
 				}
-				movingDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + moving[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
+
+				if(moving[i].name=="SHIP_DEF") { moving[i].name = fleetTranslate[moving[i].name]; }
+				let content = '<details class="fleet-show-global">' +
+					'<summary class="fleet-show-name">' + moving[i].name +
+					'<span class="fleet-show-count">';
+				if(fighterCount != 0 || fighterCap != 0) { 
+					content += fleetTranslate['hangar'] + ': ' + fighterCount + '/' + fighterCap + ' - ';
+				}
+
+				content += totalcount + ' ' + fleetTranslate['unit'] + 
+					'</span></summary>' +
+					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
+
+				for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
+					let count = -1;
+					for(let fleetUnitId=0; fleetUnitId<moving[i].units.length; fleetUnitId++) {
+						if(moving[i].units[fleetUnitId][0] == units.list[allUnitsId]._id) {
+							count = moving[i].units[fleetUnitId][1];
+							break;
+						}
+					}
+					if(count < 0) { continue; }
+
+					content+= "<tr id=\""+ units.list[allUnitsId]._id +"\"><td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + count + "</td><td></td></tr>";
+				}
+
+				content += '</tbody></table></details>';
+
+				if(moving[i].name== fleetTranslate["SHIP_DEF"]) { // Defence fleet always first
+					movingDOM = content + movingDOM;
+					continue;
+				}
+				movingDOM += content;
 			}
 		} else {
 			movingDOM = "<h2>" + fleetTranslate['no-move-unit'] + "</h2>";
@@ -1118,10 +1194,55 @@ class units {
 		if(out.length != 0) {
 			for(let i=0; i<out.length; i++) {
 				let totalcount = 0;
+				let fighterCount = 0;
+				let fighterCap = 0;
 				for(let j=0; j<out[i].units.length; j++) {
 					totalcount += out[i].units[j][1];
+
+					let currUnit = units.getUnitData(out[i].units[j][0]);
+					if(currUnit.shipType == "SHIP_FIGHTER") {
+						fighterCount += out[i].units[j][1];
+					} else if(currUnit.shipType == "SHIP_CARRIER") {
+						for(let p in currUnit.parts) {
+							if(currUnit.parts[p].type == "hangar") {
+								fighterCap += (hangarSize[currUnit.parts[p].tech] * out[i].units[j][1]);
+							}
+						}
+					}
 				}
-				outDOM += '<details class="fleet-show-global"><summary class="fleet-show-name">' + out[i].name + ' <span class="fleet-show-count">' + totalcount + ' ' + fleetTranslate['unit'] + '</span></summary></details>';
+
+				if(out[i].name=="SHIP_DEF") { out[i].name = fleetTranslate[out[i].name]; }
+				let content = '<details class="fleet-show-global">' +
+					'<summary class="fleet-show-name">' + out[i].name +
+					'<span class="fleet-show-count">';
+				if(fighterCount != 0 || fighterCap != 0) { 
+					content += fleetTranslate['hangar'] + ': ' + fighterCount + '/' + fighterCap + ' - ';
+				}
+
+				content += totalcount + ' ' + fleetTranslate['unit'] + 
+					'</span></summary>' +
+					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
+
+				for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
+					let count = -1;
+					for(let fleetUnitId=0; fleetUnitId<out[i].units.length; fleetUnitId++) {
+						if(out[i].units[fleetUnitId][0] == units.list[allUnitsId]._id) {
+							count = out[i].units[fleetUnitId][1];
+							break;
+						}
+					}
+					if(count < 0) { continue; }
+
+					content+= "<tr id=\""+ units.list[allUnitsId]._id +"\"><td>" + units.list[allUnitsId].name + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipType] + "</td><td>" + fleetTranslate[units.list[allUnitsId].shipShape] + "</td><td>" + count + "</td><td></td></tr>";
+				}
+
+				content += '</tbody></table></details>';
+
+				if(out[i].name== fleetTranslate["SHIP_DEF"]) { // Defence fleet always first
+					outDOM = content + outDOM;
+					continue;
+				}
+				outDOM += content;
 			}
 		} else {
 			outDOM = "<h2>" + fleetTranslate['no-out-unit'] + "</h2>";

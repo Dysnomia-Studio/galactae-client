@@ -88,6 +88,9 @@
 		"projector": "Projecteur de bouclier magnetique",
 		"singularity": "Systeme à Singularité",
 
+		// Other
+		"hangar": "Hangar",
+
 		// Texts
 		"fleet-build-openPanel": "Construire l'unité",
 		"fleet-build-type-copy": "Copier ce modele",
@@ -97,6 +100,6 @@
 		"no-move-unit": "Aucune flotte ne se déplace",
 		"no-out-unit": "Aucune unité en orbite d'une autre planète",
 
-		"unit": "unité(s)",
+		"unit": "unité(s) au total",
 	};
 </script>
