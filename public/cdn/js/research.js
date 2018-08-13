@@ -45,13 +45,8 @@ class research {
 			researchPrevMouse[1] = e.pageY;
 		});
 
-		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
-		$('#research-content').on(mousewheelevt, function(e){
-			let coef = -0.03;
-			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-				coef = 0.03; // Scroll up
-			}
 
+		function zoom(coef) {
 			research.zoom += coef;
 			if(research.zoom < 0.5) { research.zoom -= coef; return; }
 			if(research.zoom > 1.75) { research.zoom -= coef; return; }
@@ -64,6 +59,27 @@ class research {
 					
 			$('#research-content').css('zoom',research.zoom);
 			$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
+		}
+
+		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		$('#research-content').on(mousewheelevt, function(e){
+			let coef = -0.03;
+			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+				coef = 0.03; // Scroll up
+			}
+
+			zoom(coef);
+		});
+
+		$('#research-content').on('gestureend', function(e) {
+			if(!e.scale || e.scale === 1.0) { return; }
+
+			let coef = -0.03;
+			if (e.scale < 1.0) {
+				coef = 0.03;
+		    }
+
+			zoom(coef);
 		});
 
 		$('#researchCenter-node').click(function() {
