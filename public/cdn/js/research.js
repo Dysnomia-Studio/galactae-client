@@ -62,9 +62,6 @@ class research {
 		$('#research-content').on('touchstart', function(e) {
 			if(e.originalEvent.touches.length == 2) {
 				research.scaling = true;
-				research.dist = Math.hypot(
-					e.touches[0].pageX - e.touches[1].pageX,
-					e.touches[0].pageY - e.touches[1].pageY);
 			} else {
 				research.scaling = false;
 			}
@@ -75,10 +72,14 @@ class research {
 					e.touches[0].pageX - e.touches[1].pageX,
 					e.touches[0].pageY - e.touches[1].pageY);
 
-				let coef = -0.03;
-				if(research.dist > newDist) {
-					coef = 0.03; // Scroll up
-				}
+
+				let coef = (research.dist / newDist) - 1;
+				if(coef > 0.1) { coef = 0.1; }
+				if(coef < -0.1) { coef = -0.1; }
+
+				console.log("research.dist: " + research.dist);
+				console.log("newDist: " + newDist);
+				console.log("coef: " + coef);
 
 				research.makeZoom(coef);
 
