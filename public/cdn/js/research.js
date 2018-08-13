@@ -46,7 +46,7 @@ class research {
 		});
 
 
-		function zoom(coef) {
+		research.zoom = function(coef) {
 			research.zoom += coef;
 			if(research.zoom < 0.5) { research.zoom -= coef; return; }
 			if(research.zoom > 1.75) { research.zoom -= coef; return; }
@@ -68,18 +68,37 @@ class research {
 				coef = 0.03; // Scroll up
 			}
 
-			zoom(coef);
+			research.zoom(coef);
 		});
 
-		$('#research-content').on('gestureend', function(e) {
-			if(!e.scale || e.scale === 1.0) { return; }
+		$('#research-content').on('touchstart', function(e) {
+			if(e.originalEvent.touches.length == 2) {
+				research.scaling = true;
+				research.dist = Math.hypot(
+					e.touches[0].pageX - e.touches[1].pageX,
+					e.touches[0].pageY - e.touches[1].pageY);
+			} else {
+				research.scaling = false;
+			}
+		});
+		$('#research-content').on('touchmove', function(e) {
+			if(research.scaling) {
+				let newDist = Math.hypot(
+					e.touches[0].pageX - e.touches[1].pageX,
+					e.touches[0].pageY - e.touches[1].pageY);
 
-			let coef = -0.03;
-			if (e.scale < 1.0) {
-				coef = 0.03;
-		    }
+				let coef = -0.03;
+				if(research.dist > newDist) {
+					coef = 0.03; // Scroll up
+				}
 
-			zoom(coef);
+				research.zoom(coef);
+
+				research.dist = newDist;
+			}
+		});
+		$('#research-content').on('touchend', function(e) {
+			research.scaling = false;
 		});
 
 		$('#researchCenter-node').click(function() {
