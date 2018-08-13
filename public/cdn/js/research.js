@@ -28,10 +28,14 @@ class research {
 		$("#research-close").click(function() { research.closeUI(); });
 
 		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
+			if(research.scaling) { return; }
+
 			research.touchHandler(e);
 		});
 
 		$("#hud-research").on('touchstart', function(e) {
+			if(research.scaling) { return; }
+
 			researchPrevMouse[0] = e.pageX;
 			researchPrevMouse[1] = e.pageY;
 		});
@@ -44,22 +48,6 @@ class research {
 			researchPrevMouse[0] = e.pageX;
 			researchPrevMouse[1] = e.pageY;
 		});
-
-
-		research.makeZoom = function(coef) {
-			research.zoom += coef;
-			if(research.zoom < 0.5) { research.zoom -= coef; return; }
-			if(research.zoom > 1.75) { research.zoom -= coef; return; }
-
-			let pos = $("#hud-research").position();
-			pos.left = ((pos.left - researchPrevMouse[0])/(research.zoom - coef) * research.zoom) + researchPrevMouse[0];
-			pos.top = ((pos.top - researchPrevMouse[1])/(research.zoom - coef) * research.zoom) + researchPrevMouse[1];
-			$("#hud-research").css("left",pos.left);
-			$("#hud-research").css("top" ,pos.top );
-					
-			$('#research-content').css('zoom',research.zoom);
-			$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
-		}
 
 		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
 		$('#research-content').on(mousewheelevt, function(e){
@@ -110,6 +98,22 @@ class research {
 			$("#hud-research").css('display','block');
 		}
 	}
+
+	static makeZoom(coef) {
+		research.zoom += coef;
+		if(research.zoom < 0.5) { research.zoom -= coef; return; }
+		if(research.zoom > 1.75) { research.zoom -= coef; return; }
+
+		let pos = $("#hud-research").position();
+		pos.left = ((pos.left - researchPrevMouse[0])/(research.zoom - coef) * research.zoom) + researchPrevMouse[0];
+		pos.top = ((pos.top - researchPrevMouse[1])/(research.zoom - coef) * research.zoom) + researchPrevMouse[1];
+		$("#hud-research").css("left",pos.left);
+		$("#hud-research").css("top" ,pos.top );
+				
+		$('#research-content').css('zoom',research.zoom);
+		$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
+	}
+
 	/**
 	 * Closes research UI
 	 */
