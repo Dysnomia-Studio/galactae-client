@@ -107,11 +107,9 @@ class UserManager extends MongoInterface {
 	}
 
 	public function getAllUserGameData($id) {
-		$data = $this->getCondContent('galactae','game_ids',[
+		return $this->getCondContent('galactae','game_ids',[
 			"user_id" => (string) $id
 		]);
-		
-		return $data;
 	}
 
 	public function getUserGameData($id, $servName) {
