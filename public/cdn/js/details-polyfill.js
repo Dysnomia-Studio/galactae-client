@@ -1,16 +1,41 @@
-$(document).ready(function() {
-	
+function detailsPolyfill() {
 	if (!('open' in document.createElement('details'))) {
-		$("details").addClass('html5_details').each(function() {
-			$(this).find("summary").show().click(function() {
-				$(this).siblings().toggle();
-				$(this).parent('details').toggleClass('open');
-			});
-			let opened = $(this).attr("open");
-			if(opened==undefined) {
-				$(this).children().hide();
-				$(this).children("summary").show();
+		for(let details in document.querySelectorAll("details")) {
+			details.classList.add("html5_details");
+
+			for(let summary in document.querySelectorAll("summary")) {
+				summary.style.display = "block";
+				summary.addEventListener('click', function() {
+					for (let sibling of summary.parentNode.children) {
+						if (sibling === summary) { continue; }
+
+						if(sibling.style.display == "none") {
+							sibling.style.display = "block";
+						} else {
+							sibling.style.display = "none";
+						}
+					}
+
+					if((" " + details.className + " ").replace(/[\n\t]/g, " ").indexOf(" open ") > -1) {
+						details.classList.remove("open");
+					} else {
+						details.classList.add("open");
+					}
+				});
 			}
-		});
+
+			let opened = details.getAttribute("open");
+			if(opened==undefined) {
+				for(let children in details.children) {
+					if(children.tagName.toLowerCase() == "summary") {
+						children.style.display = "block";
+					} else {
+						children.style.display = "none";
+					}
+				}
+			}
+		}
 	}
-});
+}
+
+document.addEventListener("readystatechange", detailsPolyfill);
