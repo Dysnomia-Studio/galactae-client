@@ -1081,7 +1081,7 @@ class units {
 
 					let currUnit = units.getUnitData(orbit[i].units[j][0]);
 					if(currUnit.shipType == "SHIP_FIGHTER") {
-						fighterCount += orbit[i].units[j][1];
+						fighterCount += (fighterWeight[currUnit.shipShape] * orbit[i].units[j][1]);
 					} else if(currUnit.shipType == "SHIP_CARRIER") {
 						for(let p in currUnit.parts) {
 							if(currUnit.parts[p].type == "hangar") {
@@ -1141,7 +1141,7 @@ class units {
 
 					let currUnit = units.getUnitData(moving[i].units[j][0]);
 					if(currUnit.shipType == "SHIP_FIGHTER") {
-						fighterCount += moving[i].units[j][1];
+						fighterCount += (fighterWeight[currUnit.shipShape] * moving[i].units[j][1]);
 					} else if(currUnit.shipType == "SHIP_CARRIER") {
 						for(let p in currUnit.parts) {
 							if(currUnit.parts[p].type == "hangar") {
@@ -1201,7 +1201,7 @@ class units {
 
 					let currUnit = units.getUnitData(out[i].units[j][0]);
 					if(currUnit.shipType == "SHIP_FIGHTER") {
-						fighterCount += out[i].units[j][1];
+						fighterCount += (fighterWeight[currUnit.shipShape] * out[i].units[j][1]);
 					} else if(currUnit.shipType == "SHIP_CARRIER") {
 						for(let p in currUnit.parts) {
 							if(currUnit.parts[p].type == "hangar") {
