@@ -33,7 +33,7 @@ class loadScreen {
 
 		if(loadStatus==loadEnd) {
 			setTimeout(function() {
-				loadScreen.hide();
+				ui.hide('#loading-overlay');
 			},100); // Mini timeout to avoid graphical bugs
 		}
 
@@ -50,7 +50,7 @@ class loadScreen {
 				}
 
 				if(translate.load[i] !== undefined) {
-					$('#loading-overlay-desc').html(translate.load[i]);
+					document.getElementById('loading-overlay-desc').innerHTML = translate.load[i];
 				}
 				break;
 			}
@@ -59,10 +59,6 @@ class loadScreen {
 			$(".loading-overlay-bar-primary .loading-overlay-bar-value").text(percentage + "%");
 			$(".loading-overlay-bar-primary .loading-overlay-bar-content").css("width", percentage + "%");
 		}
-	}
-
-	static hide() {
-		$('#loading-overlay').hide();
 	}
 
 	static picturePreload() {
