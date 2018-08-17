@@ -77,7 +77,7 @@ class settings {
 		loadScreen.complete("settings");
 	}
 	static loadUI() {
-		$("#hud-settings").click(function () {
+		document.getElementById("#hud-settings").addEventListener('click', function () {
 			if(ui.menu) {
 				ui.closeTab("#settings-menu");
 			} else {
@@ -85,7 +85,7 @@ class settings {
 			}
 			ui.menu = !(ui.menu);
 		});
-		$(document).click(function(e) {
+		document.addEventListener('click', function(e) {
 			if(ui.menu && e.target.id != "settings-menu" && e.target.id != "hud-settings") {
 				ui.closeTab("#settings-menu", false);
 				ui.menu = !(ui.menu);
