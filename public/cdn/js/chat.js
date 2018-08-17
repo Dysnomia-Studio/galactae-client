@@ -5,7 +5,7 @@ class chat {
 		/**
 		 * Envoi d'un message
 		 */
-		$('#chat_form').on('submit', function(e){
+		document.getElementById('chat_form').addEventListener('submit', function(e){
 	        e.preventDefault(); // On évite le rechargement de la page lors de la validation du formulaire
 	        
 	        // On recupere le message et on vide le input
@@ -87,20 +87,24 @@ class chat {
 			$('#'+chatChannel).scrollTop($('#'+chatChannel).height());
 		});
 		// Chat events on username
-		$('body').on('mousedown', '.username', function(event) {
-			if($(this).text()!=userData.username && !$(this).hasClass('no-pm')) {
-				switch(event.which) { // 1 => LEFT, 2 => MIDDLE, 3 => RIGHT
-					case KEYBOARD.LMOUSE:
-						$("#chat_message").val("@"+ $(this).text() + " ");
-						break;
-					case KEYBOARD.RMOUSE:
-						let win = window.open("https://galactae.eu/profil?u="+$(this).text(), '_blank');
-						win.focus();
-						break;
-					default:
+		/** @TODO: Fix this, we need to add event for each new .username added
+		let DOMElts = document.querySelectorAll('.username');
+		for(let elt=0; elt<DOMElts.length; elt++)  {
+			DOMElts[elt].addEventListener('mousedown', function(event) {
+				if(this.innerText!=userData.username && !ui.hasClass(this, 'no-pm')) {
+					switch(event.which) { // 1 => LEFT, 2 => MIDDLE, 3 => RIGHT
+						case KEYBOARD.LMOUSE:
+							$("#chat_message").val("@"+ $(this).text() + " ");
+							break;
+						case KEYBOARD.RMOUSE:
+							let win = window.open("https://galactae.eu/profil?u="+$(this).text(), '_blank');
+							win.focus();
+							break;
+						default:
 
+					}
 				}
-			}
-		});
+			});	
+		}*/
 	}
 }
