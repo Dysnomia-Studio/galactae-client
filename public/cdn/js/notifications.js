@@ -36,7 +36,8 @@ class notifications {
 	}
 
 	static notifyOnGame(type, text, options={}) {
-		$('#notifications-panel').html('<div class="notif-elt notif-' + type + '"></div>' + $('#notifications-panel').html());
+		let notifPanel = document.getElementById('notifications-panel');
+		notifPanel.innerHTML = '<div class="notif-elt notif-' + type + '"></div>' + notifPanel.innerHTML;
 
 		// @TODO: Ajouter message de description
 
@@ -84,16 +85,20 @@ class notifications {
 	}
 
 	static gameNotifAddEvents() {
-		$(".notif-elt").click(function() {
-			$(this).remove();
+		let DOMElts = document.querySelectorAll('.notif-elt');
+		for(let elt=0; elt<DOMElts.length; elt++) {
+			let element = DOMElts[elt];
+			element.addEventListener('click', function() {
+				notification.gameNotifClick(element);
 
-			ui.notifCount--;
-			ui.updatePageTitle();
-			notifications.updateClearButtonDisplay();
-		});
+				ui.notifCount--;
+				ui.updatePageTitle();
+				notifications.updateClearButtonDisplay();
+			});
+		}
 
-		$('#notifications-closeAll').click(function() {
-			$('#notifications-panel').html('<span id="notifications-closeAll">☒</span>');
+		document.getElementById('notifications-closeAll').addEventListener('click', function() {
+			document.getElementById('notifications-panel').innerHTML = '<span id="notifications-closeAll">☒</span>';
 
 			ui.notifCount = 0;
 			ui.updatePageTitle();
@@ -101,19 +106,18 @@ class notifications {
 		});
 	}
 
-	static gameNotifClick() {
+	static gameNotifClick(element) {
 		// Open needed windows
-		if($(this).hasClass('notif-mail')) {
+		if(ui.hasClass(element, 'notif-mail')) {
 			// @TODO
-		} else if($(this).hasClass('notif-building')) {
+		} else if(ui.hasClass(element, 'notif-building')) {
 			// @TODO
-		} else if($(this).hasClass('notif-research')) {
+		} else if(ui.hasClass(element, 'notif-research')) {
 			research.openUI();
 		}
 		
-
 		// Remove element
-		$(this).remove();
+		this.parentNode.removeChild(this);
 	}
 
 	static updateClearButtonDisplay() {

@@ -77,7 +77,7 @@ class settings {
 		loadScreen.complete("settings");
 	}
 	static loadUI() {
-		document.getElementById("#hud-settings").addEventListener('click', function () {
+		document.getElementById("hud-settings").addEventListener('click', function () {
 			if(ui.menu) {
 				ui.closeTab("#settings-menu");
 			} else {
