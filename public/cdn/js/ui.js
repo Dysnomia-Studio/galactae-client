@@ -28,9 +28,22 @@ class ui {
 		if(msg === undefined) { return; }
 		if((translate.messages[msg] !=undefined) && (translate.messages[msg] !="")) { msg = translate.messages[msg]; }
 		// Draw the message
-		$("#messagePanel").text(msg);
-		$("#messagePanel").fadeIn(1000);
-		setTimeout(function() { $("#messagePanel").fadeOut(1000); }, 1000 + 100*msg.length);	
+		let msgPanel = document.getElementById('messagePanel');
+		msgPanel.innerText = msg;
+		
+		msgPanel.classList.add('fadeIn-1s');
+		msgPanel.style.display = "block";
+
+		setTimeout(function() { 
+			msgPanel.classList.remove('fadeIn-1s');
+			msgPanel.classList.add('fadeOut-1s'); 
+
+			setTimeout(function() {
+				msgPanel.style.display = "none";
+				msgPanel.classList.remove('fadeOut-1s'); 
+			},1000);
+
+		}, 1000 + 100*msg.length);	
 	}
 	/**
 	 * Tout les événements à creer au lancement
@@ -47,7 +60,7 @@ class ui {
 		ui.research = false;
 		ui.researchChat = false;
 		ui.fleet = false;
-		ui.chat = ($('#hud-chat').css('display')=="block");
+		ui.chat = (document.getElementById('hud-chat').style.display != "none");
 		ui.ranks = false;
 		ui.news = false;
 		ui.bonusStreak = 0;
@@ -108,7 +121,7 @@ class ui {
 		//Bonus Quotidien
 		$("#day-bonus-confirm").click(function() {
 			let choice = 1;
-			if($("#day-bonus-2").hasClass("day-bonus-active")) {
+			if(ui.hasClass(document.getElementById('day-bonus-2'), 'day-bonus-active')) {
 				choice = 2;
 			}
 			socket.emit('daily-bonus',{user: userData, choice: choice});
@@ -120,7 +133,11 @@ class ui {
 
 		// Ranks
 		$(".ranks-ul li").click(function() {
-			$(".ranks-ul .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
+			let DOMelts = document.querySelectorAll('.ranks-ul .ul-choice-line-li-active');
+			for(let elt=0; elt<DOMelts.length; elt++) {
+				DOMelts[elt].classList.remove("ul-choice-line-li-active");
+			}
+
 			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
 			$('#hud-ranks-frame').attr("src", "ranks.php?type=" + $(this).attr("choice"));
@@ -195,20 +212,22 @@ class ui {
 		// Display none if needed	
 		if(document.getElementById('hud-top-left').scrollWidth <=
 			Math.round($('#hud-top-left').width())) {
-			$('#hud-top-left-moveRight').css('display','none');
-			$('#hud-top-left-moveLeft').css('display','none');
+
+			ui.hide('#hud-top-left-moveRight');
+			ui.hide('#hud-top-left-moveLeft');
 		} else {
-			$('#hud-top-left-moveRight').css('display','block');
-			$('#hud-top-left-moveLeft').css('display','block');
+			ui.show('#hud-top-left-moveRight');
+			ui.show('#hud-top-left-moveLeft');
 		}
 
 		if(document.getElementById('hud-top-right').scrollWidth <=
 			Math.round($('#hud-top-right').width())) {
-			$('#hud-top-right-moveRight').css('display','none');
-			$('#hud-top-right-moveLeft').css('display','none');
+
+			ui.hide('#hud-top-right-moveRight');
+			ui.hide('#hud-top-right-moveLeft');
 		} else {
-			$('#hud-top-right-moveRight').css('display','block');
-			$('#hud-top-right-moveLeft').css('display','block');
+			ui.show('#hud-top-right-moveRight');
+			ui.show('#hud-top-right-moveLeft');
 		}
 	}
 
@@ -269,7 +288,8 @@ class ui {
 	 * @param      {<type>}  tab     The tab to be closed
 	 */
 	static closeTab(tab,sound=true) {
-		$(tab).css('display','none');
+		ui.hide(tab);
+
 		if(sound) {
 			let closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
 			closeUISound.volume = 0.5;
@@ -279,48 +299,72 @@ class ui {
 		ui.updateBottom();
 	}
 
+	static hide(selector) {
+		let DOMelts = document.querySelectorAll(selector);
+		for(let elt = 0; elt<DOMelts.length; elt++) {
+			DOMelts[elt].style.display = "none";
+		}
+	}
+
+	static show(selector) {
+		let DOMelts = document.querySelectorAll(selector);
+		for(let elt = 0; elt<DOMelts.length; elt++) {
+			DOMelts[elt].style.display = "block";
+		}
+	}
+
+	static hasClass(elt, className) {
+		return ((" " + elt.className + " ").replace(/[\n\t]/g, " ").indexOf(" " + className +" ") > -1);
+	}
+
 	static updateBottom() {
 		// Map
-		if($('#hud-map').css('display') == "block") {
-			$('#hud-bottom-button-map').addClass('hud-bottom-active');
+		if(document.getElementById('hud-map').style.display == "block") {
+			document.getElementById('hud-bottom-button-map').classList.add('hud-bottom-active');
 		} else {
-			$('#hud-bottom-button-map').removeClass('hud-bottom-active');
+			document.getElementById('hud-bottom-button-map').classList.remove('hud-bottom-active');
 		}
 		// Research
-		if($('#hud-research').css('display') == "block") {
-			$('#hud-bottom-button-researchs').addClass('hud-bottom-active');
+		if(document.getElementById('hud-research').style.display == "block") {
+			document.getElementById('hud-bottom-button-researchs').classList.add('hud-bottom-active');
 		} else {
-			$('#hud-bottom-button-researchs').removeClass('hud-bottom-active');
+			document.getElementById('hud-bottom-button-researchs').classList.remove('hud-bottom-active');
 		}
 		// Fleet build
-		if($('#hud-fleet').css('display') == "block" && $("#fleet-build").css('display') == "block") {
-			$('#hud-bottom-button-units').addClass('hud-bottom-active');
+		if(document.getElementById('hud-fleet').style.display == "block" && 
+			document.getElementById('fleet-build').style.display == "block") {
+
+			document.getElementById('hud-bottom-button-units').classList.add('hud-bottom-active');
 		} else {
-			$('#hud-bottom-button-units').removeClass('hud-bottom-active');
+			document.getElementById('hud-bottom-button-units').classList.remove('hud-bottom-active');
 		}
 		// Fleet orbit
-		if($('#hud-fleet').css('display') == "block" && $("#fleet-orbit").css('display') == "block") {
-			$('#hud-bottom-button-fleets').addClass('hud-bottom-active');
+		if(document.getElementById('hud-fleet').style.display == "block" && 
+			document.getElementById('fleet-orbit').style.display == "block") {
+
+			document.getElementById('hud-bottom-button-fleets').classList.add('hud-bottom-active');
 		} else {
-			$('#hud-bottom-button-fleets').removeClass('hud-bottom-active');
+			document.getElementById('hud-bottom-button-fleets').classList.remove('hud-bottom-active');
 		}
 		// Fleet move
-		if($('#hud-fleet').css('display') == "block" && $("#fleet-move").css('display') == "block") {
-			$('#hud-bottom-button-radar').addClass('hud-bottom-active');
+		if(document.getElementById('hud-fleet').style.display == "block" && 
+			document.getElementById('fleet-move').style.display == "block") {
+
+			document.getElementById('hud-bottom-button-radar').classList.add('hud-bottom-active');
 		} else {
-			$('#hud-bottom-button-radar').removeClass('hud-bottom-active');
+			document.getElementById('hud-bottom-button-radar').classList.remove('hud-bottom-active');
 		}
 		// Ranks
-		if($("#hud-ranks").css('display') == "block") {
-			$('#hud-bottom-button-ranks').addClass('hud-bottom-active');
+		if(document.getElementById('hud-ranks').style.display == "block") {
+			document.getElementById('hud-bottom-button-ranks').classList.add('hud-bottom-active');
 		} else {
-			$('#hud-bottom-button-ranks').removeClass('hud-bottom-active');
+			document.getElementById('hud-bottom-button-ranks').classList.remove('hud-bottom-active');
 		}
 		// Chat
-		if($("#hud-chat").css('display') == "block") {
-			$('#hud-bottom-button-chat').addClass('hud-bottom-active');
+		if(document.getElementById('hud-chat').style.display == "block") {
+			document.getElementById('hud-bottom-button-chat').classList.add('hud-bottom-active');
 		} else {
-			$('#hud-bottom-button-chat').removeClass('hud-bottom-active');
+			document.getElementById('hud-bottom-button-chat').classList.remove('hud-bottom-active');
 		}
 	}
 
@@ -361,7 +405,7 @@ class ui {
 				ui.closeTab("#hud-chat");
 				ui.chat = false;
 			} else {
-				$("#hud-chat").css('display','block');
+				ui.show('#hud-chat');
 				ui.updateBottom();
 				ui.chat = true;
 			}
@@ -371,7 +415,7 @@ class ui {
 				ui.closeTab("#hud-ranks");
 				ui.ranks = false;
 			} else {
-				$("#hud-ranks").css('display','block');
+				ui.show('#hud-ranks');
 				ui.updateBottom();
 				ui.ranks = true;
 
@@ -416,17 +460,17 @@ class ui {
 				ui.closeTab("#hud-fleet");
 				ui.fleet = false;
 			} else {
-				$("#hud-fleet").css('display','block');
+				ui.show('#hud-fleet');
 				
 				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 
-				$("#fleet-orbit").css('display',"none");
-				$("#fleet-build").css('display',"none");
-				$("#fleet-move").css('display',"none");
-				$("#fleet-out").css('display',"none");
+				ui.hide('#hud-orbit');
+				ui.hide('#hud-build');
+				ui.hide('#hud-move');
+				ui.hide('#hud-out');
 				ui.fleet = true;
 
-				$("#" + elt).css('display',"block");
+				ui.show("#" + elt);
 				$("#" + elt + "-button").addClass("ul-choice-line-li-active");
 
 				ui.updateBottom();
@@ -481,7 +525,7 @@ class ui {
 		desc+= "</tr>";
 
 		$('#day-bonus-desc').html(desc);
-		$('#day-bonus').css('display','block');
+		ui.show('#day-bonus');
 
 		$('#day-bonus-desc td').click(function() {
 			$("#day-bonus-desc .day-bonus-active").removeClass("day-bonus-active"); //Retirer les classes actives
