@@ -110,7 +110,7 @@ class webSockets {
 		socket.on('server-reboot', function() {
 			kick("RESTARTING_SERVER");
 		});
-		$(window).on("beforeunload", function() {
+		window.addEventListener("beforeunload", function() {
 			socket.emit("game-disconnect",{username: userData.username, id: userData.id, pid: userData.pid});
 		});
 

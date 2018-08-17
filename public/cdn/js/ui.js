@@ -70,10 +70,10 @@ class ui {
 
 		ui.mouseStatus = [0,0,0,0];
 
-		$('body').on('mousedown', function(event) {
+		document.addEventListener('mousedown', function(event) {
 			ui.mouseStatus[event.which] = 1;
 		});
-		$('body').on('mouseup', function(event) {
+		document.addEventListener('mouseup', function(event) {
 			ui.mouseStatus[event.which] = 0;
 		});
 
@@ -81,7 +81,7 @@ class ui {
 		ui.lastMessage = "";
 
 		// Actions au clavier
-		$(document).keydown(function(e){
+		document.addEventListener('keydown', function(e){
 			ui.keydown(e);
 		});
 
@@ -89,7 +89,7 @@ class ui {
 		settings.loadUI();
 
 		//Rename planet
-		$("#hud-planet-name").click(function() {
+		document.getElementById("hud-planet-name").addEventListener('click', function() {
 			ui.planetNameSwitchToInput();
 		});
 		//HUD Buttons
@@ -108,18 +108,18 @@ class ui {
 		// Load Chat UI
 		chat.loadUI();
 
-		$("#hud-ranks-close").click(function() {
+		document.getElementById("hud-ranks-close").addEventListener('click', function() {
 			ui.closeTab("#hud-ranks");
 			ui.ranks = false;
 		});
 
-		$("#news-close").click(function() {
+		document.getElementById("news-close").addEventListener('click', function() {
 			ui.closeTab("#hud-news");
 			ui.news = false;
 		});
 
 		//Bonus Quotidien
-		$("#day-bonus-confirm").click(function() {
+		document.getElementById("day-bonus-confirm").addEventListener('click', function() {
 			let choice = 1;
 			if(ui.hasClass(document.getElementById('day-bonus-2'), 'day-bonus-active')) {
 				choice = 2;
@@ -127,7 +127,7 @@ class ui {
 			socket.emit('daily-bonus',{user: userData, choice: choice});
 			ui.closeTab("#day-bonus");
 		});
-		$("#day-bonus-later").click(function() {
+		document.getElementById("day-bonus-later").addEventListener('click', function() {
 			ui.closeTab("#day-bonus");
 		});
 
@@ -181,28 +181,28 @@ class ui {
 
 	static loadHUDButtons() {
 		// HUD Top right
-		$('#hud-top-right-moveLeft').click(function() {
+		document.getElementById('hud-top-right-moveLeft').addEventListener('click', function() {
 			let scroll = $('#hud-top-right').scrollLeft();
 			scroll -= 20;
 			if(scroll<0) { scroll=0; }
 			$('#hud-top-right').scrollLeft(scroll);
 		});
 
-		$('#hud-top-right-moveRight').click(function() {
+		document.getElementById('hud-top-right-moveRight').addEventListener('click', function() {
 			let scroll = $('#hud-top-right').scrollLeft();
 			scroll += 20;
 			if(scroll>$('#hud-top-right').width()) { scroll=$('#hud-top-right').width(); }
 			$('#hud-top-right').scrollLeft(scroll);
 		});
 		// HUD Top left
-		$('#hud-top-left-moveLeft').click(function() {
+		document.getElementById('hud-top-left-moveLeft').addEventListener('click', function() {
 			let scroll = $('#hud-top-left').scrollLeft();
 			scroll -= 20;
 			if(scroll<0) { scroll=0; }
 			$('#hud-top-left').scrollLeft(scroll);
 		});
 
-		$('#hud-top-left-moveRight').click(function() {
+		document.getElementById('hud-top-left-moveRight').addEventListener('click', function() {
 			let scroll = $('#hud-top-left').scrollLeft();
 			scroll += 20;
 			if(scroll>$('#hud-top-left').width()) { scroll=$('#hud-top-left').width(); }
@@ -400,7 +400,7 @@ class ui {
 	}
 	/************ BOUTONS ************/
 	static hudBottomButtons() {
-		$("#hud-bottom-button-chat").click(function() {
+		document.getElementById("hud-bottom-button-chat").addEventListener('click', function() {
 			if(ui.chat) {
 				ui.closeTab("#hud-chat");
 				ui.chat = false;
@@ -410,7 +410,7 @@ class ui {
 				ui.chat = true;
 			}
 		});
-		$("#hud-bottom-button-ranks").click(function() {
+		document.getElementById("hud-bottom-button-ranks").addEventListener('click', function() {
 			if(ui.ranks) {
 				ui.closeTab("#hud-ranks");
 				ui.ranks = false;
@@ -422,7 +422,7 @@ class ui {
 				$('#hud-ranks-frame').attr('src',$('#hud-ranks-frame').attr('src'));		
 			}
 		});
-		$("#hud-bottom-button-map").click(function() {
+		document.getElementById("hud-bottom-button-map").addEventListener('click', function() {
 			if(ui.map) {
 				map.closeTab();
 			} else {
@@ -433,12 +433,12 @@ class ui {
 				ui.updateBottom();
 			}
 		});
-		$("#map-close").click(function() {
+		document.getElementById("map-close").addEventListener('click', function() {
 			if(ui.map) {
 				map.closeTab();
 			}
 		});
-		$("#hud-bottom-button-researchs").click(function() {
+		document.getElementById("hud-bottom-button-researchs").addEventListener('click', function() {
 			if(ui.research) {
 				research.closeUI();
 			} else {
@@ -477,13 +477,13 @@ class ui {
 			}
 		}
 
-		$("#hud-bottom-button-units").click(function() {
+		document.getElementById("hud-bottom-button-units").addEventListener('click', function() {
 			fleetPanelToggle("fleet-build");
 		});
-		$("#hud-bottom-button-fleets").click(function() {
+		document.getElementById("hud-bottom-button-fleets").addEventListener('click', function() {
 			fleetPanelToggle("fleet-orbit");
 		});
-		$("#hud-bottom-button-radar").click(function() {
+		document.getElementById("hud-bottom-button-radar").addEventListener('click', function() {
 			fleetPanelToggle("fleet-move");
 		});
 	}
@@ -527,7 +527,7 @@ class ui {
 		$('#day-bonus-desc').html(desc);
 		ui.show('#day-bonus');
 
-		$('#day-bonus-desc td').click(function() {
+		$document.getElementById('day-bonus-desc td').addEventListener('click', function() {
 			$("#day-bonus-desc .day-bonus-active").removeClass("day-bonus-active"); //Retirer les classes actives
 			$(this).addClass("day-bonus-active"); // Activer l'onglet cliqué
 		});
