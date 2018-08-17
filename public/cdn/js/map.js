@@ -352,7 +352,7 @@ class map {
 	 * Opens map tab.
 	 */
 	static openTab() {
-		$("#hud-map").css('display','block');
+		ui.show('#hud-map');
 		ui.closeTab("#hud-research",false); /* A no-bug fix */
 		ui.map = true;
 
@@ -367,8 +367,8 @@ class map {
 	 */
 	static closeTab() {
 		// Reset planet view
-		$('#planet-current').css('display','block');
-		$('#planet-other').css('display','none');
+		ui.show('#planet-current');
+		ui.hide('#planet-other');
 		planetBack.init(planetData.planetType);
 
 		// Close tab
@@ -377,7 +377,9 @@ class map {
 
 		// Draw chat if needed
 		if(!ui.chat) {
-			$("#hud-chat").css('display',(ui.mapChat)?"block":"none");
+			if(ui.mapChat) {
+				ui.show('#hud-chat');
+			}
 			ui.chat = ui.mapChat;
 		}
 	}
@@ -387,14 +389,14 @@ class map {
 	 */
 	static resetMaps() {
 		/* Hide all maps */
-		$('#map-global').css('display','none');
-		$('#map-system').css('display','none');
+		ui.hide('#map-global');
+		ui.hide('#map-system');
 
-		$("#hud-map").css('display','block');
+		ui.show("#hud-map");
 
 		/* Empty HTML to avoid bugs */
 		if(map.currentMap!="system") {
-			$('#map-system-solarFront').html('');
+			document.getElementById('map-system-solarFront').innerHTML = "";
 		}
 	}
 
@@ -745,13 +747,13 @@ class map {
 		map.focusAddress(address);
 
 		// Back button
-		$('#map-back').css('display','none');
-		$('#map-focus').css('display','block');
+		ui.hide('#map-back');
+		ui.show('#map-focus');
 
 		// Toggle Maps
 		map.resetMaps();
 		map.currentAddress = address;
-		$('#map-global').css('display','block');
+		ui.show('#map-global');
 	}
 
 	static openPlanetInfos(pData) {
@@ -770,9 +772,9 @@ class map {
 		// Toggle Maps
 		map.resetMaps();
 
-		$("#hud-map").css('display','none');
+		ui.hide('#hud-map');
 
-		$('#planet-current').css('display','none');
-		$('#planet-other').css('display','block');
+		ui.hide('#planet-current');
+		ui.show('#planet-other');
 	}
 }

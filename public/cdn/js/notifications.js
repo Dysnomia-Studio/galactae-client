@@ -118,9 +118,9 @@ class notifications {
 
 	static updateClearButtonDisplay() {
 		if(ui.notifCount == 0) {
-			$('#notifications-closeAll').css('display','none');
+			ui.hide('#notifications-closeAll');
 		} else {
-			$('#notifications-closeAll').css('display','block');
+			ui.show('#notifications-closeAll');
 		}
 	}
 }

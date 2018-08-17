@@ -306,10 +306,10 @@ class ui {
 		}
 	}
 
-	static show(selector) {
+	static show(selector, display="block") {
 		let DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
-			DOMelts[elt].style.display = "block";
+			DOMelts[elt].style.display = display;
 		}
 	}
 

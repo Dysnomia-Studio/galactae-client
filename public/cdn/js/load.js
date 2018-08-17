@@ -44,9 +44,9 @@ class loadScreen {
 			for(let i in loadStatusArr) {
 				if(loadStatusArr[i] == true) { continue; }
 
-				$(".loading-overlay-bar-secondary").css('display','none');
+				ui.hide('.loading-overlay-bar-secondary');
 				if(i=="pictures") {
-					$(".loading-overlay-bar-secondary").css('display','block');
+					ui.show('.loading-overlay-bar-secondary');
 				}
 
 				if(translate.load[i] !== undefined) {

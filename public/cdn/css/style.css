@@ -20,6 +20,47 @@ em {
 	font-style: normal;
 	color: #0EC6C6;
 }
+
+/**
+ * Animations
+ */
+@-moz-keyframes fadeIn { 
+	0%   { opacity: 0; }
+	100% { opacity: 1; }
+}
+@-webkit-keyframes fadeIn { 
+	0%   { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes fadeIn { 
+	0%   { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeOut { 
+	0%   { opacity: 1; }
+	100% { opacity: 0; }
+}
+@-webkit-keyframes fadeOut { 
+	0%   { opacity: 1; }
+	100% { opacity: 0; }
+}
+@keyframes fadeOut { 
+	0%   { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+.fadeIn-1s {
+	-webkit-animation: fadeIn 1s linear 0s 1;
+	-moz-animation: fadeIn 1s linear 0s 1;
+	animation: fadeIn 1s linear 0s 1;
+}
+.fadeOut-1s {
+	-webkit-animation: fadeOut 1s linear 0s 1;
+	-moz-animation: fadeOut 1s linear 0s 1;
+	animation: fadeOut 1s linear 0s 1;
+}
+
 /* Dropdown */
 .dropdown {
 	margin: 0;

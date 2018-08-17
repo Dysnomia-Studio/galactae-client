@@ -97,7 +97,7 @@ class research {
 		});
 
 		if(ui.research) {
-			$("#hud-research").css('display','block');
+			ui.show('#hud-research');
 		}
 	}
 
@@ -123,10 +123,12 @@ class research {
 	static closeUI() {
 		ui.closeTab("#hud-research");
 		// Re-affichage de la planete
-		$("#planet").css('display','block');
+		ui.show('#planet');
 		// Re-affichage du chat si necessaire
 		if(!ui.chat) {
-			$("#hud-chat").css('display',(ui.researchChat)?"block":"none");
+			if(ui.researchChat) {
+				ui.show('#hud-chat');
+			}
 			ui.chat = ui.researchChat;
 		}
 
@@ -148,7 +150,7 @@ class research {
 			research.moveUI(newUIPos);
 		}
 		// On affiche le panel de recherches
-		$("#hud-research").css('display','block');
+		ui.show('#hud-chat');
 		// On cache le chat et memorise son statut pour plus tard	
 		ui.researchChat = ($("#hud-chat").css('display')=="block");
 		ui.closeTab("#hud-chat",false);
@@ -188,8 +190,8 @@ class research {
 		$('#research-content').css('-moz-transform','scale(1)');
 
 		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
-		$('#hud-research').css("opacity",0);
-		$('#hud-research').css("display","block");
+		$('#hud-research').css("opacity", 0);
+		ui.show('#hud-research');
 		// Reset panel content
 		$('#research-content').html('<svg id="research-links" width="10000px" height="10000px"></svg>');
 
@@ -207,7 +209,7 @@ class research {
 			}
 		}
 
-		$('#hud-research').css("display","none");
+		ui.hide('#hud-research');
 		$('#hud-research').css("opacity",1);
 
 		research.loadUI();

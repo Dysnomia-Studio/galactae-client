@@ -560,10 +560,10 @@ class planet {
 		$("#building-name").text(translate.buildings[id].name);
 		$("#building-level").text(translate.messages['LEVEL'] + ' ' +  planetData.Buildings[id]);
 		$("#building-desc").text(translate.buildings[id].desc);
-		$("#building-area").css("display","block");
+		ui.show('#building-area');
 		$("#building-img").attr("src",cdnURL+"img/buildings/desc/" + translate.buildings[id].id + ".jpg");
 		$("#building-area input").id=id;
-		$('#building-cost').css('display', 'block');
+		ui.show('#building-cost');
 
 		/* Ressources */
 		let costs = [
@@ -574,9 +574,9 @@ class planet {
 		];
 		for(let i=0; i<4; i++) {
 			if(costs[i][1]==0) {
-				$("#"+costs[i][0]).css("display","none");
+				ui.hide('#' + costs[i][0]);
 			} else {
-				$("#"+costs[i][0]).css("display","inline-block");
+				ui.show('#' + costs[i][0], 'inline-block');
 				$("#"+costs[i][0]+"-val").html(GetBetterUnit(costs[i][1],'t',planetData.resources[i+2]));
 			}
 		}
@@ -585,9 +585,9 @@ class planet {
 
 		/* Energie */
 		if(cost.energy==0) {
-			$("#building-cost-energy").css("display","none");
+			ui.hide("#building-cost-energy");
 		} else {
-			$("#building-cost-energy").css("display","inline-block");
+			ui.show('#building-cost-energy', 'inline-block');
 			$("#building-cost-energy-val").html(
 				GetBetterUnit(cost.energy,"Wh (+" + 
 					GetBetterUnit(cost.energy_difference,"Wh",energyProd-energyCons) + ")",
@@ -595,9 +595,9 @@ class planet {
 		}
 		/* Habitants */
 		if(cost.habitants==0) {
-			$("#building-cost-population").css("display","none");
+			ui.hide("#building-cost-population");
 		} else {
-			$("#building-cost-population").css("display","inline-block");
+			ui.show('#building-cost-population', 'inline-block');
 			$("#building-cost-population-val").html(
 				GetBetterUnit(cost.habitants," (+" + 
 					GetBetterUnit(cost.habitants_difference,"",habProd-habCons) + ")",
@@ -617,13 +617,13 @@ class planet {
 			$('#building-upgrade').val(translate.messages["UPGRADE"]);
 		}
 		$("#building-upgrade").attr("onclick","");
-		$('#building-upgrade').css('display', 'none');
-		$('#building-message').css('display', 'inline-block');
+		ui.hide("#building-upgrade");
+		ui.show('#building-message', 'inline-block');
 
 		// Edits
 		if(max) { // Max Level
 			$('#building-message').html(translate.messages["UPGRADE_MAX"]);
-			$('#building-cost').css('display', 'none');
+			ui.hide("#building-cost");
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			let dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
@@ -660,8 +660,8 @@ class planet {
 				planet.buildPanelOpen(id);
 			},planetData.nextBuildingTime - (Date.now() + planet.deltaNow + 1000));
 		} else {
-			$('#building-message').css('display', 'none');
-			$('#building-upgrade').css('display', 'block');
+			ui.hide('#building-message');
+			ui.show('#building-upgrade');
 			$("#building-upgrade").attr("onclick","planet.build("+id+")");
 		}
 
@@ -671,7 +671,7 @@ class planet {
 			value = "",
 			valuep1 = "";
 	
-		$('#building-bonus-br').css('display','block');
+		ui.show('#building-bonus-br');
 
 		switch(id) {
 			case 0: // Quarry
@@ -707,7 +707,7 @@ class planet {
 				value = GetBetterUnit(mineralStorageBase,'t') + "/" + GetBetterUnit(metalsStorageBase,'t') + translate['planet-ui']['total']; 
 				valuep1 = ' (+ ' + GetBetterUnit(mineralStorageBase1 - mineralStorageBase,'t') + "/+ " +  GetBetterUnit(metalsStorageBase1 - metalsStorageBase,'t')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
-				$('#building-bonus-br').css('display','none');
+				ui.hide('#building-bonus-br');
 				break;
 			case 6: // Headquarters
 				title = translate['planet-ui']['availableFleets'];

@@ -10,14 +10,14 @@ class webSockets {
 			kick("CONNECT_LOSS",10000,true);
 			
 			if(ui.research) {
-				$("#hud-research").css('display','block');
+				ui.show("#hud-research");
 			}
 		});
 		socket.on('connect_error', function(){
 			kick("CONNECT_LOSS",10000,true);
 
 			if(ui.research) {
-				$("#hud-research").css('display','block');
+				ui.show("#hud-research");
 			}
 		});
 		socket.on('connect', function() {

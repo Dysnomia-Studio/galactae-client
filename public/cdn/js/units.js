@@ -89,27 +89,27 @@ class units {
 			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
 			if($(this).attr('id')=="fleet-build-button") {
-				$("#fleet-build").css('display',"block");
+				ui.show("#fleet-build");
 			} else {
-				$("#fleet-build").css('display',"none");
+				ui.hide("#fleet-build");
 			}
 
 			if($(this).attr('id')=="fleet-orbit-button") {
-				$("#fleet-orbit").css('display',"block");
+				ui.show("#fleet-orbit");
 			} else {
-				$("#fleet-orbit").css('display',"none");
+				ui.hide("#fleet-orbit");
 			}
 
 			if($(this).attr('id')=="fleet-move-button") {
-				$("#fleet-move").css('display',"block");
+				ui.show("#fleet-move");
 			} else {
-				$("#fleet-move").css('display',"none");
+				ui.hide("#fleet-move");
 			}
 
 			if($(this).attr('id')=="fleet-out-button") {
-				$("#fleet-out").css('display',"block");
+				ui.show("#fleet-out");
 			} else {
-				$("#fleet-out").css('display',"none");
+				ui.hide("#fleet-out");
 			}
 
 			ui.updateBottom();
@@ -135,7 +135,7 @@ class units {
 		});
 		// Type delete
 		$('#fleet-build-type-delete').click(function() {
-			$('#fleet-typeDelete-panel').css('display','block');
+			ui.show('#fleet-typeDelete-panel');
 			preventFleetHUDClosing = true;
 		});
 		$('#fleet-typeDelete-yes').click(function() {
@@ -144,11 +144,11 @@ class units {
 				username: userData.username,
 				unit: units.list[units.currUnit]._id
 			});
-			$('#fleet-typeDelete-panel').css('display','none');
+			ui.hide('#fleet-typeDelete-panel');
 			preventFleetHUDClosing = false;
 		});
 		$('#fleet-typeDelete-no').click(function() {
-			$('#fleet-typeDelete-panel').css('display','none');
+			ui.hide('#fleet-typeDelete-panel');
 			preventFleetHUDClosing = false;
 		});
 		// Type rename
@@ -158,7 +158,7 @@ class units {
 			$('#fleet-type-rename-name').text(oldName);
 			$('#fleet-type-rename-newName').val(oldName);
 
-			$('#fleet-type-rename').css('display','block');
+			ui.show('#fleet-type-rename');
 			preventFleetHUDClosing = true;
 		});
 		$('#fleet-type-rename-submit').click(function() {
@@ -170,11 +170,11 @@ class units {
 				shipId: units.list[units.currUnit]._id,
 				shipNewName: $('#fleet-type-rename-newName').val()
 			});
-			$('#fleet-type-rename').css('display','none');
+			ui.hide('#fleet-type-rename');
 			preventFleetHUDClosing = false;
 		});
 		$('#fleet-type-rename-close').click(function() {
-			$('#fleet-type-rename').css('display','none');
+			ui.hide('#fleet-type-rename');
 			preventFleetHUDClosing = false;
 		});
 		// Nouveau tri
@@ -322,7 +322,7 @@ class units {
 		let unitCount = 0;
 
 		if(units.list.length!=0) {
-			$('#fleet-build-list-empty').css('display','none');
+			ui.hide('#fleet-build-list-empty');
 
 			let content = "";
 			let active = true;
@@ -413,25 +413,25 @@ class units {
 			if(!disabledButton) { break; }
 		}
 		if(disabledButton) {
-			$('#fleet-build-create').css("display","none");
+			ui.hide('#fleet-build-create');
 		} else {
-			$('#fleet-build-create').css("display","block");
+			ui.show('#fleet-build-create');
 		}
 
 		if(unitCount == 0) {
-			$('#fleet-build-list').css('display','none');
+			ui.hide('#fleet-build-list');
 
-			$('#fleet-build-stat').css('display','none');
-			$('#fleet-build-message').css('display','none');
-			$('#fleet-build-buttons').css('display','none');
+			ui.hide('#fleet-build-stat');
+			ui.hide('#fleet-build-message');
+			ui.hide('#fleet-build-buttons');
 
-			$('#fleet-build-list-empty').css('display','inline-block');
+			ui.show('#fleet-build-list-empty','inline-block');
 		}
 	}
 
 	static drawNewFleetPanel() {
 		$('#fleet-newFleet-name').val("");
-		$('#fleet-newFleet-panel').css('display','block');
+		ui.show('#fleet-newFleet-panel');
 		$('#fleet-newFleet-name').keypress(function(e) {
 			if(e.which == 13) {
 				units.validFleetName();
@@ -457,7 +457,7 @@ class units {
 
 		units.fname = fname;
 		$('#fleet-ship-build-fleetSelect option#-1').text(units.fname);
-		$('#fleet-newFleet-panel').css('display','none');
+		ui.hide('#fleet-newFleet-panel');
 		preventUnitBuildPanelClose = false;
 	}
 
@@ -477,11 +477,11 @@ class units {
 		if($("#fleet-ship-build-count").val() == "" || count < 1) { count = 1; }
 
 		for(let i in costs) {
-			if(currUnit.cost[i] == 0) { 
-				$("#" + costs[i].substring(0,costs[i].length-4)).css("display","none");
+			if(currUnit.cost[i] == 0) {
+				ui.hide('#' + costs[i].substring(0,costs[i].length-4));
 				continue;
 			}
-			$("#" + costs[i].substring(0,costs[i].length-4)).css("display","block");
+			ui.show('#' + costs[i].substring(0,costs[i].length-4));
 
 			if(costs[i] != "fleet-ship-build-cost-time-val") {
 				$("#" + costs[i]).text(GetBetterUnit(Math.round(count * parseFloat(currUnit.cost[i]))));
@@ -549,7 +549,7 @@ class units {
 
 	static drawBuildPanel() {
 		if(units.currUnit == -1 || units.list[units.currUnit] == undefined) { return; }
-		$('#fleet-ship-build-fleetSelect').css('display','block');
+		ui.show('#fleet-ship-build-fleetSelect');
 
 		units.fname = "";
 		let currUnit = units.list[units.currUnit];
@@ -567,7 +567,7 @@ class units {
 		units.regenerateBuildFleetList();
 
 		if(units.list[units.currUnit].shipType == "SHIP_DEF") {
-			$('#fleet-ship-build-fleetSelect').css('display','none');
+			ui.hide('#fleet-ship-build-fleetSelect');
 		}
 
 		$('#fleet-ship-build-count').keypress(function(e) {
@@ -577,7 +577,7 @@ class units {
 		});
 
 		// Draw panel
-		$("#fleet-ship-build").css('display','block');	
+		ui.show("#fleet-ship-build");	
 	}
 
 	static askUnitBuild() {
@@ -625,7 +625,7 @@ class units {
 			selectedShape = units.list[units.currUnit].shipShape;
 		}
 
-		$('#fleet-type-create-cost div').css('display','none');
+		ui.hide('#fleet-type-create-cost div');
 
 		$('#fleet-type-create-schematic').html("");
 		$('#fleet-type-create-selects').html("");
@@ -661,7 +661,7 @@ class units {
 
 		preventFleetHUDClosing = true;
 
-		$("#fleet-type-create").css('display','block');
+		ui.show("#fleet-type-create");
 	}
 	
 	static changeShipType(unitsParts=[],selectedShape="") {
@@ -684,7 +684,7 @@ class units {
 		if(selectShipShape != "") {
 			selectShipShape = "<option disabled>" + fleetTranslate['SHIP_SHAPE'] + "</option>" + selectShipShape;
 
-			$('#fleet-type-create-shipType option[value='+type+']').css("display","block");
+			ui.show('#fleet-type-create-shipType option[value='+type+']');
 			
 			$('#fleet-type-create-shipShape').html(selectShipShape);
 
@@ -692,7 +692,7 @@ class units {
 			units.updateTypeCreateStats();
 		} else {
 			$("#fleet-type-create-shipType").val($("#fleet-type-create-shipType option:first").val());
-			$('#fleet-type-create-shipType option[value='+type+']').css("display","none");
+			ui.hide('#fleet-type-create-shipType option[value='+type+']');
 		}
 	}
 
@@ -859,7 +859,7 @@ class units {
 		let miss = 0; // @ADD: Calc miss
 
 		// Hide some things if needed
-		$(div + ' div').css('display','block');
+		ui.show(div + ' div');
 
 		for(let i=0; i<parts.length; i++) {
 			if(parts[i].tech == "none") { continue; }
@@ -962,7 +962,7 @@ class units {
 		if(armesText != "") {
 			$('#fleet-build-stat-attack-val').text(armesText);
 		} else {
-			$('#fleet-build-stat-attack').css('display','none');
+			ui.hide('#fleet-build-stat-attack');
 		}
 
 		// Shields
@@ -986,18 +986,18 @@ class units {
 		if(shieldText != "") {
 			$('#fleet-build-stat-shield-val').text(shieldText);
 		} else {
-			$('#fleet-build-stat-shield').css('display','none');
+			ui.hide('#fleet-build-stat-shield');
 		}
 
 		// Boutons
 		if(units.list[id].shipShape.substr(0,14) == "SHIP_WEP_MINES") {
-			$('#fleet-build-type-copy').css('display','none');
-			$('#fleet-build-type-delete').css('display','none');
-			$('#fleet-build-rename').css('display','none');
+			ui.hide('#fleet-build-type-copy');
+			ui.hide('#fleet-build-type-delete');
+			ui.hide('#fleet-build-rename');
 		} else {
-			$('#fleet-build-type-copy').css('display','inline-block');
-			$('#fleet-build-type-delete').css('display','inline-block');
-			$('#fleet-build-rename').css('display','inline-block');
+			ui.show('#fleet-build-type-copy', 'inline-block');
+			ui.show('#fleet-build-type-delete', 'inline-block');
+			ui.show('#fleet-build-rename', 'inline-block');
 		}
 	}
 

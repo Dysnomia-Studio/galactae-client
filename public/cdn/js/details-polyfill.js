@@ -16,7 +16,7 @@ function detailsPolyfill() {
 						}
 					}
 
-					if((" " + details.className + " ").replace(/[\n\t]/g, " ").indexOf(" open ") > -1) {
+					if(ui.hasClass(details, 'open')) {
 						details.classList.remove("open");
 					} else {
 						details.classList.add("open");

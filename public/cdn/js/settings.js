@@ -81,7 +81,7 @@ class settings {
 			if(ui.menu) {
 				ui.closeTab("#settings-menu");
 			} else {
-				$("#settings-menu").css('display','block');
+				ui.show('#settings-menu"');
 			}
 			ui.menu = !(ui.menu);
 		});
