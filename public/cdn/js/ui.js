@@ -121,7 +121,8 @@ class ui {
 		//Bonus Quotidien
 		document.getElementById("day-bonus-confirm").addEventListener('click', function() {
 			let choice = 1;
-			if(ui.hasClass(document.getElementById('day-bonus-2'), 'day-bonus-active')) {
+			let dayBonus2 = document.getElementById('day-bonus-2');
+			if(dayBonus2 && ui.hasClass(dayBonus2, 'day-bonus-active')) {
 				choice = 2;
 			}
 			socket.emit('daily-bonus',{user: userData, choice: choice});
