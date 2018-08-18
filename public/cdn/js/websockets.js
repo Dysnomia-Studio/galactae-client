@@ -40,8 +40,13 @@ class webSockets {
 			}
 			loadScreen.complete("planet");
 		});
-		socket.on('planet-recieve-mapData',function(data) { 
-			map.openPlanetInfos(data);
+		socket.on('map-recieve-data',function(data) { 
+			let system = data.systemAddress;
+
+			map.planetData[data.systemAddress] = data;
+			delete map.planetData[data.systemAddress].systemAddress;
+
+			map.openSolarSystemMap(system);
 		});
 
 		//Sync the units data

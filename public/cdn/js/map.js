@@ -49,6 +49,8 @@ class map {
 
 		map.zoom = 1;
 
+		map.planetData = [];
+
 		/**
 		 * Load XML
 		 */
@@ -596,28 +598,50 @@ class map {
 		}	
 
 		// View info
-		function planetClick(e) {
+		function viewInfo(e) {
+			if($(this).parent().parent().hasClass('orbit')) {
+				units.planetTarget = $(this).parent().parent().attr('id');
+			} else {
+				units.planetTarget = $(this).attr('id'); // Center star
+			}
+			
+			let system = units.planetTarget.split('-');
+			system.pop();
+			system = system.join('-');
+
+			if(map.planetData[system][units.planetTarget] === undefined) { 
+				$('#map-planet-menu-planetname').text("");
+				$('#map-planet-menu-username').text("");
+
+				ui.hide('#map-planet-menu img');
+				ui.show('#map-planet-menu-infos');
+				ui.show('#map-planet-menu-move');
+
+			} else { // Player planet
+				ui.show('#map-planet-menu img');
+
+				$('#map-planet-menu-planetname').text(map.planetData[system][units.planetTarget].name);
+				$('#map-planet-menu-username').text("(" + map.planetData[system][units.planetTarget].ownerName + ")");
+			}
+
 			$('#map-planet-menu').css({
 				"left": e.pageX,
 				"top":  e.pageY,
 			});
-			$('#map-planet-menu').css('display','block');
+			ui.show('#map-planet-menu');
 		}
-		$('#map-system .planet').click(planetClick);
+		$('#map-system .planet').click(viewInfo);
+		$('#map-system .star').click(viewInfo);
 
 		$(document).click(function(e) {
-			if(!$(e.target).hasClass("planet") && !$(e.target).hasClass("pos")) {
-				$('#map-planet-menu').css('display','none');
+			if(!$(e.target).hasClass("planet") && !$(e.target).hasClass("pos") && !$(e.target).hasClass("star")) {
+				ui.hide('#map-planet-menu');
 			}
 		});
 		$('#map-planet-menu img').click(function(e) {
 			switch(e.target.id) {
 				case "map-planet-menu-infos":
-					socket.emit("planet-ask-mapData", { 
-						id: userData.id,
-						username: userData.username,
-						pAddress: $(this).parent().parent().attr('id')
-					});
+					planet.openOtherPlanetPanel();
 					break;
 				case "map-planet-menu-move":
 					units.openMovePanel(2);
@@ -636,20 +660,20 @@ class map {
 					break;
 			}
 
-			$('#map-planet-menu').css('display','none');
+			ui.hide('#map-planet-menu');
 		});
 		$('#map-move-panel-close').click(function() {
-			$('#map-move-panel').css('display','none');
+			ui.hide('#map-move-panel');
 		});
 
 		// Back button
-		$('#map-back').css('display','block');
-		$('#map-focus').css('display','none');
+		ui.show('#map-back');
+		ui.hide('#map-focus');
 
 		// Toggle Maps
 		map.resetMaps();
 		map.currentAddress = address;
-		$('#map-system').css('display','block');
+		ui.show('#map-system');
 
 		// @ADD: depends on config
 		$("#map-system").removeClass('view-2D opening').addClass("view-3D").delay(2000).queue(function() {
@@ -699,7 +723,11 @@ class map {
 
 			// Events
 			$('#' + $(systemList[i]).attr("id")).click(function() {
-				map.openSolarSystemMap($(this).attr('id'));
+				socket.emit("system-ask-mapData", { 
+					id: userData.id,
+					username: userData.username,
+					systemAddress: $(this).attr('id')
+				});
 			});	
 		}
 	}

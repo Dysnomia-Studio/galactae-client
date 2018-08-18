@@ -1090,6 +1090,9 @@ select, input, summary {
 	color: #EEEEEE;
 	height: 50px;
 }
+.ui-large-button:hover {
+	background-color: #0f1619;
+}
 .ui-large-select {
 	box-sizing: content-box;
 	border: 1px outset #0EC6C6;
@@ -2252,33 +2255,54 @@ a[class="research-search"] {
 }
 /* Note: Picture width is about 7.07 em when rotated */
 #map-planet-menu-infos {
-	left: -1.5rem;
+	left: -1.25rem;
 	top: -2.75rem;
 }
 #map-planet-menu-move {
-	left: 0.35rem;
+	left: 0.60rem;
 	top: -4.55rem;
 }
 #map-planet-menu-attack {
-	left: -3.45rem;
+	left: -3.20rem;
 	top: -4.55rem;
 }
 #map-planet-menu-defend {
-	left: -3.45rem;
+	left: -3.20rem;
 	top: -0.9rem;
 }
 #map-planet-menu-trade {
-	left: 0.35rem;
+	left: 0.60rem;
 	top: -0.9rem;
 }
 #map-planet-menu-spy {
-	left: -1.55rem;
-	top: 0.9rem;
+	left: -1.25rem;
+	top: 0.95rem;
+}
+
+
+#map-planet-menu-planetname, #map-planet-menu-username {
+	position: absolute;
+	left: -5rem;
+
+	width: 10rem;
+
+	display: inline-block;
+	text-align: center;
+
+	font-size: 1rem;
+}
+#map-planet-menu-planetname {
+	top: -8.5em;
+}
+#map-planet-menu-username {
+	top: -7em;
 }
 
 #map-move-panel  {
 	position: fixed;
 	z-index: 101;
+
+	text-align: left;
 
 	display: none;
 }
@@ -2306,6 +2330,72 @@ a[class="research-search"] {
 
 		background-color: #0b1012;
 	}
+}
+#map-move-panel-list {
+	display: inline-block;
+
+	padding: 0;
+	margin: 0;
+
+	width: 40%;
+
+	height: 100%;
+}
+#map-move-panel-list-header, #map-move-panel-list ul {
+	width: 100%;
+
+	box-sizing: border-box;
+
+	margin: 0;
+}
+#map-move-panel-list-header {
+	height: 2em;
+
+	padding: 0;
+
+	text-align: center;
+}
+#map-move-panel-list ul {
+	height: calc(100% - 2em);
+
+	border: 1px solid #777777;
+	padding: 1px;
+
+	text-align: center;
+
+	list-style: none;
+
+	overflow-y: auto;
+}
+#map-move-panel-list ul li {
+	line-height: 1.5em;
+
+	cursor: url(../img/mouse_pointer.png), pointer;
+
+	padding-right: 1em;
+	border: 2px solid transparent;
+}
+#map-move-panel-list ul li img {
+	height: 1em;
+	margin: 0.25em 0.5em;
+	float: left;
+}
+.map-move-panel-list-active {
+	border: 2px solid #0ec6c6 !important;
+	box-sizing: border-box;
+}
+
+#map-move-panel-info, #map-move-panel-move {
+	width: 40%;
+	position: absolute;
+	right: 5%;
+}
+
+#map-move-panel-info {
+	top: calc(5% + 2em);
+}
+#map-move-panel-move {
+	bottom: 5%;
 }
 
 /**

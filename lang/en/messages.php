@@ -80,6 +80,7 @@ translate["messages"] = {
 	"PLY_NOT_FOUND": "Error: player not found",
 	"NO_PM_YOU": "Error: you can't send a private message to yourself",
 	"NO_LINKS": "Error: sending links in chat is prohibited.",
+	"DISABLED_FUNCTIONALIY": "Error: this functionallity isn't avaiable yet.",
 	// Anti Self XSS Warning
 	"selfXSSWarn": "Warning: if someone told you to paste something here, it's probably a scam, this kind of attack are called \"Self XSS\" and are made to take control of your account. Be careful !",
 };

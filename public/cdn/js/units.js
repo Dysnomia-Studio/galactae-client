@@ -56,6 +56,12 @@ class units {
 
 		units.sortTypes = "name";
 
+		units.currFleet = "";
+		units.fleetTimes = [];
+		units.fleetFuel  = [];
+
+		units.planetTarget = "";
+
 		units.drawMain();
 		units.drawFleetLists();
 	}
@@ -234,6 +240,16 @@ class units {
 		});
 	}
 
+	static getUnitData(id) {
+		for(let i=0; i<units.list.length; i++) {
+			if(units.list[i]._id == id) {
+				return units.list[i];
+			}
+		}
+
+		return {};
+	}
+
 	static getUnitName(id) {
 		let currUnit = units.getUnitData(id);
 
@@ -244,24 +260,24 @@ class units {
 		return "";
 	}
 
-	static getUnitData(id) {
-		for(let i=0; i<units.list.length; i++) {
-			if(units.list[i]._id == id) {
-				return units.list[i];
-			}
-		}
-
-		return "";
-	}
-
-	static getFleetName(id) {
+	static getFleetData(id) {
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i]._id == id) {
-				return units.fleetList[i].name;
+				return units.fleetList[i];
 			}
 		}
 
 		return {};
+	}
+
+	static getFleetName(id) {
+		let currFleet = units.getFleetData(id);
+
+		if(currFleet.name !== undefined) {
+			return currFleet.name;
+		}
+
+		return "";
 	}
 
 	static drawMain(type="") {
@@ -343,11 +359,11 @@ class units {
 			$('#fleet-build-list tbody').html(content);
 			units.selectUnit();
 
-			$('#fleet-build-list').css('display','inline-block');
+			ui.show('#fleet-build-list','inline-block');
 
-			$('#fleet-build-stat').css('display','block');
-			$('#fleet-build-message').css('display','block');
-			$('#fleet-build-buttons').css('display','block');
+			ui.show('#fleet-build-stat');
+			ui.show('#fleet-build-message');
+			ui.show('#fleet-build-buttons');
 
 			$('#fleet-build-message').html("");
 
@@ -893,23 +909,23 @@ class units {
 		}
 
 		if(modules.sub_propulsion == 0) {
-			$(div + '-subspeed').css('display','none');
+			ui.hide(div + '-subspeed');
 		} else {
 			$(div + '-subspeed-val').text(GetBetterUnit(modules.sub_propulsion,"m/s"));
 		}
 
 		if(modules.sup_propulsion == 0) {
-			$(div + '-supspeed').css('display','none');
+			ui.hide(div + '-supspeed');
 		} else {
 			$(div + '-supspeed-val').text(modules.sup_propulsion + "pc/s");
 		}
 
 		if(modules.sup_propulsion == 0 && modules.sub_propulsion == 0) {
-			$(div + '-speed').css('display','none');
+			ui.hide(div + '-speed');
 		}
 
 		if(type != "SHIP_CARRIER") {
-			$(div + '-fcap').css('display','none');
+			ui.hide(div + '-fcap');
 		} else {
 			$(div + '-fcap-val').text(modules.hangar);
 		}
@@ -1250,9 +1266,133 @@ class units {
 		$('#fleet-out-content').html(outDOM);
 	}
 
+	static calcMoveTime(fleet) {
+		return 0; //@TODO
+	}
+
+	// 0 => Use
+	// 1 => Cap
+	static fleetFuelUseCap(fleet) {
+		return [0,0]; //@TODO
+	}
+
 	static openMovePanel(moveType) {
+		let system = units.planetTarget.split('-');
+		system.pop();
+		system = system.join('-');
+
+		units.moveType = moveType;
+
+		// Fleet list
+		let fleetListDOM = "";
+		for(let i=0; i<units.fleetList.length; i++) {
+			if(units.fleetList[i].name == "SHIP_DEF" || units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; }
+
+			units.fleetTimes[units.fleetList[i]._id] = units.calcMoveTime(units.fleetList[i]); // Destination is units.planetTarget
+			units.fleetFuel[units.fleetList[i]._id]  = units.fleetFuelUseCap(units.fleetList[i]);
+
+			fleetListDOM += '<li id="' + units.fleetList[i]._id + '"';
+			if(i==0) {
+				fleetListDOM += ' class="map-move-panel-list-active"';
+			}
+			fleetListDOM += " >";
+
+			if(units.fleetFuel[units.fleetList[i]._id][1] >= 2*units.fleetFuel[units.fleetList[i]._id][0]) {
+				fleetListDOM += '<img src="' + cdnURL + 'img/ui/fuel-status-2.svg">';
+			} else if(units.fleetFuel[units.fleetList[i]._id][1] >= units.fleetFuel[units.fleetList[i]._id][0]) {
+				fleetListDOM += '<img src="' + cdnURL + 'img/ui/fuel-status-1.svg">';
+			} else {
+				fleetListDOM += '<img src="' + cdnURL + 'img/ui/fuel-status-0.svg">';
+			}
+
+			fleetListDOM += units.fleetList[i].name + "</li>";
+		}
+		$('#map-move-panel-list-ul').html(fleetListDOM);
+
+		units.currFleet = $($('.map-move-panel-list-active')[0]).attr('id');
+
+		$('#map-move-panel-list ul li').click(function() {
+			$('.map-move-panel-list-active').removeClass('map-move-panel-list-active');
+			$(this).addClass('map-move-panel-list-active');	
+			units.currFleet = $(this).attr('id');
+
+			units.updateMovePanel();
+		});
+
+		units.updateMovePanel();
+
+		// Destination
+		let msgPt1 = translate["messages"]["movePanelPt1"][moveType];
+
+		if(map.planetData[system][units.planetTarget] !== undefined) {
+			$("#map-move-panel-message").html(
+				msgPt1 + " <em>" +
+				map.planetData[system][units.planetTarget].name + "</em> (<em>" +
+				map.planetData[system][units.planetTarget].ownerName + "</em>)"
+			);
+		} else {
+			$("#map-move-panel-message").html(
+				msgPt1 + " <em>" +
+				units.planetTarget + "</em> (<em>" +
+				"Aucun joueur" + "</em>)"
+			);
+		}
+
+		$('#map-move-panel-move').click(function() {
+			switch(units.moveType) {
+				case 2:
+					socket.emit('fleet-move', {
+						id: userData.id,
+						username: userData.username,
+						fleetId: units.currFleet,
+						destination: units.planetTarget,
+					});
+					ui.hide('#map-move-panel');
+					break;
+				default:
+					ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+			}
+		});
 
 		// Display panel
-		$('#map-move-panel').css('display','block');
+		ui.show('#map-move-panel');
+	}
+
+	static updateMovePanel() {
+		let currentFleet = units.getFleetData(units.currFleet);
+
+		let fighterCount = 0;
+		let fighterCap = 0;
+		for(let j=0; j<currentFleet.units.length; j++) {
+			let currUnit = units.getUnitData(currentFleet.units[j][0]);
+			if(currUnit.shipType == "SHIP_FIGHTER") {
+				fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[j][1]);
+			} else if(currUnit.shipType == "SHIP_CARRIER") {
+				for(let p in currUnit.parts) {
+					if(currUnit.parts[p].type == "hangar") {
+						fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[j][1]);
+					}
+				}
+			}
+		}
+
+		// Time
+		$('#map-move-panel-time').text(getStringTime(units.fleetTimes[units.currFleet]));
+
+		// Fuel
+		let fFuel = units.fleetFuel[units.currFleet];
+		let ratio = Math.round(fFuel[0]/fFuel[1]*100);
+		if(Number.isNaN(ratio)) { ratio = 0; }
+		$('#map-move-panel-fuel').html(
+			GetBetterUnit(fFuel[0], 't', fFuel[1] + 1) +
+			" (" + ratio + "% du reservoir)"
+		);
+
+		// Hangar
+		$('#map-move-panel-hangar').css('color', 'white');
+		$('#map-move-panel-hangar').text(fighterCount + '/' + fighterCap);
+		if(fighterCount > fighterCap) {
+			$('#map-move-panel-hangar').css('color', 'red');
+		}
 	}
 }

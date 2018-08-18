@@ -138,7 +138,7 @@ class ui {
 				DOMelts[elt].classList.remove("ul-choice-line-li-active");
 			}
 
-			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
+			this.classList.add("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
 			$('#hud-ranks-frame').attr("src", "ranks.php?type=" + $(this).attr("choice"));
 		});
@@ -527,10 +527,16 @@ class ui {
 		$('#day-bonus-desc').html(desc);
 		ui.show('#day-bonus');
 
-		document.getElementById('day-bonus-desc td').addEventListener('click', function() {
-			$("#day-bonus-desc .day-bonus-active").removeClass("day-bonus-active"); //Retirer les classes actives
-			$(this).addClass("day-bonus-active"); // Activer l'onglet cliqué
-		});
+		let DOMElts = document.querySelectorAll('day-bonus-desc td');
+		for(let elt=0; elt<DOMElts.length; elt++) {
+			DOMElts[elt].addEventListener('click', function() {
+				let DOMelts = document.querySelectorAll('#day-bonus-desc .day-bonus-active');
+				for(let elt=0; elt<DOMelts.length; elt++) {
+					DOMelts[elt].classList.remove("day-bonus-active");
+				}
+				this.classList.add("day-bonus-active"); // Activer l'onglet cliqué
+			});
+		}
 
 		let dateNow = new Date();
 		setTimeout(function() {
