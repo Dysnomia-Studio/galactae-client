@@ -527,7 +527,7 @@ class ui {
 		$('#day-bonus-desc').html(desc);
 		ui.show('#day-bonus');
 
-		$document.getElementById('day-bonus-desc td').addEventListener('click', function() {
+		document.getElementById('day-bonus-desc td').addEventListener('click', function() {
 			$("#day-bonus-desc .day-bonus-active").removeClass("day-bonus-active"); //Retirer les classes actives
 			$(this).addClass("day-bonus-active"); // Activer l'onglet cliqué
 		});
