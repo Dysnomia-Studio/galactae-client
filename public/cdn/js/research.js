@@ -150,7 +150,7 @@ class research {
 			research.moveUI(newUIPos);
 		}
 		// On affiche le panel de recherches
-		ui.show('#hud-chat');
+		ui.show('#hud-research');
 		// On cache le chat et memorise son statut pour plus tard	
 		ui.researchChat = ($("#hud-chat").css('display')=="block");
 		ui.closeTab("#hud-chat",false);

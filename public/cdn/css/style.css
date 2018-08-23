@@ -1354,7 +1354,7 @@ select, input, summary {
 #fleet-type-create-name {
 	left: 305px;
 	width: 140px;
-	height: 34px;
+	height: 42px;
 	padding: 2px 5px;
 }
 #fleet-type-create-selects {
