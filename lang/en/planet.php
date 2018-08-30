@@ -54,5 +54,7 @@
 			"afterUpdating": "after upgrading",
 			"availableFleets": "Available fleets",
 			"metal": "Metal",
+			"min&met": "Minerals/Metal",
+			"total": "(total)",
 		};
 </script>

@@ -80,8 +80,16 @@ translate["messages"] = {
 	"PLY_NOT_FOUND": "Erreur: joueur introuvable",
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",
 	"NO_LINKS": "Erreur: vous ne pouvez pas envoyer de lien sur le chat",
+	"DISABLED_FUNCTIONALIY": "Erreur: cette fonctionnalité n'est pas encore disponible pour le moment.",
 	// Anti Self XSS Warning
 	"selfXSSWarn": "Attention: si quelqu'un vous dit de coller quelque chose ici, il y'a de grandes chances que ce soit une arnaque, ce genre d'attaques appelés \"Self XSS\" sont fait pour prendre le contrôle de votre compte. Soyez prudents !",
+	// Move Panel
+	"movePanelPt1": [
+		"Défense de la planete",
+		"Attaque de la planete",
+		"Deplacement vers",
+		"Espionnage de la planete",
+	]
 };
 
 translate['load'] = {

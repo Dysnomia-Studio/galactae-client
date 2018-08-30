@@ -88,6 +88,9 @@
 		"projector": "Magnetic shield projector",
 		"singularity": "Singularity system",
 
+		// Other
+		"hangar": "Hangar",
+
 		// Texts
 		"fleet-build-openPanel": "Build this unit",
 		"fleet-build-type-copy": "Duplicate this model",
@@ -97,6 +100,6 @@
 		"no-move-unit": "No fleet is moving",
 		"no-out-unit": "No unit in orbit of another planet",
 
-		"unit": "unit(s)",
+		"unit": "total unit(s)",
 	};
 </script>
