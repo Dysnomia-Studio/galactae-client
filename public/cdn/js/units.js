@@ -271,13 +271,11 @@ class units {
 	}
 
 	static getFleetName(id) {
-		let currFleet = units.getFleetData(id);
+		let name = units.getFleetData(id).name;
+		if(name === undefined) { name = ""; }
+		if(name === "SHIP_DEF") { return fleetTranslate[name]; }
 
-		if(currFleet.name !== undefined) {
-			return currFleet.name;
-		}
-
-		return "";
+		return name;
 	}
 
 	static drawMain(type="") {
