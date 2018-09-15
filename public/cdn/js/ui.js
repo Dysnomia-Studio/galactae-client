@@ -465,10 +465,10 @@ class ui {
 				
 				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 
-				ui.hide('#hud-orbit');
-				ui.hide('#hud-build');
-				ui.hide('#hud-move');
-				ui.hide('#hud-out');
+				ui.hide('#fleet-orbit');
+				ui.hide('#fleet-build');
+				ui.hide('#fleet-move');
+				ui.hide('#fleet-out');
 				ui.fleet = true;
 
 				ui.show("#" + elt);
