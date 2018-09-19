@@ -698,6 +698,9 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static drawSector(sector) {
+		// Stop if already created
+		if($('#' + sector + '-1').length == 1) { return; }
+
 		// Get XML
 		let sectorXML = $(map.xmlDoc[sector])[0];
 		let systemList = $(sectorXML).find("sy");
