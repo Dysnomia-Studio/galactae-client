@@ -205,18 +205,18 @@ class map {
 
 		// At borders ?
 		let coords = [];
-		coords[0] = Math.floor((-$("#map-global").position().top)/($("#map-global").height()/10));
-		coords[1] = Math.floor((-$("#map-global").position().left)/($("#map-global").width()/10));
+		coords[0] = Math.floor(($(document).width()/2 - pos[0])/MAP_SIZE_WIDTH*10);
+		coords[1] = Math.floor(($(document).height()/2 - pos[1])/MAP_SIZE_HEIGHT*10);
 
 		let topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
 		let bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
 		let leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
 		let rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
 
-		let top =  coords[0] == 0 || (topDist > $(document).height() * 1.5);
-		let bottom = coords[0] == 9 || (bottomDist > $(document).height() * 1.5);
-		let left = coords[1] == 0 || (leftDist > $(document).height() * 1.5);
-		let right = coords[1] == 9 || (rightDist > $(document).height() * 1.5);
+		let top =  coords[0] == 0 || (topDist * 1.5 < $(document).height());
+		let bottom = coords[0] == 9 || (bottomDist * 1.5 < $(document).height());
+		let left = coords[1] == 0 || (leftDist * 1.5 < $(document).height());
+		let right = coords[1] == 9 || (rightDist * 1.5 < $(document).height());
 
 		/**
 		 * Load all needed xml
@@ -323,15 +323,23 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadXML(sector, callback) {
-		if(map.xmlhttp[sector] !== undefined) { return; } // Already loaded or loading
+		if(map.xmlhttp === undefined) { map.xmlhttp = []; }
+		if(map.xmlDoc === undefined) { map.xmlDoc = []; }
+		if(map.xmlDoc[sector] !== undefined && callback) { 
+			callback();
+			return;
+		} // Already loaded
 
-		if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-			map.xmlhttp[sector] = new XMLHttpRequest();
-		} else { // code for IE6, IE5
-			map.xmlhttp[sector] = new ActiveXObject("Microsoft.XMLHTTP");
+		let toSend = map.xmlhttp[sector] === undefined;
+		if(toSend) {
+			if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+				map.xmlhttp[sector] = new XMLHttpRequest();
+			} else { // code for IE6, IE5
+				map.xmlhttp[sector] = new ActiveXObject("Microsoft.XMLHTTP");
+			}
 		}
 
-		map.xmlhttp[sector].onreadystatechange = function() {
+		map.xmlhttp[sector].addEventListener('readystatechange',function() {
 			if (this.readyState === XMLHttpRequest.DONE) {
 				if (this.status === 200) {
 					map.xmlDoc[sector] = new DOMParser().parseFromString(map.xmlhttp[sector].responseText,'text/xml');
@@ -344,10 +352,12 @@ class map {
 					console.log('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
 				}
 			}
-		};
+		});
 
-		map.xmlhttp[sector].open("GET",cdnURL + "/maps/" + serverName + "/" + sector + ".xml", true);
-		map.xmlhttp[sector].send();
+		if(toSend) {
+			map.xmlhttp[sector].open("GET",cdnURL + "/maps/" + serverName + "/" + sector + ".xml", true);
+			map.xmlhttp[sector].send();
+		}
 	}
 
 	/**
@@ -742,26 +752,18 @@ class map {
 			console.log('INVALID ADRESS FORMAT !');
 			return;
 		}
-		
+
 		let coords = address.split('-');
 		let sector = coords[0] + "-" + coords[1];
 		let system = [coords[0],coords[1],coords[2]].join("-");
 
-		if(map.xmlDoc[sector] === undefined) {
-			map.loadMap(sector, function() {
-				let systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
-				let newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
-				let newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
-
-				map.moveUI([newX, newY]);
-			});
-		} else {
+		map.loadXML(sector, function() {
 			let systemXML = $(map.xmlDoc[sector]).find("sy#" + system)[0];
 			let newX = $(document).width()/2 - (MAP_SIZE_WIDTH * $(systemXML).attr("x")/10); // /10 = *10 / 100
 			let newY = $(document).height()/2 - (MAP_SIZE_HEIGHT * $(systemXML).attr("y")/10);
 
 			map.moveUI([newX, newY]);
-		}
+		});
 	}
 
 	/**
