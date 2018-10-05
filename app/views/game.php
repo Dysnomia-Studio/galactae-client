@@ -109,7 +109,21 @@
 
 	<?php /* Other planets */ ?>
 	<div id="planet-other">
-
+		<span id="planet-other-returnToSystem">Retour à la carte du système</span>
+		<span id="planet-other-returnToCurrent">Retour à ma planete</span>
+		<div id="planet-other-infos">
+			<span id="planet-other-address">Adresse: <span id="planet-other-address-data"></span></span><br/>
+			<span id="planet-other-ally">Alliance: <span id="planet-other-ally-data"></span></span><br/>
+			<span id="planet-other-player">Joueur: <span id="planet-other-player-data"></span></span><br/>
+			<span id="planet-other-planet">Planète: <span id="planet-other-planet-data"></span></span><br/>
+			<span id="planet-other-points">Points: <span id="planet-other-points-data"></span></span><br/><br/>
+			<div id="planet-other-lastReports">
+				Derniers rapports:
+				<ul id="planet-other-lastReports-list">
+					<li>Aucun rapport</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 <?php /* Msg Popup */ ?>
