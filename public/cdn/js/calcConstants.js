@@ -633,7 +633,7 @@ let shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 let shipPartsSpeed = {
 	// Propulsions subluminiques
 	ion: 			[ -0.000046, 0.0096, 0],
-	plasma: 		[ -0.000045, 0.0090, 0],
+	pplasma: 		[ -0.000045, 0.0090, 0],
 	vsolaire: 		[ -0.000040, 0.0080, 0],
 	// Propulsions supraluminiques
 	vsl: 			[    -0.027,   7.23, 0.001],
@@ -643,12 +643,12 @@ let shipPartsSpeed = {
 let fuelCost = {
 	// Propulsions subluminiques
 	ion: 			10682,
-	plasma: 		 7244,
+	pplasma: 		 7244,
 	vsolaire: 		    0,
 	// Propulsions supraluminiques
 	vsl: 			32761,
 	wd: 			29012,
-	hyperespace: 	25491,
+	hyperespace: 	25492,
 };
 
 let fighterWeight = {

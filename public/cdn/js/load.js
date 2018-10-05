@@ -9,25 +9,19 @@ let loadStatusArr = {
 	"maps": false,
 	"pictures": false,
 };
-let loadEnd = 12;
+let loadEnd = 10;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
-// 3 -> Planet Back (Planet)
-// 4 -> Planet Back (Player 1)
-// 5 -> Planet Back (Player 2)
-// 6 -> Units data
-// 7 -> Player data
-// 8 -> Player data (2)
-// 9 -> Settings
-// 10 -> Preload Pictures
-// 11 -> Map
-// 12 -> Fleet list
+// 3 -> Planet Back
+// 4 -> Units data
+// 5 -> Player data
+// 6 -> Player data (2)
+// 7 -> Settings
+// 8 -> Preload Pictures
+// 9 -> Map
+// 10 -> Fleet list
 
 class loadScreen {
-	static show() {
-		$('#loading-overlay').show();
-	}
-
 	static complete(title="") {
 		if(++loadStatus>loadEnd) { return; } // Not needed if loading is already hided
 
@@ -56,8 +50,14 @@ class loadScreen {
 			}
 
 			let percentage = Math.round(loadStatus/loadEnd*100);
-			$(".loading-overlay-bar-primary .loading-overlay-bar-value").text(percentage + "%");
-			$(".loading-overlay-bar-primary .loading-overlay-bar-content").css("width", percentage + "%");
+			let DOMElts = document.querySelectorAll('.loading-overlay-bar-primary .loading-overlay-bar-value');
+			for(let i=0; i<DOMElts.length; i++) {
+				DOMElts[i].innerText = percentage + "%";
+			}
+			DOMElts = document.querySelectorAll('.loading-overlay-bar-primary .loading-overlay-bar-content');
+			for(let i=0; i<DOMElts.length; i++) {
+				DOMElts[i].style.width = percentage + "%";
+			}
 		}
 	}
 
@@ -110,8 +110,15 @@ class loadScreen {
 		for (let i=0; i < picList.length; i++) {
 			(function (img, src) {
 				img.onload = function() {
-					$(".loading-overlay-bar-secondary .loading-overlay-bar-value").text((++count) + "/" + picList.length);
-					$(".loading-overlay-bar-secondary .loading-overlay-bar-content").css("width", Math.round(count/picList.length*100) + "%");
+					let DOMElts = document.querySelectorAll('.loading-overlay-bar-secondary .loading-overlay-bar-value');
+					for(let i=0; i<DOMElts.length; i++) {
+						DOMElts[i].innerText = (++count) + "/" + picList.length;
+					}
+					DOMElts = document.querySelectorAll('.loading-overlay-bar-secondary .loading-overlay-bar-content');
+					for(let i=0; i<DOMElts.length; i++) {
+						DOMElts[i].style.width =  Math.round(count/picList.length*100) + "%";
+					}
+
 					if (count == picList.length) {
 						loadScreen.complete('pictures');
 					}
@@ -128,19 +135,19 @@ class loadScreen {
 	}
 }
 
-$(document).ready(function() {
+ready(function() {
 	// Basic Security (ClientSide)
 	if(!existCookie('galactae-account-username') || !existCookie('galactae-account-id')) { //Why are you here ?!
 		kick("not-connected");
 	}
 
-	$('#loading-overlay-desc').html(translate.load["server"]);
+	document.getElementById('loading-overlay-desc').innerHTML = translate.load["server"];
 
 	// Load settings
 	settings.init();
 
 	// On affiche la page de chargement
-	loadScreen.show();
+	ui.show('#loading-overlay');
 
 	// Prechargement des images
 	loadScreen.picturePreload();

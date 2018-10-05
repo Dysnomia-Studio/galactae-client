@@ -70,7 +70,7 @@ class units {
 		units.lastType = "SHIP_ALL";
 
 		// Fleet panels close events
-		$("#fleet-close").click(function() {
+		document.getElementById('fleet-close').addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
 			if(units.unitPanelTimeout != -1) {
 				clearTimeout(units.unitPanelTimeout);
@@ -238,6 +238,23 @@ class units {
 				units.drawNewFleetPanel();
 			}
 		});
+
+		// Move
+		$('#map-move-panel-move').click(function() {
+			switch(units.moveType) {
+				case 2:
+					socket.emit('fleet-move', {
+						id: userData.id,
+						username: userData.username,
+						fleetId: units.currFleet,
+						destination: units.planetTarget,
+					});
+					ui.hide('#map-move-panel');
+					break;
+				default:
+					ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+			}
+		});
 	}
 
 	static getUnitData(id) {
@@ -354,7 +371,10 @@ class units {
 				}
 			}
 
-			$('#fleet-build-list tbody').html(content);
+			let DOMElts = document.querySelectorAll('#fleet-build-list tbody');
+			for(var i=0; i<DOMElts.length; i++) {
+				DOMElts[i].innerHTML = content;
+			}
 			units.selectUnit();
 
 			ui.show('#fleet-build-list','inline-block');
@@ -363,7 +383,7 @@ class units {
 			ui.show('#fleet-build-message');
 			ui.show('#fleet-build-buttons');
 
-			$('#fleet-build-message').html("");
+			document.getElementById('fleet-build-message').innerHTML = "";
 
 			// Time left
 			if(units.unitPanelTimeout != -1) {
@@ -408,11 +428,22 @@ class units {
 			} 
 
 			// Fleet Build
-			$('#fleet-build-list tbody tr').click(function() {
-				$("#fleet-build-list .fleet-build-list-active").removeClass("fleet-build-list-active"); //Retirer les classes actives
-				$(this).addClass("fleet-build-list-active"); // Activer l'onglet cliqué
-				units.selectUnit($(this).attr('id'));
-			});
+			DOMElts = document.querySelectorAll('#fleet-build-list tbody tr');
+			for(let i=0; i<DOMElts.length; i++) {
+				DOMElts[i].addEventListener('click', function() {
+					// Remove existing active class
+					let DOMEltsClasses = document.querySelectorAll('#fleet-build-list .fleet-build-list-active');
+					for(let j=0; j<DOMEltsClasses.length; j++) {
+						DOMEltsClasses[j].classList.remove('fleet-build-list-active');
+					}
+
+					// Add active class
+					this.classList.add('fleet-build-list-active');
+
+					// Select unit
+					units.selectUnit(this.id);
+				});
+			}
 		}
 
 		// Check if we can create fleet
@@ -551,14 +582,16 @@ class units {
 		}
 
 		// Fleet list
-		$('#fleet-ship-build-fleetSelect').html(unitBuildSelectHeader);
+		document.getElementById('fleet-ship-build-fleetSelect').innerHTML = unitBuildSelectHeader;
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name == "SHIP_DEF" || units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; } // Def fleet
 			if(units.fleetList[i].position != planetData.address || units.fleetList[i].orbitPosition != 0) { continue; } // Moving/Out fleets
 
-			$('#fleet-ship-build-fleetSelect').append('<option id="' + i + '">' + units.fleetList[i].name + '</option>');
+			document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
+					document.getElementById('fleet-ship-build-fleetSelect').innerHTML + '<option id="' + i + '">' + units.fleetList[i].name + '</option>';
 		}
-		$('#fleet-ship-build-fleetSelect').append(unitBuildSelectNew);
+		document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
+				document.getElementById('fleet-ship-build-fleetSelect').innerHTML + unitBuildSelectNew;
 	}
 
 	static drawBuildPanel() {
@@ -569,13 +602,13 @@ class units {
 		let currUnit = units.list[units.currUnit];
 
 		// Name
-		$("#fleet-ship-build-name").text(currUnit.name);
+		document.getElementById('fleet-ship-build-name').innerText = currUnit.name;
 
 		// Costs
 		units.updateBuildCost();
 
 		// Count
-		$("#fleet-ship-build-count").val("");
+		document.getElementById('fleet-ship-build-count').value = "";
 		$("#fleet-ship-build-count").attr("placeholder","Max: " + units.getMaxShips());
 
 		units.regenerateBuildFleetList();
@@ -858,7 +891,7 @@ class units {
 			});
 		}
 
-		units.updateStats("#fleet-type-create-stat", type, shape, parts);
+		units.updateStats("fleet-type-create-stat", type, shape, parts);
 	}
 
 	static updateStats(div, type, shape, parts, note) {
@@ -909,13 +942,13 @@ class units {
 		if(modules.sub_propulsion == 0) {
 			ui.hide(div + '-subspeed');
 		} else {
-			$(div + '-subspeed-val').text(GetBetterUnit(modules.sub_propulsion,"m/s"));
+			document.getElementById(div + '-subspeed-val').innerText = GetBetterUnit(modules.sub_propulsion,"m/s");
 		}
 
 		if(modules.sup_propulsion == 0) {
 			ui.hide(div + '-supspeed');
 		} else {
-			$(div + '-supspeed-val').text(modules.sup_propulsion + "pc/s");
+			document.getElementById(div + '-supspeed-val').innerText = modules.sup_propulsion + "pc/s";
 		}
 
 		if(modules.sup_propulsion == 0 && modules.sub_propulsion == 0) {
@@ -925,7 +958,7 @@ class units {
 		if(type != "SHIP_CARRIER") {
 			ui.hide(div + '-fcap');
 		} else {
-			$(div + '-fcap-val').text(modules.hangar);
+			document.getElementById(div + '-fcap-val').innerText = modules.hangar;
 		}
 
 		// Calcul des données si données
@@ -935,21 +968,22 @@ class units {
 		let mass = 0; // @ADD: Calc mass
 		
 		// Masse
-		$(div + '-mass-val').html(GetBetterUnit(mass,"t"));
+		document.getElementById(div + '-mass-val').innerText = GetBetterUnit(mass,"t");
 
 		// Note
-		$(div + '-note-val').text(note); 
+		document.getElementById(div + '-note-val').innerText = note;
 
 		// Miss chance
-		$(div + '-miss-val').text(miss + "%");
+		document.getElementById(div + '-miss-val').innerText = miss + "%";
 	}
 
 	static selectUnit(id) {
 		units.currUnit = id = (id === undefined)?0:id;
 		if(units.list[id] === undefined) { return; }
-		$('#fleet-build-name').text(units.list[id].name);
 
-		units.updateStats("#fleet-build-stat", units.list[id].shipType, units.list[id].shipShape, units.list[id].parts, units.list[id].note);
+		document.getElementById('fleet-build-name').innerHTML = units.list[id].name;
+
+		units.updateStats("fleet-build-stat", units.list[id].shipType, units.list[id].shipShape, units.list[id].parts, units.list[id].note);
 
 		// Weapons
 		let armesText = "";
@@ -974,7 +1008,7 @@ class units {
 			}
 		}
 		if(armesText != "") {
-			$('#fleet-build-stat-attack-val').text(armesText);
+			document.getElementById('fleet-build-stat-attack-val').innerText = armesText;
 		} else {
 			ui.hide('#fleet-build-stat-attack');
 		}
@@ -998,7 +1032,7 @@ class units {
 			}
 		}
 		if(shieldText != "") {
-			$('#fleet-build-stat-shield-val').text(shieldText);
+			document.getElementById('fleet-build-stat-shield-val').innerText = shieldText;
 		} else {
 			ui.hide('#fleet-build-stat-shield');
 		}
@@ -1141,7 +1175,7 @@ class units {
 		} else {
 			orbitDOM = "<h2>" + fleetTranslate['no-orbit-unit'] + "</h2>";
 		}
-		$('#fleet-orbit-content').html(orbitDOM);
+		document.getElementById('fleet-orbit-content').innerHTML = orbitDOM;
 
 		// Moving
 		let movingDOM = "";
@@ -1201,7 +1235,7 @@ class units {
 		} else {
 			movingDOM = "<h2>" + fleetTranslate['no-move-unit'] + "</h2>";
 		}
-		$('#fleet-move-content').html(movingDOM);
+		document.getElementById('fleet-move-content').innerHTML = movingDOM;
 
 		// Out
 		let outDOM = "";
@@ -1261,17 +1295,68 @@ class units {
 		} else {
 			outDOM = "<h2>" + fleetTranslate['no-out-unit'] + "</h2>";
 		}
-		$('#fleet-out-content').html(outDOM);
+		document.getElementById('fleet-out-content').innerHTML = outDOM;
 	}
 
-	static calcMoveTime(fleet) {
-		return 0; //@TODO
-	}
+	static calcTimeAndFuel(fleet) {
+		let now = Date.now();
 
-	// 0 => Use
-	// 1 => Cap
-	static fleetFuelUseCap(fleet) {
-		return [0,0]; //@TODO
+		let systemeDepart = fleet.position.split('-');
+		systemeDepart.pop();
+		systemeDepart = systemeDepart.join('-');
+
+		let systemeArrivee = units.planetTarget.split('-');
+		systemeArrivee.pop();
+		systemeArrivee = systemeArrivee.join('-');
+
+		let planeteDepart = map.planetData[systemeDepart][fleet.position];
+		let planeteArrivee = map.planetData[systemeArrivee][units.planetTarget];
+
+		let time;
+		let minSpeed;
+		if(systemeDepart == systemeArrivee) {
+			let unitList = [];
+			for(let i=0; i<fleet.units.length; i++) {
+				unitList[i] = units.getUnitData(fleet.units[i][0]);
+			}
+
+			minSpeed = Fleet.getMinSubSpeed(unitList);
+
+			let baseDist = map.getPlanetDistance(
+				planeteDepart,
+				planeteArrivee,
+				now/1000);
+			if(Number.isNaN(baseDist) || baseDist < 0) { return; }
+			let baseTravelTime = Fleet.calcMoveTime(baseDist, minSpeed.speed);
+
+			let previewDist = map.getPlanetDistance(
+				planeteDepart,
+				planeteArrivee,
+				now/1000 + Math.round(baseTravelTime*360000)/100);
+			if(Number.isNaN(previewDist) || previewDist < 0) { return; }
+			let previewTime = Fleet.calcMoveTime(previewDist, minSpeed.speed);
+
+			/* Final travel time:
+				Average of ...
+				 Time to travel to planet where it's now
+				and
+				 Time to travel to planet where it'll be when we arrive to this previous position
+			*/
+			time = (baseTravelTime + previewTime)/2;
+		} else {
+			minSpeed = Fleet.getMinSupraSpeed(fleet.units);
+
+			let dist = Math.sqrt(
+					Math.pow(planeteDepart.galacticPos[0] - planeteArrivee.galacticPos[0],2) + 
+					Math.pow(planeteDepart.galacticPos[1] - planeteArrivee.galacticPos[1],2)
+				);
+
+			time = Fleet.calcMoveTime(dist, minSpeed.speed);
+		}
+
+		let fuel = [Fleet.calcFuelCost(minSpeed.engines), fleet.fuel];
+
+		return { time, fuel };
 	}
 
 	static openMovePanel(moveType) {
@@ -1286,8 +1371,9 @@ class units {
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name == "SHIP_DEF" || units.fleetList[i].name == fleetTranslate["SHIP_DEF"]) { continue; }
 
-			units.fleetTimes[units.fleetList[i]._id] = units.calcMoveTime(units.fleetList[i]); // Destination is units.planetTarget
-			units.fleetFuel[units.fleetList[i]._id]  = units.fleetFuelUseCap(units.fleetList[i]);
+			let mt = units.calcTimeAndFuel(units.fleetList[i]);
+			units.fleetTimes[units.fleetList[i]._id] = mt.time;
+			units.fleetFuel[units.fleetList[i]._id] = mt.fuel;
 
 			fleetListDOM += '<li id="' + units.fleetList[i]._id + '"';
 			if(i==0) {
@@ -1322,7 +1408,7 @@ class units {
 		// Destination
 		let msgPt1 = translate["messages"]["movePanelPt1"][moveType];
 
-		if(map.planetData[system][units.planetTarget] !== undefined) {
+		if(map.planetData[system][units.planetTarget].ownerName !== null) {
 			$("#map-move-panel-message").html(
 				msgPt1 + " <em>" +
 				map.planetData[system][units.planetTarget].name + "</em> (<em>" +
@@ -1335,22 +1421,6 @@ class units {
 				"Aucun joueur" + "</em>)"
 			);
 		}
-
-		$('#map-move-panel-move').click(function() {
-			switch(units.moveType) {
-				case 2:
-					socket.emit('fleet-move', {
-						id: userData.id,
-						username: userData.username,
-						fleetId: units.currFleet,
-						destination: units.planetTarget,
-					});
-					ui.hide('#map-move-panel');
-					break;
-				default:
-					ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
-			}
-		});
 
 		// Display panel
 		ui.show('#map-move-panel');
@@ -1375,22 +1445,21 @@ class units {
 		}
 
 		// Time
-		$('#map-move-panel-time').text(getStringTime(units.fleetTimes[units.currFleet]));
+		document.getElementById('map-move-panel-time').innerText = getStringTime(units.fleetTimes[units.currFleet]);
 
 		// Fuel
 		let fFuel = units.fleetFuel[units.currFleet];
 		let ratio = Math.round(fFuel[0]/fFuel[1]*100);
 		if(Number.isNaN(ratio)) { ratio = 0; }
-		$('#map-move-panel-fuel').html(
+		document.getElementById('map-move-panel-fuel').innerHTML =
 			GetBetterUnit(fFuel[0], 't', fFuel[1] + 1) +
-			" (" + ratio + "% du reservoir)"
-		);
+			" (" + ratio + "% du reservoir)";
 
 		// Hangar
-		$('#map-move-panel-hangar').css('color', 'white');
-		$('#map-move-panel-hangar').text(fighterCount + '/' + fighterCap);
+		document.getElementById('map-move-panel-hangar').style.color = 'white';
+		document.getElementById('map-move-panel-hangar').innerText = fighterCount + '/' + fighterCap;
 		if(fighterCount > fighterCap) {
-			$('#map-move-panel-hangar').css('color', 'red');
+			document.getElementById('map-move-panel-hangar').style.color = 'red';
 		}
 	}
 }

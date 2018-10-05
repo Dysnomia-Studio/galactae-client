@@ -633,6 +633,7 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 <?php /* Client Classes */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/fleet.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>

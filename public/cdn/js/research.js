@@ -25,7 +25,9 @@ class research {
 	 * Loader for research UI
 	 */
 	static loadUI() {
-		$("#research-close").click(function() { research.closeUI(); });
+		document.getElementById('research-close').addEventListener('click', function() {
+			research.closeUI();
+		});
 
 		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
 			if(research.scaling) { return; }
@@ -186,14 +188,14 @@ class research {
 	static drawPanel() {
 		if(research.zoom === undefined) { research.zoom = 1; }
 
-		$('#research-content').css('zoom', 1);
-		$('#research-content').css('-moz-transform','scale(1)');
+		document.getElementById('research-content').style.zoom = 1;
+		document.getElementById('research-content').style.MozTransform = 'scale(1)';
 
 		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
-		$('#hud-research').css("opacity", 0);
+		document.getElementById('hud-research').style.opacity = 0;
 		ui.show('#hud-research');
 		// Reset panel content
-		$('#research-content').html('<svg id="research-links" width="10000px" height="10000px"></svg>');
+		document.getElementById('research-content').innerHTML = '<svg id="research-links" width="10000px" height="10000px"></svg>';
 
 		// Create nodes
 		for(let key in userData.research) {
@@ -210,11 +212,11 @@ class research {
 		}
 
 		ui.hide('#hud-research');
-		$('#hud-research').css("opacity",1);
+		document.getElementById('hud-research').style.opacity = 1;
 
 		research.loadUI();
-		$('#research-content').css('zoom',research.zoom);
-		$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
+		document.getElementById('research-content').style.zoom = research.zoom;
+		document.getElementById('research-content').style.MozTransform = 'scale(' + research.zoom + ')';
 	}
 	/**
 	 * Draws a node.
@@ -225,7 +227,7 @@ class research {
 	 * @param	  {string}  parent  The parent
 	 */
 	static drawNode(key) {
-		if( $('#'+key+'-node').length ) { return; }
+		if(document.querySelectorAll('#'+key+'-node').length > 0) { return; }
 
 		// Place this node
 		let content;
@@ -255,15 +257,17 @@ class research {
 			content += '<span class="research-desc">' + research.getMissingParents(key) + '</span>';
 			content += '<div class="research-bottom"><span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">?/?</span></div>';
 		}
-
-		$('#research-content').append(content);
+		document.getElementById('research-content').innerHTML = document.getElementById('research-content').innerHTML + content;
 
 		// Position
-		$('#' + key + '-node').css("left",  researchPos[key][0]- ($('#' + key + '-node').height())/2 );
-		$('#' + key + '-node').css("top", researchPos[key][1] - ($('#' + key + '-node').width())/2  );
+		let node = document.getElementById(key + '-node');
+		if(node) {
+			node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + "px";
+			node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + "px";
+		}
 
 		if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch!=key) {
-			$('#'+key).click(function(){
+			document.getElementById(key).addEventListener('click', function(){
 				research.change(key);
 			});
 		}

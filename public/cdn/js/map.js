@@ -1,19 +1,19 @@
 // Stars: 4.8 to 12 em
 // in XML from 0 to 37
-let STAR_SIZE_BASE = 4;
-let STAR_SIZE_COEF = 2 / 37;
-let STAR_ECART = 2.25;
+const STAR_SIZE_BASE = 4;
+const STAR_SIZE_COEF = 2 / 37;
+const STAR_ECART = 2.25;
 
 // Planets: 4 to 15 em
-let PLANET_SIZE_BASE = 3 / 2;
-let PLANET_SIZE_COEF = 9 / 14;
-let PLANET_ECART = 2.5;
+const PLANET_SIZE_BASE = 3 / 2;
+const PLANET_SIZE_COEF = 9 / 14;
+const PLANET_ECART = 2.5;
 
-let MAP_SIZE_HEIGHT = 40000;
-let MAP_SIZE_WIDTH = 50000;
+const MAP_SIZE_HEIGHT = 40000;
+const MAP_SIZE_WIDTH = 50000;
 
-let MAP_STAR_SIZE_BASE = 5;
-let MAP_STAR_SIZE_RATIO = 0.08;
+const MAP_STAR_SIZE_BASE = 5;
+const MAP_STAR_SIZE_RATIO = 0.08;
 
 let mapPrevMouse = [0,0];
 
@@ -49,7 +49,7 @@ class map {
 
 		map.zoom = 1;
 
-		map.planetData = [];
+		map.planetData = (map.planetData === undefined) ? [] : map.planetData;
 
 		/**
 		 * Load XML
@@ -127,6 +127,19 @@ class map {
 
 		$('#map-focus').on('click', function() {
 			map.focusAddress(map.currentAddress = planetData.address);
+		});
+
+		document.getElementById('planet-other-returnToCurrent').addEventListener('click', function() {
+			map.closeTab();
+		});
+
+		document.getElementById('planet-other-returnToSystem').addEventListener('click', function() {
+			// On cache le chat et memorise son statut pour plus tard	
+			ui.mapChat = ($("#hud-chat").css('display')=="block");
+			ui.closeTab("#hud-chat",false);
+			ui.chat = false;
+
+			ui.show('#hud-map');
 		});
 
 		loadScreen.complete("maps");
@@ -379,6 +392,7 @@ class map {
 	 */
 	static closeTab() {
 		// Reset planet view
+		ui.show("#hud-top");
 		ui.show('#planet-current');
 		ui.hide('#planet-other');
 		planetBack.init(planetData.planetType);
@@ -394,6 +408,8 @@ class map {
 			}
 			ui.chat = ui.mapChat;
 		}
+
+		ui.updateBottom();
 	}
 
 	/**
@@ -551,7 +567,7 @@ class map {
 				let posAng = (((Date.now() + planet.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
 				$("#" + stars[i].address + " .pos").css("top","calc(50% + " + (orbitSize[i]/2) * Math.sin((2* Math.PI) - posAng) + "vh)");
-				$("#" + stars[i].address + " .pos").css("left","calc(50% + " + (orbitSize[i]/2) * Math.cos((2* Math.PI) - posAng)+ "vh)");
+				$("#" + stars[i].address + " .pos").css("left","calc(50% + " + (orbitSize[i]/2) * Math.cos((2* Math.PI) - posAng) + "vh)");
 			}
 
 			// Set Size
@@ -593,9 +609,6 @@ class map {
 
 			/* Planet Pos */
 			let posAng = (((Date.now() + planet.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
-			console.log(orbitSize);
-			console.log(orbitDuration);
-			console.log(posAng);
 			
 			$("#" + planets[i].address + " .pos").css("top","calc(50% + " + (Math.sin((2* Math.PI) - posAng) * orbitSize/2) + "vh)");
 			$("#" + planets[i].address + " .pos").css("left","calc(50% + " + (Math.cos((2* Math.PI) - posAng) * orbitSize/2) + "vh)");
@@ -628,7 +641,7 @@ class map {
 			system.pop();
 			system = system.join('-');
 
-			if(map.planetData[system][units.planetTarget] === undefined) { 
+			if(map.planetData[system][units.planetTarget].ownerName === null) { 
 				$('#map-planet-menu-planetname').text("");
 				$('#map-planet-menu-username').text("");
 
@@ -798,25 +811,24 @@ class map {
 		ui.show('#map-global');
 	}
 
-	static openPlanetInfos(pData) {
-		if(typeof(address) != "string" || address.split("-").length != 4) {
-			console.log('INVALID ADRESS FORMAT !');
-			return;
-		}
-		map.currentMap = "planet";
 
-		// Set background
-		planetBack.init(pData.planetType);
+	static getPlanetCoords(angle, diameter) {
+		return [
+			0.5*diameter*Math.cos(angle),
+			0.5*diameter*Math.sin(angle),
+		]; // Aucun besoin de constantes (50% + ... ) étant donné qu'on les soustrait
+	}
 
-		// Set informations
+	static getPlanetDistance(from, to, when) {
+		let angleDepart = (2* Math.PI) - (when%from.orbitDuration / from.orbitDuration) * (2* Math.PI);
+		let anglArrivee = (2* Math.PI) - (when%to.orbitDuration / to.orbitDuration) * (2* Math.PI);
 
+		let coordsDepart = map.getPlanetCoords(angleDepart, from.orbitDist);
+		let coordsArrivee = map.getPlanetCoords(anglArrivee, to.orbitDist);
 
-		// Toggle Maps
-		map.resetMaps();
-
-		ui.hide('#hud-map');
-
-		ui.hide('#planet-current');
-		ui.show('#planet-other');
+		return Math.sqrt(
+			Math.pow(coordsDepart[0] - coordsArrivee[0],2) + 
+			Math.pow(coordsDepart[1] - coordsArrivee[1],2)
+		);
 	}
 }

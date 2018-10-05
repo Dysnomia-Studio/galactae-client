@@ -79,9 +79,9 @@ class settings {
 	static loadUI() {
 		document.getElementById("hud-settings").addEventListener('click', function () {
 			if(ui.menu) {
-				ui.closeTab("#settings-menu");
+				ui.closeTab('#settings-menu');
 			} else {
-				ui.show('#settings-menu"');
+				ui.show('#settings-menu');
 			}
 			ui.menu = !(ui.menu);
 		});

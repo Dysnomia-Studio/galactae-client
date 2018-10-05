@@ -22,7 +22,7 @@ let buildingsNames = [
 
 let planetData = { //Not complete but some are needed on init because of bugs
 	planetType: 0,
-	id: userData.pid,
+	address: userData.pid,
 	resources: {},
 	Buildings: {},
 };
@@ -394,7 +394,7 @@ class planet {
 		$('#population-total').html(GetBetterUnit(habProd,""));	
 	}
 	/*
-	Draws if buildings can be build.
+	* Draws if buildings can be build.
 	*/
 	static drawCanBeBuild() {
 		if(canbebuildtimeout!=-1) {
@@ -515,20 +515,38 @@ class planet {
 	 */
 	static MiscDrawUpdate() {
 		//Planet name
-		$('#hud-planet-name').text(planetData.name);
+		document.getElementById('hud-planet-name').innerText = planetData.name;
 
 		//Page Title
 		ui.updatePageTitle();
 
-		
-		if(planetData.planetType!=undefined) {
-			//Set background
-			planetBack.init(planetData.planetType);
+		if(!planetData.address) { return; }
 
-			//Set Build Tabs Background
-			$('.build-tab-background').attr("src",cdnURL+'img/buildings/tabs/'+planetData.planetType+'.png');
-		}
+		let sector = planetData.address.split('-');
+		sector.pop();
+		sector.pop();
+		sector = sector.join('-');
+
+		map.loadXML(sector, function() {
+			//Set background
+			planetBack.init(planet.getTypeOfPlanet(planetData.address));
+		});
 	}
+
+	static getTypeOfPlanet(address) {
+		let system = address.split('-');
+		system.pop();
+		system = system.join('-');
+
+		// Set background
+		let sector = system.split('-');
+		sector.pop();
+		sector = sector.join('-');
+		let astre = $(map.xmlDoc[sector]).find("#" + address)[0];
+
+		return $(astre).attr('t');
+	}
+
 	/**
 	 * Open the buildpanel.
 	 *
@@ -803,5 +821,72 @@ class planet {
 	}
 	static next() {
 		socket.emit("planet-ask-data-next", userData);
+	}
+
+	static openOtherPlanetPanel() {
+		let type = planet.getTypeOfPlanet(units.planetTarget);
+		let starTypesList = {
+			yellowDwarf: 1000,
+			blueGiant:   1001,
+		};
+		for(var s in starTypesList) {
+			console.log(type);
+			type = type.split(s).join(starTypesList[s]);
+			console.log(type);
+		}
+		planetBack.init(type);
+
+		let system = units.planetTarget.split('-');
+		system.pop();
+		system = system.join('-');
+
+		let pData = map.planetData[system][units.planetTarget];
+
+		// Set informations
+		document.getElementById('planet-other-address-data').innerText = units.planetTarget;
+
+		if(pData !== undefined) {
+			if(pData.ally == "") {
+				document.getElementById('planet-other-ally-data').innerText = "Aucune alliance";
+			} else {
+				document.getElementById('planet-other-ally-data').innerText = pData.ally;
+			}
+			
+			document.getElementById('planet-other-player-data').innerText = pData.ownerName;
+			document.getElementById('planet-other-planet-data').innerText =  pData.name;
+			document.getElementById('planet-other-points-data').innerText =  pData.points;
+
+			document.getElementById('planet-other-planet').style.display = "inline";
+			document.getElementById('planet-other-points').style.display = "inline";
+		} else {
+			document.getElementById('planet-other-ally-data').innerText = "Aucune alliance";
+			document.getElementById('planet-other-player-data').innerText = "Aucun joueur";
+			document.getElementById('planet-other-planet').style.display = "none";
+			document.getElementById('planet-other-points').style.display = "none";
+		}
+
+		if(units.planetTarget.split('S').length == 2) {
+			document.getElementById('planet-other-ally').style.display = "none";
+			document.getElementById('planet-other-player').style.display = "none";
+		} else {
+			document.getElementById('planet-other-ally').style.display = "inline";
+			document.getElementById('planet-other-player').style.display = "inline";
+		}
+
+		//@TODO: Add last reports
+
+		// Show/Hide UIs
+		if(!ui.chat) {
+			if(ui.mapChat) {
+				ui.show('#hud-chat');
+			}
+			ui.chat = ui.mapChat;
+		}
+
+		ui.hide("#hud-top");
+		ui.hide('#hud-map');
+
+		ui.hide('#planet-current');
+		ui.show('#planet-other');
 	}
 }

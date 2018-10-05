@@ -95,7 +95,7 @@ class ui {
 		//HUD Buttons
 		ui.hudBottomButtons();
 
-		$(window).resize(function() {
+		window.addEventListener('resize', function() {
 			ui.loadHUDButtons();
 		});
 
@@ -531,9 +531,9 @@ class ui {
 		let DOMElts = document.querySelectorAll('day-bonus-desc td');
 		for(let elt=0; elt<DOMElts.length; elt++) {
 			DOMElts[elt].addEventListener('click', function() {
-				let DOMelts = document.querySelectorAll('#day-bonus-desc .day-bonus-active');
-				for(let elt=0; elt<DOMelts.length; elt++) {
-					DOMelts[elt].classList.remove("day-bonus-active");
+				let DOMEltList = document.querySelectorAll('#day-bonus-desc .day-bonus-active');
+				for(let elt=0; elt<DOMEltList.length; elt++) {
+					DOMEltList[elt].classList.remove("day-bonus-active");
 				}
 				this.classList.add("day-bonus-active"); // Activer l'onglet cliqué
 			});
@@ -546,6 +546,6 @@ class ui {
 	}
 }
 
-$(document).ready( function() {
+ready(function() {
 	ui.load();
 });

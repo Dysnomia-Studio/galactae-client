@@ -1856,9 +1856,8 @@ a[class="research-search"] {
 }
 #map-back, #map-focus {
 	position: fixed;
-	top: 3.5vw;
-	left: 3em;
-	font-weight: bold;
+	top: 1em;
+	left: 1em;
 	cursor: url(../img/mouse_pointer.png), pointer;
 
 	z-index: 155;
@@ -2446,7 +2445,7 @@ a[class="research-search"] {
 /**
  * Planet - Current
  */
-#planet-current {
+#planet-current, #planet-other {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -2842,6 +2841,38 @@ a[class="research-search"] {
 	animation-name: building-list-animActive;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
+}
+
+/**
+ * Other planet
+ */
+#planet-other {
+	display: none;
+}
+#planet-other-returnToSystem {
+	position: fixed;
+	top: 1em;
+	left: 1em;
+}
+#planet-other-returnToCurrent {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+}
+#planet-other-infos {
+	position: fixed;
+	top: 25vh;
+	left: 1em;
+
+	padding: 0.75em 1.5em;
+
+	max-width: 25vw;
+
+	background-color: #0b1012;
+	border: 1px solid #0EC6C6;
+}
+#planet-other-lastReports-list {
+	margin: 0;
 }
 
 /**
