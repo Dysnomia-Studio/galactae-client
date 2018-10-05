@@ -371,7 +371,7 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 	<span id="map-close">X</span>
 	<div id="map-back"><?php echo MAP_BACKTO_GLOBAL_MAP; ?></div>
 	<div id="map-focus"><?php echo MAP_FOCUS_CURRENT_SYSTEM; ?></div>
-	<svg height="40000" width="50000" id="map-global" style="left: -27576.2px; top: -22302.7px;">
+	<svg height="40000" width="50000" id="map-global">
 		<defs>
 			<radialGradient id="redDwarf" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
 				<stop stop-opacity="1" stop-color="#ff0a0b" offset="0"></stop>
@@ -441,15 +441,36 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
             <div id="map-system-solarFront">
             </div>
             <div id="map-planet-menu">
-            	<img id="map-planet-menu-infos" src="<?= $cdnURL ?>img/ui/planet-infos.svg">
-            	<img id="map-planet-menu-move" src="<?= $cdnURL ?>img/ui/fleet-move.svg">
-            	<img id="map-planet-menu-attack" src="<?= $cdnURL ?>img/ui/fleet-attack.svg">
-            	<img id="map-planet-menu-defend" src="<?= $cdnURL ?>img/ui/fleet-defend.svg">
-            	<img id="map-planet-menu-spy" src="<?= $cdnURL ?>img/ui/planet-spy.svg">
-            	<img id="map-planet-menu-trade" src="<?= $cdnURL ?>img/ui/planet-trade.svg">
+            	<span id="map-planet-menu-planetname">Planet</span>
+            	<span id="map-planet-menu-username">(user)</span>
+            	<img id="map-planet-menu-infos" src="../client-dev/public/cdn/img/ui/planet-infos.svg">
+            	<img id="map-planet-menu-move" src="../client-dev/public/cdn/img/ui/fleet-move.svg">
+            	<img id="map-planet-menu-attack" src="../client-dev/public/cdn/img/ui/fleet-attack.svg">
+            	<img id="map-planet-menu-defend" src="../client-dev/public/cdn/img/ui/fleet-defend.svg">
+            	<img id="map-planet-menu-spy" src="../client-dev/public/cdn/img/ui/planet-spy.svg">
+            	<img id="map-planet-menu-trade" src="../client-dev/public/cdn/img/ui/planet-trade.svg">
             </div>
           </div>
         </div>
+    </div>
+
+    <div id="map-move-panel">
+    	<span id="map-move-panel-close">X</span>
+
+    	<div id="map-move-panel-list">
+    		<div id="map-move-panel-list-header">Flotte:</div>
+    		<ul id="map-move-panel-list-ul"></ul>
+    	</div>
+
+    	<div id="map-move-panel-info">
+    		<span id="map-move-panel-message">Deplacement vers <em>PlanetName</em> (<em>Joueur</em>)</span><br/>
+    		<br/>
+    		Temps: ~<span id="map-move-panel-time">12:34:56</span><br/>
+    		&sup3;He: <span id="map-move-panel-fuel">12.34Kt (56% du reservoir)</span><br/>
+    		Hangar: <span id="map-move-panel-hangar">0/0</span><br/>
+    	</div>
+
+    	<input type="button" id="map-move-panel-move" name="map-move-panel-move" class="ui-large-button" value="Some move">
     </div>
 </div>
 <?php /* Fleet */ ?>
