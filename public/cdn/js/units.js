@@ -4,7 +4,7 @@ let preventUnitBuildPanelClose = false;
 class units {
 	static sync() {
 		let data = userData;
-		data.planet = planetData.address;
+		data.planet = planetData._id;
 		socket.emit('units-ask-data', data);
 	}
 
