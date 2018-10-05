@@ -457,12 +457,12 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
             <div id="map-planet-menu">
             	<span id="map-planet-menu-planetname">Planet</span>
             	<span id="map-planet-menu-username">(user)</span>
-            	<img id="map-planet-menu-infos" src="../client-dev/public/cdn/img/ui/planet-infos.svg">
-            	<img id="map-planet-menu-move" src="../client-dev/public/cdn/img/ui/fleet-move.svg">
-            	<img id="map-planet-menu-attack" src="../client-dev/public/cdn/img/ui/fleet-attack.svg">
-            	<img id="map-planet-menu-defend" src="../client-dev/public/cdn/img/ui/fleet-defend.svg">
-            	<img id="map-planet-menu-spy" src="../client-dev/public/cdn/img/ui/planet-spy.svg">
-            	<img id="map-planet-menu-trade" src="../client-dev/public/cdn/img/ui/planet-trade.svg">
+            	<img id="map-planet-menu-infos" src="<?= $cdnURL ?>img/ui/planet-infos.svg">
+            	<img id="map-planet-menu-move" src="<?= $cdnURL ?>img/ui/fleet-move.svg">
+            	<img id="map-planet-menu-attack" src="<?= $cdnURL ?>img/ui/fleet-attack.svg">
+            	<img id="map-planet-menu-defend" src="<?= $cdnURL ?>img/ui/fleet-defend.svg">
+            	<img id="map-planet-menu-spy" src="<?= $cdnURL ?>img/ui/planet-spy.svg">
+            	<img id="map-planet-menu-trade" src="<?= $cdnURL ?>img/ui/planet-trade.svg">
             </div>
           </div>
         </div>
