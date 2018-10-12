@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<!-- 
+	Code by Elanis
+	Copyright 2016-<?= date('Y') ?> 
+	Don't copy this without permission
+	I hope this code is readable.
+-->
 <?php 
 $debut = round(microtime(true) * 1000);
 
@@ -6,13 +13,6 @@ include_once('gvars.php');
 include_once(DIR_CTRL.'redirect.php');
 include_once(DIR_CTRL.'auth.php');
 ?>
-<!DOCTYPE html>
-<!-- 
-	Code by Elanis
-	Copyright 2016-<?= date('Y') ?> 
-	Don't copy this without permission
-	I hope this code is readable.
--->
 <html lang="<?= $lang->getLanguage(); ?>">
 	<head>
 		<title>Galactae: Space Age Dawn</title>
@@ -26,6 +26,8 @@ include_once(DIR_CTRL.'auth.php');
 		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 		<meta name="theme-color" content="#0b1012"></head>
+
+		<?php $lang->drawCached(); ?>
 	</head>
 	<body>
 		<?php

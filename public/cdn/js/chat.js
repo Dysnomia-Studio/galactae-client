@@ -1,5 +1,8 @@
 let chatChannel = "hud-chat-global";
 
+/**
+ * Class for chat.
+ */
 class chat {
 	static init() {
 		/**

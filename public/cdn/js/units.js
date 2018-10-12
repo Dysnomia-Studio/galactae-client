@@ -1108,9 +1108,9 @@ class units {
 		let out = [];
 
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].position == planetData.address && units.fleetList[i].orbitPosition != -1) {
+			if(units.fleetList[i].position == planetData.address && units.fleetList[i].endMoveTime == -1) {
 				orbit.push(units.fleetList[i]);
-			} else if(units.fleetList[i].orbitPosition == -1) {
+			} else if(units.fleetList[i].endMoveTime != -1) {
 				moving.push(units.fleetList[i]);
 			} else {
 				out.push(units.fleetList[i]);
