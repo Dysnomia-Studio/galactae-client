@@ -1,6 +1,6 @@
 <?php
 class ServerUserManager extends MongoInterface {
-	public function getServerByName($srvName, $name) {
+	public function getUserByName($srvName, $name) {
 		$data = $this->getCondContent($srvName,'users',
 			["name" => $name]
 		);

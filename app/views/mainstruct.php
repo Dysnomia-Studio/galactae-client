@@ -1,3 +1,6 @@
+<?php 
+$debut = round(microtime(true) * 1000);
+?>
 <!DOCTYPE html>
 <!-- 
 	Code by Elanis
@@ -6,8 +9,6 @@
 	I hope this code is readable.
 -->
 <?php 
-$debut = round(microtime(true) * 1000);
-
 include_once('gvars.php');
 
 include_once(DIR_CTRL.'redirect.php');
