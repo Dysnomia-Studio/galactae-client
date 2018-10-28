@@ -77,6 +77,8 @@ class MongoInterface {
 			$bulkUsers = new MongoDB\Driver\BulkWrite();
 			$bulkUsers->update($filter,$content,$opt);
 
+			var_dump($content);
+
 			$this->manager->executeBulkWrite($db.'.'.$doc, $bulkUsers);
 		}
 	}

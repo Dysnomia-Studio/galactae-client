@@ -45,7 +45,6 @@ class ServerUserManager extends MongoInterface {
 	}
 
 	public function addUser($dbname, $user) {
-		var_dump($user);
 		$this->addContent($dbname, 'users', $user);
 	}
 }

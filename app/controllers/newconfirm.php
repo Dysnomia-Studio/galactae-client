@@ -40,7 +40,7 @@ $usrmngr->addUserGameData(
 $srvusermng->addUser($dbname, $user);
 $srvplnmng->updatePlanet($dbname, $planet);
 
-$_SESSION['game_id'] = $user['_id'];
+$_SESSION['game_id'] = (string) $user['_id'];
 
 redirect('reload');
 ?>
