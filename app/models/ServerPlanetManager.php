@@ -5,7 +5,7 @@ class ServerPlanetManager extends MongoInterface {
 			$serverName,
 			'planets',
 			[ 'owner' => new MongoDB\BSON\ObjectID('000000000000000000000001') ],
-			[ 'owner' => $user['_id'] ],
+			[ '$set' => [ 'owner' => $user['_id'] ] ],	
 			[ 'multi' => false ]
 		);
 

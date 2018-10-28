@@ -128,7 +128,7 @@ class UserManager extends MongoInterface {
 	public function updateUserGameData($uid, $gid) {
 		$this->updateContent('galactae','game_ids', 
 			["user_id" => $uid], 
-			["game_id" => $gid]);
+			[ '$set' => [ "game_id" => $gid] ]);
 	}
 
 	public function addUserGameData($uid, $gid, $dbname) {
@@ -142,10 +142,7 @@ class UserManager extends MongoInterface {
 	public function updateUserLastNews($uid, $newsId) {
 		$this->updateContent('galactae','users',
 			['_id' => $uid],
-			[ '$set' => [
-				 	'lastViewedNews' => $newsId
-				]
-			]		
+			[ '$set' => [ 'lastViewedNews' => $newsId ] ]		
 		);
 	}
 }
