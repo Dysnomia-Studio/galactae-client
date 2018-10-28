@@ -72,10 +72,10 @@ class MongoInterface {
 	 * @param      <type>  $filter   The filter
 	 * @param      <type>  $content  The content
 	 */
-	public function updateContent($db,$doc,$filter,$content) {
+	public function updateContent($db,$doc,$filter,$content,$opt=[]) {
 		if(is_string($db) && is_string($doc) && is_array($filter) && is_array($content)) {
 			$bulkUsers = new MongoDB\Driver\BulkWrite();
-			$bulkUsers->update($filter,$content);
+			$bulkUsers->update($filter,$content,$opt);
 
 			$this->manager->executeBulkWrite($db.'.'.$doc, $bulkUsers);
 		}

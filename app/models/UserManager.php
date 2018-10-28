@@ -131,6 +131,14 @@ class UserManager extends MongoInterface {
 			["game_id" => $gid]);
 	}
 
+	public function addUserGameData($uid, $gid, $dbname) {
+		$this->addContent('galactae','game_ids',[
+			"user_id" => (string) $uid,
+			"game_id" => (string) $gid,
+			"server_name" => $dbname
+		]);
+	}
+
 	public function updateUserLastNews($uid, $newsId) {
 		$this->updateContent('galactae','users',
 			['_id' => $uid],
