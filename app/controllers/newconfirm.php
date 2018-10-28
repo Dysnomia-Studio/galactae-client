@@ -27,7 +27,7 @@ $planet = $srvplnmng->createPlanetModel(
 	$user
 );
 
-$user['planetlist'] = [$planet['_id']];
+$user['planetlist'] = [ (string) $planet['address'] ];
 
 // Share game-id to SQL server
 $usrmngr->addUserGameData(
