@@ -22,6 +22,7 @@ class ServerPlanetManager extends MongoInterface {
 		$planet = $this->getAvailablePlanet($serverName, $user);
 
 		unset($planet['owner']);
+		$planet['_id'] = new MongoDB\BSON\ObjectID((string) $planet['_id']);
 
 		return array_merge(
 			$planet
