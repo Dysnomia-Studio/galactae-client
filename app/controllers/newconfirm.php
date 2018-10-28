@@ -12,7 +12,7 @@ try {
 }
 
 try {
-	$usrmngr = new UserManager($dburl);
+	$usrmngr = new UserManager();
 } catch(Exception $e) {
 	redirect('main-home');
 }
