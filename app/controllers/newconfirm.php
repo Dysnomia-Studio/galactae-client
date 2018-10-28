@@ -27,7 +27,7 @@ $planet = $srvplnmng->createPlanetModel(
 	$user
 );
 
-$user['planetlist'] = [new MongoDB\BSON\ObjectID($planet['_id'])];
+$user['planetlist'] = [$planet['_id']];
 
 // Share game-id to SQL server
 $usrmngr->addUserGameData(
