@@ -1,6 +1,6 @@
 <?php
 class ServerPlanetManager extends MongoInterface {
-	public function getAvailablePlanet($serverName) {
+	public function getAvailablePlanet($serverName, $user) {
 		$this->updateContent(
 			$serverName,
 			'planets',
@@ -9,11 +9,13 @@ class ServerPlanetManager extends MongoInterface {
 			[ 'multi' => false ]
 		);
 
-		return $this->getCondContent(
-			$serverName,
-			'planets',
-			[ 'owner' => $user['_id'] ]
-		)[0];
+		return json_decode(json_encode(
+			$this->getCondContent(
+				$serverName,
+				'planets',
+				[ 'owner' => $user['_id'] ]
+			)[0]
+		), true);
 	}
 
 	public function createPlanetModel($serverName, $user) {

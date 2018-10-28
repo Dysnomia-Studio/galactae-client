@@ -13,6 +13,8 @@ class ServerUserManager extends MongoInterface {
 	}
 
 	public function createUserModel($name, $choice) {
+		global $beginnerProtectionDuration;
+		
 		return [
 			"_id" => new MongoDB\BSON\ObjectID(),
 			"name" => $name,
