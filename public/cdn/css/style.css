@@ -706,7 +706,7 @@ select, input, summary {
 
 	overflow: hidden;
 
-	height: 3vw;
+	height: 2vw;
 	line-height: 1.8vw;
 
 	background-color: rgb(180,180,180);
@@ -714,6 +714,8 @@ select, input, summary {
 
 	text-align: center;
 	color: black;
+
+	display: inline-block;
 }
 #hud-settings {
 	margin-right: 0.5em;
