@@ -495,6 +495,25 @@ class ui {
 		document.getElementById("hud-bottom-button-radar").addEventListener('click', function() {
 			fleetPanelToggle("fleet-move");
 		});
+
+		document.getElementById("hud-bottom-button-ally").addEventListener('click', function() {
+			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		});
+		document.getElementById("hud-bottom-button-rapports").addEventListener('click', function() {
+			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		});
+		document.getElementById("hud-bottom-button-quests").addEventListener('click', function() {
+			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		});
+		document.getElementById("hud-bottom-button-trade").addEventListener('click', function() {
+			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		});
+		document.getElementById("hud-bottom-button-profil").addEventListener('click', function() {
+			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		});
+		document.getElementById("hud-bottom-button-messages").addEventListener('click', function() {
+			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		});
 	}
 	/********** DAILY BONUS **********/
 	static dailyBonus(streak,best) {
