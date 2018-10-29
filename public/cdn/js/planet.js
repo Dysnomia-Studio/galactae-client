@@ -751,7 +751,9 @@ class planet {
 				title = translate['planet-ui']['production'];
 				icon = '&sup3;He';
 				value = GetBetterUnit(heliumProdBase,'t/h');
-				valuep1 = ' (+ ' + GetBetterUnit(heliumProdBase1 - heliumProdBase,'t/h') 
+				let val = heliumProdBase1 - heliumProdBase;
+				if(val < 0) { val = heliumProdBase1; }
+				valuep1 = ' (+ ' + GetBetterUnit(val,'t/h') 
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			default:

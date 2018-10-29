@@ -12,6 +12,7 @@ KEYBOARD.UARROW = 38;
 KEYBOARD.RARROW = 39;
 KEYBOARD.DARROW = 40;
 KEYBOARD.C = 67;
+KEYBOARD.I = 73;
 KEYBOARD.F12 = 123;
 
 /**
@@ -151,20 +152,27 @@ class ui {
 			//Block Inspect Element when 
 			//right click
 			$(document).on("contextmenu",function(){
-				if(document.location.host.substr(3,3) !== "dev" && document.location.host !== "localhost") {
+				if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
 					return false;
 				}
 			});
 			$(document).keydown(function(e){
 			//F12 => Firefox, Chrome, Edge
 				if(e.which === KEYBOARD.F12){
-					if(document.location.host.substr(3,3) !== "dev" && document.location.host !== "localhost") {
+					if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
 						return false;
 					}
 				}
 				//CTRL + SHIFT + C => Opera
 				if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
-					if(document.location.host.substr(3,3) !== "dev" && document.location.host !== "localhost") {
+					if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
+						return false;
+					}
+				}
+
+				//CTRL + SHIFT + I => Chromium
+				if(e.which === KEYBOARD.I && e.ctrlKey && e.shiftKey){
+					if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
 						return false;
 					}
 				}

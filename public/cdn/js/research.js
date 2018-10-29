@@ -209,6 +209,12 @@ class research {
 			for(let i=0; i<current.parents.length; i++) {
 				research.drawLink(key,current.parents[i]);
 			}
+
+			if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch!=key) {
+				document.getElementById(key).addEventListener('click', function(){
+					research.change(key);
+				});
+			}
 		}
 
 		ui.hide('#hud-research');
@@ -264,12 +270,6 @@ class research {
 		if(node) {
 			node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + "px";
 			node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + "px";
-		}
-
-		if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch!=key) {
-			document.getElementById(key).addEventListener('click', function(){
-				research.change(key);
-			});
 		}
 	}
 	/**
@@ -369,6 +369,7 @@ class research {
 	}
 
 	static change(id) {
+		console.log(id);
 		socket.emit('research-change', { username: userData.username, id: userData.id, pid: userData.pid, research: id });
  	}
 
