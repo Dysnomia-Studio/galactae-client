@@ -1,6 +1,6 @@
 <div id="gvt-choicelist">
 	<div class="gvt-mainText">
-		Bienvenue <?php echo $userData['user_name']; ?> ! Quel type de dirigant êtes vous ?
+		Bienvenue <?php echo $userData['user_name']; ?> ! Quel type de dirigeant êtes vous ?
 	</div>
 	<div class="gvt-choice">
 		<h1>Président</h1>

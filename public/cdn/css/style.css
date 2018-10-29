@@ -238,6 +238,8 @@ select, input, summary {
 	height: calc(100% - 7em - 2em); /* Total - bottom ( 2*3.5 ) - top */
 	overflow-x: auto;
 	font-size: 0.9em;
+	padding: 2em 1em 0 1em;
+	box-sizing: border-box;
 }
 .gvt-desc p {
 	margin: 0;
