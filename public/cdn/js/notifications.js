@@ -37,11 +37,16 @@ class notifications {
 
 	static notifyOnGame(type, text, options={}) {
 		let notifPanel = document.getElementById('notifications-panel');
-		notifPanel.innerHTML = '<div class="notif-elt notif-' + type + '"></div>' + notifPanel.innerHTML;
+		let content = '<div class="notif-elt notif-' + type + '"';
+
+		if(options.id !== undefined) {
+			content += ' id="' + options.id + '" ';
+		}
+		content +='></div>' + notifPanel.innerHTML;
 
 		// @TODO: Ajouter message de description
 
-		// @TODO: Ajouter attributs données dans options
+		notifPanel.innerHTML += content;
 
 		ui.notifCount++;
 		ui.updatePageTitle();
@@ -63,6 +68,7 @@ class notifications {
 			case "building":
 				title = translate.messages['ENDED_BUILDING_TITLE'];
 				desc = translate.messages['ENDED_BUILDING_01'] + translate['buildings'][args.building].name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
+				osOpt.id = args.building;
 				break;
 			case "research":
 				title = "Galactae: " + translate.messages['ENDED_RESEARCH'];
@@ -89,7 +95,7 @@ class notifications {
 		for(let elt=0; elt<DOMElts.length; elt++) {
 			let element = DOMElts[elt];
 			element.addEventListener('click', function() {
-				notification.gameNotifClick(element);
+				notifications.gameNotifClick(this);
 
 				ui.notifCount--;
 				ui.updatePageTitle();
@@ -111,13 +117,13 @@ class notifications {
 		if(ui.hasClass(element, 'notif-mail')) {
 			// @TODO
 		} else if(ui.hasClass(element, 'notif-building')) {
-			// @TODO
+			planet.buildPanelOpen(parseInt($(element).attr('id')));
 		} else if(ui.hasClass(element, 'notif-research')) {
 			research.openUI();
 		}
 		
 		// Remove element
-		this.parentNode.removeChild(this);
+		element.parentNode.removeChild(element);
 	}
 
 	static updateClearButtonDisplay() {
