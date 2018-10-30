@@ -15,15 +15,15 @@ class MongoInterface {
 	protected function connect($dbURL) {
 		global $config; 
 
-		if(!isset($dbURL) || $dbURL=='') {
-			if(!isset($config['mongoURL']) || $config['mongoURL']=='') { 
+		if(!isset($dbURL) || $dbURL=="") {
+			if(!isset($config['mongoURL']) || $config['mongoURL']=="") { 
 				die('DATABASE ERROR: All needed informations are not given !');
 			}
 
 			$dbURL = $config['mongoURL'];
 		}
 		
-		if(!extension_loaded('mongodb')) {
+		if(!extension_loaded("mongodb")) {
 			die('ERROR: MONGO EXTENSION NOT LOADED !');
 		} else {
 			try {
@@ -40,7 +40,7 @@ class MongoInterface {
 	 *
 	 * @param      string  $dbURL  The database url
 	 */
-	public function __construct($dbURL='') {
+	public function __construct($dbURL="") {
 		$this->connect($dbURL); //Il faut se connecter à la BDD
     }
 
@@ -72,12 +72,12 @@ class MongoInterface {
 	 * @param      <type>  $filter   The filter
 	 * @param      <type>  $content  The content
 	 */
-	public function updateContent($db,$doc,$filter,$content,$opt=[]) {
+	public function updateContent($db,$doc,$filter,$content) {
 		if(is_string($db) && is_string($doc) && is_array($filter) && is_array($content)) {
-			$bulkUsers = new MongoDB\Driver\BulkWrite();
-			$bulkUsers->update($filter,$content,$opt);
+			$bulk = new MongoDB\Driver\BulkWrite();
+			$bulk->update($filter,$content);
 
-			$this->manager->executeBulkWrite($db.'.'.$doc, $bulkUsers);
+			$this->manager->executeBulkWrite($db.'.'.$doc, $bulk);
 		}
 	}
 
@@ -90,10 +90,10 @@ class MongoInterface {
 	 */
 	public function addContent($db,$doc,$content) {
 		if(is_string($db) && is_string($doc) && is_array($content)) {
-			$bulkUsers = new MongoDB\Driver\BulkWrite(['ordered' => true]);
-			$bulkUsers->insert($content);
+			$bulk = new MongoDB\Driver\BulkWrite(['ordered' => true]);
+			$bulk->insert($content);
 
-			$this->manager->executeBulkWrite($db.'.'.$doc, $bulkUsers);
+			$this->manager->executeBulkWrite($db.'.'.$doc, $bulk);
 		}
 	}
 
@@ -106,10 +106,10 @@ class MongoInterface {
 	 */
 	public function removeContent($db,$doc,$filter) {
 		if(is_string($db) && is_string($doc) && is_array($filter)) {
-			$bulkUsers = new MongoDB\Driver\BulkWrite();
-			$bulkUsers->delete($filter);
+			$bulk = new MongoDB\Driver\BulkWrite();
+			$bulk->delete($filter);
 
-			$this->manager->executeBulkWrite($db.'.'.$doc, $bulkUsers);
+			$this->manager->executeBulkWrite($db.'.'.$doc, $bulk);
 		} 
 	}
 
@@ -123,7 +123,7 @@ class MongoInterface {
 	 */
 	protected function count($collection, $query) {
 		if(is_string($collection) && is_array($query)) {
-			$cmd = new MongoDB\Driver\Command(['count' => $collection, 'query' => $query ]);
+			$cmd = new MongoDB\Driver\Command(["count" => $collection, "query" => $query ]);
 			$result = $this->manager->executeCommand('hashBase', $cmd);
 
 			return json_decode(json_encode($result->toArray()[0]), true)['n'];	
