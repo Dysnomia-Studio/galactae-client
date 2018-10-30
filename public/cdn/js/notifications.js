@@ -42,11 +42,9 @@ class notifications {
 		if(options.id !== undefined) {
 			content += ' id="' + options.id + '" ';
 		}
-		content +='></div>' + notifPanel.innerHTML;
+		content +=' title="' + text + '""></div>' + notifPanel.innerHTML;
 
-		// @TODO: Ajouter message de description
-
-		notifPanel.innerHTML += content;
+		notifPanel.innerHTML = content;
 
 		ui.notifCount++;
 		ui.updatePageTitle();

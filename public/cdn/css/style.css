@@ -3017,8 +3017,6 @@ a[class="research-search"] {
 
 	padding: 0.25em;
 
-	max-width: 2.5em;
-
 	overflow-y: auto;
 }
 #notifications-closeAll {
@@ -3055,7 +3053,7 @@ a[class="research-search"] {
 }
 
 .notif-elt {
-	display: inline-block;
+	display: block;
 
 	width: 2em;
 	height: 2em;
