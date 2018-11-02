@@ -66,7 +66,7 @@ class notifications {
 			case "building":
 				title = translate.messages['ENDED_BUILDING_TITLE'];
 				desc = translate.messages['ENDED_BUILDING_01'] + translate['buildings'][args.building].name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
-				osOpt.id = args.building;
+				args.id = args.building;
 				break;
 			case "research":
 				title = "Galactae: " + translate.messages['ENDED_RESEARCH'];
