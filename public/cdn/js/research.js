@@ -84,7 +84,7 @@ class research {
 				if(coef < -0.05) { coef = -0.05; }
 				if(coef == 0) { return; }
 
-				research.makeZoom(coef);
+				research.makeZoom(-coef);
 
 				research.dist = newDist;
 			}
