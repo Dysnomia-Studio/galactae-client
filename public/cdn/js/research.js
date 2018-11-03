@@ -46,7 +46,7 @@ class research {
 		});
 		
 		$("#hud-research").mousemove(function(e) {
-			if(ui.mouseStaFtus[1]==1) {
+			if(ui.mouseStatus[1]==1) {
 				let pos = $("#hud-research").position();
 				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
 								pos.top + (e.pageY - researchPrevMouse[1])]);
