@@ -1,6 +1,8 @@
 let RESEARCH_DIV_SIZE = 10000;
 let RESEARCH_DIV_DISTANCE = 500;
 let RESEARCH_DIV_DELTA_DISTANCE = 100;
+let RESEARCH_MIN_ZOOM = 0.4;
+let RESEARCH_MAX_ZOOM = 1.75;
 let researchPrevMouse = [0,0];
 
 class research {
@@ -110,8 +112,8 @@ class research {
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
 		research.zoom += coef;
-		if(research.zoom < 0.5) { research.zoom -= coef; return; }
-		if(research.zoom > 1.75) { research.zoom -= coef; return; }
+		if(research.zoom < RESEARCH_MIN_ZOOM) { research.zoom -= coef; return; }
+		if(research.zoom > RESEARCH_MAX_ZOOM) { research.zoom -= coef; return; }
 
 		let pos = $("#hud-research").position();
 		pos.left = ((pos.left - researchPrevMouse[0])/(research.zoom - coef) * research.zoom) + researchPrevMouse[0];

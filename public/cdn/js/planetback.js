@@ -12,7 +12,7 @@ class planetBack {
 		this.planet = {};
 		this.planet.speed = 0.02;
 		this.planet.type = type;
-		this.planet.radius = 268;
+		this.planet.radius = Math.min($(document).height()/4, 268);
 
 		/* Calc Vars */
 		this.calc = {};
@@ -36,7 +36,13 @@ class planetBack {
 		this.planetBg.style.backgroundImage = 'url('+cdnURL+'img/planets/back/0.png)'; // Temp one back @ADD: new backgrounds
 		this.planetHalo.style.backgroundImage = 'url('+cdnURL+'img/planets/halo/' + this.planet.type + '.png)';
 		this.planetMap = 'url('+cdnURL+'img/planets/front/' + this.planet.type + '.jpg)';
-	
+		
+		let halo = document.querySelector('#planet-back-halo');
+		halo.style.width = Math.round(this.planet.radius*2/536*730) + "px";
+		halo.style.height = Math.round(this.planet.radius*2/536*715) + "px";
+		halo.style.marginLeft = "-" + Math.round(this.planet.radius/536*730) + "px";
+		halo.style.marginTop = "-" + Math.round(this.planet.radius/536*715) + "px";
+
 		/* Planet */
 		this.calc.Xparts = 16;
 		this.calc.Yparts = 9;

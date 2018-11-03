@@ -2437,10 +2437,7 @@ a[class="research-search"] {
 	height: 0;
 }
 #planet-back-halo {
-	width: 730px;
-	height: 715px;
-	margin-left: -368px;
-	margin-top: -350px;
+	background-size: cover;
 }
 #planet-back-content div {
 	position: absolute;
