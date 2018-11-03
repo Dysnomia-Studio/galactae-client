@@ -86,8 +86,8 @@ class research {
 
 
 				let coef = (research.dist / newDist) - 1;
-				if(coef > 0.05) { coef = 0.05; }
-				if(coef < -0.05) { coef = -0.05; }
+				if(coef > 0.1) { coef = 0.1; }
+				if(coef < -0.1) { coef = -0.1; }
 				if(coef == 0) { return; }
 
 				research.makeZoom(-coef);
