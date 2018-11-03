@@ -109,7 +109,21 @@
 
 	<?php /* Other planets */ ?>
 	<div id="planet-other">
-
+		<span id="planet-other-returnToSystem">Retour à la carte du système</span>
+		<span id="planet-other-returnToCurrent">Retour à ma planete</span>
+		<div id="planet-other-infos">
+			<span id="planet-other-address">Adresse: <span id="planet-other-address-data"></span></span><br/>
+			<span id="planet-other-ally">Alliance: <span id="planet-other-ally-data"></span></span><br/>
+			<span id="planet-other-player">Joueur: <span id="planet-other-player-data"></span></span><br/>
+			<span id="planet-other-planet">Planète: <span id="planet-other-planet-data"></span></span><br/>
+			<span id="planet-other-points">Points: <span id="planet-other-points-data"></span></span><br/><br/>
+			<div id="planet-other-lastReports">
+				Derniers rapports:
+				<ul id="planet-other-lastReports-list">
+					<li>Aucun rapport</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 <?php /* Msg Popup */ ?>
@@ -371,7 +385,7 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 	<span id="map-close">X</span>
 	<div id="map-back"><?php echo MAP_BACKTO_GLOBAL_MAP; ?></div>
 	<div id="map-focus"><?php echo MAP_FOCUS_CURRENT_SYSTEM; ?></div>
-	<svg height="40000" width="50000" id="map-global" style="left: -27576.2px; top: -22302.7px;">
+	<svg height="40000" width="50000" id="map-global">
 		<defs>
 			<radialGradient id="redDwarf" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
 				<stop stop-opacity="1" stop-color="#ff0a0b" offset="0"></stop>
@@ -441,6 +455,8 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
             <div id="map-system-solarFront">
             </div>
             <div id="map-planet-menu">
+            	<span id="map-planet-menu-planetname">Planet</span>
+            	<span id="map-planet-menu-username">(user)</span>
             	<img id="map-planet-menu-infos" src="<?= $cdnURL ?>img/ui/planet-infos.svg">
             	<img id="map-planet-menu-move" src="<?= $cdnURL ?>img/ui/fleet-move.svg">
             	<img id="map-planet-menu-attack" src="<?= $cdnURL ?>img/ui/fleet-attack.svg">
@@ -450,6 +466,25 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
             </div>
           </div>
         </div>
+    </div>
+
+    <div id="map-move-panel">
+    	<span id="map-move-panel-close">X</span>
+
+    	<div id="map-move-panel-list">
+    		<div id="map-move-panel-list-header">Flotte:</div>
+    		<ul id="map-move-panel-list-ul"></ul>
+    	</div>
+
+    	<div id="map-move-panel-info">
+    		<span id="map-move-panel-message">Deplacement vers <em>PlanetName</em> (<em>Joueur</em>)</span><br/>
+    		<br/>
+    		Temps: ~<span id="map-move-panel-time">12:34:56</span><br/>
+    		&sup3;He: <span id="map-move-panel-fuel">12.34Kt (56% du reservoir)</span><br/>
+    		Hangar: <span id="map-move-panel-hangar">0/0</span><br/>
+    	</div>
+
+    	<input type="button" id="map-move-panel-move" name="map-move-panel-move" class="ui-large-button" value="Some move">
     </div>
 </div>
 <?php /* Fleet */ ?>
@@ -627,12 +662,14 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 <div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/fleet.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>

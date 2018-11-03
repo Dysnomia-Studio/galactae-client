@@ -40,7 +40,7 @@ class UserManager extends MongoInterface {
 
 	public function getGlobalUserById($id) {
 		$data = $this->getCondContent('galactae','users',
-			["_id" => $id]
+			['_id' => $id]
 		);
 
 		if(isset($data[0])) {
@@ -95,8 +95,8 @@ class UserManager extends MongoInterface {
 
 	public function getUserPrivileges($id, $servName) {
 		$data = $this->getCondContent('galactae','privileges',[
-			"user_id" => $id,
-			"server_name" => $servName
+			'user_id' => $id,
+			'server_name' => $servName
 		]);
 
 		if(isset($data[0])) {
@@ -108,14 +108,14 @@ class UserManager extends MongoInterface {
 
 	public function getAllUserGameData($id) {
 		return $this->getCondContent('galactae','game_ids',[
-			"user_id" => (string) $id
+			'user_id' => (string) $id
 		]);
 	}
 
 	public function getUserGameData($id, $servName) {
 		$data = $this->getCondContent('galactae','game_ids',[
-			"user_id" => (string) $id,
-			"server_name" => $servName
+			'user_id' => (string) $id,
+			'server_name' => $servName
 		]);
 
 		if(isset($data[0])) {
@@ -127,17 +127,22 @@ class UserManager extends MongoInterface {
 
 	public function updateUserGameData($uid, $gid) {
 		$this->updateContent('galactae','game_ids', 
-			["user_id" => $uid], 
-			["game_id" => $gid]);
+			['user_id' => $uid], 
+			[ '$set' => [ 'game_id' => $gid] ]);
+	}
+
+	public function addUserGameData($uid, $gid, $dbname) {
+		$this->addContent('galactae','game_ids',[
+			'user_id' => (string) $uid,
+			'game_id' => (string) $gid,
+			'server_name' => $dbname
+		]);
 	}
 
 	public function updateUserLastNews($uid, $newsId) {
 		$this->updateContent('galactae','users',
 			['_id' => $uid],
-			[ '$set' => [
-				 	'lastViewedNews' => $newsId
-				]
-			]		
+			[ '$set' => [ 'lastViewedNews' => $newsId ] ]		
 		);
 	}
 }
