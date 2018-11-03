@@ -35,7 +35,7 @@ class research {
 			research.touchHandler(e);
 		});
 		$("#hud-research").on('touchstart', function(e) {
-			if(research.scaling) { 
+			if(e.originalEvent.touches.length == 2) { 
 				researchPrevMouse[0] = Math.round((e.touches[0].pageX + e.touches[1].pageX)/2);
 				researchPrevMouse[1] = Math.round((e.touches[0].pageY + e.touches[1].pageY)/2);
 				return; 
