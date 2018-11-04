@@ -968,7 +968,7 @@ class units {
 		let mass = 0; // @ADD: Calc mass
 		
 		// Masse
-		document.getElementById(div + '-mass-val').innerText = GetBetterUnit(mass,"t");
+		document.getElementById(div + '-mass-val').innerHTML = GetBetterUnit(mass,"t");
 
 		// Note
 		document.getElementById(div + '-note-val').innerText = note;

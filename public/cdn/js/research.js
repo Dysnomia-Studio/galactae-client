@@ -116,8 +116,8 @@ class research {
 		if(research.zoom > RESEARCH_MAX_ZOOM) { research.zoom -= coef; return; }
 
 		let pos = $("#hud-research").position();
-		pos.left = ((pos.left - researchPrevMouse[0])/(research.zoom - coef) * research.zoom) + researchPrevMouse[0];
-		pos.top = ((pos.top - researchPrevMouse[1])/(research.zoom - coef) * research.zoom) + researchPrevMouse[1];
+		pos.left = ((pos.left - researchPrevMouse[0]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[0]*1.1;
+		pos.top = ((pos.top - researchPrevMouse[1]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[1]*1.1;
 		$("#hud-research").css("left",pos.left);
 		$("#hud-research").css("top" ,pos.top );
 				
