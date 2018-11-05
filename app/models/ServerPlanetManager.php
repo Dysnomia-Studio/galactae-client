@@ -1,5 +1,15 @@
 <?php
 class ServerPlanetManager extends MongoInterface {
+
+
+	/**
+	 * Get a planet from db and reserve it to current user
+	 *
+	 * @param      <string>  $serverName  The server name
+	 * @param      <array>  $user        User data
+	 *
+	 * @return     <array>  Planet data
+	 */
 	public function getAvailablePlanet($serverName, $user) {
 		$this->updateContent(
 			$serverName,
@@ -18,6 +28,14 @@ class ServerPlanetManager extends MongoInterface {
 		), true);
 	}
 
+	/**
+	 * Creates a planet model.
+	 *
+	 * @param      <string>  $serverName  The server name
+	 * @param      <array>  $user        User data
+	 *
+	 * @return     <array>  A new planet owned by current user (its data)
+	 */
 	public function createPlanetModel($serverName, $user) {
 		$planet = $this->getAvailablePlanet($serverName, $user);
 
@@ -62,6 +80,12 @@ class ServerPlanetManager extends MongoInterface {
 		);
 	}
 
+	/**
+	 * Updates a planet in database
+	 *
+	 * @param      <string>  $dbname  The server name
+	 * @param      <array>  $planet  Planet data
+	 */
 	public function updatePlanet($dbname, $planet) {
 		$this->updateContent($dbname,'planets',
 			[ '_id' => $planet['_id'] ],
