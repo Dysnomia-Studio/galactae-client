@@ -6,6 +6,9 @@ let RESEARCH_MAX_ZOOM = 1.75;
 let researchPrevMouse = [0,0];
 
 class research {
+	/**
+	 * Handle mobile touch and bind it to mouse events
+	 */
 	static touchHandler(event) {
 		let touch = event.changedTouches[0];
 
@@ -109,6 +112,11 @@ class research {
 		}
 	}
 
+	/**
+	 * Calculate & display proper zoom
+	 *
+	 * @param      {(Function|number|string)}  coef    Zoom difference
+	 */
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
 		research.zoom += coef;
@@ -335,6 +343,12 @@ class research {
 		return true;
 	}
 
+	/**
+	 * Gets the list of missing parents
+	 *
+	 * @param      {<type>}  key     Current research name
+	 * @return     {string}  The missing parents listed as a string
+	 */
 	static getMissingParents(key) {
 		let parents = researchList[key].parents;
 		let oneParentOK = false;
@@ -365,7 +379,7 @@ class research {
 	}
 
 	/**
-	 * Determines if searched.
+	 * Determines if a research is over
 	 *
 	 * @param	  {string}   key	 The research name
 	 * @return	 {boolean}  True if searched, False otherwise.
@@ -374,15 +388,28 @@ class research {
 		return (userData.research[key]==-1 || key=="researchCenter");
 	}
 
+	/**
+	 * Change current research
+	 *
+	 * @param      {<type>}  id      Research identifier
+	 */
 	static change(id) {
 		console.log(id);
 		socket.emit('research-change', { username: userData.username, id: userData.id, pid: userData.pid, research: id });
  	}
 
+ 	/**
+ 	 * Ask server to recalc research
+ 	 *
+ 	 * @param      {<type>}  id      Research identifier
+ 	 */
  	static sync(id) {
  		socket.emit('research-sync', { username: userData.username, id: userData.id, pid: userData.pid });
  	}	
 
+ 	/**
+ 	 * Simulate research evolution (client side calculation)
+ 	 */
  	static sim() {
  		if(userData.research[planetData.currResearch] == undefined) { return; } // If research is undefined
  		if(userData.research[planetData.currResearch]==-1) { return; } // If research is finished

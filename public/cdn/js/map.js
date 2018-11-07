@@ -18,6 +18,9 @@ const MAP_STAR_SIZE_RATIO = 0.08;
 let mapPrevMouse = [0,0];
 
 class map {
+	/**
+	 * Handle mobile touch and bind it to mouse events
+	 */
 	static touchHandler(event) {
 		let touch = event.changedTouches[0];
 
@@ -811,7 +814,13 @@ class map {
 		ui.show('#map-global');
 	}
 
-
+	/**
+	 * Calc planet coordinates depending on angle and diameter
+	 *
+	 * @param      {<type>}  angle     Planet angle
+	 * @param      {number}  diameter  Orbit diameter
+	 * @return     {Array}   The planet coordinates.
+	 */
 	static getPlanetCoords(angle, diameter) {
 		return [
 			0.5*diameter*Math.cos(angle),
@@ -819,6 +828,14 @@ class map {
 		]; // Aucun besoin de constantes (50% + ... ) étant donné qu'on les soustrait
 	}
 
+	/**
+	 * Gets the distance between two planets in the same system
+	 *
+	 * @param      {string}  from    First planet address
+	 * @param      {string}  to      Second planet address
+	 * @param      {number}  when    When we move ?
+	 * @return     {<type>}  The distance between two planets
+	 */
 	static getPlanetDistance(from, to, when) {
 		let angleDepart = (2* Math.PI) - (when%from.orbitDuration / from.orbitDuration) * (2* Math.PI);
 		let anglArrivee = (2* Math.PI) - (when%to.orbitDuration / to.orbitDuration) * (2* Math.PI);

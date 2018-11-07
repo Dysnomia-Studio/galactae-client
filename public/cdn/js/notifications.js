@@ -1,19 +1,24 @@
+/**
+ * Notifications types:
+ * - Attack (incoming)
+ * - Attack (report)
+ * - Build
+ * - Private message
+ * - Research
+ * - Trade
+ * - Unit build
+ */
 class notifications {
 	/**
-	 * Notifications types:
-	 * - Attack (incoming)
-	 * - Attack (report)
-	 * - Build
-	 * - Private message
-	 * - Research
-	 * - Trade
-	 * - Unit build
+	 * Notifies on operating system
+	 *
+	 * @param      {<type>}  txt      Notification Text
+	 * @param      {<type>}  options  Notification Options
 	 */
-
 	static notifyOnOS(txt,options={}) {
 		var notification;
 
-		if (!("Notification" in window)) { // Le navigateur support les notifications ?
+		if (!("Notification" in window)) {
 			return; 
 		} else if (Notification.permission === "granted") {
 			notification = new Notification(txt,options);
@@ -35,6 +40,68 @@ class notifications {
 		}
 	}
 
+	/**
+	 * Add all events of notification panel
+	 */
+	static gameNotifAddEvents() {
+		let DOMElts = document.querySelectorAll('.notif-elt');
+		for(let elt=0; elt<DOMElts.length; elt++) {
+			let element = DOMElts[elt];
+			element.addEventListener('click', function() {
+				notifications.gameNotifClick(this);
+
+				ui.notifCount--;
+				ui.updatePageTitle();
+				notifications.updateClearButtonDisplay();
+			});
+		}
+
+		document.getElementById('notifications-closeAll').addEventListener('click', function() {
+			document.getElementById('notifications-panel').innerHTML = '<span id="notifications-closeAll">☒</span>';
+
+			ui.notifCount = 0;
+			ui.updatePageTitle();
+			notifications.updateClearButtonDisplay();
+		});
+	}
+
+	/**
+	 * Compute click on a game notification
+	 *
+	 * @param      {DOM Element}  element  The element clicked on
+	 */
+	static gameNotifClick(element) {
+		// Open needed windows
+		if(ui.hasClass(element, 'notif-mail')) {
+			// @TODO
+		} else if(ui.hasClass(element, 'notif-building')) {
+			planet.buildPanelOpen(parseInt($(element).attr('id')));
+		} else if(ui.hasClass(element, 'notif-research')) {
+			research.openUI();
+		}
+		
+		// Remove element
+		element.parentNode.removeChild(element);
+	}
+
+	/**
+	 * Draw or not "clear all" button
+	 */
+	static updateClearButtonDisplay() {
+		if(ui.notifCount == 0) {
+			ui.hide('#notifications-closeAll');
+		} else {
+			ui.show('#notifications-closeAll');
+		}
+	}
+
+		/**
+	 * Create an in-game notification (left tab)
+	 *
+	 * @param      {string}  type     Notification typr
+	 * @param      {string}  text     Notification text
+	 * @param      {<type>}  options  Notification options
+	 */
 	static notifyOnGame(type, text, options={}) {
 		let notifPanel = document.getElementById('notifications-panel');
 		let content = '<div class="notif-elt notif-' + type + '"';
@@ -53,6 +120,12 @@ class notifications {
 		notifications.gameNotifAddEvents();
 	}
 
+	/**
+	 * Global method to notify everywhere
+	 *
+	 * @param      {<type>}  type    Notiification type
+	 * @param      {<type>}  args    Notification arguments
+	 */
 	static notify(type, args={}) {
 		var title = "";
 		var osOpt = { icon: cdnURL + "img/favicon.png" };
@@ -86,49 +159,5 @@ class notifications {
 		}
 
 		notifications.notifyOnGame(type, desc, args);
-	}
-
-	static gameNotifAddEvents() {
-		let DOMElts = document.querySelectorAll('.notif-elt');
-		for(let elt=0; elt<DOMElts.length; elt++) {
-			let element = DOMElts[elt];
-			element.addEventListener('click', function() {
-				notifications.gameNotifClick(this);
-
-				ui.notifCount--;
-				ui.updatePageTitle();
-				notifications.updateClearButtonDisplay();
-			});
-		}
-
-		document.getElementById('notifications-closeAll').addEventListener('click', function() {
-			document.getElementById('notifications-panel').innerHTML = '<span id="notifications-closeAll">☒</span>';
-
-			ui.notifCount = 0;
-			ui.updatePageTitle();
-			notifications.updateClearButtonDisplay();
-		});
-	}
-
-	static gameNotifClick(element) {
-		// Open needed windows
-		if(ui.hasClass(element, 'notif-mail')) {
-			// @TODO
-		} else if(ui.hasClass(element, 'notif-building')) {
-			planet.buildPanelOpen(parseInt($(element).attr('id')));
-		} else if(ui.hasClass(element, 'notif-research')) {
-			research.openUI();
-		}
-		
-		// Remove element
-		element.parentNode.removeChild(element);
-	}
-
-	static updateClearButtonDisplay() {
-		if(ui.notifCount == 0) {
-			ui.hide('#notifications-closeAll');
-		} else {
-			ui.show('#notifications-closeAll');
-		}
 	}
 }

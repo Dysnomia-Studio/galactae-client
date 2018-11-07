@@ -1,3 +1,10 @@
+/**
+ * Set a cookie
+ *
+ * @param      {string}  cname   Cookie name
+ * @param      {string}  cvalue  Cookie value
+ * @param      {number}  exdays  Expirations days
+ */
 function setCookie(cname, cvalue, exdays=30) {
     let d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -5,6 +12,12 @@ function setCookie(cname, cvalue, exdays=30) {
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
+/**
+ * Gets a cookie value by its name
+ *
+ * @param      {string}  cname   Cookie name
+ * @return     {string}  Cookie value
+ */
 function getCookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
@@ -20,6 +33,12 @@ function getCookie(cname) {
     return "";
 }
 
+/**
+ * Checks if a cookie exists
+ *
+ * @param      {<type>}   cname   Cookie name
+ * @return     {boolean}  True if the cookie exists, false otherwise
+ */
 function existCookie(cname) {
     let content = getCookie(cname);
     return (content != "" || content!=null);

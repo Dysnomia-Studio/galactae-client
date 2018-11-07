@@ -60,6 +60,9 @@ let researchProd; // Production recherche
 let researchProd1; // Production recherche lvl +1
 
 class planet {
+	/**
+	 * Initilalize planet
+	 */
 	static init() {
 		planet.buildPanel = -1; // Current opened building
 		planet.buildPanelInterval = -1; // Time before next client auto update
@@ -436,6 +439,11 @@ class planet {
 		return energy;
 	}
 
+	/**
+	 * Gets the current habitant use.
+	 *
+	 * @return     {number}  The current habitant use
+	 */
 	static getHabitantConsomation() {
 		let habitants = 0;
 		let buildings = planetData.Buildings;
@@ -459,6 +467,12 @@ class planet {
 		return habitants;
 	}
 
+	/**
+	 * Calculates times before this buiding can be build
+	 *
+	 * @param      {<type>}  building  The building id
+	 * @return     {number}  The time before we can build it
+	 */
 	static getTimeBeforeBuild(building) {
 		let cost;
 		if(planetData.nextBuilding==building) { cost = planet.getBuildCost(building,planetData.Buildings[building] + 2); } 
@@ -484,6 +498,7 @@ class planet {
 
 		return timeCurrent;
 	}
+
 	/**
 	 * Determines ability to be build.
 	 *
@@ -492,6 +507,7 @@ class planet {
 	static canBeBuild(id) {
 		return ((planet.getTimeBeforeBuild(id)==0)&&(planetData.Buildings[id]+1 <= buildingMaxLvl[id]&&((planetData.nextBuildingTime-Date.now()+planet.deltaNow)<0)));
 	}
+
 	/*
 	 * Gets the next building ready.
 	 *
@@ -529,22 +545,22 @@ class planet {
 
 		map.loadXML(sector, function() {
 			//Set background
-			planetBack.init(planet.getTypeOfPlanet(planetData.address));
+			planetBack.init(planetData.planetType);
 		});
 	}
 
+	/**
+	 * Gets the type of planet by its adress
+	 *
+	 * @param      {<type>}  address  Planet address
+	 * @return     {<type>}  Planet type
+	 */
 	static getTypeOfPlanet(address) {
 		let system = address.split('-');
 		system.pop();
 		system = system.join('-');
 
-		// Set background
-		let sector = system.split('-');
-		sector.pop();
-		sector = sector.join('-');
-		let astre = $(map.xmlDoc[sector]).find("#" + address)[0];
-
-		return $(astre).attr('t');
+		return map.planetData[system][address].planetType;
 	}
 
 	/**
@@ -817,14 +833,23 @@ class planet {
 
 		return retour;
 	}
-	// Prev/Next
+	
+	/**
+	 * Go to previous planet
+	 */
 	static prev() {
 		socket.emit("planet-ask-data-prev", userData);
 	}
+	/**
+	 * Go to next planet
+	 */
 	static next() {
 		socket.emit("planet-ask-data-next", userData);
 	}
 
+	/**
+	 * Opens the planet panel of a different planet than current (mostly other players)
+	 */
 	static openOtherPlanetPanel() {
 		let type = planet.getTypeOfPlanet(units.planetTarget);
 		let starTypesList = {
@@ -832,9 +857,7 @@ class planet {
 			blueGiant:   1001,
 		};
 		for(var s in starTypesList) {
-			console.log(type);
 			type = type.split(s).join(starTypesList[s]);
-			console.log(type);
 		}
 		planetBack.init(type);
 

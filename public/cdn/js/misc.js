@@ -1,5 +1,12 @@
 let connectTimeout = -1;
 
+/**
+ * Kick player from game
+ *
+ * @param      {string}   msg            Kick message
+ * @param      {number}   time           Countdown before redirect
+ * @param      {boolean}  canBeCanceled  Indicates if redirect timer be canceled
+ */
 function kick(msg,time=0,canBeCanceled=false) {
     let message;
 
@@ -34,10 +41,15 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-/* GetBetterUnit
-Reduire un nombre
-INPUT: nmbr ( int )
-OUTPUT: reduced number ( string ) */
+/**
+ * Gets the better unit.
+ *
+ * @class      GetBetterUnit (name)
+ * @param      {number}  nmbr    Number to reduce
+ * @param      {string}  unit    Unit value
+ * @param      {number}  max     The maximum value
+ * @return     {string}  Reduced value with unit
+ */
 function GetBetterUnit(nmbr,unit="",max=0) {
 	let units = ["","K","M","G","T","P","E","Z","Y"];
 	let unitId = 0;
@@ -72,11 +84,12 @@ function GetBetterUnit(nmbr,unit="",max=0) {
 	return end;
 }
 
-/* getStringTime
-Recuperer le temps en version lisible par l'humain
-INPUT: temps en heures (int)
-OUTPUT: Temps lisible (string)
-*/
+/**
+ * Gets the string time
+ *
+ * @param      {number}  number  Timestamp
+ * @return     {string}  The string time.
+ */
 function getStringTime(number) {
 	let hours = (number<10)?"0"+Math.floor(number):Math.floor(number);
 	let min = ((number*60)%60<10)?"0"+Math.floor((number*60)%60):Math.floor((number*60)%60);
@@ -147,7 +160,7 @@ let charList = [
 ];
 
 /**
- * Normalize a text to be compatible with sockets
+ * [Un]Normalize a text to be compatible with sockets
  *
  * @param      {<type>}  str     The string
  * @return     {<type>}  normalized string

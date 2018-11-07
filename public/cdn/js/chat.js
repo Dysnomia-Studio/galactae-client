@@ -47,12 +47,18 @@ class chat {
 			chat.pm(data);
 		});
 		/*
-		 * Private Message
+		 * System Message
 		 */
 		socket.on('chat-message-system', function(data) {
 			chat.sm(data);
 		});
 	}
+
+	/**
+	 * Recieved private message
+	 *
+	 * @param      {object}  data    The data
+	 */
 	static pm(data) {
 		// Translation
 		if((translate.messages[data.msg] !=undefined) && (translate.messages[data.msg] !="")) { data.msg = translate.messages[data.msg]; }
@@ -69,6 +75,12 @@ class chat {
 			pmSound.play();
 		}
 	}
+
+	/**
+	 * Recieved system message
+	 *
+	 * @param      {object}  data    The data
+	 */
 	static sm(msg) {
 		// Translation
 		if((translate.messages[msg] !=undefined) && (translate.messages[msg] !="")) { msg = translate.messages[msg]; }
@@ -79,6 +91,11 @@ class chat {
 
 		$('#'+chatChannel).scrollTop($('#'+chatChannel).height());
 	}
+
+
+	/**
+	 * Loads chat UI
+	 */
 	static loadUI() {
 		// Menu
 		$(".chatTab").click(function () {

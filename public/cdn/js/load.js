@@ -22,6 +22,11 @@ let loadEnd = 10;
 // 10 -> Fleet list
 
 class loadScreen {
+	/**
+	 * Notify loader that we loaded a new part of the game
+	 *
+	 * @param      {string}  title   Part loaded
+	 */
 	static complete(title="") {
 		if(++loadStatus>loadEnd) { return; } // Not needed if loading is already hided
 
@@ -61,6 +66,9 @@ class loadScreen {
 		}
 	}
 
+	/**
+	 * Preload all pictures
+	 */
 	static picturePreload() {
 		let picList = [
 			// Misc UI

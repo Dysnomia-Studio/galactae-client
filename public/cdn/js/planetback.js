@@ -1,4 +1,7 @@
 class planetBack {
+	/**
+	 * Initializing all variables
+	 */
 	static init(type) {
 		/* DOM */
 		this.planet = document.getElementById('planet-back');	
@@ -29,6 +32,9 @@ class planetBack {
 		loadScreen.complete("pback");
 	}
 
+	/**
+	 * Create the planet
+	 */
 	static createPlanet() {
 		this.resetPlanet();
 
@@ -104,6 +110,9 @@ class planetBack {
 		}
 	}
 
+	/**
+	 * Remove the planet
+	 */
 	static resetPlanet() {
 		/* Empty Vars */
 		this.contentDOM = [];
@@ -114,6 +123,9 @@ class planetBack {
 		}
 	}
 
+	/**
+	 * Render the planet
+	 */
 	static renderPlanet() {
 		// New position
 		planetBack.calc.long = (-Date.now()/1000)%360 - 180;
@@ -125,6 +137,9 @@ class planetBack {
 		requestAnimationFrame(planetBack.renderPlanet);
 	}
 
+	/**
+	 * Animate rotation
+	 */
 	static rotatePlanet() {
 		if(planetBack.tick^=1) {
 			// Calc all angles only one time

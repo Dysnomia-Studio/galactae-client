@@ -2,12 +2,20 @@ let preventFleetHUDClosing = false;
 let preventUnitBuildPanelClose = false;
 
 class units {
+	/**
+	 * Ask units from server
+	 */
 	static sync() {
 		let data = userData;
 		data.planet = planetData._id;
 		socket.emit('units-ask-data', data);
 	}
 
+	/**
+	 * Get units from server
+	 *
+	 * @param      {Array}  data    Unit list
+	 */
 	static refresh(data) {
 		units.list = data;
 
@@ -66,6 +74,9 @@ class units {
 		units.drawFleetLists();
 	}
 
+	/**
+	 * UI events & load for units tabs
+	 */
 	static loadUI() {
 		units.lastType = "SHIP_ALL";
 
@@ -257,6 +268,12 @@ class units {
 		});
 	}
 
+	/**
+	 * Gets the unit data.
+	 *
+	 * @param      {<type>}  id      Unit id
+	 * @return     {Object}  The unit data.
+	 */
 	static getUnitData(id) {
 		for(let i=0; i<units.list.length; i++) {
 			if(units.list[i]._id == id) {
@@ -267,6 +284,12 @@ class units {
 		return {};
 	}
 
+	/**
+	 * Gets the unit name.
+	 *
+	 * @param      {<type>}  id      Unit id
+	 * @return     {string}  The unit name.
+	 */
 	static getUnitName(id) {
 		let currUnit = units.getUnitData(id);
 
@@ -277,6 +300,12 @@ class units {
 		return "";
 	}
 
+	/**
+	 * Gets the fleet data.
+	 *
+	 * @param      {<type>}  id      Fleet id
+	 * @return     {Object}  The fleet data.
+	 */
 	static getFleetData(id) {
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i]._id == id) {
@@ -287,6 +316,12 @@ class units {
 		return {};
 	}
 
+	/**
+	 * Gets the fleet name.
+	 *
+	 * @param      {<type>}  id      Fleet id
+	 * @return     {string}  The fleet name.
+	 */
 	static getFleetName(id) {
 		let name = units.getFleetData(id).name;
 		if(name === undefined) { name = ""; }
@@ -295,6 +330,11 @@ class units {
 		return name;
 	}
 
+	/**
+	 * Draw mail UI
+	 *
+	 * @param      {string}  type    Unit type filter
+	 */
 	static drawMain(type="") {
 		if(type=="") {
 			type = units.lastType;
@@ -474,6 +514,9 @@ class units {
 		}
 	}
 
+	/**
+	 * Draw the panel to create a new fleet
+	 */
 	static drawNewFleetPanel() {
 		$('#fleet-newFleet-name').val("");
 		ui.show('#fleet-newFleet-panel');
@@ -485,6 +528,12 @@ class units {
 		preventUnitBuildPanelClose = true;
 	}
 
+	/**
+	 * Check if a fleet exists by its name
+	 *
+	 * @param      {<type>}   fname   Fleet name
+	 * @return     {boolean}  { description_of_the_return_value }
+	 */
 	static fleetExists(fname) {
 		for(let i in units.fleetList) {
 			if(units.fleetList[i].name == fname) {
@@ -494,6 +543,9 @@ class units {
 		return false;
 	}
 
+	/**
+	 * Check if a fleet name is valid
+	 */
 	static validFleetName() {
 		let fname = $('#fleet-newFleet-name').val();
 
@@ -506,6 +558,9 @@ class units {
 		preventUnitBuildPanelClose = false;
 	}
 
+	/**
+	 * Recalculate unit build cost
+	 */
 	static updateBuildCost() {
 		let costs = [
 			"fleet-ship-build-cost-aluminium-val",
@@ -536,6 +591,11 @@ class units {
 		}
 	}
 
+	/**
+	 * Gets the maximum ships can be build
+	 *
+	 * @return     {number}  The maximum ships.
+	 */
 	static getMaxShips() {
 		let currUnit = units.list[units.currUnit];
 		let transitionTable = [3,2,5,4];
@@ -555,6 +615,11 @@ class units {
 		return max;
 	}
 
+	/**
+	 * Update event when unit build count changes
+	 *
+	 * @param      {number}  count   Unit count
+	 */
 	static updateCount(count) {
 		let max = units.getMaxShips();
 		if(count > max) {
@@ -564,6 +629,9 @@ class units {
 		units.updateBuildCost();
 	}
 
+	/**
+	 * Regenerate the fleet list (select in unit build UI)
+	 */
 	static regenerateBuildFleetList() {
 		units.fleetTimers = units.fleetTimers || [];
 		for(let i=0; i<units.fleetTimers.length; i++) {
@@ -594,6 +662,9 @@ class units {
 				document.getElementById('fleet-ship-build-fleetSelect').innerHTML + unitBuildSelectNew;
 	}
 
+	/**
+	 * Draws the unit build panel
+	 */
 	static drawBuildPanel() {
 		if(units.currUnit == -1 || units.list[units.currUnit] == undefined) { return; }
 		ui.show('#fleet-ship-build-fleetSelect');
@@ -627,6 +698,9 @@ class units {
 		ui.show("#fleet-ship-build");	
 	}
 
+	/**
+	 * Ask to build an unit - Event on build button click
+	 */
 	static askUnitBuild() {
 		let count = parseInt($("#fleet-ship-build-count").val());
 		let fleet = parseInt($("#fleet-ship-build-fleetSelect option").filter(':selected').attr("id"));
@@ -658,6 +732,9 @@ class units {
 		preventFleetHUDClosing = false;
 	}
 
+	/**
+	 * Draw the panel to create a new unit type
+	 */
 	static drawCreateTypePanel() {
 		let unitsParts = [];
 		let selectedType = "";
@@ -711,6 +788,12 @@ class units {
 		ui.show("#fleet-type-create");
 	}
 	
+	/**
+	 * Re-draw unit creation UI when we change ship type
+	 *
+	 * @param      {<type>}  unitsParts     The units parts
+	 * @param      {string}  selectedShape  The selected shape
+	 */
 	static changeShipType(unitsParts=[],selectedShape="") {
 		let type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		let shape = "";
@@ -743,6 +826,12 @@ class units {
 		}
 	}
 
+	/**
+	 * Re-draw unit creation UI when we change ship shape
+	 *
+	 * @param      {<type>}  unitsParts     The units parts
+	 * @param      {string}  selectedShape  The selected shape
+	 */
 	static changeShipShape() {
 		let type  = $("#fleet-type-create-shipType option").filter(":selected").val();
 		let shape = $("#fleet-type-create-shipShape option").filter(":selected").val();
@@ -753,6 +842,13 @@ class units {
 		units.updateTypeCreateStats();
 	}
 
+	/**
+	 * Draw the svg ship shape (UI creation)
+	 *
+	 * @param      {(number|string)}  shape       The shape
+	 * @param      {(number|string)}  content     The content
+	 * @param      {<type>}           unitsParts  The units parts
+	 */
 	static drawShipShape(shape,content,unitsParts=[]) {
 		let svgContent = "";
 		$('#fleet-type-create-selects').html("");
@@ -894,6 +990,15 @@ class units {
 		units.updateStats("fleet-type-create-stat", type, shape, parts);
 	}
 
+	/**
+	 * Updates the statistics of current creating unit
+	 *
+	 * @param      {string}                          div     The div
+	 * @param      {string}                          type    The type
+	 * @param      {<type>}                          shape   The shape
+	 * @param      {(Array|Function|number|string)}  parts   The parts
+	 * @param      {(Function|number|string)}        note    The note
+	 */
 	static updateStats(div, type, shape, parts, note) {
 		if(parts === undefined) { parts = []; } // Mines only
 
@@ -977,6 +1082,11 @@ class units {
 		document.getElementById(div + '-miss-val').innerText = miss + "%";
 	}
 
+	/**
+	 * Changes current selected unit (in unit type list)
+	 *
+	 * @param      {string}  id      The identifier
+	 */
 	static selectUnit(id) {
 		units.currUnit = id = (id === undefined)?0:id;
 		if(units.list[id] === undefined) { return; }
@@ -1049,6 +1159,9 @@ class units {
 		}
 	}
 
+	/**
+	 * Creates a new type
+	 */
 	static createNewType() {
 		let errors = 0;
 		let errorMessage = "";
@@ -1096,6 +1209,9 @@ class units {
 		}
 	}
 
+	/**
+	 * (Re)draw the fleets lists
+	 */
 	static drawFleetLists() {
 		if(planetData.address == undefined) { 
 			setTimeout(function() {
@@ -1298,6 +1414,12 @@ class units {
 		document.getElementById('fleet-out-content').innerHTML = outDOM;
 	}
 
+	/**
+	 * Calculates the time and fuel of a movement
+	 *
+	 * @param      {<type>}  fleet   The fleet
+	 * @return     {Object}  The time and fuel.
+	 */
 	static calcTimeAndFuel(fleet) {
 		let now = Date.now();
 
@@ -1359,6 +1481,11 @@ class units {
 		return { time, fuel };
 	}
 
+	/**
+	 * Opens the panel used to move fleet
+	 *
+	 * @param      {<type>}  moveType  The move type
+	 */
 	static openMovePanel(moveType) {
 		let system = units.planetTarget.split('-');
 		system.pop();
@@ -1426,6 +1553,9 @@ class units {
 		ui.show('#map-move-panel');
 	}
 
+	/**
+	 * Update the fleet move panel
+	 */
 	static updateMovePanel() {
 		let currentFleet = units.getFleetData(units.currFleet);
 

@@ -179,6 +179,9 @@ class ui {
 			});
 	}
 
+	/**
+	 * Update the page title (tab text)
+	 */
 	static updatePageTitle() {
 		let notifString = "";
 		if(ui.notifCount != 0) {
@@ -188,6 +191,9 @@ class ui {
 		document.title = notifString + userData.username + " - " + planetData.name;
 	}
 
+	/**
+	 * Add events to make work all HUD buttons
+	 */
 	static loadHUDButtons() {
 		// HUD Top right
 		document.getElementById('hud-top-right-moveLeft').addEventListener('click', function() {
@@ -308,6 +314,9 @@ class ui {
 		ui.updateBottom();
 	}
 
+	/**
+	 * Hide something
+	 */
 	static hide(selector) {
 		let DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
@@ -315,6 +324,9 @@ class ui {
 		}
 	}
 
+	/**
+	 * Show somethinf
+	 */
 	static show(selector, display="block") {
 		let DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
@@ -322,10 +334,20 @@ class ui {
 		}
 	}
 
+	/**
+	 * Determines if an element has a specific class.
+	 *
+	 * @param      {<type>}  elt        The element
+	 * @param      {string}  className  The class name
+	 * @return     {string}  True if has the class, False otherwise.
+	 */
 	static hasClass(elt, className) {
 		return ((" " + elt.className + " ").replace(/[\n\t]/g, " ").indexOf(" " + className +" ") > -1);
 	}
 
+	/**
+	 * Update the bottom button display depending on current opened windows
+	 */
 	static updateBottom() {
 		// Map
 		if(document.getElementById('hud-map').style.display == "block") {
@@ -378,6 +400,9 @@ class ui {
 	}
 
 	/********** PLANET NAME **********/
+	/**
+	 * Switch between span and input for planet name
+	 */
 	static planetNameSwitchToInput() {
 		let elt = $("#hud-planet-name");
 		ui.oldname = elt.text();
@@ -408,6 +433,9 @@ class ui {
 		ui.renaming = false;
 	}
 	/************ BOUTONS ************/
+	/**
+	 * Add events for bottom buttons
+	 */
 	static hudBottomButtons() {
 		document.getElementById("hud-bottom-button-chat").addEventListener('click', function() {
 			if(ui.chat) {

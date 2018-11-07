@@ -1,4 +1,12 @@
 class Fleet {
+	/**
+	 * Gets an unit speed depending on a specific tech & speed created by other
+	 * parts.
+	 *
+	 * @param      {array}   speed   Current speed, [-1] if no speed yet
+	 * @param      {string}  tech    Engines tech
+	 * @return     {Array}   New current speed
+	 */
 	static getSpeed(speed, tech) {
 		if(speed[0] == -1) { // First sup propulsion part
 			if(shipPartsSpeed[tech] === undefined) { 
@@ -15,6 +23,12 @@ class Fleet {
 		return speed;
 	}
 
+	/**
+	 * Calculates the subspeed of an unit
+	 *
+	 * @param      {Object}  unit    Unit description
+	 * @return     {Object}  Subspeed
+	 */
 	static calcSubSpeed(unit) {
 		let speed = [-1];
 		let tech = "";
@@ -33,6 +47,12 @@ class Fleet {
 		return {speed: speed, tech: tech, count: count};
 	}
 
+	/**
+	 * Calculates the supraspeed of an unit
+	 *
+	 * @param      {Object}  unit    Unit description
+	 * @return     {Object}  Supraspeed
+	 */
 	static calcSupraSpeed(unit) {
 		let speed = [-1];
 		let tech = "";
@@ -51,6 +71,12 @@ class Fleet {
 		return {speed: speed, tech: tech, count: count};
 	}
 
+	/**
+	 * Calculates the fuel cost of moving with specific engines, pattern: { type: count, type2: count2 }
+	 *
+	 * @param      {Object}  engines  The engines
+	 * @return     {number}  The fuel cost.
+	 */
 	static calcFuelCost(engines) {
 		let cost = 0;
 
@@ -61,6 +87,13 @@ class Fleet {
 		return cost;
 	}
 
+	/**
+	 * Get the slower speed between two polynomial speed
+	 *
+	 * @param      {number}  curr    Current speed
+	 * @param      {number}  other   Other speed to compare with
+	 * @return     {number}  Slower speed
+	 */
 	static slowerSpeed(curr, other) {
 		let testDist = 1000; // Total galaxy
 		if((Math.pow(testDist, 2)*curr[0] + testDist*curr[1] + curr[2]) > 
@@ -71,6 +104,12 @@ class Fleet {
 		}
 	}
 
+	/**
+	 * Get the slowest subspeed in a fleet
+	 *
+	 * @param      {<type>}  unitList  Fleet units list
+	 * @return     {Object}  The minimum sub speed.
+	 */
 	static getMinSubSpeed(unitList) {
 		let min = {
 			speed: 0,
@@ -93,6 +132,12 @@ class Fleet {
 		return min;
 	}
 
+	/**
+	 * Get the slowest supraspeed in a fleet
+	 *
+	 * @param      {<type>}  unitList  Fleet units list
+	 * @return     {Object}  The minimum supra speed.
+	 */
 	static getMinSupraSpeed(unitList) {
 		let min = {
 			speed: [],
@@ -117,6 +162,13 @@ class Fleet {
 		return min;
 	}
 
+	/**
+	 * Calculates the move time depending on a distance and a speed
+	 *
+	 * @param      {polynom}  dist    The distance
+	 * @param      {polynom}  speed   The speed
+	 * @return     {number}  The move time.
+	 */
 	static calcMoveTime(dist, speed) {
 		return Math.pow(dist, 2)*speed[0] + dist*speed[1] + speed[2];
 	}

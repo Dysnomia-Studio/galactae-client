@@ -1,4 +1,7 @@
 class settings {
+	/**
+	 * Initialize setting variables
+	 */
 	static init() {
 		this.settingsList = {
 			general: {
@@ -76,6 +79,9 @@ class settings {
 
 		loadScreen.complete("settings");
 	}
+	/**
+	 * Loads setting ui and add events
+	 */
 	static loadUI() {
 		document.getElementById("hud-settings").addEventListener('click', function () {
 			if(ui.menu) {
@@ -92,6 +98,12 @@ class settings {
 			}
 		});
 	}
+	/**
+	 * Get a setting value
+	 *
+	 * @param      {string}             settingName  The setting name
+	 * @return     {?}  The setting value
+	 */
 	static get(settingName) {
 		let val;
 		if((val = getCookie("galactae_settings_" + settingName)) != "") {
@@ -107,10 +119,23 @@ class settings {
 
 		return val.default;
 	}
+	/**
+	 * Set setting value
+	 *
+	 * @param      {string}  settingName  The setting name
+	 * @param      {?}  value        The value
+	 */
 	static set(settingName,value) {
-		return setCookie("galactae_settings_" + settingName, value, 365); //@ADD: Time depends on remember me
+		setCookie("galactae_settings_" + settingName, value, 365); //@ADD: Time depends on remember me
 	}
+	/**
+	 * Test if a setting has a value
+	 *
+	 * @param      {string}  settingName  The setting name
+	 * @param      {?}  value        The value
+	 * @return     {boolean}  True if same, false otherwise
+	 */
 	static test(settingName,value) {
-		return this.get(settingName) == value;
+		return this.get(settingName) === value;
 	}
 }
