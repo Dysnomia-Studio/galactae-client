@@ -7,7 +7,7 @@ let loadStatusArr = {
 	"player": false,
 	"fleet": false,
 	"maps": false,
-	"pictures": false,
+	"load": false,
 };
 let loadEnd = 10;
 // 1 -> Server Connection
@@ -17,9 +17,9 @@ let loadEnd = 10;
 // 5 -> Player data
 // 6 -> Player data (2)
 // 7 -> Settings
-// 8 -> Preload Pictures
-// 9 -> Map
-// 10 -> Fleet list
+// 8 -> Map
+// 9 -> Fleet list
+// 10 -> Window load event
 
 class loadScreen {
 	/**
@@ -65,82 +65,6 @@ class loadScreen {
 			}
 		}
 	}
-
-	/**
-	 * Preload all pictures
-	 */
-	static picturePreload() {
-		let picList = [
-			// Misc UI
-			cdnURL + 'img/ui/hud-top.png',
-			cdnURL + 'img/ui/hud-bottom-left.png',
-			cdnURL + 'img/ui/hud-bottom-right.png',
-			cdnURL + 'img/ui/hud-chat.png',
-			cdnURL + 'img/ui/chat-voice.png',
-			cdnURL + 'img/ui/build-panel.png',
-			cdnURL + 'img/ui/window.png',
-
-			// HUD TOP
-			cdnURL + 'img/ui/population.png',
-			cdnURL + 'img/ui/moral.png',
-			cdnURL + 'img/ui/money.png',
-			cdnURL + 'img/ui/minerals.png',
-
-			// HUD BOTTOM
-			cdnURL + 'img/ui/fleets.png',
-		];
-
-		// Buildings
-		for(let i=0; i<buildingsNames.length; i++) {
-			// Panel picture
-			picList.push(cdnURL + "img/buildings/desc/" + buildingsNames[i] + '.jpg');
-		}
-
-		// Planets
-		let backPlanetList = [0];
-		for(let i in backPlanetList) {
-			picList.push(cdnURL + "img/planets/back/" + backPlanetList[i] + '.png');
-		}
-		let frontPlanetList = [0,1,2,3,4,
-			101,102,103,104,105,106,107,108,109,110,111,112,
-			501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,
-			901,42,
-			1000,1001];
-		for(let i in frontPlanetList) {
-			picList.push(cdnURL + "img/planets/front/" + frontPlanetList[i] + '.jpg');
-		}
-		let haloPlanetList = [];
-		for(let i in haloPlanetList) {
-			picList.push(cdnURL + "img/planets/halo/" + haloPlanetList[i] + '.png');
-		}
-
-		let count = 0;
-		for (let i=0; i < picList.length; i++) {
-			(function (img, src) {
-				img.onload = function() {
-					let DOMElts = document.querySelectorAll('.loading-overlay-bar-secondary .loading-overlay-bar-value');
-					for(let i=0; i<DOMElts.length; i++) {
-						DOMElts[i].innerText = (++count) + "/" + picList.length;
-					}
-					DOMElts = document.querySelectorAll('.loading-overlay-bar-secondary .loading-overlay-bar-content');
-					for(let i=0; i<DOMElts.length; i++) {
-						DOMElts[i].style.width =  Math.round(count/picList.length*100) + "%";
-					}
-
-					if (count == picList.length) {
-						loadScreen.complete('pictures');
-					}
-				};
-
-				// Use the following callback methods to debug
-				// in case of an unexpected behavior.
-				img.onerror = function () {};
-				img.onabort = function () {};
-
-				img.src = src;
-			} (new Image(), picList[i]));
-		}
-	}
 }
 
 ready(function() {
@@ -157,11 +81,23 @@ ready(function() {
 	// On affiche la page de chargement
 	ui.show('#loading-overlay');
 
-	// Prechargement des images
-	loadScreen.picturePreload();
-
 	// On se connecte au serveur node et on verifie l'identité du client ( Serveur )
 	webSockets.createConnection();
 
 	console.log("%c" + translate.messages["selfXSSWarn"],'font-size: 2em; font-weight: bold; color: red;');
 });
+
+window.addEventListener('load', loadScreen.complete('load'));
+
+// Service worker
+if ('serviceWorker' in navigator) {
+	window.addEventListener('load', function() {
+		navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+			// Registration was successful
+			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		}, function(err) {
+			// registration failed :(
+			console.log('ServiceWorker registration failed: ', err);
+		});
+	});
+}

@@ -2,24 +2,6 @@ let resourcesinterval = -1;
 let autobuildingrefresh = -1;
 let canbebuildtimeout = -1;
 
-let buildingsNames = [
-	"carriere",
-	"metallurgy",
-	"living",
-	"serre",
-	"solar",
-	"warehouse",
-	"headquarter",
-	"launchpad",
-	"research",
-
-	"radar",
-	"tank",
-	"shipyard",
-	"trade",
-	"he3exp"
-];
-
 let planetData = { //Not complete but some are needed on init because of bugs
 	planetType: 0,
 	address: userData.pid,

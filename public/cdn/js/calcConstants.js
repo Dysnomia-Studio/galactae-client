@@ -25,6 +25,24 @@ let buildLvlUnitBuildingSpeedBonus = 0.005;
 /**
  * Buildings
  */
+let buildingsNames = [
+	"carriere",
+	"metallurgy",
+	"living",
+	"serre",
+	"solar",
+	"warehouse",
+	"headquarter",
+	"launchpad",
+	"research",
+
+	"radar",
+	"tank",
+	"shipyard",
+	"trade",
+	"he3exp"
+];
+ 
 let buildingMaxLvl = [
 	25,	// Carriere
 	25,	// Metallurgie
@@ -666,3 +684,47 @@ let hangarMiss = {
 	hangarSimple:  -2,
 	hangarDouble: -10,
 };
+
+let imgCache = [
+	// Misc UI
+	cdnURL + 'img/ui/hud-top.png',
+	cdnURL + 'img/ui/hud-bottom-left.png',
+	cdnURL + 'img/ui/hud-bottom-right.png',
+	cdnURL + 'img/ui/hud-chat.png',
+	cdnURL + 'img/ui/chat-voice.png',
+	cdnURL + 'img/ui/build-panel.png',
+	cdnURL + 'img/ui/window.png',
+
+	// HUD TOP
+	cdnURL + 'img/ui/population.png',
+	cdnURL + 'img/ui/moral.png',
+	cdnURL + 'img/ui/money.png',
+	cdnURL + 'img/ui/minerals.png',
+
+	// HUD BOTTOM
+	cdnURL + 'img/ui/fleets.png',
+];
+
+// Buildings
+for(let i=0; i<buildingsNames.length; i++) {
+	// Panel picture
+	imgCache.push(cdnURL + "img/buildings/desc/" + buildingsNames[i] + '.jpg');
+}
+
+// Planets
+let backPlanetList = [0];
+for(let i in backPlanetList) {
+	imgCache.push(cdnURL + "img/planets/back/" + backPlanetList[i] + '.png');
+}
+let frontPlanetList = [0,1,2,3,4,
+	101,102,103,104,105,106,107,108,109,110,111,112,
+	501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,
+	901,42,
+	1000,1001];
+for(let i in frontPlanetList) {
+	imgCache.push(cdnURL + "img/planets/front/" + frontPlanetList[i] + '.jpg');
+}
+let haloPlanetList = [];
+for(let i in haloPlanetList) {
+	imgCache.push(cdnURL + "img/planets/halo/" + haloPlanetList[i] + '.png');
+}
