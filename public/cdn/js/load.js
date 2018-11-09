@@ -85,13 +85,9 @@ ready(function() {
 	webSockets.createConnection();
 
 	console.log("%c" + translate.messages["selfXSSWarn"],'font-size: 2em; font-weight: bold; color: red;');
-});
 
-window.addEventListener('load', loadScreen.complete('load'));
-
-// Service worker
-if ('serviceWorker' in navigator) {
-	window.addEventListener('load', function() {
+	// Service worker
+	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register(cdnURL + 'service-worker.js').then(function(registration) {
 			// Registration was successful
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -99,5 +95,7 @@ if ('serviceWorker' in navigator) {
 			// registration failed :(
 			console.log('ServiceWorker registration failed: ', err);
 		});
-	});
-}
+	}
+});
+
+window.addEventListener('load', function() { loadScreen.complete('load'); });
