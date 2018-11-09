@@ -92,9 +92,7 @@ window.addEventListener('load', loadScreen.complete('load'));
 // Service worker
 if ('serviceWorker' in navigator) {
 	window.addEventListener('load', function() {
-		navigator.serviceWorker.register(cdnURL + 'js/service-worker.js', {
-			scope: cdnURL.split('js/').join('')
-		}).then(function(registration) {
+		navigator.serviceWorker.register(cdnURL + 'service-worker.js').then(function(registration) {
 			// Registration was successful
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
 		}, function(err) {
