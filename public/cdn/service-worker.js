@@ -1,6 +1,7 @@
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('galactae-cache').then(function(cache) {
+			console.log(self.imgCache);
 			return cache.addAll(self.imgCache);
 		})
 	);
