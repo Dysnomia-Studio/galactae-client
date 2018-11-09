@@ -355,7 +355,7 @@
 	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
 	<form action="#chat_text" method="post" id="chat_form">
 		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
-		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?= $cdnURL ?>img/ui/chat-voice.png" alt="voice"></a>
+		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?= $cdnURL ?>img/ui/chat-voice.svg" alt="voice"></a>
 	</form>
 </div>
 <?php /* Ranks */ ?>
@@ -661,6 +661,7 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 <?php /* Game Version & Copyright */ ?>
 <div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
+<script type="text/javascript" src="<?= $cdnURL ?>js/service-worker.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/jquery.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>

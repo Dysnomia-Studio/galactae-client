@@ -951,7 +951,7 @@ select, input, summary {
 		display: block;		
 	}
 	#chat_message {
-		width: calc(17.2vw - 25px);
+		width: calc(17.2vw - 35px);
 	}
 }
 @media (max-width: 1049px) {
@@ -1012,7 +1012,7 @@ select, input, summary {
 		display: block;	
 	}
 	#chat_message {
-		width: calc(100vw - 5em - 30px);
+		width: calc(100vw - 5em - 40px);
 	}
 }
 #chat_message {
@@ -1030,9 +1030,14 @@ select, input, summary {
 	padding-left: 0;
 	margin: 0;
 }
-#chat-voice,#chat_message {
+#chat-voice, #chat-voice img, #chat_message {
 	vertical-align: middle;
 }
+#chat-voice img {
+	width: 20px;
+	margin-left: 5px;
+}
+
 #hud-chat-channels li {
 	height: 20px;
 	line-height: 20px;
