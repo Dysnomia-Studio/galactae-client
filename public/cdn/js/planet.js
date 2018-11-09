@@ -851,7 +851,7 @@ class planet {
 	 * Opens the planet panel of a different planet than current (mostly other players)
 	 */
 	static openOtherPlanetPanel() {
-		let type = planet.getTypeOfPlanet(units.planetTarget);
+		let type = ""+planet.getTypeOfPlanet(units.planetTarget);
 		let starTypesList = {
 			yellowDwarf: 1000,
 			blueGiant:   1001,

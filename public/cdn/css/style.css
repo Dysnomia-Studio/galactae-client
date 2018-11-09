@@ -1702,6 +1702,9 @@ select, input, summary {
 a[class="research-search"] {
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
+a[class="research-search"]:hover {
+	text-decoration: underline;
+}
 .research-ok {
 	width: 100%;
 	text-align: center;
