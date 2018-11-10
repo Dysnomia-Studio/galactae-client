@@ -718,20 +718,17 @@ let backPlanetList = [0];
 for(let i in backPlanetList) {
 	imgCache.push('img/planets/back/' + backPlanetList[i] + '.png');
 }
-let frontPlanetList = [0,1,2,3,4,
-	101,102,103,104,105,106,107,108,109,110,111,112,
-	501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,
+let planetList = [0,1,2,3,4,5,6,7,8,9,
+	101,102,103,104,105,106,107,108,109,110,111,112,113,
+	501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,
 	901,42,
-	1000,1001];
-for(let i in frontPlanetList) {
-	imgCache.push('img/planets/front/' + frontPlanetList[i] + '.jpg');
-}
-let haloPlanetList = [];
-for(let i in haloPlanetList) {
-	imgCache.push('img/planets/halo/' + haloPlanetList[i] + '.png');
+	1000,1001,1002,1003,1004,1005,1006,1007,1008];
+for(let i in planetList) {
+	imgCache.push('img/planets/front/' + planetList[i] + '.jpg');
+	imgCache.push('img/planets/halo/' + planetList[i] + '.png');
 }
 
-neededCache = imgCache.slice().concat([
+neededCache = [
 	'css/style.css',
 	
 	'js/readyEvent.js',
@@ -753,4 +750,4 @@ neededCache = imgCache.slice().concat([
 	'js/units.js',
 	'js/websockets.js',
 	'js/load.js',
-]);
+].concat(imgCache.slice());
