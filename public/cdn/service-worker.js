@@ -33,6 +33,7 @@ self.addEventListener('message', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
+	console.log("activate");
 	event.waitUntil(
 		clients.matchAll().then(clients => {
 			console.log(clients);
