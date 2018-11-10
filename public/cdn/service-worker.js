@@ -1,3 +1,5 @@
+importScripts('js/calcConstants.js');
+
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('galactae-cache').then(function(cache) {
