@@ -3,9 +3,7 @@ importScripts('js/calcConstants.js');
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('galactae-cache').then(function(cache) {
-			console.info(imgCache);
-			console.info(self.imgCache);
-			return cache.addAll(self.imgCache);
+			return cache.addAll(imgCache);
 		})
 	);
 });

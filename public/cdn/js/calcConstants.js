@@ -728,5 +728,3 @@ let haloPlanetList = [];
 for(let i in haloPlanetList) {
 	imgCache.push("img/planets/halo/" + haloPlanetList[i] + '.png');
 }
-
-console.info(imgCache);
