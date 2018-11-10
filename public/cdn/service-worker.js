@@ -9,14 +9,6 @@ self.addEventListener('install', function(event) {
 			return cache.addAll(imgCache);
 		})
 	);
-
-	clients.matchAll().then(clients => {
-		console.log(clients);
-        clients.forEach(client => {
-        	console.log(client);
-            client.postMessage("loaded");
-        });
-    });
 });
 
 self.addEventListener('message', function(event) {
@@ -41,7 +33,15 @@ self.addEventListener('message', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
-    event.waitUntil(self.clients.claim()); // Become available to all pages
+	event.waitUntil(
+		clients.matchAll().then(clients => {
+			console.log(clients);
+			clients.forEach(client => {
+				console.log(client);
+				client.postMessage("loaded");
+			});
+		})
+	);
 });
 
 self.addEventListener('fetch', function(event) {
