@@ -6,7 +6,7 @@ let changedFiles = [];
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('galactae-cache').then(function(cache) {
-			return cache.addAll(imgCache);
+			return cache.addAll(neededCache);
 		})
 	);
 });
