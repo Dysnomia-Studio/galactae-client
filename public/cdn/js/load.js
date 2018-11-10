@@ -99,6 +99,7 @@ ready(function() {
 		});
 
 		navigator.serviceWorker.onmessage = function(data) {
+			console.log("Message recieved !");
 			loadScreen.complete("service-worker");
 			navigator.serviceWorker.controller.postMessage({ version: $('#game-version').text() });
 		};

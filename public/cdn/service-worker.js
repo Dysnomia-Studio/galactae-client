@@ -17,7 +17,9 @@ self.addEventListener('install', function(event) {
     });
 });
 
-self.addEventListener('message', function(event){
+self.addEventListener('message', function(event) {
+	console.log("Message recieved !");
+
 	if(event.data.error) {
 		console.error("Error while recieving message from main window");
 		return;
