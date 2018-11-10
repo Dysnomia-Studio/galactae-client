@@ -44,10 +44,17 @@ class planetBack {
 		this.planetMap = 'url('+cdnURL+'img/planets/front/' + this.planet.type + '.jpg)';
 		
 		let halo = document.querySelector('#planet-back-halo');
-		halo.style.width = Math.round(this.planet.radius*2/536*730) + "px";
-		halo.style.height = Math.round(this.planet.radius*2/536*715) + "px";
-		halo.style.marginLeft = "-" + Math.round(this.planet.radius/536*730) + "px";
-		halo.style.marginTop = "-" + Math.round(this.planet.radius/536*715) + "px";
+		halo.style.width = Math.round(this.planet.radius*2/536*725) + "px";
+		halo.style.height = Math.round(this.planet.radius*2/536*710) + "px";
+
+		let mleft = Math.round(this.planet.radius/536*725);
+		let mTop = Math.round(this.planet.radius/536*710);
+		if(this.planet.type > 101) {
+			mleft += 0;
+			mTop += 0;
+		}
+		halo.style.marginLeft = "-" + mleft + "px";
+		halo.style.marginTop = "-" + mTop + "px";
 
 		/* Planet */
 		this.calc.Xparts = 16;
