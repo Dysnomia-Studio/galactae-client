@@ -11,7 +11,9 @@ self.addEventListener('install', function(event) {
 	);
 
 	clients.matchAll().then(clients => {
+		console.log(clients);
         clients.forEach(client => {
+        	console.log(client);
             client.postMessage("loaded");
         });
     });
@@ -31,7 +33,7 @@ self.addEventListener('message', function(event) {
 		}
 
 		if(changed) {
-			console.log("New version detected ! Forcing script reload.")
+			console.log("New version detected ! Forcing scripts reload.");
 		}
 
 		localStorage.gameVersion = event.data.version;
