@@ -8,8 +8,9 @@ let loadStatusArr = {
 	"fleet": false,
 	"maps": false,
 	"load": false,
+	"service-worker": false,
 };
-let loadEnd = 10;
+let loadEnd = 11;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
 // 3 -> Planet Back
@@ -20,6 +21,7 @@ let loadEnd = 10;
 // 8 -> Map
 // 9 -> Fleet list
 // 10 -> Window load event
+// 11 -> Service worker
 
 class loadScreen {
 	/**
@@ -91,12 +93,15 @@ ready(function() {
 		navigator.serviceWorker.register(cdnURL + 'service-worker.js').then(function(registration) {
 			// Registration was successful
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
-
-			navigator.serviceWorker.controller.postMessage({ version: $('#game-version').text() });
 		}, function(err) {
 			// registration failed :(
 			console.log('ServiceWorker registration failed: ', err);
 		});
+
+		navigator.serviceWorker.onmessage = function(data) {
+			loadScreen.complete("service-worker");
+			navigator.serviceWorker.controller.postMessage({ version: $('#game-version').text() });
+		};
 	}
 });
 
