@@ -833,14 +833,7 @@ class planet {
 	 * Opens the planet panel of a different planet than current (mostly other players)
 	 */
 	static openOtherPlanetPanel() {
-		let type = ""+planet.getTypeOfPlanet(units.planetTarget);
-		let starTypesList = {
-			yellowDwarf: 1000,
-			blueGiant:   1001,
-		};
-		for(var s in starTypesList) {
-			type = type.split(s).join(starTypesList[s]);
-		}
+		let type = planet.getTypeOfPlanet(units.planetTarget);
 		planetBack.init(type);
 
 		let system = units.planetTarget.split('-');
