@@ -91,6 +91,8 @@ ready(function() {
 		navigator.serviceWorker.register(cdnURL + 'service-worker.js').then(function(registration) {
 			// Registration was successful
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+
+			navigator.serviceWorker.controller.postMessage({ version: $('#game-version').text() });
 		}, function(err) {
 			// registration failed :(
 			console.log('ServiceWorker registration failed: ', err);

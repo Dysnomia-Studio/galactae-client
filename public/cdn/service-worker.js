@@ -1,11 +1,39 @@
 importScripts('js/calcConstants.js');
 
+let changed = true;
+let changedFiles = [];
+
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open('galactae-cache').then(function(cache) {
 			return cache.addAll(imgCache);
 		})
 	);
+
+	clients.matchAll().then(clients => {
+        clients.forEach(client => {
+            client.postMessage("loaded");
+        });
+    });
+});
+
+self.addEventListener('message', function(event){
+	if(event.data.error) {
+		console.error("Error while recieving message from main window");
+		return;
+	}
+
+	if(event.data.version !== undefined) {
+		if(localStorage.gameVersion !== undefined) {
+			changed = (localStorage.gameVersion !== event.data.version);
+		}
+
+		if(changed) {
+			console.log("New version detected ! Forcing script reload.")
+		}
+
+		localStorage.gameVersion = event.data.version;
+	}
 });
 
 self.addEventListener('fetch', function(event) {
@@ -13,7 +41,8 @@ self.addEventListener('fetch', function(event) {
 		// caches.match() always resolves
 		// but in case of success response will have value
 		console.info(response);
-		if (response !== undefined) {
+		console.log(response.url);
+		if (response !== undefined && (changed == false || changedFiles.indexOf(reponse.url) !== -1)) {
 			return response;
 		} else {
 			return fetch(event.request).then(function (response) {
@@ -24,6 +53,7 @@ self.addEventListener('fetch', function(event) {
 				
 				caches.open('galactae-cache').then(function (cache) {
 					cache.put(event.request, responseClone);
+					changedFiles.push(responseClone.url);
 				});
 				return response;
 			});
