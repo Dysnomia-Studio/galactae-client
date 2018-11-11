@@ -1,44 +1,25 @@
 importScripts('js/calcConstants.js');
 
-let changed = true;
+let changed = -1;
 let changedFiles = [];
 
 self.addEventListener('install', function(event) {
-	console.log("install");
-
 	event.waitUntil(
 		caches.open('galactae-cache').then(function(cache) {
+			// Return cache
 			return cache.addAll(neededCache);
 		})
 	);
 });
 
-self.addEventListener('message', function(event) {
-	console.log("Message recieved !");
-
-	if(event.data.error) {
-		console.error("Error while recieving message from main window");
-		return;
-	}
-
-	if(event.data.version !== undefined) {
-		console.log('Current version: ' + event.data.version);
-
-		if(localStorage.gameVersion !== undefined) {
-			changed = (localStorage.gameVersion !== event.data.version);
-		}
-
-		if(changed) {
-			console.log("New version detected ! Forcing scripts reload.");
-		}
-
-		localStorage.gameVersion = event.data.version;
-	}
-});
-
 self.addEventListener('fetch', function(event) {
 	console.log("fetch");
 	event.respondWith(caches.match(event.request).then(function(response) {
+		if(changed === -1) {
+			changed = (localStorage.gameVersion !== localStorage.newVersion);
+			localStorage.gameVersion = localStorage.newVersion;
+		}
+
 		// caches.match() always resolves
 		// but in case of success response will have value
 		console.info(response);
