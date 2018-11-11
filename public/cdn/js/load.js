@@ -10,18 +10,19 @@ let loadStatusArr = {
 	"load": false,
 	"service-worker": false,
 };
-let loadEnd = 11;
+let loadEnd = 12;
 // 1 -> Server Connection
 // 2 -> Planet Data Recieving
 // 3 -> Planet Back
-// 4 -> Units data
-// 5 -> Player data
-// 6 -> Player data (2)
-// 7 -> Settings
-// 8 -> Map
-// 9 -> Fleet list
-// 10 -> Window load event
-// 11 -> Service worker
+// 4 -> Planet Back (2)
+// 5 -> Units data
+// 6 -> Player data
+// 7 -> Player data (2)
+// 8 -> Settings
+// 9 -> Map
+// 10 -> Fleet list
+// 11 -> Window load event
+// 12 -> Service worker
 
 class loadScreen {
 	/**

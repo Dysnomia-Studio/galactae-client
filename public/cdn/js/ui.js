@@ -13,6 +13,7 @@ KEYBOARD.RARROW = 39;
 KEYBOARD.DARROW = 40;
 KEYBOARD.C = 67;
 KEYBOARD.I = 73;
+KEYBOARD.F5 = 116;
 KEYBOARD.F12 = 123;
 
 /**
@@ -295,6 +296,22 @@ class ui {
 		}
 		if(e.which === KEYBOARD.RARROW && !($("#chat_message").is(":focus"))) { // Droite
 			planet.next();
+		}
+
+		if(e.which === KEYBOARD.F5) {
+			loadStatus = 0;
+			loadStatusArr = {
+				"settings": false,
+				"server": false,
+				"planet": false,
+				"units": false,
+				"player": false,
+				"fleet": false,
+				"maps": false,
+				"load": false,
+				"service-worker": false,
+			};
+			ui.show('#loading-overlay');
 		}
 	}
 	/**
