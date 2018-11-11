@@ -4,13 +4,13 @@
 	translate['research'] = {
 		// Noeud Central
 		researchCenter:		{ name: "Centre de recherches", desc: "Les centres de recherches travaillent ensemble ou seul afin de débloquer des techniques ou des technologies bénéfiques à la nation." },
-		industrialistion:	{ name: "Industrialisation", desc: "" },
+		industrialistion:	{ name: "Industrialisation", desc: "La partie de l'arbre de recherche concernant la productivité et la construction." },
 		phyContemporaine:	{ name: "Physique Contemporaine", desc: "" },
-		thermodynamique:	{ name: "Thermodynamique", desc: "" },
+		thermodynamique:	{ name: "Thermodynamique", desc: "Science des chaleurs permettant de travailler par la suite notamment sur des systèmes de propulsion." },
 		// Mise en orbite et propulsion
-		prop_main:			{ name: "Propulsion", desc: "" },
-		prop_vSolaire:		{ name: "Voile solaire", desc: "" },
-		prop_ions:			{ name: "Moteurs a ions", desc: "" },
+		prop_main:			{ name: "Propulsion", desc: "Permet de debloquer les recherches concernant le déplacements interplanétaires et interstellaires." },
+		prop_vSolaire:		{ name: "Voile solaire", desc: "Propulsion lente pour vaisseaux légers ne necessitant pas de carburant." },
+		prop_ions:			{ name: "Moteurs a ions", desc: "Moteur qui produit sa force de propulsion en accélérant des ions à très haute vitesse. C'est un moteur interplanétaire à haut rendement." },
 		prop_plasma: 		{ name: "Moteurs à Plasma", desc: "" },
 		prop_vsl:			{ name: "Vitesse Supraluminique (VSL)", desc: "" },
 		prop_wd: 			{ name: "Generateur de saut (Warp Drive)", desc: ""},
@@ -25,7 +25,7 @@
 		cp_dbRaffinage:		{ name: "Double raffinage", desc: "Deux fois plus de chance de trouver des minerais rares." },
 		cp_molecular_compression: { name: "Compression moleculaire", desc: "Augmente sensiblement la capacité de stockage des solides et gaz." },
 		// Armes
-		wep_railgun:		{ name: "Canons railgun", desc: "" },
+		wep_railgun:		{ name: "Canons éléctriques", desc: "" },
 		wep_nuke:			{ name: "Armes nucléaires", desc: "" },
 		wep_laser:			{ name: "Armes lasers", desc: "" },
 		wep_plasma:			{ name: "Armes plasma", desc: "" },

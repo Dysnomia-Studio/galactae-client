@@ -100,7 +100,7 @@ translate['load'] = {
 	"planet": "Chargement des données de la planete",
 	"player": "Chargement des données du joueurs",
 	"server": "Connexion au serveur ...",
-	"service-worker": "Préchargement des ressources",
+	"service-worker": "Préchargement des images",
 	"settings": "Chargement des paramètres",
 	"units": "Chargement des données unités",
 };

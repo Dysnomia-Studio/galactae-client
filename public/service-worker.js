@@ -25,7 +25,7 @@ self.addEventListener('fetch', function(event) {
 		let whitelisted = ['png','jpg','svg'];
 		if (response !== undefined && (changed == false || changedFiles.indexOf(response.url) !== -1 || whitelisted.indexOf(response.url.substr(-3)) !== -1)) {
 			// Mise à jour sur cette session
-			if(changedFiles.indexOf(response.url) !== -1) {
+			if(changed && changedFiles.indexOf(response.url) === -1) {
 				fetch(event.request).then(function (response) {
 					if(response.status !== 200 || event.request.method === "POST") { return; }
 
