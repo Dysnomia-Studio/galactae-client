@@ -21,27 +21,33 @@ self.addEventListener('fetch', function(event) {
 	event.respondWith(caches.match(event.request).then(function(response) {
 		// caches.match() always resolves
 		// but in case of success response will have value
-		console.log("Response: ");
-		console.info(response);
-		if(response !== undefined) {
-			console.log("URL: " + response.url);
-		}
 
-		if (response !== undefined && (changed == false || changedFiles.indexOf(response.url) !== -1)) {
+		let whitelisted = ['png','jpg','svg'];
+		if (response !== undefined && (changed == false || changedFiles.indexOf(response.url) !== -1 || whitelisted.indexOf(response.url.substr(-3)) !== -1)) {
+			// Mise à jour sur cette session
+			if(changedFiles.indexOf(response.url) !== -1) {
+				fetch(event.request).then(function (response) {
+					if(response.status !== 200) { return; }
+
+					caches.open('galactae-cache').then(function (cache) {
+						cache.put(event.request, response);
+						changedFiles.push(response.url);
+					});
+				});
+			}
+
 			return response;
 		} else {
 			return fetch(event.request).then(function (response) {
-				// response may be used only once
-				// we need to save clone to put one copy in cache
-				// and serve second one
-				let responseClone = response.clone();
+				if(response.status !== 200) { return response; }
 
-				console.info(response);
+				let responseClone = response.clone();
 				
 				caches.open('galactae-cache').then(function (cache) {
 					cache.put(event.request, responseClone);
 					changedFiles.push(responseClone.url);
 				});
+
 				return response;
 			});
 		}

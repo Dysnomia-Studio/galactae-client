@@ -394,7 +394,6 @@ class research {
 	 * @param      {<type>}  id      Research identifier
 	 */
 	static change(id) {
-		console.log(id);
 		socket.emit('research-change', { username: userData.username, id: userData.id, pid: userData.pid, research: id });
  	}
 
