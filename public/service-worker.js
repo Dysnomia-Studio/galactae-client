@@ -18,7 +18,6 @@ self.addEventListener('message', function(data) {
 });
 
 self.addEventListener('fetch', function(event) {
-	console.log("fetch");
 	event.respondWith(caches.match(event.request).then(function(response) {
 		// caches.match() always resolves
 		// but in case of success response will have value
@@ -28,7 +27,7 @@ self.addEventListener('fetch', function(event) {
 			console.log("URL: " + response.url);
 		}
 
-		if (response !== undefined && (changed == false || changedFiles.indexOf(reponse.url) !== -1)) {
+		if (response !== undefined && (changed == false || changedFiles.indexOf(response.url) !== -1)) {
 			return response;
 		} else {
 			return fetch(event.request).then(function (response) {
@@ -36,6 +35,8 @@ self.addEventListener('fetch', function(event) {
 				// we need to save clone to put one copy in cache
 				// and serve second one
 				let responseClone = response.clone();
+
+				console.info(response);
 				
 				caches.open('galactae-cache').then(function (cache) {
 					cache.put(event.request, responseClone);
