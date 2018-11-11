@@ -4,6 +4,8 @@ let changed = true;
 let changedFiles = [];
 
 self.addEventListener('install', function(event) {
+	console.log("install");
+
 	event.waitUntil(
 		caches.open('galactae-cache').then(function(cache) {
 			return cache.addAll(neededCache);
@@ -46,6 +48,7 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+	console.log("fetch");
 	event.respondWith(caches.match(event.request).then(function(response) {
 		// caches.match() always resolves
 		// but in case of success response will have value

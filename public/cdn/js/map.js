@@ -723,8 +723,6 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static drawSector(sector) {
-		console.log(sector);
-
 		// Stop if already created
 		if($('#' + sector + '-1').length == 1) { return; }
 
