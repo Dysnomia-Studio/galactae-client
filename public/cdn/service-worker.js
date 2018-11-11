@@ -22,6 +22,8 @@ self.addEventListener('message', function(event) {
 	}
 
 	if(event.data.version !== undefined) {
+		console.log('Current version: ' + event.data.version);
+
 		if(localStorage.gameVersion !== undefined) {
 			changed = (localStorage.gameVersion !== event.data.version);
 		}
@@ -32,19 +34,6 @@ self.addEventListener('message', function(event) {
 
 		localStorage.gameVersion = event.data.version;
 	}
-});
-
-self.addEventListener('activate', function(event) {
-	console.log("activate");
-	event.waitUntil(
-		clients.matchAll().then(clients => {
-			console.log(clients);
-			clients.forEach(client => {
-				console.log(client);
-				client.postMessage("loaded");
-			});
-		})
-	);
 });
 
 self.addEventListener('fetch', function(event) {
