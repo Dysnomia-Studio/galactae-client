@@ -687,36 +687,36 @@ let hangarMiss = {
 
 let imgCache = [
 	// Misc UI
-	'img/ui/hud-top.png',
-	'img/ui/hud-bottom-left.png',
-	'img/ui/hud-bottom-right.png',
-	'img/ui/hud-chat.png',
-	'img/ui/chat-voice.png',
-	'img/ui/build-panel.png',
-	'img/ui/window.png',
+	'cdn/img/ui/hud-top.png',
+	'cdn/img/ui/hud-bottom-left.png',
+	'cdn/img/ui/hud-bottom-right.png',
+	'cdn/img/ui/hud-chat.png',
+	'cdn/img/ui/chat-voice.png',
+	'cdn/img/ui/build-panel.png',
+	'cdn/img/ui/window.png',
 
-	'img/favicon.png',
+	'cdn/img/favicon.png',
 
 	// HUD TOP
-	'img/ui/population.png',
-	'img/ui/moral.png',
-	'img/ui/money.png',
-	'img/ui/minerals.png',
+	'cdn/img/ui/population.png',
+	'cdn/img/ui/moral.png',
+	'cdn/img/ui/money.png',
+	'cdn/img/ui/minerals.png',
 
 	// HUD BOTTOM
-	'img/ui/fleets.png',
+	'cdn/img/ui/fleets.png',
 ];
 
 // Buildings
 for(let i=0; i<buildingsNames.length; i++) {
 	// Panel picture
-	imgCache.push('img/buildings/desc/' + buildingsNames[i] + '.jpg');
+	imgCache.push('cdn/img/buildings/desc/' + buildingsNames[i] + '.jpg');
 }
 
 // Planets
 let backPlanetList = [0];
 for(let i in backPlanetList) {
-	imgCache.push('img/planets/back/' + backPlanetList[i] + '.png');
+	imgCache.push('cdn/img/planets/back/' + backPlanetList[i] + '.png');
 }
 let planetList = [0,1,2,3,4,5,6,7,8,9,
 	101,102,103,104,105,106,107,108,109,110,111,112,113,
@@ -725,30 +725,30 @@ let planetList = [0,1,2,3,4,5,6,7,8,9,
 	1000,1001,1002//,1003,1004,1005,1006,1007,1008
 ];
 for(let i in planetList) {
-	imgCache.push('img/planets/front/' + planetList[i] + '.jpg');
-	imgCache.push('img/planets/halo/' + planetList[i] + '.png');
+	imgCache.push('cdn/img/planets/front/' + planetList[i] + '.jpg');
+	imgCache.push('cdn/img/planets/halo/' + planetList[i] + '.png');
 }
 
 neededCache = [
-	'css/style.css',
+	'cdn/css/style.css',
 	
-	'js/readyEvent.js',
-	'js/details-polyfill.js',
-	'js/socket.min.js',
-	'js/css_globe_perspectivetransform.js',
-	'js/calcConstants.js',
-	'js/chat.js',
-	'js/fleet.js',
-	'js/map.js',
-	'js/misc.js',
-	'js/notifications.js',
-	'js/planet.js',
-	'js/planetback.js',
-	'js/research.js',
-	'js/settings.js',
-	'js/trade.js',
-	'js/ui.js',
-	'js/units.js',
-	'js/websockets.js',
-	'js/load.js',
+	'cdn/js/readyEvent.js',
+	'cdn/js/details-polyfill.js',
+	'cdn/js/socket.min.js',
+	'cdn/js/css_globe_perspectivetransform.js',
+	'cdn/js/calcConstants.js',
+	'cdn/js/chat.js',
+	'cdn/js/fleet.js',
+	'cdn/js/map.js',
+	'cdn/js/misc.js',
+	'cdn/js/notifications.js',
+	'cdn/js/planet.js',
+	'cdn/js/planetback.js',
+	'cdn/js/research.js',
+	'cdn/js/settings.js',
+	'cdn/js/trade.js',
+	'cdn/js/ui.js',
+	'cdn/js/units.js',
+	'cdn/js/websockets.js',
+	'cdn/js/load.js',
 ].concat(imgCache.slice());

@@ -1,4 +1,4 @@
-importScripts('js/calcConstants.js');
+importScripts('cdn/js/calcConstants.js');
 
 let changed = true;
 let changedFiles = [];
