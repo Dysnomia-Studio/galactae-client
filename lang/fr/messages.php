@@ -95,10 +95,12 @@ translate["messages"] = {
 translate['load'] = {
 	"fleet": "Chargement des flottes",
 	"pictures": "Chargement des images",
+	"load": "Chargement de la page",
 	"maps": "Chargement des cartes",
 	"planet": "Chargement des données de la planete",
 	"player": "Chargement des données du joueurs",
 	"server": "Connexion au serveur ...",
+	"service-worker": "Préchargement des ressources",
 	"settings": "Chargement des paramètres",
 	"units": "Chargement des données unités",
 };
