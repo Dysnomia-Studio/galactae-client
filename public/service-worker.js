@@ -1,6 +1,6 @@
 importScripts('js/calcConstants.js');
 
-let changed = -1;
+let changed = true;
 let changedFiles = [];
 
 self.addEventListener('install', function(event) {
@@ -20,11 +20,6 @@ self.addEventListener('message', function(data) {
 self.addEventListener('fetch', function(event) {
 	console.log("fetch");
 	event.respondWith(caches.match(event.request).then(function(response) {
-		if(changed === -1) {
-			changed = (localStorage.gameVersion !== localStorage.newVersion);
-			localStorage.gameVersion = localStorage.newVersion;
-		}
-
 		// caches.match() always resolves
 		// but in case of success response will have value
 		console.info(response);
