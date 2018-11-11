@@ -94,9 +94,29 @@ ready(function() {
 			console.info(registration);
 			// Registration was successful
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+
+			let serviceWorker;
+	        if (registration.installing) {
+	            serviceWorker = registration.installing;
+	            console.log('installing');
+	        } else if (registration.waiting) {
+	            serviceWorker = registration.waiting;
+	            console.log('waiting');
+	        } else if (registration.active) {
+	            serviceWorker = registration.active;
+	            console.log('active');
+	        }
+	        if (serviceWorker) {
+	            console.log(serviceWorker.state);
+	            serviceWorker.addEventListener('statechange', function (e) {
+	                // logState(e.target.state);
+	                console.log(e.target.state);
+	            });
+	        }
 		}, function(err) {
 			// registration failed :(
 			console.log('ServiceWorker registration failed: ', err);
+			loadScreen.complete("service-worker");
 		});
 
 		navigator.serviceWorker.onmessage = function(data) {
@@ -104,6 +124,8 @@ ready(function() {
 			loadScreen.complete("service-worker");
 			navigator.serviceWorker.controller.postMessage({ version: $('#game-version').text() });
 		};
+	} else {
+		loadScreen.complete("service-worker"); // On valide le service worker si le navigateur ne supporte pas cette fonctionnalité
 	}
 });
 
