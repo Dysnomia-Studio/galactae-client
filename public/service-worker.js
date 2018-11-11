@@ -13,7 +13,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('message', function(data) {
-	console.log('Changed: ' + data.data.change);
+	console.log('[SW] Changed: ' + data.data.change);
 	changed = data.data.change;
 });
 
@@ -27,7 +27,7 @@ self.addEventListener('fetch', function(event) {
 			// Mise à jour sur cette session
 			if(changedFiles.indexOf(response.url) !== -1) {
 				fetch(event.request).then(function (response) {
-					if(response.status !== 200) { return; }
+					if(response.status !== 200 || event.request.method === "POST") { return; }
 
 					caches.open('galactae-cache').then(function (cache) {
 						cache.put(event.request, response);

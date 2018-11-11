@@ -93,7 +93,7 @@ ready(function() {
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
 			// Registration was successful
-			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			console.log('[SW] Registration successful with scope: ', registration.scope);
 
 			let serviceWorker;
 
@@ -106,32 +106,23 @@ ready(function() {
 	        }
 
 	        if (serviceWorker) {
-	            console.log(serviceWorker.state);
 	            serviceWorker.addEventListener('statechange', function (e) {
-	                console.log(e.target.state);
-
 	                if(navigator.serviceWorker.controller !== null) {
-	                	console.log("sending change status to sw");
 						loadScreen.complete("service-worker");
 						navigator.serviceWorker.controller.postMessage({ change: $('#game-version').text() !== localStorage.gameVersion });
 						localStorage.gameVersion = $('#game-version').text();
-	                } else {
-	                	console.log(null);
 	                }
 	            });
 
-            	if(navigator.serviceWorker.controller !== null) {
-                	console.log("sending change status to sw");
+                if(navigator.serviceWorker.controller !== null) {
 					loadScreen.complete("service-worker");
 					navigator.serviceWorker.controller.postMessage({ change: $('#game-version').text() !== localStorage.gameVersion });
 					localStorage.gameVersion = $('#game-version').text();
-                } else {
-	                	console.log(null);
-	            }
+                }
 	        }
 		}, function(err) {
 			// registration failed :(
-			console.log('ServiceWorker registration failed: ', err);
+			console.log('[SW] Registration failed: ', err);
 			loadScreen.complete("service-worker");
 		});
 	} else {
