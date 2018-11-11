@@ -13,8 +13,8 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('message', function(data) {
-	console.log('Message:');
-	console.info(data);
+	console.log('Changed: ' + data.data.change);
+	changed = data.data.change;
 });
 
 self.addEventListener('fetch', function(event) {
