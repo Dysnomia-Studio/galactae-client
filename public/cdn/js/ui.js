@@ -299,7 +299,7 @@ class ui {
 		}
 
 		if(e.which === KEYBOARD.F5) {
-			loadStatus = 0;
+			loadStatus = -1;
 			loadStatusArr = {
 				"settings": false,
 				"server": false,
@@ -311,6 +311,7 @@ class ui {
 				"load": false,
 				"service-worker": false,
 			};
+			loadScreen.complete();
 			ui.show('#loading-overlay');
 		}
 	}
