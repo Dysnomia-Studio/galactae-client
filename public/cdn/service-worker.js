@@ -12,6 +12,11 @@ self.addEventListener('install', function(event) {
 	);
 });
 
+self.addEventListener('message', function(data) {
+	console.log('Message:');
+	console.info(data);
+});
+
 self.addEventListener('fetch', function(event) {
 	console.log("fetch");
 	event.respondWith(caches.match(event.request).then(function(response) {

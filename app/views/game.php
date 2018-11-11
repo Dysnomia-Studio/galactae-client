@@ -659,9 +659,8 @@ if($userData['lastViewedNews'] < $lastNewsNumber) {
 	<span id="notifications-closeAll">☒</span>
 </div>
 <?php /* Game Version & Copyright */ ?>
-<div id="game-version"><?php echo ($version = file_get_contents($cdnURL.'version.txt')); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
+<div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
 <?php /* Libs */ ?>
-<script type="text/javascript">localStorage.newVersion = "<?= $version ?>";</script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/jquery.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>

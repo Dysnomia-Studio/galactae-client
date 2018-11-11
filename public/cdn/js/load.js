@@ -111,8 +111,10 @@ ready(function() {
 	                console.log(e.target.state);
 
 	                if(e.target.state === 'activated') {
+	                	console.log("sending change status to sw");
 						loadScreen.complete("service-worker");
-						navigator.serviceWorker.controller.postMessage({ version: $('#game-version').text() });
+						navigator.serviceWorker.controller.postMessage({ change: $('#game-version').text() !== localStorage.gameVersion });
+						localStorage.gameVersion = $('#game-version').text();
 	                }
 	            });
 	        }
