@@ -91,6 +91,7 @@ ready(function() {
 	// Service worker
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register(cdnURL + 'service-worker.js').then(function(registration) {
+			console.info(registration);
 			// Registration was successful
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
 		}, function(err) {
