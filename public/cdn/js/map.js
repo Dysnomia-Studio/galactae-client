@@ -229,10 +229,10 @@ class map {
 		let leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
 		let rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
 
-		let top =  coords[0] == 0 || (topDist * 1.5 < $(document).height());
-		let bottom = coords[0] == 9 || (bottomDist * 1.5 < $(document).height());
-		let left = coords[1] == 0 || (leftDist * 1.5 < $(document).height());
-		let right = coords[1] == 9 || (rightDist * 1.5 < $(document).height());
+		let top =  coords[0] === 0 || (topDist * 2 < $(document).height());
+		let bottom = coords[0] === 9 || (bottomDist * 2 < $(document).height());
+		let left = coords[1] === 0 || (leftDist * 2 < $(document).height());
+		let right = coords[1] === 9 || (rightDist * 2 < $(document).height());
 
 		/**
 		 * Load all needed xml
@@ -723,6 +723,8 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static drawSector(sector) {
+		console.log(sector);
+
 		// Stop if already created
 		if($('#' + sector + '-1').length == 1) { return; }
 
@@ -751,13 +753,33 @@ class map {
 				}
 			}
 
-			var circle = makeSVGElt('circle', {
+			// Draw current planet circle under planet
+				let currSystem = planetData.address.split('-');
+				currSystem.pop();
+				currSystem = currSystem.join('-');
+
+				if(currSystem === $(systemList[i]).attr("id")) {
+					let currPlanetLegend = makeSVGElt('circle', {
+						id: "currPlanet", 
+						cx: Math.round(parseFloat($(systemList[i]).attr('x')/10) * MAP_SIZE_WIDTH), 
+						cy: Math.round(parseFloat($(systemList[i]).attr('y')/10) * MAP_SIZE_HEIGHT), 
+						r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO), 
+						stroke: "#0EC6C6",
+						"stroke-width": 1
+					});
+					document.getElementById('map-global').appendChild(currPlanetLegend);
+				}
+
+			// Draw planet
+			let circle = makeSVGElt('circle', {
 				id: $(systemList[i]).attr("id"), 
 				cx: Math.round(parseFloat($(systemList[i]).attr('x')/10) * MAP_SIZE_WIDTH), 
 				cy: Math.round(parseFloat($(systemList[i]).attr('y')/10) * MAP_SIZE_HEIGHT), 
 				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO), 
 				fill: 'url(#' + starBType + ')'});
 			document.getElementById('map-global').appendChild(circle);
+
+			//@TODO: Generate other visual helps
 
 			// Events
 			$('#' + $(systemList[i]).attr("id")).click(function() {
