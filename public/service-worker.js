@@ -22,8 +22,12 @@ self.addEventListener('fetch', function(event) {
 	event.respondWith(caches.match(event.request).then(function(response) {
 		// caches.match() always resolves
 		// but in case of success response will have value
+		console.log("Response: ");
 		console.info(response);
-		console.log(response.url);
+		if(response !== undefined) {
+			console.log("URL: " + response.url);
+		}
+
 		if (response !== undefined && (changed == false || changedFiles.indexOf(reponse.url) !== -1)) {
 			return response;
 		} else {
