@@ -107,16 +107,26 @@ ready(function() {
 	        if (serviceWorker) {
 	            console.log(serviceWorker.state);
 	            serviceWorker.addEventListener('statechange', function (e) {
-	                // logState(e.target.state);
 	                console.log(e.target.state);
 
-	                if(e.target.state === 'activated') {
+	                if(navigator.serviceWorker.controller !== null) {
 	                	console.log("sending change status to sw");
 						loadScreen.complete("service-worker");
 						navigator.serviceWorker.controller.postMessage({ change: $('#game-version').text() !== localStorage.gameVersion });
 						localStorage.gameVersion = $('#game-version').text();
+	                } else {
+	                	console.log(null);
 	                }
 	            });
+
+            	if(navigator.serviceWorker.controller !== null) {
+                	console.log("sending change status to sw");
+					loadScreen.complete("service-worker");
+					navigator.serviceWorker.controller.postMessage({ change: $('#game-version').text() !== localStorage.gameVersion });
+					localStorage.gameVersion = $('#game-version').text();
+                } else {
+	                	console.log(null);
+	            }
 	        }
 		}, function(err) {
 			// registration failed :(
