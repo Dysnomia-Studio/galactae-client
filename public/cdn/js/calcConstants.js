@@ -203,7 +203,7 @@ let researchPos = {
 	// Noeud Central
 	researchCenter:				[5000,5000],
 	industrialistion:			[5333,5000],
-	phyContemporaine:			[4666,5333],
+	phyContemporaine:			[4666,6000],
 	thermodynamique:			[4666,4666],
 	// Mise en orbite et propulsion
 	prop_main:					[3333,4333],
