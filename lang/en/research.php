@@ -5,7 +5,7 @@
 		// Noeud Central
 		researchCenter:		{ name: "Research Center", desc: "Research centers works together or alone to discover new skills or technologies usefull to the whole nation." },
 		industrialistion:	{ name: "Industrialisation", desc: "Research tree part concerning productivity and building." },
-		phyContemporaine:	{ name: "Contemporary Physics", desc: "" },
+		phyContemporaine:	{ name: "Modern Physics", desc: "" },
 		thermodynamique:	{ name: "Thermodynamics", desc: "Science about heating used to work in especially on propulsion systems." },
 		// Mise en orbite et propulsion
 		prop_main:			{ name: "Propulsion", desc: "Used to unlock research concerning interplanetary and interstellar moving." },
