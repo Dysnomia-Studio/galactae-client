@@ -25,8 +25,8 @@
 		cp_dbRaffinage:		{ name: "Double refining", desc: "2 times more likely to find rare minerals" },
 		cp_molecular_compression: { name: "Molecular compression", desc: "Raise a little bit storage limits" },
 		// Armes
-		wep_railgun:		{ name: "Railgun cannon", desc: "" },
-		wep_nuke:			{ name: "Nuclear weapons", desc: "" },
+		wep_railgun:		{ name: "Railgun cannon", desc: "Cannon speed up projectile with an electromagnetic field." },
+		wep_nuke:			{ name: "Nuclear weapons", desc: "Massive and radioactive destruction weapon." },
 		wep_laser:			{ name: "Laser weapons", desc: "" },
 		wep_plasma:			{ name: "Plasma weapons", desc: "" },
 		// Shields & Defenses
@@ -35,7 +35,7 @@
 		def_shield_projector:{ name: "Magnetic shield projector", desc: "" },
 		def_shield_singularity:{ name: "Singularity system", desc: "" },
 		// Hangar
-		hangarDouble:		{ name: "Double Hangar", desc: "" },
+		hangarDouble:		{ name: "Double Hangar", desc: "The double hangar can store about 2 times interceptors than usual hangars." },
 		// Mines
 		wep_mines:			{ name: "Mine", desc: "" },
 		wep_mines_nuke:		{ name: "Nuclear Mine", desc: "" },

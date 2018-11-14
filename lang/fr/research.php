@@ -25,8 +25,8 @@
 		cp_dbRaffinage:		{ name: "Double raffinage", desc: "Deux fois plus de chance de trouver des minerais rares." },
 		cp_molecular_compression: { name: "Compression moleculaire", desc: "Augmente sensiblement la capacité de stockage des solides et gaz." },
 		// Armes
-		wep_railgun:		{ name: "Canons éléctriques", desc: "" },
-		wep_nuke:			{ name: "Armes nucléaires", desc: "" },
+		wep_railgun:		{ name: "Canons éléctriques", desc: "Aussi connu sous le nom de railgun, accélère les projectiles par une force électromagnetique." },
+		wep_nuke:			{ name: "Armes nucléaires", desc: "Arme de destruction massive radioactive." },
 		wep_laser:			{ name: "Armes lasers", desc: "" },
 		wep_plasma:			{ name: "Armes plasma", desc: "" },
 		// Shields & Defenses
@@ -35,7 +35,7 @@
 		def_shield_projector:{ name: "Projecteur de bouclier", desc: "" },
 		def_shield_singularity:{ name: "Systeme à Singularité", desc: "" },
 		// Hangar
-		hangarDouble:		{ name: "Hangar Double", desc: "" },
+		hangarDouble:		{ name: "Hangar Double", desc: "Le hangar double permet de stocker près de deux fois plus de chasseurs qu'un hangar normal." },
 		// Mines
 		wep_mines:			{ name: "Mines", desc: "" },
 		wep_mines_nuke:		{ name: "Mines nucléaires", desc: "" },
