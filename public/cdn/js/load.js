@@ -1,4 +1,3 @@
-let loadStatus = 0;
 let loadStatusArr = {
 	"settings": false,
 	"server": false,
@@ -10,19 +9,6 @@ let loadStatusArr = {
 	"load": false,
 	"service-worker": false,
 };
-let loadEnd = 12;
-// 1 -> Server Connection
-// 2 -> Planet Data Recieving
-// 3 -> Planet Back
-// 4 -> Planet Back (2)
-// 5 -> Units data
-// 6 -> Player data
-// 7 -> Player data (2)
-// 8 -> Settings
-// 9 -> Map
-// 10 -> Fleet list
-// 11 -> Window load event
-// 12 -> Service worker
 
 class loadScreen {
 	/**
@@ -31,13 +17,14 @@ class loadScreen {
 	 * @param      {string}  title   Part loaded
 	 */
 	static complete(title="") {
-		if(++loadStatus>loadEnd) { return; } // Not needed if loading is already hided
-
-		if(loadStatus==loadEnd) {
-			setTimeout(function() {
-				ui.hide('#loading-overlay');
-			},100); // Mini timeout to avoid graphical bugs
+		let loadCount = 0;
+		let loadMax = 0;
+		for(let i in loadStatusArr) {
+			if(loadStatusArr[i]) { loadCount++; }
+			loadMax++;
 		}
+
+		if(loadCount === loadMax) { return; } // Not needed if loading is already hided
 
 		// Loading texts
 		if(title != "") {
@@ -57,7 +44,7 @@ class loadScreen {
 				break;
 			}
 
-			let percentage = Math.round(loadStatus/loadEnd*100);
+			let percentage = Math.round(loadCount/loadMax*100);
 			let DOMElts = document.querySelectorAll('.loading-overlay-bar-primary .loading-overlay-bar-value');
 			for(let i=0; i<DOMElts.length; i++) {
 				DOMElts[i].innerText = percentage + "%";
@@ -66,6 +53,12 @@ class loadScreen {
 			for(let i=0; i<DOMElts.length; i++) {
 				DOMElts[i].style.width = percentage + "%";
 			}
+		}
+
+		if(loadCount === loadMax - 1) {
+			setTimeout(function() {
+				ui.hide('#loading-overlay');
+			},100); // Mini timeout to avoid graphical bugs
 		}
 	}
 }
