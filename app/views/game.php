@@ -371,7 +371,7 @@
 	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
 </div>
 <?php /* News */
-if($userData['lastViewedNews'] < $lastNewsNumber) {
+if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNewsNumber) {
 	echo '<div id="hud-news" style="display: block;">';
 } else {
 	echo '<div id="hud-news">';

@@ -16,9 +16,9 @@ $news_needed = (int) $news_needed;
 $cache = DIR_CACHE.'news-'.$news_needed.'.html';
 
 /* Say to db server, we seen a newer news */
-if($userData['viewedNews'] < $news_needed) {
+if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $news_needed) {
 	$userMngr = new UserManager();
-	$userMngr->getLastNewsNumber($userData['_id'], $news_needed);
+	$userMngr->updateUserLastNews($userData['_id'], $news_needed);
 }
 
 if(file_exists($cache)) {
