@@ -1423,7 +1423,11 @@ select, input, summary {
 #fleet-type-create-close {
 	 z-index: 100;
 }
-#fleet-close, #research-close, #map-close, #hud-ranks-close, #news-close, #building-quit, #fleet-type-create-close, #fleet-ship-build-close, #settings-tabs-close { cursor: url(../img/mouse_pointer.png), pointer; }
+#fleet-close, #research-close, #map-close, #hud-ranks-close, #news-close, #building-quit, #fleet-type-create-close,
+#fleet-ship-build-close, #settings-tabs-close { 
+	cursor: url(../img/mouse_pointer.png), pointer; 
+	font-size: 1.2rem;
+}
 #hud-ranks-close, #news-close, #map-move-panel-close {
 	position: absolute;
 	top: 1vw;
