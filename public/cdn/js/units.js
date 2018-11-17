@@ -102,6 +102,8 @@ class units {
 		});
 		// Fleet Menu
 		$(".fleet-ul1 li").click(function() {
+			if(preventFleetHUDClosing) { return; }
+
 			$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
@@ -133,6 +135,8 @@ class units {
 		});
 		// Fleet submenus
 		$("#fleet-build-choice li").click(function() {
+			if(preventFleetHUDClosing) { return; }
+
 			$("#fleet-build-choice .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
 			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
@@ -144,14 +148,20 @@ class units {
 			 units.createNewType();
 		});
 		$('#fleet-build-create').click(function() {
+			if(preventFleetHUDClosing) { return; }
+
 			units.drawCreateTypePanel();
 		});
 		// Type copy
 		$('#fleet-build-type-copy').click(function() {
+			if(preventFleetHUDClosing) { return; }
+			
 			units.drawCreateTypePanel();
 		});
 		// Type delete
 		$('#fleet-build-type-delete').click(function() {
+			if(preventFleetHUDClosing) { return; }
+
 			ui.show('#fleet-typeDelete-panel');
 			preventFleetHUDClosing = true;
 		});
@@ -170,6 +180,8 @@ class units {
 		});
 		// Type rename
 		$('#fleet-build-rename').click(function() {
+			if(preventFleetHUDClosing) { return; }
+
 			let oldName = units.list[units.currUnit].name;
 
 			$('#fleet-type-rename-name').text(oldName);
@@ -209,6 +221,8 @@ class units {
 
 		// Fleet build
 		$('#fleet-build-openPanel').click(function() {
+			if(preventFleetHUDClosing) { return; }
+
 			preventFleetHUDClosing = true;
 			units.drawBuildPanel();
 		});
@@ -471,6 +485,8 @@ class units {
 			DOMElts = document.querySelectorAll('#fleet-build-list tbody tr');
 			for(let i=0; i<DOMElts.length; i++) {
 				DOMElts[i].addEventListener('click', function() {
+					if(preventFleetHUDClosing) { return; }
+
 					// Remove existing active class
 					let DOMEltsClasses = document.querySelectorAll('#fleet-build-list .fleet-build-list-active');
 					for(let j=0; j<DOMEltsClasses.length; j++) {

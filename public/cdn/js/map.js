@@ -155,7 +155,7 @@ class map {
 			coef = parseFloat(parseFloat(coef).toFixed(2));
 			map.zoom += coef;
 			if(map.zoom < MAP_MIN_ZOOM) { map.zoom -= coef; return; }
-			if(map.zoom > MAP¨_MAX_ZOOM) { map.zoom -= coef; return; }
+			if(map.zoom > MAP_MAX_ZOOM) { map.zoom -= coef; return; }
 
 			let pos = $("#map-global").position();
 			pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
