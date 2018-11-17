@@ -349,54 +349,33 @@ class ui {
 	 * Update the bottom button display depending on current opened windows
 	 */
 	static updateBottom() {
-		// Map
-		if(document.getElementById('hud-map').style.display == "block") {
-			document.getElementById('hud-bottom-button-map').classList.add('hud-bottom-active');
-		} else {
-			document.getElementById('hud-bottom-button-map').classList.remove('hud-bottom-active');
+		function triggerActive(name) {
+			if(document.getElementById('hud-' + name).style.display == "block") {
+				document.getElementById('hud-bottom-button-' + name).classList.add('hud-bottom-active');
+			} else {
+				document.getElementById('hud-bottom-button-' + name).classList.remove('hud-bottom-active');
+			}
 		}
-		// Research
-		if(document.getElementById('hud-research').style.display == "block") {
-			document.getElementById('hud-bottom-button-researchs').classList.add('hud-bottom-active');
-		} else {
-			document.getElementById('hud-bottom-button-researchs').classList.remove('hud-bottom-active');
-		}
-		// Fleet build
-		if(document.getElementById('hud-fleet').style.display == "block" && 
-			document.getElementById('fleet-build').style.display == "block") {
 
-			document.getElementById('hud-bottom-button-units').classList.add('hud-bottom-active');
-		} else {
-			document.getElementById('hud-bottom-button-units').classList.remove('hud-bottom-active');
-		}
-		// Fleet orbit
-		if(document.getElementById('hud-fleet').style.display == "block" && 
-			document.getElementById('fleet-orbit').style.display == "block") {
+		triggerActive('map');
+		triggerActive('research');
+		triggerActive('ranks');
+		triggerActive('chat');
 
-			document.getElementById('hud-bottom-button-fleets').classList.add('hud-bottom-active');
-		} else {
-			document.getElementById('hud-bottom-button-fleets').classList.remove('hud-bottom-active');
-		}
-		// Fleet move
-		if(document.getElementById('hud-fleet').style.display == "block" && 
-			document.getElementById('fleet-move').style.display == "block") {
 
-			document.getElementById('hud-bottom-button-radar').classList.add('hud-bottom-active');
-		} else {
-			document.getElementById('hud-bottom-button-radar').classList.remove('hud-bottom-active');
+		function triggerFleetActive(name1, name2) {
+			if(document.getElementById('hud-fleet').style.display == "block" && 
+				document.getElementById('fleet-' + name1).style.display == "block") {
+
+				document.getElementById('hud-bottom-button-' + name2).classList.add('hud-bottom-active');
+			} else {
+				document.getElementById('hud-bottom-button-' + name2).classList.remove('hud-bottom-active');
+			}
 		}
-		// Ranks
-		if(document.getElementById('hud-ranks').style.display == "block") {
-			document.getElementById('hud-bottom-button-ranks').classList.add('hud-bottom-active');
-		} else {
-			document.getElementById('hud-bottom-button-ranks').classList.remove('hud-bottom-active');
-		}
-		// Chat
-		if(document.getElementById('hud-chat').style.display == "block") {
-			document.getElementById('hud-bottom-button-chat').classList.add('hud-bottom-active');
-		} else {
-			document.getElementById('hud-bottom-button-chat').classList.remove('hud-bottom-active');
-		}
+
+		triggerFleetActive('build', 'units');
+		triggerFleetActive('orbit', 'fleets');
+		triggerFleetActive('move', 'radar');
 	}
 
 	/********** PLANET NAME **********/
