@@ -34,13 +34,16 @@ class research {
 			research.closeUI();
 		});
 
-		$("#hud-research").on('touchstart touchmove touchend touchcancel', function(e) {
-			if(research.scaling) { return; }
+		'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(e) {
+			document.getElementById('hud-research').addEventListener(e, function() {
+				if(research.scaling) { return; }
 
-			research.touchHandler(e);
+				research.touchHandler(e);
+			});
 		});
-		$("#hud-research").on('touchstart', function(e) {
-			if(e.originalEvent.touches.length == 2) { 
+
+		document.getElementById('hud-research').addEventListener('touchstart', function(e) {
+			if(e.touches.length == 2) { 
 				researchPrevMouse[0] = Math.round((e.touches[0].pageX + e.touches[1].pageX)/2);
 				researchPrevMouse[1] = Math.round((e.touches[0].pageY + e.touches[1].pageY)/2);
 				return; 
@@ -50,7 +53,7 @@ class research {
 			researchPrevMouse[1] = e.pageY;
 		});
 		
-		$("#hud-research").mousemove(function(e) {
+		document.getElementById('hud-research').addEventListener('mousemove', function(e) {
 			if(ui.mouseStatus[1]==1) {
 				let pos = $("#hud-research").position();
 				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
@@ -61,17 +64,17 @@ class research {
 		});
 
 		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
-		$('#research-content').on(mousewheelevt, function(e){
+		document.getElementById('research-content').addEventListener(mousewheelevt, function(e){
 			let coef = -0.03;
-			if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+			if (e.wheelDelta > 0 || e.detail < 0) {
 				coef = 0.03; // Scroll up
 			}
 
 			research.makeZoom(coef);
 		});
 
-		$('#research-content').on('touchstart', function(e) {
-			if(e.originalEvent.touches.length == 2 && !research.scaling) {
+		document.getElementById('research-content').addEventListener('touchstart', function(e) {
+			if(e.touches.length == 2 && !research.scaling) {
 				research.scaling = true;
 
 				research.dist = Math.hypot(
@@ -81,7 +84,7 @@ class research {
 				research.scaling = false;
 			}
 		});
-		$('#research-content').on('touchmove', function(e) {
+		document.getElementById('research-content').addEventListener('touchmove', function(e) {
 			if(research.scaling) {
 				let newDist = Math.hypot(
 					e.touches[0].pageX - e.touches[1].pageX,
@@ -98,14 +101,16 @@ class research {
 				research.dist = newDist;
 			}
 		});
-		$('#research-content').on('touchend', function(e) {
+		document.getElementById('research-content').addEventListener('touchend', function() {
 			research.scaling = false;
 		});
 
-		$('#researchCenter-node').click(function() {
-			research.closeUI();
-			planet.buildPanelOpen(8);
-		});
+		if(document.getElementById('researchCenter-node')) {
+			document.getElementById('researchCenter-node').addEventListener('click', function() {
+				research.closeUI();
+				planet.buildPanelOpen(8);
+			});
+		}
 
 		if(ui.research) {
 			ui.show('#hud-research');

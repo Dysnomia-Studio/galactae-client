@@ -12,8 +12,8 @@ class chat {
 	        e.preventDefault(); // On évite le rechargement de la page lors de la validation du formulaire
 	        
 	        // On recupere le message et on vide le input
-	        let message = $('#chat_message').val();
-	        $('#chat_message').val('');
+	        let message = document.getElementById('chat_message').value;
+	        document.getElementById('chat_message').value = '';
 
 	        // Quelques verifs pour empecher les messages inutiles
 	        let blockSend = false;
@@ -29,7 +29,7 @@ class chat {
 	          socket.emit('chat-send', { message: normalizeText(message), username: userData.username, id: userData.id, channel: chatChannel });
 	          ui.lastMessage = message;
 	        }
-	        $('#chat_message').focus(); // Focus sur le champ du message
+	        document.getElementById('chat_message').focus(); // Focus sur le champ du message
 	    });
 
 		/**
