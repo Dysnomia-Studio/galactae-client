@@ -43,7 +43,7 @@ try {
 }
 $srv_data = $servermng->getServerByName($dbname);
 
-if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==true) {
+if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']) {
 
 	$userPrivileges = $usermng->getUserPrivileges($userData['_id'], $dbname);
 

@@ -11,6 +11,23 @@ let loadStatusArr = {
 };
 
 class loadScreen {
+	static reset() {
+		loadStatus = -1;
+		loadStatusArr = {
+			"settings": false,
+			"server": false,
+			"planet": false,
+			"units": false,
+			"player": false,
+			"fleet": false,
+			"maps": false,
+			"load": false,
+			"service-worker": false,
+		};
+		loadScreen.complete();
+		ui.show('#loading-overlay');
+	}
+
 	/**
 	 * Notify loader that we loaded a new part of the game
 	 *

@@ -729,7 +729,7 @@ for(let i in planetList) {
 	imgCache.push('cdn/img/planets/halo/' + planetList[i] + '.png');
 }
 
-neededCache = [
+let neededCache = [
 	'cdn/css/style.css',
 	
 	'cdn/js/readyEvent.js',

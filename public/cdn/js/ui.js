@@ -196,33 +196,28 @@ class ui {
 	 * Add events to make work all HUD buttons
 	 */
 	static loadHUDButtons() {
+		function scrollTop(elementID, multiply) {
+			let scroll = document.getElementById(elementID).scrollLeft;
+			scroll += 20 * multiply;
+			if(scroll<0) { scroll=0; }
+			if(scroll>document.getElementById(elementID).clientWidth) { scroll=document.getElementById(elementID).clientWidth; }
+			document.getElementById(elementID).scrollLeft=scroll;
+		}
+
 		// HUD Top right
 		document.getElementById('hud-top-right-moveLeft').addEventListener('click', function() {
-			let scroll = $('#hud-top-right').scrollLeft();
-			scroll -= 20;
-			if(scroll<0) { scroll=0; }
-			$('#hud-top-right').scrollLeft(scroll);
+			scrollTop('hud-top-right', -1);
+		});
+		document.getElementById('hud-top-right-moveRight').addEventListener('click', function() {
+			scrollTop('hud-top-right', 1);
 		});
 
-		document.getElementById('hud-top-right-moveRight').addEventListener('click', function() {
-			let scroll = $('#hud-top-right').scrollLeft();
-			scroll += 20;
-			if(scroll>$('#hud-top-right').width()) { scroll=$('#hud-top-right').width(); }
-			$('#hud-top-right').scrollLeft(scroll);
-		});
 		// HUD Top left
 		document.getElementById('hud-top-left-moveLeft').addEventListener('click', function() {
-			let scroll = $('#hud-top-left').scrollLeft();
-			scroll -= 20;
-			if(scroll<0) { scroll=0; }
-			$('#hud-top-left').scrollLeft(scroll);
+			scrollTop('hud-top-left', -1);
 		});
-
 		document.getElementById('hud-top-left-moveRight').addEventListener('click', function() {
-			let scroll = $('#hud-top-left').scrollLeft();
-			scroll += 20;
-			if(scroll>$('#hud-top-left').width()) { scroll=$('#hud-top-left').width(); }
-			$('#hud-top-left').scrollLeft(scroll);
+			scrollTop('hud-top-left', 1);
 		});
 
 		// Display none if needed	
@@ -299,20 +294,7 @@ class ui {
 		}
 
 		if(e.which === KEYBOARD.F5) {
-			loadStatus = -1;
-			loadStatusArr = {
-				"settings": false,
-				"server": false,
-				"planet": false,
-				"units": false,
-				"player": false,
-				"fleet": false,
-				"maps": false,
-				"load": false,
-				"service-worker": false,
-			};
-			loadScreen.complete();
-			ui.show('#loading-overlay');
+			loadScreen.reset();
 		}
 	}
 	/**
