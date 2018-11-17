@@ -454,7 +454,7 @@ class ui {
 				map.closeTab();
 			}
 		});
-		document.getElementById("hud-bottom-button-researchs").addEventListener('click', function() {
+		document.getElementById("hud-bottom-button-research").addEventListener('click', function() {
 			if(ui.research) {
 				research.closeUI();
 			} else {

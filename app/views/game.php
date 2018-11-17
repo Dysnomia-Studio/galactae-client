@@ -259,7 +259,7 @@
 			</span>
 		</span>
 		<span class="hud-bottom-tooltip">
-			<a href="#researchs" id="hud-bottom-button-researchs"><img src="<?= $cdnURL ?>img/ui/researchs.svg" alt="researchs"></a>
+			<a href="#researchs" id="hud-bottom-button-research"><img src="<?= $cdnURL ?>img/ui/researchs.svg" alt="researchs"></a>
 			<span class="hud-bottom-tooltip-wrapper">
 				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RESEARCH; ?></span>
 			</span>
