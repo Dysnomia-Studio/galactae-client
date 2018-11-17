@@ -15,6 +15,9 @@ const MAP_SIZE_WIDTH = 50000;
 const MAP_STAR_SIZE_BASE = 5;
 const MAP_STAR_SIZE_RATIO = 0.08;
 
+const MAP_MIN_ZOOM = 0.4;
+const MAP_MAX_ZOOM = 1.75;
+
 let mapPrevMouse = [0,0];
 
 class map {
@@ -115,11 +118,11 @@ class map {
 
 
 				let coef = (map.dist / newDist) - 1;
-				if(coef > 0.05) { coef = 0.05; }
-				if(coef < -0.05) { coef = -0.05; }
+				if(coef > 0.1) { coef = 0.1; }
+				if(coef < -0.1) { coef = -0.1; }
 				if(coef == 0) { return; }
 
-				map.makeZoom(coef);
+				map.makeZoom(-coef);
 
 				map.dist = newDist;
 			}
@@ -151,8 +154,8 @@ class map {
 	static makeZoom(coef) {
 			coef = parseFloat(parseFloat(coef).toFixed(2));
 			map.zoom += coef;
-			if(map.zoom < 0.75) { map.zoom -= coef; return; }
-			if(map.zoom > 1.75) { map.zoom -= coef; return; }
+			if(map.zoom < MAP_MIN_ZOOM) { map.zoom -= coef; return; }
+			if(map.zoom > MAP¨_MAX_ZOOM) { map.zoom -= coef; return; }
 
 			let pos = $("#map-global").position();
 			pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));

@@ -1,8 +1,8 @@
-let RESEARCH_DIV_SIZE = 10000;
-let RESEARCH_DIV_DISTANCE = 500;
-let RESEARCH_DIV_DELTA_DISTANCE = 100;
-let RESEARCH_MIN_ZOOM = 0.1;
-let RESEARCH_MAX_ZOOM = 1.75;
+const RESEARCH_DIV_SIZE = 10000;
+
+const RESEARCH_MIN_ZOOM = 0.4;
+const RESEARCH_MAX_ZOOM = 1.75;
+
 let researchPrevMouse = [0,0];
 
 class research {
