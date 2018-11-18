@@ -35,10 +35,10 @@ class research {
 		});
 
 		'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(e) {
-			document.getElementById('hud-research').addEventListener(e, function() {
+			document.getElementById('hud-research').addEventListener(e, function(event) {
 				if(research.scaling) { return; }
 
-				research.touchHandler(e);
+				research.touchHandler(event);
 			});
 		});
 
