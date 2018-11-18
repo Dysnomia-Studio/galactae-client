@@ -12,7 +12,6 @@ let loadStatusArr = {
 
 class loadScreen {
 	static reset() {
-		loadStatus = -1;
 		loadStatusArr = {
 			"settings": false,
 			"server": false,
