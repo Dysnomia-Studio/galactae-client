@@ -23,7 +23,11 @@ self.addEventListener('fetch', function(event) {
 		// but in case of success response will have value
 
 		let whitelisted = ['png','jpg','svg'];
-		if (response !== undefined && (changed == false || changedFiles.indexOf(response.url) !== -1 || whitelisted.indexOf(response.url.substr(-3)) !== -1)) {
+		if (response !== undefined && (changed == false 
+			|| changedFiles.indexOf(response.url) !== -1 
+			|| whitelisted.indexOf(response.url.substr(-3)) !== -1) 
+			&& response.headers.get('Content-Type').indexOf('html') === -1) {
+
 			// Mise à jour sur cette session
 			if(changed && changedFiles.indexOf(response.url) === -1) {
 				fetch(event.request).then(function (response) {
@@ -39,7 +43,12 @@ self.addEventListener('fetch', function(event) {
 			return response;
 		} else {
 			return fetch(event.request).then(function (response) {
-				if(response.status !== 200 || event.request.method === "POST") { return response; }
+				if(response.status !== 200 
+					|| event.request.method === "POST" 
+					|| response.headers.get('Content-Type').indexOf("html") !== -1) { 
+					
+						return response; 
+				}
 
 				let responseClone = response.clone();
 				
