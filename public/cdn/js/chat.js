@@ -37,8 +37,19 @@ class chat {
 		 * @ADD: Notify messages on tabs
 		 */
 		socket.on('chat-message', function(data) {
-			$('#'+data.channel+' .chat_logs').append($('<li>').html(data.message));
-			$('#'+data.channel).scrollTop($('#'+data.channel+' .chat_logs').height());
+			let listElt = document.createElement('li'); 
+			listElt.innerHTML = data.message;
+
+			listElt.addEventListener('DOMNodeInserted', function() {
+				let DOMElts = this.querySelectorAll('.username');
+				for(let elt=0; elt<DOMElts.length; elt++) {	
+					DOMElts[elt].addEventListener('mousedown', chat.clickEvent(event));	
+				}
+			});
+
+			document.querySelector('#'+data.channel+' .chat_logs').append(listElt);
+
+			document.querySelector('#'+data.channel).scrollTop = document.querySelector('#'+data.channel+' .chat_logs').clientHeight;
 		});
 		/*
 		 * Private Message
@@ -63,11 +74,14 @@ class chat {
 		// Translation
 		if((translate.messages[data.msg] !=undefined) && (translate.messages[data.msg] !="")) { data.msg = translate.messages[data.msg]; }
 
-		$('#hud-chat-global .chat_logs').append($('<li>').html("<span class=\"private-message\">"+data.msg+"</span>"));
-		$('#hud-chat-trade .chat_logs').append($('<li>').html("<span class=\"private-message\">"+data.msg+"</span>"));
-		$('#hud-chat-ally .chat_logs').append($('<li>').html("<span class=\"private-message\">"+data.msg+"</span>"));
+		let listElt = document.createElement('li'); 
+		listElt.innerHTML = "<span class=\"private-message\">"+data.msg+"</span>";
 
-		$('#'+chatChannel).scrollTop($('#'+chatChannel).height());
+		document.querySelector('#hud-chat-global .chat_logs').append(listElt);
+		document.querySelector('#hud-chat-trade .chat_logs').append(listElt);
+		document.querySelector('#hud-chat-ally .chat_logs').append(listElt);
+
+		document.querySelector('#'+data.channel).scrollTop = document.querySelector('#'+data.channel+' .chat_logs').clientHeight;
 
 		if(data.sound) {
 			let pmSound = new Audio('snd/ui/private_message.mp3');
@@ -85,46 +99,50 @@ class chat {
 		// Translation
 		if((translate.messages[msg] !=undefined) && (translate.messages[msg] !="")) { msg = translate.messages[msg]; }
 
-		$('#hud-chat-global .chat_logs').append($('<li>').html("<span class=\"system-message\">"+msg+"</span>"));
-		$('#hud-chat-trade .chat_logs').append($('<li>').html("<span class=\"system-message\">"+msg+"</span>"));
-		$('#hud-chat-ally .chat_logs').append($('<li>').html("<span class=\"system-message\">"+msg+"</span>"));
+		let listElt = document.createElement('li'); 
+		listElt.innerHTML = "<span class=\"system-message\">"+msg+"</span>";
 
-		$('#'+chatChannel).scrollTop($('#'+chatChannel).height());
+		document.querySelector('#hud-chat-global .chat_logs').append(listElt);
+		document.querySelector('#hud-chat-trade .chat_logs').append(listElt);
+		document.querySelector('#hud-chat-ally .chat_logs').append(listElt);
+
+		document.querySelector('#'+data.channel).scrollTop = document.querySelector('#'+data.channel+' .chat_logs').clientHeight;
 	}
 
+	static clickEvent(event) {
+		if(this.innerText!=userData.username && !ui.hasClass(this, 'no-pm')) {
+			switch(event.which) { // 1 => LEFT, 2 => MIDDLE, 3 => RIGHT
+				case KEYBOARD.LMOUSE:
+					document.getElementById('chat_message').value = '@' + this.innerText + ' ';
+					break;
+				case KEYBOARD.RMOUSE:
+					let win = window.open("https://galactae.eu/profil?u="+ this.innerText, '_blank');
+					win.focus();
+					break;
+				default:
+
+			}
+		}
+	}
 
 	/**
 	 * Loads chat UI
 	 */
 	static loadUI() {
-		// Menu
-		$(".chatTab").click(function () {
-			$("#hud-chat-channels .ul-choice-line-li-active").removeClass("ul-choice-line-li-active");
-			$(this).addClass("ul-choice-line-li-active");
-			$(".chatContent").hide();
-			chatChannel = $(this).attr("chatChannel");
-			$("#" + chatChannel).show();
-			$('#'+chatChannel).scrollTop($('#'+chatChannel).height());
-		});
-		// Chat events on username
-		/** @TODO: Fix this, we need to add event for each new .username added
-		let DOMElts = document.querySelectorAll('.username');
-		for(let elt=0; elt<DOMElts.length; elt++)  {
-			DOMElts[elt].addEventListener('mousedown', function(event) {
-				if(this.innerText!=userData.username && !ui.hasClass(this, 'no-pm')) {
-					switch(event.which) { // 1 => LEFT, 2 => MIDDLE, 3 => RIGHT
-						case KEYBOARD.LMOUSE:
-							$("#chat_message").val("@"+ $(this).text() + " ");
-							break;
-						case KEYBOARD.RMOUSE:
-							let win = window.open("https://galactae.eu/profil?u="+$(this).text(), '_blank');
-							win.focus();
-							break;
-						default:
+		let EltsList = document.querySelectorAll('.chatTab');
 
-					}
-				}
-			});	
-		}*/
+		for(let i=0; i<EltsList.length; i++) {
+			EltsList[i].addEventListener('click', function() {
+				document.querySelector('#hud-chat-channels .ul-choice-line-li-active').classList.remove('ul-choice-line-li-active');
+
+				this.classList.add('ul-choice-line-li-active');
+				ui.hide('.chatContent'); 
+
+				let chatChannel = this.getAttribute('chatChannel');
+				ui.show('#' + chatChannel);
+
+				document.querySelector('#' + chatChannel).scrollTop = document.querySelector('#' + chatChannel).clientHeight;
+			});
+		}
 	}
 }
