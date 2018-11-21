@@ -75,7 +75,7 @@ class notifications {
 		if(ui.hasClass(element, 'notif-mail')) {
 			// @TODO
 		} else if(ui.hasClass(element, 'notif-building')) {
-			planet.buildPanelOpen(parseInt($(element).attr('id')));
+			planet.buildPanelOpen(parseInt(element.id));
 		} else if(ui.hasClass(element, 'notif-research')) {
 			research.openUI();
 		}

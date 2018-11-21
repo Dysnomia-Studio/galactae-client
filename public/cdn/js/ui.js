@@ -135,16 +135,19 @@ class ui {
 		});
 
 		// Ranks
-		$(".ranks-ul li").click(function() {
-			let DOMelts = document.querySelectorAll('.ranks-ul .ul-choice-line-li-active');
-			for(let elt=0; elt<DOMelts.length; elt++) {
-				DOMelts[elt].classList.remove("ul-choice-line-li-active");
-			}
+		let DOMElts = document.querySelectorAll('.ranks-ul li');
+		for(let i=0; i<DOMElts.length; i++) {
+			DOMElts[i].addEventListener('click', function() {
+				let activeElts = document.querySelectorAll('.ranks-ul .ul-choice-line-li-active');
+				for(let elt=0; elt<activeElts.length; elt++) {
+					activeElts[elt].classList.remove("ul-choice-line-li-active");
+				}
 
-			this.classList.add("ul-choice-line-li-active"); // Activer l'onglet cliqué
+				this.classList.add("ul-choice-line-li-active"); // Activer l'onglet cliqué
 
-			$('#hud-ranks-frame').attr("src", "ranks.php?type=" + $(this).attr("choice"));
-		});
+				document.getElementById('hud-ranks-frame').src = "ranks.php?type=" + this.getAttribute("choice");
+			});
+		}
 
 		// Notifs
 		notifications.gameNotifAddEvents();
@@ -152,12 +155,12 @@ class ui {
 		// Prevent players putting code that can break their account security like Self XSS breachs
 			//Block Inspect Element when 
 			//right click
-			$(document).on("contextmenu",function(){
+			window.addEventListener('contextmenu', function() {
 				if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
 					return false;
 				}
 			});
-			$(document).keydown(function(e){
+			window.addEventListener('keydown', function(e) {
 			//F12 => Firefox, Chrome, Edge
 				if(e.which === KEYBOARD.F12){
 					if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
@@ -222,7 +225,7 @@ class ui {
 
 		// Display none if needed	
 		if(document.getElementById('hud-top-left').scrollWidth <=
-			Math.round($('#hud-top-left').width())) {
+			Math.round(document.getElementById('hud-top-left').clientWidth)) {
 
 			ui.hide('#hud-top-left-moveRight');
 			ui.hide('#hud-top-left-moveLeft');
@@ -232,7 +235,7 @@ class ui {
 		}
 
 		if(document.getElementById('hud-top-right').scrollWidth <=
-			Math.round($('#hud-top-right').width())) {
+			Math.round(document.getElementById('hud-top-right').clientWidth)) {
 
 			ui.hide('#hud-top-right-moveRight');
 			ui.hide('#hud-top-right-moveLeft');
@@ -277,19 +280,19 @@ class ui {
 		}
 
 		// Historique chat
-		if(e.which === KEYBOARD.UARROW && $("#chat_message").is(":focus")) { // Haut
-			$("#chat_message").val(ui.lastMessage);
+		if(e.which === KEYBOARD.UARROW && document.getElementById('chat_message') === document.activeElement) { // Haut
+			document.getElementById("chat_message").value = ui.lastMessage;
 		}
-		if(e.which === KEYBOARD.DARROW && $("#chat_message").is(":focus") && $("#chat_message").val()!="") { // Bas
-			ui.lastMessage = $("#chat_message").val();
-			$("#chat_message").val("");
+		if(e.which === KEYBOARD.DARROW && document.getElementById('chat_message') === document.activeElement && document.getElementById("chat_message").value !== "") { // Bas
+			ui.lastMessage = document.getElementById("chat_message").value;
+			document.getElementById("chat_message").value = "";
 		}
 
 		// Planetes suivantes/precedente
-		if(e.which === KEYBOARD.LARROW && !($("#chat_message").is(":focus"))) { // Gauche
+		if(e.which === KEYBOARD.LARROW && !(document.getElementById('chat_message') === document.activeElement)) { // Gauche
 			planet.prev();
 		}
-		if(e.which === KEYBOARD.RARROW && !($("#chat_message").is(":focus"))) { // Droite
+		if(e.which === KEYBOARD.RARROW && !(document.getElementById('chat_message') === document.activeElement)) { // Droite
 			planet.next();
 		}
 
@@ -435,7 +438,7 @@ class ui {
 				ui.updateBottom();
 				ui.ranks = true;
 
-				$('#hud-ranks-frame').attr('src',$('#hud-ranks-frame').attr('src'));		
+				document.getElementById('hud-ranks-frame').src = document.getElementById('hud-ranks-frame').src;
 			}
 		});
 		document.getElementById("hud-bottom-button-map").addEventListener('click', function() {
@@ -467,7 +470,7 @@ class ui {
 		});
 
 		function fleetPanelToggle(elt) {
-			if(ui.fleet && !preventFleetHUDClosing && $("#" + elt).css('display') == "block") {
+			if(ui.fleet && !preventFleetHUDClosing && document.getElementById(elt).style.display === 'block') {
 				if(units.unitPanelTimeout != -1) {
 					clearTimeout(units.unitPanelInterval);
 					units.unitPanelTimeout = -1;

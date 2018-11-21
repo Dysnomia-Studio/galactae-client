@@ -15,7 +15,7 @@ class planetBack {
 		this.planet = {};
 		this.planet.speed = 0.02;
 		this.planet.type = type;
-		this.planet.radius = Math.min($(document).height()/4, 268);
+		this.planet.radius = Math.min(document.getElementById('planet').clientHeight/4, 268);
 
 		/* Calc Vars */
 		this.calc = {};

@@ -118,15 +118,15 @@ ready(function() {
 	            serviceWorker.addEventListener('statechange', function (e) {
 	                if(navigator.serviceWorker.controller !== null) {
 						loadScreen.complete("service-worker");
-						navigator.serviceWorker.controller.postMessage({ change: $('#game-version').text() !== localStorage.gameVersion });
-						localStorage.gameVersion = $('#game-version').text();
+						navigator.serviceWorker.controller.postMessage({ change: document.getElementBy('game-version').innerText !== localStorage.gameVersion });
+						localStorage.gameVersion = document.getElementBy('game-version').innerText;
 	                }
 	            });
 
                 if(navigator.serviceWorker.controller !== null) {
 					loadScreen.complete("service-worker");
-					navigator.serviceWorker.controller.postMessage({ change: $('#game-version').text() !== localStorage.gameVersion });
-					localStorage.gameVersion = $('#game-version').text();
+					navigator.serviceWorker.controller.postMessage({ change: document.getElementBy('game-version').innerText !== localStorage.gameVersion });
+					localStorage.gameVersion = document.getElementBy('game-version').innerText;
                 }
 	        }
 		}, function(err) {
