@@ -6,84 +6,84 @@ class settings {
 		this.settingsList = {
 			general: {
 				language: { 
-					default: "en", // @ADD: Langue actuelle du jeu
-					type: "select",
+					default: 'en', // @ADD: Langue actuelle du jeu
+					type: 'select',
 					choices: [
-						"fr",
-						"en",
-						"ru",
-						"de"
+						'fr',
+						'en',
+						'ru',
+						'de'
 					]
 				},
 				deskNotifications: {
 					default: true,
-					type: "checkbox"
+					type: 'checkbox'
 				}
 			},
 			graphical: {
 				planetRotation: {
 					default: true,
-					type: "checkbox"
+					type: 'checkbox'
 				},
 				animationLvl: {
-					default: "high", // @ADD: auto-detect
-					type: "select",
+					default: 'high', // @ADD: auto-detect
+					type: 'select',
 					choices: [
-						"high",
-						"medium",
-						"low"
+						'high',
+						'medium',
+						'low'
 					]
 				},
 				map3D: {
 					default: true,
-					type: "checkbox"
+					type: 'checkbox'
 				}
 			},
 			sounds: {
 				soundLvl: {
 					default: 100,
-					type: "slider",
+					type: 'slider',
 					min: 0,
 					max: 100
 				},
 				musicLvl: {
 					default: 100,
-					type: "slider",
+					type: 'slider',
 					min: 0,
 					max: 100
 				},
 				escape: {
 					default: true,
-					type: "checkbox"
+					type: 'checkbox'
 				},
 				privateMessage: {
 					default: true,
-					type: "checkbox"
+					type: 'checkbox'
 				},
 			},
 			keyboard: {
 				escape: {
 					default: KEYBOARD.ESC,
-					type: "keyboard"
+					type: 'keyboard'
 				},
 				nextPlanet: {
 					default: KEYBOARD.LARROW,
-					type: "keyboard"
+					type: 'keyboard'
 				},
 				prevPlanet: {
 					default: KEYBOARD.RARROW,
-					type: "keyboard"
+					type: 'keyboard'
 				}
 			}
 		};
 
-		loadScreen.complete("settings");
+		loadScreen.complete('settings');
 	}
 	/**
 	 * Loads setting ui and add events
 	 */
 	static loadUI() {
-		document.getElementById("hud-settings").addEventListener('click', function () {
+		document.getElementById('hud-settings').addEventListener('click', function () {
 			if(ui.menu) {
 				ui.closeTab('#settings-menu');
 			} else {
@@ -92,8 +92,8 @@ class settings {
 			ui.menu = !(ui.menu);
 		});
 		document.addEventListener('click', function(e) {
-			if(ui.menu && e.target.id != "settings-menu" && e.target.id != "hud-settings") {
-				ui.closeTab("#settings-menu", false);
+			if(ui.menu && e.target.id != 'settings-menu' && e.target.id != 'hud-settings') {
+				ui.closeTab('#settings-menu', false);
 				ui.menu = !(ui.menu);
 			}
 		});
@@ -106,14 +106,14 @@ class settings {
 	 */
 	static get(settingName) {
 		let val;
-		if((val = getCookie("galactae_settings_" + settingName)) != "") {
+		if((val = getCookie('galactae_settings_' + settingName)) != '') {
 			return val;
 		}
 		
-		let words = settingName.split("_");
+		let words = settingName.split('_');
 		val = this.settingsList;
 		for(let i in words) {
-			if(val[words[i]] === undefined) { console.log("ERROR: Invalid setting name - " + settingName); return ""; }
+			if(val[words[i]] === undefined) { console.log('ERROR: Invalid setting name - ' + settingName); return ''; }
 			val = val[words[i]];
 		}
 
@@ -126,7 +126,7 @@ class settings {
 	 * @param      {?}  value        The value
 	 */
 	static set(settingName,value) {
-		setCookie("galactae_settings_" + settingName, value, 365); //@ADD: Time depends on remember me
+		setCookie('galactae_settings_' + settingName, value, 365); //@ADD: Time depends on remember me
 	}
 	/**
 	 * Test if a setting has a value

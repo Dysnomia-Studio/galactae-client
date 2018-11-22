@@ -7,17 +7,17 @@ class webSockets {
 
 		//Catch connection errors (like server offline)
 		socket.on('connect_failed', function(){
-			kick("CONNECT_LOSS",10000,true);
+			kick('CONNECT_LOSS',10000,true);
 			
 			if(ui.research) {
-				ui.show("#hud-research");
+				ui.show('#hud-research');
 			}
 		});
 		socket.on('connect_error', function(){
-			kick("CONNECT_LOSS",10000,true);
+			kick('CONNECT_LOSS',10000,true);
 
 			if(ui.research) {
-				ui.show("#hud-research");
+				ui.show('#hud-research');
 			}
 		});
 		socket.on('connect', function() {
@@ -29,7 +29,7 @@ class webSockets {
 				connectTimeout = -1;
 			}
 
-			socket.emit("game-connect", userData);
+			socket.emit('game-connect', userData);
 		});
 		
 		//Sync the planet data
@@ -38,7 +38,7 @@ class webSockets {
 			if(userData.research != undefined) {
 				research.drawPanel();
 			}
-			loadScreen.complete("planet");
+			loadScreen.complete('planet');
 		});
 		socket.on('map-recieve-data',function(data) { 
 			let system = data.systemAddress;
@@ -52,7 +52,7 @@ class webSockets {
 		//Sync the units data
 		socket.on('units-recieve-data',function(data) { 
 			units.refresh(data);
-			loadScreen.complete("units");
+			loadScreen.complete('units');
 		});
 
 		//Sync the fleet data
@@ -60,7 +60,7 @@ class webSockets {
 			units.fleetList = data;
 			units.regenerateBuildFleetList();
 			units.refresh(units.list);
-			loadScreen.complete("fleet");
+			loadScreen.complete('fleet');
 		});
 
 		//Sync the player data
@@ -68,23 +68,23 @@ class webSockets {
 			for(let key in data) {
 				userData[key] = data[key];
 
-				if(key=="research") {
+				if(key=='research') {
 					research.drawPanel();
 					units.refresh(units.list); // Because type creation is disabled when no research && we need research to draw mines
 				}
 			}
 			planet.MiscDrawUpdate();
-			loadScreen.complete("player");
+			loadScreen.complete('player');
 		});
 
 		//Launch the chat		
 		chat.init();
 
 		socket.on('server-mute', function(data) {
-			chat.sm("<span style=\"color: #438dce;\">" + translate.messages.CHAT_MUTED + " " + getStringTime(data.muteTime) + " " + translate.messages.HAT_MUTED_REASON + " :</span> " + " " + data.message);
+			chat.sm('<span style="color: #438dce;">' + translate.messages.CHAT_MUTED + ' ' + getStringTime(data.muteTime) + ' ' + translate.messages.HAT_MUTED_REASON + ' :</span> ' + ' ' + data.message);
 		});
 		socket.on('server-unmute', function() {
-			chat.sm("<span style=\"color: #438dce;\">" + translate.messages.CHAT_UNMUTED +"</span>");
+			chat.sm('<span style="color: #438dce;">' + translate.messages.CHAT_UNMUTED +'</span>');
 		});
 
 		// Alerts
@@ -93,7 +93,7 @@ class webSockets {
 		});
 		socket.on('server-general-alert', function(message) {
 			ui.drawMessage(message);
-			chat.sm("<span style=\"color: #438dce;\">" + translate.messages.SYSTEM_MESSAGE +"</span> " + " " + message);
+			chat.sm('<span style="color: #438dce;">' + translate.messages.SYSTEM_MESSAGE +'</span> ' + ' ' + message);
 		});
 		socket.on('notification', function(data) {
 			notifications.notify(data.type, data.args);
@@ -106,20 +106,20 @@ class webSockets {
 
 		// Disconnect Events
 		socket.on('server-kick', function(msg) {
-			chat.sm("KICK");
+			chat.sm('KICK');
 			kick(msg);
 		});
 		socket.on('server-maintenance', function() {
-			kick("MAINTENANCE");
+			kick('MAINTENANCE');
 		});
 		socket.on('server-reboot', function() {
-			kick("RESTARTING_SERVER");
+			kick('RESTARTING_SERVER');
 		});
-		window.addEventListener("beforeunload", function() {
-			socket.emit("game-disconnect",{username: userData.username, id: userData.id, pid: userData.pid});
+		window.addEventListener('beforeunload', function() {
+			socket.emit('game-disconnect',{username: userData.username, id: userData.id, pid: userData.pid});
 		});
 
-		loadScreen.complete("server");
+		loadScreen.complete('server');
 	}
 
 }

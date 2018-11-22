@@ -18,9 +18,9 @@ class notifications {
 	static notifyOnOS(txt,options={}) {
 		var notification;
 
-		if (!("Notification" in window)) {
+		if (!('Notification' in window)) {
 			return; 
-		} else if (Notification.permission === "granted") {
+		} else if (Notification.permission === 'granted') {
 			notification = new Notification(txt,options);
 		} else if (Notification.permission !== 'denied') { 
 			// Note : Chrome n'implémente pas la propriété statique permission
@@ -29,7 +29,7 @@ class notifications {
 					Notification.permission = permission;
 				}
 
-				if (permission === "granted") {
+				if (permission === 'granted') {
 					notification = new Notification(txt,options);
 				}
 			});
@@ -109,7 +109,7 @@ class notifications {
 		if(options.id !== undefined) {
 			content += ' id="' + options.id + '" ';
 		}
-		content +=' title="' + text + '""></div>' + notifPanel.innerHTML;
+		content +=' title="' + text + '"></div>' + notifPanel.innerHTML;
 
 		notifPanel.innerHTML = content;
 
@@ -127,35 +127,35 @@ class notifications {
 	 * @param      {<type>}  args    Notification arguments
 	 */
 	static notify(type, args={}) {
-		var title = "";
-		var osOpt = { icon: cdnURL + "img/favicon.png" };
-		var desc = "";
+		var title = '';
+		var osOpt = { icon: cdnURL + 'img/favicon.png' };
+		var desc = '';
 
 		switch(type) {
-			case "attack":
+			case 'attack':
 				title = translate.messages['ATTACK_INCOMING_TITLE'];
 				desc = translate.messages['ATTACK_INCOMING_01'] + getStringTime(args.arriveTime);
 				break;
-			case "building":
+			case 'building':
 				title = translate.messages['ENDED_BUILDING_TITLE'];
 				desc = translate.messages['ENDED_BUILDING_01'] + translate['buildings'][args.building].name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
 				args.id = args.building;
 				break;
-			case "research":
-				title = "Galactae: " + translate.messages['ENDED_RESEARCH'];
-				desc = translate["messages"]['ENDED_RESEARCH'] + ": " + translate.research[args.research].name;
+			case 'research':
+				title = 'Galactae: ' + translate.messages['ENDED_RESEARCH'];
+				desc = translate['messages']['ENDED_RESEARCH'] + ': ' + translate.research[args.research].name;
 				break;
-			case "unit":
-				title = "Galactae: " + translate.messages['ENDED_UNIT_TITLE'];
+			case 'unit':
+				title = 'Galactae: ' + translate.messages['ENDED_UNIT_TITLE'];
 				desc = translate.messages['ENDED_UNIT_01'] + args.unitCount + translate.messages['ENDED_UNIT_02'] + args.unitName + translate.messages['ENDED_UNIT_03'];
 				break;
 			default:
 				// Do nothing
 		}
 
-		if(osOpt.icon !== undefined && desc != "") {
+		if(osOpt.icon !== undefined && desc != '') {
 			osOpt.body = desc;
-			notifications.notifyOnOS("Galactae: " + title, osOpt);
+			notifications.notifyOnOS('Galactae: ' + title, osOpt);
 		}
 
 		notifications.notifyOnGame(type, desc, args);

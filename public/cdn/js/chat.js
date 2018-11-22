@@ -1,4 +1,4 @@
-let chatChannel = "hud-chat-global";
+let chatChannel = 'hud-chat-global';
 
 /**
  * Class for chat.
@@ -18,7 +18,7 @@ class chat {
 	        // Quelques verifs pour empecher les messages inutiles
 	        let blockSend = false;
 
-	        if(message.charAt(0)=="@" && message.substr(1,userData.username.length).toLowerCase()==userData.username.toLowerCase()) {
+	        if(message.charAt(0) === '@' && message.substr(1,userData.username.length).toLowerCase() === userData.username.toLowerCase()) {
 	        	chat.sm('NO_PM_YOU');
 	        	blockSend = true;
 	        }
@@ -72,10 +72,10 @@ class chat {
 	 */
 	static pm(data) {
 		// Translation
-		if((translate.messages[data.msg] !=undefined) && (translate.messages[data.msg] !="")) { data.msg = translate.messages[data.msg]; }
+		if((translate.messages[data.msg] !== undefined) && (translate.messages[data.msg] !== '')) { data.msg = translate.messages[data.msg]; }
 
 		let listElt = document.createElement('li'); 
-		listElt.innerHTML = "<span class=\"private-message\">"+data.msg+"</span>";
+		listElt.innerHTML = '<span class="private-message">'+data.msg+'</span>';
 
 		document.querySelector('#hud-chat-global .chat_logs').append(listElt);
 		document.querySelector('#hud-chat-trade .chat_logs').append(listElt);
@@ -97,10 +97,10 @@ class chat {
 	 */
 	static sm(msg) {
 		// Translation
-		if((translate.messages[msg] !=undefined) && (translate.messages[msg] !="")) { msg = translate.messages[msg]; }
+		if((translate.messages[msg] !== undefined) && (translate.messages[msg] !== '')) { msg = translate.messages[msg]; }
 
 		let listElt = document.createElement('li'); 
-		listElt.innerHTML = "<span class=\"system-message\">"+msg+"</span>";
+		listElt.innerHTML = '<span class="system-message">'+msg+'</span>';
 
 		document.querySelector('#hud-chat-global .chat_logs').append(listElt);
 		document.querySelector('#hud-chat-trade .chat_logs').append(listElt);
@@ -110,13 +110,13 @@ class chat {
 	}
 
 	static clickEvent(event) {
-		if(this.innerText!=userData.username && !ui.hasClass(this, 'no-pm')) {
+		if(this.innerText !== userData.username && !ui.hasClass(this, 'no-pm')) {
 			switch(event.which) { // 1 => LEFT, 2 => MIDDLE, 3 => RIGHT
 				case KEYBOARD.LMOUSE:
 					document.getElementById('chat_message').value = '@' + this.innerText + ' ';
 					break;
 				case KEYBOARD.RMOUSE:
-					let win = window.open("https://galactae.eu/profil?u="+ this.innerText, '_blank');
+					let win = window.open('https://galactae.eu/profil?u='+ this.innerText, '_blank');
 					win.focus();
 					break;
 				default:
@@ -133,9 +133,8 @@ class chat {
 
 		for(let i=0; i<EltsList.length; i++) {
 			EltsList[i].addEventListener('click', function() {
-				document.querySelector('#hud-chat-channels .ul-choice-line-li-active').classList.remove('ul-choice-line-li-active');
+				ui.toggleClass('#hud-chat-channels .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
-				this.classList.add('ul-choice-line-li-active');
 				ui.hide('.chatContent'); 
 
 				let chatChannel = this.getAttribute('chatChannel');

@@ -216,6 +216,6 @@ PerspectiveTransform.prototype = (function(){
 
         return PerspectiveTransform;
     });
-}(typeof define === "function" && define.amd ? define : function (app) {
+}(typeof define === 'function' && define.amd ? define : function (app) {
     window.PerspectiveTransform = app();
 }));

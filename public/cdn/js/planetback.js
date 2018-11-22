@@ -29,7 +29,7 @@ class planetBack {
 		// Start rotate !
 		this.renderPlanet();
 		// Tell we loaded the planet
-		loadScreen.complete("pback");
+		loadScreen.complete('pback');
 	}
 
 	/**
@@ -44,8 +44,8 @@ class planetBack {
 		this.planetMap = 'url('+cdnURL+'img/planets/front/' + this.planet.type + '.jpg)';
 		
 		let halo = document.querySelector('#planet-back-halo');
-		halo.style.width = Math.round(this.planet.radius*2/536*725) + "px";
-		halo.style.height = Math.round(this.planet.radius*2/536*710) + "px";
+		halo.style.width = Math.round(this.planet.radius*2/536*725) + 'px';
+		halo.style.height = Math.round(this.planet.radius*2/536*710) + 'px';
 
 		let mleft = Math.round(this.planet.radius/536*725);
 		let mTop = Math.round(this.planet.radius/536*710);
@@ -53,8 +53,8 @@ class planetBack {
 			mleft += 0;
 			mTop += 0;
 		}
-		halo.style.marginLeft = "-" + mleft + "px";
-		halo.style.marginTop = "-" + mTop + "px";
+		halo.style.marginLeft = '-' + mleft + 'px';
+		halo.style.marginTop = '-' + mTop + 'px';
 
 		/* Planet */
 		this.calc.Xparts = 16;

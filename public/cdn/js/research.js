@@ -12,11 +12,11 @@ class research {
 	static touchHandler(event) {
 		let touch = event.changedTouches[0];
 
-		let simulatedEvent = document.createEvent("MouseEvent");
+		let simulatedEvent = document.createEvent('MouseEvent');
 			simulatedEvent.initMouseEvent({
-			touchstart: "mousedown",
-			touchmove: "mousemove",
-			touchend: "mouseup"
+			touchstart: 'mousedown',
+			touchmove: 'mousemove',
+			touchend: 'mouseup'
 		}[event.type], true, true, window, 1,
 			touch.screenX, touch.screenY,
 			touch.clientX, touch.clientY, false,
@@ -55,7 +55,7 @@ class research {
 		
 		document.getElementById('hud-research').addEventListener('mousemove', function(e) {
 			if(ui.mouseStatus[1]==1) {
-				let pos = $("#hud-research").position();
+				let pos = $('#hud-research').position();
 				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
 								pos.top + (e.pageY - researchPrevMouse[1])]);
 			}
@@ -128,11 +128,11 @@ class research {
 		if(research.zoom < RESEARCH_MIN_ZOOM) { research.zoom -= coef; return; }
 		if(research.zoom > RESEARCH_MAX_ZOOM) { research.zoom -= coef; return; }
 
-		let pos = $("#hud-research").position();
+		let pos = $('#hud-research').position();
 		pos.left = ((pos.left - researchPrevMouse[0]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[0]*1.1;
 		pos.top = ((pos.top - researchPrevMouse[1]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[1]*1.1;
-		$("#hud-research").css("left",pos.left);
-		$("#hud-research").css("top" ,pos.top );
+		$('#hud-research').css('left',pos.left);
+		$('#hud-research').css('top' ,pos.top );
 				
 		$('#research-content').css('zoom',research.zoom);
 		$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
@@ -142,7 +142,7 @@ class research {
 	 * Closes research UI
 	 */
 	static closeUI() {
-		ui.closeTab("#hud-research");
+		ui.closeTab('#hud-research');
 		// Re-affichage de la planete
 		ui.show('#planet');
 		// Re-affichage du chat si necessaire
@@ -160,8 +160,8 @@ class research {
 	 */
 	static openUI() {
 		// On cache la planete et la map
-		ui.closeTab("#planet",false);
-		ui.closeTab("#hud-map",false); /* A no-bug fix */
+		ui.closeTab('#planet',false);
+		ui.closeTab('#hud-map',false); /* A no-bug fix */
 		// On centre sur la recherche courante
 		if(researchPos[planetData.currResearch] !== undefined) {
 			let newUIPos = [
@@ -173,8 +173,8 @@ class research {
 		// On affiche le panel de recherches
 		ui.show('#hud-research');
 		// On cache le chat et memorise son statut pour plus tard	
-		ui.researchChat = ($("#hud-chat").css('display')=="block");
-		ui.closeTab("#hud-chat",false);
+		ui.researchChat = ($('#hud-chat').css('display')=='block');
+		ui.closeTab('#hud-chat',false);
 		ui.chat = false;
 
 		ui.research = true;
@@ -196,7 +196,7 @@ class research {
 			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*research.zoom;
 		}
 
-		$("#hud-research").css({
+		$('#hud-research').css({
 			left: pos[0],
 			top: pos[1]
 		});
@@ -276,7 +276,7 @@ class research {
 			} else {
 				content += '<p class="research-ok">' + translate['research'].tech_owned + '</p>';
 			}
-			content += "</div>";
+			content += '</div>';
 		} else {
 			content += '<h2>???</h2>';
 			content += '<span class="research-desc">' + research.getMissingParents(key) + '</span>';
@@ -287,8 +287,8 @@ class research {
 		// Position
 		let node = document.getElementById(key + '-node');
 		if(node) {
-			node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + "px";
-			node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + "px";
+			node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + 'px';
+			node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + 'px';
 		}
 	}
 	/**
@@ -298,7 +298,7 @@ class research {
 	 * @param	  {string}  parent  The parent
 	 */
 	static drawLink(child,parent) {
-		if(child=="" || parent=="") { return; }
+		if(child=='' || parent=='') { return; }
 
 		if( !($('#'+child+'-node').length) || !($('#'+parent+'-node').length) ) { return; }
 
@@ -321,7 +321,7 @@ class research {
 		newLine.setAttribute('y1',y1);
 		newLine.setAttribute('x2',x2);
 		newLine.setAttribute('y2',y2);
-		$("#research-links").append(newLine);
+		$('#research-links').append(newLine);
 	}
 	/**
 	 * Determines ability to research.
@@ -340,7 +340,7 @@ class research {
 			 * >0 => In progress
 			 * -1 => Finished
 			 */
-			if(userData.research[parents[i]]!=-1 && parents[i]!="researchCenter") {
+			if(userData.research[parents[i]]!=-1 && parents[i]!='researchCenter') {
 				return false;
 			}
 			
@@ -357,7 +357,7 @@ class research {
 	static getMissingParents(key) {
 		let parents = researchList[key].parents;
 		let oneParentOK = false;
-		let missingParents = "";
+		let missingParents = '';
 
 		for(let i=0; i<parents.length; i++) {
 			if(userData.research[parents[i]]==undefined) { userData.research[parents[i]]=0; } // No bug then
@@ -367,9 +367,9 @@ class research {
 			 * >0 => In progress
 			 * -1 => Finished
 			 */
-			if(userData.research[parents[i]]!=-1 && parents[i]!="researchCenter") {
-				if(missingParents!="") { missingParents+=","; }
-				missingParents += " " + translate['research'][parents[i]].name;
+			if(userData.research[parents[i]]!=-1 && parents[i]!='researchCenter') {
+				if(missingParents!='') { missingParents+=','; }
+				missingParents += ' ' + translate['research'][parents[i]].name;
 			} else { // == -1 or parent is researchCenter
 				oneParentOK = true;
 			}
@@ -377,10 +377,10 @@ class research {
 		}
 
 		if(oneParentOK && parents.length>1) {
-			return translate["messages"]['MISSING_PARENTS'] + ':' + missingParents;
+			return translate['messages']['MISSING_PARENTS'] + ':' + missingParents;
 		}
 
-		return "???";
+		return '???';
 	}
 
 	/**
@@ -390,7 +390,7 @@ class research {
 	 * @return	 {boolean}  True if searched, False otherwise.
 	 */
 	static isSearched(key) {
-		return (userData.research[key]==-1 || key=="researchCenter");
+		return (userData.research[key]==-1 || key=='researchCenter');
 	}
 
 	/**
@@ -426,6 +426,6 @@ class research {
  			research.sync();
  		}
  		
- 		$("#"+planetData.currResearch+"-node .research-cost").html("<img height=\"20\" src=\""+cdnURL+"img/ui/research.svg\" alt=\"research\">" + Math.floor(userData.research[planetData.currResearch]) +"/"+researchList[planetData.currResearch].cost);
+ 		$('#'+planetData.currResearch+'-node .research-cost').html('<img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) +'/'+researchList[planetData.currResearch].cost);
  	}
 }

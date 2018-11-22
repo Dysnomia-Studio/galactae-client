@@ -40,7 +40,7 @@ let buildingsNames = [
 	'tank',
 	'shipyard',
 	'trade',
-	'he3exp'
+	'he3exp',
 ];
  
 let buildingMaxLvl = [
@@ -57,7 +57,7 @@ let buildingMaxLvl = [
 	25,	// Reservoir
 	25,	// Chantier naval
 	15,	// Commerce
-	25	// Mine He3
+	25,	// Mine He3
 ];
 let buildCost = {
 	aluminium: [
@@ -401,7 +401,7 @@ let unitTypes = [
 	'SHIP_CUIRASSE',
 	'SHIP_FIGHTER',
 	'SHIP_CORVET',
-	'SHIP_CARRIER'
+	'SHIP_CARRIER',
 ];
 
 let shipShapesDetails = {
@@ -722,7 +722,7 @@ let planetList = [0,1,2,3,4,5,6,7,8,9,
 	101,102,103,104,105,106,107,108,109,110,111,112,113,
 	501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,
 	/*901,*/42,
-	1000,1001,1002//,1003,1004,1005,1006,1007,1008
+	1000,1001,1002,//1003,1004,1005,1006,1007,1008,
 ];
 for(let i in planetList) {
 	imgCache.push('cdn/img/planets/front/' + planetList[i] + '.jpg');

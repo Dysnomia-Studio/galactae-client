@@ -28,20 +28,20 @@ class ui {
 	static drawMessage(msg) {
 		// Translation
 		if(msg === undefined) { return; }
-		if((translate.messages[msg] !=undefined) && (translate.messages[msg] !="")) { msg = translate.messages[msg]; }
+		if((translate.messages[msg] !=undefined) && (translate.messages[msg] !='')) { msg = translate.messages[msg]; }
 		// Draw the message
 		let msgPanel = document.getElementById('messagePanel');
 		msgPanel.innerText = msg;
 		
 		msgPanel.classList.add('fadeIn-1s');
-		msgPanel.style.display = "block";
+		msgPanel.style.display = 'block';
 
 		setTimeout(function() { 
 			msgPanel.classList.remove('fadeIn-1s');
 			msgPanel.classList.add('fadeOut-1s'); 
 
 			setTimeout(function() {
-				msgPanel.style.display = "none";
+				msgPanel.style.display = 'none';
 				msgPanel.classList.remove('fadeOut-1s'); 
 			},1000);
 
@@ -62,7 +62,7 @@ class ui {
 		ui.research = false;
 		ui.researchChat = false;
 		ui.fleet = false;
-		ui.chat = (document.getElementById('hud-chat').style.display != "none");
+		ui.chat = (document.getElementById('hud-chat').style.display !== 'none');
 		ui.ranks = false;
 		ui.news = false;
 		ui.bonusStreak = 0;
@@ -80,7 +80,7 @@ class ui {
 		});
 
 		// Chat tampon
-		ui.lastMessage = "";
+		ui.lastMessage = '';
 
 		// Actions au clavier
 		document.addEventListener('keydown', function(e){
@@ -91,7 +91,7 @@ class ui {
 		settings.loadUI();
 
 		//Rename planet
-		document.getElementById("hud-planet-name").addEventListener('click', function() {
+		document.getElementById('hud-planet-name').addEventListener('click', function() {
 			ui.planetNameSwitchToInput();
 		});
 		//HUD Buttons
@@ -110,29 +110,29 @@ class ui {
 		// Load Chat UI
 		chat.loadUI();
 
-		document.getElementById("hud-ranks-close").addEventListener('click', function() {
-			ui.closeTab("#hud-ranks");
+		document.getElementById('hud-ranks-close').addEventListener('click', function() {
+			ui.closeTab('#hud-ranks');
 			ui.ranks = false;
 		});
 
-		document.getElementById("news-close").addEventListener('click', function() {
-			ui.closeTab("#hud-news");
+		document.getElementById('news-close').addEventListener('click', function() {
+			ui.closeTab('#hud-news');
 			ui.news = false;
 		});
 
 		//Bonus Quotidien
-		document.getElementById("day-bonus-confirm").addEventListener('click', function() {
+		document.getElementById('day-bonus-confirm').addEventListener('click', function() {
 			let choice = 1;
 			let dayBonus2 = document.getElementById('day-bonus-2');
 			if(dayBonus2 && ui.hasClass(dayBonus2, 'day-bonus-active')) {
 				choice = 2;
 			}
 			socket.emit('daily-bonus',{user: userData, choice: choice});
-			ui.closeTab("#day-bonus");
+			ui.closeTab('#day-bonus');
 		});
 		
-		document.getElementById("day-bonus-later").addEventListener('click', function() {
-			ui.closeTab("#day-bonus");
+		document.getElementById('day-bonus-later').addEventListener('click', function() {
+			ui.closeTab('#day-bonus');
 		});
 
 		// Ranks
@@ -141,7 +141,7 @@ class ui {
 			DOMElts[i].addEventListener('click', function() {
 				ui.toggleClass('.ranks-ul .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
-				document.getElementById('hud-ranks-frame').src = "ranks.php?type=" + this.getAttribute("choice");
+				document.getElementById('hud-ranks-frame').src = 'ranks.php?type=' + this.getAttribute('choice');
 			});
 		}
 
@@ -152,27 +152,27 @@ class ui {
 			//Block Inspect Element when 
 			//right click
 			window.addEventListener('contextmenu', function() {
-				if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
+				if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
 					return false;
 				}
 			});
 			window.addEventListener('keydown', function(e) {
 			//F12 => Firefox, Chrome, Edge
 				if(e.which === KEYBOARD.F12){
-					if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
+					if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
 						return false;
 					}
 				}
 				//CTRL + SHIFT + C => Opera
 				if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
-					if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
+					if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
 						return false;
 					}
 				}
 
 				//CTRL + SHIFT + I => Chromium
 				if(e.which === KEYBOARD.I && e.ctrlKey && e.shiftKey){
-					if(document.location.host.substr(3,3) !== "dev" && document.location.host.substr(0,4) !== "test") {
+					if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
 						return false;
 					}
 				}
@@ -183,12 +183,12 @@ class ui {
 	 * Update the page title (tab text)
 	 */
 	static updatePageTitle() {
-		let notifString = "";
+		let notifString = '';
 		if(ui.notifCount != 0) {
-			notifString = "("+ui.notifCount+") ";
+			notifString = '('+ui.notifCount+') ';
 		}
 
-		document.title = notifString + userData.username + " - " + planetData.name;
+		document.title = notifString + userData.username + ' - ' + planetData.name;
 	}
 
 	/**
@@ -248,18 +248,18 @@ class ui {
 		// Fermer une fenêtre
 		if(e.which === KEYBOARD.ESC){ // Echap
 			if(ui.menu) { // Priorité
-				ui.closeTab("#settings-menu");
+				ui.closeTab('#settings-menu');
 				ui.menu = false;
 			} else if(ui.research==true) {
 				research.closeUI();
 			} else if(ui.fleet==true && !preventFleetHUDClosing) {
-				ui.closeTab("#hud-fleet");
+				ui.closeTab('#hud-fleet');
 				ui.fleet= false;
 			} else if(ui.ranks==true) {
-				ui.closeTab("#hud-ranks");
+				ui.closeTab('#hud-ranks');
 				ui.ranks = false;
 			} else if(ui.map==true) {
-				if(map.currentMap == "" || map.currentMap == "global") {
+				if(map.currentMap == '' || map.currentMap == 'global') {
 					map.closeTab();
 				} else {
 					map.openGlobalMap(map.currentAddress);
@@ -277,11 +277,11 @@ class ui {
 
 		// Historique chat
 		if(e.which === KEYBOARD.UARROW && document.getElementById('chat_message') === document.activeElement) { // Haut
-			document.getElementById("chat_message").value = ui.lastMessage;
+			document.getElementById('chat_message').value = ui.lastMessage;
 		}
-		if(e.which === KEYBOARD.DARROW && document.getElementById('chat_message') === document.activeElement && document.getElementById("chat_message").value !== "") { // Bas
-			ui.lastMessage = document.getElementById("chat_message").value;
-			document.getElementById("chat_message").value = "";
+		if(e.which === KEYBOARD.DARROW && document.getElementById('chat_message') === document.activeElement && document.getElementById('chat_message').value !== '') { // Bas
+			ui.lastMessage = document.getElementById('chat_message').value;
+			document.getElementById('chat_message').value = '';
 		}
 
 		// Planetes suivantes/precedente
@@ -319,14 +319,14 @@ class ui {
 	static hide(selector) {
 		let DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
-			DOMelts[elt].style.display = "none";
+			DOMelts[elt].style.display = 'none';
 		}
 	}
 
 	/**
 	 * Show somethinf
 	 */
-	static show(selector, display="block") {
+	static show(selector, display='block') {
 		let DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
 			DOMelts[elt].style.display = display;
@@ -341,7 +341,7 @@ class ui {
 	 * @return     {string}  True if has the class, False otherwise.
 	 */
 	static hasClass(elt, className) {
-		return ((" " + elt.className + " ").replace(/[\n\t]/g, " ").indexOf(" " + className +" ") > -1);
+		return ((' ' + elt.className + ' ').replace(/[\n\t]/g, ' ').indexOf(' ' + className +' ') > -1);
 	}
 
 	static toggleClass(selector, className, newElt) {
@@ -358,7 +358,7 @@ class ui {
 	 */
 	static updateBottom() {
 		function triggerActive(name) {
-			if(document.getElementById('hud-' + name).style.display == "block") {
+			if(document.getElementById('hud-' + name).style.display == 'block') {
 				document.getElementById('hud-bottom-button-' + name).classList.add('hud-bottom-active');
 			} else {
 				document.getElementById('hud-bottom-button-' + name).classList.remove('hud-bottom-active');
@@ -372,8 +372,8 @@ class ui {
 
 
 		function triggerFleetActive(name1, name2) {
-			if(document.getElementById('hud-fleet').style.display == "block" && 
-				document.getElementById('fleet-' + name1).style.display == "block") {
+			if(document.getElementById('hud-fleet').style.display == 'block' && 
+				document.getElementById('fleet-' + name1).style.display == 'block') {
 
 				document.getElementById('hud-bottom-button-' + name2).classList.add('hud-bottom-active');
 			} else {
@@ -391,28 +391,27 @@ class ui {
 	 * Switch between span and input for planet name
 	 */
 	static planetNameSwitchToInput() {
-		let elt = $("#hud-planet-name");
-		ui.oldname = elt.text();
-		let $input = $("<input>", {
-			val: elt.text(),
-			type: "text",
-			id: "hud-planet-name"
-		});
-		elt.replaceWith($input);
-		$input.on("blur", ui.planetNameSwitchToSpan);
-		$input.select();
+		ui.oldname = document.getElementById('hud-planet-name').innerText;
+
+		document.getElementById('hud-planet-name').outerHTML = '<input type="text" id="hud-planet-name" value="' + ui.oldname + '">';
+
+		document.getElementById('hud-planet-name').addEventListener('blur', ui.planetNameSwitchToSpan);
+		document.getElementById('hud-planet-name').focus();
 
 		ui.renaming = true;
 	}
 	static planetNameSwitchToSpan() {
-		let elt = $("#hud-planet-name");
-		let newname = elt.val();
-		let $span = $("<span>", {
-			text: elt.val(),
-			id: "hud-planet-name"
-		});
-		elt.replaceWith($span);
-		$span.on("click", ui.planetNameSwitchToInput);
+		let newname = document.getElementById('hud-planet-name').value;
+
+		// This try/catch is usefull when hitting ENTER Key
+		try {
+			document.getElementById('hud-planet-name').outerHTML = '<span id="hud-planet-name">' + newname + '</span>';
+		} catch(e) {
+			// Do nothing
+		}
+
+		document.getElementById('hud-planet-name').addEventListener('click', ui.planetNameSwitchToInput);
+
 		if(ui.oldname!=newname) {
 			newname = normalizeText(newname);
 			socket.emit('planet-rename', { planet: userData.pid, username: userData.username, id: userData.id, name: newname });
@@ -424,9 +423,9 @@ class ui {
 	 * Add events for bottom buttons
 	 */
 	static hudBottomButtons() {
-		document.getElementById("hud-bottom-button-chat").addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-chat').addEventListener('click', function() {
 			if(ui.chat) {
-				ui.closeTab("#hud-chat");
+				ui.closeTab('#hud-chat');
 				ui.chat = false;
 			} else {
 				ui.show('#hud-chat');
@@ -434,9 +433,9 @@ class ui {
 				ui.chat = true;
 			}
 		});
-		document.getElementById("hud-bottom-button-ranks").addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-ranks').addEventListener('click', function() {
 			if(ui.ranks) {
-				ui.closeTab("#hud-ranks");
+				ui.closeTab('#hud-ranks');
 				ui.ranks = false;
 			} else {
 				ui.show('#hud-ranks');
@@ -446,7 +445,7 @@ class ui {
 				document.getElementById('hud-ranks-frame').src = document.getElementById('hud-ranks-frame').src;
 			}
 		});
-		document.getElementById("hud-bottom-button-map").addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-map').addEventListener('click', function() {
 			if(ui.map) {
 				map.closeTab();
 			} else {
@@ -457,12 +456,12 @@ class ui {
 				ui.updateBottom();
 			}
 		});
-		document.getElementById("map-close").addEventListener('click', function() {
+		document.getElementById('map-close').addEventListener('click', function() {
 			if(ui.map) {
 				map.closeTab();
 			}
 		});
-		document.getElementById("hud-bottom-button-research").addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-research').addEventListener('click', function() {
 			if(ui.research) {
 				research.closeUI();
 			} else {
@@ -481,7 +480,7 @@ class ui {
 					units.unitPanelTimeout = -1;
 				}
 
-				ui.closeTab("#hud-fleet");
+				ui.closeTab('#hud-fleet');
 				ui.fleet = false;
 			} else {
 				ui.show('#hud-fleet');
@@ -494,39 +493,39 @@ class ui {
 				ui.hide('#fleet-out');
 				ui.fleet = true;
 
-				ui.show("#" + elt);
+				ui.show('#' + elt);
 
 				ui.updateBottom();
 			}
 		}
 
-		document.getElementById("hud-bottom-button-units").addEventListener('click', function() {
-			fleetPanelToggle("fleet-build");
+		document.getElementById('hud-bottom-button-units').addEventListener('click', function() {
+			fleetPanelToggle('fleet-build');
 		});
-		document.getElementById("hud-bottom-button-fleets").addEventListener('click', function() {
-			fleetPanelToggle("fleet-orbit");
+		document.getElementById('hud-bottom-button-fleets').addEventListener('click', function() {
+			fleetPanelToggle('fleet-orbit');
 		});
-		document.getElementById("hud-bottom-button-radar").addEventListener('click', function() {
-			fleetPanelToggle("fleet-move");
+		document.getElementById('hud-bottom-button-radar').addEventListener('click', function() {
+			fleetPanelToggle('fleet-move');
 		});
 
-		document.getElementById("hud-bottom-button-ally").addEventListener('click', function() {
-			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		document.getElementById('hud-bottom-button-ally').addEventListener('click', function() {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
-		document.getElementById("hud-bottom-button-rapports").addEventListener('click', function() {
-			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		document.getElementById('hud-bottom-button-rapports').addEventListener('click', function() {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
-		document.getElementById("hud-bottom-button-quests").addEventListener('click', function() {
-			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		document.getElementById('hud-bottom-button-quests').addEventListener('click', function() {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
-		document.getElementById("hud-bottom-button-trade").addEventListener('click', function() {
-			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		document.getElementById('hud-bottom-button-trade').addEventListener('click', function() {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
-		document.getElementById("hud-bottom-button-profil").addEventListener('click', function() {
-			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		document.getElementById('hud-bottom-button-profil').addEventListener('click', function() {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
-		document.getElementById("hud-bottom-button-messages").addEventListener('click', function() {
-			ui.drawMessage(translate["messages"]["DISABLED_FUNCTIONALIY"]);
+		document.getElementById('hud-bottom-button-messages').addEventListener('click', function() {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
 	}
 	/********** DAILY BONUS **********/
@@ -558,13 +557,13 @@ class ui {
 			credits = 1000;
 		} // @ADD: generate random special bonus
 		
-		let desc = "<tr><td class=\"day-bonus-active\" id=\"day-bonus-1\">" + credits + " credits galactiques</td>";
+		let desc = '<tr><td class="day-bonus-active" id="day-bonus-1">' + credits + ' credits galactiques</td>';
 
 		if(helium!=0) {
-			desc += "<td id=\"day-bonus-2\">" + helium + "t de Helium 3</td>";
+			desc += '<td id="day-bonus-2">' + helium + 't de Helium 3</td>';
 		}
 
-		desc+= "</tr>";
+		desc+= '</tr>';
 
 		document.getElementById('day-bonus-desc').innerHTML = desc;
 		ui.show('#day-bonus');

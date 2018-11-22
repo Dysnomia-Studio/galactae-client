@@ -1,27 +1,27 @@
 let loadStatusArr = {
-	"settings": false,
-	"server": false,
-	"planet": false,
-	"units": false,
-	"player": false,
-	"fleet": false,
-	"maps": false,
-	"load": false,
-	"service-worker": false,
+	'settings': false,
+	'server': false,
+	'planet': false,
+	'units': false,
+	'player': false,
+	'fleet': false,
+	'maps': false,
+	'load': false,
+	'service-worker': false,
 };
 
 class loadScreen {
 	static reset() {
 		loadStatusArr = {
-			"settings": false,
-			"server": false,
-			"planet": false,
-			"units": false,
-			"player": false,
-			"fleet": false,
-			"maps": false,
-			"load": false,
-			"service-worker": false,
+			'settings': false,
+			'server': false,
+			'planet': false,
+			'units': false,
+			'player': false,
+			'fleet': false,
+			'maps': false,
+			'load': false,
+			'service-worker': false,
 		};
 		loadScreen.complete();
 		ui.show('#loading-overlay');
@@ -32,7 +32,7 @@ class loadScreen {
 	 *
 	 * @param      {string}  title   Part loaded
 	 */
-	static complete(title="") {
+	static complete(title='') {
 		let loadCount = 0;
 		let loadMax = 0;
 		for(let i in loadStatusArr) {
@@ -43,14 +43,14 @@ class loadScreen {
 		if(loadCount === loadMax) { return; } // Not needed if loading is already hided
 
 		// Loading texts
-		if(title != "") {
+		if(title != '') {
 			loadStatusArr[title] = true;
 
 			for(let i in loadStatusArr) {
 				if(loadStatusArr[i] == true) { continue; }
 
 				ui.hide('.loading-overlay-bar-secondary');
-				if(i=="pictures") {
+				if(i=='pictures') {
 					ui.show('.loading-overlay-bar-secondary');
 				}
 
@@ -63,11 +63,11 @@ class loadScreen {
 			let percentage = Math.round(loadCount/loadMax*100);
 			let DOMElts = document.querySelectorAll('.loading-overlay-bar-primary .loading-overlay-bar-value');
 			for(let i=0; i<DOMElts.length; i++) {
-				DOMElts[i].innerText = percentage + "%";
+				DOMElts[i].innerText = percentage + '%';
 			}
 			DOMElts = document.querySelectorAll('.loading-overlay-bar-primary .loading-overlay-bar-content');
 			for(let i=0; i<DOMElts.length; i++) {
-				DOMElts[i].style.width = percentage + "%";
+				DOMElts[i].style.width = percentage + '%';
 			}
 		}
 
@@ -82,10 +82,10 @@ class loadScreen {
 ready(function() {
 	// Basic Security (ClientSide)
 	if(!existCookie('galactae-account-username') || !existCookie('galactae-account-id')) { //Why are you here ?!
-		kick("not-connected");
+		kick('not-connected');
 	}
 
-	document.getElementById('loading-overlay-desc').innerHTML = translate.load["server"];
+	document.getElementById('loading-overlay-desc').innerHTML = translate.load['server'];
 
 	// Load settings
 	settings.init();
@@ -96,7 +96,7 @@ ready(function() {
 	// On se connecte au serveur node et on verifie l'identité du client ( Serveur )
 	webSockets.createConnection();
 
-	console.log("%c" + translate.messages["selfXSSWarn"],'font-size: 2em; font-weight: bold; color: red;');
+	console.log('%c' + translate.messages['selfXSSWarn'],'font-size: 2em; font-weight: bold; color: red;');
 
 	// Service worker
 	if ('serviceWorker' in navigator) {
@@ -117,14 +117,14 @@ ready(function() {
 	        if (serviceWorker) {
 	            serviceWorker.addEventListener('statechange', function (e) {
 	                if(navigator.serviceWorker.controller !== null) {
-						loadScreen.complete("service-worker");
+						loadScreen.complete('service-worker');
 						navigator.serviceWorker.controller.postMessage({ change: document.getElementBy('game-version').innerText !== localStorage.gameVersion });
 						localStorage.gameVersion = document.getElementBy('game-version').innerText;
 	                }
 	            });
 
                 if(navigator.serviceWorker.controller !== null) {
-					loadScreen.complete("service-worker");
+					loadScreen.complete('service-worker');
 					navigator.serviceWorker.controller.postMessage({ change: document.getElementBy('game-version').innerText !== localStorage.gameVersion });
 					localStorage.gameVersion = document.getElementBy('game-version').innerText;
                 }
@@ -132,10 +132,10 @@ ready(function() {
 		}, function(err) {
 			// registration failed :(
 			console.log('[SW] Registration failed: ', err);
-			loadScreen.complete("service-worker");
+			loadScreen.complete('service-worker');
 		});
 	} else {
-		loadScreen.complete("service-worker"); // On valide le service worker si le navigateur ne supporte pas cette fonctionnalité
+		loadScreen.complete('service-worker'); // On valide le service worker si le navigateur ne supporte pas cette fonctionnalité
 	}
 });
 

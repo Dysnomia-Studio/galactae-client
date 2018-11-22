@@ -8,9 +8,9 @@ class Fleet {
 	 * @return     {Array}   New current speed
 	 */
 	static getSpeed(speed, tech) {
-		if(speed[0] == -1) { // First sup propulsion part
+		if(speed[0] === -1) { // First sup propulsion part
 			if(shipPartsSpeed[tech] === undefined) { 
-				console.log("Speed is not defined for part " + tech,"error");
+				console.log('Speed is not defined for part ' + tech,'error');
 				return [];
 			}
 			speed = shipPartsSpeed[tech].slice(0);
@@ -31,16 +31,18 @@ class Fleet {
 	 */
 	static calcSubSpeed(unit) {
 		let speed = [-1];
-		let tech = "";
+		let tech = '';
 		let count = 0;
 
 		for(let i in unit.parts) {
-			if(unit.parts[i].type == "sub_propulsion") {
+			if(unit.parts[i].type === 'sub_propulsion') {
 				tech = unit.parts[i].tech;
 				count++;
 
 				speed = Fleet.getSpeed(speed, tech);
-				if(speed[0] === undefined) return { speed: [] };
+				if(speed[0] === undefined) {
+					return { speed: [] };
+				}
 			}
 		}
 
@@ -55,16 +57,18 @@ class Fleet {
 	 */
 	static calcSupraSpeed(unit) {
 		let speed = [-1];
-		let tech = "";
+		let tech = '';
 		let count = 0;
 
 		for(let i in unit.parts) {
-			if(unit.parts[i].type == "sup_propulsion") {
+			if(unit.parts[i].type === 'sup_propulsion') {
 				tech = unit.parts[i].tech;
 				count++;
 				
 				speed = Fleet.getSpeed(speed, tech);
-				if(speed[0] === undefined) return { speed: [] };
+				if(speed[0] === undefined) {
+					return { speed: [] };
+				}
 			}
 		}
 
@@ -113,7 +117,7 @@ class Fleet {
 	static getMinSubSpeed(unitList) {
 		let min = {
 			speed: 0,
-			engines: {}
+			engines: {},
 		};
 
 		for(let i=0; i<unitList.length; i++) {
@@ -145,7 +149,7 @@ class Fleet {
 		};
 
 		for(let i=0; i<unitList.length; i++) {
-			if(unitList[i].shipType == "SHIP_FIGHTER") { continue; } // Don't care about fighter they are carried
+			if(unitList[i].shipType == 'SHIP_FIGHTER') { continue; } // Don't care about fighter they are carried
 
 			let curr = Fleet.calcSupraSpeed(unitList[i]);
 

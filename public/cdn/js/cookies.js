@@ -8,8 +8,8 @@
 function setCookie(cname, cvalue, exdays=30) {
     let d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
+    let expires = 'expires='+ d.toUTCString();
+    document.cookie = cname + '=' + cvalue + '; ' + expires;
 }
 
 /**
@@ -19,18 +19,18 @@ function setCookie(cname, cvalue, exdays=30) {
  * @return     {string}  Cookie value
  */
 function getCookie(cname) {
-    let name = cname + "=";
+    let name = cname + '=';
     let ca = document.cookie.split(';');
     for(let i = 0; i <ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0)==' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length,c.length);
         }
     }
-    return "";
+    return '';
 }
 
 /**
@@ -41,5 +41,5 @@ function getCookie(cname) {
  */
 function existCookie(cname) {
     let content = getCookie(cname);
-    return (content != "" || content!=null);
+    return (content !== '' || content !== null);
 }

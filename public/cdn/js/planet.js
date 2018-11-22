@@ -219,7 +219,7 @@ class planet {
 	static ResourcesDrawUpdate() {
 		// Top left
 		$('#population_nmb').html(GetBetterUnit(habProd - habCons));
-		$('#research_nmb').html(GetBetterUnit(researchProd,"/h"));
+		$('#research_nmb').html(GetBetterUnit(researchProd,'/h'));
 		$('#moral_nmb').html(50+'%');
 
 		//Top right
@@ -266,7 +266,7 @@ class planet {
 
 		storageHelium1 = (heliumProd[0]*Math.pow((buildings[10]+1),2)  + heliumProd[1]*(buildings[10]+1)  + heliumProd[2])*(storageRatio[0]*Math.log((buildings[10]+1)) + storageRatio[1])*heliumStorageRatio;
 
-		if(research.isSearched("cp_molecular_compression")) {
+		if(research.isSearched('cp_molecular_compression')) {
 			mineralStorageBase *= researchBonus.cp_molecular_compression;
 			metalsStorageBase *= researchBonus.cp_molecular_compression;
 			mineralStorageBase1 *= researchBonus.cp_molecular_compression;
@@ -368,15 +368,15 @@ class planet {
 		$('#ti-variety').html(GetBetterUnit(ratio.titanRatio*100,'%'));
 
 
-		$('#electricity_nmb').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
-		$('#electricity-available').html(GetBetterUnit(energyProd-energyCons,"Wh",0));
-		$('#electricity-used').html(GetBetterUnit(energyCons,"Wh"));
-		$('#electricity-total').html(GetBetterUnit(energyProd,"Wh"));
+		$('#electricity_nmb').html(GetBetterUnit(energyProd-energyCons,'Wh',0));
+		$('#electricity-available').html(GetBetterUnit(energyProd-energyCons,'Wh',0));
+		$('#electricity-used').html(GetBetterUnit(energyCons,'Wh'));
+		$('#electricity-total').html(GetBetterUnit(energyProd,'Wh'));
 
-		$('#population_nmb').html(GetBetterUnit(habProd-habCons,"",0));
-		$('#population-available').html(GetBetterUnit(habProd-habCons,"",0));
-		$('#population-used').html(GetBetterUnit(habCons,""));
-		$('#population-total').html(GetBetterUnit(habProd,""));	
+		$('#population_nmb').html(GetBetterUnit(habProd-habCons,'',0));
+		$('#population-available').html(GetBetterUnit(habProd-habCons,'',0));
+		$('#population-used').html(GetBetterUnit(habCons,''));
+		$('#population-total').html(GetBetterUnit(habProd,''));	
 	}
 	/*
 	* Draws if buildings can be build.
@@ -464,10 +464,10 @@ class planet {
 		if(planetData.nextBuilding==building) { cost = planet.getBuildCost(building,planetData.Buildings[building] + 2); } 
 		else							      { cost = planet.getBuildCost(building,planetData.Buildings[building] + 1); }
 		let costs = [
-			["building-cost-iron",cost.iron],
-			["building-cost-aluminium",cost.aluminium],
-			["building-cost-copper",cost.copper],
-			["building-cost-titanium",cost.titanium]
+			['building-cost-iron',cost.iron],
+			['building-cost-aluminium',cost.aluminium],
+			['building-cost-copper',cost.copper],
+			['building-cost-titanium',cost.titanium]
 		];
 
 		let ratios = [ratio.ironRatio,ratio.aluRatio,ratio.copperRatio,ratio.titanRatio];
@@ -577,27 +577,27 @@ class planet {
 		let max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
 
 		/* Planet Construction Tab */
-		$("#building-name").text(translate.buildings[id].name);
-		$("#building-level").text(translate.messages['LEVEL'] + ' ' +  planetData.Buildings[id]);
-		$("#building-desc").text(translate.buildings[id].desc);
+		$('#building-name').text(translate.buildings[id].name);
+		$('#building-level').text(translate.messages['LEVEL'] + ' ' +  planetData.Buildings[id]);
+		$('#building-desc').text(translate.buildings[id].desc);
 		ui.show('#building-area');
-		$("#building-img").attr("src",cdnURL+"img/buildings/desc/" + translate.buildings[id].id + ".jpg");
-		$("#building-area input").id=id;
+		$('#building-img').attr('src',cdnURL+'img/buildings/desc/' + translate.buildings[id].id + '.jpg');
+		$('#building-area input').id=id;
 		ui.show('#building-cost');
 
 		/* Ressources */
 		let costs = [
-			["building-cost-iron",cost.iron],
-			["building-cost-aluminium",cost.aluminium],
-			["building-cost-copper",cost.copper],
-			["building-cost-titanium",cost.titanium]
+			['building-cost-iron',cost.iron],
+			['building-cost-aluminium',cost.aluminium],
+			['building-cost-copper',cost.copper],
+			['building-cost-titanium',cost.titanium]
 		];
 		for(let i=0; i<4; i++) {
 			if(costs[i][1]==0) {
 				ui.hide('#' + costs[i][0]);
 			} else {
 				ui.show('#' + costs[i][0], 'inline-block');
-				$("#"+costs[i][0]+"-val").html(GetBetterUnit(costs[i][1],'t',planetData.resources[i+2]));
+				$('#'+costs[i][0]+'-val').html(GetBetterUnit(costs[i][1],'t',planetData.resources[i+2]));
 			}
 		}
 		/* Calc max wait time */
@@ -605,55 +605,55 @@ class planet {
 
 		/* Energie */
 		if(cost.energy==0) {
-			ui.hide("#building-cost-energy");
+			ui.hide('#building-cost-energy');
 		} else {
 			ui.show('#building-cost-energy', 'inline-block');
-			$("#building-cost-energy-val").html(
-				GetBetterUnit(cost.energy,"Wh (+" + 
-					GetBetterUnit(cost.energy_difference,"Wh",energyProd-energyCons) + ")",
+			$('#building-cost-energy-val').html(
+				GetBetterUnit(cost.energy,'Wh (+' + 
+					GetBetterUnit(cost.energy_difference,'Wh',energyProd-energyCons) + ')',
 					cost.energy + energyProd - energyCons - cost.energy_difference));
 		}
 		/* Habitants */
 		if(cost.habitants==0) {
-			ui.hide("#building-cost-population");
+			ui.hide('#building-cost-population');
 		} else {
 			ui.show('#building-cost-population', 'inline-block');
-			$("#building-cost-population-val").html(
-				GetBetterUnit(cost.habitants," (+" + 
-					GetBetterUnit(cost.habitants_difference,"",habProd-habCons) + ")",
+			$('#building-cost-population-val').html(
+				GetBetterUnit(cost.habitants,' (+' + 
+					GetBetterUnit(cost.habitants_difference,'',habProd-habCons) + ')',
 					cost.habitants + habProd - habCons - cost.habitants_difference));
 		}
 		/* Temps */
 		if(id > 8) { // Faster if shipyard have higher lvl
 			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
 		}
-		$("#building-cost-time-val").html(getStringTime(cost.time));
+		$('#building-cost-time-val').html(getStringTime(cost.time));
 
 		/* Bouton upgrade ou message */
 		// Defaut Value
 		if(planetData.Buildings[id]==0) {
-			$('#building-upgrade').val(translate.messages["BUILD"]);
+			$('#building-upgrade').val(translate.messages['BUILD']);
 		} else {
-			$('#building-upgrade').val(translate.messages["UPGRADE"]);
+			$('#building-upgrade').val(translate.messages['UPGRADE']);
 		}
-		$("#building-upgrade").attr("onclick","");
-		ui.hide("#building-upgrade");
+		$('#building-upgrade').attr('onclick','');
+		ui.hide('#building-upgrade');
 		ui.show('#building-message', 'inline-block');
 
 		// Edits
 		if(max) { // Max Level
-			$('#building-message').html(translate.messages["UPGRADE_MAX"]);
-			ui.hide("#building-cost");
+			$('#building-message').html(translate.messages['UPGRADE_MAX']);
+			ui.hide('#building-cost');
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			let dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-				$('#building-message').html(translate.messages["BUILD_FINISH_TODAY_AT"] + " <em>" + dateEnd.toLocaleTimeString() + "</em>");
+				$('#building-message').html(translate.messages['BUILD_FINISH_TODAY_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>');
 			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-				$('#building-message').html(translate.messages["BUILD_FINISH_TOMORROW_AT"] + " <em>" + dateEnd.toLocaleTimeString() + "</em>");
+				$('#building-message').html(translate.messages['BUILD_FINISH_TOMORROW_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>');
 			} else {
-				$('#building-message').html(translate.messages["BUILD_FINISH_THE"] + " <em>" + dateEnd.toLocaleDateString() + "</em> " + translate.messages["BUILD_FINISH_AT"] + " <em>" + dateEnd.toLocaleTimeString() + "</em>");
+				$('#building-message').html(translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>');
 			}
 
 			planet.buildPanelInterval = setTimeout(function() {
@@ -664,32 +664,32 @@ class planet {
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-				$('#building-message').html(translate.messages["ENOUGH_RESOURCES_TODAY_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages['ENOUGH_RESOURCES_TODAY_AT'] + ' ' + dateEnd.toLocaleTimeString());
 			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-				$('#building-message').html(translate.messages["ENOUGH_RESOURCES_TOMORROW_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages['ENOUGH_RESOURCES_TOMORROW_AT'] + ' ' + dateEnd.toLocaleTimeString());
 			} else {
-				$('#building-message').html(translate.messages["ENOUGH_RESOURCES_THE"] + " " + dateEnd.toLocaleDateString() + " " + translate.messages["ENOUGH_RESOURCES_AT"] + " " + dateEnd.toLocaleTimeString());
+				$('#building-message').html(translate.messages['ENOUGH_RESOURCES_THE'] + ' ' + dateEnd.toLocaleDateString() + ' ' + translate.messages['ENOUGH_RESOURCES_AT'] + ' ' + dateEnd.toLocaleTimeString());
 			}
 
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
 		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
-			$('#building-message').html(translate.messages["ANOTHER_IN_BUILD"]);
+			$('#building-message').html(translate.messages['ANOTHER_IN_BUILD']);
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
 			},planetData.nextBuildingTime - (Date.now() + planet.deltaNow + 1000));
 		} else {
 			ui.hide('#building-message');
 			ui.show('#building-upgrade');
-			$("#building-upgrade").attr("onclick","planet.build("+id+")");
+			$('#building-upgrade').attr('onclick','planet.build('+id+')');
 		}
 
 		// Bonus
-		let title = "",
-			icon = "",
-			value = "",
-			valuep1 = "";
+		let title = '',
+			icon = '',
+			value = '',
+			valuep1 = '';
 	
 		ui.show('#building-bonus-br');
 
@@ -724,8 +724,8 @@ class planet {
 			case 5: // Warehouse
 				title = translate['planet-ui']['storage'];
 				icon = translate['planet-ui']['min&met'];
-				value = GetBetterUnit(mineralStorageBase,'t') + "/" + GetBetterUnit(metalsStorageBase,'t') + translate['planet-ui']['total']; 
-				valuep1 = ' (+ ' + GetBetterUnit(mineralStorageBase1 - mineralStorageBase,'t') + "/+ " +  GetBetterUnit(metalsStorageBase1 - metalsStorageBase,'t')
+				value = GetBetterUnit(mineralStorageBase,'t') + '/' + GetBetterUnit(metalsStorageBase,'t') + translate['planet-ui']['total']; 
+				valuep1 = ' (+ ' + GetBetterUnit(mineralStorageBase1 - mineralStorageBase,'t') + '/+ ' +  GetBetterUnit(metalsStorageBase1 - metalsStorageBase,'t')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				ui.hide('#building-bonus-br');
 				break;
@@ -761,7 +761,7 @@ class planet {
 			default:
 		}
 
-		if(planetData.Buildings[id]==0 && value != "") { value = "0"; } // If lvl, we set to 0
+		if(planetData.Buildings[id]==0 && value != '') { value = '0'; } // If lvl, we set to 0
 
 		$('#building-bonus-title').html(title);
 		$('#building-bonus-icon').html(icon);
@@ -784,7 +784,7 @@ class planet {
 
 		planet.buildPanel = -1;
 
-		ui.closeTab("#building-area");
+		ui.closeTab('#building-area');
 	}
 
 	/**
@@ -799,17 +799,17 @@ class planet {
 		if(build < 0 || build > globalConst.buildingNumber) { return; }
 
 		let retour = {
-			aluminium: 	Math.round(buildCost["aluminium"][build][0]*Math.pow(level,2) +		buildCost["aluminium"][build][1]*level + 	buildCost["aluminium"][build][2]),
-			iron: 		Math.round(buildCost["iron"][build][0]*Math.pow(level,2) +			buildCost["iron"][build][1]*level + 		buildCost["iron"][build][2]),
-			copper: 	Math.round(buildCost["copper"][build][0]*Math.pow(level,2) + 		buildCost["copper"][build][1]*level + 		buildCost["copper"][build][2]),
-			titanium: 	Math.round(buildCost["titanium"][build][0]*Math.pow(level,2) + 		buildCost["titanium"][build][1]*level + 	buildCost["titanium"][build][2]),
-			time: 				   buildCost["time"][build][0]*Math.pow(level,2) + 			buildCost["time"][build][1]*level + 		buildCost["time"][build][2],
-			energy: 	Math.round(Math.pow(buildCost["energy"][build][0]*level,2) + 		buildCost["energy"][build][1]*level + 		buildCost["energy"][build][2]),
-			energy_difference: Math.round(Math.pow(buildCost["energy"][build][0]*level,2) + buildCost["energy"][build][1]*level +       buildCost["energy"][build][2] 
-			                        - (Math.pow(buildCost["energy"][build][0]*(level-1),2) + buildCost["energy"][build][1]*(level-1) +   buildCost["energy"][build][2])),
-			habitants:  Math.round(buildCost["habitants"][build][0]*Math.pow(level,2) +		buildCost["habitants"][build][1]*level + 	buildCost["habitants"][build][2]),
-			habitants_difference: Math.round(buildCost["habitants"][build][0]*Math.pow(level,2) +	buildCost["habitants"][build][1]*level + 	buildCost["habitants"][build][2]
-				                         - (buildCost["habitants"][build][0]*Math.pow((level-1),2) +	buildCost["habitants"][build][1]*(level-1) + buildCost["habitants"][build][2])),
+			aluminium: 	Math.round(buildCost['aluminium'][build][0]*Math.pow(level,2) +		buildCost['aluminium'][build][1]*level + 	buildCost['aluminium'][build][2]),
+			iron: 		Math.round(buildCost['iron'][build][0]*Math.pow(level,2) +			buildCost['iron'][build][1]*level + 		buildCost['iron'][build][2]),
+			copper: 	Math.round(buildCost['copper'][build][0]*Math.pow(level,2) + 		buildCost['copper'][build][1]*level + 		buildCost['copper'][build][2]),
+			titanium: 	Math.round(buildCost['titanium'][build][0]*Math.pow(level,2) + 		buildCost['titanium'][build][1]*level + 	buildCost['titanium'][build][2]),
+			time: 				   buildCost['time'][build][0]*Math.pow(level,2) + 			buildCost['time'][build][1]*level + 		buildCost['time'][build][2],
+			energy: 	Math.round(Math.pow(buildCost['energy'][build][0]*level,2) + 		buildCost['energy'][build][1]*level + 		buildCost['energy'][build][2]),
+			energy_difference: Math.round(Math.pow(buildCost['energy'][build][0]*level,2) + buildCost['energy'][build][1]*level +       buildCost['energy'][build][2] 
+			                        - (Math.pow(buildCost['energy'][build][0]*(level-1),2) + buildCost['energy'][build][1]*(level-1) +   buildCost['energy'][build][2])),
+			habitants:  Math.round(buildCost['habitants'][build][0]*Math.pow(level,2) +		buildCost['habitants'][build][1]*level + 	buildCost['habitants'][build][2]),
+			habitants_difference: Math.round(buildCost['habitants'][build][0]*Math.pow(level,2) +	buildCost['habitants'][build][1]*level + 	buildCost['habitants'][build][2]
+				                         - (buildCost['habitants'][build][0]*Math.pow((level-1),2) +	buildCost['habitants'][build][1]*(level-1) + buildCost['habitants'][build][2])),
 		};
 
 		if(level == 1) {
@@ -824,13 +824,13 @@ class planet {
 	 * Go to previous planet
 	 */
 	static prev() {
-		socket.emit("planet-ask-data-prev", userData);
+		socket.emit('planet-ask-data-prev', userData);
 	}
 	/**
 	 * Go to next planet
 	 */
 	static next() {
-		socket.emit("planet-ask-data-next", userData);
+		socket.emit('planet-ask-data-next', userData);
 	}
 
 	/**
@@ -850,8 +850,8 @@ class planet {
 		document.getElementById('planet-other-address-data').innerText = units.planetTarget;
 
 		if(pData !== undefined) {
-			if(pData.ally == "") {
-				document.getElementById('planet-other-ally-data').innerText = "Aucune alliance";
+			if(pData.ally == '') {
+				document.getElementById('planet-other-ally-data').innerText = 'Aucune alliance';
 			} else {
 				document.getElementById('planet-other-ally-data').innerText = pData.ally;
 			}
@@ -860,21 +860,21 @@ class planet {
 			document.getElementById('planet-other-planet-data').innerText =  pData.name;
 			document.getElementById('planet-other-points-data').innerText =  pData.points;
 
-			document.getElementById('planet-other-planet').style.display = "inline";
-			document.getElementById('planet-other-points').style.display = "inline";
+			document.getElementById('planet-other-planet').style.display = 'inline';
+			document.getElementById('planet-other-points').style.display = 'inline';
 		} else {
-			document.getElementById('planet-other-ally-data').innerText = "Aucune alliance";
-			document.getElementById('planet-other-player-data').innerText = "Aucun joueur";
-			document.getElementById('planet-other-planet').style.display = "none";
-			document.getElementById('planet-other-points').style.display = "none";
+			document.getElementById('planet-other-ally-data').innerText = 'Aucune alliance';
+			document.getElementById('planet-other-player-data').innerText = 'Aucun joueur';
+			document.getElementById('planet-other-planet').style.display = 'none';
+			document.getElementById('planet-other-points').style.display = 'none';
 		}
 
 		if(units.planetTarget.split('S').length == 2) {
-			document.getElementById('planet-other-ally').style.display = "none";
-			document.getElementById('planet-other-player').style.display = "none";
+			document.getElementById('planet-other-ally').style.display = 'none';
+			document.getElementById('planet-other-player').style.display = 'none';
 		} else {
-			document.getElementById('planet-other-ally').style.display = "inline";
-			document.getElementById('planet-other-player').style.display = "inline";
+			document.getElementById('planet-other-ally').style.display = 'inline';
+			document.getElementById('planet-other-player').style.display = 'inline';
 		}
 
 		//@TODO: Add last reports
@@ -887,7 +887,7 @@ class planet {
 			ui.chat = ui.mapChat;
 		}
 
-		ui.hide("#hud-top");
+		ui.hide('#hud-top');
 		ui.hide('#hud-map');
 
 		ui.hide('#planet-current');
