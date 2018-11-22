@@ -401,7 +401,11 @@ class planet {
 			},timeBeforeEndBuild + 1000);
 		}
 
-		$('.building-list-active').removeClass('building-list-active');
+		let Elts = document.querySelectorAll('.building-list-active');
+		for(let i=0; i<Elts.length; i++) {
+			Elts[i].classList.remove('building-list-active');
+		}
+
 		if(planetData.nextBuilding > -1 && planetData.nextBuilding < 14) {
 			$('#'+ buildingsNames[planetData.nextBuilding]).addClass('building-list-active');
 		}

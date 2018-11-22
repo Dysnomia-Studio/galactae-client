@@ -130,6 +130,7 @@ class ui {
 			socket.emit('daily-bonus',{user: userData, choice: choice});
 			ui.closeTab("#day-bonus");
 		});
+		
 		document.getElementById("day-bonus-later").addEventListener('click', function() {
 			ui.closeTab("#day-bonus");
 		});
@@ -138,12 +139,7 @@ class ui {
 		let DOMElts = document.querySelectorAll('.ranks-ul li');
 		for(let i=0; i<DOMElts.length; i++) {
 			DOMElts[i].addEventListener('click', function() {
-				let activeElts = document.querySelectorAll('.ranks-ul .ul-choice-line-li-active');
-				for(let elt=0; elt<activeElts.length; elt++) {
-					activeElts[elt].classList.remove("ul-choice-line-li-active");
-				}
-
-				this.classList.add("ul-choice-line-li-active"); // Activer l'onglet cliqué
+				ui.toggleClass('.ranks-ul .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
 				document.getElementById('hud-ranks-frame').src = "ranks.php?type=" + this.getAttribute("choice");
 			});
@@ -348,6 +344,15 @@ class ui {
 		return ((" " + elt.className + " ").replace(/[\n\t]/g, " ").indexOf(" " + className +" ") > -1);
 	}
 
+	static toggleClass(selector, className, newElt) {
+		let activeElts = document.querySelectorAll(selector);
+		for(let elt=0; elt<activeElts.length; elt++) {
+			activeElts[elt].classList.remove(className);
+		}
+
+		newElt.classList.add(className);
+	}
+
 	/**
 	 * Update the bottom button display depending on current opened windows
 	 */
@@ -481,7 +486,7 @@ class ui {
 			} else {
 				ui.show('#hud-fleet');
 				
-				$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
+				ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', document.getElementById(elt + '-button'));
 
 				ui.hide('#fleet-orbit');
 				ui.hide('#fleet-build');
@@ -490,7 +495,6 @@ class ui {
 				ui.fleet = true;
 
 				ui.show("#" + elt);
-				$("#" + elt + "-button").addClass("ul-choice-line-li-active");
 
 				ui.updateBottom();
 			}
@@ -531,8 +535,8 @@ class ui {
 		ui.bonusStreak = 0 + streak; 
 		ui.bonusStreakBest = 0 + best;
 
-		$('#day-bonus-current').html(streak);
-		$('#day-bonus-best').html(best);
+		document.getElementById('day-bonus-current').innerHTML = streak;
+		document.getElementById('day-bonus-best').innerHTML = best;
 
 		// What's the bonus today ?
 		streak=streak%30;
@@ -562,17 +566,13 @@ class ui {
 
 		desc+= "</tr>";
 
-		$('#day-bonus-desc').html(desc);
+		document.getElementById('day-bonus-desc').innerHTML = desc;
 		ui.show('#day-bonus');
 
 		let DOMElts = document.querySelectorAll('day-bonus-desc td');
 		for(let elt=0; elt<DOMElts.length; elt++) {
 			DOMElts[elt].addEventListener('click', function() {
-				let DOMEltList = document.querySelectorAll('#day-bonus-desc .day-bonus-active');
-				for(let elt=0; elt<DOMEltList.length; elt++) {
-					DOMEltList[elt].classList.remove("day-bonus-active");
-				}
-				this.classList.add("day-bonus-active"); // Activer l'onglet cliqué
+				ui.toggleClass('#day-bonus-desc .day-bonus-active', 'day-bonus-active', this);
 			});
 		}
 

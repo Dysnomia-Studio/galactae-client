@@ -104,8 +104,7 @@ class units {
 		$(".fleet-ul1 li").click(function() {
 			if(preventFleetHUDClosing) { return; }
 
-			$(".fleet-ul1 .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
-			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
+			ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
 			if($(this).attr('id')=="fleet-build-button") {
 				ui.show("#fleet-build");
@@ -137,8 +136,7 @@ class units {
 		$("#fleet-build-choice li").click(function() {
 			if(preventFleetHUDClosing) { return; }
 
-			$("#fleet-build-choice .ul-choice-line-li-active").removeClass("ul-choice-line-li-active"); //Retirer les classes actives
-			$(this).addClass("ul-choice-line-li-active"); // Activer l'onglet cliqué
+			ui.toggleClass('#fleet-build-choice .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
 			units.drawMain($(this).attr('shipType'));
 		});
@@ -487,14 +485,7 @@ class units {
 				DOMElts[i].addEventListener('click', function() {
 					if(preventFleetHUDClosing) { return; }
 
-					// Remove existing active class
-					let DOMEltsClasses = document.querySelectorAll('#fleet-build-list .fleet-build-list-active');
-					for(let j=0; j<DOMEltsClasses.length; j++) {
-						DOMEltsClasses[j].classList.remove('fleet-build-list-active');
-					}
-
-					// Add active class
-					this.classList.add('fleet-build-list-active');
+					ui.toggleClass('#fleet-build-list .fleet-build-list-active', 'fleet-build-list-active', this);
 
 					// Select unit
 					units.selectUnit(this.id);
@@ -1539,8 +1530,8 @@ class units {
 		units.currFleet = $($('.map-move-panel-list-active')[0]).attr('id');
 
 		$('#map-move-panel-list ul li').click(function() {
-			$('.map-move-panel-list-active').removeClass('map-move-panel-list-active');
-			$(this).addClass('map-move-panel-list-active');	
+			ui.toggleClass('.map-move-panel-list-active', 'map-move-panel-list-active', this);
+
 			units.currFleet = $(this).attr('id');
 
 			units.updateMovePanel();
