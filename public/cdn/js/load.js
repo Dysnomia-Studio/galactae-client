@@ -120,13 +120,13 @@ ready(function() {
 	            serviceWorker.addEventListener('statechange', function (e) {
 	                if(navigator.serviceWorker.controller !== null) {
 						navigator.serviceWorker.controller.postMessage({ change: document.getElementById('game-version').innerText !== localStorage.gameVersion });
-						localStorage.gameVersion = document.getElementBy('game-version').innerText;
+						localStorage.gameVersion = document.getElementById('game-version').innerText;
 	                }
 	            });
 
                 if(navigator.serviceWorker.controller !== null) {
 					navigator.serviceWorker.controller.postMessage({ change: document.getElementById('game-version').innerText !== localStorage.gameVersion });
-					localStorage.gameVersion = document.getElementBy('game-version').innerText;
+					localStorage.gameVersion = document.getElementById('game-version').innerText;
                 }
 	        }
 		}, function(err) {
