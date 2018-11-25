@@ -218,17 +218,17 @@ class planet {
 	 */
 	static ResourcesDrawUpdate() {
 		// Top left
-		$('#population_nmb').html(GetBetterUnit(habProd - habCons));
-		$('#research_nmb').html(GetBetterUnit(researchProd,'/h'));
-		$('#moral_nmb').html(50+'%');
+		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd - habCons);
+		document.getElementById('research_nmb').innerHTML = GetBetterUnit(researchProd,'/h');
+		document.getElementById('moral_nmb').innerHTML = 50+'%';
 
 		//Top right
-		$('#minerals_nmb').html(GetBetterUnit(planetData.resources[0],'t',mineralStorageBase));
-		$('#he_nmb').html(GetBetterUnit(planetData.resources[1],'t',storageHelium));
-		$('#fe_nmb').html(GetBetterUnit(planetData.resources[2],'t',metalsStorageBase*ratio.ironRatio));
-		$('#al_nmb').html(GetBetterUnit(planetData.resources[3],'t',metalsStorageBase*ratio.aluRatio));
-		$('#cu_nmb').html(GetBetterUnit(planetData.resources[4],'t',metalsStorageBase*ratio.copperRatio));
-		$('#ti_nmb').html(GetBetterUnit(planetData.resources[5],'t',metalsStorageBase*ratio.titanRatio));
+		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(planetData.resources[0],'t',mineralStorageBase);
+		document.getElementById('he_nmb').innerHTML = GetBetterUnit(planetData.resources[1],'t',storageHelium);
+		document.getElementById('fe_nmb').innerHTML = GetBetterUnit(planetData.resources[2],'t',metalsStorageBase*ratio.ironRatio);
+		document.getElementById('al_nmb').innerHTML = GetBetterUnit(planetData.resources[3],'t',metalsStorageBase*ratio.aluRatio);
+		document.getElementById('cu_nmb').innerHTML = GetBetterUnit(planetData.resources[4],'t',metalsStorageBase*ratio.copperRatio);
+		document.getElementById('ti_nmb').innerHTML = GetBetterUnit(planetData.resources[5],'t',metalsStorageBase*ratio.titanRatio);
 	}
 
 	/**
@@ -300,7 +300,7 @@ class planet {
 
 		// Buildings Levels
 		for(let i=0; i<14; i++) {
-			$('#lvl-'+ buildingsNames[i]).html(planetData.Buildings[i]);
+			document.getElementById('lvl-'+ buildingsNames[i]).innerHTML = planetData.Buildings[i];
 		}
 
 		// Building Production (tooltips)
@@ -323,60 +323,60 @@ class planet {
 		}
 
 
-		$('#minerals-cap').html(GetBetterUnit(mineralStorageBase,'t'));
-		$('#minerals-prod').html(GetBetterUnit(mineralProdBaseTemp,'t/h'));
-		$('#minerals-cons').html(GetBetterUnit(metalProdBaseTemp,'t/h'));
+		document.getElementById('minerals-cap').innerHTML = GetBetterUnit(mineralStorageBase,'t');
+		document.getElementById('minerals-prod').innerHTML = GetBetterUnit(mineralProdBaseTemp,'t/h');
+		document.getElementById('minerals-cons').innerHTML = GetBetterUnit(metalProdBaseTemp,'t/h');
 
 		// Helium-3
-		$('#he-cap').html(GetBetterUnit(storageHelium,'t'));
+		document.getElementById('he-cap').innerHTML = GetBetterUnit(storageHelium,'t');
 		if(planetData.resources[1]>=storageHelium) {
-			$('#he-prod').html(GetBetterUnit(0,'t/h'));
+			document.getElementById('he-prod').innerHTML = GetBetterUnit(0,'t/h');
 		} else {
-			$('#he-prod').html(GetBetterUnit(heliumProdBase,'t/h'));
+			document.getElementById('he-prod').innerHTML = GetBetterUnit(heliumProdBase,'t/h');
 		}
 		// Iron
-		$('#fe-cap').html(GetBetterUnit(metalsStorageBase*ratio.ironRatio,'t'));		
+		document.getElementById('fe-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.ironRatio,'t');		
 		if(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio) {
-			$('#fe-prod').html(GetBetterUnit(0,'t/h'));
+			document.getElementById('fe-prod').innerHTML = GetBetterUnit(0,'t/h');
 		} else {
-			$('#fe-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.ironRatio,'t/h'));
+			document.getElementById('fe-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.ironRatio,'t/h');
 		}
-		$('#fe-variety').html(GetBetterUnit(ratio.ironRatio*100,'%'));
+		document.getElementById('fe-variety').innerHTML = GetBetterUnit(ratio.ironRatio*100,'%');
 		// Aluminium
-		$('#al-cap').html(GetBetterUnit(metalsStorageBase*ratio.aluRatio,'t'));
+		document.getElementById('al-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.aluRatio,'t');
 		if(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) {
-			$('#al-prod').html(GetBetterUnit(0,'t/h'));
+			document.getElementById('al-prod').innerHTML = GetBetterUnit(0,'t/h');
 		} else {
-			$('#al-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.aluRatio,'t/h'));
+			document.getElementById('al-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.aluRatio,'t/h');
 		}
-		$('#al-variety').html(GetBetterUnit(ratio.aluRatio*100,'%'));
+		document.getElementById('al-variety').innerHTML = GetBetterUnit(ratio.aluRatio*100,'%');
 		// Copper
-		$('#cu-cap').html(GetBetterUnit(metalsStorageBase*ratio.copperRatio,'t'));
+		document.getElementById('cu-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.copperRatio,'t');
 		if(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) {
-			$('#cu-prod').html(GetBetterUnit(0,'t/h'));
+			document.getElementById('cu-prod').innerHTML = GetBetterUnit(0,'t/h');
 		} else {
-			$('#cu-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.copperRatio,'t/h'));
+			document.getElementById('cu-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.copperRatio,'t/h');
 		}
-		$('#cu-variety').html(GetBetterUnit(ratio.copperRatio*100,'%'));
+		document.getElementById('cu-variety').innerHTML = GetBetterUnit(ratio.copperRatio*100,'%');
 		// Titanium
-		$('#ti-cap').html(GetBetterUnit(metalsStorageBase*ratio.titanRatio,'t'));
+		document.getElementById('ti-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.titanRatio,'t');
 		if(planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) {	
-			$('#ti-prod').html(GetBetterUnit(0,'t/h'));
+			document.getElementById('ti-prod').innerHTML = GetBetterUnit(0,'t/h');
 		} else {
-			$('#ti-prod').html(GetBetterUnit(metalProdBaseTemp*ratio.titanRatio,'t/h'));
+			document.getElementById('ti-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.titanRatio,'t/h');
 		}
-		$('#ti-variety').html(GetBetterUnit(ratio.titanRatio*100,'%'));
+		document.getElementById('ti-variety').innerHTML = GetBetterUnit(ratio.titanRatio*100,'%');
 
 
-		$('#electricity_nmb').html(GetBetterUnit(energyProd-energyCons,'Wh',0));
-		$('#electricity-available').html(GetBetterUnit(energyProd-energyCons,'Wh',0));
-		$('#electricity-used').html(GetBetterUnit(energyCons,'Wh'));
-		$('#electricity-total').html(GetBetterUnit(energyProd,'Wh'));
+		document.getElementById('electricity_nmb').innerHTML = GetBetterUnit(energyProd-energyCons,'Wh',0);
+		document.getElementById('electricity-available').innerHTML = GetBetterUnit(energyProd-energyCons,'Wh',0);
+		document.getElementById('electricity-used').innerHTML = GetBetterUnit(energyCons,'Wh');
+		document.getElementById('electricity-total').innerHTML = GetBetterUnit(energyProd,'Wh');
 
-		$('#population_nmb').html(GetBetterUnit(habProd-habCons,'',0));
-		$('#population-available').html(GetBetterUnit(habProd-habCons,'',0));
-		$('#population-used').html(GetBetterUnit(habCons,''));
-		$('#population-total').html(GetBetterUnit(habProd,''));	
+		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd-habCons,'',0);
+		document.getElementById('population-available').innerHTML = GetBetterUnit(habProd-habCons,'',0);
+		document.getElementById('population-used').innerHTML = GetBetterUnit(habCons,'');
+		document.getElementById('population-total').innerHTML = GetBetterUnit(habProd,'');	
 	}
 	/*
 	* Draws if buildings can be build.
@@ -407,7 +407,7 @@ class planet {
 		}
 
 		if(planetData.nextBuilding > -1 && planetData.nextBuilding < 14) {
-			$('#'+ buildingsNames[planetData.nextBuilding]).addClass('building-list-active');
+			document.getElementById(buildingsNames[planetData.nextBuilding]).classList.add('building-list-active');
 		}
 	}
 	/*
@@ -569,7 +569,7 @@ class planet {
 		}
 
 		 //Next level cost
-		 let cost;
+		let cost;
 		if(planetData.nextBuilding==id) { cost = planet.getBuildCost(id,planetData.Buildings[id] + 2); } 
 		else							{ cost = planet.getBuildCost(id,planetData.Buildings[id] + 1); }
 
@@ -577,12 +577,11 @@ class planet {
 		let max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
 
 		/* Planet Construction Tab */
-		$('#building-name').text(translate.buildings[id].name);
-		$('#building-level').text(translate.messages['LEVEL'] + ' ' +  planetData.Buildings[id]);
-		$('#building-desc').text(translate.buildings[id].desc);
+		document.getElementById('building-name').innerText = translate.buildings[id].name;
+		document.getElementById('building-level').innerText = translate.messages['LEVEL'] + ' ' +  planetData.Buildings[id];
+		document.getElementById('building-desc').innerText = translate.buildings[id].desc;
 		ui.show('#building-area');
-		$('#building-img').attr('src',cdnURL+'img/buildings/desc/' + translate.buildings[id].id + '.jpg');
-		$('#building-area input').id=id;
+		document.getElementById('building-img').src = cdnURL+'img/buildings/desc/' + translate.buildings[id].id + '.jpg';
 		ui.show('#building-cost');
 
 		/* Ressources */
@@ -597,7 +596,7 @@ class planet {
 				ui.hide('#' + costs[i][0]);
 			} else {
 				ui.show('#' + costs[i][0], 'inline-block');
-				$('#'+costs[i][0]+'-val').html(GetBetterUnit(costs[i][1],'t',planetData.resources[i+2]));
+				document.getElementById(costs[i][0]+'-val').innerHTML = GetBetterUnit(costs[i][1],'t',planetData.resources[i+2]);
 			}
 		}
 		/* Calc max wait time */
@@ -608,52 +607,52 @@ class planet {
 			ui.hide('#building-cost-energy');
 		} else {
 			ui.show('#building-cost-energy', 'inline-block');
-			$('#building-cost-energy-val').html(
+			document.getElementById('building-cost-energy-val').innerHTML =
 				GetBetterUnit(cost.energy,'Wh (+' + 
 					GetBetterUnit(cost.energy_difference,'Wh',energyProd-energyCons) + ')',
-					cost.energy + energyProd - energyCons - cost.energy_difference));
+					cost.energy + energyProd - energyCons - cost.energy_difference);
 		}
 		/* Habitants */
 		if(cost.habitants==0) {
 			ui.hide('#building-cost-population');
 		} else {
 			ui.show('#building-cost-population', 'inline-block');
-			$('#building-cost-population-val').html(
+			document.getElementById('building-cost-population-val').innerHTML =
 				GetBetterUnit(cost.habitants,' (+' + 
 					GetBetterUnit(cost.habitants_difference,'',habProd-habCons) + ')',
-					cost.habitants + habProd - habCons - cost.habitants_difference));
+					cost.habitants + habProd - habCons - cost.habitants_difference);
 		}
 		/* Temps */
 		if(id > 8) { // Faster if shipyard have higher lvl
 			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
 		}
-		$('#building-cost-time-val').html(getStringTime(cost.time));
+		document.getElementById('building-cost-time-val').innerHTML = getStringTime(cost.time);
 
 		/* Bouton upgrade ou message */
 		// Defaut Value
 		if(planetData.Buildings[id]==0) {
-			$('#building-upgrade').val(translate.messages['BUILD']);
+			document.getElementById('building-upgrade').value = translate.messages['BUILD'];
 		} else {
-			$('#building-upgrade').val(translate.messages['UPGRADE']);
+			document.getElementById('building-upgrade').value = translate.messages['UPGRADE'];
 		}
-		$('#building-upgrade').attr('onclick','');
+		document.getElementById('building-upgrade').setAttribute('onclick','');
 		ui.hide('#building-upgrade');
 		ui.show('#building-message', 'inline-block');
 
 		// Edits
 		if(max) { // Max Level
-			$('#building-message').html(translate.messages['UPGRADE_MAX']);
+			document.getElementById('building-message').innerHTML = translate.messages['UPGRADE_MAX'];
 			ui.hide('#building-cost');
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			let dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-				$('#building-message').html(translate.messages['BUILD_FINISH_TODAY_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>');
+				document.getElementById('building-message').innerHTML = translate.messages['BUILD_FINISH_TODAY_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-				$('#building-message').html(translate.messages['BUILD_FINISH_TOMORROW_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>');
+				document.getElementById('building-message').innerHTML = translate.messages['BUILD_FINISH_TOMORROW_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 			} else {
-				$('#building-message').html(translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>');
+				document.getElementById('building-message').innerHTML = translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 			}
 
 			planet.buildPanelInterval = setTimeout(function() {
@@ -664,25 +663,25 @@ class planet {
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
-				$('#building-message').html(translate.messages['ENOUGH_RESOURCES_TODAY_AT'] + ' ' + dateEnd.toLocaleTimeString());
+				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_TODAY_AT'] + ' ' + dateEnd.toLocaleTimeString();
 			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
-				$('#building-message').html(translate.messages['ENOUGH_RESOURCES_TOMORROW_AT'] + ' ' + dateEnd.toLocaleTimeString());
+				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_TOMORROW_AT'] + ' ' + dateEnd.toLocaleTimeString();
 			} else {
-				$('#building-message').html(translate.messages['ENOUGH_RESOURCES_THE'] + ' ' + dateEnd.toLocaleDateString() + ' ' + translate.messages['ENOUGH_RESOURCES_AT'] + ' ' + dateEnd.toLocaleTimeString());
+				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_THE'] + ' ' + dateEnd.toLocaleDateString() + ' ' + translate.messages['ENOUGH_RESOURCES_AT'] + ' ' + dateEnd.toLocaleTimeString();
 			}
 
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
 		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
-			$('#building-message').html(translate.messages['ANOTHER_IN_BUILD']);
+			document.getElementById('building-message').innerHTML = translate.messages['ANOTHER_IN_BUILD'];
 			planet.buildPanelInterval = setTimeout(function() {
 				planet.buildPanelOpen(id);
 			},planetData.nextBuildingTime - (Date.now() + planet.deltaNow + 1000));
 		} else {
 			ui.hide('#building-message');
 			ui.show('#building-upgrade');
-			$('#building-upgrade').attr('onclick','planet.build('+id+')');
+			document.getElementById('building-upgrade').setAttribute('onclick','planet.build('+id+')');
 		}
 
 		// Bonus
@@ -763,12 +762,12 @@ class planet {
 
 		if(planetData.Buildings[id]==0 && value != '') { value = '0'; } // If lvl, we set to 0
 
-		$('#building-bonus-title').html(title);
-		$('#building-bonus-icon').html(icon);
+		document.getElementById('building-bonus-title').innerHTML = title;
+		document.getElementById('building-bonus-icon').innerHTML = icon;
 		if(max || max2) {
-			$('#building-bonus-val').html(value);
+			document.getElementById('building-bonus-val').innerHTML = value;
 		} else {
-			$('#building-bonus-val').html(value + valuep1);
+			document.getElementById('building-bonus-val').innerHTML = value + valuep1;
 		}
 	}
 

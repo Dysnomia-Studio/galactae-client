@@ -74,12 +74,11 @@ class chat {
 		// Translation
 		if((translate.messages[data.msg] !== undefined) && (translate.messages[data.msg] !== '')) { data.msg = translate.messages[data.msg]; }
 
-		let listElt = document.createElement('li'); 
-		listElt.innerHTML = '<span class="private-message">'+data.msg+'</span>';
+		let listElt = '<li><span class="private-message">'+data.msg+'</span></li>';
 
-		document.querySelector('#hud-chat-global .chat_logs').append(listElt);
-		document.querySelector('#hud-chat-trade .chat_logs').append(listElt);
-		document.querySelector('#hud-chat-ally .chat_logs').append(listElt);
+		document.querySelector('#hud-chat-global .chat_logs').innerHTML += listElt;
+		document.querySelector('#hud-chat-trade .chat_logs').innerHTML += listElt;
+		document.querySelector('#hud-chat-ally .chat_logs').innerHTML += listElt;
 
 		document.querySelector('#'+data.channel).scrollTop = document.querySelector('#'+data.channel+' .chat_logs').clientHeight;
 
@@ -99,14 +98,13 @@ class chat {
 		// Translation
 		if((translate.messages[msg] !== undefined) && (translate.messages[msg] !== '')) { msg = translate.messages[msg]; }
 
-		let listElt = document.createElement('li'); 
-		listElt.innerHTML = '<span class="system-message">'+msg+'</span>';
+		let listElt = '<li><span class="system-message">'+msg+'</span></li>';
 
-		document.querySelector('#hud-chat-global .chat_logs').append(listElt);
-		document.querySelector('#hud-chat-trade .chat_logs').append(listElt);
-		document.querySelector('#hud-chat-ally .chat_logs').append(listElt);
+		document.querySelector('#hud-chat-global .chat_logs').innerHTML += listElt;
+		document.querySelector('#hud-chat-trade .chat_logs').innerHTML += listElt;
+		document.querySelector('#hud-chat-ally .chat_logs').innerHTML += listElt;
 
-		document.querySelector('#'+data.channel).scrollTop = document.querySelector('#'+data.channel+' .chat_logs').clientHeight;
+		document.querySelector('#'+chatChannel).scrollTop = document.querySelector('#'+chatChannel+' .chat_logs').clientHeight;
 	}
 
 	static clickEvent(event) {

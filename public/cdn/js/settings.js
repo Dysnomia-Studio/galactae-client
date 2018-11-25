@@ -106,7 +106,9 @@ class settings {
 	 */
 	static get(settingName) {
 		let val;
-		if((val = getCookie('galactae_settings_' + settingName)) != '') {
+		if((val = getCookie('galactae_settings_' + settingName)) !== '') {
+			if(val === 'true') { val = true; }
+			if(val === 'false') { val = false; }
 			return val;
 		}
 		

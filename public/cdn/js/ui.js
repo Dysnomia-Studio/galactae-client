@@ -179,6 +179,13 @@ class ui {
 			});
 	}
 
+	static position(selector) {
+		return {
+			left: parseInt(window.getComputedStyle(document.querySelector(selector)).left.slice(0, -2)),
+			top: parseInt(window.getComputedStyle(document.querySelector(selector)).top.slice(0, -2))
+		};
+	}
+
 	/**
 	 * Update the page title (tab text)
 	 */
@@ -285,10 +292,10 @@ class ui {
 		}
 
 		// Planetes suivantes/precedente
-		if(e.which === KEYBOARD.LARROW && !(document.getElementById('chat_message') === document.activeElement)) { // Gauche
+		if(e.which === KEYBOARD.LARROW && document.getElementById('chat_message') !== document.activeElement) { // Gauche
 			planet.prev();
 		}
-		if(e.which === KEYBOARD.RARROW && !(document.getElementById('chat_message') === document.activeElement)) { // Droite
+		if(e.which === KEYBOARD.RARROW && document.getElementById('chat_message') !== document.activeElement) { // Droite
 			planet.next();
 		}
 

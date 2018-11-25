@@ -127,7 +127,7 @@ class Fleet {
 
 			min.speed = Fleet.slowerSpeed(curr.speed, min.speed);
 
-			if(min.engines[curr.tech] == undefined) {
+			if(min.engines[curr.tech] === undefined) {
 				min.engines[curr.tech] = 0;
 			}
 			min.engines[curr.tech] += curr.count;
@@ -145,11 +145,11 @@ class Fleet {
 	static getMinSupraSpeed(unitList) {
 		let min = {
 			speed: [],
-			engines: {}
+			engines: {},
 		};
 
 		for(let i=0; i<unitList.length; i++) {
-			if(unitList[i].shipType == 'SHIP_FIGHTER') { continue; } // Don't care about fighter they are carried
+			if(unitList[i].shipType === 'SHIP_FIGHTER') { continue; } // Don't care about fighter they are carried
 
 			let curr = Fleet.calcSupraSpeed(unitList[i]);
 
@@ -157,7 +157,7 @@ class Fleet {
 
 			min.speed = Fleet.slowerSpeed(curr.speed, min.speed);
 
-			if(min.engines[curr.tech] == undefined) {
+			if(min.engines[curr.tech] === undefined) {
 				min.engines[curr.tech] = 0;
 			}
 			min.engines[curr.tech] += curr.count;

@@ -54,8 +54,9 @@ class research {
 		});
 		
 		document.getElementById('hud-research').addEventListener('mousemove', function(e) {
-			if(ui.mouseStatus[1]==1) {
-				let pos = $('#hud-research').position();
+			if(ui.mouseStatus[1] === 1) {
+				let pos = ui.position('#hud-research');
+
 				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
 								pos.top + (e.pageY - researchPrevMouse[1])]);
 			}
@@ -128,14 +129,14 @@ class research {
 		if(research.zoom < RESEARCH_MIN_ZOOM) { research.zoom -= coef; return; }
 		if(research.zoom > RESEARCH_MAX_ZOOM) { research.zoom -= coef; return; }
 
-		let pos = $('#hud-research').position();
+		let pos = ui.position('#hud-research');
 		pos.left = ((pos.left - researchPrevMouse[0]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[0]*1.1;
 		pos.top = ((pos.top - researchPrevMouse[1]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[1]*1.1;
-		$('#hud-research').css('left',pos.left);
-		$('#hud-research').css('top' ,pos.top );
-				
-		$('#research-content').css('zoom',research.zoom);
-		$('#research-content').css('-moz-transform','scale(' + research.zoom + ')');
+		document.getElementById('hud-research').style.left = pos.left + 'px';
+		document.getElementById('hud-research').style.top = pos.top + 'px';
+		
+		document.getElementById('research-content').style.zoom = research.zoom; 
+		document.getElementById('research-content').style.MozTransform = 'scale(' + research.zoom + ')';
 	}
 
 	/**
@@ -165,15 +166,15 @@ class research {
 		// On centre sur la recherche courante
 		if(researchPos[planetData.currResearch] !== undefined) {
 			let newUIPos = [
-				$(document).width()/2  - researchPos[planetData.currResearch][0]*research.zoom,
-				$(document).height()/2 - researchPos[planetData.currResearch][1]*research.zoom
+				document.documentElement.clientWidth/2  - researchPos[planetData.currResearch][0]*research.zoom,
+				document.documentElement.clientHeight/2 - researchPos[planetData.currResearch][1]*research.zoom
 			];
 			research.moveUI(newUIPos);
 		}
 		// On affiche le panel de recherches
 		ui.show('#hud-research');
 		// On cache le chat et memorise son statut pour plus tard	
-		ui.researchChat = ($('#hud-chat').css('display')=='block');
+		ui.researchChat = (document.getElementById('hud-chat').style.display === 'block');
 		ui.closeTab('#hud-chat',false);
 		ui.chat = false;
 
@@ -189,17 +190,15 @@ class research {
 		if(parseInt(pos[1]) > 0) {
 			pos[1] = 0;
 		}
-		if(parseInt(pos[0]) < ($(document).width()-RESEARCH_DIV_SIZE*research.zoom)) {
-			pos[0] = $(document).width()-RESEARCH_DIV_SIZE*research.zoom;
+		if(parseInt(pos[0]) < (document.body.clientWidth-RESEARCH_DIV_SIZE*research.zoom)) {
+			pos[0] = document.body.clientWidth-RESEARCH_DIV_SIZE*research.zoom;
 		}
-		if(parseInt(pos[1]) < ($(document).height()-RESEARCH_DIV_SIZE*research.zoom)) {
-			pos[1] = $(document).height()-RESEARCH_DIV_SIZE*research.zoom;
+		if(parseInt(pos[1]) < (document.getElementById('planet').clientHeight-RESEARCH_DIV_SIZE*research.zoom)) {
+			pos[1] = document.getElementById('planet').clientHeight-RESEARCH_DIV_SIZE*research.zoom;
 		}
 
-		$('#hud-research').css({
-			left: pos[0],
-			top: pos[1]
-		});
+		document.getElementById('hud-research').style.left = pos[0] + 'px';
+		document.getElementById('hud-research').style.top = pos[1] + 'px';
 	}
 	/**
 	 * Draws research UI
@@ -300,15 +299,15 @@ class research {
 	static drawLink(child,parent) {
 		if(child=='' || parent=='') { return; }
 
-		if( !($('#'+child+'-node').length) || !($('#'+parent+'-node').length) ) { return; }
+		if( !(document.querySelectorAll('#'+child+'-node').length) || !(document.querySelectorAll('#'+parent+'-node').length) ) { return; }
 
-		let childPos = $('#' + child + '-node').position();
-		let parentPos = $('#' + parent + '-node').position();
+		let childPos = ui.position('#' + child + '-node');
+		let parentPos = ui.position('#' + parent + '-node');
 
-		let x1 = parseInt(childPos.left) + (parseInt($('#' + child + '-node').width())/2);
-		let y1 = parseInt(childPos.top) + (parseInt($('#' + child + '-node').height())/2);
-		let x2 = parseInt(parentPos.left) + (parseInt($('#' + parent + '-node').width())/2);
-		let y2 = parseInt(parentPos.top) + (parseInt($('#' + parent + '-node').height())/2);
+		let x1 = parseInt(childPos.left) + (parseInt(document.getElementById(child + '-node').clientWidth)/2);
+		let y1 = parseInt(childPos.top) + (parseInt(document.getElementById(child + '-node').clientHeight)/2);
+		let x2 = parseInt(parentPos.left) + (parseInt(document.getElementById(parent + '-node').clientWidth)/2);
+		let y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
 		let color; //default 
 
 		if(research.isSearched(parent)) { color = '#0EC6C6'; } 
@@ -321,7 +320,7 @@ class research {
 		newLine.setAttribute('y1',y1);
 		newLine.setAttribute('x2',x2);
 		newLine.setAttribute('y2',y2);
-		$('#research-links').append(newLine);
+		document.getElementById('research-links').append(newLine);
 	}
 	/**
 	 * Determines ability to research.
@@ -426,6 +425,6 @@ class research {
  			research.sync();
  		}
  		
- 		$('#'+planetData.currResearch+'-node .research-cost').html('<img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) +'/'+researchList[planetData.currResearch].cost);
+ 		document.querySelector('#'+planetData.currResearch+'-node .research-cost').innerHTML = '<img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) +'/'+researchList[planetData.currResearch].cost;
  	}
 }

@@ -43,14 +43,14 @@ class loadScreen {
 		if(loadCount === loadMax) { return; } // Not needed if loading is already hided
 
 		// Loading texts
-		if(title != '') {
+		if(title !== '') {
 			loadStatusArr[title] = true;
 
 			for(let i in loadStatusArr) {
-				if(loadStatusArr[i] == true) { continue; }
+				if(loadStatusArr[i] === true) { continue; }
 
 				ui.hide('.loading-overlay-bar-secondary');
-				if(i=='pictures') {
+				if(i === 'pictures') {
 					ui.show('.loading-overlay-bar-secondary');
 				}
 
