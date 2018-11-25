@@ -16,7 +16,7 @@ class notifications {
 	 * @param      {<type>}  options  Notification Options
 	 */
 	static notifyOnOS(txt,options={}) {
-		var notification;
+		let notification;
 
 		if (!('Notification' in window)) {
 			return; 
@@ -88,7 +88,7 @@ class notifications {
 	 * Draw or not "clear all" button
 	 */
 	static updateClearButtonDisplay() {
-		if(ui.notifCount == 0) {
+		if(ui.notifCount === 0) {
 			ui.hide('#notifications-closeAll');
 		} else {
 			ui.show('#notifications-closeAll');
@@ -127,9 +127,9 @@ class notifications {
 	 * @param      {<type>}  args    Notification arguments
 	 */
 	static notify(type, args={}) {
-		var title = '';
-		var osOpt = { icon: cdnURL + 'img/favicon.png' };
-		var desc = '';
+		let title = '';
+		let osOpt = { icon: cdnURL + 'img/favicon.png' };
+		let desc = '';
 
 		switch(type) {
 			case 'attack':
@@ -153,7 +153,7 @@ class notifications {
 				// Do nothing
 		}
 
-		if(osOpt.icon !== undefined && desc != '') {
+		if(osOpt.icon !== undefined && desc !== '') {
 			osOpt.body = desc;
 			notifications.notifyOnOS('Galactae: ' + title, osOpt);
 		}

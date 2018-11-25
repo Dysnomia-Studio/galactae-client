@@ -10,9 +10,9 @@ let connectTimeout = -1;
 function kick(msg,time=0,canBeCanceled=false) {
     let message;
 
-	if(msg!='' && translate.messages[msg] != undefined) {
+	if(msg !== '' && translate.messages[msg] !== undefined) {
         message = message = translate.messages[msg];
-    } else if(msg==undefined) {
+    } else if(msg === undefined) {
         message = '';
     } else {
         message = msg;
@@ -32,12 +32,22 @@ function kick(msg,time=0,canBeCanceled=false) {
 
 //get "GET"
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
+    if (!url) { 
+        url = window.location.href; 
+    }
+
+    name = name.replace(/[\[\]]/g, '\\$&')
+
     let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
+
+    if (!results) { 
+        return null;
+    }
+    if (!results[2]) { 
+        return '';
+    }
+
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
@@ -56,28 +66,28 @@ function GetBetterUnit(nmbr,unit='',max=0) {
 	let newnbr = nmbr;
 	let signe = false;
 
-	if(newnbr<0) {
+	if(newnbr < 0) {
 		newnbr = -newnbr;
 		signe = true;
 	}
 
-	while(newnbr>=1000) {
-		newnbr = ( newnbr / 1000 );
+	while(newnbr >= 1000) {
+		newnbr = newnbr/1000;
 		unitId++;
 	}
-	if(newnbr<0) { newnbr=0; }
+	if(newnbr < 0) { newnbr = 0; }
 	if(signe) {
 		newnbr = -newnbr;
 	}
 
     let end;
-	if(unitId==0) {
+	if(unitId === 0) {
 	   end = Math.round(newnbr)+unit;
 	} else { 
 	   end = (Math.round(newnbr*10)/10)+units[unitId]+unit;
 	}
 
-	if((nmbr>=max && max!=0) || nmbr<=0) {
+	if((nmbr >= max && max !== 0) || nmbr <= 0) {
 		end = '<span class="max-value">' + end + '</span>';
 	}
 
