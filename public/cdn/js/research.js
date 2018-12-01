@@ -391,7 +391,9 @@ class research {
 					typeof parents[i][0] === 'string') {
 
 				if(parents[i][0] === 'planet' && 
+					userData.planetlist !== undefined &&
 					userData.planetlist.length < parents[i][1]) {
+					
 					missingParents += ', ' + parents[i][1] + ' ' + translate.messages['PLANETS'];
 				} else { oneParentOK = true; }
 			}
