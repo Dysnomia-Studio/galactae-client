@@ -297,7 +297,7 @@ class research {
 	 * @param	  {string}  parent  The parent
 	 */
 	static drawLink(child,parent) {
-		if(child=='' || parent=='') { return; }
+		if(child === '' || parent === '' || typeof parent === 'object') { return; }
 
 		if( !(document.querySelectorAll('#'+child+'-node').length) || !(document.querySelectorAll('#'+parent+'-node').length) ) { return; }
 
@@ -332,18 +332,30 @@ class research {
 		let parents = researchList[key].parents;
 
 		for(let i=0; i<parents.length; i++) {
-			if(userData.research[parents[i]]==undefined) { userData.research[parents[i]]=0; } // No bug then
-			/**
-			 * Research Status:
-			 * 0  => Not Begin
-			 * >0 => In progress
-			 * -1 => Finished
-			 */
-			if(userData.research[parents[i]]!=-1 && parents[i]!='researchCenter') {
-				return false;
+			if(typeof parents[i] === 'string') {
+				if(userData.research[parents[i]] === undefined) { 
+					userData.research[parents[i]]=0; 
+				}
+
+				if(!research.isSearched(parents[i]) && parents[i]!='researchCenter') {
+					return false;
+				}
+			} else if(typeof parents[i] === 'object' &&
+					typeof parents[i][0] === 'number') {
+
+				if(planetData.Buildings[parents[i][0]] < parents[i][1]) {
+					return false;
+				}
+			} else if(typeof parents[i] === 'object' &&
+					typeof parents[i][0] === 'string') {
+
+				if(parents[i][0] === 'planet' && 
+					userData.planetlist.length < parents[i][1]) {
+					return false;
+				}
 			}
-			
 		}
+
 		return true;
 	}
 
@@ -359,24 +371,35 @@ class research {
 		let missingParents = '';
 
 		for(let i=0; i<parents.length; i++) {
-			if(userData.research[parents[i]]==undefined) { userData.research[parents[i]]=0; } // No bug then
-			/**
-			 * Research Status:
-			 * 0  => Not Begin
-			 * >0 => In progress
-			 * -1 => Finished
-			 */
-			if(userData.research[parents[i]]!=-1 && parents[i]!='researchCenter') {
-				if(missingParents!='') { missingParents+=','; }
-				missingParents += ' ' + translate['research'][parents[i]].name;
-			} else { // == -1 or parent is researchCenter
-				oneParentOK = true;
+			if(typeof parents[i] === 'string') {
+				if(userData.research[parents[i]] === undefined) { 
+					userData.research[parents[i]]=0; 
+				}
+
+				if(!research.isSearched(parents[i]) && parents[i]!='researchCenter') {
+					missingParents += ', ' + translate['research'][parents[i]].name;
+
+				} else { oneParentOK = true; }
+			} else if(typeof parents[i] === 'object' &&
+					typeof parents[i][0] === 'number') {
+
+				if(planetData.Buildings[parents[i][0]] < parents[i][1]) {
+					missingParents += ', ' + buildingsNames[parents[i][0]] + ' ' + translate.messages['LEVEL'] + ' ' + parents[i][1];
+
+				} else { oneParentOK = true; }
+			} else if(typeof parents[i] === 'object' &&
+					typeof parents[i][0] === 'string') {
+
+				if(parents[i][0] === 'planet' && 
+					userData.planetlist.length < parents[i][1]) {
+					missingParents += ', ' + parents[i][1] + ' ' + translate.messages['PLANETS'];
+				} else { oneParentOK = true; }
 			}
-			
 		}
+		
 
 		if(oneParentOK && parents.length>1) {
-			return translate['messages']['MISSING_PARENTS'] + ':' + missingParents;
+			return translate['messages']['MISSING_PARENTS'] + ':' + missingParents.substring(1);
 		}
 
 		return '???';

@@ -55,9 +55,10 @@ translate["messages"] = {
 	"CHAT_UNMUTED": "Vous pouvez de nouveau parler.",
 	"CHAT_MUTED_REASON": "pour la raison",
 	// Research
-	"MISSING_PARENTS": "Recherches parentes manquantes",
+	"MISSING_PARENTS": "Dépendances manquantes",
 	"ENDED_RESEARCH": "Recherche Terminée",
 	"NEEDED_RESEARCH_MISSING": "Il vous reste des technologies a decouvrir afin de creer ce vaisseau.",
+	"PLANETS": "planètes possédées",
 	// Fleets & Units
 	"BUILDING_UNIT_OK": "La flotte commence son expansion",
 	"SHIP_HAS_INVALID_PARTS": "Votre vaisseau a des composants invalides",

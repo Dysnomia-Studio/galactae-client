@@ -55,9 +55,10 @@ translate["messages"] = {
 	"CHAT_UNMUTED": "You've been unmuted",
 	"CHAT_MUTED_REASON": "for the reason",
 	// Research
-	"MISSING_PARENTS": "Recherches parentes manquantes",
+	"MISSING_PARENTS": "Missing dependancies",
 	"ENDED_RESEARCH": "Research unlocked",
 	"NEEDED_RESEARCH_MISSING": "You need to discover some technologies to create that ship.",
+	"PLANETS": "owned planets",
 	// Fleets & Units
 	"BUILDING_UNIT_OK": "Your fleet has begun expanding",
 	"SHIP_HAS_INVALID_PARTS": "Your ship has invalid components",
