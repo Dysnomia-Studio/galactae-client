@@ -384,7 +384,7 @@ class research {
 					typeof parents[i][0] === 'number') {
 
 				if(planetData.Buildings[parents[i][0]] < parents[i][1]) {
-					missingParents += ', ' + buildingsNames[parents[i][0]] + ' ' + translate.messages['LEVEL'] + ' ' + parents[i][1];
+					missingParents += ', ' + translate['buildings'][parents[i][0]].name + ' ' + translate.messages['LEVEL'] + ' ' + parents[i][1];
 
 				} else { oneParentOK = true; }
 			} else if(typeof parents[i] === 'object' &&
