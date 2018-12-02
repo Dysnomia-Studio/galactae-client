@@ -20,6 +20,12 @@ em {
 	font-style: normal;
 	color: #0EC6C6;
 }
+.text-center {
+	text-align: center;
+}
+.text-justify {
+	text-align: justify;
+}
 
 /**
  * Animations
@@ -1689,7 +1695,6 @@ select, input, summary {
 	min-height: 50px;
 }
 .research-desc {
-	text-align: justify;
     display: inline-block;
 }
 .research-bottom {
