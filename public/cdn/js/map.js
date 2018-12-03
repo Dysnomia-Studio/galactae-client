@@ -18,6 +18,9 @@ const MAP_STAR_SIZE_RATIO = 0.08;
 const MAP_MIN_ZOOM = 0.4;
 const MAP_MAX_ZOOM = 1.75;
 
+const MAP_BG_WIDTH = 3840;
+const MAP_BG_HEIGHT = 2160;
+
 let mapPrevMouse = [0,0];
 let moving = false;
 
@@ -200,11 +203,11 @@ class map {
 		if(parseInt(pos[1]) > 0) {
 			pos[1] = 0;
 		}
-		if(parseInt(pos[0]) < (document.getElementById('planet').clientWidth-MAP_SIZE_WIDTH*map.zoom)) {
-			pos[0] = document.getElementById('planet').clientWidth-MAP_SIZE_WIDTH*map.zoom;
+		if(parseInt(pos[0]) < (document.documentElement.clientWidth-MAP_SIZE_WIDTH*map.zoom)) {
+			pos[0] = document.documentElement.clientWidth-MAP_SIZE_WIDTH*map.zoom;
 		}
-		if(parseInt(pos[1]) < (document.getElementById('planet').clientHeight-MAP_SIZE_HEIGHT*map.zoom)) {
-			pos[1] = document.getElementById('planet').clientHeight-MAP_SIZE_HEIGHT*map.zoom;
+		if(parseInt(pos[1]) < (document.documentElement.clientHeight-MAP_SIZE_HEIGHT*map.zoom)) {
+			pos[1] = document.documentElement.clientHeight-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
 		let translated = false;
@@ -230,18 +233,18 @@ class map {
 
 		// At borders ?
 		let coords = [];
-		coords[0] = Math.floor((document.getElementById('planet').clientWidth/2 - pos[0])/MAP_SIZE_WIDTH*10);
-		coords[1] = Math.floor((document.getElementById('planet').clientHeight/2 - pos[1])/MAP_SIZE_HEIGHT*10);
+		coords[0] = Math.floor((document.documentElement.clientWidth/2 - pos[0])/MAP_SIZE_WIDTH*10);
+		coords[1] = Math.floor((document.documentElement.clientHeight/2 - pos[1])/MAP_SIZE_HEIGHT*10);
 
 		let topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
 		let bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
 		let leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
 		let rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
 
-		let top =  coords[0] === 0 || (topDist * 2 < document.getElementById('planet').clientHeight);
-		let bottom = coords[0] === 9 || (bottomDist * 2 < document.getElementById('planet').clientHeight);
-		let left = coords[1] === 0 || (leftDist * 2 < document.getElementById('planet').clientHeight);
-		let right = coords[1] === 9 || (rightDist * 2 < document.getElementById('planet').clientHeight);
+		let top =  coords[0] === 0 || (topDist * 2 < document.documentElement.clientHeight);
+		let bottom = coords[0] === 9 || (bottomDist * 2 < document.documentElement.clientHeight);
+		let left = coords[1] === 0 || (leftDist * 2 < document.documentElement.clientHeight);
+		let right = coords[1] === 9 || (rightDist * 2 < document.documentElement.clientHeight);
 
 		/**
 		 * Load all needed xml
@@ -275,6 +278,16 @@ class map {
 				map.loadXML((coords[0]+1) + '-' + (coords[1]+1));
 			}
 		}
+
+
+
+		if(document.documentElement.clientWidth < MAP_BG_WIDTH || document.documentElement.clientHeight < MAP_BG_HEIGHT) {
+			document.getElementById('hud-map').style.backgroundPositionX = ((MAP_BG_WIDTH - document.documentElement.clientWidth)/MAP_SIZE_WIDTH*(pos[0]) )+ 'px';
+			document.getElementById('hud-map').style.backgroundPositionY = ((MAP_BG_HEIGHT - document.documentElement.clientHeight)/MAP_SIZE_HEIGHT*(pos[1])) + 'px';
+
+			console.log(((MAP_BG_WIDTH - document.documentElement.clientWidth)/MAP_SIZE_WIDTH*(pos[0]) )+ 'px ' +
+				((MAP_BG_HEIGHT - document.documentElement.clientHeight)/MAP_SIZE_HEIGHT*(pos[1])) + 'px');
+		}
 	}
 
 	/**
@@ -283,7 +296,7 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMap(sector,callback) {
-		if(document.getElementById('planet').clientWidth > 1920) { // 4K Only loader, it's slow, but needed to make game working
+		if(document.documentElement.clientWidth > 1920) { // 4K Only loader, it's slow, but needed to make game working
 			map.loadMapAndNeighborhood(sector,callback);
 		} else { // Full HD and lower screens
 			map.loadXML(sector,callback);
@@ -824,8 +837,8 @@ class map {
 
 		map.loadXML(sector, function() {
 			let systemXML = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
-			let newX = document.getElementById('planet').clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
-			let newY = document.getElementById('planet').clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
+			let newX = document.documentElement.clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
+			let newY = document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
 
 			map.moveUI([newX, newY]);
 		});

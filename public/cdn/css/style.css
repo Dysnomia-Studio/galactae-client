@@ -1859,7 +1859,6 @@ a[class="research-search"]:hover {
  */
 #hud-map {
 	background-image: url(../img/map-bg.jpg);
-	background-size: cover;
 
 	position: fixed;
 	margin: 0;
