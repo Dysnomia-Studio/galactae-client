@@ -14,6 +14,7 @@ translate["messages"] = {
 	"BUILDING_ERROR_COST": "You don't have enough resources",
 	"BUILDING_ERROR_ENERGY": "No enough energy produced",
 	"BUILDING_ERROR_PEOPLE": "No enough people",
+	"BUILDING_ERROR_DEPENDENCIES": "Missing dependencies to build it",
 	"UPGRADE": "Upgrade",
 	"BUILD": "Construire",
 	"LEVEL": "Level",

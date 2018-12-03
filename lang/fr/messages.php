@@ -14,6 +14,7 @@ translate["messages"] = {
 	"BUILDING_ERROR_COST": "Pas assez de ressources disponibles",
 	"BUILDING_ERROR_ENERGY": "Production energetique insuffisante",
 	"BUILDING_ERROR_PEOPLE": "Population insuffisante",
+	"BUILDING_ERROR_DEPENDENCIES": "Dépendances manquantes afin de le construire",
 	"UPGRADE": "Ameliorer",
 	"BUILD": "Construire",
 	"LEVEL": "Niveau",
