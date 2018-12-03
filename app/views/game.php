@@ -368,7 +368,7 @@
 	</ul>
 
 	<span id="hud-ranks-close">X</span>
-	<iframe id="hud-ranks-frame" src="ranks.php"></iframe>
+	<iframe id="hud-ranks-frame" src="ranks.php" title="ranks list"></iframe>
 </div>
 <?php /* News */
 if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNewsNumber) {
@@ -378,7 +378,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 }
 ?>
 	<span id="news-close">X</span>
-	<iframe id="news-frame" src="news.php?n=<?php echo $lastNewsNumber; ?>"></iframe>
+	<iframe id="news-frame" src="news.php?n=<?php echo $lastNewsNumber; ?>" title="news"></iframe>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
@@ -457,12 +457,12 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
             <div id="map-planet-menu">
             	<span id="map-planet-menu-planetname">Planet</span>
             	<span id="map-planet-menu-username">(user)</span>
-            	<img id="map-planet-menu-infos" src="<?= $cdnURL ?>img/ui/planet-infos.svg">
-            	<img id="map-planet-menu-move" src="<?= $cdnURL ?>img/ui/fleet-move.svg">
-            	<img id="map-planet-menu-attack" src="<?= $cdnURL ?>img/ui/fleet-attack.svg">
-            	<img id="map-planet-menu-defend" src="<?= $cdnURL ?>img/ui/fleet-defend.svg">
-            	<img id="map-planet-menu-spy" src="<?= $cdnURL ?>img/ui/planet-spy.svg">
-            	<img id="map-planet-menu-trade" src="<?= $cdnURL ?>img/ui/planet-trade.svg">
+            	<img id="map-planet-menu-infos" alt="planet informations" src="<?= $cdnURL ?>img/ui/planet-infos.svg">
+            	<img id="map-planet-menu-move" alt="fleet moving" src="<?= $cdnURL ?>img/ui/fleet-move.svg">
+            	<img id="map-planet-menu-attack" alt="attack planet" src="<?= $cdnURL ?>img/ui/fleet-attack.svg">
+            	<img id="map-planet-menu-defend" alt="defend planet" src="<?= $cdnURL ?>img/ui/fleet-defend.svg">
+            	<img id="map-planet-menu-spy" alt="spy planet" src="<?= $cdnURL ?>img/ui/planet-spy.svg">
+            	<img id="map-planet-menu-trade" alt="trade with planet" src="<?= $cdnURL ?>img/ui/planet-trade.svg">
             </div>
           </div>
         </div>
@@ -527,7 +527,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>">
 
 				<div id="fleet-build-stat">
-					<span id="fleet-build-name"></span><img id="fleet-build-rename" src="<?= $cdnURL ?>img/ui/rename.svg"><br /><br />
+					<span id="fleet-build-name"></span><img id="fleet-build-rename" alt="rename unit model" src="<?= $cdnURL ?>img/ui/rename.svg"><br /><br />
 					<?php echo '<div id="fleet-build-stat-attack"><u>'.SHIP_WEAPONS.' :</u> <span id="fleet-build-stat-attack-val"></span></div>
 					<div id="fleet-build-stat-shield"><u>'.SHIP_SHIELD.' :</u> <span id="fleet-build-stat-shield-val"></span></div>
 					<div id="fleet-build-stat-speed"><u>'.SHIP_SPEEDS.'</u>

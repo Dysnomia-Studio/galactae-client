@@ -357,7 +357,9 @@ class ui {
 			activeElts[elt].classList.remove(className);
 		}
 
-		newElt.classList.add(className);
+		if(newElt) {
+			newElt.classList.add(className);
+		}
 	}
 
 	/**

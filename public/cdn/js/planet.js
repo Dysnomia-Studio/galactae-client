@@ -401,14 +401,9 @@ class planet {
 			},timeBeforeEndBuild + 1000);
 		}
 
-		let Elts = document.querySelectorAll('.building-list-active');
-		for(let i=0; i<Elts.length; i++) {
-			Elts[i].classList.remove('building-list-active');
-		}
+		ui.toggleClass('.building-list-active', '.building-list-active', document.getElementById(buildingsNames[planetData.nextBuilding]));
 
-		if(planetData.nextBuilding > -1 && planetData.nextBuilding < 14) {
-			document.getElementById(buildingsNames[planetData.nextBuilding]).classList.add('building-list-active');
-		}
+		// @TODO: Draw if a building can be upgraded (use of planet.canBeBuild())
 	}
 	/*
 	Gets the energy consomation.
@@ -485,13 +480,41 @@ class planet {
 		return timeCurrent;
 	}
 
+	static buildingHasRequirements(id) {
+		// @TODO: Will be activated soon, just disabled to make tests on dev server
+		//if(planetData.Buildings[id] > 0) { return ''; }
+		if(buildingParents[id] === undefined) { return ''; }
+
+		let requirements = '';
+
+		for(let i=0; i<buildingParents[id].research.length; i++) {
+			if(!research.isSearched(buildingParents[id].research[i])) {
+				requirements += ', ' + translate['research'][buildingParents[id].research[i]].name;
+			}
+		}
+
+		for(let i=0; i<buildingParents[id].building.length; i++) {
+			let currentBuilding = buildingParents[id].building[i];
+			if(currentBuilding[1] > planetData.Buildings[currentBuilding[0]]) {
+				requirements += ', ' + translate['buildings'][currentBuilding[0]].name + ' ' + translate.messages['LEVEL'] + ' ' + currentBuilding[1];
+			}
+		}
+
+		return requirements.substring(1);
+	}
+
 	/**
 	 * Determines ability to be build.
 	 *
 	 * @param      {<type>}  building  The building ID
 	 */
 	static canBeBuild(id) {
-		return ((planet.getTimeBeforeBuild(id)==0)&&(planetData.Buildings[id]+1 <= buildingMaxLvl[id]&&((planetData.nextBuildingTime-Date.now()+planet.deltaNow)<0)));
+		return (
+			planet.getTimeBeforeBuild(id) === 0 &&
+			planetData.Buildings[id] + 1 <= buildingMaxLvl[id] &&
+			(planetData.nextBuildingTime-Date.now()+planet.deltaNow) < 0 &&
+			planet.buildingHasRequirements(id)
+		);
 	}
 
 	/*
@@ -639,10 +662,14 @@ class planet {
 		ui.hide('#building-upgrade');
 		ui.show('#building-message', 'inline-block');
 
+		let requirements = planet.buildingHasRequirements(id);
+
 		// Edits
 		if(max) { // Max Level
 			document.getElementById('building-message').innerHTML = translate.messages['UPGRADE_MAX'];
 			ui.hide('#building-cost');
+		} else if(requirements !== '') { // Another building in build mode
+			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ": " + requirements;
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
 			let dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
