@@ -454,6 +454,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
           <div id="map-system-galaxyBack">
             <div id="map-system-solarFront">
             </div>
+            <div id="map-system-solarFront-list"></div>
             <div id="map-planet-menu">
             	<span id="map-planet-menu-planetname">Planet</span>
             	<span id="map-planet-menu-username">(user)</span>

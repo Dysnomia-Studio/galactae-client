@@ -90,7 +90,6 @@ class map {
 			mapPrevMouse[1] = e.pageY;
 		});
 		document.getElementById('map-global').addEventListener('mousemove', function(e) {
-			console.log(mapPrevMouse);
 			if(moving) { return; }
 			if(ui.mouseStatus[1] === 1) {
 				map.moveUI([(e.pageX - mapPrevMouse[0]),
@@ -467,6 +466,7 @@ class map {
 
 		map.currentMap = 'system';
 		document.getElementById('map-system-solarFront').innerHTML = '';
+		document.getElementById('map-system-solarFront-list').innerHTML = '';
 
 		// Parse XML
 		let systemXML = map.xmlDoc[sector].querySelector('sy[id="' + address + '"]');
@@ -592,8 +592,15 @@ class map {
 				document.querySelector('div[id="' + stars[i].address + '"] .pos').style.left = 'calc(50% + ' + (orbitSize[i]/2) * Math.cos((2* Math.PI) - posAng) + 'vh)';
 			}
 
+			// Add it to stars/planet list
+			document.getElementById('map-system-solarFront-list').innerHTML += '<div class="star ' + stars[i].type + '" id="liste_' + stars[i].address + '"><div class="name">' + stars[i].address + '</div></div>';
+			let position = i/(stars.length + planets.length - 1);
+			document.getElementById('liste_' + stars[i].address).style.left = Math.round(5 + position * 90) + '%';
+
 			// Set Size
 			document.getElementById(stars[i].address).style.fontSize = stars[i].size + 'vh';
+			document.getElementById('liste_' + stars[i].address).style.fontSize = stars[i].size + 'vh';
+			document.querySelector('#liste_' + stars[i].address + ' .name').style.top = (6 + stars[i].size/2) + 'vh';
 		}
 
 		/**
@@ -649,6 +656,15 @@ class map {
 
 
 			// @ADD: Rings & Moons
+			
+			// Add it to stars/planet list
+			let name = (map.planetData[address] && map.planetData[address][planets[i].address] && map.planetData[address][planets[i].address].name) ? map.planetData[address][planets[i].address].name : planets[i].address;
+			document.getElementById('map-system-solarFront-list').innerHTML += '<div class="planet" id="liste_' + planets[i].address + '"><div class="name">' + name + '</div></div>';
+			document.getElementById('liste_' + planets[i].address).style.backgroundImage = 'url('+cdnURL+'/img/planets/front/' + planets[i].type + '.jpg)';
+			let position = (stars.length + i)/(stars.length + planets.length - 1);
+			document.getElementById('liste_' + planets[i].address).style.left = Math.round(5 + position * 90) + '%';
+			document.getElementById('liste_' + planets[i].address).style.fontSize = size + 'vh';
+			document.querySelector('#liste_' + planets[i].address + ' .name').style.top = (6 + size/2) + 'vh';
 		}	
 
 		// View info
@@ -656,7 +672,7 @@ class map {
 			if(ui.hasClass(this.parentNode.parentNode, 'orbit')) {
 				units.planetTarget = this.parentNode.parentNode.id;
 			} else {
-				units.planetTarget = this.id; // Center star
+				units.planetTarget = this.id.split('liste_').join(''); // Center star or bottom bar
 			}
 			
 			let system = units.planetTarget.split('-');
