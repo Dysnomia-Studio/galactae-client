@@ -401,7 +401,7 @@ class planet {
 			},timeBeforeEndBuild + 1000);
 		}
 
-		ui.toggleClass('.building-list-active', '.building-list-active', document.getElementById(buildingsNames[planetData.nextBuilding]));
+		ui.toggleClass('.building-list-active', 'building-list-active', document.getElementById(buildingsNames[planetData.nextBuilding]));
 
 		// @TODO: Draw if a building can be upgraded (use of planet.canBeBuild())
 	}
