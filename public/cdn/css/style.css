@@ -1973,6 +1973,7 @@ a[class="research-search"]:hover {
 	animation-name: orbit;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
+	pointer-events: none;
 }
 .orbit .orbit {
 	animation-name: suborbit;
@@ -1999,6 +2000,7 @@ a[class="research-search"]:hover {
 	margin-left: -0.5em;
 	border-radius: 50%;
 	transform-style: preserve-3d;
+	pointer-events: auto;
 }
 #map-system .yellowDwarf {
 	background-color: #FB7209;

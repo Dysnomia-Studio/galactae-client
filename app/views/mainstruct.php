@@ -8,14 +8,15 @@ $debut = round(microtime(true) * 1000);
 	Don't copy this without permission
 	I hope this code is readable.
 -->
-<?php 
-include_once('gvars.php');
-
-include_once(DIR_CTRL.'redirect.php');
-include_once(DIR_CTRL.'auth.php');
-?>
 <html lang="<?= $lang->getLanguage(); ?>">
 	<head>
+		<?php 
+		include_once('gvars.php');
+
+		include_once(DIR_CTRL.'redirect.php');
+		include_once(DIR_CTRL.'auth.php');
+		?>
+
 		<title>Galactae: Space Age Dawn</title>
 		<meta charset="UTF-8">
 		<!-- On prepare le charset , les mots clés , le fichier css et l'icone du site -->

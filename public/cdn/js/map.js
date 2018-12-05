@@ -90,6 +90,7 @@ class map {
 			mapPrevMouse[1] = e.pageY;
 		});
 		document.getElementById('map-global').addEventListener('mousemove', function(e) {
+			console.log(mapPrevMouse);
 			if(moving) { return; }
 			if(ui.mouseStatus[1] === 1) {
 				map.moveUI([(e.pageX - mapPrevMouse[0]),
@@ -279,14 +280,10 @@ class map {
 			}
 		}
 
-
-
+		// @TODO: ability to disable this with some settings
 		if(document.documentElement.clientWidth < MAP_BG_WIDTH || document.documentElement.clientHeight < MAP_BG_HEIGHT) {
 			document.getElementById('hud-map').style.backgroundPositionX = ((MAP_BG_WIDTH - document.documentElement.clientWidth)/MAP_SIZE_WIDTH*(pos[0]) )+ 'px';
-			document.getElementById('hud-map').style.backgroundPositionY = ((MAP_BG_HEIGHT - document.documentElement.clientHeight)/MAP_SIZE_HEIGHT*(pos[1])) + 'px';
-
-			console.log(((MAP_BG_WIDTH - document.documentElement.clientWidth)/MAP_SIZE_WIDTH*(pos[0]) )+ 'px ' +
-				((MAP_BG_HEIGHT - document.documentElement.clientHeight)/MAP_SIZE_HEIGHT*(pos[1])) + 'px');
+			document.getElementById('hud-map').style.backgroundPositionY = ((MAP_BG_HEIGHT - document.documentElement.clientHeight)/MAP_SIZE_HEIGHT*(pos[1])) + 'px';		
 		}
 	}
 
