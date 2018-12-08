@@ -762,7 +762,7 @@ class units {
 		let selectedType = '';
 		let selectedShape = '';
 
-		if(units.currUnit != -1 && units.list[units.currUnit] != undefined) { 
+		if(units.currUnit != -1 && units.list[units.currUnit] !== undefined) { 
 			for(let i in units.list[units.currUnit].parts) {
 				unitsParts[units.list[units.currUnit].parts[i].name] = units.list[units.currUnit].parts[i].tech;
 			}
@@ -826,7 +826,7 @@ class units {
 		let selectShipShape = '';
 		for(let index in shipShapesDetails[type]) {
 			if(shape === '') { shape = index; }
-			if(shipResearchDependencies[index] != undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
+			if(shipResearchDependencies[index] !== undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
 			if(index === selectedShape) {
 				selectShipShape += '<option value="' + index + '" selected>' + fleetTranslate[index] + '</option>';
 			} else {
@@ -919,7 +919,7 @@ class units {
 				let hiddenSelect = '<select id="part-selecting-hidden-' + i + '" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
 				for(let j=0; j<content[shape[i][0]].length; j++) {
 					if(content[shape[i][0]][j] != 'none' && shipResearchDependencies[content[shape[i][0]][j]] !== undefined && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
-					if(unitsParts[shape[i][6]] != undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
+					if(unitsParts[shape[i][6]] !== undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
 						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '" selected>';
 					} else {
 						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '"></option>';

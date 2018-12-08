@@ -71,7 +71,7 @@ class planet {
 		planet.deltaNow = data.sNow - Date.now();
 
 		// Clientside Calc for ressource auto-update
-		if(resourcesinterval==-1) {
+		if(resourcesinterval === -1) {
 			resourcesinterval = setInterval(function() { 
 				planet.simMyRealRessources();
 				research.sim();
@@ -97,12 +97,12 @@ class planet {
 		planet.drawCanBeBuild();
 
 		// Clear existing timeout
-		if(autobuildingrefresh!=-1) {
+		if(autobuildingrefresh !== -1) {
 			clearTimeout(autobuildingrefresh);
 			autobuildingrefresh = -1;
 		}
 		// Create timeout: sync where the next building is ended
-		if(planetData.nextBuildingTime != -1) {
+		if(planetData.nextBuildingTime !== -1) {
 			autobuildingrefresh = setTimeout(function() {	
 				planet.sync();
 				autobuildingrefresh = -1;
@@ -110,7 +110,7 @@ class planet {
 		}
 		
 		// Refresh buildPanel
-		if(planet.buildPanel!= -1) {
+		if(planet.buildPanel !== -1) {
 			planet.buildPanelOpen(planet.buildPanel);
 		}
 
@@ -125,21 +125,21 @@ class planet {
 		let time = 2/3600; // 2 sec
 
 		//Minerals
-		if(currentBuilding!=0) {
+		if(currentBuilding !== 0) {
 			planetData.resources[0] += mineralProdBase*time;
 		}
 
 		//Helium 3
-		if(buildings[13]!=0 && currentBuilding!=13) { planetData.resources[1] += heliumProdBase*time; }
+		if(buildings[13] !== 0 && currentBuilding !== 13) { planetData.resources[1] += heliumProdBase*time; }
 
 		//Metals
-		if(planetData.resources[0]-(metalProdBase*time)>0 && currentBuilding!=1) { //Verify if you can use basic ressources
+		if(planetData.resources[0]-(metalProdBase*time)>0 && currentBuilding !== 1) { //Verify if you can use basic ressources
 		    for(let i=2; i<6; i++) {
 		    	planetData.resources[i] += (metalProdBase*time)*ratios[i-2];
 		    }
 
 			planetData.resources[0] -= (metalProdBase*time); //Consomation Algorithm
-		} else if(currentBuilding!=1) { // Do the max we can
+		} else if(currentBuilding !== 1) { // Do the max we can
 		    for(let i=2; i<6; i++) {
 		    	planetData.resources[i] += planetData.resources[0]*ratios[i-2];
 		    }
@@ -191,7 +191,7 @@ class planet {
 	 * @return     {Object}  The minerals ratio.
 	 */
 	static GetMineralsRatio(type) {
-		if(planetRatios[type]!=undefined) {
+		if(planetRatios[type] !== undefined) {
 			return planetRatios[type];	
 		} else {
 			return planetRatios[0];
@@ -220,7 +220,7 @@ class planet {
 		// Top left
 		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd - habCons);
 		document.getElementById('research_nmb').innerHTML = GetBetterUnit(researchProd,'/h');
-		document.getElementById('moral_nmb').innerHTML = 50+'%';
+		document.getElementById('moral_nmb').innerHTML = Math.round(planetData.Buildings[3]/planetData.Buildings[2]*100)+'%';
 
 		//Top right
 		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(planetData.resources[0],'t',mineralStorageBase);
@@ -258,7 +258,7 @@ class planet {
 		mineralStorageBase1 = (mineralProd[0]*Math.pow(buildings[5] + 1,2) + mineralProd[1]*(buildings[5] + 1) + mineralProd[2])*warehouseBase;
 		metalsStorageBase1  = (metalProd[0]*Math.pow(buildings[5] + 1,2)   + metalProd[1]*(buildings[5] + 1)   + metalProd[2]  )*warehouseBase;
 
-		if(buildings[10]!=0) {
+		if(buildings[10]!==0) {
 			storageHelium = (heliumProd[0]*Math.pow(buildings[10],2)  + heliumProd[1]*buildings[10]  + heliumProd[2])*(storageRatio[0]*Math.log(buildings[10]) + storageRatio[1])*heliumStorageRatio; // Helium 3
 		} else {
 			storageHelium = 0;
@@ -318,7 +318,7 @@ class planet {
 		if(planetData.resources[0]>=mineralStorageBase && 
 			mineralProdBaseTemp > metalProdBaseTemp) { // Si on a tout les minerais
 			mineralProdBaseTemp = metalProdBaseTemp;
-		} else if(planetData.resources[0]==0 && metalProdBaseTemp > mineralProdBaseTemp) {
+		} else if(planetData.resources[0]===0 && metalProdBaseTemp > mineralProdBaseTemp) {
 			metalProdBaseTemp = mineralProdBaseTemp;
 		}
 
@@ -382,7 +382,7 @@ class planet {
 	* Draws if buildings can be build.
 	*/
 	static drawCanBeBuild() {
-		if(canbebuildtimeout!=-1) {
+		if(canbebuildtimeout!==-1) {
 			clearTimeout(canbebuildtimeout);
 			canbebuildtimeout = -1;
 		}
@@ -431,8 +431,8 @@ class planet {
 
 		// Buildings
 		for(let i=0; i<14; i++) {
-			if(buildings[i]==0) { continue; }
-			if(i==planetData.nextBuilding) {
+			if(buildings[i]===0) { continue; }
+			if(i===planetData.nextBuilding) {
 				// Current in-build building
 				habitants += parseInt(planet.getBuildCost(i,buildings[i] + 1).habitants);
 				continue; 
@@ -456,13 +456,13 @@ class planet {
 	 */
 	static getTimeBeforeBuild(building) {
 		let cost;
-		if(planetData.nextBuilding==building) { cost = planet.getBuildCost(building,planetData.Buildings[building] + 2); } 
+		if(planetData.nextBuilding===building) { cost = planet.getBuildCost(building,planetData.Buildings[building] + 2); } 
 		else							      { cost = planet.getBuildCost(building,planetData.Buildings[building] + 1); }
 		let costs = [
 			['building-cost-iron',cost.iron],
 			['building-cost-aluminium',cost.aluminium],
 			['building-cost-copper',cost.copper],
-			['building-cost-titanium',cost.titanium]
+			['building-cost-titanium',cost.titanium],
 		];
 
 		let ratios = [ratio.ironRatio,ratio.aluRatio,ratio.copperRatio,ratio.titanRatio];
@@ -527,7 +527,7 @@ class planet {
 
 		for(let i=1; i<14; i++) {
 			let timeCurrent = planet.getTimeBeforeBuild(i);
-			if(timeCurrent < timeLeft && timeCurrent!=0) {
+			if(timeCurrent < timeLeft && timeCurrent!==0) {
 				timeLeft = timeCurrent;
 			}
 		}
@@ -578,7 +578,7 @@ class planet {
 	 * @param      {string}  id      Building ID
 	 */
 	static buildPanelOpen(id) {
-		if(id == planet.buildPanel) {
+		if(id === planet.buildPanel) {
 			planet.buildPanelHide();
 			return;
 		}
@@ -586,14 +586,14 @@ class planet {
 		planet.buildPanel = id;
 		let dateNow = new Date();
 
-		if(planet.buildPanelInterval!=-1) {
+		if(planet.buildPanelInterval!==-1) {
 			clearTimeout(planet.buildPanelInterval);
 			planet.buildPanelInterval = -1;
 		}
 
 		 //Next level cost
 		let cost;
-		if(planetData.nextBuilding==id) { cost = planet.getBuildCost(id,planetData.Buildings[id] + 2); } 
+		if(planetData.nextBuilding===id) { cost = planet.getBuildCost(id,planetData.Buildings[id] + 2); } 
 		else							{ cost = planet.getBuildCost(id,planetData.Buildings[id] + 1); }
 
 		let max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
