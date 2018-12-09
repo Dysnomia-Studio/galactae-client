@@ -1,4 +1,4 @@
-<?php 
+<?php
 /************************************************
 			       PHP SQL LIB
 					BY ELANIS
@@ -92,7 +92,7 @@ class SQLInterface {
 	 * @return     array           The condition content.
 	 */
 	public function getCondContent($table,$where,$min=0,$size=1000000,$order="id") {
-		if(is_string($table) && is_array($where) && is_int($min) && is_int($size) && is_string($order)) {
+		if(is_string($table) && is_array($where) && is_int($min)  && is_int($size) && is_string($order)) {
 			$where_cond = "";
 
 			for($i=0; $i<sizeof($where); $i++) {
@@ -281,7 +281,7 @@ class SQLInterface {
 				$data = $query->fetchAll();
 				$query->CloseCursor();
 
-				return $data;	
+				return $data;
 			}
 		} else {
 			return false;
