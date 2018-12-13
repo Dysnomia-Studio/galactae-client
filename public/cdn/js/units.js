@@ -940,18 +940,24 @@ class units {
 				let w = shape[id][4]/800*selw - 12;
 				let h = shape[id][5]/450*selh - 12;
 
-				document.getElementById('fleet-type-create-selects').innerHTML += '<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
-					'left: ' + ((shape[id][2])/800)*selw + 'px;' +
-					'top: ' + ((shape[id][3])/450)*selh + 'px;' +
-					'width: ' + w + 'px;' +
-					'height: ' + h + 'px;' +
-					'"></dl>';
-
-				document.getElementById('part-selecting-seen-' + id).innerHTML += '<dt><a href="#" value="' + selected.value + '" style="background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.value  + '.svg\'); background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;' +
+				document.getElementById('fleet-type-create-selects').innerHTML += 
+					'<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
+						'left: ' + ((shape[id][2])/800)*selw + 'px;' +
+						'top: ' + ((shape[id][3])/450)*selh + 'px;' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
-						'"></a></dt>';
-				document.getElementById('part-selecting-seen-' + id).innerHTML += '<dd><ul></ul></dd>';
+					'"><dt>'+
+					'<a href="#" value="' + selected.value + '" style="' +
+						'background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.value  + '.svg\'); ' +
+						'background-size: 95%;' +
+						'background-repeat: no-repeat;' +
+						'background-position: left top;' + 
+						'display: block;' +
+						'width: ' + w + 'px;' +
+						'height: ' + h + 'px;' +
+						'"></a></dt>' +
+						'<dd><ul></ul></dd>' +
+					'</dl>';
 
 				for(let eltId=0; eltId<source.options.length; eltId++) {
 					document.querySelector('#part-selecting-seen-' + id + ' dd ul').innerHTML += '<li><a href="#" value="' + source.options[eltId].id  + '"' +
