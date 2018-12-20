@@ -100,15 +100,15 @@ let buildCost = {
 		// Ground building
 		[0,0,0], // Quarry
 		[0,0,0], // Metallurgie
-		[0.4,9,-5], // Living
+		[0.35,9,-5], // Living
 		[0,0,0], // Serres
-		[0.7,3,-3], // Solar panel
+		[0.57,3,-3], // Solar panel
 		[0,0,0], // Warehouse
 		[0,0,0], // Hedquarters
-		[0.85,3,3], // Launching Center
-		[0.25,4,0], // Research Center
+		[0.8,3,3], // Launching Center
+		[0.45,4,0], // Research Center
 		// Space stations
-		[0.35,9,0], // Radar
+		[0.3,9,0], // Radar
 		[0,0,0], // Tank
 		[0,0,0], // Shipyard
 		[0,0,0], // Trade
@@ -626,18 +626,18 @@ let shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	SHIP_SAT_AG2: 				[ 15, 20, 50, 23,0.37,   0],
 	SHIP_SAT_AG3: 				[ 30, 35, 60, 36,0.70,   0],
 	// Battlecruisers
-	SHIP_BATTLECRUISER_SMALL: 	[250,250,120, 70,1.12, 160],
+	SHIP_BATTLECRUISER_SMALL: 	[250,250,120, 65,1.12, 160],
 	// Cruisaders
-	SHIP_CUIRASSE_SMALL: 		[320,350,180,110,1.45, 220],
+	SHIP_CUIRASSE_SMALL: 		[320,350,180,100,1.45, 220],
 	// Fighters
 	SHIP_FIGHTER_SMALL: 		[ 45, 25, 40, 20, 0.35,   5],
 	SHIP_FIGHTER_MEDIUM: 		[ 65, 35, 60, 30, 0.52,  10],
-	SHIP_FIGHTER_BOMBER: 		[ 90, 60,100, 50, 0.78,  20],
+	SHIP_FIGHTER_BOMBER: 		[ 90, 60,100, 48, 0.78,  20],
 	// Corvets
 	SHIP_CORVET_SMALL: 			[115, 20, 90, 40,0.62,  40],
 	// Carriers
-	SHIP_CARRIER_SMALL: 		[400,300,140, 80,1.25, 920],
-	SHIP_CARRIER_MEDIUM: 		[500,420,190,105,1.65,1200],
+	SHIP_CARRIER_SMALL: 		[400,300,140, 75,1.25, 920],
+	SHIP_CARRIER_MEDIUM: 		[500,420,190, 95,1.65,1200],
 
 	/**
 	 * Ship parts
@@ -765,7 +765,7 @@ let neededCache = [
 	'cdn/js/map.js',
 	'cdn/js/misc.js',
 	'cdn/js/notifications.js',
-	'cdn/js/planet.js',
+	'cdn/js/planetUI.js',
 	'cdn/js/planetback.js',
 	'cdn/js/research.js',
 	'cdn/js/settings.js',
