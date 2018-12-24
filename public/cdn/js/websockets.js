@@ -34,7 +34,7 @@ class webSockets {
 		
 		//Sync the planet data
 		socket.on('planet-recieve-data',function(data) { 
-			planet.refresh(data);
+			planetUI.refresh(data);
 			if(userData.research !== undefined) {
 				research.drawPanel();
 			}
@@ -73,7 +73,7 @@ class webSockets {
 					units.refresh(units.list); // Because type creation is disabled when no research && we need research to draw mines
 				}
 			}
-			planet.MiscDrawUpdate();
+			planetUI.MiscDrawUpdate();
 			loadScreen.complete('player');
 		});
 

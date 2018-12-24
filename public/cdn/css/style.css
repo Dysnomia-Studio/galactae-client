@@ -2472,6 +2472,10 @@ a[class="research-search"]:hover {
 	height: 100%;
 }
 
+.building-ground, .building-space {
+	user-select: none;
+}
+
 @media (min-height: 601px) {
 	#building-ground-title {
 		position: absolute;

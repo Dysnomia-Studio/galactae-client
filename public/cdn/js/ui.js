@@ -51,7 +51,7 @@ class ui {
 	 * Tout les événements à creer au lancement
 	 */
 	static load() {
-		planet.init();
+		planetUI.init();
 
 		ui.updateBottom();
 
@@ -272,8 +272,8 @@ class ui {
 					map.openGlobalMap(map.currentAddress);
 				}
 				
-			} else if(planet.buildPanel!=-1) {
-				planet.buildPanelHide(); // Ferme la vue du batiment
+			} else if(planetUI.buildPanel!=-1) {
+				planetUI.buildPanelHide(); // Ferme la vue du batiment
 			}
 		}
 
@@ -293,10 +293,10 @@ class ui {
 
 		// Planetes suivantes/precedente
 		if(e.which === KEYBOARD.LARROW && document.getElementById('chat_message') !== document.activeElement) { // Gauche
-			planet.prev();
+			planetUI.prev();
 		}
 		if(e.which === KEYBOARD.RARROW && document.getElementById('chat_message') !== document.activeElement) { // Droite
-			planet.next();
+			planetUI.next();
 		}
 
 		if(e.which === KEYBOARD.F5) {
@@ -587,7 +587,7 @@ class ui {
 		let dateNow = new Date();
 		setTimeout(function() {
 			ui.dailyBonus(ui.bonusStreak+1, ui.bonusStreakBest+1);
-		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
+		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
 	}
 }
 

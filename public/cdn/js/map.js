@@ -586,7 +586,7 @@ class map {
 				document.getElementById(stars[i].address).style.marginLeft = '-' + (orbitSize[i]/2) + 'vh';
 
 				/* Star Pos */
-				let posAng = (((Date.now() + planet.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+				let posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 				
 				document.querySelector('div[id="' + stars[i].address + '"] .pos').style.top = 'calc(50% + ' + (orbitSize[i]/2) * Math.sin((2* Math.PI) - posAng) + 'vh)';
 				document.querySelector('div[id="' + stars[i].address + '"] .pos').style.left = 'calc(50% + ' + (orbitSize[i]/2) * Math.cos((2* Math.PI) - posAng) + 'vh)';
@@ -637,7 +637,7 @@ class map {
 			document.getElementById(planets[i].address).style.marginLeft ='-' + (orbitSize/2) + 'vh';
 
 			/* Planet Pos */
-			let posAng = (((Date.now() + planet.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+			let posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 			
 			document.querySelector('div[id="' + planets[i].address + '"] .pos').style.top = 'calc(50% + ' + (Math.sin((2* Math.PI) - posAng) * orbitSize/2) + 'vh)';
 			document.querySelector('div[id="' + planets[i].address + '"] .pos').style.left = 'calc(50% + ' + (Math.cos((2* Math.PI) - posAng) * orbitSize/2) + 'vh)';
@@ -715,7 +715,7 @@ class map {
 			elt.addEventListener('click', function(e) {
 				switch(e.target.id) {
 					case 'map-planet-menu-infos':
-						planet.openOtherPlanetPanel();
+						planetUI.openOtherPlanetPanel();
 						break;
 					case 'map-planet-menu-move':
 						units.openMovePanel(2);

@@ -457,9 +457,9 @@ class units {
 				units.unitPanelTimeout = -1;
 			}
 
-			if(planetData.unitBuildingEndTime > (Date.now() + planet.deltaNow)) { // An unit is building
+			if(planetData.unitBuildingEndTime > (Date.now() + planetUI.deltaNow)) { // An unit is building
 				let dateNow = new Date();
-				let dateEnd = new Date(planetData.unitBuildingEndTime + planet.deltaNow);
+				let dateEnd = new Date(planetData.unitBuildingEndTime + planetUI.deltaNow);
 				let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 				if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
@@ -488,7 +488,7 @@ class units {
 					},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
 				} else {
 					units.unitPanelTimeout = setTimeout(function() {
-						planet.sync();
+						planetUI.sync();
 					},(((dateEnd.getHours() - dateNow.getHours())*60 + (dateEnd.getMinutes() - dateNow.getMinutes()))*60 + (dateEnd.getSeconds() + 5 - dateNow.getSeconds()))*1000); // Refresh 5 sec after end
 				}
 			} 
@@ -664,7 +664,7 @@ class units {
 			if(units.fleetList[i].endMoveTime > 0) {
 				units.fleetTimers[u] = setTimeout(function() {
 					units.sync();
-				}, units.fleetList[i].endMoveTime-Date.now()+planet.deltaNow+5000); // Wait 5 sec
+				}, units.fleetList[i].endMoveTime-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
 
 				u++;
 			}
@@ -1602,13 +1602,13 @@ class units {
 		let msgPt1 = translate['messages']['movePanelPt1'][moveType];
 
 		if(map.planetData[system][units.planetTarget].ownerName !== null) {
-			document.getElementById('#map-move-panel-message').innerHTML =
+			document.getElementById('map-move-panel-message').innerHTML =
 				msgPt1 + ' <em>' +
 				map.planetData[system][units.planetTarget].name + '</em> (<em>' +
 				map.planetData[system][units.planetTarget].ownerName + '</em>)'
 			;
 		} else {
-			document.getElementById('#map-move-panel-message').innerHTML =
+			document.getElementById('map-move-panel-message').innerHTML =
 				msgPt1 + ' <em>' +
 				units.planetTarget + '</em> (<em>' +
 				'Aucun joueur' + '</em>)'

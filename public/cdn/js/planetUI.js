@@ -41,15 +41,15 @@ let habCons; // Consomation population
 let researchProd; // Production recherche
 let researchProd1; // Production recherche lvl +1
 
-class planet {
+class planetUI {
 	/**
 	 * Initilalize planet
 	 */
 	static init() {
-		planet.buildPanel = -1; // Current opened building
-		planet.buildPanelInterval = -1; // Time before next client auto update
-		planet.enoughResources = -1; // Time before enought ressources
-		planet.deltaNow = 0; // Security measure
+		planetUI.buildPanel = -1; // Current opened building
+		planetUI.buildPanelInterval = -1; // Time before next client auto update
+		planetUI.enoughResources = -1; // Time before enought ressources
+		planetUI.deltaNow = 0; // Security measure
 	}
 
 	/**
@@ -68,12 +68,12 @@ class planet {
 		// Keep planet id in a cookie
 		setCookie('galactae-account-pid', data.data.address, 1);
 
-		planet.deltaNow = data.sNow - Date.now();
+		planetUI.deltaNow = data.sNow - Date.now();
 
 		// Clientside Calc for ressource auto-update
 		if(resourcesinterval === -1) {
 			resourcesinterval = setInterval(function() { 
-				planet.simMyRealRessources();
+				planetUI.simMyRealRessources();
 				research.sim();
 			},2000);
 		}
@@ -91,10 +91,10 @@ class planet {
 		userData.pid = planetData.address;
 
 		// Edit Data
-		planet.BuildingDrawUpdate();
-		planet.ResourcesDrawUpdate(); // Needed to be after building for ratios
-		planet.MiscDrawUpdate();
-		planet.drawCanBeBuild();
+		planetUI.BuildingDrawUpdate();
+		planetUI.ResourcesDrawUpdate(); // Needed to be after building for ratios
+		planetUI.MiscDrawUpdate();
+		planetUI.drawCanBeBuild();
 
 		// Clear existing timeout
 		if(autobuildingrefresh !== -1) {
@@ -104,14 +104,14 @@ class planet {
 		// Create timeout: sync where the next building is ended
 		if(planetData.nextBuildingTime !== -1) {
 			autobuildingrefresh = setTimeout(function() {	
-				planet.sync();
+				planetUI.sync();
 				autobuildingrefresh = -1;
-			},planetData.nextBuildingTime-Date.now()+planet.deltaNow+5000); // Wait 5 sec
+			},planetData.nextBuildingTime-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
 		}
 		
 		// Refresh buildPanel
-		if(planet.buildPanel !== -1) {
-			planet.buildPanelOpen(planet.buildPanel);
+		if(planetUI.buildPanel !== -1) {
+			planetUI.buildPanelOpen(planetUI.buildPanel);
 		}
 
 		// Needed late after load ...
@@ -181,22 +181,9 @@ class planet {
 			}
 	    }
 
-		planet.ResourcesDrawUpdate();
+		planetUI.ResourcesDrawUpdate();
 	}
-	/**
-	 * Gets the minerals ratio.
-	 *
-	 * @class      GetMineralsRatio (name)
-	 * @param      {<type>}  type    The type of planet
-	 * @return     {Object}  The minerals ratio.
-	 */
-	static GetMineralsRatio(type) {
-		if(planetRatios[type] !== undefined) {
-			return planetRatios[type];	
-		} else {
-			return planetRatios[0];
-		}
-	}
+
 
 	/**
 	 * Construire un bâtiment
@@ -238,7 +225,7 @@ class planet {
 		buildings = planetData.Buildings;
 		currentBuilding = planetData.nextBuilding;
 
-		ratio = planet.GetMineralsRatio(planetData.planetType);
+		ratio = Resources.GetRatiosPerPlanet(planetData.planetType);
 		ratios = [ratio.ironRatio,ratio.aluRatio,ratio.copperRatio,ratio.titanRatio];
 
 		mineralProdBase = mineralProd[0]*Math.pow(buildings[0],2) + mineralProd[1]*buildings[0] + mineralProd[2];
@@ -276,14 +263,14 @@ class planet {
 		}
 
 		// Energy
-		energyProd = Math.round(electricity[0]*Math.pow(buildings[4],2) + electricity[1]*buildings[4] + electricity[2]);
+		energyProd = Buildings.getEnergyProd(buildings);
 		energyProd1 = Math.round(electricity[0]*Math.pow((buildings[4]+1),2) + electricity[1]*(buildings[4]+1) + electricity[2]);
-		energyCons = planet.getEnergyConsomation();
+		energyCons = Buildings.getEnergyCons(buildings);
 
 		// Habitants
 		habProd = Math.round(habGen[0]*Math.pow(buildings[2],2) + habGen[1]* buildings[2] + habGen[2]);
 		habProd1 = Math.round(habGen[0]*Math.pow((buildings[2]+1),2) + habGen[1]*(buildings[2]+1) + habGen[2]);
-		habCons = planet.getHabitantConsomation();
+		habCons = planetUI.getHabitantConsomation();
 
 		// Research
 		researchProd = Math.round(researchProduction[0]*Math.pow(buildings[8],2) + researchProduction[1]*buildings[8] + researchProduction[2]);
@@ -296,7 +283,7 @@ class planet {
 	 * @class      BuildingDrawUpdate (name)
 	 */
 	static BuildingDrawUpdate() {
-		planet.recalcBaseRessources();
+		planetUI.recalcBaseRessources();
 
 		// Buildings Levels
 		for(let i=0; i<14; i++) {
@@ -387,37 +374,23 @@ class planet {
 			canbebuildtimeout = -1;
 		}
 		// Update all when building could be upgraded
-		let timeLeft = planet.getNextBuildingReady();
+		let timeLeft = planetUI.getNextBuildingReady();
 		if(timeLeft>0) {
 			canbebuildtimeout = setTimeout(function() {
-				planet.drawCanBeBuild();
+				planetUI.drawCanBeBuild();
 			},timeLeft);
 		}
 		// Refresh this when a building is ended
-		let timeBeforeEndBuild = (planetData.nextBuildingTime - (Date.now() + planet.deltaNow + 1000));
+		let timeBeforeEndBuild = (planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
 		if(timeBeforeEndBuild>0) {
 			setTimeout(function() {
-				planet.drawCanBeBuild();
+				planetUI.drawCanBeBuild();
 			},timeBeforeEndBuild + 1000);
 		}
 
 		ui.toggleClass('.building-list-active', 'building-list-active', document.getElementById(buildingsNames[planetData.nextBuilding]));
 
-		// @TODO: Draw if a building can be upgraded (use of planet.canBeBuild())
-	}
-	/*
-	Gets the energy consomation.
-	
-	@return     {number}  The energy consomation.
-	*/
-	static getEnergyConsomation() {
-		let energy = 0;
-
-		for(let i=0; i<9; i++) {
-			energy += planet.getBuildCost(i,planetData.Buildings[i]).energy;
-		}
-
-		return energy;
+		// @TODO: Draw if a building can be upgraded (use of planetUI.canBeBuild())
 	}
 
 	/**
@@ -434,10 +407,10 @@ class planet {
 			if(buildings[i]===0) { continue; }
 			if(i===planetData.nextBuilding) {
 				// Current in-build building
-				habitants += parseInt(planet.getBuildCost(i,buildings[i] + 1).habitants);
+				habitants += parseInt(Buildings.GetCost(i,buildings[i] + 1).habitants);
 				continue; 
 			}
-			habitants += parseInt(planet.getBuildCost(i,buildings[i]).habitants);
+			habitants += parseInt(Buildings.GetCost(i,buildings[i]).habitants);
 		}
 
 		// Units builded and in-build
@@ -456,8 +429,8 @@ class planet {
 	 */
 	static getTimeBeforeBuild(building) {
 		let cost;
-		if(planetData.nextBuilding===building) { cost = planet.getBuildCost(building,planetData.Buildings[building] + 2); } 
-		else							      { cost = planet.getBuildCost(building,planetData.Buildings[building] + 1); }
+		if(planetData.nextBuilding===building) { cost = Buildings.GetCost(building,planetData.Buildings[building] + 2); } 
+		else							      { cost = Buildings.GetCost(building,planetData.Buildings[building] + 1); }
 		let costs = [
 			['building-cost-iron',cost.iron],
 			['building-cost-aluminium',cost.aluminium],
@@ -480,29 +453,6 @@ class planet {
 		return timeCurrent;
 	}
 
-	static buildingHasRequirements(id) {
-		// @TODO: Will be activated soon, just disabled to make tests on dev server
-		//if(planetData.Buildings[id] > 0) { return ''; }
-		if(buildingParents[id] === undefined) { return ''; }
-
-		let requirements = '';
-
-		for(let i=0; i<buildingParents[id].research.length; i++) {
-			if(!research.isSearched(buildingParents[id].research[i])) {
-				requirements += ', ' + translate['research'][buildingParents[id].research[i]].name;
-			}
-		}
-
-		for(let i=0; i<buildingParents[id].building.length; i++) {
-			let currentBuilding = buildingParents[id].building[i];
-			if(currentBuilding[1] > planetData.Buildings[currentBuilding[0]]) {
-				requirements += ', ' + translate['buildings'][currentBuilding[0]].name + ' ' + translate.messages['LEVEL'] + ' ' + currentBuilding[1];
-			}
-		}
-
-		return requirements.substring(1);
-	}
-
 	/**
 	 * Determines ability to be build.
 	 *
@@ -510,10 +460,10 @@ class planet {
 	 */
 	static canBeBuild(id) {
 		return (
-			planet.getTimeBeforeBuild(id) === 0 &&
+			planetUI.getTimeBeforeBuild(id) === 0 &&
 			planetData.Buildings[id] + 1 <= buildingMaxLvl[id] &&
-			(planetData.nextBuildingTime-Date.now()+planet.deltaNow) < 0 &&
-			planet.buildingHasRequirements(id)
+			(planetData.nextBuildingTime-Date.now()+planetUI.deltaNow) < 0 &&
+			Buildings.HasRequirements(userData, planetData, id)
 		);
 	}
 
@@ -523,10 +473,10 @@ class planet {
 	 * @return     {number}  The time before the next can be build.
 	 */
 	static getNextBuildingReady() {
-		let timeLeft = planet.getTimeBeforeBuild(0);
+		let timeLeft = planetUI.getTimeBeforeBuild(0);
 
 		for(let i=1; i<14; i++) {
-			let timeCurrent = planet.getTimeBeforeBuild(i);
+			let timeCurrent = planetUI.getTimeBeforeBuild(i);
 			if(timeCurrent < timeLeft && timeCurrent!==0) {
 				timeLeft = timeCurrent;
 			}
@@ -578,23 +528,23 @@ class planet {
 	 * @param      {string}  id      Building ID
 	 */
 	static buildPanelOpen(id) {
-		if(id === planet.buildPanel) {
-			planet.buildPanelHide();
+		if(id === planetUI.buildPanel) {
+			planetUI.buildPanelHide();
 			return;
 		}
 
-		planet.buildPanel = id;
+		planetUI.buildPanel = id;
 		let dateNow = new Date();
 
-		if(planet.buildPanelInterval!==-1) {
-			clearTimeout(planet.buildPanelInterval);
-			planet.buildPanelInterval = -1;
+		if(planetUI.buildPanelInterval!==-1) {
+			clearTimeout(planetUI.buildPanelInterval);
+			planetUI.buildPanelInterval = -1;
 		}
 
 		 //Next level cost
 		let cost;
-		if(planetData.nextBuilding===id) { cost = planet.getBuildCost(id,planetData.Buildings[id] + 2); } 
-		else							{ cost = planet.getBuildCost(id,planetData.Buildings[id] + 1); }
+		if(planetData.nextBuilding===id) { cost = Buildings.GetCost(id,planetData.Buildings[id] + 2); } 
+		else							{ cost = Buildings.GetCost(id,planetData.Buildings[id] + 1); }
 
 		let max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
 		let max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
@@ -623,7 +573,7 @@ class planet {
 			}
 		}
 		/* Calc max wait time */
-		planet.enoughResources = planet.getTimeBeforeBuild(id);
+		planetUI.enoughResources = planetUI.getTimeBeforeBuild(id);
 
 		/* Energie */
 		if(cost.energy==0) {
@@ -662,7 +612,7 @@ class planet {
 		ui.hide('#building-upgrade');
 		ui.show('#building-message', 'inline-block');
 
-		let requirements = planet.buildingHasRequirements(id);
+		let requirements = Buildings.GetRequirements(userData, planetData, id);
 
 		// Edits
 		if(max) { // Max Level
@@ -670,8 +620,8 @@ class planet {
 			ui.hide('#building-cost');
 		} else if(requirements !== '') { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ": " + requirements;
-		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Current building in build mode
-			let dateEnd = new Date(planetData.nextBuildingTime + planet.deltaNow);
+		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
+			let dateEnd = new Date(planetData.nextBuildingTime + planetUI.deltaNow);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
@@ -682,11 +632,11 @@ class planet {
 				document.getElementById('building-message').innerHTML = translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 			}
 
-			planet.buildPanelInterval = setTimeout(function() {
-				planet.buildPanelOpen(id);
-			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
-		} else if(planet.enoughResources>0) { // No enought Ressources
-			let dateEnd = new Date(Date.now() + planet.enoughResources*3600*1000);
+			planetUI.buildPanelInterval = setTimeout(function() {
+				planetUI.buildPanelOpen(id);
+			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
+		} else if(planetUI.enoughResources>0) { // No enought Ressources
+			let dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
@@ -697,18 +647,18 @@ class planet {
 				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_THE'] + ' ' + dateEnd.toLocaleDateString() + ' ' + translate.messages['ENOUGH_RESOURCES_AT'] + ' ' + dateEnd.toLocaleTimeString();
 			}
 
-			planet.buildPanelInterval = setTimeout(function() {
-				planet.buildPanelOpen(id);
-			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planet.deltaNow); // Refresh at 00:00:05
-		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planet.deltaNow)) { // Another building in build mode
+			planetUI.buildPanelInterval = setTimeout(function() {
+				planetUI.buildPanelOpen(id);
+			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
+		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['ANOTHER_IN_BUILD'];
-			planet.buildPanelInterval = setTimeout(function() {
-				planet.buildPanelOpen(id);
-			},planetData.nextBuildingTime - (Date.now() + planet.deltaNow + 1000));
+			planetUI.buildPanelInterval = setTimeout(function() {
+				planetUI.buildPanelOpen(id);
+			},planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
 		} else {
 			ui.hide('#building-message');
 			ui.show('#building-upgrade');
-			document.getElementById('building-upgrade').setAttribute('onclick','planet.build('+id+')');
+			document.getElementById('building-upgrade').setAttribute('onclick','planetUI.build('+id+')');
 		}
 
 		// Bonus
@@ -802,48 +752,15 @@ class planet {
 	 * Hide the buildpanel
 	 */
 	static buildPanelHide() {
-		if(planet.buildPanelInterval!=-1) {
-			clearTimeout(planet.buildPanelInterval);
-			planet.buildPanelInterval = -1;
-			planet.enoughResources = -1;
+		if(planetUI.buildPanelInterval!=-1) {
+			clearTimeout(planetUI.buildPanelInterval);
+			planetUI.buildPanelInterval = -1;
+			planetUI.enoughResources = -1;
 		}
 
-		planet.buildPanel = -1;
+		planetUI.buildPanel = -1;
 
 		ui.closeTab('#building-area');
-	}
-
-	/**
-	 * etourner les coûts de construction et d'utilisation du bâtiment.
-	 *
-	 * @param      {number}  build   The building id
-	 * @param      {number}  level   The building level
-	 * 
-	 * @return     {array}   cost    The final cost
-	 */
-	static getBuildCost(build,level) {
-		if(build < 0 || build > globalConst.buildingNumber) { return; }
-
-		let retour = {
-			aluminium: 	Math.round(buildCost['aluminium'][build][0]*Math.pow(level,2) +		buildCost['aluminium'][build][1]*level + 	buildCost['aluminium'][build][2]),
-			iron: 		Math.round(buildCost['iron'][build][0]*Math.pow(level,2) +			buildCost['iron'][build][1]*level + 		buildCost['iron'][build][2]),
-			copper: 	Math.round(buildCost['copper'][build][0]*Math.pow(level,2) + 		buildCost['copper'][build][1]*level + 		buildCost['copper'][build][2]),
-			titanium: 	Math.round(buildCost['titanium'][build][0]*Math.pow(level,2) + 		buildCost['titanium'][build][1]*level + 	buildCost['titanium'][build][2]),
-			time: 				   buildCost['time'][build][0]*Math.pow(level,2) + 			buildCost['time'][build][1]*level + 		buildCost['time'][build][2],
-			energy: 	Math.round(Math.pow(buildCost['energy'][build][0]*level,2) + 		buildCost['energy'][build][1]*level + 		buildCost['energy'][build][2]),
-			energy_difference: Math.round(Math.pow(buildCost['energy'][build][0]*level,2) + buildCost['energy'][build][1]*level +       buildCost['energy'][build][2] 
-			                        - (Math.pow(buildCost['energy'][build][0]*(level-1),2) + buildCost['energy'][build][1]*(level-1) +   buildCost['energy'][build][2])),
-			habitants:  Math.round(buildCost['habitants'][build][0]*Math.pow(level,2) +		buildCost['habitants'][build][1]*level + 	buildCost['habitants'][build][2]),
-			habitants_difference: Math.round(buildCost['habitants'][build][0]*Math.pow(level,2) +	buildCost['habitants'][build][1]*level + 	buildCost['habitants'][build][2]
-				                         - (buildCost['habitants'][build][0]*Math.pow((level-1),2) +	buildCost['habitants'][build][1]*(level-1) + buildCost['habitants'][build][2])),
-		};
-
-		if(level == 1) {
-			retour.habitants_difference = retour.habitants;
-			retour.energy_difference = retour.energy;
-		}
-
-		return retour;
 	}
 	
 	/**
@@ -863,7 +780,7 @@ class planet {
 	 * Opens the planet panel of a different planet than current (mostly other players)
 	 */
 	static openOtherPlanetPanel() {
-		let type = planet.getTypeOfPlanet(units.planetTarget);
+		let type = planetUI.getTypeOfPlanet(units.planetTarget);
 		planetBack.init(type);
 
 		let system = units.planetTarget.split('-');

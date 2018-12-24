@@ -109,7 +109,7 @@ class research {
 		if(document.getElementById('researchCenter-node')) {
 			document.getElementById('researchCenter-node').addEventListener('click', function() {
 				research.closeUI();
-				planet.buildPanelOpen(8);
+				planetUI.buildPanelOpen(8);
 			});
 		}
 
