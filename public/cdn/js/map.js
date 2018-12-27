@@ -383,7 +383,7 @@ class map {
 					}
 				} else {
 					map.xmlDoc[sector] = '';
-					console.log('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
+					console.error('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
 				}
 			}
 		});
@@ -457,7 +457,7 @@ class map {
 	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
 		// Check Address
 		if(typeof(address) != 'string' || address.split('-').length != 3) {
-			console.log('INVALID ADRESS FORMAT !');
+			console.error('INVALID ADRESS FORMAT !');
 			return;
 		}
 
@@ -840,7 +840,7 @@ class map {
 	 */
 	static focusAddress(address) {
 		if(typeof(address) != 'string' || address.split('-').length < 2) {
-			console.log('INVALID ADRESS FORMAT !');
+			console.error('INVALID ADRESS FORMAT !');
 			return;
 		}
 

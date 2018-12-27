@@ -13,7 +13,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('message', function(data) {
-	console.log('[SW] Changed: ' + data.data.change);
+	console.info('[SW] Changed: ' + data.data.change);
 	changed = data.data.change;
 });
 

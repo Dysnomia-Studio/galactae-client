@@ -96,13 +96,13 @@ ready(function() {
 	// On se connecte au serveur node et on verifie l'identité du client ( Serveur )
 	webSockets.createConnection();
 
-	console.log('%c' + translate.messages['selfXSSWarn'],'font-size: 2em; font-weight: bold; color: red;');
+	console.info('%c' + translate.messages['selfXSSWarn'],'font-size: 2em; font-weight: bold; color: red;');
 
 	// Service worker
 	if ('serviceWorker' in navigator && window.location.protocol === "https:") {
 		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
 			// Registration was successful
-			console.log('[SW] Registration successful with scope: ', registration.scope);
+			console.info('[SW] Registration successful with scope: ', registration.scope);
 
 			let serviceWorker;
 
@@ -131,7 +131,7 @@ ready(function() {
 	        }
 		}, function(err) {
 			// registration failed :(
-			console.log('[SW] Registration failed: ', err);
+			console.info('[SW] Registration failed: ', err);
 			loadScreen.complete('service-worker');
 		});
 	} else {

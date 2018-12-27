@@ -115,7 +115,7 @@ class settings {
 		let words = settingName.split('_');
 		val = this.settingsList;
 		for(let i in words) {
-			if(val[words[i]] === undefined) { console.log('ERROR: Invalid setting name - ' + settingName); return ''; }
+			if(val[words[i]] === undefined) { console.error('ERROR: Invalid setting name - ' + settingName); return ''; }
 			val = val[words[i]];
 		}
 

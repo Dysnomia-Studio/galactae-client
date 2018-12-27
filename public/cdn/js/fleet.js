@@ -10,7 +10,7 @@ class Fleet {
 	static getSpeed(speed, tech) {
 		if(speed[0] === -1) { // First sup propulsion part
 			if(shipPartsSpeed[tech] === undefined) { 
-				console.log('Speed is not defined for part ' + tech,'error');
+				console.error('Speed is not defined for part ' + tech,'error');
 				return [];
 			}
 			speed = shipPartsSpeed[tech].slice(0);
