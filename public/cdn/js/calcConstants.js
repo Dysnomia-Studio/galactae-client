@@ -10,7 +10,7 @@ let mineralProd = 	[1.8,-1.5,147];
 let metalProd = 	[1.85,-3,139];
 let heliumProd = 	[190,-424,500];
 
-let storageRatio = [47.52,8.29];
+let storageRatio = [0.1,0.5,7];
 let heliumStorageRatio = 0.2;
 
 let electricity = [2080000,165000,550000];
