@@ -6,7 +6,7 @@ let globalConst = {
 /**
  * Production
  */
-let mineralProd = 	[2,-2,145];
+let mineralProd = 	[1.8,-1.5,147];
 let metalProd = 	[1.85,-3,139];
 let heliumProd = 	[190,-424,500];
 
