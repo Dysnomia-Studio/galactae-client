@@ -12,6 +12,7 @@ translate["messages"] = {
 	"UNIT_ERROR_ALREADY": "An unit is already building",
 	"BUILDING_ERROR_MAXIMUM": "Maximum level reached",
 	"BUILDING_ERROR_COST": "You don't have enough resources",
+	"BUILDING_ERROR_STORAGE": "You don't have enough storage capacity",
 	"BUILDING_ERROR_ENERGY": "No enough energy produced",
 	"BUILDING_ERROR_PEOPLE": "No enough people",
 	"BUILDING_ERROR_DEPENDENCIES": "Missing dependencies to build it",

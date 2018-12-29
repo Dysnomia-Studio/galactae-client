@@ -413,7 +413,9 @@ class research {
 	 * @param	  {string}   key	 The research name
 	 * @return	 {boolean}  True if searched, False otherwise.
 	 */
-	static isSearched(key) {
+	static isSearched(key,key2) {
+		if(key2 !== undefined) { key = key2; } // used in shared libraries - @TODO: Fix this
+
 		return (userData.research[key]==-1 || key=='researchCenter');
 	}
 

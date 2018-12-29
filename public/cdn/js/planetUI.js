@@ -237,32 +237,8 @@ class planetUI {
 		heliumProdBase  = heliumProd[0]*Math.pow(buildings[13],2)  + heliumProd[1]*buildings[13]  + heliumProd[2];
 		heliumProdBase1  = heliumProd[0]*Math.pow((buildings[13] + 1),2)  + heliumProd[1]*(buildings[13]+1)  + heliumProd[2];
 
-		let warehouseBase = storageRatio[0]*Math.pow(buildings[5],2) + storageRatio[1]*buildings[5] + storageRatio[2];
-
-		mineralStorageBase = (mineralProd[0]*Math.pow(buildings[5],2) + mineralProd[1]*buildings[5] + mineralProd[2])*warehouseBase;
-		metalsStorageBase  = (metalProd[0]*Math.pow(buildings[5],2)   + metalProd[1]*buildings[5]   + metalProd[2]  )*warehouseBase;
-
-		mineralStorageBase1 = (mineralProd[0]*Math.pow(buildings[5] + 1,2) + mineralProd[1]*(buildings[5] + 1) + mineralProd[2])*warehouseBase;
-		metalsStorageBase1  = (metalProd[0]*Math.pow(buildings[5] + 1,2)   + metalProd[1]*(buildings[5] + 1)   + metalProd[2]  )*warehouseBase;
-
-		if(buildings[10]!==0) {
-			storageHelium = (heliumProd[0]*Math.pow(buildings[10],2)  + heliumProd[1]*buildings[10]  + heliumProd[2])*
-				(storageRatio[0]*Math.pow(buildings[10], 2) + storageRatio[1] * buildings[10] + storageRatio[2])*heliumStorageRatio; // Helium 3
-		} else {
-			storageHelium = 0;
-		}
-
-		storageHelium1 = (heliumProd[0]*Math.pow((buildings[10]+1),2)  + heliumProd[1]*(buildings[10]+1)  + heliumProd[2])*
-				(storageRatio[0]*Math.pow((buildings[10]+1), 2) + storageRatio[1] * buildings[10] + storageRatio[2])*heliumStorageRatio;
-
-		if(research.isSearched('cp_molecular_compression')) {
-			mineralStorageBase *= researchBonus.cp_molecular_compression;
-			metalsStorageBase *= researchBonus.cp_molecular_compression;
-			mineralStorageBase1 *= researchBonus.cp_molecular_compression;
-			metalsStorageBase1 *= researchBonus.cp_molecular_compression;
-			storageHelium *= researchBonus.cp_molecular_compression;
-			storageHelium1 *= researchBonus.cp_molecular_compression;
-		}
+		[ mineralStorageBase, metalsStorageBase, storageHelium ] = Buildings.calcStorageCapacity(buildings[5], buildings[10], research.isSearched('cp_molecular_compression'));
+		[ mineralStorageBase1, metalsStorageBase1, storageHelium1 ] = Buildings.calcStorageCapacity(buildings[5] + 1, buildings[10] + 1, research.isSearched('cp_molecular_compression'));
 
 		// Energy
 		energyProd = Buildings.getEnergyProd(buildings);
@@ -637,6 +613,8 @@ class planetUI {
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
+		} else if(!Buildings.hasEnoughtStorage(planetData, id)) {
+			document.getElementById('building-message').innerHTML = translate.messages['BUILDING_ERROR_STORAGE'];
 		} else if(planetUI.enoughResources>0) { // No enought Ressources
 			let dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
