@@ -453,3 +453,5 @@ class research {
  		document.querySelector('#'+planetData.currResearch+'-node .research-cost').innerHTML = '<img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) +'/'+researchList[planetData.currResearch].cost;
  	}
 }
+
+let Research = research;
