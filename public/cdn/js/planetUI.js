@@ -48,7 +48,7 @@ class planetUI {
 	static init() {
 		planetUI.buildPanel = -1; // Current opened building
 		planetUI.buildPanelInterval = -1; // Time before next client auto update
-		planetUI.enoughResources = -1; // Time before enought ressources
+		planetUI.enoughResources = -1; // Time before enough ressources
 		planetUI.deltaNow = 0; // Security measure
 	}
 
@@ -615,7 +615,7 @@ class planetUI {
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
 		} else if(!Buildings.hasEnoughtStorage(planetData, id)) {
 			document.getElementById('building-message').innerHTML = translate.messages['BUILDING_ERROR_STORAGE'];
-		} else if(planetUI.enoughResources>0) { // No enought Ressources
+		} else if(planetUI.enoughResources>0) { // No enough Ressources
 			let dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
 
