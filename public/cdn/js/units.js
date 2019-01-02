@@ -1273,6 +1273,102 @@ class units {
 		}
 	}
 
+	static countFleetCount(fleet) {
+		let totalcount = 0;
+		let fighterCount = 0;
+		let fighterCap = 0;
+		for(let j=0; j<fleet.units.length; j++) {
+			totalcount += fleet.units[j][1];
+
+			let currUnit = units.getUnitData(fleet.units[j][0]);
+			if(currUnit.shipType === 'SHIP_FIGHTER') {
+				fighterCount += (fighterWeight[currUnit.shipShape] * fleet.units[j][1]);
+			} else if(currUnit.shipType === 'SHIP_CARRIER') {
+				for(let p in currUnit.parts) {
+					if(currUnit.parts[p].type === 'hangar') {
+						fighterCap += (hangarSize[currUnit.parts[p].tech] * fleet.units[j][1]);
+					}
+				}
+			}
+		}
+
+		return { totalcount, fighterCount, fighterCap };
+	}
+
+	static getFleetSpoilerDOM(fleet, type) {
+		let counts = units.countFleetCount(fleet);
+
+		let content = '<details class="fleet-show-global">' +
+			'<summary id="' + fleet.id + '" class="fleet-show-name"><table class="fleet-show-table">' +
+			// Nom flotte
+			'<tr><td>' + fleet.name +
+			'<img class="fleet-rename" alt="rename fleet" src="./cdn/img/ui/rename.svg" style="display: inline-block;">' +
+			'</td>';
+
+		// Fuel
+		if(fleet.maxFuel > 0) {
+			content += '<td class="text-center"><img class="fleet-show-fuel" src="./cdn/img/ui/fuel.svg"> ' + GetBetterUnit(fleet.fuel, '', -1, true) + '/' + GetBetterUnit(fleet.maxFuel) + 
+			'(~' + 100*Math.round(fleet.fuel/fleet.maxFuel) + '%)</td>';
+		} else {
+			content += '<td></td>';
+		}
+
+		// Nb unités
+		content += '<td class="text-right">' + counts.totalcount + ' ' + fleetTranslate['unit'] + '</td>';
+
+		// Seconde ligne
+		content += '</tr><tr>';
+
+		// Hangar
+		if(counts.fighterCount != 0 || counts.fighterCap != 0) { 
+			content += '<td>' + fleetTranslate['hangar'] + ': ' + counts.fighterCount + '/' + counts.fighterCap + '</td>';
+		} else {
+			content += '<td>&nbsp;</td>'; // Non-breaking space is here to force line height
+		}
+
+		// Prorité
+		if(type === 'orbit' && fleet.maxFuel > 0 && planetData.highPriorityFleet === fleet._id) {
+			content += '<td class="text-center">' + fleetTranslate['priorty-fuel'] + '</td>';
+		} else if(type === 'orbit' && fleet.maxFuel > 0) {
+			content += '<td class="text-center">' + fleetTranslate['no-priorty-fuel'] + '</td>';
+		}
+
+		content +='</tr></table></summary>' +
+			'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
+
+		for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
+			let count = -1;
+			for(let fleetUnitId=0; fleetUnitId<fleet.units.length; fleetUnitId++) {
+				if(fleet.units[fleetUnitId][0] === units.list[allUnitsId]._id) {
+					count = fleet.units[fleetUnitId][1];
+					break;
+				}
+			}
+			if(count < 0) { continue; }
+
+			content +=  '<tr id="'+ units.list[allUnitsId]._id +'" class="table-line">' +
+							'<td>' + units.list[allUnitsId].name + '</td>' +
+							'<td>' + fleetTranslate[units.list[allUnitsId].shipType] + '</td>' +
+							'<td>' + fleetTranslate[units.list[allUnitsId].shipShape] + '</td>' +
+							'<td>' + count + '</td>';
+
+			if(type === 'orbit') {
+				content += '<td><img class="fleet-show-upgrade" title="' + fleetTranslate['upgrade'] + '" src="./cdn/img/ui/unit-upgrade.svg">' +
+						'<img class="fleet-show-recycle" title="' + fleetTranslate['recycle'] + '" src="./cdn/img/ui/unit-recycle.svg"></td>';
+			}
+			
+			content += '</tr>';
+		}
+
+		content += '</tbody></table><div class="fleet-show-buttonPanel">' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeInto" value="' + fleetTranslate['mergeInto'] + '">' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeFrom" value="' + fleetTranslate['mergeFrom'] + '">' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-editAI" value="' + fleetTranslate['editAI'] + '">' +
+			'</div></details>';
+
+		return content;
+	}
+
 	/**
 	 * (Re)draw the fleets lists
 	 */
@@ -1280,200 +1376,48 @@ class units {
 		if(planetData.address === undefined) { 
 			setTimeout(function() {
 				units.drawFleetLists();
-			},1000); 
+			}, 500); 
+
+			return;
 		}
 
-		let orbit = [];
-		let moving = [];
-		let out = [];
+		let orbitDOM = '';
+		let movingDOM = '';
+		let outDOM = '';
 
 		for(let i=0; i<units.fleetList.length; i++) {
+			if(units.fleetList[i].name === 'SHIP_DEF') { units.fleetList[i].name = fleetTranslate[units.fleetList[i].name]; }
+
 			if(units.fleetList[i].position === planetData.address && units.fleetList[i].endMoveTime == -1) {
-				orbit.push(units.fleetList[i]);
+
+				if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { // Defence fleet always first
+					orbitDOM = units.getFleetSpoilerDOM(units.fleetList[i], 'orbit') + orbitDOM;
+				} else {
+					orbitDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'orbit');
+				}
+
 			} else if(units.fleetList[i].endMoveTime != -1) {
-				moving.push(units.fleetList[i]);
+				movingDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'moving');
 			} else {
-				out.push(units.fleetList[i]);
+				outDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'out');
 			}
 		}
 
 		// On orbit
-		let orbitDOM = '';
-		if(orbit.length != 0) {
-			for(let i=0; i<orbit.length; i++) {
-				let totalcount = 0;
-				let fighterCount = 0;
-				let fighterCap = 0;
-				for(let j=0; j<orbit[i].units.length; j++) {
-					totalcount += orbit[i].units[j][1];
-
-					let currUnit = units.getUnitData(orbit[i].units[j][0]);
-					if(currUnit.shipType === 'SHIP_FIGHTER') {
-						fighterCount += (fighterWeight[currUnit.shipShape] * orbit[i].units[j][1]);
-					} else if(currUnit.shipType === 'SHIP_CARRIER') {
-						for(let p in currUnit.parts) {
-							if(currUnit.parts[p].type === 'hangar') {
-								fighterCap += (hangarSize[currUnit.parts[p].tech] * orbit[i].units[j][1]);
-							}
-						}
-					}
-				}
-
-				if(orbit[i].name === 'SHIP_DEF') { orbit[i].name = fleetTranslate[orbit[i].name]; }
-				let content = '<details class="fleet-show-global">' +
-					'<summary class="fleet-show-name">' + orbit[i].name +
-					'<span class="fleet-show-count">';
-				if(fighterCount != 0 || fighterCap != 0) { 
-					content += fleetTranslate['hangar'] + ': ' + fighterCount + '/' + fighterCap + ' - ';
-				}
-
-				content += totalcount + ' ' + fleetTranslate['unit'] + 
-					'</span></summary>' +
-					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
-
-				for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
-					let count = -1;
-					for(let fleetUnitId=0; fleetUnitId<orbit[i].units.length; fleetUnitId++) {
-						if(orbit[i].units[fleetUnitId][0] === units.list[allUnitsId]._id) {
-							count = orbit[i].units[fleetUnitId][1];
-							break;
-						}
-					}
-					if(count < 0) { continue; }
-
-					content+= '<tr id="'+ units.list[allUnitsId]._id +'"><td>' + units.list[allUnitsId].name + '</td><td>' + fleetTranslate[units.list[allUnitsId].shipType] + '</td><td>' + fleetTranslate[units.list[allUnitsId].shipShape] + '</td><td>' + count + '</td><td></td></tr>';
-				}
-
-				content += '</tbody></table></details>';
-
-				if(orbit[i].name === fleetTranslate['SHIP_DEF']) { // Defence fleet always first
-					orbitDOM = content + orbitDOM;
-					continue;
-				}
-				orbitDOM += content;
-			}
-		} else {
+		if(orbitDOM === '') {
 			orbitDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
 		document.getElementById('fleet-orbit-content').innerHTML = orbitDOM;
 
 		// Moving
-		let movingDOM = '';
-		if(moving.length != 0) {
-			for(let i=0; i<moving.length; i++) {
-				let totalcount = 0;
-				let fighterCount = 0;
-				let fighterCap = 0;
-				for(let j=0; j<moving[i].units.length; j++) {
-					totalcount += moving[i].units[j][1];
-
-					let currUnit = units.getUnitData(moving[i].units[j][0]);
-					if(currUnit.shipType === 'SHIP_FIGHTER') {
-						fighterCount += (fighterWeight[currUnit.shipShape] * moving[i].units[j][1]);
-					} else if(currUnit.shipType === 'SHIP_CARRIER') {
-						for(let p in currUnit.parts) {
-							if(currUnit.parts[p].type === 'hangar') {
-								fighterCap += (hangarSize[currUnit.parts[p].tech] * moving[i].units[j][1]);
-							}
-						}
-					}
-				}
-
-				if(moving[i].name === 'SHIP_DEF') { moving[i].name = fleetTranslate[moving[i].name]; }
-				let content = '<details class="fleet-show-global">' +
-					'<summary class="fleet-show-name">' + moving[i].name +
-					'<span class="fleet-show-count">';
-				if(fighterCount != 0 || fighterCap != 0) { 
-					content += fleetTranslate['hangar'] + ': ' + fighterCount + '/' + fighterCap + ' - ';
-				}
-
-				content += totalcount + ' ' + fleetTranslate['unit'] + 
-					'</span></summary>' +
-					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
-
-				for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
-					let count = -1;
-					for(let fleetUnitId=0; fleetUnitId<moving[i].units.length; fleetUnitId++) {
-						if(moving[i].units[fleetUnitId][0] === units.list[allUnitsId]._id) {
-							count = moving[i].units[fleetUnitId][1];
-							break;
-						}
-					}
-					if(count < 0) { continue; }
-
-					content+= '<tr id="'+ units.list[allUnitsId]._id +'"><td>' + units.list[allUnitsId].name + '</td><td>' + fleetTranslate[units.list[allUnitsId].shipType] + '</td><td>' + fleetTranslate[units.list[allUnitsId].shipShape] + '</td><td>' + count + '</td><td></td></tr>';
-				}
-
-				content += '</tbody></table></details>';
-
-				if(moving[i].name === fleetTranslate['SHIP_DEF']) { // Defence fleet always first
-					movingDOM = content + movingDOM;
-					continue;
-				}
-				movingDOM += content;
-			}
-		} else {
-			movingDOM = '<h2>' + fleetTranslate['no-move-unit'] + '</h2>';
+		if(movingDOM === '') {
+			movingDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
 		document.getElementById('fleet-move-content').innerHTML = movingDOM;
 
 		// Out
-		let outDOM = '';
-		if(out.length != 0) {
-			for(let i=0; i<out.length; i++) {
-				let totalcount = 0;
-				let fighterCount = 0;
-				let fighterCap = 0;
-				for(let j=0; j<out[i].units.length; j++) {
-					totalcount += out[i].units[j][1];
-
-					let currUnit = units.getUnitData(out[i].units[j][0]);
-					if(currUnit.shipType === 'SHIP_FIGHTER') {
-						fighterCount += (fighterWeight[currUnit.shipShape] * out[i].units[j][1]);
-					} else if(currUnit.shipType === 'SHIP_CARRIER') {
-						for(let p in currUnit.parts) {
-							if(currUnit.parts[p].type === 'hangar') {
-								fighterCap += (hangarSize[currUnit.parts[p].tech] * out[i].units[j][1]);
-							}
-						}
-					}
-				}
-
-				if(out[i].name === 'SHIP_DEF') { out[i].name = fleetTranslate[out[i].name]; }
-				let content = '<details class="fleet-show-global">' +
-					'<summary class="fleet-show-name">' + out[i].name +
-					'<span class="fleet-show-count">';
-				if(fighterCount != 0 || fighterCap != 0) { 
-					content += fleetTranslate['hangar'] + ': ' + fighterCount + '/' + fighterCap + ' - ';
-				}
-
-				content += totalcount + ' ' + fleetTranslate['unit'] + 
-					'</span></summary>' +
-					'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
-
-				for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
-					let count = -1;
-					for(let fleetUnitId=0; fleetUnitId<out[i].units.length; fleetUnitId++) {
-						if(out[i].units[fleetUnitId][0] === units.list[allUnitsId]._id) {
-							count = out[i].units[fleetUnitId][1];
-							break;
-						}
-					}
-					if(count < 0) { continue; }
-
-					content+= '<tr id="'+ units.list[allUnitsId]._id +'"><td>' + units.list[allUnitsId].name + '</td><td>' + fleetTranslate[units.list[allUnitsId].shipType] + '</td><td>' + fleetTranslate[units.list[allUnitsId].shipShape] + '</td><td>' + count + '</td><td></td></tr>';
-				}
-
-				content += '</tbody></table></details>';
-
-				if(out[i].name === fleetTranslate['SHIP_DEF']) { // Defence fleet always first
-					outDOM = content + outDOM;
-					continue;
-				}
-				outDOM += content;
-			}
-		} else {
-			outDOM = '<h2>' + fleetTranslate['no-out-unit'] + '</h2>';
+		if(outDOM === '') {
+			outDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
 		document.getElementById('fleet-out-content').innerHTML = outDOM;
 	}

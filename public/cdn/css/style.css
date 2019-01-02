@@ -26,6 +26,9 @@ em {
 .text-justify {
 	text-align: justify;
 }
+.text-right {
+	text-align: right;
+}
 
 /**
  * Animations
@@ -1090,23 +1093,37 @@ select, input, summary {
 	display: none;
 }
 #fleet-orbit, #fleet-move, #fleet-out {
-	height: calc(100% - 4em);
 	margin: 1.5em;
 	overflow-y: auto;
+}
+@media (min-width: 900px) {
+	#fleet-orbit, #fleet-move, #fleet-out {
+		height: calc(100% - 5.5em);
+	}
+}
+@media (max-width: 900px) {
+	#fleet-orbit, #fleet-move, #fleet-out {
+		height: calc(100% - 6em);
+	}
 }
 .ul-choice-line-li-active {
 	background-color: #0EC6C6 !important;
 	color:#222222 !important;
 }
-.ui-large-button {
+.ui-large-button, .ui-medium-button {
 	box-sizing: border-box;
 	border: 1px outset #0EC6C6;
 	background-color: #0b1012;
 	color: #EEEEEE;
+}
+.ui-large-button:hover, .ui-medium-button:hover {
+	background-color: #0f1619;
+}
+.ui-large-button {
 	height: 50px;
 }
-.ui-large-button:hover {
-	background-color: #0f1619;
+.ui-medium-button {
+	height: 30px;
 }
 .ui-large-select {
 	box-sizing: content-box;
@@ -1485,8 +1502,8 @@ select, input, summary {
 	width: 24.5%;
 }
 .fleet-show-global .unit-list-table {
-	width: 100%;
-	margin-right: 10px;
+	width: calc(100% - 1em);
+	margin: 1em 0.5em;
 	border-spacing: 0;
 }
 .fleet-show-global .unit-list-table td, .fleet-show-global .unit-list-table th {
@@ -1513,6 +1530,9 @@ select, input, summary {
 	visibility: hidden;
 	clear: both;
 }
+.unit-list-table .table-line:hover {
+	border: 1px solid #036f6f;
+}
 .unit-list-table tbody {
 	padding-right: 20px;
 	width: calc(100% - 20px);
@@ -1525,6 +1545,10 @@ select, input, summary {
 .unit-list-table tbody tr {
 	border: 1px solid transparent;
 	cursor: url(../img/mouse_pointer.png), pointer;
+}
+.unit-list-table img {
+	max-height: 1.2em;
+	margin: 0 0.5em;
 }
 .fleet-build-list-active {
 	border: 1px solid #0EC6C6 !important;
@@ -1547,9 +1571,14 @@ select, input, summary {
 	width: auto !important;
 	font-size: 1.2em;
 }
+#fleet-build-rename, .fleet-rename {
+	margin-left: 0.2em;
+}
 #fleet-build-rename {
 	max-height: 1em;
-	margin-left: 0.2em;
+}
+.fleet-rename {
+	max-height: 0.7em;
 }
 #fleet-build-create,#fleet-build-message, #fleet-build-count, #fleet-build-buttons {
 	width: calc(100% - 0.3em);
@@ -1613,23 +1642,52 @@ select, input, summary {
 	list-style-type: none; /* Only for hiding arrow on firefox */
 
 	cursor: url(../img/mouse_pointer.png), pointer;
+	
+	padding: 0.5em;
+	padding-top: 0;
+
+	position: relative;
 }
 #hud-fleet .html5_details > summary::before, #hud-fleet details > summary::before {
 	content:"+";
+	right: 1em;
+	top: 2.5em;
+	position: absolute;
 }
 #hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary::before {
 	content:"-";
+}
+#hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary {
+	border-bottom: 1px solid #0EC6C6;
 }
 #hud-fleet summary::-webkit-details-marker {
 	opacity: 0;
 	width: 0;
 }
-.fleet-show-count {
-	float: right;
+.fleet-show-table {
+	width: 100%;
+	margin-top: -1em;
+}
+.fleet-show-table td {
+	width: 33%;
 }
 .fleet-show-global {
-	margin-right: 1em;
+	margin: 0.5em;
+
+	border: 1px solid #0EC6C6;
 }
+.fleet-show-fuel {
+	max-height: 0.8em;
+}
+.fleet-show-buttonPanel {
+	text-align: center;
+}
+.fleet-show-button {
+	display: inline-block;
+	width: 30%;
+	margin: 1em 1.5%;
+}
+
 /**
  * Research
  */

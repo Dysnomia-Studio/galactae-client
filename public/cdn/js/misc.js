@@ -60,7 +60,7 @@ function getParameterByName(name, url) {
  * @param      {number}  max     The maximum value
  * @return     {string}  Reduced value with unit
  */
-function GetBetterUnit(nmbr,unit='',max=0) {
+function GetBetterUnit(nmbr,unit='',max=0,disableMax=false) {
 	let units = ['','K','M','G','T','P','E','Z','Y'];
 	let unitId = 0;
 	let newnbr = nmbr;
@@ -87,7 +87,7 @@ function GetBetterUnit(nmbr,unit='',max=0) {
 	   end = (Math.round(newnbr*10)/10)+units[unitId]+unit;
 	}
 
-	if((nmbr >= max && max !== 0) || nmbr <= 0) {
+	if(!disableMax && ((nmbr >= max && max !== 0) || nmbr <= 0)) {
 		end = '<span class="max-value">' + end + '</span>';
 	}
 

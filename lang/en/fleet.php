@@ -96,10 +96,20 @@
 		"fleet-build-type-copy": "Duplicate this model",
 		"fleet-build-type-delete": "Delete model",
 
+		"priorty-fuel": "Refuel priority",
+		"no-priorty-fuel": "No Refuel priority",
+
+		"recycle": "Recycle units",
+		"upgrade": "Upgrade units",
+
+		"mergeInto": "Merge into ...",
+		"mergeFrom": "Merge from ...",
+		"editAI": "Edit fleet AI",
+
 		"no-orbit-unit": "No unit is in orbit of this planet",
 		"no-move-unit": "No fleet is moving",
 		"no-out-unit": "No unit in orbit of another planet",
 
-		"unit": "total unit(s)",
+		"unit": "unit(s)",
 	};
 </script>

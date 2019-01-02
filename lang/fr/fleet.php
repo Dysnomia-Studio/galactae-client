@@ -96,10 +96,20 @@
 		"fleet-build-type-copy": "Copier ce modele",
 		"fleet-build-type-delete": "Supprimer le modele",
 
+		"priorty-fuel": "Prioritaire carburant",
+		"no-priorty-fuel": "Non Prioritaire carburant",
+
+		"recycle": "Recycler unités",
+		"upgrade": "Ameliorer unités",
+
+		"mergeInto": "Fusionner dans ...",
+		"mergeFrom": "Fusionner de ...",
+		"editAI": "Editer IA flotte",
+
 		"no-orbit-unit": "Aucune unité en orbite",
 		"no-move-unit": "Aucune flotte ne se déplace",
 		"no-out-unit": "Aucune unité en orbite d'une autre planète",
 
-		"unit": "unité(s) au total",
+		"unit": "unité(s)",
 	};
 </script>
