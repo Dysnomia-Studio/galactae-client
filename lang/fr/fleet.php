@@ -29,7 +29,6 @@
 	define('SHIP_SUBSPEED','Interplanetaire');
 	define('SHIP_SUPSPEED','Interstellaire');
 	define('SHIP_MISS_CHANCE','Chance d\'évitement');
-	define('SHIP_MASS','Masse');
 	define('SHIP_FCAP','Capacité chasseurs');
 
 	//== Fleet ==\\
@@ -99,6 +98,7 @@
 		"priorty-fuel": "Prioritaire carburant",
 		"no-priorty-fuel": "Non Prioritaire carburant",
 
+		"transferUnits": "Transférer unités",
 		"recycle": "Recycler unités",
 		"upgrade": "Ameliorer unités",
 

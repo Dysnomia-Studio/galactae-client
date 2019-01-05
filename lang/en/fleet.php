@@ -29,7 +29,6 @@
 	define('SHIP_SUBSPEED','Interplanetary');
 	define('SHIP_SUPSPEED','Interstellar');
 	define('SHIP_MISS_CHANCE','Miss Chance');
-	define('SHIP_MASS','Mass');
 	define('SHIP_FCAP','Fighters Capacity');
 
 	//== Fleet ==\\

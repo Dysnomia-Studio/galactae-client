@@ -321,9 +321,6 @@ let shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				shield: ['none','magnetic','projector'],
 			},
-			stats: {
-				mass: 0,
-			},
 		},
 	},
 	SHIP_BATTLECRUISER: {
@@ -350,9 +347,6 @@ let shipShapesDetails = {
 				sup_propulsion: ['vsl','wd'],
 				shield: ['none','magnetic','turret'],
 			},
-			stats: {
-				mass: 0,
-			},
 		},
 	},
 	SHIP_CUIRASSE: {
@@ -376,9 +370,6 @@ let shipShapesDetails = {
 				sup_propulsion: ['vsl','wd'],
 				shield: ['none','magnetic','turret','singularity','projector'],
 			},
-			stats: {
-				mass: 0,
-			},
 		},
 	},
 	SHIP_FIGHTER: {
@@ -396,9 +387,6 @@ let shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				sub_propulsion: ['vsolaire','ion'],
 			},
-			stats: {
-				mass: 0,
-			},
 		},
 		SHIP_FIGHTER_MEDIUM: {
 			svg: [
@@ -415,14 +403,11 @@ let shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				sub_propulsion: ['vsolaire','ion'],
 			},
-			stats: {
-				mass: 0,
-			},
 		},
 	},
 	SHIP_CORVET: {
 		SHIP_CORVET_SMALL: {
-			svg: [			
+			svg: [
 				['struct','rect'  , 50,150,120, 60], // Moteur 1
 				['struct','rect'  , 50,290,120, 60], // Moteur 2
 				['struct','circle',250,250,150], // Corps
@@ -442,22 +427,19 @@ let shipShapesDetails = {
 				sub_propulsion: ['vsolaire','ion','pplasma'],
 				sup_propulsion: ['vsl','wd'],
 			},
-			stats: {
-				mass: 0,
-			},
 		},
 	},
 	SHIP_CARRIER: {
 		SHIP_CARRIER_MEDIUM: {
 			svg: [
-				['struct','path','M400',200,'Q',500,250,400,300,'L50',300,'Q',0,250,50,200,'L400',200], // Centre	
-				['struct','poly',60,200,60,130,220,130,240,200], // Aile gauche avant 
+				['struct','path','M400',200,'Q',500,250,400,300,'L50',300,'Q',0,250,50,200,'L400',200], // Centre
+				['struct','poly',60,200,60,130,220,130,240,200], // Aile gauche avant
 				['struct','poly',60,200,60,90,130,90,150,200], // Aile gauche arriere
 				['struct','poly',60,300,60,370,220,370,240,300], // Aile droite avant
 				['struct','poly',60,300,60,410,130,410,150,300], // Aile droite arriere
 				// Hangars
-				['hangar','rect', 70,110,50,50,'hangar_1'], // Aile gauche arriere 
-				['hangar','rect',160,140,50,50,'hangar_2'], // Aile gauche avant 
+				['hangar','rect', 70,110,50,50,'hangar_1'], // Aile gauche arriere
+				['hangar','rect',160,140,50,50,'hangar_2'], // Aile gauche avant
 				['hangar','rect', 70,340,50,50,'hangar_3'], // Aile droite arriere
 				['hangar','rect',160,310,50,50,'hangar_4'], // Aile droite avant
 				// Boucliers
@@ -470,10 +452,7 @@ let shipShapesDetails = {
 				hangar: ['none','hangarSimple','hangarDouble'],
 				sub_propulsion: ['ion','pplasma'],
 				sup_propulsion: ['vsl','wd','hyperespace'],
-				shield: ['none','magnetic','turret','projector'],
-			},
-			stats: {
-				mass: 0,
+				shield: ['none','magnetic','turret'],
 			},
 		},
 	},

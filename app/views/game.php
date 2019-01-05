@@ -536,7 +536,6 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						<div id="fleet-build-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-build-stat-supspeed-val"></span></div>
 					</div>
 					<div id="fleet-build-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-build-stat-miss-val"></span></div>
-					<div id="fleet-build-stat-mass">'.SHIP_MASS.' : <span id="fleet-build-stat-mass-val"></span></div>
 					<div id="fleet-build-stat-fcap">'.SHIP_FCAP.' : <span id="fleet-build-stat-fcap-val"></span></div>
 					<div id="fleet-build-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-build-stat-note-val"></span></div>'; ?>
 				</div>

@@ -1103,23 +1103,23 @@ class units {
 		}
 
 		if(modules.sub_propulsion === 0) {
-			ui.hide(div + '-subspeed');
+			ui.hide('#' + div + '-subspeed');
 		} else {
 			document.getElementById(div + '-subspeed-val').innerText = GetBetterUnit(modules.sub_propulsion,'m/s');
 		}
 
 		if(modules.sup_propulsion === 0) {
-			ui.hide(div + '-supspeed');
+			ui.hide('#' + div + '-supspeed');
 		} else {
 			document.getElementById(div + '-supspeed-val').innerText = modules.sup_propulsion + 'pc/s';
 		}
 
 		if(modules.sup_propulsion === 0 && modules.sub_propulsion === 0) {
-			ui.hide(div + '-speed');
+			ui.hide('#' + div + '-speed');
 		}
 
 		if(type != 'SHIP_CARRIER') {
-			ui.hide(div + '-fcap');
+			ui.hide('#' + div + '-fcap');
 		} else {
 			document.getElementById(div + '-fcap-val').innerText = modules.hangar;
 		}
@@ -1128,10 +1128,6 @@ class units {
 		if(note === undefined) {
 			note = 'X.X'; // @ADD: Calc note
 		}
-		let mass = 0; // @ADD: Calc mass
-		
-		// Masse
-		document.getElementById(div + '-mass-val').innerHTML = GetBetterUnit(mass,'t');
 
 		// Note
 		document.getElementById(div + '-note-val').innerText = note;
@@ -1352,17 +1348,30 @@ class units {
 							'<td>' + fleetTranslate[units.list[allUnitsId].shipShape] + '</td>' +
 							'<td>' + count + '</td>';
 
+
+			// Buttons
+			content += '<td>';
+
+			if(fleet.name !== 'SHIP_DEF' && fleet.name !== fleetTranslate['SHIP_DEF']) {
+				content += '<img class="fleet-show-transferUnits" title="' + fleetTranslate['transferUnits'] + '" src="./cdn/img/ui/unit-transfer.svg">';
+			}
+
 			if(type === 'orbit') {
-				content += '<td><img class="fleet-show-upgrade" title="' + fleetTranslate['upgrade'] + '" src="./cdn/img/ui/unit-upgrade.svg">' +
-						'<img class="fleet-show-recycle" title="' + fleetTranslate['recycle'] + '" src="./cdn/img/ui/unit-recycle.svg"></td>';
+				content += '<img class="fleet-show-upgrade" title="' + fleetTranslate['upgrade'] + '" src="./cdn/img/ui/unit-upgrade.svg">' +
+						'<img class="fleet-show-recycle" title="' + fleetTranslate['recycle'] + '" src="./cdn/img/ui/unit-recycle.svg">';
 			}
 			
-			content += '</tr>';
+			content += '</td></tr>';
 		}
 
+		let disableCSS = '';
+		if(fleet.name === 'SHIP_DEF' || fleet.name === fleetTranslate['SHIP_DEF']) {
+			disableCSS = ' style="opacity: 0;" disabled';
+		} 
+
 		content += '</tbody></table><div class="fleet-show-buttonPanel">' +
-			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeInto" value="' + fleetTranslate['mergeInto'] + '">' +
-			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeFrom" value="' + fleetTranslate['mergeFrom'] + '">' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeInto" value="' + fleetTranslate['mergeInto'] + '" ' + disableCSS + '>' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeFrom" value="' + fleetTranslate['mergeFrom'] + '" ' + disableCSS + '>' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-editAI" value="' + fleetTranslate['editAI'] + '">' +
 			'</div></details>';
 

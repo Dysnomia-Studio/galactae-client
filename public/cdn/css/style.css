@@ -1548,6 +1548,7 @@ select, input, summary {
 }
 .unit-list-table img {
 	max-height: 1.2em;
+	max-width: 1.2em;
 	margin: 0 0.5em;
 }
 .fleet-build-list-active {
