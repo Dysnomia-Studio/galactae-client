@@ -992,7 +992,7 @@ class units {
 
 			document.addEventListener('click', function(e) {
 				if(!ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
-					ui.hide('#part-selecting-seen-' + id + ' dd ul')
+					ui.hide('#part-selecting-seen-' + id + ' dd ul');
 				}
 			});
 
@@ -1077,18 +1077,19 @@ class units {
 			switch(parts[i].type) {
 				case 'sub_propulsion':
 					if(modules.sub_propulsion === 0) {
-						modules.sub_propulsion = 0; // @ADD: Calc subspeed
-						modules.sub_propulsion *= 1000; // Passage de km en m
+						modules.sub_propulsion = shipPartsSpeed[parts[i].tech][0]*10000 +
+							shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
+						modules.sub_propulsion = SYSTEM_AU_SIZE/(modules.sub_propulsion * 3600);
 					} else {
 						modules.sub_propulsion *= 1.5;
 					}
+
 					break;
 				case 'sup_propulsion':
 					if(modules.sup_propulsion === 0) {
-						modules.sup_propulsion = shipPartsSpeed[parts[i].tech][0]*10000 +
-							shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
-						modules.sup_propulsion = 30675/(modules.sup_propulsion * 3600);
-						modules.sup_propulsion = modules.sup_propulsion.toFixed(3);
+						modules.sup_propulsion = shipPartsSpeed[parts[i].tech][0]*100 +
+							shipPartsSpeed[parts[i].tech][1]*10 + shipPartsSpeed[parts[i].tech][2];
+						modules.sup_propulsion = GALACTIC_PARSEC_SIZE/(modules.sup_propulsion * 3600);
 					} else {
 						modules.sup_propulsion *= 1.5;
 					}
@@ -1102,25 +1103,33 @@ class units {
 			}
 		}
 
-		if(modules.sub_propulsion === 0) {
+		modules.sub_propulsion = modules.sub_propulsion.toFixed(3);
+		modules.sup_propulsion = modules.sup_propulsion.toFixed(3);
+
+		if(parseFloat(modules.sub_propulsion) === 0) {
 			ui.hide('#' + div + '-subspeed');
 		} else {
-			document.getElementById(div + '-subspeed-val').innerText = GetBetterUnit(modules.sub_propulsion,'m/s');
+			ui.show('#' + div + '-subspeed');
+			document.getElementById(div + '-subspeed-val').innerText = modules.sub_propulsion + 'au/s';
 		}
 
-		if(modules.sup_propulsion === 0) {
+		if(parseFloat(modules.sup_propulsion) === 0) {
 			ui.hide('#' + div + '-supspeed');
 		} else {
+			ui.show('#' + div + '-supspeed');
 			document.getElementById(div + '-supspeed-val').innerText = modules.sup_propulsion + 'pc/s';
 		}
 
-		if(modules.sup_propulsion === 0 && modules.sub_propulsion === 0) {
+		if(parseFloat(modules.sup_propulsion) === 0 && parseFloat(modules.sub_propulsion) === 0) {
 			ui.hide('#' + div + '-speed');
+		} else {
+			ui.show('#' + div + '-speed');
 		}
 
 		if(type != 'SHIP_CARRIER') {
 			ui.hide('#' + div + '-fcap');
 		} else {
+			ui.show('#' + div + '-fcap');
 			document.getElementById(div + '-fcap-val').innerText = modules.hangar;
 		}
 

@@ -518,6 +518,8 @@ let shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	none: [0,0,0,0,0,0],
 };
 
+const GALACTIC_PARSEC_SIZE = 30674;
+const SYSTEM_AU_SIZE = 39.445;
 let shipPartsSpeed = {
 	// Propulsions subluminiques
 	ion: 			[ -0.000046, 0.0096, 0],
