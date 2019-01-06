@@ -1262,7 +1262,7 @@ class units {
 
 			if(type === undefined || type.split(' ').join('') === '') {
 				errors++;
-				errorMessage = 'SHIP_HAS_WRONG_PARTS';
+				errorMessage = 'SHIP_HAS_INVALID_PARTS';
 				break;
 			}
 
@@ -1274,7 +1274,7 @@ class units {
 			preventFleetHUDClosing = false;
 			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
 		} else {
-			ui.drawMessage(errorMessage); // @ADD: Translation
+			ui.drawMessage(errorMessage);
 		}
 	}
 
