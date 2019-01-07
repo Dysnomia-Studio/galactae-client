@@ -63,9 +63,9 @@ if(file_exists($cache)) {
 	foreach ($newsList as $key => $value) {
 		$value = (array) $value;
 
-		if($found) { 
-			$next = $value['_id']; 
-			break; 
+		if($found) {
+			$next = $value['_id'];
+			break;
 		}
 
 		if($curr != []) { $prev = $curr['_id']; }
@@ -103,6 +103,6 @@ if(file_exists($cache)) {
     
     file_put_contents($cache, $page); // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache)
 
-    echo $page ; // on affiche notre page :D 
+    echo $page ; // on affiche notre page :D
 }
 ?>

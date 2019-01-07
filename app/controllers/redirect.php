@@ -19,4 +19,3 @@ function redirect($page) {
 
 	die();
 }
-?>

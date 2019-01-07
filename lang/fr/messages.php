@@ -30,7 +30,7 @@ translate["messages"] = {
 	"BUILD_FINISH_TOMORROW_AT": "Fin de la construction demain à",
 	"BUILD_FINISH_THE": "Fin de la construction le",
 	"BUILD_FINISH_AT": "à",
-	// [Number] units "[Name]" are being build in fleet "[FleetName]" 
+	// [Number] units "[Name]" are being build in fleet "[FleetName]"
 	"UNIT_CURR_BUILD_01": "unités",
 	"UNIT_CURR_BUILD_02": "sont en construction dans la flotte",
 	// Unit Notifs

@@ -15,7 +15,7 @@ class ServerPlanetManager extends MongoInterface {
 			$serverName,
 			'planets',
 			[ 'owner' => new MongoDB\BSON\ObjectID('000000000000000000000001') ],
-			[ '$set' => [ 'owner' => $user['_id'] ] ],	
+			[ '$set' => [ 'owner' => $user['_id'] ] ],
 			[ 'multi' => false ]
 		);
 
@@ -89,7 +89,7 @@ class ServerPlanetManager extends MongoInterface {
 	public function updatePlanet($dbname, $planet) {
 		$this->updateContent($dbname,'planets',
 			[ '_id' => $planet['_id'] ],
-			[ '$set' => $planet ]		
+			[ '$set' => $planet ]	
 		);
 	}
 }

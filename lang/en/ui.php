@@ -41,5 +41,4 @@
 	define('CONFIRM','Confirm');
 	// A no-bug measure
 	define('META_DESC','');
-	define('META_KEYS',''); 
-?>
+	define('META_KEYS','');

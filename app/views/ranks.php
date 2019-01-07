@@ -75,7 +75,7 @@ switch ($_GET['type']) {
 		$cursor = $manager->executeQuery('galactae.sectorranks', $query);
 		$playerList = $cursor->toArray();
 
-		$cmd = new MongoDB\Driver\Command(["count" => 'sectorranks', 
+		$cmd = new MongoDB\Driver\Command(["count" => 'sectorranks',
 			"query" => array(
 				'server_name' => $dbname,
 				'sector' => $sector
@@ -95,7 +95,7 @@ switch ($_GET['type']) {
 				'$gt' => ($pageDemandee * $plyPerPage),
 				'$lte' => (($pageDemandee + 1) * $plyPerPage)
 			),
-			'server_name' => $dbname		
+			'server_name' => $dbname	
 		);
 		$query = new MongoDB\Driver\Query($filter);
 		$cursor = $manager->executeQuery('galactae.globalranks', $query);
@@ -182,5 +182,5 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 $pageContent = str_replace($userData['user_name'], '<em>'.$userData['user_name'].'</em>', $pageContent);
 
-echo $pageContent; // on affiche notre page :D 
+echo $pageContent; // on affiche notre page :D
 ?>

@@ -30,7 +30,7 @@ translate["messages"] = {
 	"BUILD_FINISH_TOMORROW_AT": "Building finish tomorrow at",
 	"BUILD_FINISH_THE": "Building finish the",
 	"BUILD_FINISH_AT": "at",
-	// [Number] units "[Name]" are being build in fleet "[FleetName]" 
+	// [Number] units "[Name]" are being build in fleet "[FleetName]"
 	"UNIT_CURR_BUILD_01": "units",
 	"UNIT_CURR_BUILD_02": "are being build in fleet",
 	// Unit Notifs

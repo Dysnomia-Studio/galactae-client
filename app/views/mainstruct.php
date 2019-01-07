@@ -1,16 +1,16 @@
-<?php 
+<?php
 $debut = round(microtime(true) * 1000);
 ?>
 <!DOCTYPE html>
-<!-- 
+<!--
 	Code by Elanis
-	Copyright 2016-<?= date('Y') ?> 
+	Copyright 2016-<?= date('Y') ?>
 	Don't copy this without permission
 	I hope this code is readable.
 -->
 <html lang="<?= $lang->getLanguage(); ?>">
 	<head>
-		<?php 
+		<?php
 		include_once('gvars.php');
 
 		include_once(DIR_CTRL.'redirect.php');

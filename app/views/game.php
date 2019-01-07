@@ -35,10 +35,10 @@
 	<div id="planet-current">
 		<?php /* Buildings ( Details ) */ ?>
 		<div id="building-area">
-			<span type="button" id="building-quit" onclick="planetUI.buildPanelHide()">X</span>	
+			<span type="button" id="building-quit" onclick="planetUI.buildPanelHide()">X</span>
 			<h1 id="building-name"></h1>
 			<h4 id="building-level"></h4>
-			<div id="building-info">	
+			<div id="building-info">
 				<img src="?" id="building-img" alt="building-img">
 				<p id="building-desc"></p>
 			</div>
@@ -570,7 +570,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<form id="fleet-type-create-form">
 		<span id="fleet-type-create-close">X</span>
 
-		<select id="fleet-type-create-shipType" class="ui-large-select" onchange="units.changeShipType();"></select> 
+		<select id="fleet-type-create-shipType" class="ui-large-select" onchange="units.changeShipType();"></select>
 		<select id="fleet-type-create-shipShape" class="ui-large-select" onchange="units.changeShipShape();"></select>
 		<input type="text" id="fleet-type-create-name" placeholder="<?php echo SHIP_NAME; ?>" class="ui-large-button" required/>
 
@@ -626,7 +626,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<option id="-1"><?php echo NEW_FLEET; ?></option>
 	</select>
 	<input type="number" name="fleet-ship-build-count" id="fleet-ship-build-count" class="ui-large-button">
-	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">	
+	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">
 </div>
 <div id="fleet-newFleet-panel">
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
