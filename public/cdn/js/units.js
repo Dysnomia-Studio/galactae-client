@@ -1546,7 +1546,11 @@ class units {
 		}
 		document.getElementById('map-move-panel-list-ul').innerHTML = fleetListDOM;
 
-		units.currFleet = document.querySelector('.map-move-panel-list-active').id;
+		if(document.querySelector('.map-move-panel-list-active')) {
+			units.currFleet = document.querySelector('.map-move-panel-list-active').id;
+		} else {
+			units.currFleet = -1;
+		}
 
 		document.querySelectorAll('#map-move-panel-list ul li').forEach(function(elt) {
 			elt.addEventListener('click', function() {
