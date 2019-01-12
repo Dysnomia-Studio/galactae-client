@@ -9,7 +9,7 @@ class Fleet {
 	 */
 	static getSpeed(speed, tech) {
 		if(speed[0] === -1) { // First sup propulsion part
-			if(shipPartsSpeed[tech] === undefined) { 
+			if(shipPartsSpeed[tech] === undefined) {
 				console.error('Speed is not defined for part ' + tech,'error');
 				return [];
 			}
@@ -64,7 +64,7 @@ class Fleet {
 			if(unit.parts[i].type === 'sup_propulsion') {
 				tech = unit.parts[i].tech;
 				count++;
-				
+
 				speed = Fleet.getSpeed(speed, tech);
 				if(speed[0] === undefined) {
 					return { speed: [] };
@@ -100,7 +100,7 @@ class Fleet {
 	 */
 	static slowerSpeed(curr, other) {
 		let testDist = 1000; // Total galaxy
-		if((Math.pow(testDist, 2)*curr[0] + testDist*curr[1] + curr[2]) > 
+		if((Math.pow(testDist, 2)*curr[0] + testDist*curr[1] + curr[2]) >
 			(Math.pow(testDist, 2)*other[0] + testDist*other[1] + other[2])) { // Compare polynoms, more time = slower
 			return other;
 		} else {

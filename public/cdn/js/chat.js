@@ -10,7 +10,7 @@ class chat {
 		 */
 		document.getElementById('chat_form').addEventListener('submit', function(e){
 	        e.preventDefault(); // On évite le rechargement de la page lors de la validation du formulaire
-	        
+
 	        // On recupere le message et on vide le input
 	        let message = document.getElementById('chat_message').value;
 	        document.getElementById('chat_message').value = '';
@@ -37,13 +37,13 @@ class chat {
 		 * @ADD: Notify messages on tabs
 		 */
 		socket.on('chat-message', function(data) {
-			let listElt = document.createElement('li'); 
+			let listElt = document.createElement('li');
 			listElt.innerHTML = data.message;
 
 			listElt.addEventListener('DOMNodeInserted', function() {
 				let DOMElts = this.querySelectorAll('.username');
-				for(let elt=0; elt<DOMElts.length; elt++) {	
-					DOMElts[elt].addEventListener('mousedown', chat.clickEvent(event));	
+				for(let elt=0; elt<DOMElts.length; elt++) {
+					DOMElts[elt].addEventListener('mousedown', chat.clickEvent(event));
 				}
 			});
 
@@ -133,7 +133,7 @@ class chat {
 			EltsList[i].addEventListener('click', function() {
 				ui.toggleClass('#hud-chat-channels .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
-				ui.hide('.chatContent'); 
+				ui.hide('.chatContent');
 
 				let chatChannel = this.getAttribute('chatChannel');
 				ui.show('#' + chatChannel);

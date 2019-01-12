@@ -19,7 +19,7 @@ function kick(msg,time=0,canBeCanceled=false) {
     }
 
     chat.sm(msg);
-    ui.drawMessage(msg);    
+    ui.drawMessage(msg);
 
 	connectTimeout = setTimeout(function() {
 		window.location.href = 'https://galactae.eu/portal?kickmsg=' + message;
@@ -32,8 +32,8 @@ function kick(msg,time=0,canBeCanceled=false) {
 
 //get "GET"
 function getParameterByName(name, url) {
-    if (!url) { 
-        url = window.location.href; 
+    if (!url) {
+        url = window.location.href;
     }
 
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -41,10 +41,10 @@ function getParameterByName(name, url) {
     let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
 
-    if (!results) { 
+    if (!results) {
         return null;
     }
-    if (!results[2]) { 
+    if (!results[2]) {
         return '';
     }
 
@@ -83,7 +83,7 @@ function GetBetterUnit(nmbr,unit='',max=0,disableMax=false) {
     let end;
 	if(unitId === 0) {
 	   end = Math.round(newnbr)+unit;
-	} else { 
+	} else {
 	   end = (Math.round(newnbr*10)/10)+units[unitId]+unit;
 	}
 

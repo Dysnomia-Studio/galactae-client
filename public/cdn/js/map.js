@@ -44,7 +44,7 @@ class map {
 		touch.target.dispatchEvent(simulatedEvent);
 		event.preventDefault();
 	}
-	
+
 	/**
 	 * Map init
 	 *
@@ -53,7 +53,7 @@ class map {
 	static init(address) {
 		map.currentMap = (map.currentMap === undefined)?'global':map.currentMap;
 		map.currentAddress = (map.currentAddress === undefined)?address:map.currentAddress;
-		
+
 		map.xmlhttp	= (map.xmlhttp === undefined)?[]:map.xmlhttp;
 		map.xmlDoc	 = (map.xmlDoc === undefined)?[]:map.xmlDoc;
 
@@ -150,7 +150,7 @@ class map {
 		});
 
 		document.getElementById('planet-other-returnToSystem').addEventListener('click', function() {
-			// On cache le chat et memorise son statut pour plus tard	
+			// On cache le chat et memorise son statut pour plus tard
 			ui.mapChat = (document.getElementById('hud-chat').style.display === 'block');
 			ui.closeTab('#hud-chat',false);
 			ui.chat = false;
@@ -170,14 +170,14 @@ class map {
 			let pos = ui.position('#map-global');
 			pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
 			pos.top = pos.top + mapPrevMouse[1] - mapPrevMouse[1]*((map.zoom)/(map.zoom - coef));
-			
+
 			document.getElementById('map-global').style.left = pos.left + 'px';
 			document.getElementById('map-global').style.top = pos.top + 'px';
-					
+
 			document.getElementById('map-global').style.width = document.getElementById('map-global').clientWidth * map.zoom / (map.zoom - coef);
 			document.getElementById('map-global').style.height = document.getElementById('map-global').clientHeight * map.zoom / (map.zoom - coef);
-			
-			document.getElementById('map-global').style.zoom = map.zoom; 
+
+			document.getElementById('map-global').style.zoom = map.zoom;
 			document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
 	}
 
@@ -282,7 +282,7 @@ class map {
 		// @TODO: ability to disable this with some settings
 		if(document.documentElement.clientWidth < MAP_BG_WIDTH || document.documentElement.clientHeight < MAP_BG_HEIGHT) {
 			document.getElementById('hud-map').style.backgroundPositionX = ((MAP_BG_WIDTH - document.documentElement.clientWidth)/MAP_SIZE_WIDTH*(pos[0]) )+ 'px';
-			document.getElementById('hud-map').style.backgroundPositionY = ((MAP_BG_HEIGHT - document.documentElement.clientHeight)/MAP_SIZE_HEIGHT*(pos[1])) + 'px';		
+			document.getElementById('hud-map').style.backgroundPositionY = ((MAP_BG_HEIGHT - document.documentElement.clientHeight)/MAP_SIZE_HEIGHT*(pos[1])) + 'px';
 		}
 	}
 
@@ -305,7 +305,7 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector,callback) {
-		let coords = sector.split('-'); 
+		let coords = sector.split('-');
 
 		// At borders ?
 		coords[0] = parseInt(coords[0]);
@@ -359,7 +359,7 @@ class map {
 	static loadXML(sector, callback) {
 		if(map.xmlhttp === undefined) { map.xmlhttp = []; }
 		if(map.xmlDoc === undefined) { map.xmlDoc = []; }
-		if(map.xmlDoc[sector] !== undefined && callback) { 
+		if(map.xmlDoc[sector] !== undefined && callback) {
 			callback();
 			return;
 		} // Already loaded
@@ -402,7 +402,7 @@ class map {
 		ui.closeTab('#hud-research',false); /* A no-bug fix */
 		ui.map = true;
 
-		// On cache le chat et memorise son statut pour plus tard	
+		// On cache le chat et memorise son statut pour plus tard
 		ui.mapChat = (document.getElementById('hud-chat').style.display === 'block');
 		ui.closeTab('#hud-chat',false);
 		ui.chat = false;
@@ -496,16 +496,16 @@ class map {
 		let firstPlanet = 0; // let needed to know where to place the planets
 		let orbitSize = [];
 
-		// Sort by size 
+		// Sort by size
 		stars.sort(function(a,b) {
 			if(a.size === b.size) {
 				return 0;
 			} else if(a.size > b.size) {
 				return -1;
-			} 
+			}
 			return 1;
 		});
-		
+
 		// Calc star positions for ...
 		if(stars.length == 1) { // one star
 			orbitSize[0] = 0;
@@ -513,8 +513,8 @@ class map {
 			firstPlanet = stars[0].size * STAR_ECART;
 		} else if(stars.length == 2) { // two stars
 			// Si c'est les memes gTypes (naine et naine OU geante et geante), et on exclue les supergeantes
-			if(stars[0].type.substr(-5) === stars[1].type.substr(-5) && 
-				stars[0].type.substr(-10) !== 'SuperGiant' && 
+			if(stars[0].type.substr(-5) === stars[1].type.substr(-5) &&
+				stars[0].type.substr(-10) !== 'SuperGiant' &&
 				stars[1].type.substr(-10) !== 'SuperGiant') {
 
 				orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * STAR_ECART;
@@ -526,15 +526,15 @@ class map {
 
 			firstPlanet =  orbitSize[1] + stars[1].size * STAR_ECART/2;
 		} else { // 3 stars
-			if(stars[0].type.substr(-5) !== stars[1].type.substr(-5) && 
+			if(stars[0].type.substr(-5) !== stars[1].type.substr(-5) &&
 				stars[1].type.substr(-5) === stars[2].type.substr(-5) &&
-				stars[1].type.substr(-10) !== 'SuperGiant' && 
+				stars[1].type.substr(-10) !== 'SuperGiant' &&
 				stars[2].type.substr(-10) !== 'SuperGiant') { // Same 2 lasts stars
-				
+
 				orbitSize[0] = 0;
 
 				orbitSize[1] = orbitSize[2] = stars[0].size * STAR_ECART + (stars[1].size + stars[2].size)/2 * STAR_ECART;
-			
+
 			} else { // Sort by size or same 2 first stars or same 3 stars
 				if(stars[0].size - stars[1].size < 1) { // If 2 biggers are almost same size
 					orbitSize[0] = orbitSize[1] = (stars[0].size + stars[1].size)/2 * STAR_ECART;
@@ -556,7 +556,7 @@ class map {
 				// Create DOM
 				document.getElementById('map-system-solarFront').innerHTML += '<div class="star ' + stars[i].type + '" id="' + stars[i].address + '"></div>';
 			} else {
-				document.getElementById('map-system-solarFront').innerHTML += '<div class="orbit" id="' + stars[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>';	
+				document.getElementById('map-system-solarFront').innerHTML += '<div class="orbit" id="' + stars[i].address + '"><div class="pos"><div class="star ' + stars[i].type + '" ></div></div></div>';
 
 				orbitSize[i] = Math.round(orbitSize[i] * 100)/100;
 
@@ -587,7 +587,7 @@ class map {
 
 				/* Star Pos */
 				let posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
-				
+
 				document.querySelector('div[id="' + stars[i].address + '"] .pos').style.top = 'calc(50% + ' + (orbitSize[i]/2) * Math.sin((2* Math.PI) - posAng) + 'vh)';
 				document.querySelector('div[id="' + stars[i].address + '"] .pos').style.left = 'calc(50% + ' + (orbitSize[i]/2) * Math.cos((2* Math.PI) - posAng) + 'vh)';
 			}
@@ -638,7 +638,7 @@ class map {
 
 			/* Planet Pos */
 			let posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
-			
+
 			document.querySelector('div[id="' + planets[i].address + '"] .pos').style.top = 'calc(50% + ' + (Math.sin((2* Math.PI) - posAng) * orbitSize/2) + 'vh)';
 			document.querySelector('div[id="' + planets[i].address + '"] .pos').style.left = 'calc(50% + ' + (Math.cos((2* Math.PI) - posAng) * orbitSize/2) + 'vh)';
 
@@ -654,9 +654,8 @@ class map {
 
 			document.querySelector('div[id="' + planets[i].address + '"] .pos .planet').style.animationDuration = orbitDuration + 's';
 
-
 			// @ADD: Rings & Moons
-			
+
 			// Add it to stars/planet list
 			let name = (map.planetData[address] && map.planetData[address][planets[i].address] && map.planetData[address][planets[i].address].name) ? map.planetData[address][planets[i].address].name : planets[i].address;
 			document.getElementById('map-system-solarFront-list').innerHTML += '<div class="planet" id="liste_' + planets[i].address + '"><div class="name">' + name + '</div></div>';
@@ -665,7 +664,7 @@ class map {
 			document.getElementById('liste_' + planets[i].address).style.left = Math.round(5 + position * 90) + '%';
 			document.getElementById('liste_' + planets[i].address).style.fontSize = size + 'vh';
 			document.querySelector('#liste_' + planets[i].address + ' .name').style.top = (6 + size/2) + 'vh';
-		}	
+		}
 
 		// View info
 		function viewInfo(e) {
@@ -674,12 +673,12 @@ class map {
 			} else {
 				units.planetTarget = this.id.split('liste_').join(''); // Center star or bottom bar
 			}
-			
+
 			let system = units.planetTarget.split('-');
 			system.pop();
 			system = system.join('-');
 
-			if(map.planetData[system][units.planetTarget].ownerName === null) { 
+			if(map.planetData[system][units.planetTarget].ownerName === null) {
 				document.getElementById('map-planet-menu-planetname').innerText = '';
 				document.getElementById('map-planet-menu-username').innerText = '';
 
@@ -696,7 +695,7 @@ class map {
 
 			document.getElementById('map-planet-menu').style.left = e.pageX + 'px';
 			document.getElementById('map-planet-menu').style.top = e.pageY + 'px';
-			
+
 			ui.show('#map-planet-menu');
 		}
 		document.querySelectorAll('#map-system .planet').forEach(function(elt) {
@@ -801,10 +800,10 @@ class map {
 
 				if(currSystem === systemList[i].id) {
 					let currPlanetLegend = makeSVGElt('circle', {
-						id: 'currPlanet', 
-						cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH), 
-						cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT), 
-						r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO), 
+						id: 'currPlanet',
+						cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
+						cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
+						r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
 						stroke: '#0EC6C6',
 						'stroke-width': 1,
 					});
@@ -813,10 +812,10 @@ class map {
 
 			// Draw planet
 			let circle = makeSVGElt('circle', {
-				id: systemList[i].id, 
-				cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH), 
-				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT), 
-				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO), 
+				id: systemList[i].id,
+				cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
+				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
+				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
 				fill: 'url(#' + starBType + ')'});
 			document.getElementById('map-global').appendChild(circle);
 
@@ -824,12 +823,12 @@ class map {
 
 			// Events
 			document.getElementById(systemList[i].id).addEventListener('click', function() {
-				socket.emit('system-ask-mapData', { 
+				socket.emit('system-ask-mapData', {
 					id: userData.id,
 					username: userData.username,
 					systemAddress: this.id,
 				});
-			});	
+			});
 		}
 	}
 
@@ -907,7 +906,7 @@ class map {
 		let coordsArrivee = map.getPlanetCoords(anglArrivee, to.orbitDist);
 
 		return Math.sqrt(
-			Math.pow(coordsDepart[0] - coordsArrivee[0],2) + 
+			Math.pow(coordsDepart[0] - coordsArrivee[0],2) +
 			Math.pow(coordsDepart[1] - coordsArrivee[1],2)
 		);
 	}

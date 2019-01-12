@@ -99,7 +99,7 @@ ready(function() {
 	console.info('%c' + translate.messages['selfXSSWarn'],'font-size: 2em; font-weight: bold; color: red;');
 
 	// Service worker
-	if ('serviceWorker' in navigator && window.location.protocol === "https:") {
+	if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
 		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
 			// Registration was successful
 			console.info('[SW] Registration successful with scope: ', registration.scope);

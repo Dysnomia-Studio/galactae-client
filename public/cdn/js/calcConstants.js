@@ -38,7 +38,7 @@ let buildingsNames = [
 	'trade',
 	'he3exp',
 ];
- 
+
 let buildingMaxLvl = [
 	25,	// Carriere
 	25,	// Metallurgie
@@ -159,8 +159,8 @@ let researchPos = {
 let researchList = {
 	// Noeud Central
 	researchCenter: 			{ cost: 0, 		parents: [] },
-	industrialistion: 			{ cost: 8, 		parents: ['researchCenter'] },		
-	phyContemporaine: 			{ cost: 20, 	parents: ['researchCenter'] },	
+	industrialistion: 			{ cost: 8, 		parents: ['researchCenter'] },
+	phyContemporaine: 			{ cost: 20, 	parents: ['researchCenter'] },
 	thermodynamique: 			{ cost: 13, 	parents: ['researchCenter'] },
 	// Mise en orbite et propulsion
 	prop_main: 					{ cost: 380, 	parents: ['thermodynamique','misc_mecStellaire', [7,3] ] },
@@ -271,12 +271,12 @@ let shipResearchDependencies = {
 	projector: 'def_shield_projector',
 
 	// Cloak
-	
+
 	// Scanners
 
 	// Hangar
 	hangarDouble: 'hangar_double',
-	
+
 	// Propulsion
 	vsl: 'prop_vsl',
 	wd: 'prop_wd',
@@ -514,7 +514,7 @@ let shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	// Hangars
 	hangarSimple: 	[  5, 30, 18,  5,0.50,   5],
 	hangarDouble: 	[ 12, 45, 25,  7,0.80,  10],
-	
+
 	none: [0,0,0,0,0,0],
 };
 
@@ -603,7 +603,7 @@ for(let i in planetList) {
 
 let neededCache = [
 	'cdn/css/style.css',
-	
+
 	'cdn/js/readyEvent.js',
 	'cdn/js/details-polyfill.js',
 	'cdn/js/socket.min.js',
