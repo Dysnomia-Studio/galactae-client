@@ -1593,25 +1593,32 @@ class units {
 
 		let fighterCount = 0;
 		let fighterCap = 0;
-		for(let j=0; j<currentFleet.units.length; j++) {
-			let currUnit = units.getUnitData(currentFleet.units[j][0]);
-			if(currUnit.shipType === 'SHIP_FIGHTER') {
-				fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[j][1]);
-			} else if(currUnit.shipType === 'SHIP_CARRIER') {
-				for(let p in currUnit.parts) {
-					if(currUnit.parts[p].type === 'hangar') {
-						fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[j][1]);
+		if(currentFleet.units) {
+			for(let j=0; j<currentFleet.units.length; j++) {
+				let currUnit = units.getUnitData(currentFleet.units[j][0]);
+				if(currUnit.shipType === 'SHIP_FIGHTER') {
+					fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[j][1]);
+				} else if(currUnit.shipType === 'SHIP_CARRIER') {
+					for(let p in currUnit.parts) {
+						if(currUnit.parts[p].type === 'hangar') {
+							fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[j][1]);
+						}
 					}
 				}
 			}
 		}
 
 		// Time
-		document.getElementById('map-move-panel-time').innerText = getStringTime(units.fleetTimes[units.currFleet]);
+		let time = (units.fleetTimes[units.currFleet]) ? getStringTime(units.fleetTimes[units.currFleet]) : "??:??:??";
+		document.getElementById('map-move-panel-time').innerText = time;
 
 		// Fuel
-		let fFuel = units.fleetFuel[units.currFleet];
-		let ratio = Math.round(fFuel[0]/fFuel[1]*100);
+		let fFuel = [0,0];
+		let ratio = "?";
+		if(units.fleetFuel[units.currFleet]) {
+			let fFuel = units.fleetFuel[units.currFleet];
+			let ratio = Math.round(fFuel[0]/fFuel[1]*100);
+		}
 		if(Number.isNaN(ratio)) { ratio = 0; }
 		document.getElementById('map-move-panel-fuel').innerHTML =
 			GetBetterUnit(fFuel[0], 't', fFuel[1] + 1) +
