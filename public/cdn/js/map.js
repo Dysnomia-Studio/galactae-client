@@ -388,7 +388,7 @@ class map {
 			}
 		});
 
-		if(toSend) {
+		if(toSend && sector !== '') {
 			map.xmlhttp[sector].open('GET',cdnURL + '/maps/' + serverName + '/' + sector + '.xml', true);
 			map.xmlhttp[sector].send();
 		}
