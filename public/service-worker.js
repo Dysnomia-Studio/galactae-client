@@ -1,6 +1,6 @@
 importScripts('cdn/js/calcConstants.js');
 
-let version = 'Alpha-0.5.7-rev.190114a';
+let version = 'Alpha-0.5.7-rev.190114b';
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
@@ -16,7 +16,7 @@ this.addEventListener('activate', function(event) {
 		caches.keys().then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
 				if (version !== key) {
-					console.info('[SW] Deleting old cache: ' + data.data.version);
+					console.info('[SW] Deleting old cache: ' + version);
 					return caches.delete(keyList[i]);
 				}
 			}));
