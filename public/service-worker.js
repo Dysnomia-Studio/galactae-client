@@ -17,6 +17,7 @@ this.addEventListener('activate', function(event) {
 			return Promise.all(keyList.map(function(key) {
 				console.log(self.version);
 				console.log(key);
+				console.log(self.version !== key);
 				if (self.version !== key) {
 					console.info('[SW] Deleting old cache: ' + self.version);
 					return caches.delete(keyList[key]);
