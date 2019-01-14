@@ -1336,6 +1336,8 @@ class units {
 			content += '<td class="text-center">' + fleetTranslate['priorty-fuel'] + '</td>';
 		} else if(type === 'orbit' && fleet.maxFuel > 0) {
 			content += '<td class="text-center">' + fleetTranslate['no-priorty-fuel'] + '</td>';
+		} else if(type === 'out') {
+			content += '<td class="text-center">' + fleetTranslate['orbiting'] + ' ' + fleet.position + '</td>'; // @TODO: pname (username) instead of position
 		}
 
 		content +='</tr></table></summary>' +

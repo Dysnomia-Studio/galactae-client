@@ -97,6 +97,7 @@
 
 		"priorty-fuel": "Refuel priority",
 		"no-priorty-fuel": "No Refuel priority",
+		"orbiting": "Orbiting",
 
 		"recycle": "Recycle units",
 		"upgrade": "Upgrade units",

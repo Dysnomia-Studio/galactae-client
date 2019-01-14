@@ -97,6 +97,7 @@
 
 		"priorty-fuel": "Prioritaire carburant",
 		"no-priorty-fuel": "Non Prioritaire carburant",
+		"orbiting": "Autour de",
 
 		"transferUnits": "Transférer unités",
 		"recycle": "Recycler unités",
