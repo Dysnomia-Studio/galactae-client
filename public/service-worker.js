@@ -1,7 +1,5 @@
 importScripts('cdn/js/calcConstants.js');
 
-let version = 'Alpha-0.5.7-rev.190114b';
-
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open(version).then(function(cache) {
@@ -12,6 +10,8 @@ self.addEventListener('install', function(event) {
 });
 
 this.addEventListener('activate', function(event) {
+	let version = 'Alpha-0.5.7-rev.190114b';
+
 	event.waitUntil(
 		caches.keys().then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
@@ -33,7 +33,10 @@ self.addEventListener('fetch', function(event) {
 	event.respondWith(caches.match(event.request).then(function(response) {
 		// caches.match() always resolves
 		// but in case of success response will have value
-		if (response !== undefined) {
+		let whitelisted = ['png','jpg','svg'];
+		if ((response !== undefined ||
+					whitelisted.indexOf(response.url.substr(-3)) !== -1)
+			&& response.headers.get('Content-Type').indexOf('html') === -1) {
 			return response;
 		} else {
 			return fetch(event.request).then(function(response) {
