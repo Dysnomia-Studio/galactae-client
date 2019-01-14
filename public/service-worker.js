@@ -1,60 +1,49 @@
 importScripts('cdn/js/calcConstants.js');
 
-let changed = true;
-let changedFiles = [];
+let version = 'Alpha-0.5.7-rev.190114a';
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
-		caches.open('galactae-cache').then(function(cache) {
+		caches.open(version).then(function(cache) {
 			// Return cache
 			return cache.addAll(neededCache);
 		})
 	);
 });
 
+this.addEventListener('activate', function(event) {
+	event.waitUntil(
+		caches.keys().then(function(keyList) {
+			return Promise.all(keyList.map(function(key) {
+				if (version !== key) {
+					console.info('[SW] Deleting old cache: ' + data.data.version);
+					return caches.delete(keyList[i]);
+				}
+			}));
+		})
+	);
+});
+
 self.addEventListener('message', function(data) {
-	console.info('[SW] Changed: ' + data.data.change);
-	changed = data.data.change;
+	console.info('[SW] Version: ' + data.data.version);
+	version = data.data.version;
 });
 
 self.addEventListener('fetch', function(event) {
 	event.respondWith(caches.match(event.request).then(function(response) {
 		// caches.match() always resolves
 		// but in case of success response will have value
-
-		let whitelisted = ['png','jpg','svg'];
-		if (response !== undefined && (changed == false 
-			|| changedFiles.indexOf(response.url) !== -1 
-			|| whitelisted.indexOf(response.url.substr(-3)) !== -1) 
-			&& response.headers.get('Content-Type').indexOf('html') === -1) {
-
-			// Mise à jour sur cette session
-			if(changed && changedFiles.indexOf(response.url) === -1) {
-				fetch(event.request).then(function (response) {
-					if(response.status !== 200 || event.request.method === "POST") { return; }
-
-					caches.open('galactae-cache').then(function (cache) {
-						cache.put(event.request, response);
-						changedFiles.push(response.url);
-					});
-				});
-			}
-
+		if (response !== undefined) {
 			return response;
 		} else {
-			return fetch(event.request).then(function (response) {
-				if(response.status !== 200 
-					|| event.request.method === "POST" 
-					|| response.headers.get('Content-Type').indexOf("html") !== -1) { 
-					
-						return response; 
-				}
-
+			return fetch(event.request).then(function(response) {
+				// response may be used only once
+				// we need to save clone to put one copy in cache
+				// and serve second one
 				let responseClone = response.clone();
-				
-				caches.open('galactae-cache').then(function (cache) {
+
+				caches.open(version).then(function (cache) {
 					cache.put(event.request, responseClone);
-					changedFiles.push(responseClone.url);
 				});
 
 				return response;
