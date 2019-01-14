@@ -1,8 +1,10 @@
 importScripts('cdn/js/calcConstants.js');
 
+self.version = 'Alpha-0.5.7-rev.190114b';
+
 self.addEventListener('install', function(event) {
 	event.waitUntil(
-		caches.open(version).then(function(cache) {
+		caches.open(self.version).then(function(cache) {
 			// Return cache
 			return cache.addAll(neededCache);
 		})
@@ -10,13 +12,11 @@ self.addEventListener('install', function(event) {
 });
 
 this.addEventListener('activate', function(event) {
-	let version = 'Alpha-0.5.7-rev.190114b';
-
 	event.waitUntil(
 		caches.keys().then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
-				if (version !== key) {
-					console.info('[SW] Deleting old cache: ' + version);
+				if (self.version !== key) {
+					console.info('[SW] Deleting old cache: ' + self.version);
 					return caches.delete(keyList[i]);
 				}
 			}));
@@ -26,7 +26,7 @@ this.addEventListener('activate', function(event) {
 
 self.addEventListener('message', function(data) {
 	console.info('[SW] Version: ' + data.data.version);
-	version = data.data.version;
+	self.version = data.data.version;
 });
 
 self.addEventListener('fetch', function(event) {
@@ -40,12 +40,19 @@ self.addEventListener('fetch', function(event) {
 			return response;
 		} else {
 			return fetch(event.request).then(function(response) {
+				if(response.status !== 200 
+					|| event.request.method === "POST" 
+					|| response.headers.get('Content-Type').indexOf("html") !== -1) { 
+					
+						return response; 
+				}
+				
 				// response may be used only once
 				// we need to save clone to put one copy in cache
 				// and serve second one
 				let responseClone = response.clone();
 
-				caches.open(version).then(function (cache) {
+				caches.open(self.version).then(function (cache) {
 					cache.put(event.request, responseClone);
 				});
 
