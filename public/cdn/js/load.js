@@ -116,18 +116,6 @@ ready(function() {
 
 	        if (serviceWorker) {
 	        	loadScreen.complete('service-worker');
-
-	            serviceWorker.addEventListener('statechange', function (e) {
-	                if(navigator.serviceWorker.controller !== null) {
-						navigator.serviceWorker.controller.postMessage({ version: document.getElementById('game-version').innerText });
-						localStorage.gameVersion = document.getElementById('game-version').innerText;
-	                }
-	            });
-
-                if(navigator.serviceWorker.controller !== null) {
-					navigator.serviceWorker.controller.postMessage({ version: document.getElementById('game-version').innerText });
-					localStorage.gameVersion = document.getElementById('game-version').innerText;
-                }
 	        }
 		}, function(err) {
 			// registration failed :(

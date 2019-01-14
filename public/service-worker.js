@@ -24,11 +24,6 @@ this.addEventListener('activate', function(event) {
 	);
 });
 
-self.addEventListener('message', function(data) {
-	console.info('[SW] Version: ' + data.data.version);
-	self.version = data.data.version;
-});
-
 self.addEventListener('fetch', function(event) {
 	event.respondWith(caches.match(event.request).then(function(response) {
 		// caches.match() always resolves
