@@ -1525,6 +1525,8 @@ class units {
 		let fleetListDOM = '';
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name === 'SHIP_DEF' || units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; }
+			if(units.fleetList[i].endMoveTime > 0) { continue; }
+			if(units.fleetList[i].position === units.planetTarget) { continue; }
 
 			let mt = units.calcTimeAndFuel(units.fleetList[i]);
 			units.fleetTimes[units.fleetList[i]._id] = mt.time;
