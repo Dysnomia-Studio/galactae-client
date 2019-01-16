@@ -96,7 +96,8 @@ translate["messages"] = {
 	'DESTINATION_NOT_EXISTS': 'Erreur: La destination n\'existe pas',
 	'NO_ENOUGH_FUEL': 'Erreur: La flotte ne possède pas assez de carburant',
 	'FLEET_MOVING': 'La flotte commence son déplacement',
-};
+	'ENDED_MOVE': 'Flotte arrivée à destination',
+	'ENDED_MOVE_01': ' est arrivée à ',};
 
 translate['load'] = {
 	"fleet": "Chargement des flottes",

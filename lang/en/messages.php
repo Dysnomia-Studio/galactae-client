@@ -86,9 +86,11 @@ translate["messages"] = {
 	"ALREADY_MOVING_FLEET": "Error: Your fleet is already moving.",
 	"NO_ENOUGHT_CARRIER": "Error: You haven't enough carrier capacity.",
 	"CANT_MAKE_SUPRAMOVE": "Error: Some of your ships can't move to another system.",
-	'DESTINATION_NOT_EXISTS': 'Erreur: La destination n\'existe pas',
-	'NO_ENOUGH_FUEL': 'Erreur: La flotte ne possède pas assez de carburant',
-	'FLEET_MOVING': 'La flotte commence son déplacement',
+	'DESTINATION_NOT_EXISTS': 'Error: Destination doesn\'t exists.',
+	'NO_ENOUGH_FUEL': 'Error: Fleet doesn\'t have enough fuel.',
+	'FLEET_MOVING': 'Fleet begins moving',
+	'ENDED_MOVE': 'Fleet at destination',
+	'ENDED_MOVE_01': ' has arrived to ',
 };
 
 translate['load'] = {

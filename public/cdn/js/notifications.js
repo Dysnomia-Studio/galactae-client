@@ -141,6 +141,10 @@ class notifications {
 				desc = translate.messages['ENDED_BUILDING_01'] + translate['buildings'][args.building].name + translate.messages['ENDED_BUILDING_02'] + args.lvl;
 				args.id = args.building;
 				break;
+			case 'fleetMove':
+				title = translate.messages['ENDED_MOVE'];
+				desc = args.fleetName + translate.messages['ENDED_MOVE_01'] + args.destination;
+				break;
 			case 'research':
 				title = 'Galactae: ' + translate.messages['ENDED_RESEARCH'];
 				desc = translate['messages']['ENDED_RESEARCH'] + ': ' + translate.research[args.research].name;
