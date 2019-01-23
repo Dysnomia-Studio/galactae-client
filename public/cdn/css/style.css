@@ -3009,7 +3009,7 @@ a[class="research-search"]:hover {
 		top: 0;
 		left: 0;
 	}
-	#building-area h1, h4 {
+	#building-area h1, #building-area h4 {
 		margin: 0;
 		text-align: center;
 	}
@@ -3158,8 +3158,6 @@ a[class="research-search"]:hover {
 
 	border: 1px solid #0ec6c6;
 	box-sizing: border-box;
-
-	vertical-align: bottom;
 
 	position: relative;
 
