@@ -1,4 +1,6 @@
-let globalConst = {
+/*eslint no-magic-numbers: 0 */
+const globalConst = {
+	groundBuildingNumber: 	9,
 	buildingNumber: 	14,
 	maxFleetSize:   300000, // Number of people
 };
@@ -6,22 +8,22 @@ let globalConst = {
 /**
  * Production
  */
-let mineralProd = 	[1.8,-1.5,147];
-let metalProd = 	[1.85,-3,139];
-let heliumProd = 	[190,-424,500];
+const mineralProd = 	[1.8,-1.5,147];
+const metalProd = 	[1.85,-3,139];
+const heliumProd = 	[190,-424,500];
 
-let storageRatio = [0.1,0.5,7];
-let heliumStorageRatio = 0.2;
+const storageRatio = [0.1,0.5,7];
+const heliumStorageRatio = 0.2;
 
-let electricity = [2080000,165000,550000];
-let habGen = [25447,419910,-170000];
+const electricity = [2080000,165000,550000];
+const habGen = [25447,419910,-170000];
 
-let buildLvlUnitBuildingSpeedBonus = 0.005;
+const buildLvlUnitBuildingSpeedBonus = 0.005;
 
 /**
  * Buildings
  */
-let buildingsNames = [
+const buildingsNames = [
 	'carriere',
 	'metallurgy',
 	'living',
@@ -39,7 +41,7 @@ let buildingsNames = [
 	'he3exp',
 ];
 
-let buildingMaxLvl = [
+const buildingMaxLvl = [
 	25,	// Carriere
 	25,	// Metallurgie
 	25,	// Habitations
@@ -56,7 +58,7 @@ let buildingMaxLvl = [
 	25,	// Mine He3
 ];
 
-let buildingParents = [];
+const buildingParents = [];
 buildingParents[9] = { // Radar
 	research: ['misc_telemetrie','misc_em'],
 	building: [ [7, 2] ], // Launching Center lvl 2
@@ -81,8 +83,8 @@ buildingParents[13] = { // He3exp
 /**
  * Research
  */
-let researchProduction = [-0.05,12,-8];
-let researchBonus = {
+const researchProduction = [-0.05,12,-8];
+const researchBonus = {
 	// Bonus construction
 	cp_mecanisation: -0.05,
 	cp_tracteur: 	 -0.05,
@@ -90,7 +92,7 @@ let researchBonus = {
 	cp_molecular_compression: 1.1,
 };
 
-let researchPos = {
+const researchPos = {
 	// Noeud Central
 	researchCenter:				[5000,5000],
 	industrialistion:			[5333,5000],
@@ -156,7 +158,7 @@ let researchPos = {
 	misc_calcGravit:			[5000,6666],
 	misc_em:					[4800,7800],
 };
-let researchList = {
+const researchList = {
 	// Noeud Central
 	researchCenter: 			{ cost: 0, 		parents: [] },
 	industrialistion: 			{ cost: 8, 		parents: ['researchCenter'] },
@@ -225,8 +227,8 @@ let researchList = {
 /**
  * Units
  */
-let hqFleetCount = [2,5,9,14,20,0]; // Last entry to prevent bugs
-let shipResearchDependencies = {
+const hqFleetCount = [2,5,9,14,20,0]; // Last entry to prevent bugs
+const shipResearchDependencies = {
 	// Satelites shapes
 	SHIP_SAT_AG1: 'wep_sat_ag1',
 	SHIP_SAT_AG2: 'wep_sat_ag2',
@@ -286,7 +288,7 @@ let shipResearchDependencies = {
 	pplasma: 'prop_plasma',
 	vsolaire: 'prop_vSolaire',
 };
-let unitTypes = [
+const unitTypes = [
 	'SHIP_DEF',
 	'SHIP_BATTLECRUISER',
 	'SHIP_CUIRASSE',
@@ -295,7 +297,7 @@ let unitTypes = [
 	'SHIP_CARRIER',
 ];
 
-let shipShapesDetails = {
+const shipShapesDetails = {
 	SHIP_DEF: {
 		SHIP_SAT_AG1: {
 			svg: [
@@ -458,7 +460,7 @@ let shipShapesDetails = {
 	},
 };
 
-let shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
+const shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	/**
 	 * Ship shapes
 	 */
@@ -520,7 +522,7 @@ let shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 
 const GALACTIC_PARSEC_SIZE = 30674;
 const SYSTEM_AU_SIZE = 39.445;
-let shipPartsSpeed = {
+const shipPartsSpeed = {
 	// Propulsions subluminiques
 	ion: 			[ -0.000046, 0.0096, 0],
 	pplasma: 		[ -0.000045, 0.0090, 0],
@@ -530,7 +532,7 @@ let shipPartsSpeed = {
 	wd: 			[    -0.016,   5.13, 0.001],
 	hyperespace: 	[    -0.014,   3.68, 0.001],
 };
-let fuelCost = {
+const fuelCost = {
 	// Propulsions subluminiques
 	ion: 			10682,
 	pplasma: 		 7244,
@@ -541,23 +543,23 @@ let fuelCost = {
 	hyperespace: 	25492,
 };
 
-let fighterWeight = {
+const fighterWeight = {
 	SHIP_FIGHTER_SMALL: 1,
 	SHIP_FIGHTER_MEDIUM: 2,
 	SHIP_FIGHTER_BOMBER: 2,
 };
 
-let hangarSize = {
+const hangarSize = {
 	hangarSimple: 40,
 	hangarDouble: 75,
 };
 
-let hangarMiss = {
+const hangarMiss = {
 	hangarSimple:  -2,
 	hangarDouble: -10,
 };
 
-let imgCache = [
+const imgCache = [
 	// Misc UI
 	'cdn/img/ui/hud-top.png',
 	'cdn/img/ui/hud-bottom-left.png',
@@ -586,22 +588,22 @@ for(let i=0; i<buildingsNames.length; i++) {
 }
 
 // Planets
-let backPlanetList = [0];
-for(let i in backPlanetList) {
+const backPlanetList = [0];
+for(const i in backPlanetList) {
 	imgCache.push('cdn/img/planets/back/' + backPlanetList[i] + '.png');
 }
-let planetList = [0,1,2,3,4,5,6,7,8,9,
+const planetList = [0,1,2,3,4,5,6,7,8,9,
 	101,102,103,104,105,106,107,108,109,110,111,112,113,
 	501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,
 	/*901,*/42,
 	1000,1001,1002,//1003,1004,1005,1006,1007,1008,
 ];
-for(let i in planetList) {
+for(const i in planetList) {
 	imgCache.push('cdn/img/planets/front/' + planetList[i] + '.jpg');
 	imgCache.push('cdn/img/planets/halo/' + planetList[i] + '.png');
 }
 
-let neededCache = [
+const neededCache = [
 	'cdn/css/style.css',
 
 	'cdn/js/readyEvent.js',

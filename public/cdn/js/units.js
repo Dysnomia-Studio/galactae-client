@@ -6,7 +6,7 @@ class units {
 	 * Ask units from server
 	 */
 	static sync() {
-		let data = userData;
+		const data = userData;
 		data.planet = planetData._id;
 		socket.emit('units-ask-data', data);
 	}
@@ -21,7 +21,7 @@ class units {
 
 		for(let i=0; i<units.list.length; i++) {
 			if(units.list[i]._id.substr(0,14) === 'SHIP_WEP_MINES') {
-				units.list.splice(i,1);
+				units.list.splice(i, 1);
 				i--;
 			}
 		}
@@ -1459,12 +1459,14 @@ class units {
 		systemeArrivee.pop();
 		systemeArrivee = systemeArrivee.join('-');
 
-		let planeteDepart = map.planetData[systemeDepart][fleet.position];
+		
 		let planeteArrivee = map.planetData[systemeArrivee][units.planetTarget];
 
 		let time;
 		let minSpeed;
 		if(systemeDepart === systemeArrivee) {
+			let planeteDepart = map.planetData[systemeDepart][fleet.position];
+
 			let unitList = [];
 			for(let i=0; i<fleet.units.length; i++) {
 				unitList[i] = units.getUnitData(fleet.units[i][0]);
@@ -1495,16 +1497,15 @@ class units {
 			time = (baseTravelTime + previewTime)/2;
 		} else {
 			let sector = fleet.position.split('-');
-			let depart = sector[sector.length - 1];
 			sector = [sector[0],sector[1]].join('-');
 			systemeDepart = map.xmlDoc[sector].querySelector('sy[id="' + systemeDepart + '"]');
 
 			minSpeed = Fleet.getMinSupraSpeed(fleet.units);
 
 			let dist = Math.sqrt(
-					Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) + 
-					Math.pow(systemeDepart.getAttribute('y') - planeteArrivee.galacticPos[1],2)
-				);
+				Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) + 
+				Math.pow(systemeDepart.getAttribute('y') - planeteArrivee.galacticPos[1],2)
+			);
 
 			time = Fleet.calcMoveTime(dist, minSpeed.speed);
 		}
