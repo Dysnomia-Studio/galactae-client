@@ -1494,11 +1494,16 @@ class units {
 			*/
 			time = (baseTravelTime + previewTime)/2;
 		} else {
+			let sector = fleet.position.split('-');
+			let depart = sector[sector.length - 1];
+			sector = [sector[0],sector[1]].join('-');
+			systemeDepart = map.xmlDoc[sector].querySelector('sy[id="' + systemeDepart + '"]');
+
 			minSpeed = Fleet.getMinSupraSpeed(fleet.units);
 
 			let dist = Math.sqrt(
-					Math.pow(planeteDepart.galacticPos[0] - planeteArrivee.galacticPos[0],2) + 
-					Math.pow(planeteDepart.galacticPos[1] - planeteArrivee.galacticPos[1],2)
+					Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) + 
+					Math.pow(systemeDepart.getAttribute('y') - planeteArrivee.galacticPos[1],2)
 				);
 
 			time = Fleet.calcMoveTime(dist, minSpeed.speed);
