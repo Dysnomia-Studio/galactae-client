@@ -1,27 +1,4 @@
-// Stars: 4.8 to 12 em
-// in XML from 0 to 37
-const STAR_SIZE_BASE = 4;
-const STAR_SIZE_COEF = 2 / 37;
-const STAR_ECART = 2.25;
-
-// Planets: 4 to 15 em
-const PLANET_SIZE_BASE = 3 / 2;
-const PLANET_SIZE_COEF = 9 / 14;
-const PLANET_ECART = 2.5;
-
-const MAP_SIZE_HEIGHT = 40000;
-const MAP_SIZE_WIDTH = 50000;
-
-const MAP_STAR_SIZE_BASE = 5;
-const MAP_STAR_SIZE_RATIO = 0.08;
-
-const MAP_MIN_ZOOM = 0.4;
-const MAP_MAX_ZOOM = 1.75;
-
-const MAP_BG_WIDTH = 3840;
-const MAP_BG_HEIGHT = 2160;
-
-let mapPrevMouse = [0,0];
+const mapPrevMouse = [0,0];
 let moving = false;
 
 class map {
@@ -29,17 +6,17 @@ class map {
 	 * Handle mobile touch and bind it to mouse events
 	 */
 	static touchHandler(event) {
-		let touch = event.changedTouches[0];
+		const touch = event.changedTouches[0];
 
-		let simulatedEvent = document.createEvent('MouseEvent');
+		const simulatedEvent = document.createEvent('MouseEvent');
 		simulatedEvent.initMouseEvent({
 			touchstart: 'mousedown',
 			touchmove: 'mousemove',
 			touchend: 'mouseup',
 		}[event.type], true, true, window, 1,
-			touch.screenX, touch.screenY,
-			touch.clientX, touch.clientY, false,
-			false, false, false, 0, null);
+		touch.screenX, touch.screenY,
+		touch.clientX, touch.clientY, false,
+		false, false, false, 0, null);
 
 		touch.target.dispatchEvent(simulatedEvent);
 		event.preventDefault();
@@ -93,17 +70,17 @@ class map {
 			if(moving) { return; }
 			if(ui.mouseStatus[1] === 1) {
 				map.moveUI([(e.pageX - mapPrevMouse[0]),
-								(e.pageY - mapPrevMouse[1])], true);
+					(e.pageY - mapPrevMouse[1])], true);
 			}
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
 		});
 
-		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		const mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
 		document.getElementById('map-global').addEventListener(mousewheelevt, function(e) {
-			let coef = -0.03; // Scroll down
+			let coef = -MAP_ZOOM_COEF; // Scroll down
 			if (e.wheelDelta > 0 || e.detail < 0) {
-				coef = 0.03; // Scroll up
+				coef = MAP_ZOOM_COEF; // Scroll up
 			}
 
 			map.makeZoom(coef);
@@ -122,15 +99,15 @@ class map {
 		});
 		document.getElementById('map-global').addEventListener('touchmove', function(e) {
 			if(map.scaling) {
-				let newDist = Math.hypot(
+				const newDist = Math.hypot(
 					e.touches[0].pageX - e.touches[1].pageX,
 					e.touches[0].pageY - e.touches[1].pageY);
 
 
 				let coef = (map.dist / newDist) - 1;
-				if(coef > 0.1) { coef = 0.1; }
-				if(coef < -0.1) { coef = -0.1; }
-				if(coef == 0) { return; }
+				if(coef > MAP_ZOOM_COEF_MOBILE_MAX) { coef = MAP_ZOOM_COEF_MOBILE_MAX; }
+				if(coef < -MAP_ZOOM_COEF_MOBILE_MAX) { coef = -MAP_ZOOM_COEF_MOBILE_MAX; }
+				if(coef === 0) { return; }
 
 				map.makeZoom(-coef);
 
@@ -162,23 +139,23 @@ class map {
 	}
 
 	static makeZoom(coef) {
-			coef = parseFloat(parseFloat(coef).toFixed(2));
-			map.zoom += coef;
-			if(map.zoom < MAP_MIN_ZOOM) { map.zoom -= coef; return; }
-			if(map.zoom > MAP_MAX_ZOOM) { map.zoom -= coef; return; }
+		coef = parseFloat(parseFloat(coef).toFixed(2));
+		map.zoom += coef;
+		if(map.zoom < MAP_MIN_ZOOM) { map.zoom -= coef; return; }
+		if(map.zoom > MAP_MAX_ZOOM) { map.zoom -= coef; return; }
 
-			let pos = ui.position('#map-global');
-			pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
-			pos.top = pos.top + mapPrevMouse[1] - mapPrevMouse[1]*((map.zoom)/(map.zoom - coef));
+		const pos = ui.position('#map-global');
+		pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
+		pos.top = pos.top + mapPrevMouse[1] - mapPrevMouse[1]*((map.zoom)/(map.zoom - coef));
 
-			document.getElementById('map-global').style.left = pos.left + 'px';
-			document.getElementById('map-global').style.top = pos.top + 'px';
+		document.getElementById('map-global').style.left = pos.left + 'px';
+		document.getElementById('map-global').style.top = pos.top + 'px';
 
-			document.getElementById('map-global').style.width = document.getElementById('map-global').clientWidth * map.zoom / (map.zoom - coef);
-			document.getElementById('map-global').style.height = document.getElementById('map-global').clientHeight * map.zoom / (map.zoom - coef);
+		document.getElementById('map-global').style.width = document.getElementById('map-global').clientWidth * map.zoom / (map.zoom - coef);
+		document.getElementById('map-global').style.height = document.getElementById('map-global').clientHeight * map.zoom / (map.zoom - coef);
 
-			document.getElementById('map-global').style.zoom = map.zoom;
-			document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
+		document.getElementById('map-global').style.zoom = map.zoom;
+		document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
 	}
 
 	/**
@@ -232,19 +209,19 @@ class map {
 		//@ADD: display none/block on sectors
 
 		// At borders ?
-		let coords = [];
+		const coords = [];
 		coords[0] = Math.floor((document.documentElement.clientWidth/2 - pos[0])/MAP_SIZE_WIDTH*10);
 		coords[1] = Math.floor((document.documentElement.clientHeight/2 - pos[1])/MAP_SIZE_HEIGHT*10);
 
-		let topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
-		let bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
-		let leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
-		let rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
+		const topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
+		const bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
+		const leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
+		const rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
 
-		let top =  coords[0] === 0 || (topDist * 2 < document.documentElement.clientHeight);
-		let bottom = coords[0] === 9 || (bottomDist * 2 < document.documentElement.clientHeight);
-		let left = coords[1] === 0 || (leftDist * 2 < document.documentElement.clientHeight);
-		let right = coords[1] === 9 || (rightDist * 2 < document.documentElement.clientHeight);
+		const top =  coords[0] === 0 || (topDist * 2 < document.documentElement.clientHeight);
+		const bottom = coords[0] === 9 || (bottomDist * 2 < document.documentElement.clientHeight);
+		const left = coords[1] === 0 || (leftDist * 2 < document.documentElement.clientHeight);
+		const right = coords[1] === 9 || (rightDist * 2 < document.documentElement.clientHeight);
 
 		/**
 		 * Load all needed xml
@@ -292,7 +269,7 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMap(sector,callback) {
-		if(document.documentElement.clientWidth > 1920) { // 4K Only loader, it's slow, but needed to make game working
+		if(document.documentElement.clientWidth > MAP_4K_LOADER_WIDTH) { // 4K Only loader, it's slow, but needed to make game working
 			map.loadMapAndNeighborhood(sector,callback);
 		} else { // Full HD and lower screens
 			map.loadXML(sector,callback);
@@ -305,15 +282,15 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector,callback) {
-		let coords = sector.split('-');
+		const coords = sector.split('-');
 
 		// At borders ?
 		coords[0] = parseInt(coords[0]);
 		coords[1] = parseInt(coords[1]);
-		let top = coords[0] === 0;
-		let bottom = coords[0] === 9;
-		let left = coords[1] === 0;
-		let right = coords[1] === 9;
+		const top = coords[0] === 0;
+		const bottom = coords[0] === 9;
+		const left = coords[1] === 0;
+		const right = coords[1] === 9;
 
 		/**
 		 * Load all needed xml
@@ -364,7 +341,7 @@ class map {
 			return;
 		} // Already loaded
 
-		let toSend = map.xmlhttp[sector] === undefined;
+		const toSend = map.xmlhttp[sector] === undefined;
 		if(toSend) {
 			if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 				map.xmlhttp[sector] = new XMLHttpRequest();
@@ -375,7 +352,7 @@ class map {
 
 		map.xmlhttp[sector].addEventListener('readystatechange',function() {
 			if (this.readyState === XMLHttpRequest.DONE) {
-				if (this.status === 200) {
+				if (this.status === HTTP.OK) {
 					map.xmlDoc[sector] = new DOMParser().parseFromString(map.xmlhttp[sector].responseText,'text/xml');
 					map.drawSector(sector);
 					if(callback !== undefined) {
@@ -770,11 +747,11 @@ class map {
 		if(document.getElementById(sector + '-1') !== null) { return; }
 
 		// Get XML
-		let systemList = map.xmlDoc[sector].querySelectorAll('sy');
+		const systemList = map.xmlDoc[sector].querySelectorAll('sy');
 
 		function makeSVGElt(tagName, args) {
-			let el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
-			for (let i in args) {
+			const el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
+			for (const i in args) {
 				el.setAttribute(i, args[i]);
 			}
 			return el;
@@ -782,7 +759,7 @@ class map {
 
 		// Generate Content
 		for(let i=0; i<systemList.length; i++) {
-			let starList = systemList[i].querySelectorAll('st');
+			const starList = systemList[i].querySelectorAll('st');
 			let starBType = '';
 			let starBSize = 0;
 
@@ -794,24 +771,24 @@ class map {
 			}
 
 			// Draw current planet circle under planet
-				let currSystem = planetData.address.split('-');
-				currSystem.pop();
-				currSystem = currSystem.join('-');
+			let currSystem = planetData.address.split('-');
+			currSystem.pop();
+			currSystem = currSystem.join('-');
 
-				if(currSystem === systemList[i].id) {
-					let currPlanetLegend = makeSVGElt('circle', {
-						id: 'currPlanet',
-						cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
-						cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
-						r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
-						stroke: '#0EC6C6',
-						'stroke-width': 1,
-					});
-					document.getElementById('map-global').appendChild(currPlanetLegend);
-				}
+			if(currSystem === systemList[i].id) {
+				const currPlanetLegend = makeSVGElt('circle', {
+					id: 'currPlanet',
+					cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
+					cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
+					r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
+					stroke: '#0EC6C6',
+					'stroke-width': 1,
+				});
+				document.getElementById('map-global').appendChild(currPlanetLegend);
+			}
 
 			// Draw planet
-			let circle = makeSVGElt('circle', {
+			const circle = makeSVGElt('circle', {
 				id: systemList[i].id,
 				cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
 				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
@@ -838,19 +815,19 @@ class map {
 	 * @param	  {string}  address  The address
 	 */
 	static focusAddress(address) {
-		if(typeof(address) != 'string' || address.split('-').length < 2) {
+		if(typeof(address) !== 'string' || address.split('-').length < 2) {
 			console.error('INVALID ADRESS FORMAT !');
 			return;
 		}
 
-		let coords = address.split('-');
-		let sector = coords[0] + '-' + coords[1];
-		let system = [coords[0],coords[1],coords[2]].join('-');
+		const coords = address.split('-');
+		const sector = coords[0] + '-' + coords[1];
+		const system = [coords[0],coords[1],coords[2]].join('-');
 
 		map.loadXML(sector, function() {
-			let systemXML = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
-			let newX = document.documentElement.clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
-			let newY = document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
+			const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
+			const newX = document.documentElement.clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
+			const newY = document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
 
 			map.moveUI([newX, newY]);
 		});

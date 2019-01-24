@@ -5,6 +5,11 @@ const globalConst = {
 	maxFleetSize:   300000, // Number of people
 };
 
+const HTTP = {
+	OK : 200,
+	NOTFOUND : 404,
+};
+
 /**
  * Production
  */
@@ -79,6 +84,36 @@ buildingParents[13] = { // He3exp
 	research: [],
 	building: [ [7, 8] ], // Launching Center lvl 8
 };
+
+/**
+ * Map
+ */
+// Stars: 4.8 to 12 em
+// in XML from 0 to 37
+const STAR_SIZE_BASE = 4;
+const STAR_SIZE_COEF = 2 / 37;
+const STAR_ECART = 2.25;
+
+// Planets: 4 to 15 em
+const PLANET_SIZE_BASE = 3 / 2;
+const PLANET_SIZE_COEF = 9 / 14;
+const PLANET_ECART = 2.5;
+
+const MAP_SIZE_HEIGHT = 40000;
+const MAP_SIZE_WIDTH = 50000;
+
+const MAP_STAR_SIZE_BASE = 5;
+const MAP_STAR_SIZE_RATIO = 0.08;
+
+const MAP_MIN_ZOOM = 0.4;
+const MAP_MAX_ZOOM = 1.75;
+const MAP_ZOOM_COEF = 0.03;
+const MAP_ZOOM_COEF_MOBILE_MAX = 0.1;
+
+const MAP_4K_LOADER_WIDTH = 1920;
+
+const MAP_BG_WIDTH = 3840;
+const MAP_BG_HEIGHT = 2160;
 
 /**
  * Research
@@ -224,6 +259,7 @@ const researchList = {
 	misc_calcGravit: 			{ cost: 240, 	parents: ['misc_astronomie'] },
 	misc_em: 					{ cost: 110, 	parents: ['phyContemporaine'] },
 };
+
 /**
  * Units
  */
