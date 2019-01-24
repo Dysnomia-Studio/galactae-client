@@ -1474,14 +1474,14 @@ class units {
 
 			minSpeed = Fleet.getMinSubSpeed(unitList);
 
-			let baseDist = map.getPlanetDistance(
+			let baseDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
 				now/1000);
 			if(Number.isNaN(baseDist) || baseDist < 0) { return; }
 			let baseTravelTime = Fleet.calcMoveTime(baseDist, minSpeed.speed);
 
-			let previewDist = map.getPlanetDistance(
+			let previewDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
 				now/1000 + Math.round(baseTravelTime*360000)/100);
