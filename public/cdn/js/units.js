@@ -1472,7 +1472,7 @@ class units {
 				unitList[i] = units.getUnitData(fleet.units[i][0]);
 			}
 
-			minSpeed = Fleet.getMinSubSpeed(unitList);
+			minSpeed = Fleet.getMinSubSpeed(unitList, fleet.units);
 
 			let baseDist = GameMap.getPlanetDistance(
 				planeteDepart,
@@ -1507,7 +1507,7 @@ class units {
 				unitList.push(units.list[currUnitId]);
 			}
 
-			minSpeed = Fleet.getMinSupraSpeed(unitList);
+			minSpeed = Fleet.getMinSupraSpeed(unitList, fleet.units);
 
 			const dist = Math.sqrt(
 				Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) +
@@ -1517,7 +1517,7 @@ class units {
 			time = Fleet.calcMoveTime(dist, minSpeed.speed);
 		}
 
-		const fuel = [Fleet.calcFuelCost(minSpeed.engines), fleet.fuel];
+		const fuel = [Fleet.calcFuelCost(minSpeed.engines) * time, fleet.fuel];
 
 		return { time, fuel };
 	}
@@ -1631,10 +1631,10 @@ class units {
 
 		// Fuel
 		let fFuel = [0,0];
-		let ratio = "?";
+		let ratio = '?';
 		if(units.fleetFuel[units.currFleet]) {
-			let fFuel = units.fleetFuel[units.currFleet];
-			let ratio = Math.round(fFuel[0]/fFuel[1]*100);
+			fFuel = units.fleetFuel[units.currFleet];
+			ratio = Math.round(fFuel[0]/fFuel[1]*100);
 		}
 		if(Number.isNaN(ratio)) { ratio = 0; }
 		document.getElementById('map-move-panel-fuel').innerHTML =
