@@ -433,7 +433,7 @@ class map {
 	 */
 	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
 		// Check Address
-		if(typeof(address) != 'string' || address.split('-').length != 3) {
+		if(typeof(address) !== 'string' || address.split('-').length != 3) {
 			console.error('INVALID ADRESS FORMAT !');
 			return;
 		}

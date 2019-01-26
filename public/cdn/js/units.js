@@ -1500,17 +1500,24 @@ class units {
 			sector = [sector[0],sector[1]].join('-');
 			systemeDepart = map.xmlDoc[sector].querySelector('sy[id="' + systemeDepart + '"]');
 
-			minSpeed = Fleet.getMinSupraSpeed(fleet.units);
+			const unitList = [];
+			const unitIdList = units.list.map((unit) => unit._id);
+			for(const i in fleet.units) {
+				const currUnitId = unitIdList.indexOf(fleet.units[i][0]);
+				unitList.push(units.list[currUnitId]);
+			}
 
-			let dist = Math.sqrt(
-				Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) + 
+			minSpeed = Fleet.getMinSupraSpeed(unitList);
+
+			const dist = Math.sqrt(
+				Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) +
 				Math.pow(systemeDepart.getAttribute('y') - planeteArrivee.galacticPos[1],2)
 			);
 
 			time = Fleet.calcMoveTime(dist, minSpeed.speed);
 		}
 
-		let fuel = [Fleet.calcFuelCost(minSpeed.engines), fleet.fuel];
+		const fuel = [Fleet.calcFuelCost(minSpeed.engines), fleet.fuel];
 
 		return { time, fuel };
 	}
