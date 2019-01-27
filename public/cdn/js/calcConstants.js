@@ -1,4 +1,4 @@
-/*eslint no-magic-numbers: 0 */
+/*eslint-disable no-magic-numbers */
 const globalConst = {
 	groundBuildingNumber: 	9,
 	buildingNumber: 	14,
@@ -14,6 +14,7 @@ const TIME = {
 	DAY_TO_HOUR: 24,
 	DAY_TO_MS: 24*60*60*1000,
 	HOUR_TO_MINUTES: 60,
+	HOUR_TO_SECONDS: 60*60*1000,
 	MINUTES_TO_SECONDS: 60,
 	SECONDS_TO_MS: 1000,
 	SECOND_MARGIN: 5,
