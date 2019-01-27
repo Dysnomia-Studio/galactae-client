@@ -681,6 +681,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Unit.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/websockets.js"></script>
 <?php /* Launch Game ! */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>
