@@ -10,6 +10,15 @@ const HTTP = {
 	NOTFOUND : 404,
 };
 
+const TIME = {
+	DAY_TO_HOUR: 24,
+	DAY_TO_MS: 24*60*60*1000,
+	HOUR_TO_MINUTES: 60,
+	MINUTES_TO_SECONDS: 60,
+	SECONDS_TO_MS: 1000,
+	SECOND_MARGIN: 5,
+};
+
 /**
  * Production
  */

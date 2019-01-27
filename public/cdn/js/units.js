@@ -20,7 +20,7 @@ class units {
 		units.list = data;
 
 		for(let i=0; i<units.list.length; i++) {
-			if(units.list[i]._id.substr(0,14) === 'SHIP_WEP_MINES') {
+			if(units.list[i]._id.substr(0, 'SHIP_WEP_MINES'.length) === 'SHIP_WEP_MINES') {
 				units.list.splice(i, 1);
 				i--;
 			}
@@ -83,11 +83,11 @@ class units {
 		// Fleet panels close events
 		document.getElementById('fleet-close').addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
-			if(units.unitPanelTimeout != -1) {
+			if(units.unitPanelTimeout !== -1) {
 				clearTimeout(units.unitPanelTimeout);
 				units.unitPanelTimeout = -1;
 			}
-			
+
 			ui.closeTab('#hud-fleet');
 			ui.fleet = false;
 		});
@@ -148,8 +148,8 @@ class units {
 
 		// Type create
 		document.getElementById('fleet-type-create-form').addEventListener('submit', function(e) {
-			 e.preventDefault();
-			 units.createNewType();
+			e.preventDefault();
+			units.createNewType();
 		});
 
 		document.getElementById('fleet-build-create').addEventListener('click', function() {
@@ -160,7 +160,7 @@ class units {
 		// Type copy
 		document.getElementById('fleet-build-type-copy').addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
-			
+
 			units.drawCreateTypePanel();
 		});
 		// Type delete
@@ -171,7 +171,7 @@ class units {
 			preventFleetHUDClosing = true;
 		});
 		document.getElementById('fleet-typeDelete-yes').addEventListener('click', function() {
-			socket.emit('unit-type-delete', { 
+			socket.emit('unit-type-delete', {
 				id: userData.id,
 				username: userData.username,
 				unit: units.list[units.currUnit]._id
@@ -187,8 +187,7 @@ class units {
 		document.getElementById('fleet-build-rename').addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
 
-			let oldName = units.list[units.currUnit].name;
-
+			const oldName = units.list[units.currUnit].name;
 			document.getElementById('fleet-type-rename-name').innerText = oldName;
 			document.getElementById('fleet-type-rename-newName').value = oldName;
 
@@ -198,7 +197,7 @@ class units {
 		document.getElementById('fleet-type-rename-submit').addEventListener('click', function() {
 			if(document.getElementById('fleet-type-rename-newName').value === '') { return; }
 
-			socket.emit('unit-type-rename', { 
+			socket.emit('unit-type-rename', {
 				id: userData.id,
 				username: userData.username,
 				shipId: units.list[units.currUnit]._id,
@@ -245,20 +244,24 @@ class units {
 		document.querySelectorAll('#fleet-build-buttons img').forEach(function(e) {
 			e.addEventListener('mouseenter', function() {
 				switch(this.id) {
-					case 'fleet-build-openPanel':
-					case 'fleet-build-type-copy':
-					case 'fleet-build-type-delete':
-						document.getElementById('fleet-build-desc').innerText = fleetTranslate[this.id];
-						break;
-					default:
-						// do nothing here
+				case 'fleet-build-openPanel':
+				case 'fleet-build-type-copy':
+				case 'fleet-build-type-delete':
+					document.getElementById('fleet-build-desc').innerText = fleetTranslate[this.id];
+					break;
+				default:
+					// do nothing here
 				}
 			});
 		});
 
 		// Fleet counter
 		document.getElementById('fleet-ship-build-count').addEventListener('keypress', function(event) {
-			if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
+			if (event.which !== KEYBOARD.BACKSPACE &&
+					event.which !== KEYBOARD.NOKEY &&
+					(event.which < KEYBOARD.DIGIT0 || event.which > KEYBOARD.DIGIT9) &&
+					(event.which < KEYBOARD.NUMPAD0 || event.which > KEYBOARD.NUMPAD9)) {
+
 				return false;
 			}
 		});
@@ -279,17 +282,17 @@ class units {
 		// Move
 		document.getElementById('map-move-panel-move').addEventListener('click', function() {
 			switch(units.moveType) {
-				case 2:
-					socket.emit('fleet-move', {
-						id: userData.id,
-						username: userData.username,
-						fleetId: units.currFleet,
-						destination: units.planetTarget,
-					});
-					ui.hide('#map-move-panel');
-					break;
-				default:
-					ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			case 2:
+				socket.emit('fleet-move', {
+					id: userData.id,
+					username: userData.username,
+					fleetId: units.currFleet,
+					destination: units.planetTarget,
+				});
+				ui.hide('#map-move-panel');
+				break;
+			default:
+				ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 			}
 		});
 	}
@@ -317,7 +320,7 @@ class units {
 	 * @return     {string}  The unit name.
 	 */
 	static getUnitName(id) {
-		let currUnit = units.getUnitData(id);
+		const currUnit = units.getUnitData(id);
 
 		if(currUnit.name !== undefined) {
 			return currUnit.name;
@@ -369,10 +372,10 @@ class units {
 		}
 
 		// Sort
-		let oldCurr = units.list[units.currUnit];
+		const oldCurr = units.list[units.currUnit];
 		units.list.sort(function(a,b) {
-			let desc = units.sortTypes.split('-').length - 1;
-			let sort = units.sortTypes.split('-')[0];
+			const desc = units.sortTypes.split('-').length - 1;
+			const sort = units.sortTypes.split('-')[0];
 
 			let Na = a[sort];
 			let Nb = b[sort];
@@ -397,7 +400,7 @@ class units {
 					return -1;
 				}
 				return 1;
-			} 
+			}
 
 			if(Na === Nb) {
 				return 0;
@@ -418,7 +421,7 @@ class units {
 
 		let unitCount = 0;
 
-		if(units.list.length!=0) {
+		if(units.list.length !== 0) {
 			ui.hide('#fleet-build-list-empty');
 
 			let content = '';
@@ -438,7 +441,7 @@ class units {
 			}
 
 			let DOMElts = document.querySelectorAll('#fleet-build-list tbody');
-			for(var i=0; i<DOMElts.length; i++) {
+			for(let i=0; i<DOMElts.length; i++) {
 				DOMElts[i].innerHTML = content;
 			}
 			units.selectUnit();
@@ -452,46 +455,46 @@ class units {
 			document.getElementById('fleet-build-message').innerHTML = '';
 
 			// Time left
-			if(units.unitPanelTimeout != -1) {
+			if(units.unitPanelTimeout !== -1) {
 				clearTimeout(units.unitPanelTimeout);
 				units.unitPanelTimeout = -1;
 			}
 
 			if(planetData.unitBuildingEndTime > (Date.now() + planetUI.deltaNow)) { // An unit is building
-				let dateNow = new Date();
-				let dateEnd = new Date(planetData.unitBuildingEndTime + planetUI.deltaNow);
-				let dateTom = new Date(Date.now() + (24*60*60*1000));
+				const dateNow = new Date();
+				const dateEnd = new Date(planetData.unitBuildingEndTime + planetUI.deltaNow);
+				const dateTom = new Date(Date.now() + TIME.DAY_TO_MS);
 
 				if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
-					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] + 
-						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' + 
-						translate.messages['UNIT_CURR_BUILD_02'] + 
+					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
+						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
+						translate.messages['UNIT_CURR_BUILD_02'] +
 						' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
 						translate.messages['BUILD_FINISH_TODAY_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 				} else if(dateTom.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Tomorrow
-					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] + 
-						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' + 
-						translate.messages['UNIT_CURR_BUILD_02'] + 
+					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
+						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
+						translate.messages['UNIT_CURR_BUILD_02'] +
 						' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
 						translate.messages['BUILD_FINISH_TOMORROW_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 				} else {
-					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] + 
-						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' + 
-						translate.messages['UNIT_CURR_BUILD_02'] + 
+					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
+						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
+						translate.messages['UNIT_CURR_BUILD_02'] +
 						' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
 						translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 				}
 
-				if(dateNow.toLocaleDateString() != dateEnd.toLocaleDateString()) {
+				if(dateNow.toLocaleDateString() !== dateEnd.toLocaleDateString()) {
 					units.unitPanelTimeout = setTimeout(function() {
 						units.drawMain();
-					},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000); // Refresh at 00:00:05
+					},(((TIME.DAY_TO_HOUR - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (TIME.HOUR_TO_MINUTES - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + ((TIME.MINUTES_TO_SECONDS + TIME.SECOND_MARGIN) - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh at 00:00:05
 				} else {
 					units.unitPanelTimeout = setTimeout(function() {
 						planetUI.sync();
-					},(((dateEnd.getHours() - dateNow.getHours())*60 + (dateEnd.getMinutes() - dateNow.getMinutes()))*60 + (dateEnd.getSeconds() + 5 - dateNow.getSeconds()))*1000); // Refresh 5 sec after end
+					},(((dateEnd.getHours() - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (dateEnd.getMinutes() - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + (dateEnd.getSeconds() + TIME.SECOND_MARGIN - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh 5 sec after end
 				}
-			} 
+			}
 
 			// Fleet Build
 			DOMElts = document.querySelectorAll('#fleet-build-list tbody tr');
@@ -510,8 +513,8 @@ class units {
 		// Check if we can create fleet
 		let disabledButton = true;
 		for(let i=0; i<unitTypes.length; i++) {
-			for(let index in shipShapesDetails[unitTypes[i]]) {
-				if(shipResearchDependencies[index] === undefined || research.isSearched(shipResearchDependencies[index])) { 
+			for(const index in shipShapesDetails[unitTypes[i]]) {
+				if(shipResearchDependencies[index] === undefined || research.isSearched(shipResearchDependencies[index])) {
 					disabledButton = false;
 					break;
 				}
@@ -542,7 +545,7 @@ class units {
 		document.getElementById('fleet-newFleet-name').value = '';
 		ui.show('#fleet-newFleet-panel');
 		document.getElementById('fleet-newFleet-name').addEventListener('keypress', function(e) {
-			if(e.which === 13) {
+			if(e.which === KEYBOARD.ENTER) {
 				units.validFleetName();
 			}
 		});
@@ -556,7 +559,7 @@ class units {
 	 * @return     {boolean}  { description_of_the_return_value }
 	 */
 	static fleetExists(fname) {
-		for(let i in units.fleetList) {
+		for(const i in units.fleetList) {
 			if(units.fleetList[i].name === fname) {
 				return true;
 			}
@@ -568,7 +571,7 @@ class units {
 	 * Check if a fleet name is valid
 	 */
 	static validFleetName() {
-		let fname = document.getElementById('fleet-newFleet-name').value;
+		const fname = document.getElementById('fleet-newFleet-name').value;
 
 		if(fname === '') { return; }
 		if(units.fleetExists(fname)) { return; }
@@ -583,7 +586,7 @@ class units {
 	 * Recalculate unit build cost
 	 */
 	static updateBuildCost() {
-		let costs = [
+		const costs = [
 			'fleet-ship-build-cost-aluminium-val',
 			'fleet-ship-build-cost-iron-val',
 			'fleet-ship-build-cost-titanium-val',
@@ -592,19 +595,19 @@ class units {
 			'fleet-ship-build-cost-population-val',
 		];
 
-		let currUnit = units.list[units.currUnit];
+		const currUnit = units.list[units.currUnit];
 		let count = parseInt(document.getElementById('fleet-ship-build-count').value);
 
 		if(document.getElementById('fleet-ship-build-count').value === '' || count < 1) { count = 1; }
 
-		for(let i in costs) {
+		for(const i in costs) {
 			if(currUnit.cost[i] === 0) {
 				ui.hide('#' + costs[i].substring(0,costs[i].length-4));
 				continue;
 			}
 			ui.show('#' + costs[i].substring(0,costs[i].length-4));
 
-			if(costs[i] != 'fleet-ship-build-cost-time-val') {
+			if(costs[i] !== 'fleet-ship-build-cost-time-val') {
 				document.getElementById(costs[i]).innerText = GetBetterUnit(Math.round(count * parseFloat(currUnit.cost[i])));
 			} else {
 				document.getElementById(costs[i]).innerText = getStringTime(count * parseFloat(currUnit.cost[i]) * (1 - buildLvlUnitBuildingSpeedBonus * planetData.Buildings[7]));
@@ -618,12 +621,12 @@ class units {
 	 * @return     {number}  The maximum ships.
 	 */
 	static getMaxShips() {
-		let currUnit = units.list[units.currUnit];
-		let transitionTable = [3,2,5,4];
+		const currUnit = units.list[units.currUnit];
+		const transitionTable = [3,2,5,4];
 		let max = Math.floor(planetData.resources[3] / currUnit.cost[0]); // 3 = transitionTable[0]
 
 		for(let i=1; i<4; i++) {
-			let currMax = Math.floor(planetData.resources[transitionTable[i]] / currUnit.cost[i]);
+			const currMax = Math.floor(planetData.resources[transitionTable[i]] / currUnit.cost[i]);
 			if(currMax < max) {
 				max = currMax;
 			}
@@ -642,7 +645,7 @@ class units {
 	 * @param      {number}  count   Unit count
 	 */
 	static updateCount(count) {
-		let max = units.getMaxShips();
+		const max = units.getMaxShips();
 		if(count > max) {
 			document.getElementById('fleet-ship-build-count').value = max;
 		}
@@ -664,7 +667,7 @@ class units {
 			if(units.fleetList[i].endMoveTime > 0) {
 				units.fleetTimers[u] = setTimeout(function() {
 					units.sync();
-				}, units.fleetList[i].endMoveTime-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
+				}, units.fleetList[i].endMoveTime-Date.now()+planetUI.deltaNow+ TIME.SECOND_MARGIN * TIME.SECONDS_TO_MS); // Wait 5 sec
 
 				u++;
 			}
@@ -674,7 +677,7 @@ class units {
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML = unitBuildSelectHeader;
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name === 'SHIP_DEF' || units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; } // Def fleet
-			if(units.fleetList[i].position != planetData.address || units.fleetList[i].orbitPosition != 0) { continue; } // Moving/Out fleets
+			if(units.fleetList[i].position !== planetData.address || units.fleetList[i].orbitPosition !== 0) { continue; } // Moving/Out fleets
 
 			document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
 					document.getElementById('fleet-ship-build-fleetSelect').innerHTML + '<option id="' + i + '">' + units.fleetList[i].name + '</option>';
@@ -691,7 +694,7 @@ class units {
 		ui.show('#fleet-ship-build-fleetSelect');
 
 		units.fname = '';
-		let currUnit = units.list[units.currUnit];
+		const currUnit = units.list[units.currUnit];
 
 		// Name
 		document.getElementById('fleet-ship-build-name').innerText = currUnit.name;
@@ -710,28 +713,28 @@ class units {
 		}
 
 		document.getElementById('fleet-ship-build-count').addEventListener('keypress', function(e) {
-			if(e.which === 13) {
+			if(e.which === KEYBOARD.ENTER) {
 				units.askUnitBuild();
 			}
 		});
 
 		// Draw panel
-		ui.show('#fleet-ship-build');	
+		ui.show('#fleet-ship-build');
 	}
 
 	/**
 	 * Ask to build an unit - Event on build button click
 	 */
 	static askUnitBuild() {
-		let count = parseInt(document.getElementById('fleet-ship-build-count').value);
+		const count = parseInt(document.getElementById('fleet-ship-build-count').value);
 		let fleet = document.getElementById('fleet-ship-build-fleetSelect');
 		fleet = parseInt(fleet.options[fleet.selectedIndex].id);
-		
-		if(Number.isNaN(fleet) || fleet === undefined || (fleet === -2 && units.list[units.currUnit].shipType != 'SHIP_DEF')) { return; }
+
+		if(Number.isNaN(fleet) || fleet === undefined || (fleet === -2 && units.list[units.currUnit].shipType !== 'SHIP_DEF')) { return; }
 		if(Number.isNaN(count) || count === undefined || units.currUnit === -1) { return; }
 		if(preventUnitBuildPanelClose) { return; }
 
-		let unit = { 
+		const unit = {
 			id: userData.id,
 			username: userData.username,
 			planet: userData.pid,
@@ -746,7 +749,7 @@ class units {
 			unit.fleet = -2;
 		} else {
 			unit.fleet = units.fleetList[fleet]._id;
-		} 
+		}
 
 		socket.emit('unit-build', unit);
 		ui.closeTab('#fleet-ship-build');
@@ -758,12 +761,12 @@ class units {
 	 * Draw the panel to create a new unit type
 	 */
 	static drawCreateTypePanel() {
-		let unitsParts = [];
+		const unitsParts = [];
 		let selectedType = '';
 		let selectedShape = '';
 
-		if(units.currUnit != -1 && units.list[units.currUnit] !== undefined) { 
-			for(let i in units.list[units.currUnit].parts) {
+		if(units.currUnit !== -1 && units.list[units.currUnit] !== undefined) {
+			for(const i in units.list[units.currUnit].parts) {
 				unitsParts[units.list[units.currUnit].parts[i].name] = units.list[units.currUnit].parts[i].tech;
 			}
 
@@ -779,15 +782,15 @@ class units {
 		let selectContent = '';
 		for(let i=0; i<unitTypes.length; i++) {
 			let disabled = true;
-			for(let index in shipShapesDetails[unitTypes[i]]) {
-				if(shipResearchDependencies[index] === undefined || research.isSearched(shipResearchDependencies[index])) { 
+			for(const index in shipShapesDetails[unitTypes[i]]) {
+				if(shipResearchDependencies[index] === undefined || research.isSearched(shipResearchDependencies[index])) {
 					disabled = false;
 					break;
 				}
 			}
 			if(disabled) { continue; }
 
-			if(selectedType != unitTypes[i]) {
+			if(selectedType !== unitTypes[i]) {
 				selectContent += '<option value="' + unitTypes[i] + '">' + fleetTranslate[unitTypes[i]] + '</option>';
 			} else {
 				selectContent += '<option value="' + unitTypes[i] + '" selected>' + fleetTranslate[unitTypes[i]] + '</option>';
@@ -809,7 +812,7 @@ class units {
 
 		ui.show('#fleet-type-create');
 	}
-	
+
 	/**
 	 * Re-draw unit creation UI when we change ship type
 	 *
@@ -824,7 +827,7 @@ class units {
 		document.getElementById('fleet-type-create-name').value = '';
 
 		let selectShipShape = '';
-		for(let index in shipShapesDetails[type]) {
+		for(const index in shipShapesDetails[type]) {
 			if(shape === '') { shape = index; }
 			if(shipResearchDependencies[index] !== undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
 			if(index === selectedShape) {
@@ -838,7 +841,7 @@ class units {
 			selectShipShape = '<option disabled>' + fleetTranslate['SHIP_SHAPE'] + '</option>' + selectShipShape;
 
 			ui.show('#fleet-type-create-shipType option[value='+type+']');
-			
+
 			document.getElementById('fleet-type-create-shipShape').innerHTML = selectShipShape;
 
 			units.drawShipShape(shipShapesDetails[type][shape].svg,shipShapesDetails[type][shape].content,unitsParts);
@@ -858,7 +861,7 @@ class units {
 	static changeShipShape() {
 		let type = document.getElementById('fleet-type-create-shipType');
 		type = type.options[type.selectedIndex].value;
-		
+
 		let shape = document.getElementById('fleet-type-create-shipShape');
 		shape = shape.options[shape.selectedIndex].value;
 
@@ -878,48 +881,48 @@ class units {
 	static drawShipShape(shape,content,unitsParts=[]) {
 		document.getElementById('fleet-type-create-selects').innerHTML = '';
 		let svgContent = '';
-		let clickEvent = [];
+		const clickEvent = [];
 
 		for(let i=0; i<shape.length; i++) {
-			let id = i;
+			const id = i;
 
 			// Draw shape
 			switch(shape[i][1]) {
-				case 'rect':
-					svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '"></rect>';
-					break;
-				case 'circle':
-					svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '"></circle>';
-					break;
-				case 'line':
-					svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '"></line>';
-					break;
-				case 'path':
-					svgContent += '<path class="' + shape[i][0] + '" d="';
+			case 'rect':
+				svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '"></rect>';
+				break;
+			case 'circle':
+				svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '"></circle>';
+				break;
+			case 'line':
+				svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '"></line>';
+				break;
+			case 'path':
+				svgContent += '<path class="' + shape[i][0] + '" d="';
 
-					for(let j=2; j<shape[i].length; j++) {
-						svgContent += shape[i][j] + ' ';
-					}
+				for(let j=2; j<shape[i].length; j++) {
+					svgContent += shape[i][j] + ' ';
+				}
 
-					svgContent += '" ></path>';
-					break;
-				default: // Poly
-					svgContent += '<polygon class="' + shape[i][0] + '" points="';
+				svgContent += '" ></path>';
+				break;
+			default: // Poly
+				svgContent += '<polygon class="' + shape[i][0] + '" points="';
 
-					for(let j=2; j<shape[i].length; j+=2) {
-						svgContent += shape[i][j] + ',' + shape[i][j+1] + ' ';
-					}
+				for(let j=2; j<shape[i].length; j+=2) {
+					svgContent += shape[i][j] + ',' + shape[i][j+1] + ' ';
+				}
 
-					svgContent += '" ></polygon>';
+				svgContent += '" ></polygon>';
 			}
 
 			// Draw HTML
-			if(shape[i][0]!='struct') {
+			if(shape[i][0] !== 'struct') {
 				/* Hidden Select */
 				let hiddenSelect = '<select id="part-selecting-hidden-' + i + '" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
 				for(let j=0; j<content[shape[i][0]].length; j++) {
-					if(content[shape[i][0]][j] != 'none' && shipResearchDependencies[content[shape[i][0]][j]] !== undefined && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
-					if(unitsParts[shape[i][6]] !== undefined && unitsParts[shape[i][6]] == content[shape[i][0]][j]) {
+					if(content[shape[i][0]][j] !== 'none' && shipResearchDependencies[content[shape[i][0]][j]] !== undefined && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
+					if(unitsParts[shape[i][6]] !== undefined && unitsParts[shape[i][6]] === content[shape[i][0]][j]) {
 						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '" selected>';
 					} else {
 						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '"></option>';
@@ -929,18 +932,18 @@ class units {
 				document.getElementById('fleet-type-create-selects').innerHTML += hiddenSelect;
 
 				/* Seen Select */
-				let source = document.getElementById('part-selecting-hidden-' + id);
+				const source = document.getElementById('part-selecting-hidden-' + id);
 				let selected = source.options[source.selectedIndex];
 				if(!selected) {
 					selected = source.options[0];
 				}
 
-				let selw = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).width.slice(0, -2));
-				let selh = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).height.slice(0, -2));
-				let w = shape[id][4]/800*selw - 12;
-				let h = shape[id][5]/450*selh - 12;
+				const selw = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).width.slice(0, -2));
+				const selh = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).height.slice(0, -2));
+				const w = shape[id][4]/800*selw - 12;
+				const h = shape[id][5]/450*selh - 12;
 
-				document.getElementById('fleet-type-create-selects').innerHTML += 
+				document.getElementById('fleet-type-create-selects').innerHTML +=
 					'<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
 						'left: ' + ((shape[id][2])/800)*selw + 'px;' +
 						'top: ' + ((shape[id][3])/450)*selh + 'px;' +
@@ -951,7 +954,7 @@ class units {
 						'background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.value  + '.svg\'); ' +
 						'background-size: 95%;' +
 						'background-repeat: no-repeat;' +
-						'background-position: left top;' + 
+						'background-position: left top;' +
 						'display: block;' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
@@ -975,8 +978,8 @@ class units {
 
 
 		// Click Events
-		for(let i in clickEvent) {
-			let id = clickEvent[i];
+		for(const i in clickEvent) {
+			const id = clickEvent[i];
 
 			document.querySelectorAll('#part-selecting-seen-' + id + ' dt a').forEach(function(elt) {
 				elt.addEventListener('click', function() {
@@ -999,13 +1002,13 @@ class units {
 			document.querySelectorAll('#part-selecting-seen-' + id + ' dd ul li a').forEach(function(elt) {
 				elt.addEventListener('click', function() {
 					ui.hide('#part-selecting-seen-' + id + ' dd ul');
-					
-					let source = document.getElementById('part-selecting-hidden-' + id);
-					
+
+					const source = document.getElementById('part-selecting-hidden-' + id);
+
 					if(source.getAttribute('parttype') === 'sub_propulsion' ||
 						source.getAttribute('parttype') === 'sup_propulsion') {
 
-						let selects = document.querySelectorAll('#fleet-type-create-selects select[parttype="' + source.getAttribute('parttype') +'"]');
+						const selects = document.querySelectorAll('#fleet-type-create-selects select[parttype="' + source.getAttribute('parttype') +'"]');
 						for(let currSelect=0; currSelect < selects.length; currSelect++) {
 							selects[currSelect].value = this.getAttribute('value');
 
@@ -1030,13 +1033,13 @@ class units {
 	static updateTypeCreateStats() {
 		let type = document.getElementById('fleet-type-create-shipType');
 		type = type.options[type.selectedIndex].value;
-		
+
 		let shape = document.getElementById('fleet-type-create-shipShape');
 		shape = shape.options[shape.selectedIndex].value;
 
-		let partList = document.querySelectorAll('#fleet-type-create-selects select');
-		
-		let parts = [];
+		const partList = document.querySelectorAll('#fleet-type-create-selects select');
+
+		const parts = [];
 
 		for(let p=0; p<partList.length; p++) {
 			parts.push({
@@ -1060,7 +1063,7 @@ class units {
 	static updateStats(div, type, shape, parts, note) {
 		if(parts === undefined) { parts = []; } // Mines only
 
-		let modules = {
+		const modules = {
 			'sub_propulsion': 0,
 			'sup_propulsion': 0,
 			'hangar': 0,
@@ -1075,31 +1078,31 @@ class units {
 			if(parts[i].tech === 'none') { continue; }
 
 			switch(parts[i].type) {
-				case 'sub_propulsion':
-					if(modules.sub_propulsion === 0) {
-						modules.sub_propulsion = shipPartsSpeed[parts[i].tech][0]*10000 +
-							shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
-						modules.sub_propulsion = SYSTEM_AU_SIZE/(modules.sub_propulsion * 3600);
-					} else {
-						modules.sub_propulsion *= 1.5;
-					}
+			case 'sub_propulsion':
+				if(modules.sub_propulsion === 0) {
+					modules.sub_propulsion = shipPartsSpeed[parts[i].tech][0]*10000 +
+						shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
+					modules.sub_propulsion = SYSTEM_AU_SIZE/(modules.sub_propulsion * 3600);
+				} else {
+					modules.sub_propulsion *= 1.5;
+				}
 
-					break;
-				case 'sup_propulsion':
-					if(modules.sup_propulsion === 0) {
-						modules.sup_propulsion = shipPartsSpeed[parts[i].tech][0]*100 +
-							shipPartsSpeed[parts[i].tech][1]*10 + shipPartsSpeed[parts[i].tech][2];
-						modules.sup_propulsion = GALACTIC_PARSEC_SIZE/(modules.sup_propulsion * 3600);
-					} else {
-						modules.sup_propulsion *= 1.5;
-					}
-					break;
-				case 'hangar':
-					modules.hangar += hangarSize[parts[i].tech];
-					miss -= hangarMiss[parts[i].tech];
-					break;
-				default:
-					// Do nothing
+				break;
+			case 'sup_propulsion':
+				if(modules.sup_propulsion === 0) {
+					modules.sup_propulsion = shipPartsSpeed[parts[i].tech][0]*100 +
+						shipPartsSpeed[parts[i].tech][1]*10 + shipPartsSpeed[parts[i].tech][2];
+					modules.sup_propulsion = GALACTIC_PARSEC_SIZE/(modules.sup_propulsion * 3600);
+				} else {
+					modules.sup_propulsion *= 1.5;
+				}
+				break;
+			case 'hangar':
+				modules.hangar += hangarSize[parts[i].tech];
+				miss -= hangarMiss[parts[i].tech];
+				break;
+			default:
+				// Do nothing
 			}
 		}
 
@@ -1126,7 +1129,7 @@ class units {
 			ui.show('#' + div + '-speed');
 		}
 
-		if(type != 'SHIP_CARRIER') {
+		if(type !== 'SHIP_CARRIER') {
 			ui.hide('#' + div + '-fcap');
 		} else {
 			ui.show('#' + div + '-fcap');
@@ -1160,10 +1163,10 @@ class units {
 
 		// Weapons
 		let armesText = '';
-		if(units.list[id].shipShape.substr(0,14) != 'SHIP_WEP_MINES') {
-			let armes = {};
+		if(units.list[id].shipShape.substr(0,'SHIP_WEP_MINES'.length) !== 'SHIP_WEP_MINES') {
+			const armes = {};
 			for(let i=0; i<units.list[id].parts.length; i++) {
-				if(units.list[id].parts[i].type != 'cannon' && units.list[id].parts[i].type != 'rocketLauncher') { continue; }
+				if(units.list[id].parts[i].type !== 'cannon' && units.list[id].parts[i].type !== 'rocketLauncher') { continue; }
 				if(units.list[id].parts[i].tech === 'none') { continue; }
 				if(armes[units.list[id].parts[i].tech] === undefined) {
 					armes[units.list[id].parts[i].tech] = 1;
@@ -1171,8 +1174,8 @@ class units {
 					armes[units.list[id].parts[i].tech]++;
 				}
 			}
-			for(let i in armes) {
-				if(armesText != '') { armesText += ', '; }
+			for(const i in armes) {
+				if(armesText !== '') { armesText += ', '; }
 				let translation = fleetTranslate[i];
 				if(translation === undefined) {
 					translation = fleetTranslate['missile_' + i];
@@ -1180,7 +1183,7 @@ class units {
 				armesText += armes[i] + 'x ' + translation;
 			}
 		}
-		if(armesText != '') {
+		if(armesText !== '') {
 			document.getElementById('fleet-build-stat-attack-val').innerText = armesText;
 		} else {
 			ui.hide('#fleet-build-stat-attack');
@@ -1188,10 +1191,10 @@ class units {
 
 		// Shields
 		let shieldText = '';
-		if(units.list[id].shipShape.substr(0,14) != 'SHIP_WEP_MINES') {
-			let shields = {};
+		if(units.list[id].shipShape.substr(0,'SHIP_WEP_MINES'.length) !== 'SHIP_WEP_MINES') {
+			const shields = {};
 			for(let i=0; i<units.list[id].parts.length; i++) {
-				if(units.list[id].parts[i].type != 'shield') { continue; }
+				if(units.list[id].parts[i].type !== 'shield') { continue; }
 				if(units.list[id].parts[i].tech === 'none') { continue; }
 				if(shields[units.list[id].parts[i].tech] === undefined) {
 					shields[units.list[id].parts[i].tech] = 1;
@@ -1199,19 +1202,19 @@ class units {
 					shields[units.list[id].parts[i].tech]++;
 				}
 			}
-			for(let i in shields) {
-				if(shieldText != '') { shieldText += ', '; }
+			for(const i in shields) {
+				if(shieldText !== '') { shieldText += ', '; }
 				shieldText += shields[i] + 'x ' + fleetTranslate[i];
 			}
 		}
-		if(shieldText != '') {
+		if(shieldText !== '') {
 			document.getElementById('fleet-build-stat-shield-val').innerText = shieldText;
 		} else {
 			ui.hide('#fleet-build-stat-shield');
 		}
 
 		// Boutons
-		if(units.list[id].shipShape.substr(0,14) === 'SHIP_WEP_MINES') {
+		if(units.list[id].shipShape.substr(0,'SHIP_WEP_MINES'.length) === 'SHIP_WEP_MINES') {
 			ui.hide('#fleet-build-type-copy');
 			ui.hide('#fleet-build-type-delete');
 			ui.hide('#fleet-build-rename');
@@ -1231,16 +1234,16 @@ class units {
 
 		let shipType = document.getElementById('fleet-type-create-shipType');
 		shipType = shipType.options[shipType.selectedIndex].value;
-		
+
 		let shipShape = document.getElementById('fleet-type-create-shipShape');
 		shipShape = shipShape.options[shipShape.selectedIndex].value;
 
-		let ship = {
+		const ship = {
 			name: document.getElementById('fleet-type-create-name').value,
 			type: shipType,
 			shape: shipShape
 		};
-		
+
 		/* Checks ... */
 		if(ship.name.split(' ').join('') === '') {
 			errors ++;
@@ -1248,11 +1251,11 @@ class units {
 		}
 
 		/* Get All parts */
-		let parts = document.querySelectorAll('#fleet-type-create-selects select');
+		const parts = document.querySelectorAll('#fleet-type-create-selects select');
 		for(let i=0; i<parts.length; i++) {
-			let name = parts[i].getAttribute('partName');
-			let type = parts[i].getAttribute('partType');
-			let value = parts[i].value;
+			const name = parts[i].getAttribute('partName');
+			const type = parts[i].getAttribute('partType');
+			const value = parts[i].value;
 
 			if(value === undefined || value.split(' ').join('') === '') {
 				errors++;
@@ -1268,7 +1271,7 @@ class units {
 
 			ship[name] = {value: value, type: type};
 		}
-		
+
 		if(errors === 0) {
 			ui.closeTab('#fleet-type-create',false);
 			preventFleetHUDClosing = false;
@@ -1285,11 +1288,11 @@ class units {
 		for(let j=0; j<fleet.units.length; j++) {
 			totalcount += fleet.units[j][1];
 
-			let currUnit = units.getUnitData(fleet.units[j][0]);
+			const currUnit = units.getUnitData(fleet.units[j][0]);
 			if(currUnit.shipType === 'SHIP_FIGHTER') {
 				fighterCount += (fighterWeight[currUnit.shipShape] * fleet.units[j][1]);
 			} else if(currUnit.shipType === 'SHIP_CARRIER') {
-				for(let p in currUnit.parts) {
+				for(const p in currUnit.parts) {
 					if(currUnit.parts[p].type === 'hangar') {
 						fighterCap += (hangarSize[currUnit.parts[p].tech] * fleet.units[j][1]);
 					}
@@ -1301,7 +1304,7 @@ class units {
 	}
 
 	static getFleetSpoilerDOM(fleet, type) {
-		let counts = units.countFleetCount(fleet);
+		const counts = units.countFleetCount(fleet);
 
 		let content = '<details class="fleet-show-global">' +
 			'<summary id="' + fleet.id + '" class="fleet-show-name"><table class="fleet-show-table">' +
@@ -1312,7 +1315,7 @@ class units {
 
 		// Fuel
 		if(fleet.maxFuel > 0) {
-			content += '<td class="text-center"><img class="fleet-show-fuel" src="./cdn/img/ui/fuel.svg"> ' + GetBetterUnit(fleet.fuel, '', -1, true) + '/' + GetBetterUnit(fleet.maxFuel) + 
+			content += '<td class="text-center"><img class="fleet-show-fuel" src="./cdn/img/ui/fuel.svg"> ' + GetBetterUnit(fleet.fuel, '', -1, true) + '/' + GetBetterUnit(fleet.maxFuel) +
 			'(~' + Math.round(100*fleet.fuel/fleet.maxFuel) + '%)</td>';
 		} else {
 			content += '<td></td>';
@@ -1325,7 +1328,7 @@ class units {
 		content += '</tr><tr>';
 
 		// Hangar
-		if(counts.fighterCount != 0 || counts.fighterCap != 0) { 
+		if(counts.fighterCount !== 0 || counts.fighterCap !== 0) {
 			content += '<td>' + fleetTranslate['hangar'] + ': ' + counts.fighterCount + '/' + counts.fighterCap + '</td>';
 		} else {
 			content += '<td>&nbsp;</td>'; // Non-breaking space is here to force line height
@@ -1371,14 +1374,14 @@ class units {
 				content += '<img class="fleet-show-upgrade" title="' + fleetTranslate['upgrade'] + '" src="./cdn/img/ui/unit-upgrade.svg">' +
 						'<img class="fleet-show-recycle" title="' + fleetTranslate['recycle'] + '" src="./cdn/img/ui/unit-recycle.svg">';
 			}
-			
+
 			content += '</td></tr>';
 		}
 
 		let disableCSS = '';
 		if(fleet.name === 'SHIP_DEF' || fleet.name === fleetTranslate['SHIP_DEF']) {
 			disableCSS = ' style="opacity: 0;" disabled';
-		} 
+		}
 
 		content += '</tbody></table><div class="fleet-show-buttonPanel">' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeInto" value="' + fleetTranslate['mergeInto'] + '" ' + disableCSS + '>' +
@@ -1393,10 +1396,10 @@ class units {
 	 * (Re)draw the fleets lists
 	 */
 	static drawFleetLists() {
-		if(planetData.address === undefined) { 
+		if(planetData.address === undefined) {
 			setTimeout(function() {
 				units.drawFleetLists();
-			}, 500); 
+			}, 500);
 
 			return;
 		}
@@ -1408,7 +1411,7 @@ class units {
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name === 'SHIP_DEF') { units.fleetList[i].name = fleetTranslate[units.fleetList[i].name]; }
 
-			if(units.fleetList[i].position === planetData.address && units.fleetList[i].endMoveTime == -1) {
+			if(units.fleetList[i].position === planetData.address && units.fleetList[i].endMoveTime === -1) {
 
 				if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { // Defence fleet always first
 					orbitDOM = units.getFleetSpoilerDOM(units.fleetList[i], 'orbit') + orbitDOM;
@@ -1416,7 +1419,7 @@ class units {
 					orbitDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'orbit');
 				}
 
-			} else if(units.fleetList[i].endMoveTime != -1) {
+			} else if(units.fleetList[i].endMoveTime !== -1) {
 				movingDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'moving');
 			} else {
 				outDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'out');
@@ -1449,7 +1452,7 @@ class units {
 	 * @return     {Object}  The time and fuel.
 	 */
 	static calcTimeAndFuel(fleet) {
-		let now = Date.now();
+		const now = Date.now();
 
 		let systemeDepart = fleet.position.split('-');
 		systemeDepart.pop();
@@ -1459,34 +1462,33 @@ class units {
 		systemeArrivee.pop();
 		systemeArrivee = systemeArrivee.join('-');
 
-		
-		let planeteArrivee = map.planetData[systemeArrivee][units.planetTarget];
+		const planeteArrivee = map.planetData[systemeArrivee][units.planetTarget];
 
 		let time;
 		let minSpeed;
 		if(systemeDepart === systemeArrivee) {
-			let planeteDepart = map.planetData[systemeDepart][fleet.position];
+			const planeteDepart = map.planetData[systemeDepart][fleet.position];
 
-			let unitList = [];
+			const unitList = [];
 			for(let i=0; i<fleet.units.length; i++) {
 				unitList[i] = units.getUnitData(fleet.units[i][0]);
 			}
 
 			minSpeed = Fleet.getMinSubSpeed(unitList, fleet.units);
 
-			let baseDist = GameMap.getPlanetDistance(
+			const baseDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
-				now/1000);
+				now/TIME.SECONDS_TO_MS);
 			if(Number.isNaN(baseDist) || baseDist < 0) { return; }
-			let baseTravelTime = Fleet.calcMoveTime(baseDist, minSpeed.speed);
+			const baseTravelTime = Fleet.calcMoveTime(baseDist, minSpeed.speed);
 
-			let previewDist = GameMap.getPlanetDistance(
+			const previewDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
-				now/1000 + Math.round(baseTravelTime*360000)/100);
+				now/TIME.SECONDS_TO_MS + Math.round(baseTravelTime*360000)/100);
 			if(Number.isNaN(previewDist) || previewDist < 0) { return; }
-			let previewTime = Fleet.calcMoveTime(previewDist, minSpeed.speed);
+			const previewTime = Fleet.calcMoveTime(previewDist, minSpeed.speed);
 
 			/* Final travel time:
 				Average of ...
@@ -1541,7 +1543,7 @@ class units {
 			if(units.fleetList[i].endMoveTime > 0) { continue; }
 			if(units.fleetList[i].position === units.planetTarget) { continue; }
 
-			let mt = units.calcTimeAndFuel(units.fleetList[i]);
+			const mt = units.calcTimeAndFuel(units.fleetList[i]);
 			units.fleetTimes[units.fleetList[i]._id] = mt.time;
 			units.fleetFuel[units.fleetList[i]._id] = mt.fuel;
 
@@ -1582,7 +1584,7 @@ class units {
 		units.updateMovePanel();
 
 		// Destination
-		let msgPt1 = translate['messages']['movePanelPt1'][moveType];
+		const msgPt1 = translate['messages']['movePanelPt1'][moveType];
 
 		if(map.planetData[system][units.planetTarget].ownerName !== null) {
 			document.getElementById('map-move-panel-message').innerHTML =
@@ -1606,17 +1608,17 @@ class units {
 	 * Update the fleet move panel
 	 */
 	static updateMovePanel() {
-		let currentFleet = units.getFleetData(units.currFleet);
+		const currentFleet = units.getFleetData(units.currFleet);
 
 		let fighterCount = 0;
 		let fighterCap = 0;
 		if(currentFleet.units) {
 			for(let j=0; j<currentFleet.units.length; j++) {
-				let currUnit = units.getUnitData(currentFleet.units[j][0]);
+				const currUnit = units.getUnitData(currentFleet.units[j][0]);
 				if(currUnit.shipType === 'SHIP_FIGHTER') {
 					fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[j][1]);
 				} else if(currUnit.shipType === 'SHIP_CARRIER') {
-					for(let p in currUnit.parts) {
+					for(const p in currUnit.parts) {
 						if(currUnit.parts[p].type === 'hangar') {
 							fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[j][1]);
 						}
@@ -1626,7 +1628,7 @@ class units {
 		}
 
 		// Time
-		let time = (units.fleetTimes[units.currFleet]) ? getStringTime(units.fleetTimes[units.currFleet]) : "??:??:??";
+		const time = (units.fleetTimes[units.currFleet]) ? getStringTime(units.fleetTimes[units.currFleet]) : '??:??:??';
 		document.getElementById('map-move-panel-time').innerText = time;
 
 		// Fuel
