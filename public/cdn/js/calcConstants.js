@@ -595,6 +595,12 @@ const fighterWeight = {
 	SHIP_FIGHTER_BOMBER: 2,
 };
 
+const fighterMult = {
+	SHIP_FIGHTER_SMALL: 0.15,
+	SHIP_FIGHTER_MEDIUM: 0.3,
+	SHIP_FIGHTER_BOMBER: 0.3,
+};
+
 const hangarSize = {
 	hangarSimple: 40,
 	hangarDouble: 75,
