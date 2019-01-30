@@ -1638,7 +1638,7 @@ class units {
 			fFuel = units.fleetFuel[units.currFleet];
 			ratio = Math.round(fFuel[0]/fFuel[1]*100);
 		}
-		if(Number.isNaN(ratio)) { ratio = 0; }
+		if(Number.isNaN(ratio)) { ratio = '?'; fFuel = [0,0]; }
 		document.getElementById('map-move-panel-fuel').innerHTML =
 			GetBetterUnit(fFuel[0], 't', fFuel[1] + 1) +
 			' (' + ratio + '% du reservoir)';
