@@ -130,7 +130,20 @@ class planetUI {
 		}
 
 		//Helium 3
-		if(buildings[13] !== 0 && currentBuilding !== 13) { planetData.resources[1] += heliumProdBase*time; }
+		if(buildings[13] !== 0 && currentBuilding !== 13) { 
+			planetData.resources[1] += heliumProdBase*time;
+
+			if(units.fleetList && units.fleetList.length > 0) {
+				let empty;
+				[planetData, units.fleetList, empty] = Fleet.distributeFuel(planetData, units.fleetList);
+
+				// @TODO: Update before full on server
+
+				if(!empty) {
+					// @TODO: Same owner, same ally, trade
+				}
+			}
+		}
 
 		//Metals
 		if(planetData.resources[0]-(metalProdBase*time)>0 && currentBuilding !== 1) { //Verify if you can use basic ressources
