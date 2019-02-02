@@ -24,10 +24,19 @@
 			return speed;
 		}
 
+		/**
+		 * Calculates the speed.
+		 *
+		 * @param      {<type>}  unit    The unit
+		 * @param      {<type>}  type    The type
+		 * @return     {Object}  The speed.
+		 */
 		static calcSpeed(unit, type) {
 			let speed = [-1];
 			let tech = '';
 			let count = 0;
+
+			if(unit === undefined) { console.error('Error: undefined unit in Fleet.calcSpeed()'); return { speed: [] }; }
 
 			for(const i in unit.parts) {
 				if(unit.parts[i].type === type) {
@@ -109,7 +118,7 @@
 				engines: {},
 			};
 
-			const unitListId = unitList.map((unit) => unit._id);
+			const unitListId = unitList.map((unit) => '' + unit._id);
 
 			for(let i=0; i<fleetUnits.length; i++) {
 				const currUnit = unitList[unitListId.indexOf(fleetUnits[i][0])];
