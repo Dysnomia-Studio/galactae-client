@@ -1641,8 +1641,6 @@ select, input, summary {
 	-ms-user-select: none;
 
 	list-style-type: none; /* Only for hiding arrow on firefox */
-
-	cursor: url(../img/mouse_pointer.png), pointer;
 	
 	padding: 0.5em;
 	padding-top: 0;
@@ -1654,9 +1652,11 @@ select, input, summary {
 	right: 1em;
 	top: 2.5em;
 	position: absolute;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 #hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary::before {
 	content:"-";
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 #hud-fleet .html5_details.open > summary::before, #hud-fleet details[open] > summary {
 	border-bottom: 1px solid #0EC6C6;
@@ -1687,6 +1687,9 @@ select, input, summary {
 	display: inline-block;
 	width: 30%;
 	margin: 1em 1.5%;
+}
+.priority-fleet {
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
 
 /**

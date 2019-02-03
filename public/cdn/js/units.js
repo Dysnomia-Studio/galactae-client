@@ -1336,9 +1336,9 @@ class units {
 
 		// Prorité
 		if(type === 'orbit' && fleet.maxFuel > 0 && planetData.highPriorityFleet === fleet._id) {
-			content += '<td class="text-center">' + fleetTranslate['priorty-fuel'] + '</td>';
+			content += '<td class="text-center"><span style="color: #0ec6c6;">✔</span>' + fleetTranslate['priorty-fuel'] + '</td>';
 		} else if(type === 'orbit' && fleet.maxFuel > 0) {
-			content += '<td class="text-center">' + fleetTranslate['no-priorty-fuel'] + '</td>';
+			content += '<td class="text-center priority-fleet" id="' + fleet._id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priorty-fuel'] + '</td>';
 		} else if(type === 'out') {
 			content += '<td class="text-center">' + fleetTranslate['orbiting'] + ' ' + fleet.position + '</td>'; // @TODO: pname (username) instead of position
 		}
@@ -1396,6 +1396,7 @@ class units {
 	 * (Re)draw the fleets lists
 	 */
 	static drawFleetLists() {
+		console.log('drawFleetLists');
 		if(planetData.address === undefined) {
 			setTimeout(function() {
 				units.drawFleetLists();
@@ -1443,6 +1444,19 @@ class units {
 			outDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
 		document.getElementById('fleet-out-content').innerHTML = outDOM;
+
+		const priorityElts = document.getElementsByClassName('priority-fleet');
+		for(let i=0; i<priorityElts.length; i++) {
+			priorityElts[i].addEventListener('click', function(e) {
+				e.preventDefault();
+				socket.emit('fleet-set-priority', {
+					id: userData.id,
+					username: userData.username,
+					fleet: this.id,
+					planet: planetData.address,
+				});
+			});
+		}
 	}
 
 	/**
