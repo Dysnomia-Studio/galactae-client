@@ -1341,6 +1341,17 @@ class units {
 			content += '<td class="text-center priority-fleet" id="' + fleet._id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priorty-fuel'] + '</td>';
 		} else if(type === 'out') {
 			content += '<td class="text-center">' + fleetTranslate['orbiting'] + ' ' + fleet.position + '</td>'; // @TODO: pname (username) instead of position
+		} else if(type === 'moving') {
+			let action = fleetTranslate['movingTo'];
+			switch(fleet.orbitPosition) {
+			case 1:
+				action = fleetTranslate['attacking'];
+				break;
+			case 2:
+				action = fleetTranslate['movingToDef'];
+				break;
+			}
+			content += '<td class="text-center">' + action + ' ' + fleet.position + fleetTranslate['arriveAt'] + ' ' + getDateTime(new Date(fleet.endMoveTime)) + '</td>'; // @TODO: pname (username) instead of position
 		}
 
 		content +='</tr></table></summary>' +
@@ -1396,7 +1407,6 @@ class units {
 	 * (Re)draw the fleets lists
 	 */
 	static drawFleetLists() {
-		console.log('drawFleetLists');
 		if(planetData.address === undefined) {
 			setTimeout(function() {
 				units.drawFleetLists();

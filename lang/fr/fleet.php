@@ -111,6 +111,11 @@
 		"no-move-unit": "Aucune flotte ne se déplace",
 		"no-out-unit": "Aucune unité en orbite d'une autre planète",
 
+		"movingTo": "Déplacement vers",
+		"attacking": "Attaque vers",
+		"movingToDef": "Déplacement pour défendre vers",
+		"arriveAt": ", arrivée:",
+
 		"unit": "unité(s)",
 	};
 </script>

@@ -110,6 +110,11 @@
 		"no-move-unit": "No fleet is moving",
 		"no-out-unit": "No unit in orbit of another planet",
 
+		"movingTo": "Moving to",
+		"attacking": "Attacking",
+		"movingToDef": "Moving to defend",
+		"arriveAt": ", arriving:",
+
 		"unit": "unit(s)",
 	};
 </script>
