@@ -22,7 +22,7 @@ let mineralStorageBase1; // Minerais lvl + 1
 
 let storageHelium; // Helium 3
 let storageHelium1; // Helium 3 lvl + 1
- 
+
 let mineralProdBase; // Production de minerais
 let mineralProdBase1; // Production de minerais lvl + 1
 let metalProdBase; // Production de metaux
@@ -286,14 +286,14 @@ class planetUI {
 		let mineralProdBaseTemp = mineralProdBase;
 		let metalProdBaseTemp = metalProdBase;
 
-		if((planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) && 
-			(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) && 
-			(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) && 
+		if((planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) &&
+			(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) &&
+			(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) &&
 			(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio)) { // Si on a tout les metaux
 			metalProdBaseTemp = 0;
 		}
 
-		if(planetData.resources[0]>=mineralStorageBase && 
+		if(planetData.resources[0]>=mineralStorageBase &&
 			mineralProdBaseTemp > metalProdBaseTemp) { // Si on a tout les minerais
 			mineralProdBaseTemp = metalProdBaseTemp;
 		} else if(planetData.resources[0]===0 && metalProdBaseTemp > mineralProdBaseTemp) {
@@ -308,14 +308,14 @@ class planetUI {
 		// Helium-3
 		document.getElementById('he-cap').innerHTML = GetBetterUnit(storageHelium,'t');
 		if(planetData.resources[1]>=storageHelium) {
-			document.getElementById('he-prod').innerHTML = GetBetterUnit(0,'t/h');
+			document.getElementById('he-prod').innerHTML = GetBetterUnit(0,'t/h',0);
 		} else {
 			document.getElementById('he-prod').innerHTML = GetBetterUnit(heliumProdBase,'t/h');
 		}
 		// Iron
-		document.getElementById('fe-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.ironRatio,'t');		
+		document.getElementById('fe-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.ironRatio,'t');
 		if(planetData.resources[2]>=metalsStorageBase*ratio.ironRatio) {
-			document.getElementById('fe-prod').innerHTML = GetBetterUnit(0,'t/h');
+			document.getElementById('fe-prod').innerHTML = GetBetterUnit(0,'t/h',0);
 		} else {
 			document.getElementById('fe-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.ironRatio,'t/h');
 		}
@@ -323,7 +323,7 @@ class planetUI {
 		// Aluminium
 		document.getElementById('al-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.aluRatio,'t');
 		if(planetData.resources[3]>=metalsStorageBase*ratio.aluRatio) {
-			document.getElementById('al-prod').innerHTML = GetBetterUnit(0,'t/h');
+			document.getElementById('al-prod').innerHTML = GetBetterUnit(0,'t/h',0);
 		} else {
 			document.getElementById('al-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.aluRatio,'t/h');
 		}
@@ -331,30 +331,30 @@ class planetUI {
 		// Copper
 		document.getElementById('cu-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.copperRatio,'t');
 		if(planetData.resources[4]>=metalsStorageBase*ratio.copperRatio) {
-			document.getElementById('cu-prod').innerHTML = GetBetterUnit(0,'t/h');
+			document.getElementById('cu-prod').innerHTML = GetBetterUnit(0,'t/h',0);
 		} else {
 			document.getElementById('cu-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.copperRatio,'t/h');
 		}
 		document.getElementById('cu-variety').innerHTML = GetBetterUnit(ratio.copperRatio*100,'%');
 		// Titanium
 		document.getElementById('ti-cap').innerHTML = GetBetterUnit(metalsStorageBase*ratio.titanRatio,'t');
-		if(planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) {	
-			document.getElementById('ti-prod').innerHTML = GetBetterUnit(0,'t/h');
+		if(planetData.resources[5]>=metalsStorageBase*ratio.titanRatio) {
+			document.getElementById('ti-prod').innerHTML = GetBetterUnit(0,'t/h',0);
 		} else {
 			document.getElementById('ti-prod').innerHTML = GetBetterUnit(metalProdBaseTemp*ratio.titanRatio,'t/h');
 		}
 		document.getElementById('ti-variety').innerHTML = GetBetterUnit(ratio.titanRatio*100,'%');
 
 
-		document.getElementById('electricity_nmb').innerHTML = GetBetterUnit(energyProd-energyCons,'Wh',0);
-		document.getElementById('electricity-available').innerHTML = GetBetterUnit(energyProd-energyCons,'Wh',0);
+		document.getElementById('electricity_nmb').innerHTML = GetBetterUnit(energyProd-energyCons,'Wh');
+		document.getElementById('electricity-available').innerHTML = GetBetterUnit(energyProd-energyCons,'Wh');
 		document.getElementById('electricity-used').innerHTML = GetBetterUnit(energyCons,'Wh');
 		document.getElementById('electricity-total').innerHTML = GetBetterUnit(energyProd,'Wh');
 
-		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd-habCons,'',0);
-		document.getElementById('population-available').innerHTML = GetBetterUnit(habProd-habCons,'',0);
+		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd-habCons,'');
+		document.getElementById('population-available').innerHTML = GetBetterUnit(habProd-habCons,'');
 		document.getElementById('population-used').innerHTML = GetBetterUnit(habCons,'');
-		document.getElementById('population-total').innerHTML = GetBetterUnit(habProd,'');	
+		document.getElementById('population-total').innerHTML = GetBetterUnit(habProd,'');
 	}
 	/*
 	* Draws if buildings can be build.
