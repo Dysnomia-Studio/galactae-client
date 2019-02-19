@@ -1307,7 +1307,7 @@ class units {
 		const counts = units.countFleetCount(fleet);
 
 		let content = '<details class="fleet-show-global">' +
-			'<summary id="' + fleet.id + '" class="fleet-show-name"><table class="fleet-show-table">' +
+			'<summary id="' + fleet._id + '" class="fleet-show-name"><table class="fleet-show-table">' +
 			// Nom flotte
 			'<tr><td>' + fleet.name +
 			'<img class="fleet-rename" alt="rename fleet" src="./cdn/img/ui/rename.svg" style="display: inline-block;">' +
