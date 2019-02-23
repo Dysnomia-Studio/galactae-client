@@ -3,7 +3,7 @@ var socket;
 class webSockets {
 	static createConnection() {
 		//Connect to the server
-		socket = io.connect('https://'+gameServer, {secure: true, 'connect timeout': 10000 });
+		socket = io.connect(gameServer, {secure: true, 'connect timeout': 10000, transport: 'websocket' });
 
 		//Catch connection errors (like server offline)
 		socket.on('connect_failed', function(){
