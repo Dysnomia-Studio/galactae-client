@@ -16,9 +16,9 @@ $news_needed = (int) $news_needed;
 $cache = DIR_CACHE.'news-'.$news_needed.'.html';
 
 /* Say to db server, we seen a newer news */
-if($userData['lastViewedNews'] < $news_needed) {
+if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $news_needed) {
 	$userMngr = new UserManager();
-	$userMngr->getLastNewsNumber($userData['_id'], $news_needed);
+	$userMngr->updateUserLastNews($userData['_id'], $news_needed);
 }
 
 if(file_exists($cache)) {
@@ -63,9 +63,9 @@ if(file_exists($cache)) {
 	foreach ($newsList as $key => $value) {
 		$value = (array) $value;
 
-		if($found) { 
-			$next = $value['_id']; 
-			break; 
+		if($found) {
+			$next = $value['_id'];
+			break;
 		}
 
 		if($curr != []) { $prev = $curr['_id']; }
@@ -103,6 +103,6 @@ if(file_exists($cache)) {
     
     file_put_contents($cache, $page); // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache)
 
-    echo $page ; // on affiche notre page :D 
+    echo $page ; // on affiche notre page :D
 }
 ?>

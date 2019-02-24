@@ -12,8 +12,10 @@ translate["messages"] = {
 	"UNIT_ERROR_ALREADY": "Une unité est déjà en construction",
 	"BUILDING_ERROR_MAXIMUM": "Niveau maximum déjà atteint",
 	"BUILDING_ERROR_COST": "Pas assez de ressources disponibles",
+	"BUILDING_ERROR_STORAGE": "Stockage de ressources insuffisant",
 	"BUILDING_ERROR_ENERGY": "Production energetique insuffisante",
 	"BUILDING_ERROR_PEOPLE": "Population insuffisante",
+	"BUILDING_ERROR_DEPENDENCIES": "Dépendances manquantes afin de le construire",
 	"UPGRADE": "Ameliorer",
 	"BUILD": "Construire",
 	"LEVEL": "Niveau",
@@ -28,7 +30,7 @@ translate["messages"] = {
 	"BUILD_FINISH_TOMORROW_AT": "Fin de la construction demain à",
 	"BUILD_FINISH_THE": "Fin de la construction le",
 	"BUILD_FINISH_AT": "à",
-	// [Number] units "[Name]" are being build in fleet "[FleetName]" 
+	// [Number] units "[Name]" are being build in fleet "[FleetName]"
 	"UNIT_CURR_BUILD_01": "unités",
 	"UNIT_CURR_BUILD_02": "sont en construction dans la flotte",
 	// Unit Notifs
@@ -55,9 +57,10 @@ translate["messages"] = {
 	"CHAT_UNMUTED": "Vous pouvez de nouveau parler.",
 	"CHAT_MUTED_REASON": "pour la raison",
 	// Research
-	"MISSING_PARENTS": "Recherches parentes manquantes",
+	"MISSING_PARENTS": "Dépendances manquantes",
 	"ENDED_RESEARCH": "Recherche Terminée",
 	"NEEDED_RESEARCH_MISSING": "Il vous reste des technologies a decouvrir afin de creer ce vaisseau.",
+	"PLANETS": "planètes possédées",
 	// Fleets & Units
 	"BUILDING_UNIT_OK": "La flotte commence son expansion",
 	"SHIP_HAS_INVALID_PARTS": "Votre vaisseau a des composants invalides",
@@ -72,10 +75,6 @@ translate["messages"] = {
 	"FLEET_NAME_ALREADY_EXISTS": "Une autre flotte avec ce nom appartient déjà à cette planète",
 	"BUILDING_ERROR_INVALID_FLEET": "Erreur: la flotte où construire ces unités n'existe pas",
 	"BUILDING_ERROR_FLEET_SIZE": "Erreur: capacité maximale d'unités de la flotte depassée",
-	"IN_BUILDING_FLEET": "Erreur: La file de construction de votre flotte n'est pas terminée.",
-	"ALREADY_MOVING_FLEET": "Erreur: Votre flotte se déplace déjà.",
-	"NO_ENOUGHT_CARRIER": "Erreur: Pas assez de place pour transporter vos chasseurs.",
-	"CANT_MAKE_SUPRAMOVE": "Erreur: Certains de vos vaisseaux ne sont pas capable de voyages interstellaires.",
 	// Errors message
 	"PLY_NOT_FOUND": "Erreur: joueur introuvable",
 	"NO_PM_YOU": "Erreur: vous ne pouvez pas vous envoyer un message privé à vous même.",
@@ -89,16 +88,26 @@ translate["messages"] = {
 		"Attaque de la planete",
 		"Deplacement vers",
 		"Espionnage de la planete",
-	]
-};
+	],
+	"IN_BUILDING_FLEET": "Erreur: La file de construction de votre flotte n'est pas terminée.",
+	"ALREADY_MOVING_FLEET": "Erreur: Votre flotte se déplace déjà.",
+	"NO_ENOUGHT_CARRIER": "Erreur: Pas assez de place pour transporter vos chasseurs.",
+	"CANT_MAKE_SUPRAMOVE": "Erreur: Certains de vos vaisseaux ne sont pas capable de voyages interstellaires.",
+	'DESTINATION_NOT_EXISTS': 'Erreur: La destination n\'existe pas',
+	'NO_ENOUGH_FUEL': 'Erreur: La flotte ne possède pas assez de carburant',
+	'FLEET_MOVING': 'La flotte commence son déplacement',
+	'ENDED_MOVE': 'Flotte arrivée à destination',
+	'ENDED_MOVE_01': ' est arrivée à ',};
 
 translate['load'] = {
 	"fleet": "Chargement des flottes",
 	"pictures": "Chargement des images",
+	"load": "Chargement de la page",
 	"maps": "Chargement des cartes",
 	"planet": "Chargement des données de la planete",
 	"player": "Chargement des données du joueurs",
 	"server": "Connexion au serveur ...",
+	"service-worker": "Préchargement des images",
 	"settings": "Chargement des paramètres",
 	"units": "Chargement des données unités",
 };

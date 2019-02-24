@@ -29,7 +29,6 @@
 	define('SHIP_SUBSPEED','Interplanetary');
 	define('SHIP_SUPSPEED','Interstellar');
 	define('SHIP_MISS_CHANCE','Miss Chance');
-	define('SHIP_MASS','Mass');
 	define('SHIP_FCAP','Fighters Capacity');
 
 	//== Fleet ==\\
@@ -96,10 +95,26 @@
 		"fleet-build-type-copy": "Duplicate this model",
 		"fleet-build-type-delete": "Delete model",
 
+		"priorty-fuel": "Refuel priority",
+		"no-priorty-fuel": "No Refuel priority",
+		"orbiting": "Orbiting",
+
+		"recycle": "Recycle units",
+		"upgrade": "Upgrade units",
+
+		"mergeInto": "Merge into ...",
+		"mergeFrom": "Merge from ...",
+		"editAI": "Edit fleet AI",
+
 		"no-orbit-unit": "No unit is in orbit of this planet",
 		"no-move-unit": "No fleet is moving",
 		"no-out-unit": "No unit in orbit of another planet",
 
-		"unit": "total unit(s)",
+		"movingTo": "Moving to",
+		"attacking": "Attacking",
+		"movingToDef": "Moving to defend",
+		"arriveAt": ", arriving:",
+
+		"unit": "unit(s)",
 	};
 </script>

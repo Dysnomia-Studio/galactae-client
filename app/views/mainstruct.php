@@ -1,27 +1,28 @@
-<?php 
+<?php
 $debut = round(microtime(true) * 1000);
 ?>
 <!DOCTYPE html>
-<!-- 
+<!--
 	Code by Elanis
-	Copyright 2016-<?= date('Y') ?> 
+	Copyright 2016-<?= date('Y') ?>
 	Don't copy this without permission
 	I hope this code is readable.
 -->
-<?php 
-include_once('gvars.php');
-
-include_once(DIR_CTRL.'redirect.php');
-include_once(DIR_CTRL.'auth.php');
-?>
 <html lang="<?= $lang->getLanguage(); ?>">
 	<head>
+		<?php
+		include_once('gvars.php');
+
+		include_once(DIR_CTRL.'redirect.php');
+		include_once(DIR_CTRL.'auth.php');
+		?>
+
 		<title>Galactae: Space Age Dawn</title>
 		<meta charset="UTF-8">
 		<!-- On prepare le charset , les mots clés , le fichier css et l'icone du site -->
 		<meta name="keywords" content="">
 		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
 		<link rel="shortcut icon" type="image/png" href="<?php echo $cdnURL; ?>img/favicon.png"/>
 		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>

@@ -4,12 +4,12 @@
 	translate['research'] = {
 		// Noeud Central
 		researchCenter:		{ name: "Research Center", desc: "Research centers works together or alone to discover new skills or technologies usefull to the whole nation." },
-		industrialistion:	{ name: "Industrialisation", desc: "" },
-		phyContemporaine:	{ name: "Contemporary Physics", desc: "" },
-		thermodynamique:	{ name: "Thermodynamics", desc: "" },
+		industrialistion:	{ name: "Industrialisation", desc: "Research tree part concerning productivity and building." },
+		phyContemporaine:	{ name: "Modern Physics", desc: "" },
+		thermodynamique:	{ name: "Thermodynamics", desc: "Science about heating used to work in especially on propulsion systems." },
 		// Mise en orbite et propulsion
-		prop_main:			{ name: "Propulsion", desc: "" },
-		prop_vSolaire:		{ name: "Solar sail", desc: "" },
+		prop_main:			{ name: "Propulsion", desc: "Used to unlock research concerning interplanetary and interstellar moving." },
+		prop_vSolaire:		{ name: "Solar sail", desc: "Slow propulsion used on lightweight ships using no fuel." },
 		prop_ions:			{ name: "Ion engines", desc: "" },
 		prop_plasma: 		{ name: "Plasma engines", desc: "" },
 		prop_vsl:			{ name: "Faster Than Light speed (FTL)", desc: "" },
@@ -25,8 +25,8 @@
 		cp_dbRaffinage:		{ name: "Double refining", desc: "2 times more likely to find rare minerals" },
 		cp_molecular_compression: { name: "Molecular compression", desc: "Raise a little bit storage limits" },
 		// Armes
-		wep_railgun:		{ name: "Railgun cannon", desc: "" },
-		wep_nuke:			{ name: "Nuclear weapons", desc: "" },
+		wep_railgun:		{ name: "Railgun cannon", desc: "Cannon speed up projectile with an electromagnetic field." },
+		wep_nuke:			{ name: "Nuclear weapons", desc: "Massive and radioactive destruction weapon." },
 		wep_laser:			{ name: "Laser weapons", desc: "" },
 		wep_plasma:			{ name: "Plasma weapons", desc: "" },
 		// Shields & Defenses
@@ -35,7 +35,7 @@
 		def_shield_projector:{ name: "Magnetic shield projector", desc: "" },
 		def_shield_singularity:{ name: "Singularity system", desc: "" },
 		// Hangar
-		hangarDouble:		{ name: "Double Hangar", desc: "" },
+		hangarDouble:		{ name: "Double Hangar", desc: "The double hangar can store about 2 times interceptors than usual hangars." },
 		// Mines
 		wep_mines:			{ name: "Mine", desc: "" },
 		wep_mines_nuke:		{ name: "Nuclear Mine", desc: "" },

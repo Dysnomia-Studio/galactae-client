@@ -1,5 +1,14 @@
 <?php
 class ServerUserManager extends MongoInterface {
+
+	/**
+	 * Gets a user by name from server db
+	 *
+	 * @param      <string>  $srvName  The server name
+	 * @param      <string>  $name     User name
+	 *
+	 * @return     <array>  User data
+	 */
 	public function getUserByName($srvName, $name) {
 		$data = $this->getCondContent($srvName,'users',
 			['name' => $name]
@@ -12,6 +21,14 @@ class ServerUserManager extends MongoInterface {
 		return $data;
 	}
 
+	/**
+	 * Creates an user model.
+	 *
+	 * @param      <type>  $name    User name
+	 * @param      <type>  $choice  Government choice
+	 *
+	 * @return     array   User data
+	 */
 	public function createUserModel($name, $choice) {
 		global $beginnerProtectionDuration;
 
@@ -44,6 +61,12 @@ class ServerUserManager extends MongoInterface {
 		];
 	}
 
+	/**
+	 * Adds an user to server database
+	 *
+	 * @param      <string>  $dbname  The server name
+	 * @param      <array>  $user    User data
+	 */
 	public function addUser($dbname, $user) {
 		$this->addContent($dbname, 'users', $user);
 	}

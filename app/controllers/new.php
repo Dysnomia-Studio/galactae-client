@@ -13,7 +13,7 @@ try {
 }
 
 if(isset($srvUserData['name'])) { // Autofix
-	$usermng->updateUserGameData($userData['user_id'], $srvUserData['_id']);
+	$usermng->updateUserGameData($userData['user_id'], $srvUserData['_id'], $dbname);
 
 	$_SESSION['game_id'] = $srvUserData['_id'];
 

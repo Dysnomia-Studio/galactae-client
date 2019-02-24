@@ -36,7 +36,7 @@
 		{id: "serre", name: "Serres", desc: "Les serres sont la principale source de nourriture pour la population."},
 		{id: "solar", name: "Centrales Solaires", desc: "Ces centrales transforment l\'energie solaire en energie electrique." },
 		{id: "warehouse", name: "Entrepots", desc: "Dans les entrepôts sont stockés les minerais bruts ainsi que les metaux traités." },
-		{id: "headquarter", name: "Etat Major", desc: "L'Etat Major est le centre névralgique de la gestion des flottes et du système millitaire de la planète." },		
+		{id: "headquarter", name: "Etat Major", desc: "L'Etat Major est le centre névralgique de la gestion des flottes et du système millitaire de la planète." },
 		{id: "launchpad", name: "Centre Spatial", desc: "Le centre spatial gère la création des défenses spatiales, des chasseurs ainsi que l'acheminements des ressources necessaires à la création de bâtiments spatiaux." },
 		{id: "research", name: "Centre de recherches", desc: "Les differents centres de recherches de vos planètes travaillent ensemble afin de découvrir de nouvelles technologies." },
 		// Space

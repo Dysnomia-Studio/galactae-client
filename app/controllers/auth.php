@@ -18,9 +18,9 @@ if(!(isset($_COOKIE['galactae-phpsessid']))) {
 $session_data = $usermng->getUserBySession($_COOKIE['galactae-phpsessid']);
 
 $browser = new Browser();
-if(isset($session_data['user_id'], 
+if(isset($session_data['user_id'],
 		$session_data['user_session_expiration'],
-		$session_data['user_agent']) 
+		$session_data['user_agent'])
 		&& ((int) $session_data['user_session_expiration'] > time()
 		&& $session_data['user_agent'] == $browser->getPlatform().'-'.$browser->getBrowser())) {
 
@@ -31,7 +31,7 @@ if(isset($session_data['user_id'],
 
 // Verif d'existance du compte sur la BDD Principale
 $userData = $usermng->getGlobalUserById($session_data['user_id']);
-if(!isset($userData['user_name'])) { 
+if(!isset($userData['user_name'])) {
 	redirect('login');
 }
 
@@ -43,7 +43,7 @@ try {
 }
 $srv_data = $servermng->getServerByName($dbname);
 
-if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']==true) {
+if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']) {
 
 	$userPrivileges = $usermng->getUserPrivileges($userData['_id'], $dbname);
 

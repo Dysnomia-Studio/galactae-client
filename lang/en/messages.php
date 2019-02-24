@@ -12,8 +12,10 @@ translate["messages"] = {
 	"UNIT_ERROR_ALREADY": "An unit is already building",
 	"BUILDING_ERROR_MAXIMUM": "Maximum level reached",
 	"BUILDING_ERROR_COST": "You don't have enough resources",
+	"BUILDING_ERROR_STORAGE": "You don't have enough storage capacity",
 	"BUILDING_ERROR_ENERGY": "No enough energy produced",
 	"BUILDING_ERROR_PEOPLE": "No enough people",
+	"BUILDING_ERROR_DEPENDENCIES": "Missing dependencies to build it",
 	"UPGRADE": "Upgrade",
 	"BUILD": "Construire",
 	"LEVEL": "Level",
@@ -28,7 +30,7 @@ translate["messages"] = {
 	"BUILD_FINISH_TOMORROW_AT": "Building finish tomorrow at",
 	"BUILD_FINISH_THE": "Building finish the",
 	"BUILD_FINISH_AT": "at",
-	// [Number] units "[Name]" are being build in fleet "[FleetName]" 
+	// [Number] units "[Name]" are being build in fleet "[FleetName]"
 	"UNIT_CURR_BUILD_01": "units",
 	"UNIT_CURR_BUILD_02": "are being build in fleet",
 	// Unit Notifs
@@ -55,9 +57,10 @@ translate["messages"] = {
 	"CHAT_UNMUTED": "You've been unmuted",
 	"CHAT_MUTED_REASON": "for the reason",
 	// Research
-	"MISSING_PARENTS": "Recherches parentes manquantes",
+	"MISSING_PARENTS": "Missing dependancies",
 	"ENDED_RESEARCH": "Research unlocked",
 	"NEEDED_RESEARCH_MISSING": "You need to discover some technologies to create that ship.",
+	"PLANETS": "owned planets",
 	// Fleets & Units
 	"BUILDING_UNIT_OK": "Your fleet has begun expanding",
 	"SHIP_HAS_INVALID_PARTS": "Your ship has invalid components",
@@ -72,10 +75,6 @@ translate["messages"] = {
 	"FLEET_NAME_ALREADY_EXISTS": "Another fleet with this name already belong to this planet",
 	"BUILDING_ERROR_INVALID_FLEET": "Error: units fleet doesn't exists",
 	"BUILDING_ERROR_FLEET_SIZE": "Error: fleet maximum units capacity exceeded",
-	"IN_BUILDING_FLEET": "Error: Your fleet building list isn't finish.",
-	"ALREADY_MOVING_FLEET": "Error: Your fleet is already moving.",
-	"NO_ENOUGHT_CARRIER": "Error: You haven't enough carrier capacity.",
-	"CANT_MAKE_SUPRAMOVE": "Error: Some of your ships can't move to another system.",
 	// Errors message
 	"PLY_NOT_FOUND": "Error: player not found",
 	"NO_PM_YOU": "Error: you can't send a private message to yourself",
@@ -83,6 +82,15 @@ translate["messages"] = {
 	"DISABLED_FUNCTIONALIY": "Error: this functionallity isn't avaiable yet.",
 	// Anti Self XSS Warning
 	"selfXSSWarn": "Warning: if someone told you to paste something here, it's probably a scam, this kind of attack are called \"Self XSS\" and are made to take control of your account. Be careful !",
+	"IN_BUILDING_FLEET": "Error: Your fleet building list isn't finish.",
+	"ALREADY_MOVING_FLEET": "Error: Your fleet is already moving.",
+	"NO_ENOUGHT_CARRIER": "Error: You haven't enough carrier capacity.",
+	"CANT_MAKE_SUPRAMOVE": "Error: Some of your ships can't move to another system.",
+	'DESTINATION_NOT_EXISTS': 'Error: Destination doesn\'t exists.',
+	'NO_ENOUGH_FUEL': 'Error: Fleet doesn\'t have enough fuel.',
+	'FLEET_MOVING': 'Fleet begins moving',
+	'ENDED_MOVE': 'Fleet at destination',
+	'ENDED_MOVE_01': ' has arrived to ',
 };
 
 translate['load'] = {

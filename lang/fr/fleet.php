@@ -29,7 +29,6 @@
 	define('SHIP_SUBSPEED','Interplanetaire');
 	define('SHIP_SUPSPEED','Interstellaire');
 	define('SHIP_MISS_CHANCE','Chance d\'évitement');
-	define('SHIP_MASS','Masse');
 	define('SHIP_FCAP','Capacité chasseurs');
 
 	//== Fleet ==\\
@@ -96,10 +95,27 @@
 		"fleet-build-type-copy": "Copier ce modele",
 		"fleet-build-type-delete": "Supprimer le modele",
 
+		"priorty-fuel": "Prioritaire carburant",
+		"no-priorty-fuel": "Non Prioritaire carburant",
+		"orbiting": "Autour de",
+
+		"transferUnits": "Transférer unités",
+		"recycle": "Recycler unités",
+		"upgrade": "Ameliorer unités",
+
+		"mergeInto": "Fusionner dans ...",
+		"mergeFrom": "Fusionner de ...",
+		"editAI": "Editer IA flotte",
+
 		"no-orbit-unit": "Aucune unité en orbite",
 		"no-move-unit": "Aucune flotte ne se déplace",
 		"no-out-unit": "Aucune unité en orbite d'une autre planète",
 
-		"unit": "unité(s) au total",
+		"movingTo": "Déplacement vers",
+		"attacking": "Attaque vers",
+		"movingToDef": "Déplacement pour défendre vers",
+		"arriveAt": ", arrivée:",
+
+		"unit": "unité(s)",
 	};
 </script>
