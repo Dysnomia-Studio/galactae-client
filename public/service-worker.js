@@ -1,6 +1,6 @@
 importScripts('cdn/js/calcConstants.js');
 
-self.version = 'Alpha-0.5.7-rev.190219a';
+self.version = 'Alpha-0.5.7-rev.190224a';
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
