@@ -1309,9 +1309,13 @@ class units {
 		let content = '<details class="fleet-show-global">' +
 			'<summary id="' + fleet._id + '" class="fleet-show-name"><table class="fleet-show-table">' +
 			// Nom flotte
-			'<tr><td>' + fleet.name +
-			'<img class="fleet-rename" alt="rename fleet" src="./cdn/img/ui/rename.svg" style="display: inline-block;">' +
-			'</td>';
+			'<tr><td>' + fleet.name;
+
+			if(fleet.name !== 'SHIP_DEF' && fleet.name !== fleetTranslate['SHIP_DEF']) {
+				content += '<img class="fleet-rename" alt="rename fleet" src="./cdn/img/ui/rename.svg" style="display: inline-block;">';
+			}
+
+		content += '</td>';
 
 		// Fuel
 		if(fleet.maxFuel > 0) {
@@ -1454,6 +1458,41 @@ class units {
 			outDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
 		document.getElementById('fleet-out-content').innerHTML = outDOM;
+
+		// Fleet rename
+		Array.from(document.getElementsByClassName('fleet-rename')).forEach((elt) => elt.addEventListener('click', function(event) {
+			event.preventDefault();
+			if(preventFleetHUDClosing) { return; }
+
+			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.id; // Yeah, that's ugly ...
+			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			if(fleetNb < 0) { return; }
+
+			const oldName = units.fleetList[fleetNb].name;
+			document.getElementById('fleet-rename-name').innerText = oldName;
+			document.getElementById('fleet-rename-newName').value = oldName;
+			document.getElementById('fleet-rename').setAttribute('fleetId',
+				elt.parentNode.parentNode.parentNode.parentNode.parentNode.id); // Yeah, that's ugly ...
+
+			ui.show('#fleet-rename');
+			preventFleetHUDClosing = true;
+		}));
+		document.getElementById('fleet-rename-submit').addEventListener('click', function() {
+			if(document.getElementById('fleet-rename-newName').value === '') { return; }
+
+			socket.emit('fleet-rename', {
+				id: userData.id,
+				username: userData.username,
+				fleetId: document.getElementById('fleet-rename').getAttribute('fleetId'),
+				fleetNewName: document.getElementById('fleet-rename-newName').value
+			});
+			ui.hide('#fleet-rename');
+			preventFleetHUDClosing = false;
+		});
+		document.getElementById('fleet-rename-close').addEventListener('click', function() {
+			ui.hide('#fleet-rename');
+			preventFleetHUDClosing = false;
+		});
 
 		const priorityElts = document.getElementsByClassName('priority-fleet');
 		for(let i=0; i<priorityElts.length; i++) {

@@ -589,11 +589,18 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</form>
 </div>
 
-<div id="fleet-type-rename">
-	<span id="fleet-type-rename-close">X</span>
+<div id="fleet-type-rename" class="rename-panel">
+	<span id="fleet-type-rename-close" class="rename-panel-close">X</span>
 	<p>Nouveau nom pour <span id="fleet-type-rename-name">SHIPNAME</span></p>
-	<input id="fleet-type-rename-newName" class="ui-large-button" type="text" placeholder="Nouveau nom">
-	<input id="fleet-type-rename-submit" class="ui-large-button" type="submit" value="Renommer">
+	<input id="fleet-type-rename-newName" class="ui-large-button rename-panel-newName" type="text" placeholder="Nouveau nom">
+	<input id="fleet-type-rename-submit" class="ui-large-button rename-panel-submit" type="submit" value="Renommer">
+</div>
+
+<div id="fleet-rename" class="rename-panel">
+	<span id="fleet-rename-close" class="rename-panel-close">X</span>
+	<p>Nouveau nom pour <span id="fleet-rename-name">FLEETNAME</span></p>
+	<input id="fleet-rename-newName" class="ui-large-button rename-panel-newName" type="text" placeholder="Nouveau nom">
+	<input id="fleet-rename-submit" class="ui-large-button rename-panel-submit" type="submit" value="Renommer">
 </div>
 
 <div id="fleet-ship-build">
