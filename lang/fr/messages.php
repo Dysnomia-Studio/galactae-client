@@ -97,7 +97,13 @@ translate['messages'] = {
 	'NO_ENOUGH_FUEL': 'Erreur: La flotte ne possède pas assez de carburant',
 	'FLEET_MOVING': 'La flotte commence son déplacement',
 	'ENDED_MOVE': 'Flotte arrivée à destination',
-	'ENDED_MOVE_01': ' est arrivée à ',};
+	'ENDED_MOVE_01': ' est arrivée à ',
+
+	// Merge fleets/move units
+	'FLEET_AT_DIFFERENT_POSITIONS': 'Erreur: les flottes sont à des lieux differents',
+	'FLEET_UNIT_TRANSFER_SUCCESSFUL': 'Transfert d\'unité reussi !',
+	'FLEET_MERGE_SUCCESSFUL': 'Les deux flottes ont bien été fusionnées',
+};
 
 translate['load'] = {
 	'fleet': 'Chargement des flottes',

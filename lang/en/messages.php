@@ -91,6 +91,11 @@ translate['messages'] = {
 	'FLEET_MOVING': 'Fleet begins moving',
 	'ENDED_MOVE': 'Fleet at destination',
 	'ENDED_MOVE_01': ' has arrived to ',
+
+	// Merge fleets/move units
+	'FLEET_AT_DIFFERENT_POSITIONS': 'Error: the fleets are at the same place.',
+	'FLEET_UNIT_TRANSFER_SUCCESSFUL': 'Units have been successfuly tranfered between fleets',
+	'FLEET_MERGE_SUCCESSFUL': 'Fleets have been successfuly merged',
 };
 
 translate['load'] = {
