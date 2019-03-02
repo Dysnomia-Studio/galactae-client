@@ -618,9 +618,9 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="fleet-ship-build-name">This isn't a ship name</span>
 
 	<script type="text/javascript">
-		let unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
-		let unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
-		let fleetListHeader = '<thead><tr>'
+		const unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
+		const unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
+		const fleetListHeader = '<thead><tr>'
 						+ '<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>'
 						+ '<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>'
 						+ '<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>'
@@ -636,6 +636,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">
 </div>
 <div id="fleet-newFleet-panel">
+	<span id="fleet-newFleet-panel-close" class="rename-panel-close">X</span>
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
 	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>

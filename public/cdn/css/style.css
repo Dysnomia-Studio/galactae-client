@@ -1299,7 +1299,7 @@ select, input, summary {
 	word-break: break-all;
 }
 #fleet-newFleet-panel, #fleet-typeDelete-panel {
-	width: 224px;
+	width: 234px;
 	height: 124px;
 
 	background-color: #0b1012;
@@ -1315,7 +1315,7 @@ select, input, summary {
 }
 #fleet-newFleet-name, #fleet-newFleet-submit {
 	width: 200px;
-	margin: 5px 10px;
+	margin: 5px 15px;
 	padding: 0;
 	text-align: center;
 }

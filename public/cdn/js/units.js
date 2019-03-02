@@ -236,6 +236,12 @@ class units {
 			units.validFleetName();
 		});
 
+		document.getElementById('fleet-newFleet-panel-close').addEventListener('click', function() {
+			ui.hide('#fleet-newFleet-panel');
+			preventUnitBuildPanelClose = false;
+			units.regenerateBuildFleetList();
+		});
+
 		document.getElementById('fleet-ship-build-upgrade').addEventListener('click', function() {
 			units.askUnitBuild();
 		});
