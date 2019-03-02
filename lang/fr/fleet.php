@@ -105,7 +105,7 @@
 
 		"mergeInto": "Fusionner dans ...",
 		"mergeFrom": "Fusionner de ...",
-		"editAI": "Editer IA flotte",
+		"editTactic": "Tactiques de flotte",
 
 		"no-orbit-unit": "Aucune unité en orbite",
 		"no-move-unit": "Aucune flotte ne se déplace",

@@ -1335,8 +1335,8 @@ select, input, summary {
 #fleet-typeDelete-no {
 	right: 0.5em;
 }
-.rename-panel {
-	width: 224px;
+.small-panel {
+	width: 234px;
 
 	background-color: #0b1012;
 	border: 1px solid #0ec6c6;
@@ -1349,22 +1349,22 @@ select, input, summary {
 
 	display: none;
 }
-.rename-panel p {
+.small-panel p {
 	text-align: center;
     margin: 0.5em;
 }
-.rename-panel-submit {
+.small-panel-submit {
 	width: 202px;
 }
-.rename-panel-newName {
+.small-panel-text, .small-panel-select {
 	width: 200px;
 }
-.rename-panel-newName, .rename-panel-submit {
-	margin: 5px 10px;
+.small-panel-text, .small-panel-submit, .small-panel-select {
+	margin: 5px 15px;
 	padding: 0;
 	text-align: center;
 }
-.rename-panel-close {
+.small-panel-close {
 	position: absolute;
     top: 0;
     right: 5px;

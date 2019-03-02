@@ -589,18 +589,18 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</form>
 </div>
 
-<div id="fleet-type-rename" class="rename-panel">
-	<span id="fleet-type-rename-close" class="rename-panel-close">X</span>
+<div id="fleet-type-rename" class="small-panel">
+	<span id="fleet-type-rename-close" class="small-panel-close">X</span>
 	<p>Nouveau nom pour <span id="fleet-type-rename-name">SHIPNAME</span></p>
-	<input id="fleet-type-rename-newName" class="ui-large-button rename-panel-newName" type="text" placeholder="Nouveau nom">
-	<input id="fleet-type-rename-submit" class="ui-large-button rename-panel-submit" type="submit" value="Renommer">
+	<input id="fleet-type-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
+	<input id="fleet-type-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
 </div>
 
-<div id="fleet-rename" class="rename-panel">
-	<span id="fleet-rename-close" class="rename-panel-close">X</span>
+<div id="fleet-rename" class="small-panel">
+	<span id="fleet-rename-close" class="small-panel-close">X</span>
 	<p>Nouveau nom pour <span id="fleet-rename-name">FLEETNAME</span></p>
-	<input id="fleet-rename-newName" class="ui-large-button rename-panel-newName" type="text" placeholder="Nouveau nom">
-	<input id="fleet-rename-submit" class="ui-large-button rename-panel-submit" type="submit" value="Renommer">
+	<input id="fleet-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
+	<input id="fleet-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
 </div>
 
 <div id="fleet-ship-build">
@@ -636,7 +636,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">
 </div>
 <div id="fleet-newFleet-panel">
-	<span id="fleet-newFleet-panel-close" class="rename-panel-close">X</span>
+	<span id="fleet-newFleet-panel-close" class="small-panel-close">X</span>
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
 	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
@@ -644,6 +644,14 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	Souhaitez vous vraiment supprimer ce modèle ?<br/>
 	<input id="fleet-typeDelete-yes" class="ui-large-button" type="submit" value="Oui">
 	<input id="fleet-typeDelete-no" class="ui-large-button" type="submit" value="Non">
+</div>
+<div id="fleet-merge-panel" class="small-panel">
+	<span id="fleet-merge-panel-close" class="small-panel-close">X</span>
+	<select id="fleet-merge-fleetSelect" class="ui-large-button small-panel-select">
+		<option id="-2" selected disabled><?php echo FLEET; ?></option>
+		<option id="-1"><?php echo NEW_FLEET; ?></option>
+	</select>
+	<input id="fleet-merge-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
 <?php /* Researchs */ ?>
 <div id="hud-research">

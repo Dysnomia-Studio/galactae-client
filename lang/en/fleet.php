@@ -104,7 +104,7 @@
 
 		"mergeInto": "Merge into ...",
 		"mergeFrom": "Merge from ...",
-		"editAI": "Edit fleet AI",
+		"editTactic": "Fleet Tactics",
 
 		"no-orbit-unit": "No unit is in orbit of this planet",
 		"no-move-unit": "No fleet is moving",
