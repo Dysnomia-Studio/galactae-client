@@ -168,11 +168,11 @@ class units {
 			});
 		});
 
-		Units.unitTypePanelEvents();
+		units.unitTypePanelEvents();
 
-		Units.fleetBuildEvents();
+		units.fleetBuildEvents();
 
-		Units.fleetListEvents();
+		units.fleetListEvents();
 
 		// Move
 		document.getElementById('map-move-panel-move').addEventListener('click', function() {
@@ -765,6 +765,7 @@ class units {
 		}
 
 		document.getElementById('fleet-merge-fleetSelect').innerHTML = document.getElementById('fleet-ship-build-fleetSelect').innerHTML;
+		document.getElementById('fleet-units-transfer-fleetSelect').innerHTML = document.getElementById('fleet-ship-build-fleetSelect').innerHTML;
 
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
 				document.getElementById('fleet-ship-build-fleetSelect').innerHTML + unitBuildSelectNew;
@@ -1491,22 +1492,6 @@ class units {
 		return content;
 	}
 
-	static openMergePanel(elt) {
-		if(preventFleetHUDClosing) { return; }
-
-		units.regenerateSelectFleetLists();
-
-		const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
-		const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
-		if(fleetNb < 0) { return; }
-
-		document.querySelector('#fleet-merge-panel option[id="' + fleetNb + '"]').disabled = true;
-		units.currFleet=fleetId;
-
-		ui.show('#fleet-merge-panel');
-		preventFleetHUDClosing = true;
-	}
-
 	/**
 	 * (Re)draw the fleets lists
 	 */
@@ -1582,6 +1567,7 @@ class units {
 			ui.show('#fleet-rename');
 			preventFleetHUDClosing = true;
 		}));
+
 		Array.from(document.getElementsByClassName('fleet-show-mergeInto')).forEach((elt) => elt.addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
 
@@ -1591,12 +1577,34 @@ class units {
 			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
 
+			document.getElementById('fleet-merge-name').innerText = units.getFleetData(fleetId).name;
+
 			document.querySelector('#fleet-merge-panel option[id="' + fleetNb + '"]').disabled = true;
 			units.currFleet=fleetId;
 
 			ui.show('#fleet-merge-panel');
 			preventFleetHUDClosing = true;
 		}));
+
+		Array.from(document.getElementsByClassName('fleet-show-transferUnits')).forEach((elt) => elt.addEventListener('click', function() {
+			if(preventFleetHUDClosing) { return; }
+
+			units.regenerateSelectFleetLists();
+
+			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
+			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			if(fleetNb < 0) { return; }
+
+			document.querySelector('#fleet-units-transfer-panel option[id="' + fleetNb + '"]').disabled = true;
+			units.currFleet=fleetId;
+			units.currTransferUnit=elt.parentNode.parentNode.id;
+
+			document.getElementById('fleet-units-transfer-name').innerText = elt.parentNode.parentNode.children[0].innerText;
+
+			ui.show('#fleet-units-transfer-panel');
+			preventFleetHUDClosing = true;
+		}));
+
 
 		Array.from(document.getElementsByClassName('fleet-show-table')).forEach((elt) => elt.addEventListener('click', function(event) {
 			if(preventFleetHUDClosing) { event.preventDefault(); }

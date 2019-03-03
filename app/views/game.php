@@ -596,13 +596,6 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-type-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
 </div>
 
-<div id="fleet-rename" class="small-panel">
-	<span id="fleet-rename-close" class="small-panel-close">X</span>
-	<p>Nouveau nom pour <span id="fleet-rename-name">FLEETNAME</span></p>
-	<input id="fleet-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
-	<input id="fleet-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
-</div>
-
 <div id="fleet-ship-build">
 	<span id="fleet-ship-build-close">X</span>
 	<div class="fleet-ship-build-cost">
@@ -645,14 +638,33 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-typeDelete-yes" class="ui-large-button" type="submit" value="Oui">
 	<input id="fleet-typeDelete-no" class="ui-large-button" type="submit" value="Non">
 </div>
+
+<div id="fleet-rename" class="small-panel">
+	<span id="fleet-rename-close" class="small-panel-close">X</span>
+	<p>Nouveau nom pour <span id="fleet-rename-name">FLEETNAME</span></p>
+	<input id="fleet-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
+	<input id="fleet-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
+</div>
+<div id="fleet-units-transfer-panel" class="small-panel">
+	<span id="fleet-units-transfer-close" class="small-panel-close">X</span>
+	<p>Tranferer unités de type <span id="fleet-units-transfer-name">SHIPNAME</span> vers :</p>
+	<select id="fleet-units-transfer-fleetSelect" class="ui-large-button small-panel-select">
+		<option id="-2" selected disabled><?php echo FLEET; ?></option>
+		<option id="-1"><?php echo NEW_FLEET; ?></option>
+	</select>
+	<input id="fleet-units-transfer-unitCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
+	<input id="fleet-units-transfer-submit" class="ui-large-button small-panel-submit" type="submit" value="<?php echo CONFIRM; ?>">
+</div>
 <div id="fleet-merge-panel" class="small-panel">
 	<span id="fleet-merge-panel-close" class="small-panel-close">X</span>
+	<p>Transfert de toutes les unités de <span id="fleet-merge-name">FLEETNAME</span> vers:</p>
 	<select id="fleet-merge-fleetSelect" class="ui-large-button small-panel-select">
 		<option id="-2" selected disabled><?php echo FLEET; ?></option>
 		<option id="-1"><?php echo NEW_FLEET; ?></option>
 	</select>
 	<input id="fleet-merge-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
+
 <?php /* Researchs */ ?>
 <div id="hud-research">
 	<span id="research-close">X</span>
