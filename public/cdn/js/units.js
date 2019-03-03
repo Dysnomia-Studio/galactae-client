@@ -1546,7 +1546,19 @@ class units {
 			preventFleetHUDClosing = true;
 		}));
 		Array.from(document.getElementsByClassName('fleet-show-mergeInto')).forEach((elt) => elt.addEventListener('click', function() {
-			units.openMergePanel(elt);
+			if(preventFleetHUDClosing) { return; }
+
+			units.regenerateSelectFleetLists();
+
+			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
+			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			if(fleetNb < 0) { return; }
+
+			document.querySelector('#fleet-merge-panel option[id="' + fleetNb + '"]').disabled = true;
+			units.currFleet=fleetId;
+
+			ui.show('#fleet-merge-panel');
+			preventFleetHUDClosing = true;
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-table')).forEach((elt) => elt.addEventListener('click', function(event) {
