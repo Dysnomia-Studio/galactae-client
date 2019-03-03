@@ -355,7 +355,10 @@ class units {
 		});
 
 		document.getElementById('fleet-units-transfer-submit').addEventListener('click', function() {
+			let count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value);
+
 			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') { return; }
+			if(Number.isNaN(count) || count <= 0) { return; } // TODO: check max
 
 			let fleet = document.getElementById('fleet-units-transfer-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -367,7 +370,7 @@ class units {
 				from: units.currFleet,
 				to: fleet,
 				unitId: units.currTransferUnit,
-				unitCount: document.getElementById('fleet-units-transfer-unitCount').value,
+				unitCount: count,
 			});
 			ui.hide('#fleet-units-transfer-panel');
 			preventFleetHUDClosing = false;
@@ -1598,6 +1601,8 @@ class units {
 			document.querySelector('#fleet-units-transfer-panel option[id="' + fleetNb + '"]').disabled = true;
 			units.currFleet=fleetId;
 			units.currTransferUnit=elt.parentNode.parentNode.id;
+
+			document.getElementById('fleet-units-transfer-unitCount').value = '';
 
 			document.getElementById('fleet-units-transfer-name').innerText = elt.parentNode.parentNode.children[0].innerText;
 
