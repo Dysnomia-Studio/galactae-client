@@ -91,15 +91,7 @@ class units {
 			ui.closeTab('#hud-fleet');
 			ui.fleet = false;
 		});
-		document.getElementById('fleet-type-create-close').addEventListener('click', function() {
-			preventFleetHUDClosing = false;
-			ui.closeTab('#fleet-type-create');
-		});
-		document.getElementById('fleet-ship-build-close').addEventListener('click', function() {
-			if(preventUnitBuildPanelClose) { return; }
-			preventFleetHUDClosing = false;
-			ui.closeTab('#fleet-ship-build');
-		});
+
 		// Fleet Menu
 		document.querySelectorAll('.fleet-ul1 li').forEach(function(elt) {
 			elt.addEventListener('click', function() {
@@ -146,10 +138,69 @@ class units {
 			});
 		});
 
-		// Type create
+		// Nouveau tri
+		document.querySelectorAll('#fleet-build-list thead tr th').forEach(function(e) {
+			e.addEventListener('click', function() {
+				let name = this.id.split('-')[4];
+
+				if(name === units.sortTypes) {
+					name += '-desc';
+				}
+
+				units.sortTypes = name;
+
+				units.drawMain();
+			});
+		});
+
+		// Change informations with buttons
+		document.querySelectorAll('#fleet-build-buttons img').forEach(function(e) {
+			e.addEventListener('mouseenter', function() {
+				switch(this.id) {
+				case 'fleet-build-openPanel':
+				case 'fleet-build-type-copy':
+				case 'fleet-build-type-delete':
+					document.getElementById('fleet-build-desc').innerText = fleetTranslate[this.id];
+					break;
+				default:
+					// do nothing here
+				}
+			});
+		});
+
+		Units.unitTypePanelEvents();
+
+		Units.fleetBuildEvents();
+
+		Units.fleetListEvents();
+
+		// Move
+		document.getElementById('map-move-panel-move').addEventListener('click', function() {
+			switch(units.moveType) {
+			case 2:
+				socket.emit('fleet-move', {
+					id: userData.id,
+					username: userData.username,
+					fleetId: units.currFleet,
+					destination: units.planetTarget,
+				});
+				ui.hide('#map-move-panel');
+				break;
+			default:
+				ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			}
+		});
+	}
+
+	static unitTypePanelEvents() {
 		document.getElementById('fleet-type-create-form').addEventListener('submit', function(e) {
 			e.preventDefault();
 			units.createNewType();
+		});
+
+		document.getElementById('fleet-type-create-close').addEventListener('click', function() {
+			preventFleetHUDClosing = false;
+			ui.closeTab('#fleet-type-create');
 		});
 
 		document.getElementById('fleet-build-create').addEventListener('click', function() {
@@ -210,22 +261,9 @@ class units {
 			ui.hide('#fleet-type-rename');
 			preventFleetHUDClosing = false;
 		});
-		// Nouveau tri
-		document.querySelectorAll('#fleet-build-list thead tr th').forEach(function(e) {
-			e.addEventListener('click', function() {
-				let name = this.id.split('-')[4];
+	}
 
-				if(name === units.sortTypes) {
-					name += '-desc';
-				}
-
-				units.sortTypes = name;
-
-				units.drawMain();
-			});
-		});
-
-		// Fleet build
+	static fleetBuildEvents() {
 		document.getElementById('fleet-build-openPanel').addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
 
@@ -244,21 +282,6 @@ class units {
 
 		document.getElementById('fleet-ship-build-upgrade').addEventListener('click', function() {
 			units.askUnitBuild();
-		});
-
-		// Change informations with buttons
-		document.querySelectorAll('#fleet-build-buttons img').forEach(function(e) {
-			e.addEventListener('mouseenter', function() {
-				switch(this.id) {
-				case 'fleet-build-openPanel':
-				case 'fleet-build-type-copy':
-				case 'fleet-build-type-delete':
-					document.getElementById('fleet-build-desc').innerText = fleetTranslate[this.id];
-					break;
-				default:
-					// do nothing here
-				}
-			});
 		});
 
 		// Fleet counter
@@ -285,6 +308,14 @@ class units {
 			}
 		});
 
+		document.getElementById('fleet-ship-build-close').addEventListener('click', function() {
+			if(preventUnitBuildPanelClose) { return; }
+			preventFleetHUDClosing = false;
+			ui.closeTab('#fleet-ship-build');
+		});
+	}
+
+	static fleetListEvents() {
 		document.getElementById('fleet-rename-submit').addEventListener('click', function() {
 			if(document.getElementById('fleet-rename-newName').value === '') { return; }
 
@@ -323,21 +354,27 @@ class units {
 			preventFleetHUDClosing = false;
 		});
 
-		// Move
-		document.getElementById('map-move-panel-move').addEventListener('click', function() {
-			switch(units.moveType) {
-			case 2:
-				socket.emit('fleet-move', {
-					id: userData.id,
-					username: userData.username,
-					fleetId: units.currFleet,
-					destination: units.planetTarget,
-				});
-				ui.hide('#map-move-panel');
-				break;
-			default:
-				ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
-			}
+		document.getElementById('fleet-units-transfer-submit').addEventListener('click', function() {
+			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') { return; }
+
+			let fleet = document.getElementById('fleet-units-transfer-fleetSelect');
+			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
+			fleet = units.fleetList[fleet];
+
+			socket.emit('fleet-units-transfer', {
+				id: userData.id,
+				username: userData.username,
+				from: units.currFleet,
+				to: fleet,
+				unitId: units.currTransferUnit,
+				unitCount: document.getElementById('fleet-units-transfer-unitCount').value,
+			});
+			ui.hide('#fleet-units-transfer-panel');
+			preventFleetHUDClosing = false;
+		});
+		document.getElementById('fleet-units-transfer-close').addEventListener('click', function() {
+			ui.hide('#fleet-units-transfer-panel');
+			preventFleetHUDClosing = false;
 		});
 	}
 
