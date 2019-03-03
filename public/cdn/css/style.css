@@ -1499,7 +1499,7 @@ select, input, summary {
 	overflow-x: hidden; /* Hide the horizontal scroll */
 }
 #fleet-build-list td, #fleet-build-list th {
-	width: 24.5%;
+	width: 24%;
 }
 .fleet-show-global .unit-list-table {
 	width: calc(100% - 1em);
