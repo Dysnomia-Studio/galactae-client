@@ -104,7 +104,7 @@
 		"upgrade": "Ameliorer unités",
 
 		"mergeInto": "Fusionner dans ...",
-		"tranferFuel": "Transferer Carburant vers ...",
+		"transferFuel": "Transferer Carburant vers ...",
 		"editTactic": "Tactiques de flotte",
 
 		"no-orbit-unit": "Aucune unité en orbite",

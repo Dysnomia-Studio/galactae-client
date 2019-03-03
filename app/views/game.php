@@ -664,6 +664,16 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</select>
 	<input id="fleet-merge-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
+<div id="fleet-transferFuel-panel" class="small-panel">
+	<span id="fleet-transferFuel-close" class="small-panel-close">X</span>
+	<p>Tranferer fuel de <span id="fleet-transferFuel-name">FLEETNAME</span> vers :</p>
+	<select id="fleet-transferFuel-fleetSelect" class="ui-large-button small-panel-select">
+		<option id="-2" selected disabled><?php echo FLEET; ?></option>
+		<option id="-1"><?php echo NEW_FLEET; ?></option>
+	</select>
+	<input id="fleet-transferFuel-fuelCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
+	<input id="fleet-transferFuel-submit" class="ui-large-button small-panel-submit" type="submit" value="<?php echo CONFIRM; ?>">
+</div>
 
 <?php /* Researchs */ ?>
 <div id="hud-research">

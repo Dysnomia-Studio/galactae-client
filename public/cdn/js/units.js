@@ -355,7 +355,7 @@ class units {
 		});
 
 		document.getElementById('fleet-units-transfer-submit').addEventListener('click', function() {
-			let count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value);
+			const count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value);
 
 			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') { return; }
 			if(Number.isNaN(count) || count <= 0) { return; } // TODO: check max
@@ -377,6 +377,31 @@ class units {
 		});
 		document.getElementById('fleet-units-transfer-close').addEventListener('click', function() {
 			ui.hide('#fleet-units-transfer-panel');
+			preventFleetHUDClosing = false;
+		});
+
+		document.getElementById('fleet-transferFuel-submit').addEventListener('click', function() {
+			const count = parseInt(document.getElementById('fleet-transferFuel-fuelCount').value);
+
+			if(document.getElementById('fleet-transferFuel-fleetSelect').selectedIndex === '-2') { return; }
+			if(Number.isNaN(count) || count <= 0) { return; } // TODO: check max
+
+			let fleet = document.getElementById('fleet-transferFuel-fleetSelect');
+			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
+			fleet = units.fleetList[fleet];
+
+			socket.emit('fleet-transferFuel', {
+				id: userData.id,
+				username: userData.username,
+				from: units.currFleet,
+				to: fleet,
+				fuelCount: count,
+			});
+			ui.hide('#fleet-transferFuel-panel');
+			preventFleetHUDClosing = false;
+		});
+		document.getElementById('fleet-transferFuel-close').addEventListener('click', function() {
+			ui.hide('#fleet-transferFuel-panel');
 			preventFleetHUDClosing = false;
 		});
 	}
@@ -769,6 +794,7 @@ class units {
 
 		document.getElementById('fleet-merge-fleetSelect').innerHTML = document.getElementById('fleet-ship-build-fleetSelect').innerHTML;
 		document.getElementById('fleet-units-transfer-fleetSelect').innerHTML = document.getElementById('fleet-ship-build-fleetSelect').innerHTML;
+		document.getElementById('fleet-transferFuel-fleetSelect').innerHTML = document.getElementById('fleet-ship-build-fleetSelect').innerHTML;
 
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
 				document.getElementById('fleet-ship-build-fleetSelect').innerHTML + unitBuildSelectNew;
@@ -1488,7 +1514,7 @@ class units {
 
 		content += '</tbody></table><div class="fleet-show-buttonPanel">' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeInto" value="' + fleetTranslate['mergeInto'] + '" ' + disableCSS + '>' +
-			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-tranferFuel" value="' + fleetTranslate['tranferFuel'] + '" ' + disableCSS + '>' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-transferFuel" value="' + fleetTranslate['transferFuel'] + '" ' + disableCSS + '>' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-editTactic" value="' + fleetTranslate['editTactic'] + '">' +
 			'</div></details>';
 
@@ -1589,6 +1615,26 @@ class units {
 			preventFleetHUDClosing = true;
 		}));
 
+		Array.from(document.getElementsByClassName('fleet-show-transferFuel')).forEach((elt) => elt.addEventListener('click', function() {
+			if(preventFleetHUDClosing) { return; }
+
+			units.regenerateSelectFleetLists();
+
+			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
+			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			if(fleetNb < 0) { return; }
+
+			document.querySelector('#fleet-transferFuel-panel option[id="' + fleetNb + '"]').disabled = true;
+			units.currFleet=fleetId;
+
+			document.getElementById('fleet-transferFuel-fuelCount').value = '';
+
+			document.getElementById('fleet-transferFuel-name').innerText = units.getFleetData(fleetId).name;
+
+			ui.show('#fleet-transferFuel-panel');
+			preventFleetHUDClosing = true;
+		}));
+
 		Array.from(document.getElementsByClassName('fleet-show-transferUnits')).forEach((elt) => elt.addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
 
@@ -1609,7 +1655,6 @@ class units {
 			ui.show('#fleet-units-transfer-panel');
 			preventFleetHUDClosing = true;
 		}));
-
 
 		Array.from(document.getElementsByClassName('fleet-show-table')).forEach((elt) => elt.addEventListener('click', function(event) {
 			if(preventFleetHUDClosing) { event.preventDefault(); }
