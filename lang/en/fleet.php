@@ -103,7 +103,7 @@
 		"upgrade": "Upgrade units",
 
 		"mergeInto": "Merge into ...",
-		"mergeFrom": "Merge from ...",
+		"tranferFuel": "Transfer fuel to ...",
 		"editTactic": "Fleet Tactics",
 
 		"no-orbit-unit": "No unit is in orbit of this planet",

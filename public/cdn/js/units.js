@@ -309,22 +309,11 @@ class units {
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
 			fleet = units.fleetList[fleet];
 
-			let from, to;
-			if(units.mergeMode === 'into') {
-				from = units.currFleet;
-				to = fleet;
-			} else if(units.mergeMode === 'from') {
-				from = fleet;
-				to = units.currFleet;
-			} else {
-				return;
-			}
-
 			socket.emit('fleet-merge', {
 				id: userData.id,
 				username: userData.username,
-				from: from,
-				to: to,
+				from: units.currFleet,
+				to: fleet,
 			});
 			ui.hide('#fleet-merge-panel');
 			preventFleetHUDClosing = false;
@@ -1458,7 +1447,7 @@ class units {
 
 		content += '</tbody></table><div class="fleet-show-buttonPanel">' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeInto" value="' + fleetTranslate['mergeInto'] + '" ' + disableCSS + '>' +
-			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeFrom" value="' + fleetTranslate['mergeFrom'] + '" ' + disableCSS + '>' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-tranferFuel" value="' + fleetTranslate['tranferFuel'] + '" ' + disableCSS + '>' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-editTactic" value="' + fleetTranslate['editTactic'] + '">' +
 			'</div></details>';
 
@@ -1501,6 +1490,8 @@ class units {
 			(units.fleetList.length === 2 && (units.fleetList.map((f) => f.name).includes('SHIP_DEF') || units.fleetList.map((f) => f.name).includes(fleetTranslate['SHIP_DEF'])));
 
 		for(let i=0; i<units.fleetList.length; i++) {
+			if(units.fleetList[i].units.length === 0) { continue; } // It's updated serverside, but not here ...
+
 			if(units.fleetList[i].name === 'SHIP_DEF') { units.fleetList[i].name = fleetTranslate[units.fleetList[i].name]; }
 
 			if(units.fleetList[i].position === planetData.address && units.fleetList[i].endMoveTime === -1) {
@@ -1555,16 +1546,12 @@ class units {
 			preventFleetHUDClosing = true;
 		}));
 		Array.from(document.getElementsByClassName('fleet-show-mergeInto')).forEach((elt) => elt.addEventListener('click', function() {
-			units.mergeMode='into';
-
-			units.openMergePanel(elt);
-		}));
-		Array.from(document.getElementsByClassName('fleet-show-mergeFrom')).forEach((elt) => elt.addEventListener('click', function() {
-			units.mergeMode='from';
-
 			units.openMergePanel(elt);
 		}));
 
+		Array.from(document.getElementsByClassName('fleet-show-table')).forEach((elt) => elt.addEventListener('click', function(event) {
+			if(preventFleetHUDClosing) { event.preventDefault(); }
+		}));
 
 		const priorityElts = document.getElementsByClassName('priority-fleet');
 		for(let i=0; i<priorityElts.length; i++) {
