@@ -30,7 +30,7 @@ class UserManager extends MongoInterface {
 			[ '$set' => [
 				 	'user_session_expiration' => (time()+2678400)
 				]
-			]	
+			]
 		);
 	}
 
@@ -245,7 +245,7 @@ class UserManager extends MongoInterface {
 	public function updateUserLastNews($uid, $newsId) {
 		$this->updateContent('galactae','users',
 			['_id' => $uid],
-			[ '$set' => [ 'lastViewedNews' => $newsId ] ]	
+			[ '$set' => [ 'lastViewedNews' => $newsId ] ]
 		);
 	}
 }

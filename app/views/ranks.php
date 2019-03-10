@@ -95,7 +95,7 @@ switch ($_GET['type']) {
 				'$gt' => ($pageDemandee * $plyPerPage),
 				'$lte' => (($pageDemandee + 1) * $plyPerPage)
 			),
-			'server_name' => $dbname	
+			'server_name' => $dbname
 		);
 		$query = new MongoDB\Driver\Query($filter);
 		$cursor = $manager->executeQuery('galactae.globalranks', $query);

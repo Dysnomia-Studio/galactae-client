@@ -589,11 +589,11 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</form>
 </div>
 
-<div id="fleet-type-rename">
-	<span id="fleet-type-rename-close">X</span>
+<div id="fleet-type-rename" class="small-panel">
+	<span id="fleet-type-rename-close" class="small-panel-close">X</span>
 	<p>Nouveau nom pour <span id="fleet-type-rename-name">SHIPNAME</span></p>
-	<input id="fleet-type-rename-newName" class="ui-large-button" type="text" placeholder="Nouveau nom">
-	<input id="fleet-type-rename-submit" class="ui-large-button" type="submit" value="Renommer">
+	<input id="fleet-type-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
+	<input id="fleet-type-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
 </div>
 
 <div id="fleet-ship-build">
@@ -611,9 +611,9 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="fleet-ship-build-name">This isn't a ship name</span>
 
 	<script type="text/javascript">
-		let unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
-		let unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
-		let fleetListHeader = '<thead><tr>'
+		const unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
+		const unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
+		const fleetListHeader = '<thead><tr>'
 						+ '<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>'
 						+ '<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>'
 						+ '<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>'
@@ -629,6 +629,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">
 </div>
 <div id="fleet-newFleet-panel">
+	<span id="fleet-newFleet-panel-close" class="small-panel-close">X</span>
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
 	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?php echo CONFIRM; ?>">
 </div>
@@ -637,6 +638,43 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-typeDelete-yes" class="ui-large-button" type="submit" value="Oui">
 	<input id="fleet-typeDelete-no" class="ui-large-button" type="submit" value="Non">
 </div>
+
+<div id="fleet-rename" class="small-panel">
+	<span id="fleet-rename-close" class="small-panel-close">X</span>
+	<p>Nouveau nom pour <span id="fleet-rename-name">FLEETNAME</span></p>
+	<input id="fleet-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
+	<input id="fleet-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
+</div>
+<div id="fleet-units-transfer-panel" class="small-panel">
+	<span id="fleet-units-transfer-close" class="small-panel-close">X</span>
+	<p>Tranferer unités de type <span id="fleet-units-transfer-name">SHIPNAME</span> vers :</p>
+	<select id="fleet-units-transfer-fleetSelect" class="ui-large-button small-panel-select">
+		<option id="-2" selected disabled><?php echo FLEET; ?></option>
+		<option id="-1"><?php echo NEW_FLEET; ?></option>
+	</select>
+	<input id="fleet-units-transfer-unitCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
+	<input id="fleet-units-transfer-submit" class="ui-large-button small-panel-submit" type="submit" value="<?php echo CONFIRM; ?>">
+</div>
+<div id="fleet-merge-panel" class="small-panel">
+	<span id="fleet-merge-panel-close" class="small-panel-close">X</span>
+	<p>Transfert de toutes les unités de <span id="fleet-merge-name">FLEETNAME</span> vers:</p>
+	<select id="fleet-merge-fleetSelect" class="ui-large-button small-panel-select">
+		<option id="-2" selected disabled><?php echo FLEET; ?></option>
+		<option id="-1"><?php echo NEW_FLEET; ?></option>
+	</select>
+	<input id="fleet-merge-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?php echo CONFIRM; ?>">
+</div>
+<div id="fleet-transferFuel-panel" class="small-panel">
+	<span id="fleet-transferFuel-close" class="small-panel-close">X</span>
+	<p>Tranferer fuel de <span id="fleet-transferFuel-name">FLEETNAME</span> vers :</p>
+	<select id="fleet-transferFuel-fleetSelect" class="ui-large-button small-panel-select">
+		<option id="-2" selected disabled><?php echo FLEET; ?></option>
+		<option id="-1"><?php echo NEW_FLEET; ?></option>
+	</select>
+	<input id="fleet-transferFuel-fuelCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
+	<input id="fleet-transferFuel-submit" class="ui-large-button small-panel-submit" type="submit" value="<?php echo CONFIRM; ?>">
+</div>
+
 <?php /* Researchs */ ?>
 <div id="hud-research">
 	<span id="research-close">X</span>

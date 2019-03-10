@@ -89,7 +89,7 @@ class ServerPlanetManager extends MongoInterface {
 	public function updatePlanet($dbname, $planet) {
 		$this->updateContent($dbname,'planets',
 			[ '_id' => $planet['_id'] ],
-			[ '$set' => $planet ]	
+			[ '$set' => $planet ]
 		);
 	}
 }

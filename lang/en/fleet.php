@@ -103,8 +103,8 @@
 		"upgrade": "Upgrade units",
 
 		"mergeInto": "Merge into ...",
-		"mergeFrom": "Merge from ...",
-		"editAI": "Edit fleet AI",
+		"transferFuel": "Transfer fuel to ...",
+		"editTactic": "Fleet Tactics",
 
 		"no-orbit-unit": "No unit is in orbit of this planet",
 		"no-move-unit": "No fleet is moving",
