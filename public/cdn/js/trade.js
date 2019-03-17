@@ -1,0 +1,5 @@
+class trade {
+	static openPlanetPanel() {
+
+	}
+}

@@ -1,2 +1,4 @@
-# NEVER ADD THIS FILE - This is the configuration of each client
-gvars.php
+# NEVER ADD THIS FILE - This is the configuration of each server
+*.bat
+.scannerwork/*
+app/views/gvars.php
