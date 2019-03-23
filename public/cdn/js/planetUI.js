@@ -207,7 +207,7 @@ class planetUI {
 		if(planetData.Buildings[id]+1 > buildingMaxLvl[id]) {
 			ui.drawMessage('MAX_LEVEL');
 		} else {
-			socket.emit('planet-build', { planet: planetData._id, id: userData.id, username: userData.username, building: id });
+			socket.emit('planet-build', { planet: planetData.id, id: userData.id, username: userData.username, building: id });
 		}
 	}
 

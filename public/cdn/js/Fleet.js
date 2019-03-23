@@ -118,7 +118,7 @@
 				engines: {},
 			};
 
-			const unitListId = unitList.map((unit) => '' + unit._id);
+			const unitListId = unitList.map((unit) => unit.id);
 
 			for(let i=0; i<fleetUnits.length; i++) {
 				const currUnit = unitList[unitListId.indexOf(fleetUnits[i][0])];
@@ -155,7 +155,7 @@
 				engines: {},
 			};
 
-			const unitListId = unitList.map((unit) => unit._id);
+			const unitListId = unitList.map((unit) => unit.id);
 
 			for(let i=0; i<fleetUnits.length; i++) {
 				const currUnit = unitList[unitListId.indexOf(fleetUnits[i][0])];
@@ -204,7 +204,7 @@
 			let haveToUpdate = [];
 			for(let i=0; i<fleetList.length; i++) {
 				if(fleetList[i].fuel === undefined) { fleetList[i].fuel = 0; }
-				if(fleetList[i].fuel < fleetList[i].maxFuel && fleetList[i].position === fleetList[i].motherPlanetAdress) {
+				if(fleetList[i].fuel < fleetList[i].maxFuel && fleetList[i].position === fleetList[i].motherPlanetAddress) {
 					haveToUpdate.push(i);
 				}
 			}
@@ -213,7 +213,7 @@
 
 			// Priority fleet
 			if(planet.highPriorityFleet !== undefined) {
-				const prioId = fleetList.map(d => ''+d._id).indexOf(planet.highPriorityFleet);
+				const prioId = fleetList.map(d => d.id).indexOf(planet.highPriorityFleet);
 
 				if(prioId !== -1 && fleetList[prioId].position === planet.address) {
 					fleetList[prioId].fuel += planet.resources[1];
