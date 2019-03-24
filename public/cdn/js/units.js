@@ -571,7 +571,7 @@ class units {
 
 			if(planetData.unitBuildingEndTime > (Date.now() + planetUI.deltaNow)) { // An unit is building
 				const dateNow = new Date();
-				const dateEnd = new Date(planetData.unitBuildingEndTime + planetUI.deltaNow);
+				const dateEnd = new Date(parseInt(planetData.unitBuildingEndTime) + planetUI.deltaNow);
 				const dateTom = new Date(Date.now() + TIME.DAY_TO_MS);
 
 				if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
@@ -773,6 +773,7 @@ class units {
 		units.fleetTimers = [];
 		let u = 0;
 		for(let i=0; i<units.fleetList.length; i++) {
+			units.fleetList[i].endMoveTime = parseInt(units.fleetList[i].endMoveTime);
 			if(units.fleetList[i].endMoveTime > 0) {
 				units.fleetTimers[u] = setTimeout(function() {
 					units.sync();
@@ -1399,16 +1400,16 @@ class units {
 		let totalcount = 0;
 		let fighterCount = 0;
 		let fighterCap = 0;
-		for(let j=0; j<fleet.units.length; j++) {
-			totalcount += fleet.units[j][1];
+		for(const key in fleet.units) {
+			totalcount += fleet.units[key];
 
-			const currUnit = units.getUnitData(fleet.units[j][0]);
+			const currUnit = units.getUnitData(key);
 			if(currUnit.shipType === 'SHIP_FIGHTER') {
-				fighterCount += (fighterWeight[currUnit.shipShape] * fleet.units[j][1]);
+				fighterCount += (fighterWeight[currUnit.shipShape] * fleet.units[key]);
 			} else if(currUnit.shipType === 'SHIP_CARRIER') {
 				for(const p in currUnit.parts) {
 					if(currUnit.parts[p].type === 'hangar') {
-						fighterCap += (hangarSize[currUnit.parts[p].tech] * fleet.units[j][1]);
+						fighterCap += (hangarSize[currUnit.parts[p].tech] * fleet.units[key]);
 					}
 				}
 			}
@@ -1477,9 +1478,9 @@ class units {
 
 		for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
 			let count = -1;
-			for(let fleetUnitId=0; fleetUnitId<fleet.units.length; fleetUnitId++) {
-				if(fleet.units[fleetUnitId][0] === units.list[allUnitsId].id) {
-					count = fleet.units[fleetUnitId][1];
+			for(const key in fleet.units) {
+				if(key === units.list[allUnitsId].id) {
+					count = fleet.units[key];
 					break;
 				}
 			}
@@ -1541,7 +1542,8 @@ class units {
 			(units.fleetList.length === 2 && (units.fleetList.map((f) => f.name).includes('SHIP_DEF') || units.fleetList.map((f) => f.name).includes(fleetTranslate['SHIP_DEF'])));
 
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].units.length === 0) { continue; } // It's updated serverside, but not here ...
+			if(Object.entries(units.fleetList[i].units).length === 0 &&
+				units.fleetList[i].units.constructor === Object) { continue; } // It's updated serverside, but not here ...
 
 			if(units.fleetList[i].name === 'SHIP_DEF') { units.fleetList[i].name = fleetTranslate[units.fleetList[i].name]; }
 
@@ -1699,8 +1701,8 @@ class units {
 			const planeteDepart = map.planetData[systemeDepart][fleet.position];
 
 			const unitList = [];
-			for(let i=0; i<fleet.units.length; i++) {
-				unitList[i] = units.getUnitData(fleet.units[i][0]);
+			for(const key in fleet.units) {
+				unitList[i] = units.getUnitData(key);
 			}
 
 			minSpeed = Fleet.getMinSubSpeed(unitList, fleet.units);
@@ -1733,8 +1735,8 @@ class units {
 
 			const unitList = [];
 			const unitIdList = units.list.map((unit) => unit.id);
-			for(const i in fleet.units) {
-				const currUnitId = unitIdList.indexOf(fleet.units[i][0]);
+			for(const key in fleet.units) {
+				const currUnitId = unitIdList.indexOf(key);
 				unitList.push(units.list[currUnitId]);
 			}
 
@@ -1842,14 +1844,14 @@ class units {
 		let fighterCount = 0;
 		let fighterCap = 0;
 		if(currentFleet.units) {
-			for(let j=0; j<currentFleet.units.length; j++) {
-				const currUnit = units.getUnitData(currentFleet.units[j][0]);
+			for(const key in currentFleet.units) {
+				const currUnit = units.getUnitData(key);
 				if(currUnit.shipType === 'SHIP_FIGHTER') {
-					fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[j][1]);
+					fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[key]);
 				} else if(currUnit.shipType === 'SHIP_CARRIER') {
 					for(const p in currUnit.parts) {
 						if(currUnit.parts[p].type === 'hangar') {
-							fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[j][1]);
+							fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[key]);
 						}
 					}
 				}
