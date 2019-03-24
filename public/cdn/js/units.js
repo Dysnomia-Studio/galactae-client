@@ -786,7 +786,7 @@ class units {
 		// Fleet list
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML = unitBuildSelectHeader;
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name === 'SHIP_DEF' || units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; } // Def fleet
+			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; } // Def fleet
 			if(units.fleetList[i].position !== planetData.address || units.fleetList[i].orbitPosition !== 0) { continue; } // Moving/Out fleets
 
 			document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
@@ -1426,7 +1426,7 @@ class units {
 			// Nom flotte
 			'<tr><td>' + fleet.name;
 
-			if(fleet.name !== 'SHIP_DEF' && fleet.name !== fleetTranslate['SHIP_DEF']) {
+			if(fleet.name !== fleetTranslate['SHIP_DEF']) {
 				content += '<img class="fleet-rename" alt="rename fleet" src="./cdn/img/ui/rename.svg" style="display: inline-block;">';
 			}
 
@@ -1496,7 +1496,7 @@ class units {
 			// Buttons
 			content += '<td>';
 
-			if(fleet.name !== 'SHIP_DEF' && fleet.name !== fleetTranslate['SHIP_DEF'] && !disableTransfers) {
+			if(fleet.name !== fleetTranslate['SHIP_DEF'] && !disableTransfers) {
 				content += '<img class="fleet-show-transferUnits" title="' + fleetTranslate['transferUnits'] + '" src="./cdn/img/ui/unit-transfer.svg">';
 			}
 
@@ -1509,7 +1509,7 @@ class units {
 		}
 
 		let disableCSS = '';
-		if(fleet.name === 'SHIP_DEF' || fleet.name === fleetTranslate['SHIP_DEF'] || disableTransfers) {
+		if(fleet.name === fleetTranslate['SHIP_DEF'] || disableTransfers) {
 			disableCSS = ' style="opacity: 0;" disabled';
 		}
 
@@ -1539,7 +1539,7 @@ class units {
 		let outDOM = '';
 
 		const disableTransfers = units.fleetList.length < 2 ||
-			(units.fleetList.length === 2 && (units.fleetList.map((f) => f.name).includes('SHIP_DEF') || units.fleetList.map((f) => f.name).includes(fleetTranslate['SHIP_DEF'])));
+			(units.fleetList.length === 2 && (units.fleetList.map((f) => f.name).includes(fleetTranslate['SHIP_DEF'])));
 
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(Object.entries(units.fleetList[i].units).length === 0 &&
@@ -1770,7 +1770,7 @@ class units {
 		// Fleet list
 		let fleetListDOM = '';
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name === 'SHIP_DEF' || units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; }
+			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; }
 			if(units.fleetList[i].endMoveTime > 0) { continue; }
 			if(units.fleetList[i].position === units.planetTarget) { continue; }
 
