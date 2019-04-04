@@ -18,7 +18,7 @@ $cache = DIR_CACHE.'news-'.$news_needed.'.html';
 /* Say to db server, we seen a newer news */
 if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $news_needed) {
 	$userMngr = new UserManager();
-	$userMngr->updateUserLastNews($userData['_id'], $news_needed);
+	$userMngr->updateUserLastNews($userData['id'], $news_needed);
 }
 
 if(file_exists($cache)) {
@@ -53,8 +53,8 @@ if(file_exists($cache)) {
 	</style>
 
 	<?php
-	$newsMng = new NewsManager();
-	$newsList = $newsMng->getAllGamesNews();
+	$blogMngr = new BlogManager();
+	$newsList = $blogMngr->getAllGamesNews();
 	
 	$curr = [];
 	$next = -1;
@@ -64,15 +64,15 @@ if(file_exists($cache)) {
 		$value = (array) $value;
 
 		if($found) {
-			$next = $value['_id'];
+			$next = $value['id'];
 			break;
 		}
 
-		if($curr != []) { $prev = $curr['_id']; }
+		if($curr != []) { $prev = $curr['id']; }
 		
 		$curr = $value;
 
-		if($curr["_id"] == $news_needed) { $found = true; }
+		if($curr["id"] == $news_needed) { $found = true; }
 	}
 
 	if($curr == [] || !isset($curr['blog_title_'.$_SESSION['lang']])) {

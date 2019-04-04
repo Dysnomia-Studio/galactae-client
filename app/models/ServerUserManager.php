@@ -1,5 +1,18 @@
 <?php
-class ServerUserManager extends MongoInterface {
+class ServerUserManager extends SQLInterface {
+
+	public function __construct() {
+		global $config;
+
+		$host 		= $config['SQLCredentialsGameServer']['host'];
+		$db 		= $config['SQLCredentialsGameServer']['db'];
+		$id 		= $config['SQLCredentialsGameServer']['id'];
+		$password 	= $config['SQLCredentialsGameServer']['password'];
+		$driver 	= $config['SQLCredentialsGameServer']['driver'];
+		$port 		= $config['SQLCredentialsGameServer']['port'];
+
+		SQLInterface::__construct($host,$db,$id,$password,$driver,$port);
+	}
 
 	/**
 	 * Gets a user by name from server db
@@ -10,7 +23,7 @@ class ServerUserManager extends MongoInterface {
 	 * @return     <array>  User data
 	 */
 	public function getUserByName($srvName, $name) {
-		$data = $this->getCondContent($srvName,'users',
+		$data = $this->getCondContent('users',
 			['name' => $name]
 		);
 
@@ -33,7 +46,6 @@ class ServerUserManager extends MongoInterface {
 		global $beginnerProtectionDuration;
 
 		return [
-			'_id' => new MongoDB\BSON\ObjectID(),
 			'name' => $name,
 			'gvt' => $choice,
 			'ally' => '',
@@ -68,6 +80,6 @@ class ServerUserManager extends MongoInterface {
 	 * @param      <array>  $user    User data
 	 */
 	public function addUser($dbname, $user) {
-		$this->addContent($dbname, 'users', $user);
+		$this->addContent('users', [$user]);
 	}
 }
