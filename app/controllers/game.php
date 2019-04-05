@@ -1,3 +1,3 @@
 <?php
-$newsMng = new NewsManager();
+$newsMng = new BlogManager();
 $lastNewsNumber = $newsMng->getLastNewsNumber();

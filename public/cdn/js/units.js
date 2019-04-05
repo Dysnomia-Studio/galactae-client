@@ -7,7 +7,7 @@ class units {
 	 */
 	static sync() {
 		const data = userData;
-		data.planet = planetData._id;
+		data.planet = planetData.id;
 		socket.emit('units-ask-data', data);
 	}
 
@@ -20,7 +20,7 @@ class units {
 		units.list = data;
 
 		for(let i=0; i<units.list.length; i++) {
-			if(units.list[i]._id.substr(0, 'SHIP_WEP_MINES'.length) === 'SHIP_WEP_MINES') {
+			if(units.list[i].id.substr(0, 'SHIP_WEP_MINES'.length) === 'SHIP_WEP_MINES') {
 				units.list.splice(i, 1);
 				i--;
 			}
@@ -29,7 +29,7 @@ class units {
 		// Mines
 		if(research.isSearched(shipResearchDependencies['SHIP_WEP_MINES'])) {
 			units.list.push({
-				_id: 'SHIP_WEP_MINES',
+				id: 'SHIP_WEP_MINES',
 				name: fleetTranslate['SHIP_WEP_MINES'],
 				note: 0, // @ADD: Note
 				cost: shipCosts['SHIP_WEP_MINES'],
@@ -39,7 +39,7 @@ class units {
 		}
 		if(research.isSearched(shipResearchDependencies['SHIP_WEP_MINES_IEM'])) {
 			units.list.push({
-				_id: 'SHIP_WEP_MINES_IEM',
+				id: 'SHIP_WEP_MINES_IEM',
 				name: fleetTranslate['SHIP_WEP_MINES_IEM'],
 				note: 0, // @ADD: Note
 				cost: shipCosts['SHIP_WEP_MINES_IEM'],
@@ -49,7 +49,7 @@ class units {
 		}
 		if(research.isSearched(shipResearchDependencies['SHIP_WEP_MINES_NUKE'])) {
 			units.list.push({
-				_id: 'SHIP_WEP_MINES_NUKE',
+				id: 'SHIP_WEP_MINES_NUKE',
 				name: fleetTranslate['SHIP_WEP_MINES_NUKE'],
 				note: 0, // @ADD: Note
 				cost: shipCosts['SHIP_WEP_MINES_NUKE'],
@@ -225,7 +225,7 @@ class units {
 			socket.emit('unit-type-delete', {
 				id: userData.id,
 				username: userData.username,
-				unit: units.list[units.currUnit]._id
+				unit: units.list[units.currUnit].id
 			});
 			ui.hide('#fleet-typeDelete-panel');
 			preventFleetHUDClosing = false;
@@ -251,7 +251,7 @@ class units {
 			socket.emit('unit-type-rename', {
 				id: userData.id,
 				username: userData.username,
-				shipId: units.list[units.currUnit]._id,
+				shipId: units.list[units.currUnit].id,
 				shipNewName: document.getElementById('fleet-type-rename-newName').value
 			});
 			ui.hide('#fleet-type-rename');
@@ -414,7 +414,7 @@ class units {
 	 */
 	static getUnitData(id) {
 		for(let i=0; i<units.list.length; i++) {
-			if(units.list[i]._id === id) {
+			if(units.list[i].id === id) {
 				return units.list[i];
 			}
 		}
@@ -446,7 +446,7 @@ class units {
 	 */
 	static getFleetData(id) {
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i]._id === id) {
+			if(units.fleetList[i].id === id) {
 				return units.fleetList[i];
 			}
 		}
@@ -522,7 +522,7 @@ class units {
 		});
 
 		for(let i=0; i<units.list; i++) {
-			if(units.list[i]._id === oldCurr._id) {
+			if(units.list[i].id === oldCurr.id) {
 				units.currUnit = i;
 				break;
 			}
@@ -571,7 +571,7 @@ class units {
 
 			if(planetData.unitBuildingEndTime > (Date.now() + planetUI.deltaNow)) { // An unit is building
 				const dateNow = new Date();
-				const dateEnd = new Date(planetData.unitBuildingEndTime + planetUI.deltaNow);
+				const dateEnd = new Date(parseInt(planetData.unitBuildingEndTime) + planetUI.deltaNow);
 				const dateTom = new Date(Date.now() + TIME.DAY_TO_MS);
 
 				if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
@@ -773,6 +773,7 @@ class units {
 		units.fleetTimers = [];
 		let u = 0;
 		for(let i=0; i<units.fleetList.length; i++) {
+			units.fleetList[i].endMoveTime = parseInt(units.fleetList[i].endMoveTime);
 			if(units.fleetList[i].endMoveTime > 0) {
 				units.fleetTimers[u] = setTimeout(function() {
 					units.sync();
@@ -785,7 +786,7 @@ class units {
 		// Fleet list
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML = unitBuildSelectHeader;
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name === 'SHIP_DEF' || units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; } // Def fleet
+			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; } // Def fleet
 			if(units.fleetList[i].position !== planetData.address || units.fleetList[i].orbitPosition !== 0) { continue; } // Moving/Out fleets
 
 			document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
@@ -853,7 +854,7 @@ class units {
 			username: userData.username,
 			planet: userData.pid,
 			count: count,
-			unit: units.list[units.currUnit]._id
+			unit: units.list[units.currUnit].id
 		};
 
 		if(fleet === -1) {
@@ -862,7 +863,7 @@ class units {
 		} else if(fleet === -2) {
 			unit.fleet = -2;
 		} else {
-			unit.fleet = units.fleetList[fleet]._id;
+			unit.fleet = units.fleetList[fleet].id;
 		}
 
 		socket.emit('unit-build', unit);
@@ -1399,16 +1400,16 @@ class units {
 		let totalcount = 0;
 		let fighterCount = 0;
 		let fighterCap = 0;
-		for(let j=0; j<fleet.units.length; j++) {
-			totalcount += fleet.units[j][1];
+		for(const key in fleet.units) {
+			totalcount += fleet.units[key];
 
-			const currUnit = units.getUnitData(fleet.units[j][0]);
+			const currUnit = units.getUnitData(key);
 			if(currUnit.shipType === 'SHIP_FIGHTER') {
-				fighterCount += (fighterWeight[currUnit.shipShape] * fleet.units[j][1]);
+				fighterCount += (fighterWeight[currUnit.shipShape] * fleet.units[key]);
 			} else if(currUnit.shipType === 'SHIP_CARRIER') {
 				for(const p in currUnit.parts) {
 					if(currUnit.parts[p].type === 'hangar') {
-						fighterCap += (hangarSize[currUnit.parts[p].tech] * fleet.units[j][1]);
+						fighterCap += (hangarSize[currUnit.parts[p].tech] * fleet.units[key]);
 					}
 				}
 			}
@@ -1421,11 +1422,11 @@ class units {
 		const counts = units.countFleetCount(fleet);
 
 		let content = '<details class="fleet-show-global">' +
-			'<summary id="' + fleet._id + '" class="fleet-show-name"><table class="fleet-show-table">' +
+			'<summary id="' + fleet.id + '" class="fleet-show-name"><table class="fleet-show-table">' +
 			// Nom flotte
 			'<tr><td>' + fleet.name;
 
-			if(fleet.name !== 'SHIP_DEF' && fleet.name !== fleetTranslate['SHIP_DEF']) {
+			if(fleet.name !== fleetTranslate['SHIP_DEF']) {
 				content += '<img class="fleet-rename" alt="rename fleet" src="./cdn/img/ui/rename.svg" style="display: inline-block;">';
 			}
 
@@ -1453,10 +1454,10 @@ class units {
 		}
 
 		// Prorité
-		if(type === 'orbit' && fleet.maxFuel > 0 && planetData.highPriorityFleet === fleet._id) {
+		if(type === 'orbit' && fleet.maxFuel > 0 && planetData.highPriorityFleet === fleet.id) {
 			content += '<td class="text-center"><span style="color: #0ec6c6;">✔</span>' + fleetTranslate['priorty-fuel'] + '</td>';
 		} else if(type === 'orbit' && fleet.maxFuel > 0) {
-			content += '<td class="text-center priority-fleet" id="' + fleet._id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priorty-fuel'] + '</td>';
+			content += '<td class="text-center priority-fleet" id="' + fleet.id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priorty-fuel'] + '</td>';
 		} else if(type === 'out') {
 			content += '<td class="text-center">' + fleetTranslate['orbiting'] + ' ' + fleet.position + '</td>'; // @TODO: pname (username) instead of position
 		} else if(type === 'moving') {
@@ -1477,15 +1478,15 @@ class units {
 
 		for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
 			let count = -1;
-			for(let fleetUnitId=0; fleetUnitId<fleet.units.length; fleetUnitId++) {
-				if(fleet.units[fleetUnitId][0] === units.list[allUnitsId]._id) {
-					count = fleet.units[fleetUnitId][1];
+			for(const key in fleet.units) {
+				if(key === units.list[allUnitsId].id) {
+					count = fleet.units[key];
 					break;
 				}
 			}
 			if(count < 0) { continue; }
 
-			content +=  '<tr id="'+ units.list[allUnitsId]._id +'" class="table-line">' +
+			content +=  '<tr id="'+ units.list[allUnitsId].id +'" class="table-line">' +
 							'<td>' + units.list[allUnitsId].name + '</td>' +
 							'<td>' + fleetTranslate[units.list[allUnitsId].shipType] + '</td>' +
 							'<td>' + fleetTranslate[units.list[allUnitsId].shipShape] + '</td>' +
@@ -1495,7 +1496,7 @@ class units {
 			// Buttons
 			content += '<td>';
 
-			if(fleet.name !== 'SHIP_DEF' && fleet.name !== fleetTranslate['SHIP_DEF'] && !disableTransfers) {
+			if(fleet.name !== fleetTranslate['SHIP_DEF'] && !disableTransfers) {
 				content += '<img class="fleet-show-transferUnits" title="' + fleetTranslate['transferUnits'] + '" src="./cdn/img/ui/unit-transfer.svg">';
 			}
 
@@ -1508,7 +1509,7 @@ class units {
 		}
 
 		let disableCSS = '';
-		if(fleet.name === 'SHIP_DEF' || fleet.name === fleetTranslate['SHIP_DEF'] || disableTransfers) {
+		if(fleet.name === fleetTranslate['SHIP_DEF'] || disableTransfers) {
 			disableCSS = ' style="opacity: 0;" disabled';
 		}
 
@@ -1538,10 +1539,11 @@ class units {
 		let outDOM = '';
 
 		const disableTransfers = units.fleetList.length < 2 ||
-			(units.fleetList.length === 2 && (units.fleetList.map((f) => f.name).includes('SHIP_DEF') || units.fleetList.map((f) => f.name).includes(fleetTranslate['SHIP_DEF'])));
+			(units.fleetList.length === 2 && (units.fleetList.map((f) => f.name).includes(fleetTranslate['SHIP_DEF'])));
 
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].units.length === 0) { continue; } // It's updated serverside, but not here ...
+			if(Object.entries(units.fleetList[i].units).length === 0 &&
+				units.fleetList[i].units.constructor === Object) { continue; } // It's updated serverside, but not here ...
 
 			if(units.fleetList[i].name === 'SHIP_DEF') { units.fleetList[i].name = fleetTranslate[units.fleetList[i].name]; }
 
@@ -1584,7 +1586,7 @@ class units {
 			if(preventFleetHUDClosing) { return; }
 
 			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.id; // Yeah, that's ugly ...
-			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
 
 			const oldName = units.fleetList[fleetNb].name;
@@ -1603,7 +1605,7 @@ class units {
 			units.regenerateSelectFleetLists();
 
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
-			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
 
 			document.getElementById('fleet-merge-name').innerText = units.getFleetData(fleetId).name;
@@ -1621,7 +1623,7 @@ class units {
 			units.regenerateSelectFleetLists();
 
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
-			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
 
 			document.querySelector('#fleet-transferFuel-panel option[id="' + fleetNb + '"]').disabled = true;
@@ -1641,7 +1643,7 @@ class units {
 			units.regenerateSelectFleetLists();
 
 			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
-			const fleetNb = units.fleetList.map((fleet) => fleet._id).indexOf(fleetId);
+			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
 
 			document.querySelector('#fleet-units-transfer-panel option[id="' + fleetNb + '"]').disabled = true;
@@ -1699,8 +1701,8 @@ class units {
 			const planeteDepart = map.planetData[systemeDepart][fleet.position];
 
 			const unitList = [];
-			for(let i=0; i<fleet.units.length; i++) {
-				unitList[i] = units.getUnitData(fleet.units[i][0]);
+			for(const key in fleet.units) {
+				unitList[i] = units.getUnitData(key);
 			}
 
 			minSpeed = Fleet.getMinSubSpeed(unitList, fleet.units);
@@ -1732,9 +1734,9 @@ class units {
 			systemeDepart = map.xmlDoc[sector].querySelector('sy[id="' + systemeDepart + '"]');
 
 			const unitList = [];
-			const unitIdList = units.list.map((unit) => unit._id);
-			for(const i in fleet.units) {
-				const currUnitId = unitIdList.indexOf(fleet.units[i][0]);
+			const unitIdList = units.list.map((unit) => unit.id);
+			for(const key in fleet.units) {
+				const currUnitId = unitIdList.indexOf(key);
 				unitList.push(units.list[currUnitId]);
 			}
 
@@ -1768,23 +1770,23 @@ class units {
 		// Fleet list
 		let fleetListDOM = '';
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name === 'SHIP_DEF' || units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; }
+			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; }
 			if(units.fleetList[i].endMoveTime > 0) { continue; }
 			if(units.fleetList[i].position === units.planetTarget) { continue; }
 
 			const mt = units.calcTimeAndFuel(units.fleetList[i]);
-			units.fleetTimes[units.fleetList[i]._id] = mt.time;
-			units.fleetFuel[units.fleetList[i]._id] = mt.fuel;
+			units.fleetTimes[units.fleetList[i].id] = mt.time;
+			units.fleetFuel[units.fleetList[i].id] = mt.fuel;
 
-			fleetListDOM += '<li id="' + units.fleetList[i]._id + '"';
+			fleetListDOM += '<li id="' + units.fleetList[i].id + '"';
 			if(i === 0) {
 				fleetListDOM += ' class="map-move-panel-list-active"';
 			}
 			fleetListDOM += ' >';
 
-			if(units.fleetFuel[units.fleetList[i]._id][1] >= 2*units.fleetFuel[units.fleetList[i]._id][0]) {
+			if(units.fleetFuel[units.fleetList[i].id][1] >= 2*units.fleetFuel[units.fleetList[i].id][0]) {
 				fleetListDOM += '<img src="' + cdnURL + 'img/ui/fuel-status-2.svg">';
-			} else if(units.fleetFuel[units.fleetList[i]._id][1] >= units.fleetFuel[units.fleetList[i]._id][0]) {
+			} else if(units.fleetFuel[units.fleetList[i].id][1] >= units.fleetFuel[units.fleetList[i].id][0]) {
 				fleetListDOM += '<img src="' + cdnURL + 'img/ui/fuel-status-1.svg">';
 			} else {
 				fleetListDOM += '<img src="' + cdnURL + 'img/ui/fuel-status-0.svg">';
@@ -1842,14 +1844,14 @@ class units {
 		let fighterCount = 0;
 		let fighterCap = 0;
 		if(currentFleet.units) {
-			for(let j=0; j<currentFleet.units.length; j++) {
-				const currUnit = units.getUnitData(currentFleet.units[j][0]);
+			for(const key in currentFleet.units) {
+				const currUnit = units.getUnitData(key);
 				if(currUnit.shipType === 'SHIP_FIGHTER') {
-					fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[j][1]);
+					fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[key]);
 				} else if(currUnit.shipType === 'SHIP_CARRIER') {
 					for(const p in currUnit.parts) {
 						if(currUnit.parts[p].type === 'hangar') {
-							fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[j][1]);
+							fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[key]);
 						}
 					}
 				}

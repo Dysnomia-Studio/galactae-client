@@ -72,13 +72,13 @@ class planetUI {
 
 		// Clientside Calc for ressource auto-update
 		if(resourcesinterval === -1) {
-			resourcesinterval = setInterval(function() { 
+			resourcesinterval = setInterval(function() {
 				planetUI.simMyRealRessources();
 				research.sim();
-			},2000);
+			},2*TIME.SECONDS_TO_MS);
 		}
 
-		for(let key in data.data) {
+		for(const key in data.data) {
 			planetData[key] = data.data[key];
 		}
 
@@ -108,7 +108,7 @@ class planetUI {
 				autobuildingrefresh = -1;
 			},planetData.nextBuildingTime-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
 		}
-		
+
 		// Refresh buildPanel
 		if(planetUI.buildPanel !== -1) {
 			planetUI.buildPanelOpen(planetUI.buildPanel);
@@ -207,7 +207,7 @@ class planetUI {
 		if(planetData.Buildings[id]+1 > buildingMaxLvl[id]) {
 			ui.drawMessage('MAX_LEVEL');
 		} else {
-			socket.emit('planet-build', { planet: planetData._id, id: userData.id, username: userData.username, building: id });
+			socket.emit('planet-build', { planet: planetData.address, id: userData.id, username: userData.username, building: id });
 		}
 	}
 

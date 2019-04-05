@@ -45,7 +45,7 @@ $srv_data = $servermng->getServerByName($dbname);
 
 if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']) {
 
-	$userPrivileges = $usermng->getUserPrivileges($userData['_id'], $dbname);
+	$userPrivileges = $usermng->getUserPrivileges($userData['id'], $dbname);
 
 	if(!isset($userPrivileges['user_whitelist']) || ((int) $userPrivileges['user_whitelist']!=1)) {
 			redirect('maintenance');
@@ -53,7 +53,8 @@ if(!isset($srv_data['server_maintenance']) || $srv_data['server_maintenance']) {
 }
 
 // Verif d'existance du compte de jeu par rapport a l'id global
-$userGameData = $usermng->getUserGameData($userData['_id'], $dbname);
+$userGameData = $usermng->getUserGameData($userData['id'], $dbname);
+
 if(!isset($userGameData['game_id']) || $userGameData['game_id']=="-1") {
 	if(isset($_POST['choice'])) {
 		$choice = (int) $_POST['choice'];

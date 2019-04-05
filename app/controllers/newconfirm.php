@@ -31,8 +31,8 @@ $user['planetlist'] = [ (string) $planet['address'] ];
 
 // Share game-id to SQL server
 $usrmngr->addUserGameData(
-	$userData['_id'],
-	$user['_id'],
+	$userData['id'],
+	$user['id'],
 	$dbname
 );
 
@@ -40,6 +40,6 @@ $usrmngr->addUserGameData(
 $srvusermng->addUser($dbname, $user);
 $srvplnmng->updatePlanet($dbname, $planet);
 
-$_SESSION['game_id'] = (string) $user['_id'];
+$_SESSION['game_id'] = (string) $user['id'];
 
 redirect('reload');
