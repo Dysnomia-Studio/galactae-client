@@ -1,6 +1,6 @@
 <?php
 try {
-	$srvusermng = new ServerUserManager($dburl);
+	$srvusermng = new ServerUserManager();
 } catch(Exception $e) {
 	redirect('main-home');
 }
@@ -13,9 +13,9 @@ try {
 }
 
 if(isset($srvUserData['name'])) { // Autofix
-	$usermng->updateUserGameData($userData['user_id'], $srvUserData['_id'], $dbname);
+	$usermng->updateUserGameData($userData['id'], $srvUserData['id'], $dbname);
 
-	$_SESSION['game_id'] = $srvUserData['_id'];
+	$_SESSION['game_id'] = $srvUserData['id'];
 
-	redirect('reload');
+	//redirect('reload');
 }

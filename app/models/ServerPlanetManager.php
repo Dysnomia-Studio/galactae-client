@@ -1,29 +1,25 @@
 <?php
-class ServerPlanetManager extends MongoInterface {
+class ServerPlanetManager extends SQLInterface {
 
 
 	/**
 	 * Get a planet from db and reserve it to current user
 	 *
-	 * @param      <string>  $serverName  The server name
 	 * @param      <array>  $user        User data
 	 *
 	 * @return     <array>  Planet data
 	 */
-	public function getAvailablePlanet($serverName, $user) {
+	public function getAvailablePlanet($user) {
 		$this->updateContent(
-			$serverName,
 			'planets',
-			[ 'owner' => new MongoDB\BSON\ObjectID('000000000000000000000001') ],
-			[ '$set' => [ 'owner' => $user['_id'] ] ],
-			[ 'multi' => false ]
+			[ 'owner' => $user['id'] ],
+			[ 'owner' => '000000000000000000000001' ]
 		);
 
 		return json_decode(json_encode(
 			$this->getCondContent(
-				$serverName,
 				'planets',
-				[ 'owner' => $user['_id'] ]
+				[ 'owner' => $user['id'] ]
 			)[0]
 		), true);
 	}
@@ -37,10 +33,9 @@ class ServerPlanetManager extends MongoInterface {
 	 * @return     <array>  A new planet owned by current user (its data)
 	 */
 	public function createPlanetModel($serverName, $user) {
-		$planet = $this->getAvailablePlanet($serverName, $user);
+		$planet = $this->getAvailablePlanet($user);
 
 		unset($planet['owner']);
-		$planet['_id'] = new MongoDB\BSON\ObjectID((string) $planet['_id']['$oid']);
 
 		return array_merge(
 			$planet
@@ -49,7 +44,7 @@ class ServerPlanetManager extends MongoInterface {
 					// _id
 					'name' => 'Planète de '.$user['name'], //@ADD: Translation
 					// address
-					'owner' => $user['_id'],
+					'owner' => $user['id'],
 					'points' => 47,
 
 				// Geographic informations
@@ -87,9 +82,9 @@ class ServerPlanetManager extends MongoInterface {
 	 * @param      <array>  $planet  Planet data
 	 */
 	public function updatePlanet($dbname, $planet) {
-		$this->updateContent($dbname,'planets',
-			[ '_id' => $planet['_id'] ],
-			[ '$set' => $planet ]
+		$this->updateContent('planets',
+			[ 'id' => $planet['id'] ],
+			$planet
 		);
 	}
 }

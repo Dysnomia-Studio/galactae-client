@@ -19,19 +19,19 @@ $noscript=true;
 /**
  * @TODO: Do MVC !
  */
-
+/**
 // Verif du client sur mongo
 $manager = new MongoDB\Driver\Manager($config['mongoURL']);
 
 /**
  * Cache Vars
  */
-$_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:'';
+/*$_GET['type'] = (isset($_GET['type']))?(string)$_GET['type']:'';
 $plyPerPage = 20;
 $cache = '';
 $cachePattern = '';
 /* Which page to display ? */
-$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
+/*$pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:0;
 if($pageDemandee < 0) { $pageDemandee = 0; }
 
 $playerList = array();
@@ -115,13 +115,13 @@ $pageContent = "";
 /**
  * Cache Code
  */
-if(file_exists($cache) && filemtime($cache) > $expire) {
+/*if(file_exists($cache) && filemtime($cache) > $expire) {
 	$pageContent = file_get_contents($cache);
 } else {
 	/**
 	 * Generate cache
 	 */
-	ob_start();
+/*	ob_start();
 
 	function sortPlayers($a,$b) {
 		$val1 = $a->rank;
@@ -182,5 +182,4 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 
 $pageContent = str_replace($userData['user_name'], '<em>'.$userData['user_name'].'</em>', $pageContent);
 
-echo $pageContent; // on affiche notre page :D
-?>
+echo $pageContent; // on affiche notre page :D*/

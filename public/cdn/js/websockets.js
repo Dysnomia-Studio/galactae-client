@@ -40,8 +40,8 @@ class webSockets {
 			}
 			loadScreen.complete('planet');
 		});
-		socket.on('map-recieve-data',function(data) { 
-			let system = data.systemAddress;
+		socket.on('map-recieve-data',function(data) {
+			const system = data.systemAddress;
 
 			map.planetData[data.systemAddress] = data;
 			delete map.planetData[data.systemAddress].systemAddress;
@@ -50,14 +50,14 @@ class webSockets {
 		});
 
 		//Sync the units data
-		socket.on('units-recieve-data',function(data) { 
+		socket.on('units-recieve-data',function(data) {
 			units.refresh(data);
 			loadScreen.complete('units');
 		});
 
 		//Sync the fleet data
 		socket.on('fleet-recieve-data',function(data) {
-			units.fleetList = data;
+			units.fleetList = data.map((fleet) => { fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name; return fleet; });
 			units.regenerateSelectFleetLists();
 			units.refresh(units.list);
 			loadScreen.complete('fleet');
@@ -65,10 +65,10 @@ class webSockets {
 
 		//Sync the player data
 		socket.on('player-recieve-data',function(data) {
-			for(let key in data) {
+			for(const key in data) {
 				userData[key] = data[key];
 
-				if(key=='research') {
+				if(key==='research') {
 					research.drawPanel();
 					units.refresh(units.list); // Because type creation is disabled when no research && we need research to draw mines
 				}
@@ -77,7 +77,7 @@ class webSockets {
 			loadScreen.complete('player');
 		});
 
-		//Launch the chat		
+		//Launch the chat
 		chat.init();
 
 		socket.on('server-mute', function(data) {
