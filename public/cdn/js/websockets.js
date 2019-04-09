@@ -21,17 +21,17 @@ class webSockets {
 			}
 		});
 		socket.on('connect', function() {
-			if(connectTimeout==undefined) {
+			if(connectTimeout === undefined) {
 				connectTimeout = -1;
 			}
-			if(connectTimeout!=-1) {
+			if(connectTimeout !== -1) {
 				clearTimeout(connectTimeout);
 				connectTimeout = -1;
 			}
 
 			socket.emit('game-connect', userData);
 		});
-		
+
 		//Sync the planet data
 		socket.on('planet-recieve-data',function(data) {
 			if(data.nextBuildingTime) {
