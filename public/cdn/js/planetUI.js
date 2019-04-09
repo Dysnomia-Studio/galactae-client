@@ -82,6 +82,14 @@ class planetUI {
 			planetData[key] = data.data[key];
 		}
 
+		if(planetData.nextBuildingTime) {
+			planetData.nextBuildingTime = parseInt(planetData.nextBuildingTime);
+		}
+
+		if(planetData.unitBuildingEndTime) {
+			planetData.unitBuildingEndTime = parseInt(planetData.unitBuildingEndTime);
+		}
+
 		// Chargement de la map
 		map.init(planetData.address);
 
