@@ -33,7 +33,15 @@ class webSockets {
 		});
 		
 		//Sync the planet data
-		socket.on('planet-recieve-data',function(data) { 
+		socket.on('planet-recieve-data',function(data) {
+			if(data.nextBuildingTime) {
+				data.nextBuildingTime = parseInt(data.nextBuildingTime);
+			}
+
+			if(data.unitBuildingEndTime) {
+				data.unitBuildingEndTime = parseInt(data.unitBuildingEndTime);
+			}
+
 			planetUI.refresh(data);
 			if(userData.research !== undefined) {
 				research.drawPanel();
