@@ -228,7 +228,7 @@ class research {
 				research.drawLink(key,current.parents[i]);
 			}
 
-			if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch!=key) {
+			if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch !== key && !!document.getElementById(key)) {
 				document.getElementById(key).addEventListener('click', function(){
 					research.change(key);
 				});
@@ -333,10 +333,6 @@ class research {
 
 		for(let i=0; i<parents.length; i++) {
 			if(typeof parents[i] === 'string') {
-				if(userData.research[parents[i]] === undefined) { 
-					userData.research[parents[i]]=0; 
-				}
-
 				if(!research.isSearched(parents[i]) && parents[i]!='researchCenter') {
 					return false;
 				}
@@ -372,10 +368,6 @@ class research {
 
 		for(let i=0; i<parents.length; i++) {
 			if(typeof parents[i] === 'string') {
-				if(userData.research[parents[i]] === undefined) { 
-					userData.research[parents[i]]=0; 
-				}
-
 				if(!research.isSearched(parents[i]) && parents[i]!='researchCenter') {
 					missingParents += ', ' + translate['research'][parents[i]].name;
 
