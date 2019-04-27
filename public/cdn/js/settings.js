@@ -5,7 +5,7 @@ class settings {
 	static init() {
 		this.settingsList = {
 			general: {
-				language: { 
+				language: {
 					default: 'en', // @ADD: Langue actuelle du jeu
 					type: 'select',
 					choices: [
@@ -111,10 +111,10 @@ class settings {
 			if(val === 'false') { val = false; }
 			return val;
 		}
-		
-		let words = settingName.split('_');
+
+		const words = settingName.split('_');
 		val = this.settingsList;
-		for(let i in words) {
+		for(const i in words) {
 			if(val[words[i]] === undefined) { console.error('ERROR: Invalid setting name - ' + settingName); return ''; }
 			val = val[words[i]];
 		}
