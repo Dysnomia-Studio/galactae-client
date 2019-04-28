@@ -36,22 +36,22 @@ class ui {
 		if(msg === undefined) { return; }
 		if((translate.messages[msg] !== undefined) && (translate.messages[msg] !== '')) { msg = translate.messages[msg]; }
 		// Draw the message
-		let msgPanel = document.getElementById('messagePanel');
+		const msgPanel = document.getElementById('messagePanel');
 		msgPanel.innerText = msg;
-		
+
 		msgPanel.classList.add('fadeIn-1s');
 		msgPanel.style.display = 'block';
 
-		setTimeout(function() { 
+		setTimeout(function() {
 			msgPanel.classList.remove('fadeIn-1s');
-			msgPanel.classList.add('fadeOut-1s'); 
+			msgPanel.classList.add('fadeOut-1s');
 
 			setTimeout(function() {
 				msgPanel.style.display = 'none';
-				msgPanel.classList.remove('fadeOut-1s'); 
-			},1000);
+				msgPanel.classList.remove('fadeOut-1s');
+			}, TIME.SECONDS_TO_MS);
 
-		}, 1000 + 100*msg.length);	
+		}, TIME.SECONDS_TO_MS + 100*msg.length);
 	}
 
 	static openProfile(username) {
@@ -135,20 +135,20 @@ class ui {
 		//Bonus Quotidien
 		document.getElementById('day-bonus-confirm').addEventListener('click', function() {
 			let choice = 1;
-			let dayBonus2 = document.getElementById('day-bonus-2');
+			const dayBonus2 = document.getElementById('day-bonus-2');
 			if(dayBonus2 && ui.hasClass(dayBonus2, 'day-bonus-active')) {
 				choice = 2;
 			}
 			socket.emit('daily-bonus', { id: userData.id, username: userData.username, choice: choice });
 			ui.closeTab('#day-bonus');
 		});
-		
+
 		document.getElementById('day-bonus-later').addEventListener('click', function() {
 			ui.closeTab('#day-bonus');
 		});
 
 		// Ranks
-		let DOMElts = document.querySelectorAll('.ranks-ul li');
+		const DOMElts = document.querySelectorAll('.ranks-ul li');
 		for(let i=0; i<DOMElts.length; i++) {
 			DOMElts[i].addEventListener('click', function() {
 				ui.toggleClass('.ranks-ul .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
@@ -161,7 +161,7 @@ class ui {
 		notifications.gameNotifAddEvents();
 
 		// Prevent players putting code that can break their account security like Self XSS breachs
-			//Block Inspect Element when 
+			//Block Inspect Element when
 			//right click
 			window.addEventListener('contextmenu', function() {
 				if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
@@ -203,7 +203,7 @@ class ui {
 	 */
 	static updatePageTitle() {
 		let notifString = '';
-		if(ui.notifCount != 0) {
+		if(ui.notifCount !== 0) {
 			notifString = '('+ui.notifCount+') ';
 		}
 
@@ -238,7 +238,7 @@ class ui {
 			scrollTop('hud-top-left', 1);
 		});
 
-		// Display none if needed	
+		// Display none if needed
 		if(document.getElementById('hud-top-left').scrollWidth <=
 			Math.round(document.getElementById('hud-top-left').clientWidth)) {
 
@@ -324,7 +324,7 @@ class ui {
 		ui.hide(tab);
 
 		if(sound) {
-			let closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
+			const closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
 			closeUISound.volume = 0.5;
 			closeUISound.play();
 		}
@@ -336,7 +336,7 @@ class ui {
 	 * Hide something
 	 */
 	static hide(selector) {
-		let DOMelts = document.querySelectorAll(selector);
+		const DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
 			DOMelts[elt].style.display = 'none';
 		}
@@ -346,7 +346,7 @@ class ui {
 	 * Show somethinf
 	 */
 	static show(selector, display='block') {
-		let DOMelts = document.querySelectorAll(selector);
+		const DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
 			DOMelts[elt].style.display = display;
 		}
@@ -364,7 +364,7 @@ class ui {
 	}
 
 	static toggleClass(selector, className, newElt) {
-		let activeElts = document.querySelectorAll(selector);
+		const activeElts = document.querySelectorAll(selector);
 		for(let elt=0; elt<activeElts.length; elt++) {
 			activeElts[elt].classList.remove(className);
 		}
@@ -379,7 +379,7 @@ class ui {
 	 */
 	static updateBottom() {
 		function triggerActive(name) {
-			if(document.getElementById('hud-' + name).style.display == 'block') {
+			if(document.getElementById('hud-' + name).style.display === 'block') {
 				document.getElementById('hud-bottom-button-' + name).classList.add('hud-bottom-active');
 			} else {
 				document.getElementById('hud-bottom-button-' + name).classList.remove('hud-bottom-active');
@@ -393,8 +393,8 @@ class ui {
 
 
 		function triggerFleetActive(name1, name2) {
-			if(document.getElementById('hud-fleet').style.display == 'block' && 
-				document.getElementById('fleet-' + name1).style.display == 'block') {
+			if(document.getElementById('hud-fleet').style.display === 'block' &&
+				document.getElementById('fleet-' + name1).style.display === 'block') {
 
 				document.getElementById('hud-bottom-button-' + name2).classList.add('hud-bottom-active');
 			} else {
@@ -433,7 +433,7 @@ class ui {
 
 		document.getElementById('hud-planet-name').addEventListener('click', ui.planetNameSwitchToInput);
 
-		if(ui.oldname!=newname) {
+		if(ui.oldname !== newname) {
 			newname = normalizeText(newname);
 			socket.emit('planet-rename', { planet: userData.pid, username: userData.username, id: userData.id, name: newname });
 		}
@@ -496,7 +496,7 @@ class ui {
 
 		function fleetPanelToggle(elt) {
 			if(ui.fleet && !preventFleetHUDClosing && document.getElementById(elt).style.display === 'block') {
-				if(units.unitPanelTimeout != -1) {
+				if(units.unitPanelTimeout !== -1) {
 					clearTimeout(units.unitPanelInterval);
 					units.unitPanelTimeout = -1;
 				}
@@ -505,7 +505,7 @@ class ui {
 				ui.fleet = false;
 			} else {
 				ui.show('#hud-fleet');
-				
+
 				ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', document.getElementById(elt + '-button'));
 
 				ui.hide('#fleet-orbit');
@@ -552,7 +552,7 @@ class ui {
 	/********** DAILY BONUS **********/
 	static dailyBonus(streak,best) {
 		// "0 + ..." prevent using the same variable
-		ui.bonusStreak = 0 + streak; 
+		ui.bonusStreak = 0 + streak;
 		ui.bonusStreakBest = 0 + best;
 
 		document.getElementById('day-bonus-current').innerHTML = streak;
@@ -568,19 +568,19 @@ class ui {
 		else if(streak==3) { credits = 50; }
 		else if(streak==4) { credits = 80; }
 		else if(streak<10) { credits = 100; }
-		else if(streak<20) { 
+		else if(streak<20) {
 			credits = 10*(streak + 1); // 110 to 200
 			helium = 1750 * streak; // 15000 is about 45 min of ion propulsion for 1 vessel - 15000 to 33250
-		} else if(streak<30) { 
+		} else if(streak<30) {
 			credits = 15*streak; // 300 to 435
 			helium = 2000 * streak; // 40000 to 58000
-		} else { 
+		} else {
 			credits = 1000;
 		} // @ADD: generate random special bonus
-		
+
 		let desc = '<tr><td class="day-bonus-active" id="day-bonus-1">' + credits + ' credits galactiques</td>';
 
-		if(helium!=0) {
+		if(helium !== 0) {
 			desc += '<td id="day-bonus-2">' + helium + 't de Helium 3</td>';
 		}
 
@@ -589,17 +589,17 @@ class ui {
 		document.getElementById('day-bonus-desc').innerHTML = desc;
 		ui.show('#day-bonus');
 
-		let DOMElts = document.querySelectorAll('day-bonus-desc td');
+		const DOMElts = document.querySelectorAll('day-bonus-desc td');
 		for(let elt=0; elt<DOMElts.length; elt++) {
 			DOMElts[elt].addEventListener('click', function() {
 				ui.toggleClass('#day-bonus-desc .day-bonus-active', 'day-bonus-active', this);
 			});
 		}
 
-		let dateNow = new Date();
+		const dateNow = new Date();
 		setTimeout(function() {
 			ui.dailyBonus(ui.bonusStreak+1, ui.bonusStreakBest+1);
-		},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
+		},(((TIME.DAY_TO_HOUR - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (TIME.MINUTES_TO_SECONDS - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + (TIME.MINUTES_TO_SECONDS + TIME.SECOND_MARGIN - dateNow.getSeconds()))*TIME.SECONDS_TO_MS + planetUI.deltaNow); // Refresh at 00:00:05
 	}
 }
 
