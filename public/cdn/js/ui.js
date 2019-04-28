@@ -53,6 +53,12 @@ class ui {
 
 		}, 1000 + 100*msg.length);	
 	}
+
+	static openProfile(username) {
+		const win = window.open('https://galactae.eu/profil?u='+ username, '_blank');
+		win.focus();
+	}
+
 	/**
 	 * Tout les événements à creer au lancement
 	 */

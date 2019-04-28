@@ -514,6 +514,9 @@ const shipShapesDetails = {
 	},
 };
 
+const SHIP_SHAPE_SVG_WIDTH = 800;
+const SHIP_SHAPE_SVG_HEIGHT = 450;
+
 const shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	/**
 	 * Ship shapes

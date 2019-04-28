@@ -26,36 +26,19 @@ class units {
 			}
 		}
 
-		// Mines
-		if(research.isSearched(shipResearchDependencies['SHIP_WEP_MINES'])) {
-			units.list.push({
-				id: 'SHIP_WEP_MINES',
-				name: fleetTranslate['SHIP_WEP_MINES'],
-				note: 0, // @ADD: Note
-				cost: shipCosts['SHIP_WEP_MINES'],
-				shipShape: 'SHIP_WEP_MINES',
-				shipType: 'SHIP_DEF',
-			});
-		}
-		if(research.isSearched(shipResearchDependencies['SHIP_WEP_MINES_IEM'])) {
-			units.list.push({
-				id: 'SHIP_WEP_MINES_IEM',
-				name: fleetTranslate['SHIP_WEP_MINES_IEM'],
-				note: 0, // @ADD: Note
-				cost: shipCosts['SHIP_WEP_MINES_IEM'],
-				shipShape: 'SHIP_WEP_MINES_IEM',
-				shipType: 'SHIP_DEF',
-			});
-		}
-		if(research.isSearched(shipResearchDependencies['SHIP_WEP_MINES_NUKE'])) {
-			units.list.push({
-				id: 'SHIP_WEP_MINES_NUKE',
-				name: fleetTranslate['SHIP_WEP_MINES_NUKE'],
-				note: 0, // @ADD: Note
-				cost: shipCosts['SHIP_WEP_MINES_NUKE'],
-				shipShape: 'SHIP_WEP_MINES_NUKE',
-				shipType: 'SHIP_DEF',
-			});
+		// Research depending unit type
+		const researchUnitsTypes = ['SHIP_WEP_MINES', 'SHIP_WEP_MINES_IEM', 'SHIP_WEP_MINES_NUKE'];
+		for(const unitType of researchUnitsTypes) {
+			if(research.isSearched(shipResearchDependencies[unitType])) {
+				units.list.push({
+					id: unitType,
+					name: fleetTranslate[unitType],
+					note: 0, // @ADD: Note
+					cost: shipCosts[unitType],
+					shipShape: unitType,
+					shipType: 'SHIP_DEF',
+				});
+			}
 		}
 
 		units.fname = '';
@@ -157,13 +140,13 @@ class units {
 		document.querySelectorAll('#fleet-build-buttons img').forEach(function(e) {
 			e.addEventListener('mouseenter', function() {
 				switch(this.id) {
-				case 'fleet-build-openPanel':
-				case 'fleet-build-type-copy':
-				case 'fleet-build-type-delete':
-					document.getElementById('fleet-build-desc').innerText = fleetTranslate[this.id];
-					break;
-				default:
-					// do nothing here
+					case 'fleet-build-openPanel':
+					case 'fleet-build-type-copy':
+					case 'fleet-build-type-delete':
+						document.getElementById('fleet-build-desc').innerText = fleetTranslate[this.id];
+						break;
+					default:
+						// do nothing here
 				}
 			});
 		});
@@ -177,17 +160,17 @@ class units {
 		// Move
 		document.getElementById('map-move-panel-move').addEventListener('click', function() {
 			switch(units.moveType) {
-			case 2:
-				socket.emit('fleet-move', {
-					id: userData.id,
-					username: userData.username,
-					fleetId: units.currFleet,
-					destination: units.planetTarget,
-				});
-				ui.hide('#map-move-panel');
-				break;
-			default:
-				ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+				case 2:
+					socket.emit('fleet-move', {
+						id: userData.id,
+						username: userData.username,
+						fleetId: units.currFleet,
+						destination: units.planetTarget,
+					});
+					ui.hide('#map-move-panel');
+					break;
+				default:
+					ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 			}
 		});
 	}
@@ -468,6 +451,45 @@ class units {
 		return name;
 	}
 
+	static sortUnits(a, b) {
+		const desc = units.sortTypes.split('-').length - 1;
+		const sort = units.sortTypes.split('-')[0];
+
+		let Na = a[sort];
+		let Nb = b[sort];
+
+		if(!Number.isInteger(Na)) {
+			if(fleetTranslate[Na] !== undefined) {
+				Na = fleetTranslate[Na];
+			}
+			if(fleetTranslate[Nb] !== undefined) {
+				Nb = fleetTranslate[Nb];
+			}
+
+			Na = Na.toLowerCase();
+			Nb = Nb.toLowerCase();
+		} else {
+			Na = a[sort];
+			Nb = b[sort];
+		}
+
+		if(Na > Nb) {
+			if(desc) {
+				return -1;
+			}
+			return 1;
+		}
+
+		if(Na === Nb) {
+			return 0;
+		}
+
+		if(desc) {
+			return 1;
+		}
+		return -1;
+	}
+
 	/**
 	 * Draw mail UI
 	 *
@@ -482,44 +504,7 @@ class units {
 
 		// Sort
 		const oldCurr = units.list[units.currUnit];
-		units.list.sort(function(a,b) {
-			const desc = units.sortTypes.split('-').length - 1;
-			const sort = units.sortTypes.split('-')[0];
-
-			let Na = a[sort];
-			let Nb = b[sort];
-
-			if(!Number.isInteger(Na)) {
-				if(fleetTranslate[Na] !== undefined) {
-					Na = fleetTranslate[Na];
-				}
-				if(fleetTranslate[Nb] !== undefined) {
-					Nb = fleetTranslate[Nb];
-				}
-
-				Na = Na.toLowerCase();
-				Nb = Nb.toLowerCase();
-			} else {
-				Na = a[sort];
-				Nb = b[sort];
-			}
-
-			if(Na > Nb) {
-				if(desc) {
-					return -1;
-				}
-				return 1;
-			}
-
-			if(Na === Nb) {
-				return 0;
-			}
-
-			if(desc) {
-				return 1;
-			}
-			return -1;
-		});
+		units.list.sort(units.sortUnits);
 
 		for(let i=0; i<units.list; i++) {
 			if(units.list[i].id === oldCurr.id) {
@@ -1003,32 +988,32 @@ class units {
 
 			// Draw shape
 			switch(shape[i][1]) {
-			case 'rect':
-				svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '"></rect>';
-				break;
-			case 'circle':
-				svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '"></circle>';
-				break;
-			case 'line':
-				svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '"></line>';
-				break;
-			case 'path':
-				svgContent += '<path class="' + shape[i][0] + '" d="';
+				case 'rect':
+					svgContent += '<rect class="' + shape[i][0] + '" x="' + shape[i][2] + '" y="' + shape[i][3] + '" width="' + shape[i][4] + '" height="' + shape[i][5] + '"></rect>';
+					break;
+				case 'circle':
+					svgContent += '<circle class="' + shape[i][0] + '" cx="' + shape[i][2] + '" cy="' + shape[i][3] + '" r="' + shape[i][4] + '"></circle>';
+					break;
+				case 'line':
+					svgContent += '<line class="' + shape[i][0] + '" x1="' + shape[i][2] + '" y1="' + shape[i][3] + '" x2="' + shape[i][4] + '" y2="' + shape[i][5] + '"></line>';
+					break;
+				case 'path':
+					svgContent += '<path class="' + shape[i][0] + '" d="';
 
-				for(let j=2; j<shape[i].length; j++) {
-					svgContent += shape[i][j] + ' ';
-				}
+					for(let j=2; j<shape[i].length; j++) {
+						svgContent += shape[i][j] + ' ';
+					}
 
-				svgContent += '" ></path>';
-				break;
-			default: // Poly
-				svgContent += '<polygon class="' + shape[i][0] + '" points="';
+					svgContent += '" ></path>';
+					break;
+				default: // Poly
+					svgContent += '<polygon class="' + shape[i][0] + '" points="';
 
-				for(let j=2; j<shape[i].length; j+=2) {
-					svgContent += shape[i][j] + ',' + shape[i][j+1] + ' ';
-				}
+					for(let j=2; j<shape[i].length; j+=2) {
+						svgContent += shape[i][j] + ',' + shape[i][j+1] + ' ';
+					}
 
-				svgContent += '" ></polygon>';
+					svgContent += '" ></polygon>';
 			}
 
 			// Draw HTML
@@ -1055,13 +1040,13 @@ class units {
 
 				const selw = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).width.slice(0, -2));
 				const selh = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).height.slice(0, -2));
-				const w = shape[id][4]/800*selw - 12;
-				const h = shape[id][5]/450*selh - 12;
+				const w = shape[id][4]/SHIP_SHAPE_SVG_WIDTH*selw - 12;
+				const h = shape[id][5]/SHIP_SHAPE_SVG_HEIGHT*selh - 12;
 
 				document.getElementById('fleet-type-create-selects').innerHTML +=
 					'<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
-						'left: ' + ((shape[id][2])/800)*selw + 'px;' +
-						'top: ' + ((shape[id][3])/450)*selh + 'px;' +
+						'left: ' + ((shape[id][2])/SHIP_SHAPE_SVG_WIDTH)*selw + 'px;' +
+						'top: ' + ((shape[id][3])/SHIP_SHAPE_SVG_HEIGHT)*selh + 'px;' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
 					'"><dt>'+
@@ -1193,31 +1178,31 @@ class units {
 			if(parts[i].tech === 'none') { continue; }
 
 			switch(parts[i].type) {
-			case 'sub_propulsion':
-				if(modules.sub_propulsion === 0) {
-					modules.sub_propulsion = shipPartsSpeed[parts[i].tech][0]*10000 +
-						shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
-					modules.sub_propulsion = SYSTEM_AU_SIZE/(modules.sub_propulsion * 3600);
-				} else {
-					modules.sub_propulsion *= 1.5;
-				}
+				case 'sub_propulsion':
+					if(modules.sub_propulsion === 0) {
+						modules.sub_propulsion = shipPartsSpeed[parts[i].tech][0]*10000 +
+							shipPartsSpeed[parts[i].tech][1]*100 + shipPartsSpeed[parts[i].tech][2];
+						modules.sub_propulsion = SYSTEM_AU_SIZE/(modules.sub_propulsion * TIME.HOUR_TO_SECONDS);
+					} else {
+						modules.sub_propulsion *= 1.5;
+					}
 
-				break;
-			case 'sup_propulsion':
-				if(modules.sup_propulsion === 0) {
-					modules.sup_propulsion = shipPartsSpeed[parts[i].tech][0]*100 +
-						shipPartsSpeed[parts[i].tech][1]*10 + shipPartsSpeed[parts[i].tech][2];
-					modules.sup_propulsion = GALACTIC_PARSEC_SIZE/(modules.sup_propulsion * 3600);
-				} else {
-					modules.sup_propulsion *= 1.5;
-				}
-				break;
-			case 'hangar':
-				modules.hangar += hangarSize[parts[i].tech];
-				miss -= hangarMiss[parts[i].tech];
-				break;
-			default:
-				// Do nothing
+					break;
+				case 'sup_propulsion':
+					if(modules.sup_propulsion === 0) {
+						modules.sup_propulsion = shipPartsSpeed[parts[i].tech][0]*100 +
+							shipPartsSpeed[parts[i].tech][1]*10 + shipPartsSpeed[parts[i].tech][2];
+						modules.sup_propulsion = GALACTIC_PARSEC_SIZE/(modules.sup_propulsion * TIME.HOUR_TO_SECONDS);
+					} else {
+						modules.sup_propulsion *= 1.5;
+					}
+					break;
+				case 'hangar':
+					modules.hangar += hangarSize[parts[i].tech];
+					miss -= hangarMiss[parts[i].tech];
+					break;
+				default:
+					// Do nothing
 			}
 		}
 
@@ -1463,12 +1448,12 @@ class units {
 		} else if(type === 'moving') {
 			let action = fleetTranslate['movingTo'];
 			switch(fleet.orbitPosition) {
-			case 1:
-				action = fleetTranslate['attacking'];
-				break;
-			case 2:
-				action = fleetTranslate['movingToDef'];
-				break;
+				case 1:
+					action = fleetTranslate['attacking'];
+					break;
+				case 2:
+					action = fleetTranslate['movingToDef'];
+					break;
 			}
 			content += '<td class="text-center">' + action + ' ' + fleet.position + fleetTranslate['arriveAt'] + ' ' + getDateTime(new Date(fleet.endMoveTime)) + '</td>'; // @TODO: pname (username) instead of position
 		}
@@ -1477,14 +1462,8 @@ class units {
 			'<table class="unit-list-table">' + fleetListHeader + '<tbody>';
 
 		for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
-			let count = -1;
-			for(const key in fleet.units) {
-				if(key === units.list[allUnitsId].id) {
-					count = fleet.units[key];
-					break;
-				}
-			}
-			if(count < 0) { continue; }
+			const count = fleet.units[units.list[allUnitsId].id];
+			if(!count) { continue; }
 
 			content +=  '<tr id="'+ units.list[allUnitsId].id +'" class="table-line">' +
 							'<td>' + units.list[allUnitsId].name + '</td>' +
@@ -1702,7 +1681,7 @@ class units {
 
 			const unitList = [];
 			for(const key in fleet.units) {
-				unitList[i] = units.getUnitData(key);
+				unitList.push(units.getUnitData(key));
 			}
 
 			minSpeed = Fleet.getMinSubSpeed(unitList, fleet.units);
@@ -1717,7 +1696,7 @@ class units {
 			const previewDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
-				now/TIME.SECONDS_TO_MS + Math.round(baseTravelTime*360000)/100);
+				now/TIME.SECONDS_TO_MS + Math.round(baseTravelTime*TIME.HOUR_TO_SECONDS*100)/100);
 			if(Number.isNaN(previewDist) || previewDist < 0) { return; }
 			const previewTime = Fleet.calcMoveTime(previewDist, minSpeed.speed);
 
