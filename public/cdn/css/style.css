@@ -212,6 +212,40 @@ select, input, summary {
 ::-webkit-scrollbar-corner {
 	background: transparent;
 }
+
+/**
+ * Confirm Box
+ */
+.confirmBox {
+	width: 234px;
+	height: 124px;
+
+	background-color: #0b1012;
+	border: 1px solid #0ec6c6;
+
+	position: fixed;
+	top: calc(50% - 62px);
+	left: calc(50% - 112px);
+
+	z-index: 1000;
+}
+.confirmBox {
+	padding: 0.5em;
+
+	text-align: center;
+}
+.confirmBox input {
+	width: calc(50% - 14px);
+	position: absolute;
+	bottom: 0.5em;
+}
+.confirmBox .yes {
+	left: 0.5em;
+}
+.confirmBox .no {
+	right: 0.5em;
+}
+
 /**
  * Choix de gouvernement
  */
