@@ -22,6 +22,8 @@ KEYBOARD.NUMPAD9 = 105;
 KEYBOARD.F5 = 116;
 KEYBOARD.F12 = 123;
 
+let confirmBoxCreated = false;
+
 /**
  * UI Class
  */
@@ -52,6 +54,46 @@ class ui {
 			}, TIME.SECONDS_TO_MS);
 
 		}, TIME.SECONDS_TO_MS + 100*msg.length);
+	}
+
+	static confirm(question, yesMsg, noMsg, callback) {
+		if(confirmBoxCreated) { return; }
+		confirmBoxCreated = true;
+
+		function clearConfirmBox() {
+			elt.parentElement.removeChild(elt);
+			confirmBoxCreated = false;
+		}
+
+		const elt = document.createElement('div');
+		elt.classList.add('confirmBox');
+
+		const spanQuestion = document.createElement('span');
+		spanQuestion.innerText = question;
+		elt.appendChild(spanQuestion);
+
+		const inputAccept = document.createElement('input');
+		inputAccept.classList.add('ui-large-button');
+		inputAccept.classList.add('yes');
+		inputAccept.setAttribute('type', 'submit');
+		inputAccept.setAttribute('value', yesMsg);
+		inputAccept.addEventListener('click', () => {
+			clearConfirmBox();
+			callback();
+		});
+		elt.appendChild(inputAccept);
+
+		const inputRefuse = document.createElement('input');
+		inputRefuse.classList.add('ui-large-button');
+		inputRefuse.classList.add('no');
+		inputRefuse.setAttribute('type', 'submit');
+		inputRefuse.setAttribute('value', noMsg);
+		inputRefuse.addEventListener('click', () => {
+			clearConfirmBox();
+		});
+		elt.appendChild(inputRefuse);
+
+		document.body.appendChild(elt);
 	}
 
 	static openProfile(username) {
