@@ -1123,20 +1123,20 @@ select, input, summary {
 	margin-left: 25px;
 	width: calc(100% - 75px);
 }
-#fleet-orbit, #fleet-move, #fleet-out, #fleet-type-create, #fleet-ship-build { /* Tabs hidden by default */
+.fleet-tab, #fleet-type-create, #fleet-ship-build { /* Tabs hidden by default */
 	display: none;
 }
-#fleet-orbit, #fleet-move, #fleet-out {
+.fleet-tab  {
 	margin: 1.5em;
 	overflow-y: auto;
 }
 @media (min-width: 900px) {
-	#fleet-orbit, #fleet-move, #fleet-out {
+	.fleet-tab {
 		height: calc(100% - 5.5em);
 	}
 }
 @media (max-width: 900px) {
-	#fleet-orbit, #fleet-move, #fleet-out {
+	.fleet-tab  {
 		height: calc(100% - 6em);
 	}
 }
@@ -1159,19 +1159,16 @@ select, input, summary {
 .ui-medium-button {
 	height: 30px;
 }
-.ui-large-select {
+.ui-large-input, .ui-large-select, .ui-large-span {
 	box-sizing: content-box;
 	border: 1px outset #0EC6C6;
 	background-color: #0b1012;
 	color: #EEEEEE;
 	height: 40px;
+	padding: 1px 6px;
 }
-.ui-large-span {
-	box-sizing: content-box;
-	border: 1px outset #0EC6C6;
-	background-color: #0b1012;
-	color: #EEEEEE;
-	height: 40px;
+input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-large-select {
+	height: 46px;
 }
 #fleet-close {
 	position: absolute;
@@ -1481,7 +1478,7 @@ select, input, summary {
 	 z-index: 100;
 }
 #fleet-close, #research-close, #map-close, #hud-ranks-close, #news-close, #building-quit, #fleet-type-create-close,
-#fleet-ship-build-close, #settings-tabs-close { 
+#fleet-ship-build-close, #settings-tabs-close, .close-button { 
 	cursor: url(../img/mouse_pointer.png), pointer; 
 	font-size: 1.2rem;
 }
@@ -1497,7 +1494,7 @@ select, input, summary {
 
 	z-index: 10;
 }
-#fleet-type-create-close, #fleet-ship-build-close {
+#fleet-type-create-close, #fleet-ship-build-close, .close-button {
 	position: absolute;
 	top: 6px;
 	right: 10px;
@@ -1663,7 +1660,7 @@ select, input, summary {
 		margin-top: 1em;
 	}
 }
-#fleet-orbit h2, #fleet-move h2, #fleet-out h2 {
+.fleet-tab h2 {
 	text-align: center;
 	width: 100%;
 }
@@ -1724,6 +1721,99 @@ select, input, summary {
 }
 .priority-fleet {
 	cursor: url(../img/mouse_pointer.png), pointer;
+}
+
+.fleet-tactics-header {
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+
+	border-bottom: 1px solid #194c4e;
+}
+#fleet-tactics table {
+	width: 100%;
+}
+.tactics-edit, .tactics-remove {
+	width: 2em;
+}
+.tactics-edit img {
+	max-height: 1em;
+}
+
+#fleet-tacticsManager-panel {
+	position: fixed;
+
+	left: calc(50vw - 20em); /* calc((100vw - (18em / 45 * 80))/2); */
+	top: calc(50vh - 11.25em); /* calc((100vh - 18em)/2); */
+	width: 40em; /* calc(18em / 45 * 80); */
+	height: 22.5em;
+	padding: 1em 1.78em; /* 1 / 45 * 80 ~ 1.777778 */
+
+	background: url(../img/ui/window.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+
+	z-index: 100;
+
+	display: none;
+}
+#fleet-tacticsManager-orderList {
+	height: calc(100% - 40px);
+
+	list-style: none;
+}
+#fleet-tacticsManager-orderList li {
+	border: 1px solid transparent;
+	margin: 1px 2px;
+	padding: 0 0.5em;
+}
+#fleet-tacticsManager-orderList li.active {
+	border: 1px solid #0EC6C6 !important;
+}
+#fleet-tacticsManager-orderEditor {
+	height: 100%;
+}
+#fleet-tacticsManager-orderList, #fleet-tacticsManager-orderEditor {
+	padding: 0;
+
+	margin: 0 0.2em;
+
+	display: inline-block;
+	vertical-align: top;
+
+	box-sizing: border-box;
+}
+#fleet-tacticsManager-orderList {
+	border: 1px solid #0EC6C6;
+
+	width: calc(40% - 0.55em);
+}
+#fleet-tacticsManager-addOrder {
+	position: absolute;
+
+	left: 2.78em;
+	bottom: 15px;
+
+	width: calc(40% - 3.55em);
+}
+#fleet-tacticsManager-orderEditor {
+	width: calc(60% - 0.55em);
+
+	margin-top: 2em;
+}
+#fleet-tacticsManager-orderEditor label, #fleet-tacticsManager-orderEditor input, #fleet-tacticsManager-orderEditor select {
+	display: inline-block;
+
+	margin-bottom: 0.5em;
+}
+#fleet-tacticsManager-orderEditor input[type="text"], #fleet-tacticsManager-orderEditor input[type="number"], #fleet-tacticsManager-orderEditor select {
+	width: calc(49.5% - 14px);
+}
+#fleet-tacticsManager-orderEditor label, #fleet-tacticsManager-orderEditor input[type="button"] {
+	width: 49.5%;
+}
+#fleet-tacticsManager-orderEditor hr {
+	margin: 1em 0;
 }
 
 /**

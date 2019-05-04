@@ -55,6 +55,7 @@ class units {
 
 		units.drawMain();
 		units.drawFleetLists();
+		tactics.drawList();
 	}
 
 	/**
@@ -104,6 +105,12 @@ class units {
 					ui.show('#fleet-out');
 				} else {
 					ui.hide('#fleet-out');
+				}
+
+				if(this.id === 'fleet-tactics-button') {
+					ui.show('#fleet-tactics');
+				} else {
+					ui.hide('#fleet-tactics');
 				}
 
 				ui.updateBottom();
@@ -1550,19 +1557,19 @@ class units {
 		if(orbitDOM === '') {
 			orbitDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
-		document.getElementById('fleet-orbit-content').innerHTML = orbitDOM;
+		document.getElementById('fleet-orbit').innerHTML = orbitDOM;
 
 		// Moving
 		if(movingDOM === '') {
 			movingDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
-		document.getElementById('fleet-move-content').innerHTML = movingDOM;
+		document.getElementById('fleet-move').innerHTML = movingDOM;
 
 		// Out
 		if(outDOM === '') {
 			outDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
-		document.getElementById('fleet-out-content').innerHTML = outDOM;
+		document.getElementById('fleet-out').innerHTML = outDOM;
 
 		// Fleet rename
 		Array.from(document.getElementsByClassName('fleet-rename')).forEach((elt) => elt.addEventListener('click', function(event) {
