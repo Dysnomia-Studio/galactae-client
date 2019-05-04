@@ -56,7 +56,7 @@ class ui {
 		}, TIME.SECONDS_TO_MS + 100*msg.length);
 	}
 
-	static confirm(question, yesMsg, noMsg, callback) {
+	static confirm(question, yesMsg, noMsg, cbYes, cbNo) {
 		if(confirmBoxCreated) { return; }
 		confirmBoxCreated = true;
 
@@ -79,7 +79,9 @@ class ui {
 		inputAccept.setAttribute('value', yesMsg);
 		inputAccept.addEventListener('click', () => {
 			clearConfirmBox();
-			callback();
+			if(cbYes) {
+				cbNo();
+			}
 		});
 		elt.appendChild(inputAccept);
 
@@ -90,6 +92,9 @@ class ui {
 		inputRefuse.setAttribute('value', noMsg);
 		inputRefuse.addEventListener('click', () => {
 			clearConfirmBox();
+			if(cbNo) {
+				cbNo();
+			}
 		});
 		elt.appendChild(inputRefuse);
 
@@ -620,10 +625,10 @@ class ui {
 			credits = 1000;
 		} // @ADD: generate random special bonus
 
-		let desc = '<tr><td class="day-bonus-active" id="day-bonus-1">' + credits + ' credits galactiques</td>';
+		let desc = '<tr><td class="day-bonus-active" id="day-bonus-1">' + credits + ' ' + translate['ui']['credits'] + '</td>';
 
 		if(helium !== 0) {
-			desc += '<td id="day-bonus-2">' + helium + 't de Helium 3</td>';
+			desc += '<td id="day-bonus-2">' + helium + 't ' + translate['ui']['ofHe3'] + '</td>';
 		}
 
 		desc+= '</tr>';

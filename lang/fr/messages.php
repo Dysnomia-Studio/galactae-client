@@ -115,6 +115,7 @@ translate['load'] = {
 	'server': 'Connexion au serveur ...',
 	'service-worker': 'Préchargement des images',
 	'settings': 'Chargement des paramètres',
+	'tactics': 'Chargement des tactiques',
 	'units': 'Chargement des données unités',
 };
 </script>

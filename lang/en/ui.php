@@ -31,6 +31,12 @@
 	define('DAY','Day:');
 	define('DAY_BEST','Best:');
 
+	//== RANKS ==\\
+	define('RANKS_GALAXY_PLAYER', 'Galaxy - Player');
+	define('RANKS_SECTOR_PLAYER', 'Sector - Player');
+	define('RANKS_GALAXY_ALLY', 'Galaxy - Alliance');
+	define('RANKS_SECTOR_ALLY', 'Sector - Alliance');
+
 	//== OTHER ==\\
 	define('GAME_LOADING','Loading game ...');
 	define('PORTRAIT_ERROR','You need a screen in landscape orientation to play.');
@@ -39,6 +45,24 @@
 	define('OLDER_NEWS','Older');
 	define('NEWER_NEWS','Newer');
 	define('CONFIRM','Confirm');
+
 	// A no-bug measure
 	define('META_DESC','');
 	define('META_KEYS','');
+?>
+<script type="text/javascript">
+var translate = translate || {};
+
+translate['ui'] = {
+	// Day bonus
+	'credits': 'galactic credits',
+	'ofHe3': 'of Helium 3',
+
+	// Confirm box
+	'CONFIRM_YES': 'Yes',
+	'CONFIRM_NO': 'No',
+
+	'no-ally': 'No alliance',
+	'no-player': 'No player',
+};
+</script>

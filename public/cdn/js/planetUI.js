@@ -618,7 +618,7 @@ class planetUI {
 			document.getElementById('building-message').innerHTML = translate.messages['UPGRADE_MAX'];
 			ui.hide('#building-cost');
 		} else if(requirements !== '') { // Another building in build mode
-			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ": " + requirements;
+			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
 			let dateEnd = new Date(planetData.nextBuildingTime + planetUI.deltaNow);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
@@ -795,7 +795,7 @@ class planetUI {
 
 		if(pData !== undefined) {
 			if(pData.ally == '') {
-				document.getElementById('planet-other-ally-data').innerText = 'Aucune alliance';
+				document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
 			} else {
 				document.getElementById('planet-other-ally-data').innerText = pData.ally;
 			}
@@ -807,8 +807,8 @@ class planetUI {
 			document.getElementById('planet-other-planet').style.display = 'inline';
 			document.getElementById('planet-other-points').style.display = 'inline';
 		} else {
-			document.getElementById('planet-other-ally-data').innerText = 'Aucune alliance';
-			document.getElementById('planet-other-player-data').innerText = 'Aucun joueur';
+			document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
+			document.getElementById('planet-other-player-data').innerText = translate['ui']['no-player'];
 			document.getElementById('planet-other-planet').style.display = 'none';
 			document.getElementById('planet-other-points').style.display = 'none';
 		}
