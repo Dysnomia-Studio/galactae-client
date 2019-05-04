@@ -31,6 +31,12 @@
 	define('DAY','Jour:');
 	define('DAY_BEST','Record:');
 
+	//== RANKS ==\\
+	define('RANKS_GALAXY_PLAYER', 'Galaxie - Joueur');
+	define('RANKS_SECTOR_PLAYER', 'Secteur - Joueur');
+	define('RANKS_GALAXY_ALLY', 'Galaxie - Alliance');
+	define('RANKS_SECTOR_ALLY', 'Secteur - Alliance');
+
 	//== OTHER ==\\
 	define('GAME_LOADING','Chargement du jeu ...');
 	define('PORTRAIT_ERROR','Il est nécessaire d\'avoir un écran en orientation paysage pour pouvoir jouer.');
@@ -39,6 +45,7 @@
 	define('OLDER_NEWS','Plus ancien');
 	define('NEWER_NEWS','Plus recent');
 	define('CONFIRM','Valider');
+
 	// A no-bug measure
 	define('META_DESC','');
 	define('META_KEYS','');
@@ -47,8 +54,15 @@
 var translate = translate || {};
 
 translate['ui'] = {
+	// Day bonus
+	'credits': 'credits galactiques',
+	'ofHe3': 'd\'Helium 3',
+
 	// Confirm box
 	'CONFIRM_YES': 'Oui',
 	'CONFIRM_NO': 'Non',
+
+	'no-ally': 'Aucune alliance',
+	'no-player': 'Aucun joueur',
 };
 </script>

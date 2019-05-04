@@ -1811,7 +1811,7 @@ class units {
 			document.getElementById('map-move-panel-message').innerHTML =
 				msgPt1 + ' <em>' +
 				units.planetTarget + '</em> (<em>' +
-				'Aucun joueur' + '</em>)'
+				translate['ui']['no-player'] + '</em>)'
 			;
 		}
 
@@ -1856,7 +1856,7 @@ class units {
 		if(Number.isNaN(ratio)) { ratio = '?'; fFuel = [0,0]; }
 		document.getElementById('map-move-panel-fuel').innerHTML =
 			GetBetterUnit(fFuel[0], 't', fFuel[1] + 1) +
-			' (' + ratio + '% du reservoir)';
+			' (' + ratio + '% ' + fleetTranslate['of-maxFuel'] + ')';
 
 		// Hangar
 		document.getElementById('map-move-panel-hangar').style.color = 'white';
