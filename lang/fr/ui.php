@@ -42,3 +42,13 @@
 	// A no-bug measure
 	define('META_DESC','');
 	define('META_KEYS','');
+?>
+<script type="text/javascript">
+var translate = translate || {};
+
+translate['ui'] = {
+	// Confirm box
+	'CONFIRM_YES': 'Oui',
+	'CONFIRM_NO': 'Non',
+};
+</script>

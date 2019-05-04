@@ -201,22 +201,27 @@ class units {
 		document.getElementById('fleet-build-type-delete').addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
 
-			ui.show('#fleet-typeDelete-panel');
+			ui.confirm(
+				fleetTranslate['fleet-build-type-delete-confirmMessage'],
+				translate['ui']['CONFIRM_YES'],
+				translate['ui']['CONFIRM_NO'],
+
+				() => { // Yes
+					socket.emit('unit-type-delete', {
+						id: userData.id,
+						username: userData.username,
+						unit: units.list[units.currUnit].id
+					});
+					preventFleetHUDClosing = false;
+
+				}, () => { // No
+					preventFleetHUDClosing = false;
+				}
+			);
+
 			preventFleetHUDClosing = true;
 		});
-		document.getElementById('fleet-typeDelete-yes').addEventListener('click', function() {
-			socket.emit('unit-type-delete', {
-				id: userData.id,
-				username: userData.username,
-				unit: units.list[units.currUnit].id
-			});
-			ui.hide('#fleet-typeDelete-panel');
-			preventFleetHUDClosing = false;
-		});
-		document.getElementById('fleet-typeDelete-no').addEventListener('click', function() {
-			ui.hide('#fleet-typeDelete-panel');
-			preventFleetHUDClosing = false;
-		});
+
 		// Type rename
 		document.getElementById('fleet-build-rename').addEventListener('click', function() {
 			if(preventFleetHUDClosing) { return; }
