@@ -4,6 +4,7 @@
 	define('FLEET_ORBIT','Orbit');
 	define('FLEET_MOVE','Moves');
 	define('FLEET_OUT','Out');
+	define('FLEET_TACTICS','Tactics');
 	define('FLEET_BUILD_ALL','All types');
 	define('FLEET_BUILD_DEF','Orbital Defenses');
 	define('FLEET_BUILD_CUISADER','Cruisaders');
@@ -34,87 +35,105 @@
 	//== Fleet ==\\
 	define('FLEET','Fleet');
 	define('FLEET_NAME','Fleet name');
+	define('FLEET_NEWNAME','New fleet name for');
+	define('FLEET_TRANSFER_TYPE','Transfer units of type');
+	define('FLEET_TRANSFERALL_TYPE','Transfer all units of type');
+	define('FLEET_TRANSFERFUEL_FROM','Tranfer fuel from');
+	define('FLEET_TRANSFER_TO','to');
 	define('NEW_FLEET','New Fleet ...');
+
+	//== Tactics ==\\
+	define('FLEET_UNIT_TYPE', 'Unit type');
+	define('FLEET_UNIT_TARGET', 'Priority target');
+	define('FLEET_PRIORITY', 'Priority level');
+	define('FLEET_TACTIC_NAME', 'Tactic name');
+	define('FLEET_TACTIC_ADD_ORDER', 'Add order');
+	define('FLEET_TACTIC_DELETE_ORDER', 'Delete this order');
+	define('FLEET_TACTIC_SAVE_ORDER', 'Save this order');
+	define('FLEET_TACTIC_SAVE', 'Save tactic');
 
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','You hav\'nt models yet');
 ?>
 <script type="text/javascript">
-	let fleetTranslate = {
-		// Titles
-		"SHIP_TYPE": "Type",
-		"SHIP_SHAPE": "Model",
+const fleetTranslate = {
+	// Titles
+	'SHIP_TYPE': 'Type',
+	'SHIP_SHAPE': 'Model',
 
-		// Types & Shapes
-		"SHIP_DEF": "Defence",
-		"SHIP_SAT_AG1": "AG-I Satellite",
-		"SHIP_SAT_AG2": "AG-II Satellite",
-		"SHIP_SAT_AG3": "AG-III Satellite",
+	// Types & Shapes
+	'SHIP_DEF': 'Defence',
+	'SHIP_SAT_AG1': 'AG-I Satellite',
+	'SHIP_SAT_AG2': 'AG-II Satellite',
+	'SHIP_SAT_AG3': 'AG-III Satellite',
 
-		"SHIP_WEP_MINES": "Space mines",
-		"SHIP_WEP_MINES_IEM": "Electromagnetic mines",
-		"SHIP_WEP_MINES_NUKE": "Nuclear mines",
+	'SHIP_WEP_MINES': 'Space mines',
+	'SHIP_WEP_MINES_IEM': 'Electromagnetic mines',
+	'SHIP_WEP_MINES_NUKE': 'Nuclear mines',
 
-		"SHIP_BATTLECRUISER": "Battlecruiser",
-		"SHIP_BATTLECRUISER_SMALL": "Small",
+	'SHIP_BATTLECRUISER': 'Battlecruiser',
+	'SHIP_BATTLECRUISER_SMALL': 'Small',
 
-		"SHIP_CUIRASSE": "Battleship",
-		"SHIP_CUIRASSE_SMALL": "Small",
+	'SHIP_CUIRASSE': 'Battleship',
+	'SHIP_CUIRASSE_SMALL': 'Small',
 
-		"SHIP_FIGHTER": "Fighter",
-		"SHIP_FIGHTER_SMALL": "Light Interceptor",
-		"SHIP_FIGHTER_MEDIUM": "Heavy Interceptor",
-		"SHIP_FIGHTER_HUGE": "Bomber",
+	'SHIP_FIGHTER': 'Fighter',
+	'SHIP_FIGHTER_SMALL': 'Light Interceptor',
+	'SHIP_FIGHTER_MEDIUM': 'Heavy Interceptor',
+	'SHIP_FIGHTER_HUGE': 'Bomber',
 
-		"SHIP_CORVET": "Corvet",
-		"SHIP_CORVET_SMALL": "Small",
+	'SHIP_CORVET': 'Corvet',
+	'SHIP_CORVET_SMALL': 'Small',
 
-		"SHIP_CARRIER": "Carrier",
-		"SHIP_CARRIER_MEDIUM": "Medium",
+	'SHIP_CARRIER': 'Carrier',
+	'SHIP_CARRIER_MEDIUM': 'Medium',
 
-		// Armes
-		"railgun": "Railgun",
-		"laser": "Laser Cannon",
-		"plasma": "Plasma Cannon",
-		"missile_explosive": "Conventional Missile",
-		"missile_nuke": "Nuclear Missile",
-		"missile_iem": "Electromagnetic Missile",
-		"missile_antimater": "Antimater Missile",
+	// Armes
+	'railgun': 'Railgun',
+	'laser': 'Laser Cannon',
+	'plasma': 'Plasma Cannon',
+	'missile_explosive': 'Conventional Missile',
+	'missile_nuke': 'Nuclear Missile',
+	'missile_iem': 'Electromagnetic Missile',
+	'missile_antimater': 'Antimater Missile',
 
-		// Defenses
-		"magnetic": "Magnetic shield",
-		"turret": "Counter-Missile turrets",
-		"projector": "Magnetic shield projector",
-		"singularity": "Singularity system",
+	// Defenses
+	'magnetic': 'Magnetic shield',
+	'turret': 'Counter-Missile turrets',
+	'projector': 'Magnetic shield projector',
+	'singularity': 'Singularity system',
 
-		// Other
-		"hangar": "Hangar",
+	// Other
+	'hangar': 'Hangar',
 
-		// Texts
-		"fleet-build-openPanel": "Build this unit",
-		"fleet-build-type-copy": "Duplicate this model",
-		"fleet-build-type-delete": "Delete model",
+	// Texts
+	'fleet-build-openPanel': 'Build this unit',
+	'fleet-build-type-copy': 'Duplicate this model',
+	'fleet-build-type-delete': 'Delete model',
+	'fleet-build-type-delete-confirmMessage': 'Do you want to delete this model ?',
 
-		"priorty-fuel": "Refuel priority",
-		"no-priorty-fuel": "No Refuel priority",
-		"orbiting": "Orbiting",
+	'priorty-fuel': 'Refuel priority',
+	'no-priorty-fuel': 'No Refuel priority',
+	'of-maxFuel': 'of reservoir',
+	'orbiting': 'Orbiting',
 
-		"recycle": "Recycle units",
-		"upgrade": "Upgrade units",
+	'transferUnits': 'Transfer units',
+	'recycle': 'Recycle units',
+	'upgrade': 'Upgrade units',
 
-		"mergeInto": "Merge into ...",
-		"transferFuel": "Transfer fuel to ...",
-		"editTactic": "Fleet Tactics",
+	'mergeInto': 'Merge into ...',
+	'transferFuel': 'Transfer fuel to ...',
+	'editTactic': 'Fleet Tactics',
 
-		"no-orbit-unit": "No unit is in orbit of this planet",
-		"no-move-unit": "No fleet is moving",
-		"no-out-unit": "No unit in orbit of another planet",
+	'no-orbit-unit': 'No unit is in orbit of this planet',
+	'no-move-unit': 'No fleet is moving',
+	'no-out-unit': 'No unit in orbit of another planet',
 
-		"movingTo": "Moving to",
-		"attacking": "Attacking",
-		"movingToDef": "Moving to defend",
-		"arriveAt": ", arriving:",
+	'movingTo': 'Moving to',
+	'attacking': 'Attacking',
+	'movingToDef': 'Moving to defend',
+	'arriveAt': ', arriving:',
 
-		"unit": "unit(s)",
-	};
+	'unit': 'unit(s)',
+};
 </script>
