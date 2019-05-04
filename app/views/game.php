@@ -642,7 +642,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 <div id="fleet-units-transfer-panel" class="small-panel">
 	<span id="fleet-units-transfer-close" class="small-panel-close">X</span>
-	<p><?= FLEET_TRANSFER_TYPE ?> <span id="fleet-units-transfer-name">SHIPNAME</span> <?= FLEET_TRANSFER_TYPETO ?> :</p>
+	<p><?= FLEET_TRANSFER_TYPE ?> <span id="fleet-units-transfer-name">SHIPNAME</span> <?= FLEET_TRANSFER_TO ?> :</p>
 	<select id="fleet-units-transfer-fleetSelect" class="ui-large-button small-panel-select">
 		<option id="-2" selected disabled><?= FLEET; ?></option>
 		<option id="-1"><?= NEW_FLEET; ?></option>
@@ -652,7 +652,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 <div id="fleet-merge-panel" class="small-panel">
 	<span id="fleet-merge-panel-close" class="small-panel-close">X</span>
-	<p><?= FLEET_TRANSFERALL_TYPE ?> <span id="fleet-merge-name">FLEETNAME</span> <?= FLEET_TRANSFER_TYPETO ?>:</p>
+	<p><?= FLEET_TRANSFERALL_TYPE ?> <span id="fleet-merge-name">FLEETNAME</span> <?= FLEET_TRANSFER_TO ?>:</p>
 	<select id="fleet-merge-fleetSelect" class="ui-large-button small-panel-select">
 		<option id="-2" selected disabled><?= FLEET; ?></option>
 		<option id="-1"><?= NEW_FLEET; ?></option>
