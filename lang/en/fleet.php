@@ -57,7 +57,7 @@
 	define('FLEET_ASSIGN_TACTIC ', 'Tactic to assign to');
 
 	//== Erreurs ==\\
-	define('FLEET_NO_MODEL','You hav\'nt models yet');
+	define('FLEET_NO_MODEL','You have\'nt models yet');
 ?>
 <script type="text/javascript">
 const fleetTranslate = {
