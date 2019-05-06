@@ -88,8 +88,8 @@ class tactics {
 		}));
 	}
 
-	static getName(tacitc) {
-		const tacticObj = tactics.getTacticById(tacitc);
+	static getName(tactic) {
+		const tacticObj = tactics.getTacticById(tactic);
 
 		if(tacticObj.name) {
 			return tacticObj.name;
@@ -145,9 +145,9 @@ class tactics {
 	}
 
 	static getTacticById(id) {
-		for(let i=0; i<units.list.length; i++) {
-			if(units.list[i].id === id) {
-				return units.list[i];
+		for(let i=0; i<tactics.tacticList.length; i++) {
+			if(tactics.tacticList[i].id === id) {
+				return tactics.tacticList[i];
 			}
 		}
 

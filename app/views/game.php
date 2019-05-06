@@ -672,6 +672,16 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-transferFuel-submit" class="ui-large-button small-panel-submit" type="submit" value="<?= CONFIRM; ?>">
 </div>
 
+<div id="fleet-assignTactic-panel" class="small-panel">
+	<span id="fleet-assignTactic-panel-close" class="small-panel-close">X</span>
+	<p><?= FLEET_ASSIGN_TACTIC ?> <span id="fleet-assignTactic-name">FLEETNAME</span>:</p>
+	<select id="fleet-assignTactic-tacticSelect" class="ui-large-button small-panel-select">
+		<option value="-2" id="-2" selected disabled><?= TACTIC; ?></option>
+		<option value="-1" id="-1"><?= DEFAULT_TACTIC; ?></option>
+	</select>
+	<input id="fleet-assignTactic-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
+</div>
+
 <div id="fleet-tacticsManager-panel">
 	<span id="fleet-tacticsManager-close" class="close-button">X</span>
 

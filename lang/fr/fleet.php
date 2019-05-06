@@ -52,6 +52,10 @@
 	define('FLEET_TACTIC_SAVE_ORDER', 'Sauvegarder l\'ordre');
 	define('FLEET_TACTIC_SAVE', 'Sauvegarder la tactique');
 
+	define('TACTIC', 'Tactique');
+	define('DEFAULT_TACTIC', 'Tactique par defaut');
+	define('FLEET_ASSIGN_TACTIC ', 'Tactique à assigner à');
+
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','Vous n\'avez encore aucun modèle');
 ?>
@@ -123,7 +127,7 @@ const fleetTranslate = {
 
 	'mergeInto': 'Fusionner dans ...',
 	'transferFuel': 'Transferer Carburant vers ...',
-	'editTactic': 'Tactiques de flotte',
+	'assignTactic': 'Assigner tactique',
 
 	'no-orbit-unit': 'Aucune unité en orbite',
 	'no-move-unit': 'Aucune flotte ne se déplace',
