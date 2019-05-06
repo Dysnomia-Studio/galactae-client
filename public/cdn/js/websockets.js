@@ -8,7 +8,7 @@ class webSockets {
 		//Catch connection errors (like server offline)
 		socket.on('connect_failed', function(){
 			kick('CONNECT_LOSS',10000,true);
-			
+
 			if(ui.research) {
 				ui.show('#hud-research');
 			}
@@ -61,6 +61,13 @@ class webSockets {
 			units.regenerateSelectFleetLists();
 			units.refresh(units.list);
 			loadScreen.complete('fleet');
+		});
+
+		// Sync the tactics
+		socket.on('tactics-recieve-data', (data) => {
+			tactics.tacticList = data;
+			tactics.drawList();
+			loadScreen.complete('tactics');
 		});
 
 		//Sync the player data

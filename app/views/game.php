@@ -497,6 +497,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<li id="fleet-orbit-button"><?= FLEET_ORBIT; ?></li>
 		<li id="fleet-move-button"><?= FLEET_MOVE; ?></li>
 		<li id="fleet-out-button"><?= FLEET_OUT; ?></li>
+		<li id="fleet-tactics-button"><?= FLEET_TACTICS; ?></li>
 	</ul>
 	<?php /* Fleet Building */ ?>
 	<div id="fleet-build">
@@ -543,7 +544,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<div id="fleet-build-buttons">
 					<img id="fleet-build-type-copy" src="<?= $cdnURL ?>img/ui/copy.svg" alt="copy">
 					<img id="fleet-build-openPanel" src="<?= $cdnURL ?>img/ui/build.svg" alt="build">
-					<img id="fleet-build-type-delete" src=<?= $cdnURL ?>img/ui/delete.svg alt="delete">
+					<img id="fleet-build-type-delete" src="<?= $cdnURL ?>img/ui/delete.svg" alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>
@@ -553,16 +554,17 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</div>
 	</div>
 	<?php /* Fleet Orbit */ ?>
-	<div id="fleet-orbit">
-		<div id="fleet-orbit-content"></div>
-	</div>
+	<div id="fleet-orbit" class="fleet-tab"></div>
 	<?php /* Fleet Moves */ ?>
-	<div id="fleet-move">
-		<div id="fleet-move-content"></div>
-	</div>
+	<div id="fleet-move" class="fleet-tab"></div>
 	<?php /* Fleet Out */ ?>
-	<div id="fleet-out">
-		<div id="fleet-out-content"></div>
+	<div id="fleet-out" class="fleet-tab"></div>
+	<?php /* Tactics */ ?>
+	<div id="fleet-tactics" class="fleet-tab">
+		<div class="text-center fleet-tactics-header">
+			<input type="button" class="ui-large-button" id="fleet-tactics-new" value="<?= TACTIC_NEW ?>">
+		</div>
+		<div id="fleets-tactics-content"></div>
 	</div>
 </div>
 
@@ -670,6 +672,53 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-transferFuel-submit" class="ui-large-button small-panel-submit" type="submit" value="<?= CONFIRM; ?>">
 </div>
 
+<div id="fleet-assignTactic-panel" class="small-panel">
+	<span id="fleet-assignTactic-panel-close" class="small-panel-close">X</span>
+	<p><?= FLEET_ASSIGN_TACTIC ?> <span id="fleet-assignTactic-name">FLEETNAME</span>:</p>
+	<select id="fleet-assignTactic-tacticSelect" class="ui-large-button small-panel-select">
+		<option value="-2" id="-2" selected disabled><?= TACTIC; ?></option>
+		<option value="-1" id="-1"><?= DEFAULT_TACTIC; ?></option>
+	</select>
+	<input id="fleet-assignTactic-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
+</div>
+
+<div id="fleet-tacticsManager-panel">
+	<span id="fleet-tacticsManager-close" class="close-button">X</span>
+
+	<ul id="fleet-tacticsManager-orderList">
+		
+	</ul>
+	<input type="button" id="fleet-tacticsManager-addOrder" class="ui-medium-button" value="<?= FLEET_TACTIC_ADD_ORDER ?>">
+
+	<div id="fleet-tacticsManager-orderEditor">
+		<label for="fleet-tacticsManager-unitType"><?= FLEET_UNIT_TYPE ?></label>
+		<select id="fleet-tacticsManager-unitType" name="fleet-tacticsManager-unitType" class="ui-large-select">
+			// GENERER OPTION
+		</select>
+		<br/>
+
+		<label for="fleet-tacticsManager-unitTarget"><?= FLEET_UNIT_TARGET ?></label>
+		<select id="fleet-tacticsManager-unitTarget" name="fleet-tacticsManager-unitType" class="ui-large-select">
+			// GENERER OPTION
+		</select>
+		<br/>
+
+		<label for="fleet-tacticsManager-priorityLevel"><?= FLEET_PRIORITY ?></label>
+		<input type="number" id="fleet-tacticsManager-priorityLevel" name="fleet-tacticsManager-priorityLevel" min="1" max="100" class="ui-large-input" value="0">
+		<br/>
+
+
+		<input type="button" id="fleet-tacticsManager-deleteOrder" name="fleet-tacticsManager-deleteOrder" class="ui-large-button" value="<?= FLEET_TACTIC_DELETE_ORDER ?>">
+		<input type="button" id="fleet-tacticsManager-saveOrder" name="fleet-tacticsManager-saveOrder" class="ui-large-button" value="<?= FLEET_TACTIC_SAVE_ORDER ?>">
+
+		<hr/>
+
+		<input type="text" id="fleet-tacticsManager-tacticName" name="fleet-tacticsManager-tacticName" class="ui-large-input" placeholder="<?= FLEET_TACTIC_NAME ?>">
+		<input type="button" id="fleet-tacticsManager-tacticSave" name="fleet-tacticsManager-tacticSave" class="ui-large-button" value="<?= FLEET_TACTIC_SAVE ?>">
+	</div>
+
+</div>
+
 <?php /* Researchs */ ?>
 <div id="hud-research">
 	<span id="research-close">X</span>
@@ -695,6 +744,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/remove-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
@@ -711,6 +761,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/research.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/tactics.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>

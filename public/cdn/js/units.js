@@ -55,6 +55,7 @@ class units {
 
 		units.drawMain();
 		units.drawFleetLists();
+		tactics.drawList();
 	}
 
 	/**
@@ -104,6 +105,12 @@ class units {
 					ui.show('#fleet-out');
 				} else {
 					ui.hide('#fleet-out');
+				}
+
+				if(this.id === 'fleet-tactics-button') {
+					ui.show('#fleet-tactics');
+				} else {
+					ui.hide('#fleet-tactics');
 				}
 
 				ui.updateBottom();
@@ -390,6 +397,34 @@ class units {
 		});
 		document.getElementById('fleet-transferFuel-close').addEventListener('click', function() {
 			ui.hide('#fleet-transferFuel-panel');
+			preventFleetHUDClosing = false;
+		});
+
+		document.getElementById('fleet-assignTactic-submit').addEventListener('click', function() {
+			const select = document.getElementById('fleet-assignTactic-tacticSelect');
+			let currTactic = select.options[select.selectedIndex].id;
+
+			if(currTactic === '-2') { return; }
+
+			if(!currTactic || currTactic === '-1') {
+				currTactic = '-1';
+			} else {
+				currTactic = tactics.tacticList[currTactic].id;
+			}
+
+			socket.emit('fleet-tactics-assign', {
+				id: userData.id,
+				username: userData.username,
+				pid: planetData.id,
+				fleetId: units.currFleet,
+				tacticId: currTactic,
+			});
+
+			ui.hide('#fleet-assignTactic-panel');
+			preventFleetHUDClosing = false;
+		});
+		document.getElementById('fleet-assignTactic-panel-close').addEventListener('click', function() {
+			ui.hide('#fleet-assignTactic-panel');
 			preventFleetHUDClosing = false;
 		});
 	}
@@ -1430,17 +1465,17 @@ class units {
 			content += '<td></td>';
 		}
 
-		// Nb unités
-		content += '<td class="text-right">' + counts.totalcount + ' ' + fleetTranslate['unit'] + '</td>';
+		// Tactique
+		content += '<td class="text-right">' + fleetTranslate['tactic'] + ': ' +  tactics.getName(fleet.tactic) + '</td>';
 
 		// Seconde ligne
 		content += '</tr><tr>';
 
-		// Hangar
+		// Nb unités - Hangar
 		if(counts.fighterCount !== 0 || counts.fighterCap !== 0) {
-			content += '<td>' + fleetTranslate['hangar'] + ': ' + counts.fighterCount + '/' + counts.fighterCap + '</td>';
+			content += '<td>' + counts.totalcount + ' ' + fleetTranslate['unit'] + ' - ' + fleetTranslate['hangar'] + ': ' + counts.fighterCount + '/' + counts.fighterCap + '</td>';
 		} else {
-			content += '<td>&nbsp;</td>'; // Non-breaking space is here to force line height
+			content += '<td>' + counts.totalcount + ' ' + fleetTranslate['unit'] + '</td>'; // Non-breaking space is here to force line height
 		}
 
 		// Prorité
@@ -1500,7 +1535,7 @@ class units {
 		content += '</tbody></table><div class="fleet-show-buttonPanel">' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-mergeInto" value="' + fleetTranslate['mergeInto'] + '" ' + disableCSS + '>' +
 			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-transferFuel" value="' + fleetTranslate['transferFuel'] + '" ' + disableCSS + '>' +
-			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-editTactic" value="' + fleetTranslate['editTactic'] + '">' +
+			'<input type="button" class="fleet-show-button ui-medium-button fleet-show-assignTactic" value="' + fleetTranslate['assignTactic'] + '">' +
 			'</div></details>';
 
 		return content;
@@ -1550,19 +1585,19 @@ class units {
 		if(orbitDOM === '') {
 			orbitDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
-		document.getElementById('fleet-orbit-content').innerHTML = orbitDOM;
+		document.getElementById('fleet-orbit').innerHTML = orbitDOM;
 
 		// Moving
 		if(movingDOM === '') {
 			movingDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
-		document.getElementById('fleet-move-content').innerHTML = movingDOM;
+		document.getElementById('fleet-move').innerHTML = movingDOM;
 
 		// Out
 		if(outDOM === '') {
 			outDOM = '<h2>' + fleetTranslate['no-orbit-unit'] + '</h2>';
 		}
-		document.getElementById('fleet-out-content').innerHTML = outDOM;
+		document.getElementById('fleet-out').innerHTML = outDOM;
 
 		// Fleet rename
 		Array.from(document.getElementsByClassName('fleet-rename')).forEach((elt) => elt.addEventListener('click', function(event) {
@@ -1639,6 +1674,35 @@ class units {
 			document.getElementById('fleet-units-transfer-name').innerText = elt.parentNode.parentNode.children[0].innerText;
 
 			ui.show('#fleet-units-transfer-panel');
+			preventFleetHUDClosing = true;
+		}));
+
+		Array.from(document.getElementsByClassName('fleet-show-assignTactic')).forEach((elt) => elt.addEventListener('click', function(event) {
+			if(preventFleetHUDClosing) { event.preventDefault(); }
+
+			units.regenerateSelectFleetLists();
+
+			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
+			units.currFleet = fleetId;
+			document.getElementById('fleet-assignTactic-name').innerText = units.getFleetName(fleetId);
+
+			const mainList = document.getElementById('fleet-assignTactic-tacticSelect');
+			while (mainList.lastChild) {
+				if(mainList.lastChild.id === '-1') { break; }
+				mainList.removeChild(mainList.lastChild);
+			}
+
+			let i = 0;
+			for(const tactic of tactics.tacticList) {
+				const option = document.createElement('option');
+				option.id = i++;
+				option.innerText = tactic.name;
+
+				mainList.appendChild(option);
+			}
+
+			ui.show('#fleet-assignTactic-panel');
+
 			preventFleetHUDClosing = true;
 		}));
 

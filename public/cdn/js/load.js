@@ -8,6 +8,7 @@ let loadStatusArr = {
 	'maps': false,
 	'load': false,
 	'service-worker': false,
+	'tactics': false,
 };
 
 class loadScreen {
@@ -22,6 +23,7 @@ class loadScreen {
 			'maps': false,
 			'load': false,
 			'service-worker': false,
+			'tactics': false,
 		};
 		loadScreen.complete();
 		ui.show('#loading-overlay');

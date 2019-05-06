@@ -622,6 +622,8 @@ const hangarMiss = {
 	hangarDouble: -10,
 };
 
+const TACTIC_MAX_ORDERS = 50;
+
 const imgCache = [
 	// Misc UI
 	'cdn/img/ui/hud-top.png',

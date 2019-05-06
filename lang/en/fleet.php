@@ -52,6 +52,10 @@
 	define('FLEET_TACTIC_SAVE_ORDER', 'Save this order');
 	define('FLEET_TACTIC_SAVE', 'Save tactic');
 
+	define('TACTIC', 'Tactic');
+	define('DEFAULT_TACTIC', 'Default tactic');
+	define('FLEET_ASSIGN_TACTIC ', 'Tactic to assign to');
+
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','You hav\'nt models yet');
 ?>
@@ -123,7 +127,7 @@ const fleetTranslate = {
 
 	'mergeInto': 'Merge into ...',
 	'transferFuel': 'Transfer fuel to ...',
-	'editTactic': 'Fleet Tactics',
+	'assignTactic': 'Assign tactic',
 
 	'no-orbit-unit': 'No unit is in orbit of this planet',
 	'no-move-unit': 'No fleet is moving',
@@ -135,5 +139,8 @@ const fleetTranslate = {
 	'arriveAt': ', arriving:',
 
 	'unit': 'unit(s)',
+
+	'tactic': 'Tactic',
+	'defaultTactic': 'Default',
 };
 </script>

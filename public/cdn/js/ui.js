@@ -80,7 +80,7 @@ class ui {
 		inputAccept.addEventListener('click', () => {
 			clearConfirmBox();
 			if(cbYes) {
-				cbNo();
+				cbYes();
 			}
 		});
 		elt.appendChild(inputAccept);
@@ -168,6 +168,9 @@ class ui {
 
 		// Load Chat UI
 		chat.loadUI();
+
+		// Load tactics UI
+		tactics.loadUI();
 
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');
@@ -559,6 +562,7 @@ class ui {
 				ui.hide('#fleet-build');
 				ui.hide('#fleet-move');
 				ui.hide('#fleet-out');
+				ui.hide('#fleet-tactics');
 				ui.fleet = true;
 
 				ui.show('#' + elt);
