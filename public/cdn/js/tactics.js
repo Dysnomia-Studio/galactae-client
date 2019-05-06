@@ -88,6 +88,16 @@ class tactics {
 		}));
 	}
 
+	static getName(tacitc) {
+		const tacticObj = tactics.getTacticById(tacitc);
+
+		if(tacticObj.name) {
+			return tacticObj.name;
+		}
+
+		return fleetTranslate['defaultTactic'];
+	}
+
 	static isUsedByFleet(id) {
 		for(const fleet of units.fleetList) {
 			if(fleet.tactic === id) {

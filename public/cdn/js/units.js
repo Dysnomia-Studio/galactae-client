@@ -1437,17 +1437,17 @@ class units {
 			content += '<td></td>';
 		}
 
-		// Nb unités
-		content += '<td class="text-right">' + counts.totalcount + ' ' + fleetTranslate['unit'] + '</td>';
+		// Tactique
+		content += '<td class="text-right">' + fleetTranslate['tactic'] + ': ' +  tactics.getName(fleet.tactic) + '</td>';
 
 		// Seconde ligne
 		content += '</tr><tr>';
 
-		// Hangar
+		// Nb unités - Hangar
 		if(counts.fighterCount !== 0 || counts.fighterCap !== 0) {
-			content += '<td>' + fleetTranslate['hangar'] + ': ' + counts.fighterCount + '/' + counts.fighterCap + '</td>';
+			content += '<td>' + counts.totalcount + ' ' + fleetTranslate['unit'] + ' - ' + fleetTranslate['hangar'] + ': ' + counts.fighterCount + '/' + counts.fighterCap + '</td>';
 		} else {
-			content += '<td>&nbsp;</td>'; // Non-breaking space is here to force line height
+			content += '<td>' + counts.totalcount + ' ' + fleetTranslate['unit'] + '</td>'; // Non-breaking space is here to force line height
 		}
 
 		// Prorité

@@ -135,5 +135,8 @@ const fleetTranslate = {
 	'arriveAt': ', arriving:',
 
 	'unit': 'unit(s)',
+
+	'tactic': 'Tactic',
+	'defaultTactic': 'Default',
 };
 </script>
