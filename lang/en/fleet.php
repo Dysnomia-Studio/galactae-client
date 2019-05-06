@@ -54,7 +54,7 @@
 
 	define('TACTIC', 'Tactic');
 	define('DEFAULT_TACTIC', 'Default tactic');
-	define('FLEET_ASSIGN_TACTIC ', 'Tactic to assign to');
+	define('FLEET_ASSIGN_TACTIC', 'Tactic to assign to');
 
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','You have\'nt models yet');
