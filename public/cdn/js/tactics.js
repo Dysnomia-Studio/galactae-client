@@ -20,6 +20,21 @@ class tactics {
 		document.getElementById('fleet-tacticsManager-deleteOrder').addEventListener('click', () => {
 			tactics.deleteOrder();
 		});
+
+		document.getElementById('fleet-tacticsManager-priorityLevel').addEventListener('change', function() {
+			if(Number.isNaN(parseInt(this.value))) {
+				this.value = 1;
+				return;
+			}
+
+			if(this.value < 1) {
+				this.value = 1;
+			}
+
+			if(this.value > 100) {
+				this.value = 100;
+			}
+		});
 	}
 
 	static drawList() {
@@ -134,7 +149,7 @@ class tactics {
 
 		let unitType = 0,
 			unitTarget = 0,
-			priorityLevel = 0;
+			priorityLevel = 1;
 
 		if(currOrder !== undefined) {
 			// Unit Type
@@ -166,6 +181,8 @@ class tactics {
 		// Unit Types
 		let unitTypesHTML = '';
 		for(let i=0; i<units.list.length; i++) {
+			if(units.list[i].id.includes('SHIP_WEP_MINES')) { continue; }
+
 			unitTypesHTML += '<option value="' + i + '">' + units.list[i].name + '</option>';
 		}
 		document.getElementById('fleet-tacticsManager-unitType').innerHTML = unitTypesHTML;
@@ -233,7 +250,7 @@ class tactics {
 		}
 
 		// Draw name
-		document.getElementById('fleet-tacticsManager-tacticName').innerText = tactics.currTactic.name;
+		document.getElementById('fleet-tacticsManager-tacticName').value = tactics.currTactic.name;
 
 		// Draw orders
 		tactics.currOrder = -1;
@@ -282,7 +299,7 @@ class tactics {
 		if(document.getElementById('fleet-tacticsManager-tacticName').value.replace(/ /g, '') === '' ||
 			tactics.currTactic.orders.length === 0) { return; }
 
-		tactics.currTactic.name = document.getElementById('fleet-tacticsManager-tacticName');
+		tactics.currTactic.name = document.getElementById('fleet-tacticsManager-tacticName').value;
 
 		socket.emit('tactics-upsert', {
 			id: userData.id,

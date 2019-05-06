@@ -694,7 +694,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<br/>
 
 		<label for="fleet-tacticsManager-priorityLevel"><?= FLEET_PRIORITY ?></label>
-		<input type="number" id="fleet-tacticsManager-priorityLevel" name="fleet-tacticsManager-priorityLevel" class="ui-large-input" value="1">
+		<input type="number" id="fleet-tacticsManager-priorityLevel" name="fleet-tacticsManager-priorityLevel" min="1" max="100" class="ui-large-input" value="0">
 		<br/>
 
 

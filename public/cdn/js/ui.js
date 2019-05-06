@@ -80,7 +80,7 @@ class ui {
 		inputAccept.addEventListener('click', () => {
 			clearConfirmBox();
 			if(cbYes) {
-				cbNo();
+				cbYes();
 			}
 		});
 		elt.appendChild(inputAccept);
