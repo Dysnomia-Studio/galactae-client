@@ -521,8 +521,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						<th id="fleet-build-list-type-note"><?= FLEET_BUILD_NOTE; // Sa note estimée par le systeme		 ?></th>
 					</tr>
 				</thead>
-				<tbody>
-				</tbody>
+				<tbody id="fleet-build-list-tbody"></tbody>
 			</table>
 
 			<div id="fleet-build-info">

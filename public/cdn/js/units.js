@@ -83,34 +83,20 @@ class units {
 
 				ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
-				if(this.id === 'fleet-build-button') {
-					ui.show('#fleet-build');
-				} else {
-					ui.hide('#fleet-build');
-				}
+				const buttonList = [
+					'fleet-build',
+					'fleet-orbit',
+					'fleet-move',
+					'fleet-out',
+					'fleet-tactics',
+				];
 
-				if(this.id === 'fleet-orbit-button') {
-					ui.show('#fleet-orbit');
-				} else {
-					ui.hide('#fleet-orbit');
-				}
-
-				if(this.id === 'fleet-move-button') {
-					ui.show('#fleet-move');
-				} else {
-					ui.hide('#fleet-move');
-				}
-
-				if(this.id === 'fleet-out-button') {
-					ui.show('#fleet-out');
-				} else {
-					ui.hide('#fleet-out');
-				}
-
-				if(this.id === 'fleet-tactics-button') {
-					ui.show('#fleet-tactics');
-				} else {
-					ui.hide('#fleet-tactics');
+				for(const buttonName of buttonList) {
+					if(this.id === buttonName + '-button') {
+						ui.show('#' + buttonName);
+					} else {
+						ui.hide('#' + buttonName);
+					}
 				}
 
 				ui.updateBottom();
@@ -530,6 +516,44 @@ class units {
 		return -1;
 	}
 
+	static drawCurrentInBuildingUnitMessage() {
+		if(planetData.unitBuildingEndTime > (Date.now() + planetUI.deltaNow)) { // An unit is building
+			const dateNow = new Date();
+			const dateEnd = new Date(parseInt(planetData.unitBuildingEndTime) + planetUI.deltaNow);
+			const dateTom = new Date(Date.now() + TIME.DAY_TO_MS);
+
+			if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
+				document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
+					' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
+					translate.messages['UNIT_CURR_BUILD_02'] +
+					' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
+					translate.messages['BUILD_FINISH_TODAY_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
+			} else if(dateTom.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Tomorrow
+				document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
+					' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
+					translate.messages['UNIT_CURR_BUILD_02'] +
+					' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
+					translate.messages['BUILD_FINISH_TOMORROW_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
+			} else {
+				document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
+					' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
+					translate.messages['UNIT_CURR_BUILD_02'] +
+					' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
+					translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
+			}
+
+			if(dateNow.toLocaleDateString() !== dateEnd.toLocaleDateString()) {
+				units.unitPanelTimeout = setTimeout(function() {
+					units.drawMain();
+				},(((TIME.DAY_TO_HOUR - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (TIME.HOUR_TO_MINUTES - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + ((TIME.MINUTES_TO_SECONDS + TIME.SECOND_MARGIN) - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh at 00:00:05
+			} else {
+				units.unitPanelTimeout = setTimeout(function() {
+					planetUI.sync();
+				},(((dateEnd.getHours() - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (dateEnd.getMinutes() - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + (dateEnd.getSeconds() + TIME.SECOND_MARGIN - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh 5 sec after end
+			}
+		}
+	}
+
 	/**
 	 * Draw mail UI
 	 *
@@ -574,10 +598,7 @@ class units {
 				}
 			}
 
-			let DOMElts = document.querySelectorAll('#fleet-build-list tbody');
-			for(let i=0; i<DOMElts.length; i++) {
-				DOMElts[i].innerHTML = content;
-			}
+			document.getElementById('fleet-build-list-tbody').innerHTML = content;
 			units.selectUnit();
 
 			ui.show('#fleet-build-list','inline-block');
@@ -594,44 +615,10 @@ class units {
 				units.unitPanelTimeout = -1;
 			}
 
-			if(planetData.unitBuildingEndTime > (Date.now() + planetUI.deltaNow)) { // An unit is building
-				const dateNow = new Date();
-				const dateEnd = new Date(parseInt(planetData.unitBuildingEndTime) + planetUI.deltaNow);
-				const dateTom = new Date(Date.now() + TIME.DAY_TO_MS);
-
-				if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
-					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
-						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
-						translate.messages['UNIT_CURR_BUILD_02'] +
-						' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
-						translate.messages['BUILD_FINISH_TODAY_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
-				} else if(dateTom.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Tomorrow
-					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
-						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
-						translate.messages['UNIT_CURR_BUILD_02'] +
-						' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
-						translate.messages['BUILD_FINISH_TOMORROW_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
-				} else {
-					document.getElementById('fleet-build-message').innerHTML = '<em>' + planetData.unitBuildingCount + '</em> ' + translate.messages['UNIT_CURR_BUILD_01'] +
-						' <em>' +	units.getUnitName(planetData.unitBuildingID) + '</em> ' +
-						translate.messages['UNIT_CURR_BUILD_02'] +
-						' <em>' + units.getFleetName(planetData.unitBuildingFleetID) + '</em>. ' +
-						translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
-				}
-
-				if(dateNow.toLocaleDateString() !== dateEnd.toLocaleDateString()) {
-					units.unitPanelTimeout = setTimeout(function() {
-						units.drawMain();
-					},(((TIME.DAY_TO_HOUR - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (TIME.HOUR_TO_MINUTES - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + ((TIME.MINUTES_TO_SECONDS + TIME.SECOND_MARGIN) - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh at 00:00:05
-				} else {
-					units.unitPanelTimeout = setTimeout(function() {
-						planetUI.sync();
-					},(((dateEnd.getHours() - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (dateEnd.getMinutes() - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + (dateEnd.getSeconds() + TIME.SECOND_MARGIN - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh 5 sec after end
-				}
-			}
+			units.drawCurrentInBuildingUnitMessage();
 
 			// Fleet Build
-			DOMElts = document.querySelectorAll('#fleet-build-list tbody tr');
+			const DOMElts = document.querySelectorAll('#fleet-build-list tbody tr');
 			for(let i=0; i<DOMElts.length; i++) {
 				DOMElts[i].addEventListener('click', function() {
 					if(preventFleetHUDClosing) { return; }
@@ -1288,6 +1275,36 @@ class units {
 		document.getElementById(div + '-miss-val').innerText = miss + '%';
 	}
 
+	static getWeaponList(unitId) {
+		const armes = {};
+		for(let i=0; i<units.list[unitId].parts.length; i++) {
+			if(units.list[unitId].parts[i].type !== 'cannon' && units.list[unitId].parts[i].type !== 'rocketLauncher') { continue; }
+			if(units.list[unitId].parts[i].tech === 'none') { continue; }
+			if(armes[units.list[unitId].parts[i].tech] === undefined) {
+				armes[units.list[unitId].parts[i].tech] = 1;
+			} else {
+				armes[units.list[unitId].parts[i].tech]++;
+			}
+		}
+
+		return armes;
+	}
+
+	static getDefenseList(unitId) {
+		const defenses = {};
+		for(let i=0; i<units.list[unitId].parts.length; i++) {
+			if(units.list[unitId].parts[i].type !== 'shield') { continue; }
+			if(units.list[unitId].parts[i].tech === 'none') { continue; }
+			if(defenses[units.list[unitId].parts[i].tech] === undefined) {
+				defenses[units.list[unitId].parts[i].tech] = 1;
+			} else {
+				defenses[units.list[unitId].parts[i].tech]++;
+			}
+		}
+
+		return defenses;
+	}
+
 	/**
 	 * Changes current selected unit (in unit type list)
 	 *
@@ -1303,17 +1320,8 @@ class units {
 
 		// Weapons
 		let armesText = '';
-		if(units.list[id].shipShape.substr(0,'SHIP_WEP_MINES'.length) !== 'SHIP_WEP_MINES') {
-			const armes = {};
-			for(let i=0; i<units.list[id].parts.length; i++) {
-				if(units.list[id].parts[i].type !== 'cannon' && units.list[id].parts[i].type !== 'rocketLauncher') { continue; }
-				if(units.list[id].parts[i].tech === 'none') { continue; }
-				if(armes[units.list[id].parts[i].tech] === undefined) {
-					armes[units.list[id].parts[i].tech] = 1;
-				} else {
-					armes[units.list[id].parts[i].tech]++;
-				}
-			}
+		if(!units.list[id].shipShape.includes('SHIP_WEP_MINES')) {
+			const armes = units.getWeaponList(id);
 			for(const i in armes) {
 				if(armesText !== '') { armesText += ', '; }
 				let translation = fleetTranslate[i];
@@ -1324,6 +1332,7 @@ class units {
 			}
 		}
 		if(armesText !== '') {
+			ui.show('#fleet-build-stat-attack');
 			document.getElementById('fleet-build-stat-attack-val').innerText = armesText;
 		} else {
 			ui.hide('#fleet-build-stat-attack');
@@ -1331,30 +1340,22 @@ class units {
 
 		// Shields
 		let shieldText = '';
-		if(units.list[id].shipShape.substr(0,'SHIP_WEP_MINES'.length) !== 'SHIP_WEP_MINES') {
-			const shields = {};
-			for(let i=0; i<units.list[id].parts.length; i++) {
-				if(units.list[id].parts[i].type !== 'shield') { continue; }
-				if(units.list[id].parts[i].tech === 'none') { continue; }
-				if(shields[units.list[id].parts[i].tech] === undefined) {
-					shields[units.list[id].parts[i].tech] = 1;
-				} else {
-					shields[units.list[id].parts[i].tech]++;
-				}
-			}
+		if(!units.list[id].shipShape.includes('SHIP_WEP_MINES')) {
+			const shields = units.getDefenseList(id);
 			for(const i in shields) {
 				if(shieldText !== '') { shieldText += ', '; }
 				shieldText += shields[i] + 'x ' + fleetTranslate[i];
 			}
 		}
 		if(shieldText !== '') {
+			ui.show('#fleet-build-stat-shield');
 			document.getElementById('fleet-build-stat-shield-val').innerText = shieldText;
 		} else {
 			ui.hide('#fleet-build-stat-shield');
 		}
 
 		// Boutons
-		if(units.list[id].shipShape.substr(0,'SHIP_WEP_MINES'.length) === 'SHIP_WEP_MINES') {
+		if(units.list[id].shipShape.includes('SHIP_WEP_MINES')) {
 			ui.hide('#fleet-build-type-copy');
 			ui.hide('#fleet-build-type-delete');
 			ui.hide('#fleet-build-rename');
