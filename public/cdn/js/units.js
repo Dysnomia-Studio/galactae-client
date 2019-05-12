@@ -998,6 +998,32 @@ class units {
 		units.updateTypeCreateStats();
 	}
 
+	static getTooltipText(type, tech, subEngineCount, supEngineCount) {
+		let content = '';
+
+		let desc = fleetTranslate[tech + '_desc'];
+		if(type === 'sub_propulsion') {
+			let refSpeed = shipPartsSpeed[tech][0]*10000 + shipPartsSpeed[tech][1]*100 + shipPartsSpeed[tech][2];
+			refSpeed = SYSTEM_AU_SIZE/(refSpeed * TIME.HOUR_TO_SECONDS);
+			refSpeed *= Math.pow(1.5, subEngineCount - 1);
+
+			desc = desc.replace('%speed%', refSpeed.toFixed(3));
+		} else if(type === 'sup_propulsion') {
+			let refSpeed = shipPartsSpeed[tech][0]*100 + shipPartsSpeed[tech][1]*10 + shipPartsSpeed[tech][2];
+			refSpeed = GALACTIC_PARSEC_SIZE/(refSpeed * TIME.HOUR_TO_SECONDS);
+			refSpeed *= Math.pow(1.5, supEngineCount - 1);
+
+			desc = desc.replace('%speed%', refSpeed.toFixed(3));
+		} else if(type === 'hangar') {
+			desc = desc.replace('%hangarCapacity%', hangarSize[tech]);
+		}
+
+		content += '<span style="color:#93fcfc">' + fleetTranslate[tech] + '</span><br/>';
+		content += desc;
+
+		return content;
+	}
+
 	/**
 	 * Draw the svg ship shape (UI creation)
 	 *
@@ -1009,6 +1035,9 @@ class units {
 		document.getElementById('fleet-type-create-selects').innerHTML = '';
 		let svgContent = '';
 		const clickEvent = [];
+
+		const subEngineCount = shape.filter(e => e[0] === 'sub_propulsion').length,
+			supEngineCount = shape.filter(e => e[0] === 'sup_propulsion').length;
 
 		for(let i=0; i<shape.length; i++) {
 			const id = i;
@@ -1085,7 +1114,8 @@ class units {
 						'display: block;' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
-						'"></a></dt>' +
+						'" class="tooltip">' +
+						'<span class="tooltip-wrapper tooltip-wrapper-right"><span class="tooltip-content">' + units.getTooltipText(shape[i][0], content[shape[i][0]][0], subEngineCount, supEngineCount) + '</span></span></a></dt>' +
 						'<dd><ul></ul></dd>' +
 					'</dl>';
 
@@ -1095,7 +1125,8 @@ class units {
 						'background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
-						'"></a></li>';
+						'"class="tooltip">' +
+						'<span class="tooltip-wrapper tooltip-wrapper-right"><span class="tooltip-content">' + units.getTooltipText(shape[i][0], content[shape[i][0]][eltId], subEngineCount, supEngineCount) + '</span></span></a></li>';
 				}
 
 				clickEvent.push(id);
@@ -1131,6 +1162,7 @@ class units {
 					ui.hide('#part-selecting-seen-' + id + ' dd ul');
 
 					const source = document.getElementById('part-selecting-hidden-' + id);
+					const selectedElement = document.querySelector('#part-selecting-seen-' + id + ' dt a');
 
 					if(source.getAttribute('parttype') === 'sub_propulsion' ||
 						source.getAttribute('parttype') === 'sup_propulsion') {
@@ -1147,9 +1179,14 @@ class units {
 						source.value = this.getAttribute('value');
 
 						for(let currSelect=0; currSelect<this.style.length; currSelect++) {
-							document.querySelector('#part-selecting-seen-' + id + ' dt a').style[this.style[currSelect]] = this.style[this.style[currSelect]];
+							selectedElement.style[this.style[currSelect]] = this.style[this.style[currSelect]];
 						}
 					}
+
+					// Replace element tooltip
+					selectedElement.removeChild(selectedElement.firstChild);
+					const dupTooltip = this.firstChild.cloneNode(true);
+					selectedElement.appendChild(dupTooltip);
 
 					units.updateTypeCreateStats();
 				});

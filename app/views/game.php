@@ -132,11 +132,11 @@
 <div id="hud-top">
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/population.png" alt="population">
 			<span class="nmb" id="population_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="population-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="population-tooltips">
 					<?= POPULATION; ?><br/>
 					<?= AVAILABLE; ?>: <span id="population-available">XXX</span><br/>
 					<?= USED; ?>: <span id="population-used">XXX</span><br/>
@@ -151,11 +151,11 @@
 		<img height="15" src="<?= $cdnURL ?>img/ui/moral.png" alt="moral">
 		<span class="nmb" id="moral_nmb">1</span>
 
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/electricity.svg" alt="electricity">
 			<span class="nmb" id="electricity_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="electricity-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="electricity-tooltips">
 					<?= ELECTRICITY; ?><br/>
 					<?= AVAILABLE; ?>: <span id="electricity-available">XXX t</span><br/>
 					<?= USED; ?>: <span id="electricity-used">XXX t</span><br/>
@@ -175,11 +175,11 @@
 
 	<div id="hud-top-right">
 		<span id="hud-top-right-moveLeft">&#9664;</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="20" src="<?= $cdnURL ?>img/ui/minerals.png" alt="minerals">
 			<span class="nmb" id="minerals_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="minerals-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="minerals-tooltips">
 					<?= MINERALS; ?><br/>
 					<?= CAPACITY; ?>: <span id="minerals-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="minerals-prod">XXX t</span><br/>
@@ -187,22 +187,22 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">&sup3;He </span>
 			<span class="nmb" id="he_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="he-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="he-tooltips">
 					<?= HELIUM3; ?><br/>
 					<?= CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Al </span>
 			<span class="nmb" id="al_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="al-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="al-tooltips">
 					<?= METAL_ALUMINIUM; ?><br/>
 					<?= CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
@@ -210,11 +210,11 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element" id="element_fe">Fe </span>
 			<span class="nmb" id="fe_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="fe-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="fe-tooltips">
 					<?= METAL_IRON; ?><br/>
 					<?= CAPACITY; ?>: <span id="fe-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="fe-prod">XXX t</span><br/>
@@ -222,11 +222,11 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Ti </span>
 			<span class="nmb" id="ti_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="ti-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="ti-tooltips">
 					<?= METAL_TITANIUM; ?><br/>
 					<?= CAPACITY; ?>: <span id="ti-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="ti-prod">XXX t</span><br/>
@@ -234,11 +234,11 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Cu </span>
 			<span class="nmb" id="cu_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="cu-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="cu-tooltips">
 					<?= METAL_COPPER; ?><br/>
 					<?= CAPACITY; ?>: <span id="cu-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="cu-prod">XXX t</span><br/>
@@ -252,84 +252,84 @@
 <?php /* HUD Bottom */ ?>
 <div id="hud-bottom">
 	<div id="hud-bottom-left">
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#map" id="hud-bottom-button-map"><img src="<?= $cdnURL ?>img/ui/map.svg" alt="map"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_MAP; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_MAP; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#researchs" id="hud-bottom-button-research"><img src="<?= $cdnURL ?>img/ui/researchs.svg" alt="researchs"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RESEARCH; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RESEARCH; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#units" id="hud-bottom-button-units"><img src="<?= $cdnURL ?>img/ui/units.svg" alt="units"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_UNITS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_UNITS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?= $cdnURL ?>img/ui/fleets.png" alt="fleets"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_FLEETS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_FLEETS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#radar" id="hud-bottom-button-radar"><img src="<?= $cdnURL ?>img/ui/radar.svg" alt="radar"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RADAR; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RADAR; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#ally" id="hud-bottom-button-ally"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>
 		</span>
 	</div>
 	<div id="hud-bottom-right">
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#quests" id="hud-bottom-button-quests"><img src="<?= $cdnURL ?>img/ui/quests.svg" alt="quests"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_QUEST; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_QUEST; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#trade" id="hud-bottom-button-trade"><img src="<?= $cdnURL ?>img/ui/trade.svg" alt="trade"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_TRADE; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_TRADE; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?= $cdnURL ?>img/ui/ranks.svg" alt="ranks"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RANKS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RANKS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#profil" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_PROFIL; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_PROFIL; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#messages" id="hud-bottom-button-messages"><img src="<?= $cdnURL ?>img/ui/messages.svg" alt="messages"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_MESSAGES; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_MESSAGES; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#chat" id="hud-bottom-button-chat"><img src="<?= $cdnURL ?>img/ui/chat.svg" alt="chat"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_CHAT; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_CHAT; ?></span>
 			</span>
 		</span>
 	</div>

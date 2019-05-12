@@ -27,13 +27,13 @@ translate['research'] = {
 	// Armes
 	wep_railgun:		{ name: 'Railgun cannon', desc: 'Cannon speed up projectile with an electromagnetic field.' },
 	wep_nuke:			{ name: 'Nuclear weapons', desc: 'Massive and radioactive destruction weapon.' },
-	wep_laser:			{ name: 'Laser weapons', desc: '' },
-	wep_plasma:			{ name: 'Plasma weapons', desc: '' },
+	wep_laser:			{ name: 'Laser weapons', desc: 'Laser powered weapons' },
+	wep_plasma:			{ name: 'Plasma weapons', desc: 'Highly heated projectile weapons' },
 	// Shields & Defenses
-	def_turret:			{ name: 'Counter-Missile turrets', desc: '' },
-	def_shield_magnetic:{ name: 'Magnetic shield', desc: '' },
-	def_shield_projector:{ name: 'Magnetic shield projector', desc: '' },
-	def_shield_singularity:{ name: 'Singularity system', desc: '' },
+	def_turret:			{ name: 'Counter-Missile turrets', desc: 'Turret used to intercept explosive projectiles' },
+	def_shield_magnetic:{ name: 'Magnetic shield', desc: 'Shield using electromagnetic force to repulse projectiles' },
+	def_shield_projector:{ name: 'Magnetic shield projector', desc: 'Magnetic shield projected on allied ship' },
+	def_shield_singularity:{ name: 'Singularity system', desc: 'System that bring light projectiles targetting allied ships to current ship' },
 	// Hangar
 	hangarDouble:		{ name: 'Double Hangar', desc: 'The double hangar can store about 2 times interceptors than usual hangars.' },
 	// Mines

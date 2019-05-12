@@ -787,37 +787,46 @@ select, input, summary {
 }
 
 /* Tooltips */
-.hud-top-tooltip {
+.tooltip {
 	display: inline-block;
 	height: 100%;
 }
-.hud-top-tooltip-wrapper {
+.tooltip-wrapper {
 	position: absolute;
 	visibility: hidden;
-
+}
+.tooltip-wrapper-top {
+	bottom: 3.2em;
+}
+.tooltip-wrapper-bottom {
 	top: 2.5em;
 }
+.tooltip-wrapper-right {
+	left: 80px;
+}
 /* Events */
-.hud-top-tooltip:hover .hud-top-tooltip-wrapper {
+.tooltip:hover .tooltip-wrapper {
 	visibility: visible;
 }
 /* Tooltip */
-.hud-top-tooltip-content {
+.tooltip-content {
 	display: block;
 	position: relative;
 
 	top: 0;
-	right: 75%;
+	right: 85%;
 
-	width: 150px;
+	width: 125px;
 	background-color: #222222;
 	text-align: center !important;
 	padding: 5px 0;
 	border-radius: 6px;
 	font-size: 0.7em;
+
+	z-index: 1000;
 }
 /* Tooltip arrow */
-.hud-top-tooltip-content::after {
+.tooltip-wrapper-bottom .tooltip-content::after {
 	content: "";
 	position: absolute;
 	bottom: 100%;
@@ -827,6 +836,42 @@ select, input, summary {
 	border-style: solid;
 	border-color: #222222 transparent transparent transparent;
 	transform: rotate(180deg);
+}
+
+.tooltip-wrapper-top .tooltip-content::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 49%;
+	margin-left: -5px;
+	border-width: 10px;
+	border-style: solid;
+	border-color: #222222 transparent transparent transparent;
+}
+
+.tooltip-wrapper-right .tooltip-content::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -10px;
+	border-width: 10px;
+	border-style: solid;
+	border-color: transparent #222222 transparent transparent;
+}
+
+.tooltip-wrapper-right .tooltip-content {
+	right: 15%;
+}
+
+.tooltips-hud-bottom {
+	margin-left: 10px !important;
+}
+.tooltips-hud-bottom .tooltip-content {
+	width: 75px;
+}
+.tooltips-hud-bottom .tooltip-content::after {
+	margin-left: -10px;
 }
 /**
  * Hud Bottom
@@ -884,45 +929,6 @@ select, input, summary {
 	padding-right: 2.5vw;
 
 	background-image: url('../img/ui/hud-bottom-left.png');
-}
-/* Tooltips */
-.hud-bottom-tooltip {
-	display: inline-block;
-	height: 100%;
-}
-.hud-bottom-tooltip-wrapper {
-	position: absolute;
-	visibility: hidden;
-
-	bottom: 2.5em;
-}
-/* Events */
-.hud-bottom-tooltip:hover .hud-bottom-tooltip-wrapper {
-	visibility: visible;
-}
-/* Tooltip */
-.hud-bottom-tooltip-content {
-	display: block;
-	position: relative;
-
-	top: -1vw;
-
-	background-color: #222222;
-	text-align: center !important;
-	padding: 0.4em 1em;
-	border-radius: 6px;
-	font-size: 0.7em;
-}
-/* Tooltip arrow */
-.hud-bottom-tooltip-content::after {
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 1vw;
-	margin-left: 0;
-	border-width: 10px;
-	border-style: solid;
-	border-color: #222222 transparent transparent transparent;
 }
 #hud-bottom-left .hud-bottom-tooltip-content {
 	right: calc(2vw + 0.5rem);
@@ -1411,11 +1417,11 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	width: 140px;
 }
 #fleet-type-create-shipShape {
-	left: 160px;
+	left: 180px;
 	width: 140px;
 }
 #fleet-type-create-name {
-	left: 305px;
+	left: 345px;
 	width: 140px;
 	height: 42px;
 	padding: 2px 5px;

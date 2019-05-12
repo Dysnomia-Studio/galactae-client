@@ -27,13 +27,13 @@ translate['research'] = {
 	// Armes
 	wep_railgun:		{ name: 'Canons éléctriques', desc: 'Aussi connu sous le nom de railgun, accélère les projectiles par une force électromagnetique.' },
 	wep_nuke:			{ name: 'Armes nucléaires', desc: 'Arme de destruction massive radioactive.' },
-	wep_laser:			{ name: 'Armes lasers', desc: '' },
-	wep_plasma:			{ name: 'Armes plasma', desc: '' },
+	wep_laser:			{ name: 'Armes lasers', desc: 'Armes à laser' },
+	wep_plasma:			{ name: 'Armes plasma', desc: 'Armes à projectiles à très haute température' },
 	// Shields & Defenses
-	def_turret:			{ name: 'Tourelles anti-projectiles', desc: '' },
-	def_shield_magnetic:{ name: 'Bouclier magnetique', desc: '' },
-	def_shield_projector:{ name: 'Projecteur de bouclier', desc: '' },
-	def_shield_singularity:{ name: 'Systeme à Singularité', desc: '' },
+	def_turret:			{ name: 'Tourelles anti-projectiles', desc: 'Tourelles utilisées afin d\'intercepter les projectiles explosifs' },
+	def_shield_magnetic:{ name: 'Bouclier magnetique', desc: 'Bouclier utilisant la force electromagnetique pour repousser les projectiles' },
+	def_shield_projector:{ name: 'Projecteur de bouclier', desc: 'Bouclier magnetique reporté sur un vaisseau allié' },
+	def_shield_singularity:{ name: 'Systeme à Singularité', desc: 'Système permettant d\'attirer les projectiles légers visant des vaisseaux alliés vers le vaisseau courant' },
 	// Hangar
 	hangarDouble:		{ name: 'Hangar Double', desc: 'Le hangar double permet de stocker près de deux fois plus de chasseurs qu\'un hangar normal.' },
 	// Mines
