@@ -171,6 +171,7 @@
 		<span id="hud-planet-prev" onclick="planetUI.prev();">&#9664;</span>
 		<span id="hud-planet-name">SomeLongName</span>
 		<span id="hud-planet-next" onclick="planetUI.next();">&#9654;</span>
+		<img id="hud-gameMenu" height="15" src="<?= $cdnURL ?>img/ui/gameMenu.png" alt="gameMenu">
 	</div>
 
 	<div id="hud-top-right">
@@ -334,14 +335,17 @@
 		</span>
 	</div>
 </div>
-<?php /* ESC */ ?>
-<div id="settings-menu">
+<?php /* Main menu */ ?>
+<div id="game-menu">
 	<a href="https://galactae.eu/portal"><?= PORTAL; ?></a><br/>
 	<a href="https://galactae.eu/profil"><?= PROFIL; ?></a><br/>
 	<a href="https://galactae.eu/forum"><?= FORUM; ?></a><br/>
 	<a href="https://galactae.eu/support"><?= SUPPORT; ?></a><br/>
-	<a href="#settings-tabs"><?= SETTINGS; ?></a><br/>
 	<a href="https://galactae.eu/deconnexion"><?= DISCONNECT; ?></a>
+</div>
+<?php /* Settings menu */ ?>
+<div id="settings-menu">
+
 </div>
 <?php /* Chat */ ?>
 <div id="hud-chat">

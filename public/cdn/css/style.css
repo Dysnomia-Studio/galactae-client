@@ -523,9 +523,9 @@ select, input, summary {
 	width: 100%;
 }
 /**
- * Settings Menu
+ * Game Menu
  */
-#settings-menu {
+#game-menu {
 	position: fixed;
 	
 	left: 30.5vw;
@@ -547,65 +547,22 @@ select, input, summary {
 	z-index: 200;
 }
 @media (min-width: 1000px) {
-	#settings-menu {
+	#game-menu {
 		top: 3vw;
 	}
 }
 @media (max-width: 1000px) {
-	#settings-menu {
+	#game-menu {
 		top: 30px;
 	}
 }
-#settings-menu a {
+#game-menu a {
 	text-decoration: none;
 }
-#settings-menu a:hover {
+#game-menu a:hover {
 	font-weight: bold;
 }
-@media (min-width: 650px) and (min-height: 450px) {
-	#settings-tabs {
-		display: none;
 
-		box-sizing: content-box;
-
-		background-color: #0b1012;
-		border: 1px solid #0EC6C6;
-
-		width: 600px;
-		height: 400px;
-
-		position: fixed;
-		top: calc(50% - 200px);
-		left: calc(50% - 300px);
-	}
-	#settings-tabs-close {
-		position: absolute;
-		top: 0.52vw;
-		right: 0.89vw;
-	}
-}
-@media (max-width: 649px), (max-height: 449px) {
-	#settings-tabs {
-		display: none;
-
-		width: calc(100% - 2em);
-		height: calc(100% - 70px - 0.4em);
-
-		padding: 35px 1em;
-		padding-bottom: calc(35px + 0.4em);
-
-		position: fixed;
-		top: 0;
-		left: 0;
-
-		background-color: #0b1012;
-	}
-	#settings-tabs-close {
-		position: absolute;
-		top: 35px;
-		right: 0.89vw;
-	}
-}
 /**
  * HUD Top
  */
@@ -638,27 +595,13 @@ select, input, summary {
 	
 	width: calc(43vw - 3em);
 }
+#hud-top-center span, #hud-top-center img {
+	vertical-align: middle;
+}
 #hud-top-center {
 	width: 27.5vw;
 
 	margin: 0 3vw;
-}
-#hud-top-center ul {
-	list-style: none;
-
-	margin: 0;
-	padding: 0;
-	height: 95%;
-}
-#hud-top-center span, #hud-top-center img {
-	display: inline-block;
-	vertical-align: top;
-}
-#hud-top-center span {
-	height: 100%;
-}
-#hud-top-center img {
-	max-height: 100%;
 }
 @media (max-width: 600px) {
 	#hud-top-center {
@@ -679,8 +622,10 @@ select, input, summary {
 	margin: 0 1.5em;
 	white-space:nowrap;
 }
-#hud-top-left, #hud-top-center, #hud-top-right {
+#hud-top-left, #hud-top-right {
 	height: 2vw;
+}
+#hud-top-left, #hud-top-center, #hud-top-right {
 	min-height: 17px;
 
 	display: inline-block;
@@ -1484,7 +1429,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	 z-index: 100;
 }
 #fleet-close, #research-close, #map-close, #hud-ranks-close, #news-close, #building-quit, #fleet-type-create-close,
-#fleet-ship-build-close, #settings-tabs-close, .close-button { 
+#fleet-ship-build-close, .close-button { 
 	cursor: url(../img/mouse_pointer.png), pointer; 
 	font-size: 1.2rem;
 }

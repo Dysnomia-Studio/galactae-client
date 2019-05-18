@@ -84,20 +84,21 @@ class settings {
 	 */
 	static loadUI() {
 		document.getElementById('hud-settings').addEventListener('click', function () {
-			if(ui.menu) {
+			if(ui.settingsMenu) {
 				ui.closeTab('#settings-menu');
 			} else {
 				ui.show('#settings-menu');
 			}
-			ui.menu = !(ui.menu);
+			ui.settingsMenu = !(ui.settingsMenu);
 		});
-		document.addEventListener('click', function(e) {
-			if(ui.menu && e.target.id != 'settings-menu' && e.target.id != 'hud-settings') {
-				ui.closeTab('#settings-menu', false);
-				ui.menu = !(ui.menu);
-			}
-		});
+
+		settings.initUI();
 	}
+
+	static initUI() {
+
+	}
+
 	/**
 	 * Get a setting value
 	 *
@@ -127,7 +128,7 @@ class settings {
 	 * @param      {string}  settingName  The setting name
 	 * @param      {?}  value        The value
 	 */
-	static set(settingName,value) {
+	static set(settingName, value) {
 		setCookie('galactae_settings_' + settingName, value, 365); //@ADD: Time depends on remember me
 	}
 	/**
@@ -137,7 +138,7 @@ class settings {
 	 * @param      {?}  value        The value
 	 * @return     {boolean}  True if same, false otherwise
 	 */
-	static test(settingName,value) {
+	static test(settingName, value) {
 		return this.get(settingName) === value;
 	}
 }

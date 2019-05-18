@@ -117,6 +117,7 @@ class ui {
 		// Panels
 		ui.renaming = false;
 		ui.menu = false;
+		ui.settingsMenu = false;
 		ui.map = false;
 		ui.research = false;
 		ui.researchChat = false;
@@ -144,6 +145,22 @@ class ui {
 		// Actions au clavier
 		document.addEventListener('keydown', function(e){
 			ui.keydown(e);
+		});
+
+		// Main menu
+		document.getElementById('hud-gameMenu').addEventListener('click', function () {
+			if(ui.menu) {
+				ui.closeTab('#game-menu');
+			} else {
+				ui.show('#game-menu');
+			}
+			ui.menu = !(ui.menu);
+		});
+		document.addEventListener('click', function(e) {
+			if(ui.menu && e.target.id != 'game-menu' && e.target.id != 'hud-gameMenu') {
+				ui.closeTab('#game-menu', false);
+				ui.menu = !(ui.menu);
+			}
 		});
 
 		// Settings panel
@@ -310,33 +327,39 @@ class ui {
 		}
 	}
 
+	static closeWindow() {
+		if(ui.menu) { // Priorité
+			ui.closeTab('#game-menu');
+			ui.menu = false;
+		} else if(ui.settingsMenu) {
+			ui.closeTab('#settings-menu');
+			ui.settingsMenu = false;
+		} else if(ui.research === true) {
+			research.closeUI();
+		} else if(ui.fleet === true && !preventFleetHUDClosing) {
+			ui.closeTab('#hud-fleet');
+			ui.fleet= false;
+		} else if(ui.ranks === true) {
+			ui.closeTab('#hud-ranks');
+			ui.ranks = false;
+		} else if(ui.map === true) {
+			if(map.currentMap  ===  '' || map.currentMap  ===  'global') {
+				map.closeTab();
+			} else {
+				map.openGlobalMap(map.currentAddress);
+			}
+		} else if(planetUI.buildPanel !== -1) {
+			planetUI.buildPanelHide(); // Ferme la vue du batiment
+		}
+	}
+
 	/**
 	 * Tout les événements lorsqu'une touche est appuyée
 	 */
 	static keydown(e) {
 		// Fermer une fenêtre
 		if(e.which === KEYBOARD.ESC){ // Echap
-			if(ui.menu) { // Priorité
-				ui.closeTab('#settings-menu');
-				ui.menu = false;
-			} else if(ui.research==true) {
-				research.closeUI();
-			} else if(ui.fleet==true && !preventFleetHUDClosing) {
-				ui.closeTab('#hud-fleet');
-				ui.fleet= false;
-			} else if(ui.ranks==true) {
-				ui.closeTab('#hud-ranks');
-				ui.ranks = false;
-			} else if(ui.map==true) {
-				if(map.currentMap == '' || map.currentMap == 'global') {
-					map.closeTab();
-				} else {
-					map.openGlobalMap(map.currentAddress);
-				}
-				
-			} else if(planetUI.buildPanel!=-1) {
-				planetUI.buildPanelHide(); // Ferme la vue du batiment
-			}
+			ui.closeMenu();
 		}
 
 		// Save nom planete
