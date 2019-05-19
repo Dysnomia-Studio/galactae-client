@@ -360,12 +360,12 @@ class ui {
 		if(e.target.tagName.toLowerCase() === 'input') { return; }
 
 		// Fermer une fenêtre
-		if(e.which === KEYBOARD.ESC){ // Echap
+		if(e.which === settings.get('keyboard_escape')){ // Echap
 			ui.closeMenu();
 		}
 
 		// Save nom planete
-		if(e.which === KEYBOARD.ENTER && ui.renaming==true){
+		if(e.which === KEYBOARD.ENTER && ui.renaming === true){
 			ui.planetNameSwitchToSpan();
 		}
 
@@ -379,10 +379,10 @@ class ui {
 		}
 
 		// Planetes suivantes/precedente
-		if(e.which === KEYBOARD.LARROW && document.getElementById('chat_message') !== document.activeElement) { // Gauche
+		if(e.which === settings.get('keyboard_prevPlanet') && document.getElementById('chat_message') !== document.activeElement) { // Gauche
 			planetUI.prev();
 		}
-		if(e.which === KEYBOARD.RARROW && document.getElementById('chat_message') !== document.activeElement) { // Droite
+		if(e.which === settings.get('keyboard_nextPlanet') && document.getElementById('chat_message') !== document.activeElement) { // Droite
 			planetUI.next();
 		}
 
@@ -398,9 +398,9 @@ class ui {
 	static closeTab(tab,sound=true) {
 		ui.hide(tab);
 
-		if(sound) {
+		if(sound && settings.get('sounds_escape')) {
 			const closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
-			closeUISound.volume = 0.5;
+			closeUISound.volume = 0.5 * settings.get('sounds_soundLvl')/100;
 			closeUISound.play();
 		}
 
