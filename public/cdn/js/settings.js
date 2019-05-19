@@ -93,12 +93,12 @@ class settings {
 			}
 			ui.settingsMenu = !(ui.settingsMenu);
 		});
-		document.getElementById('settings-menu-cancel').addEventListener('click', function () {
+		document.getElementById('settings-menu-cancel').addEventListener('click', () => {
 			this.initUI();
 			ui.closeTab('#settings-menu');
 		});
-		document.getElementById('settings-menu-save').addEventListener('click', function () {
-			settings.saveSettings();
+		document.getElementById('settings-menu-save').addEventListener('click', () => {
+			this.saveSettings();
 		});
 
 		this.initUI();
