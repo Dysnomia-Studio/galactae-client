@@ -6,10 +6,14 @@
  * @param	  {number}  exdays  Expirations days
  */
 function setCookie(cname, cvalue, exdays=30) {
+	if(!cvalue) { return; }
+
 	const d = new Date();
 	d.setTime(d.getTime() + (exdays*TIME.DAY_TO_MS));
 	const expires = 'expires='+ d.toUTCString();
-	document.cookie = cname + '=' + cvalue + '; ' + expires;
+
+	document.cookie = cname + '=' + cvalue + '; ' + expires + '; domain=galactae.eu';
+	document.cookie = cname + '=' + cvalue + '; ' + expires + '; domain=.galactae.eu';
 }
 
 /**

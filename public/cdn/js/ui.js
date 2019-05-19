@@ -357,6 +357,8 @@ class ui {
 	 * Tout les événements lorsqu'une touche est appuyée
 	 */
 	static keydown(e) {
+		if(e.target.tagName.toLowerCase() === 'input') { return; }
+
 		// Fermer une fenêtre
 		if(e.which === KEYBOARD.ESC){ // Echap
 			ui.closeMenu();

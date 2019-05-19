@@ -345,7 +345,12 @@
 </div>
 <?php /* Settings menu */ ?>
 <div id="settings-menu">
+	<ul id="settings-menu-choice" class="ul-choice-line"></ul>
 
+	<ul id="settings-menu-panes"></ul>
+
+	<input type="button" class="ui-small-button" id="settings-menu-cancel" value="<?= SETTINGS_CANCEL ?>">
+	<input type="button" class="ui-small-button" id="settings-menu-save" value="<?= SETTINGS_VALIDATE ?>">
 </div>
 <?php /* Chat */ ?>
 <div id="hud-chat">

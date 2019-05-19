@@ -564,6 +564,71 @@ select, input, summary {
 }
 
 /**
+ * Settings
+ */
+#settings-menu {
+	position: fixed;
+	z-index: 101;
+
+	display: none;
+}
+@media (min-width: 630px) and (min-height: 430px) {
+	#settings-menu {
+		left: calc(50vw - 16em); /* calc((100vw - (18em / 45 * 80))/2); */
+		top: calc(50vh - 9em); /* calc((100vh - 18em)/2); */
+		width: 32em; /* calc(18em / 45 * 80); */
+		height: 18em;
+		padding: 1em 1.78em; /* 1 / 45 * 80 ~ 1.777778 */
+
+		background: url(../img/ui/window.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}	
+}
+@media (max-width: 629px), (max-height: 429px) {
+	#settings-menu {
+		left: 0;
+		top: 3.5vw;
+		width: calc(100vw - 2em);
+		height: calc(100vh - 3.5vw - 8.5vw);
+		padding: 1.5vw 1em 7vw 1em; /* 1 / 45 * 80 ~ 1.777778 */
+
+		background-color: #0b1012;
+	}
+}
+#settings-menu-choice {
+	width: 100%;
+	margin-top: 0;
+}
+#settings-menu-cancel, #settings-menu-save {
+	position: absolute;
+	bottom: 0.7em;
+	text-align: center;
+}
+#settings-menu-cancel {
+	right: calc(125px + 1em);
+	width: 125px;
+}
+#settings-menu-save {
+	right: 0.7em;
+	width: 125px;
+}
+#settings-menu-panes {
+	padding: 0;
+	list-style: none;
+}
+.settings-pane table {
+	width: 100%;
+}
+.settings-pane {
+	display: none;
+}
+.settings-pane-active {
+	display: block;
+}
+
+/**
  * HUD Top
  */
 #hud-top {
@@ -1095,32 +1160,43 @@ select, input, summary {
 	background-color: #0EC6C6 !important;
 	color:#222222 !important;
 }
-.ui-large-button, .ui-medium-button {
+
+.ui-large-button, .ui-medium-button, .ui-small-button {
 	box-sizing: border-box;
 	border: 1px outset #0EC6C6;
 	background-color: #0b1012;
 	color: #EEEEEE;
 }
-.ui-large-button:hover, .ui-medium-button:hover {
+.ui-large-button:hover, .ui-medium-button:hover, .ui-small-button:hover {
 	background-color: #0f1619;
 }
-.ui-large-button {
+.ui-large-button, .ui-large-select, .ui-large-input, .ui-large-span {
 	height: 50px;
-}
-.ui-medium-button {
-	height: 30px;
-}
-.ui-large-input, .ui-large-select, .ui-large-span {
-	box-sizing: content-box;
-	border: 1px outset #0EC6C6;
-	background-color: #0b1012;
-	color: #EEEEEE;
-	height: 40px;
-	padding: 1px 6px;
 }
 input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-large-select {
 	height: 46px;
 }
+.ui-medium-button, .ui-medium-select, .ui-medium-input, .ui-medium-span {
+	height: 30px;
+}
+.ui-small-button, .ui-small-select, .ui-small-input, .ui-small-span {
+	height: 20px;
+	font-size: 0.75em;
+}
+.ui-large-input, .ui-large-select, .ui-large-span,
+.ui-medium-select, .ui-medium-input, .ui-medium-span,
+.ui-small-select, .ui-small-input, .ui-small-span {
+	box-sizing: content-box;
+	border: 1px outset #0EC6C6;
+	background-color: #0b1012;
+	color: #EEEEEE;
+	padding: 1px 6px;
+}
+
+.ui-large-input[type="range"], .ui-medium-input[type="range"], .ui-small-input[type="range"] {
+	padding: 0;
+}
+
 #fleet-close {
 	position: absolute;
 	right: 0.89vw;

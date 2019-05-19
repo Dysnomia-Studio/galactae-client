@@ -6,14 +6,14 @@ class settings {
 		this.settingsList = {
 			general: {
 				language: {
-					default: 'en', // @ADD: Langue actuelle du jeu
+					default: 'en',
 					type: 'select',
-					choices: [
-						'fr',
-						'en',
-						'ru',
-						'de'
-					]
+					choices: {
+						'fr': 'Francais',
+						'en': 'English',
+						/*'ru': 'Русский',
+						'de': 'Deutsch',*/
+					}
 				},
 				deskNotifications: {
 					default: true,
@@ -25,7 +25,7 @@ class settings {
 					default: true,
 					type: 'checkbox'
 				},
-				animationLvl: {
+				/*animationLvl: {
 					default: 'high', // @ADD: auto-detect
 					type: 'select',
 					choices: [
@@ -33,7 +33,7 @@ class settings {
 						'medium',
 						'low'
 					]
-				},
+				},*/
 				map3D: {
 					default: true,
 					type: 'checkbox'
@@ -67,15 +67,17 @@ class settings {
 					type: 'keyboard'
 				},
 				nextPlanet: {
-					default: KEYBOARD.LARROW,
+					default: KEYBOARD.RARROW,
 					type: 'keyboard'
 				},
 				prevPlanet: {
-					default: KEYBOARD.RARROW,
+					default: KEYBOARD.LARROW,
 					type: 'keyboard'
 				}
 			}
 		};
+
+		this.initUI();
 
 		loadScreen.complete('settings');
 	}
@@ -91,12 +93,203 @@ class settings {
 			}
 			ui.settingsMenu = !(ui.settingsMenu);
 		});
+		document.getElementById('settings-menu-cancel').addEventListener('click', function () {
+			this.initUI();
+			ui.closeTab('#settings-menu');
+		});
+		document.getElementById('settings-menu-save').addEventListener('click', function () {
+			settings.saveSettings();
+		});
 
-		settings.initUI();
+		this.initUI();
+	}
+
+	static generateMenu() {
+		const menu = document.getElementById('settings-menu-choice');
+		while(menu.firstChild) {
+			menu.removeChild(firstChild);
+		}
+
+		let first = false;
+		for(const settingsCategory in this.settingsList) {
+			const menuElt = document.createElement('li');
+			menuElt.innerText = translate['settings']['menu'][settingsCategory];
+			menuElt.id = 'settings-menu-' + settingsCategory;
+
+			if(!first) {
+				menuElt.classList.add('ul-choice-line-li-active');
+				first = true;
+			}
+
+			menu.appendChild(menuElt);
+
+			menuElt.addEventListener('click', () => {
+				ui.toggleClass('#settings-menu-choice .ul-choice-line-li-active', 'ul-choice-line-li-active', menuElt);
+
+				ui.toggleClass('#settings-menu-panes .settings-pane-active',
+					'settings-pane-active',
+					document.getElementById(menuElt.id.replace('settings-menu', 'settings-pane'))
+				);
+			});
+		}
+	}
+
+	static generateSettingElement(settingsCategory, currSetting) {
+		const settingData = this.settingsList[settingsCategory][currSetting];
+		let settingElt;
+
+		switch(settingData.type) {
+			case 'select':
+				settingElt = document.createElement('select');
+				settingElt.classList.add('ui-small-select');
+
+				for(const option in settingData.choices) {
+					const optionElt = document.createElement('option');
+					optionElt.value = option;
+					optionElt.innerText = settingData.choices[option];
+
+					if(this.get(settingsCategory + '_' + currSetting) === option) {
+						optionElt.selected = true;
+					}
+
+					settingElt.appendChild(optionElt);
+				}
+				break;
+
+			case 'checkbox':
+				settingElt = document.createElement('input');
+				settingElt.classList.add('ui-small-input');
+				settingElt.type = 'checkbox';
+				settingElt.checked = this.get(settingsCategory + '_' + currSetting);
+				break;
+
+			case 'slider':
+				settingElt = document.createElement('input');
+				settingElt.classList.add('ui-small-input');
+				settingElt.type = 'range';
+				settingElt.setAttribute('min', settingData.min);
+				settingElt.setAttribute('max', settingData.max);
+				settingElt.value = this.get(settingsCategory + '_' + currSetting);
+				break;
+
+			case 'keyboard':
+				settingElt = document.createElement('input');
+				settingElt.classList.add('ui-small-input');
+				settingElt.type = 'keyboard';
+				settingElt.value = keyboardMap[this.get(settingsCategory + '_' + currSetting)];
+				settingElt.addEventListener('keydown', (event) => {
+					event.preventDefault();
+					settingElt.value = keyboardMap[event.keyCode];
+					settingElt.setAttribute('keyCode', event.keyCode);
+				});
+				break;
+
+			default:
+				settingElt = document.createElement('span');
+		}
+
+		settingElt.id = 'settings-' + settingsCategory + '-' + currSetting + '-value';
+
+		return settingElt;
+	}
+
+	static generatePanelContent(settingsCategory) {
+		const paneContent = document.createElement('table');
+
+
+		for(const currSetting in this.settingsList[settingsCategory]) {
+			const paneLine = document.createElement('tr');
+
+			// Left column
+			const lineTitle = document.createElement('td');
+			lineTitle.innerText = translate['settings'][settingsCategory][currSetting];
+
+			// Right column
+			const lineContent = document.createElement('td');
+			const settingElement = this.generateSettingElement(settingsCategory, currSetting);
+			lineContent.appendChild(settingElement);
+
+			// Append elements
+			paneLine.appendChild(lineTitle);
+			paneLine.appendChild(lineContent);
+			paneContent.appendChild(paneLine);
+		}
+
+		return paneContent;
+	}
+
+	static generatePanels() {
+		const menu = document.getElementById('settings-menu-panes');
+		while(menu.firstChild) {
+			menu.classList.add('ul-choice-line-li-active');
+		}
+
+		let first = false;
+		for(const settingsCategory in this.settingsList) {
+			const pane = document.createElement('li');
+
+			const paneContent = this.generatePanelContent(settingsCategory);
+			pane.appendChild(paneContent);
+
+			pane.id = 'settings-pane-' + settingsCategory;
+			pane.classList.add('settings-pane');
+
+			if(!first) {
+				pane.classList.add('settings-pane-active');
+				first = true;
+			}
+
+			menu.appendChild(pane);
+		}
 	}
 
 	static initUI() {
+		settings.generateMenu();
+		settings.generatePanels();
+	}
 
+	static saveSettings() {
+		for(const settingsCategory in this.settingsList) {
+			for(const currSetting in this.settingsList[settingsCategory]) {
+				const currSettingElt = document.getElementById('settings-' + settingsCategory + '-' + currSetting + '-value');
+
+				switch(this.settingsList[settingsCategory][currSetting].type) {
+					case 'select':
+						this.set(
+							settingsCategory + '_' + currSetting,
+							currSettingElt.options[currSettingElt.selectedIndex].value
+						);
+						break;
+
+					case 'checkbox':
+						this.set(
+							settingsCategory + '_' + currSetting,
+							currSettingElt.checked
+						);
+						break;
+
+					case 'slider':
+						this.set(
+							settingsCategory + '_' + currSetting,
+							currSettingElt.value
+						);
+						break;
+
+					case 'keyboard':
+						this.set(
+							settingsCategory + '_' + currSetting,
+							currSettingElt.keyCode
+						);
+						break;
+
+					default:
+						continue;
+				}
+			}
+		}
+
+		loadScreen.reset();
+		window.location.reload();
 	}
 
 	/**
@@ -106,8 +299,8 @@ class settings {
 	 * @return     {?}  The setting value
 	 */
 	static get(settingName) {
-		let val;
-		if((val = getCookie('galactae_settings_' + settingName)) !== '') {
+		let val = getCookie('galactae_settings_' + settingName);
+		if(val !== '') {
 			if(val === 'true') { val = true; }
 			if(val === 'false') { val = false; }
 			return val;
