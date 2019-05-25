@@ -51,7 +51,7 @@ class ServerPlanetManager extends SQLInterface {
 					// orbitDist
 					// orbitDuration
 					// galacticPos
-					'planetType' => 0,
+					//'planetType' => 0,
 
 
 				// Buildings

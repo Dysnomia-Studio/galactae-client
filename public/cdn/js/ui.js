@@ -331,17 +331,22 @@ class ui {
 		if(ui.menu) { // Priorité
 			ui.closeTab('#game-menu');
 			ui.menu = false;
+
 		} else if(ui.settingsMenu) {
 			ui.closeTab('#settings-menu');
 			ui.settingsMenu = false;
+
 		} else if(ui.research === true) {
 			research.closeUI();
+
 		} else if(ui.fleet === true && !preventFleetHUDClosing) {
 			ui.closeTab('#hud-fleet');
-			ui.fleet= false;
+			ui.fleet = false;
+
 		} else if(ui.ranks === true) {
 			ui.closeTab('#hud-ranks');
 			ui.ranks = false;
+
 		} else if(ui.map === true) {
 			if(map.currentMap  ===  '' || map.currentMap  ===  'global') {
 				map.closeTab();
@@ -361,7 +366,7 @@ class ui {
 
 		// Fermer une fenêtre
 		if(e.which === settings.get('keyboard_escape')){ // Echap
-			ui.closeMenu();
+			ui.closeWindow();
 		}
 
 		// Save nom planete

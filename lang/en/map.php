@@ -1,6 +1,6 @@
 <?php
 	define('MAP_BACKTO_GLOBAL_MAP','Back to global map');
-	define('MAP_FOCUS_CURRENT_SYSTEM','Focus current planet\'s system');
+	define('MAP_BACKTO_SYSTEM_MAP','Focus current planet\'s system');
 	define('MAP_BACKTO_PLANET','Back to my planet');
 
 	define('MAP_FOCUS_CURRENT_SYSTEM','Center on current system');

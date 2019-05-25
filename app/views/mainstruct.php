@@ -13,7 +13,6 @@ $debut = round(microtime(true) * 1000);
 		<?php
 		include_once('gvars.php');
 
-		include_once(DIR_CTRL.'lang.php');
 		include_once(DIR_CTRL.'redirect.php');
 		include_once(DIR_CTRL.'auth.php');
 		?>
