@@ -753,7 +753,7 @@ class planetUI {
 	 * Hide the buildpanel
 	 */
 	static buildPanelHide() {
-		if(planetUI.buildPanelInterval!=-1) {
+		if(planetUI.buildPanelInterval !== -1) {
 			clearTimeout(planetUI.buildPanelInterval);
 			planetUI.buildPanelInterval = -1;
 			planetUI.enoughResources = -1;
@@ -763,18 +763,30 @@ class planetUI {
 
 		ui.closeTab('#building-area');
 	}
-	
+
+
+	static getPlanetData(planetId) {
+		if(planetId < 0) { planetId = userData.planetlist.length - 1; }
+		if(planetId >= userData.planetlist.length) { planetId = 0; }
+
+		socket.emit('planet-ask-data', { id: userData.id, username: userData.username, pid: userData.planetlist[planetId] });
+	}
+
 	/**
 	 * Go to previous planet
 	 */
 	static prev() {
-		socket.emit('planet-ask-data-prev', userData);
+		const currPlanet = userData.planetlist.indexOf(userData.pid);
+
+		planetUI.getPlanetData(currPlanet - 1);
 	}
 	/**
 	 * Go to next planet
 	 */
 	static next() {
-		socket.emit('planet-ask-data-next', userData);
+		const currPlanet = userData.planetlist.indexOf(userData.pid);
+
+		planetUI.getPlanetData(currPlanet + 1);
 	}
 
 	/**
