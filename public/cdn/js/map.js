@@ -41,7 +41,7 @@ class map {
 		/**
 		 * Load XML
 		 */
-		map.focusAddress(map.currentAddress);
+		map.focusAddress(address);
 
 		/**
 		 * Global Map Events
@@ -807,7 +807,7 @@ class map {
 				fill: 'url(#' + starBType + ')'});
 			document.getElementById('map-global').appendChild(circle);
 
-			//@TODO: Generate other visual helps
+			//@TODO: Generate other visual helps (including all planets of current player)
 
 			// Events
 			document.getElementById(systemList[i].id).addEventListener('click', function() {
