@@ -152,19 +152,15 @@ class units {
 
 		// Move
 		document.getElementById('map-move-panel-move').addEventListener('click', function() {
-			switch(units.moveType) {
-				case 2:
-					socket.emit('fleet-move', {
-						id: userData.id,
-						username: userData.username,
-						fleetId: units.currFleet,
-						destination: units.planetTarget,
-					});
-					ui.hide('#map-move-panel');
-					break;
-				default:
-					ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
-			}
+			if(ui.moveType === 3) { ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']); return; }
+
+			socket.emit('fleet-move', {
+				id: userData.id,
+				username: userData.username,
+				fleetId: units.currFleet,
+				destination: units.planetTarget,
+				moveType: units.moveType
+			});
 		});
 	}
 
@@ -1152,7 +1148,7 @@ class units {
 			});
 
 			document.addEventListener('click', function(e) {
-				if(!ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
+				if(!!e.target.parentNode.parentNode && !ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
 					ui.hide('#part-selecting-seen-' + id + ' dd ul');
 				}
 			});
