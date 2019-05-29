@@ -905,9 +905,33 @@ class units {
 		let selectContent = '';
 		for(let i=0; i<unitTypes.length; i++) {
 			let disabled = true;
-			for(const index in shipShapesDetails[unitTypes[i]]) {
-				if(shipResearchDependencies[index] === undefined || research.isSearched(shipResearchDependencies[index])) {
-					disabled = false;
+			for(const shipShape in shipShapesDetails[unitTypes[i]]) {
+				// Check ship research
+				if(shipResearchDependencies[shipShape] === undefined || research.isSearched(shipResearchDependencies[shipShape])) {
+					let allParts = true;
+
+					// Check ship parts research
+					for(const parttype in shipShapesDetails[unitTypes[i]][shipShape].content) {
+						let atLeastOne = false;
+
+						for(const part of shipShapesDetails[unitTypes[i]][shipShape].content[parttype]) {
+
+							if(shipResearchDependencies[part] === undefined || research.isSearched(shipResearchDependencies[part])) {
+								atLeastOne = true;
+								break;
+							}
+						}
+
+						if(!atLeastOne) {
+							allParts = false;
+							break;
+						}
+					}
+					// End ship parts research
+
+					if(allParts) {
+						disabled = false;
+					}
 					break;
 				}
 			}
