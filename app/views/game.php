@@ -8,12 +8,12 @@
 <div id="loading-overlay" style="/*display: none;*/">
 	<div id="loading-overlay-back"></div>
 	<svg id="loading-overlay-img" width="150px" height="150px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;"><circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#0EC6C6" stroke-width="4" r="45" stroke-dasharray="212.05750411731105 72.68583470577035" transform="rotate(64 50 50)"></circle></svg>
-	<div id="loading-overlay-text"><span id="loading-overlay-main"><?php echo GAME_LOADING; ?></span><br/>
+	<div id="loading-overlay-text"><span id="loading-overlay-main"><?= GAME_LOADING; ?></span><br/>
 		<div class="loading-overlay-bar loading-overlay-bar-primary">
 			<div class="loading-overlay-bar-value">0%</div>
 			<div class="loading-overlay-bar-content"></div>
 		</div>
-		<span id="loading-overlay-desc"><?php echo DEFAULT_LOAD; ?></span>
+		<span id="loading-overlay-desc"><?= DEFAULT_LOAD; ?></span>
 		<div class="loading-overlay-bar loading-overlay-bar-secondary">
 			<div class="loading-overlay-bar-value">0/0</div>
 			<div class="loading-overlay-bar-content"></div>
@@ -44,7 +44,7 @@
 			</div>
 			<div id="building-orders">
 				<div id="building-cost">
-					<h4><?php echo COST; ?></h4>
+					<h4><?= COST; ?></h4>
 					<span class="building-cost-item" id="building-cost-iron">Fe <span id="building-cost-iron-val"></span></span>
 					<span class="building-cost-item" id="building-cost-aluminium">Al <span id="building-cost-aluminium-val"></span></span>
 					<span class="building-cost-item" id="building-cost-copper">Cu <span id="building-cost-copper-val"></span></span>
@@ -52,7 +52,7 @@
 					<br/>
 					<span class="building-cost-item" id="building-cost-energy"><img src="<?= $cdnURL ?>img/ui/electricity.svg" alt="electricity" > <span id="building-cost-energy-val"></span></span>
 					<span class="building-cost-item" id="building-cost-population"><img src="<?= $cdnURL ?>img/ui/population.png" alt="population"> <span id="building-cost-population-val"></span></span>
-					<span class="building-cost-item" id="building-cost-time"><?php echo TIME; ?>: <span id="building-cost-time-val"></span></span>
+					<span class="building-cost-item" id="building-cost-time"><?= TIME; ?>: <span id="building-cost-time-val"></span></span>
 				</div>
 				<br id="building-bonus-br" />
 				<div id="buildings-bonus">
@@ -70,7 +70,7 @@
 
 		<?php /* Ground Building */ ?>
 		<div class="building-ground">
-			<span id="building-ground-title"><?php echo PLANET_BUILDING; ?></span>
+			<span id="building-ground-title"><?= PLANET_BUILDING; ?></span>
 			<img src="<?= $cdnURL ?>img/buildings/icons/carriere.svg" class="building-list-building" id="carriere" onclick="planetUI.buildPanelOpen(0)" alt="carriere">
 			<span id="lvl-carriere"></span>
 			<img src="<?= $cdnURL ?>img/buildings/icons/metallurgy.svg" class="building-list-building" id="metallurgy" onclick="planetUI.buildPanelOpen(1)" alt="metallurgy">
@@ -93,7 +93,7 @@
 
 		<?php /* Space Building */ ?>
 		<div class="building-space">
-			<span id="building-space-title"><?php echo ORBITAL_BUILDING; ?></span>
+			<span id="building-space-title"><?= ORBITAL_BUILDING; ?></span>
 				<img src="<?= $cdnURL ?>img/buildings/icons/radar.svg" class="building-list-building" id="radar" onclick="planetUI.buildPanelOpen(9)" alt="radar">
 				<span id="lvl-radar"></span>
 				<img src="<?= $cdnURL ?>img/buildings/icons/tank.svg" class="building-list-building" id="tank" onclick="planetUI.buildPanelOpen(10)" alt="tank">
@@ -109,18 +109,18 @@
 
 	<?php /* Other planets */ ?>
 	<div id="planet-other">
-		<span id="planet-other-returnToSystem">Retour à la carte du système</span>
-		<span id="planet-other-returnToCurrent">Retour à ma planete</span>
+		<span id="planet-other-returnToSystem"><?= MAP_BACKTO_SYSTEM_MAP ?></span>
+		<span id="planet-other-returnToCurrent"><?= MAP_BACKTO_PLANET ?></span>
 		<div id="planet-other-infos">
-			<span id="planet-other-address">Adresse: <span id="planet-other-address-data"></span></span><br/>
-			<span id="planet-other-ally">Alliance: <span id="planet-other-ally-data"></span></span><br/>
-			<span id="planet-other-player">Joueur: <span id="planet-other-player-data"></span></span><br/>
-			<span id="planet-other-planet">Planète: <span id="planet-other-planet-data"></span></span><br/>
-			<span id="planet-other-points">Points: <span id="planet-other-points-data"></span></span><br/><br/>
+			<span id="planet-other-address"><?= MAP_PLANET_INFO_ADRESS ?>: <span id="planet-other-address-data"></span></span><br/>
+			<span id="planet-other-ally"><?= MAP_PLANET_INFO_ALLY ?>: <span id="planet-other-ally-data"></span></span><br/>
+			<span id="planet-other-player"><?= MAP_PLANET_INFO_PLAYER ?>: <span id="planet-other-player-data"></span></span><br/>
+			<span id="planet-other-planet"><?= MAP_PLANET_INFO_PLANET ?>: <span id="planet-other-planet-data"></span></span><br/>
+			<span id="planet-other-points"><?= MAP_PLANET_INFO_POINTS ?>: <span id="planet-other-points-data"></span></span><br/><br/>
 			<div id="planet-other-lastReports">
-				Derniers rapports:
+				<?= MAP_PLANET_INFO_LASTREPORTS ?>:
 				<ul id="planet-other-lastReports-list">
-					<li>Aucun rapport</li>
+					<li><?= MAP_PLANET_INFO_NOREPORTS ?></li>
 				</ul>
 			</div>
 		</div>
@@ -132,15 +132,15 @@
 <div id="hud-top">
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/population.png" alt="population">
 			<span class="nmb" id="population_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="population-tooltips">
-					<?php echo POPULATION; ?><br/>
-					<?php echo AVAILABLE; ?>: <span id="population-available">XXX</span><br/>
-					<?php echo USED; ?>: <span id="population-used">XXX</span><br/>
-					<?php echo TOTAL; ?>: <span id="population-total">XXX</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="population-tooltips">
+					<?= POPULATION; ?><br/>
+					<?= AVAILABLE; ?>: <span id="population-available">XXX</span><br/>
+					<?= USED; ?>: <span id="population-used">XXX</span><br/>
+					<?= TOTAL; ?>: <span id="population-total">XXX</span><br/>
 				</span>
 			</span>
 		</span>
@@ -151,15 +151,15 @@
 		<img height="15" src="<?= $cdnURL ?>img/ui/moral.png" alt="moral">
 		<span class="nmb" id="moral_nmb">1</span>
 
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/electricity.svg" alt="electricity">
 			<span class="nmb" id="electricity_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="electricity-tooltips">
-					<?php echo ELECTRICITY; ?><br/>
-					<?php echo AVAILABLE; ?>: <span id="electricity-available">XXX t</span><br/>
-					<?php echo USED; ?>: <span id="electricity-used">XXX t</span><br/>
-					<?php echo TOTAL; ?>: <span id="electricity-total">XXX t</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="electricity-tooltips">
+					<?= ELECTRICITY; ?><br/>
+					<?= AVAILABLE; ?>: <span id="electricity-available">XXX t</span><br/>
+					<?= USED; ?>: <span id="electricity-used">XXX t</span><br/>
+					<?= TOTAL; ?>: <span id="electricity-total">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
@@ -171,78 +171,79 @@
 		<span id="hud-planet-prev" onclick="planetUI.prev();">&#9664;</span>
 		<span id="hud-planet-name">SomeLongName</span>
 		<span id="hud-planet-next" onclick="planetUI.next();">&#9654;</span>
+		<img id="hud-gameMenu" height="15" src="<?= $cdnURL ?>img/ui/gameMenu.png" alt="gameMenu">
 	</div>
 
 	<div id="hud-top-right">
 		<span id="hud-top-right-moveLeft">&#9664;</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="20" src="<?= $cdnURL ?>img/ui/minerals.png" alt="minerals">
 			<span class="nmb" id="minerals_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="minerals-tooltips">
-					<?php echo MINERALS; ?><br/>
-					<?php echo CAPACITY; ?>: <span id="minerals-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="minerals-prod">XXX t</span><br/>
-					<?php echo CONSUMPTION; ?>: <span id="minerals-cons">XXX t</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="minerals-tooltips">
+					<?= MINERALS; ?><br/>
+					<?= CAPACITY; ?>: <span id="minerals-cap">XXX t</span><br/>
+					<?= PRODUCTION; ?>: <span id="minerals-prod">XXX t</span><br/>
+					<?= CONSUMPTION; ?>: <span id="minerals-cons">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">&sup3;He </span>
 			<span class="nmb" id="he_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="he-tooltips">
-					<?php echo HELIUM3; ?><br/>
-					<?php echo CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="he-tooltips">
+					<?= HELIUM3; ?><br/>
+					<?= CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
+					<?= PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Al </span>
 			<span class="nmb" id="al_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="al-tooltips">
-					<?php echo METAL_ALUMINIUM; ?><br/>
-					<?php echo CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
-					<?php echo IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="al-tooltips">
+					<?= METAL_ALUMINIUM; ?><br/>
+					<?= CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
+					<?= PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
+					<?= IMPORTANCE; ?>: <span id="al-variety">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element" id="element_fe">Fe </span>
 			<span class="nmb" id="fe_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="fe-tooltips">
-					<?php echo METAL_IRON; ?><br/>
-					<?php echo CAPACITY; ?>: <span id="fe-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="fe-prod">XXX t</span><br/>
-					<?php echo IMPORTANCE; ?>: <span id="fe-variety">XXX t</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="fe-tooltips">
+					<?= METAL_IRON; ?><br/>
+					<?= CAPACITY; ?>: <span id="fe-cap">XXX t</span><br/>
+					<?= PRODUCTION; ?>: <span id="fe-prod">XXX t</span><br/>
+					<?= IMPORTANCE; ?>: <span id="fe-variety">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Ti </span>
 			<span class="nmb" id="ti_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="ti-tooltips">
-					<?php echo METAL_TITANIUM; ?><br/>
-					<?php echo CAPACITY; ?>: <span id="ti-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="ti-prod">XXX t</span><br/>
-					<?php echo IMPORTANCE; ?>: <span id="ti-variety">XXX t</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="ti-tooltips">
+					<?= METAL_TITANIUM; ?><br/>
+					<?= CAPACITY; ?>: <span id="ti-cap">XXX t</span><br/>
+					<?= PRODUCTION; ?>: <span id="ti-prod">XXX t</span><br/>
+					<?= IMPORTANCE; ?>: <span id="ti-variety">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Cu </span>
 			<span class="nmb" id="cu_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="cu-tooltips">
-					<?php echo METAL_COPPER; ?><br/>
-					<?php echo CAPACITY; ?>: <span id="cu-cap">XXX t</span><br/>
-					<?php echo PRODUCTION; ?>: <span id="cu-prod">XXX t</span><br/>
-					<?php echo IMPORTANCE; ?>: <span id="cu-variety">XXX t</span><br/>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="cu-tooltips">
+					<?= METAL_COPPER; ?><br/>
+					<?= CAPACITY; ?>: <span id="cu-cap">XXX t</span><br/>
+					<?= PRODUCTION; ?>: <span id="cu-prod">XXX t</span><br/>
+					<?= IMPORTANCE; ?>: <span id="cu-variety">XXX t</span><br/>
 				</span>
 			</span>
 		</span>
@@ -252,107 +253,115 @@
 <?php /* HUD Bottom */ ?>
 <div id="hud-bottom">
 	<div id="hud-bottom-left">
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#map" id="hud-bottom-button-map"><img src="<?= $cdnURL ?>img/ui/map.svg" alt="map"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MAP; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_MAP; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#researchs" id="hud-bottom-button-research"><img src="<?= $cdnURL ?>img/ui/researchs.svg" alt="researchs"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RESEARCH; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RESEARCH; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#units" id="hud-bottom-button-units"><img src="<?= $cdnURL ?>img/ui/units.svg" alt="units"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_UNITS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_UNITS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?= $cdnURL ?>img/ui/fleets.png" alt="fleets"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_FLEETS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_FLEETS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#radar" id="hud-bottom-button-radar"><img src="<?= $cdnURL ?>img/ui/radar.svg" alt="radar"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RADAR; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RADAR; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#ally" id="hud-bottom-button-ally"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_ALLY; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RAPPORTS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>
 		</span>
 	</div>
 	<div id="hud-bottom-right">
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#quests" id="hud-bottom-button-quests"><img src="<?= $cdnURL ?>img/ui/quests.svg" alt="quests"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_QUEST; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_QUEST; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#trade" id="hud-bottom-button-trade"><img src="<?= $cdnURL ?>img/ui/trade.svg" alt="trade"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_TRADE; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_TRADE; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?= $cdnURL ?>img/ui/ranks.svg" alt="ranks"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_RANKS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RANKS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#profil" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_PROFIL; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_PROFIL; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#messages" id="hud-bottom-button-messages"><img src="<?= $cdnURL ?>img/ui/messages.svg" alt="messages"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_MESSAGES; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_MESSAGES; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#chat" id="hud-bottom-button-chat"><img src="<?= $cdnURL ?>img/ui/chat.svg" alt="chat"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?php echo HUD_BOTTOM_CHAT; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_CHAT; ?></span>
 			</span>
 		</span>
 	</div>
 </div>
-<?php /* ESC */ ?>
+<?php /* Main menu */ ?>
+<div id="game-menu">
+	<a href="https://galactae.eu/portal"><?= PORTAL; ?></a><br/>
+	<a href="https://galactae.eu/profil"><?= PROFIL; ?></a><br/>
+	<a href="https://galactae.eu/forum"><?= FORUM; ?></a><br/>
+	<a href="https://galactae.eu/support"><?= SUPPORT; ?></a><br/>
+	<a href="https://galactae.eu/deconnexion"><?= DISCONNECT; ?></a>
+</div>
+<?php /* Settings menu */ ?>
 <div id="settings-menu">
-	<a href="https://galactae.eu/portal"><?php echo PORTAL; ?></a><br/>
-	<a href="https://galactae.eu/profil"><?php echo PROFIL; ?></a><br/>
-	<a href="https://galactae.eu/forum"><?php echo FORUM; ?></a><br/>
-	<a href="https://galactae.eu/support"><?php echo SUPPORT; ?></a><br/>
-	<a href="#settings-tabs"><?php echo SETTINGS; ?></a><br/>
-	<a href="https://galactae.eu/deconnexion"><?php echo DISCONNECT; ?></a>
+	<ul id="settings-menu-choice" class="ul-choice-line"></ul>
+
+	<ul id="settings-menu-panes"></ul>
+
+	<input type="button" class="ui-small-button" id="settings-menu-cancel" value="<?= SETTINGS_CANCEL ?>">
+	<input type="button" class="ui-small-button" id="settings-menu-save" value="<?= SETTINGS_VALIDATE ?>">
 </div>
 <?php /* Chat */ ?>
 <div id="hud-chat">
 	<ul id="hud-chat-channels" class="ul-choice-line">
-		<li chatChannel="hud-chat-global" class="chatTab ul-choice-line-li-active"><?php echo CHAT_GLOBAL; ?></li>
-		<li chatChannel="hud-chat-trade" class="chatTab"><?php echo CHAT_TRADE; ?></li>
-		<li chatChannel="hud-chat-ally" class="chatTab"><?php echo CHAT_ALLY; ?></li>
+		<li chatChannel="hud-chat-global" class="chatTab ul-choice-line-li-active"><?= CHAT_GLOBAL; ?></li>
+		<li chatChannel="hud-chat-trade" class="chatTab"><?= CHAT_TRADE; ?></li>
+		<li chatChannel="hud-chat-ally" class="chatTab"><?= CHAT_ALLY; ?></li>
 	</ul>
-	<div id="hud-chat-global" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
-	<div id="hud-chat-trade" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
-	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?php echo CHAT_WELCOME; ?></li></ul></div>
+	<div id="hud-chat-global" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
+	<div id="hud-chat-trade" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
+	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<form action="#chat_text" method="post" id="chat_form">
 		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
 		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?= $cdnURL ?>img/ui/chat-voice.svg" alt="voice"></a>
@@ -361,10 +370,10 @@
 <?php /* Ranks */ ?>
 <div id="hud-ranks">
 	<ul class="ul-choice-line ranks-ul">
-		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active">Galaxie - Joueur</li>
-		<li choice="sector-players" id="ranks-secPly-button">Secteur - Joueur</li>
-		<li choice="galaxy-alliance" id="ranks-galAly-button">Galaxie - Alliance</li>
-		<li choice="sector-alliance" id="ranks-secAly-button">Secteur - Alliance</li>
+		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active"><?= RANKS_GALAXY_PLAYER; ?></li>
+		<li choice="sector-players" id="ranks-secPly-button"><?= RANKS_SECTOR_PLAYER; ?></li>
+		<li choice="galaxy-ally" id="ranks-galAly-button"><?= RANKS_GALAXY_ALLY; ?></li>
+		<li choice="sector-ally" id="ranks-secAly-button"><?= RANKS_SECTOR_ALLY; ?></li>
 	</ul>
 
 	<span id="hud-ranks-close">X</span>
@@ -378,13 +387,13 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 }
 ?>
 	<span id="news-close">X</span>
-	<iframe id="news-frame" src="news.php?n=<?php echo $lastNewsNumber; ?>" title="news"></iframe>
+	<iframe id="news-frame" src="news.php?n=<?= $lastNewsNumber; ?>" title="news"></iframe>
 </div>
 <?php /* Map */ ?>
 <div id="hud-map">
 	<span id="map-close">X</span>
-	<div id="map-back"><?php echo MAP_BACKTO_GLOBAL_MAP; ?></div>
-	<div id="map-focus"><?php echo MAP_FOCUS_CURRENT_SYSTEM; ?></div>
+	<div id="map-back"><?= MAP_BACKTO_GLOBAL_MAP; ?></div>
+	<div id="map-focus"><?= MAP_FOCUS_CURRENT_SYSTEM; ?></div>
 	<svg height="40000" width="50000" id="map-global">
 		<defs>
 			<radialGradient id="redDwarf" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -473,7 +482,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
     	<span id="map-move-panel-close">X</span>
 
     	<div id="map-move-panel-list">
-    		<div id="map-move-panel-list-header">Flotte:</div>
+    		<div id="map-move-panel-list-header"><?= FLEET ?>:</div>
     		<ul id="map-move-panel-list-ul"></ul>
     	</div>
 
@@ -493,43 +502,43 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="fleet-close">X</span>
 
 	<ul class="ul-choice-line fleet-ul1">
-		<li id="fleet-build-button" class="ul-choice-line-li-active"><?php echo FLEET_BUILD; ?></li>
-		<li id="fleet-orbit-button"><?php echo FLEET_ORBIT; ?></li>
-		<li id="fleet-move-button"><?php echo FLEET_MOVE; ?></li>
-		<li id="fleet-out-button"><?php echo FLEET_OUT; ?></li>
+		<li id="fleet-build-button" class="ul-choice-line-li-active"><?= FLEET_BUILD; ?></li>
+		<li id="fleet-orbit-button"><?= FLEET_ORBIT; ?></li>
+		<li id="fleet-move-button"><?= FLEET_MOVE; ?></li>
+		<li id="fleet-out-button"><?= FLEET_OUT; ?></li>
+		<li id="fleet-tactics-button"><?= FLEET_TACTICS; ?></li>
 	</ul>
 	<?php /* Fleet Building */ ?>
 	<div id="fleet-build">
 		<ul id="fleet-build-choice" class="ul-choice-line fleet-ul2">
-			<li shipType="SHIP_ALL" id="fleet-build-all-button" class="ul-choice-line-li-active"><?php echo FLEET_BUILD_ALL; ?></li>
-			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?php echo FLEET_BUILD_DEF; ?></li>
-			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?php echo FLEET_BUILD_FIGHTER; ?></li>
-			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?php echo FLEET_BUILD_CUISADER; ?></li>
-			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?php echo FLEET_BUILD_CUIRASSE; ?></li>
-			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?php echo FLEET_BUILD_CORVET; ?></li>
-			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?php echo FLEET_BUILD_CARRIER; ?></li>
+			<li shipType="SHIP_ALL" id="fleet-build-all-button" class="ul-choice-line-li-active"><?= FLEET_BUILD_ALL; ?></li>
+			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?= FLEET_BUILD_DEF; ?></li>
+			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?= FLEET_BUILD_FIGHTER; ?></li>
+			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?= FLEET_BUILD_CUISADER; ?></li>
+			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?= FLEET_BUILD_CUIRASSE; ?></li>
+			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?= FLEET_BUILD_CORVET; ?></li>
+			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?= FLEET_BUILD_CARRIER; ?></li>
 		</ul>
 		<div id="fleet-build-content">
-			<h2 id="fleet-build-list-empty"><?php echo FLEET_NO_MODEL; ?></h2>
+			<h2 id="fleet-build-list-empty"><?= FLEET_NO_MODEL; ?></h2>
 			<table id="fleet-build-list" class="unit-list-table">
 				<thead>
 					<tr>
-						<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
-						<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>
-						<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>
-						<th id="fleet-build-list-type-note"><?php echo FLEET_BUILD_NOTE; // Sa note estimée par le systeme		 ?></th>
+						<th id="fleet-build-list-type-name"><?= FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
+						<th id="fleet-build-list-type-shipType"><?= FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>
+						<th id="fleet-build-list-type-shipShape"><?= FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>
+						<th id="fleet-build-list-type-note"><?= FLEET_BUILD_NOTE; // Sa note estimée par le systeme		 ?></th>
 					</tr>
 				</thead>
-				<tbody>
-				</tbody>
+				<tbody id="fleet-build-list-tbody"></tbody>
 			</table>
 
 			<div id="fleet-build-info">
-				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?php echo FLEET_BUILD_CREATE; ?>">
+				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?= FLEET_BUILD_CREATE; ?>">
 
 				<div id="fleet-build-stat">
 					<span id="fleet-build-name"></span><img id="fleet-build-rename" alt="rename unit model" src="<?= $cdnURL ?>img/ui/rename.svg"><br /><br />
-					<?php echo '<div id="fleet-build-stat-attack"><u>'.SHIP_WEAPONS.' :</u> <span id="fleet-build-stat-attack-val"></span></div>
+					<?= '<div id="fleet-build-stat-attack"><u>'.SHIP_WEAPONS.' :</u> <span id="fleet-build-stat-attack-val"></span></div>
 					<div id="fleet-build-stat-shield"><u>'.SHIP_SHIELD.' :</u> <span id="fleet-build-stat-shield-val"></span></div>
 					<div id="fleet-build-stat-speed"><u>'.SHIP_SPEEDS.'</u>
 						<div id="fleet-build-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-build-stat-subspeed-val"></span></div>
@@ -543,7 +552,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<div id="fleet-build-buttons">
 					<img id="fleet-build-type-copy" src="<?= $cdnURL ?>img/ui/copy.svg" alt="copy">
 					<img id="fleet-build-openPanel" src="<?= $cdnURL ?>img/ui/build.svg" alt="build">
-					<img id="fleet-build-type-delete" src=<?= $cdnURL ?>img/ui/delete.svg alt="delete">
+					<img id="fleet-build-type-delete" src="<?= $cdnURL ?>img/ui/delete.svg" alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>
@@ -553,16 +562,17 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</div>
 	</div>
 	<?php /* Fleet Orbit */ ?>
-	<div id="fleet-orbit">
-		<div id="fleet-orbit-content"></div>
-	</div>
+	<div id="fleet-orbit" class="fleet-tab"></div>
 	<?php /* Fleet Moves */ ?>
-	<div id="fleet-move">
-		<div id="fleet-move-content"></div>
-	</div>
+	<div id="fleet-move" class="fleet-tab"></div>
 	<?php /* Fleet Out */ ?>
-	<div id="fleet-out">
-		<div id="fleet-out-content"></div>
+	<div id="fleet-out" class="fleet-tab"></div>
+	<?php /* Tactics */ ?>
+	<div id="fleet-tactics" class="fleet-tab">
+		<div class="text-center fleet-tactics-header">
+			<input type="button" class="ui-large-button" id="fleet-tactics-new" value="<?= TACTIC_NEW ?>">
+		</div>
+		<div id="fleets-tactics-content"></div>
 	</div>
 </div>
 
@@ -572,20 +582,20 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 
 		<select id="fleet-type-create-shipType" class="ui-large-select" onchange="units.changeShipType();"></select>
 		<select id="fleet-type-create-shipShape" class="ui-large-select" onchange="units.changeShipShape();"></select>
-		<input type="text" id="fleet-type-create-name" placeholder="<?php echo SHIP_NAME; ?>" class="ui-large-button" required/>
+		<input type="text" id="fleet-type-create-name" placeholder="<?= SHIP_NAME; ?>" class="ui-large-button" required/>
 
 		<svg id="fleet-type-create-schematic" viewBox="0 0 800 450" preserveAspectRatio="none"></svg>
 		<div id="fleet-type-create-selects"></div>
 
 		<div id="fleet-type-create-stat">
-				<?php echo '<div id="fleet-type-create-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-type-create-stat-subspeed-val"></span><br /></div>
+				<?= '<div id="fleet-type-create-stat-subspeed">'.SHIP_SUBSPEED.' : <span id="fleet-type-create-stat-subspeed-val"></span><br /></div>
 			<div id="fleet-type-create-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-type-create-stat-supspeed-val"></span><br /></div>
 			<div id="fleet-type-create-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-type-create-stat-miss-val"></span><br /></div>
 			<div id="fleet-type-create-stat-fcap">'.SHIP_FCAP.' : <span id="fleet-type-create-stat-fcap-val"></span><br /></div>
 			<div id="fleet-type-create-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-type-create-stat-note-val"></span><br /></div>'; ?>
 		</div>
 
-		<input type="submit" id="fleet-type-create-submit" class="ui-large-button" value="<?php echo FLEET_CREATE; ?>">
+		<input type="submit" id="fleet-type-create-submit" class="ui-large-button" value="<?= FLEET_CREATE; ?>">
 	</form>
 </div>
 
@@ -599,80 +609,122 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <div id="fleet-ship-build">
 	<span id="fleet-ship-build-close">X</span>
 	<div class="fleet-ship-build-cost">
-		<h4><?php echo FLEET_TOTAL_COST; ?></h4>
+		<h4><?= FLEET_TOTAL_COST; ?></h4>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-iron">Fe <span id="fleet-ship-build-cost-iron-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-aluminium">Al <span id="fleet-ship-build-cost-aluminium-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-copper">Cu <span id="fleet-ship-build-cost-copper-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-titanium">Ti <span id="fleet-ship-build-cost-titanium-val">XXXt</span></p>
 		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-population"><img src="<?= $cdnURL ?>img/ui/population.png" alt="population"> <span id="fleet-ship-build-cost-population-val">XXXM (+XXX.XK)</span></p>
-		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-time"><?php echo TIME; ?>: <span id="fleet-ship-build-cost-time-val">00:00:00</span></p>
+		<p class="fleet-ship-build-cost-item" id="fleet-ship-build-cost-time"><?= TIME; ?>: <span id="fleet-ship-build-cost-time-val">00:00:00</span></p>
 	</div>
 
 	<span id="fleet-ship-build-name">This isn't a ship name</span>
 
 	<script type="text/javascript">
-		const unitBuildSelectHeader = '<option id="-2" selected disabled><?php echo FLEET; ?></option>';
-		const unitBuildSelectNew = '<option id="-1"><?php echo NEW_FLEET; ?></option>';
+		const unitBuildSelectHeader = '<option id="-2" selected disabled><?= FLEET; ?></option>';
+		const unitBuildSelectNew = '<option id="-1"><?= NEW_FLEET; ?></option>';
 		const fleetListHeader = '<thead><tr>'
-						+ '<th id="fleet-build-list-type-name"><?php echo FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>'
-						+ '<th id="fleet-build-list-type-shipType"><?php echo FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>'
-						+ '<th id="fleet-build-list-type-shipShape"><?php echo FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>'
-						+ '<th id="fleet-build-list-type-note"><?php echo FLEET_BUILD_COUNT; // Sa note estimée par le systeme		 ?></th>'
+						+ '<th id="fleet-build-list-type-name"><?= FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>'
+						+ '<th id="fleet-build-list-type-shipType"><?= FLEET_BUILD_TYPE; // Le type de vaisseau 				 ?></th>'
+						+ '<th id="fleet-build-list-type-shipShape"><?= FLEET_BUILD_SHAPE; // La forme du vaisseau 				 ?></th>'
+						+ '<th id="fleet-build-list-type-note"><?= FLEET_BUILD_COUNT; // Sa note estimée par le systeme		 ?></th>'
 						+ '<th style="color: transparent;">_</th></tr></thead>'; // On est obligé d'avoir du contenu sur chaque colonne pour que le design ne bug pas
 	</script>
 	
 	<select id="fleet-ship-build-fleetSelect" class="ui-large-button">
-		<option id="-2" selected disabled><?php echo FLEET; ?></option>
-		<option id="-1"><?php echo NEW_FLEET; ?></option>
+		<option id="-2" selected disabled><?= FLEET; ?></option>
+		<option id="-1"><?= NEW_FLEET; ?></option>
 	</select>
 	<input type="number" name="fleet-ship-build-count" id="fleet-ship-build-count" class="ui-large-button">
-	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?php echo BUILD; ?>">
+	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?= BUILD; ?>">
 </div>
 <div id="fleet-newFleet-panel">
 	<span id="fleet-newFleet-panel-close" class="small-panel-close">X</span>
-	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?php echo FLEET_NAME; ?>">
-	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?php echo CONFIRM; ?>">
-</div>
-<div id="fleet-typeDelete-panel">
-	Souhaitez vous vraiment supprimer ce modèle ?<br/>
-	<input id="fleet-typeDelete-yes" class="ui-large-button" type="submit" value="Oui">
-	<input id="fleet-typeDelete-no" class="ui-large-button" type="submit" value="Non">
+	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?= FLEET_NAME; ?>">
+	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?= CONFIRM; ?>">
 </div>
 
 <div id="fleet-rename" class="small-panel">
 	<span id="fleet-rename-close" class="small-panel-close">X</span>
-	<p>Nouveau nom pour <span id="fleet-rename-name">FLEETNAME</span></p>
+	<p><?= FLEET_NEWNAME ?> <span id="fleet-rename-name">FLEETNAME</span></p>
 	<input id="fleet-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
 	<input id="fleet-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
 </div>
 <div id="fleet-units-transfer-panel" class="small-panel">
 	<span id="fleet-units-transfer-close" class="small-panel-close">X</span>
-	<p>Tranferer unités de type <span id="fleet-units-transfer-name">SHIPNAME</span> vers :</p>
+	<p><?= FLEET_TRANSFER_TYPE ?> <span id="fleet-units-transfer-name">SHIPNAME</span> <?= FLEET_TRANSFER_TO ?> :</p>
 	<select id="fleet-units-transfer-fleetSelect" class="ui-large-button small-panel-select">
-		<option id="-2" selected disabled><?php echo FLEET; ?></option>
-		<option id="-1"><?php echo NEW_FLEET; ?></option>
+		<option id="-2" selected disabled><?= FLEET; ?></option>
+		<option id="-1"><?= NEW_FLEET; ?></option>
 	</select>
 	<input id="fleet-units-transfer-unitCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
-	<input id="fleet-units-transfer-submit" class="ui-large-button small-panel-submit" type="submit" value="<?php echo CONFIRM; ?>">
+	<input id="fleet-units-transfer-submit" class="ui-large-button small-panel-submit" type="submit" value="<?= CONFIRM; ?>">
 </div>
 <div id="fleet-merge-panel" class="small-panel">
 	<span id="fleet-merge-panel-close" class="small-panel-close">X</span>
-	<p>Transfert de toutes les unités de <span id="fleet-merge-name">FLEETNAME</span> vers:</p>
+	<p><?= FLEET_TRANSFERALL_TYPE ?> <span id="fleet-merge-name">FLEETNAME</span> <?= FLEET_TRANSFER_TO ?>:</p>
 	<select id="fleet-merge-fleetSelect" class="ui-large-button small-panel-select">
-		<option id="-2" selected disabled><?php echo FLEET; ?></option>
-		<option id="-1"><?php echo NEW_FLEET; ?></option>
+		<option id="-2" selected disabled><?= FLEET; ?></option>
+		<option id="-1"><?= NEW_FLEET; ?></option>
 	</select>
-	<input id="fleet-merge-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?php echo CONFIRM; ?>">
+	<input id="fleet-merge-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
 </div>
 <div id="fleet-transferFuel-panel" class="small-panel">
 	<span id="fleet-transferFuel-close" class="small-panel-close">X</span>
-	<p>Tranferer fuel de <span id="fleet-transferFuel-name">FLEETNAME</span> vers :</p>
+	<p><?= FLEET_TRANSFERFUEL_FROM ?> <span id="fleet-transferFuel-name">FLEETNAME</span> vers :</p>
 	<select id="fleet-transferFuel-fleetSelect" class="ui-large-button small-panel-select">
-		<option id="-2" selected disabled><?php echo FLEET; ?></option>
-		<option id="-1"><?php echo NEW_FLEET; ?></option>
+		<option id="-2" selected disabled><?= FLEET; ?></option>
+		<option id="-1"><?= NEW_FLEET; ?></option>
 	</select>
 	<input id="fleet-transferFuel-fuelCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
-	<input id="fleet-transferFuel-submit" class="ui-large-button small-panel-submit" type="submit" value="<?php echo CONFIRM; ?>">
+	<input id="fleet-transferFuel-submit" class="ui-large-button small-panel-submit" type="submit" value="<?= CONFIRM; ?>">
+</div>
+
+<div id="fleet-assignTactic-panel" class="small-panel">
+	<span id="fleet-assignTactic-panel-close" class="small-panel-close">X</span>
+	<p><?= FLEET_ASSIGN_TACTIC ?> <span id="fleet-assignTactic-name">FLEETNAME</span>:</p>
+	<select id="fleet-assignTactic-tacticSelect" class="ui-large-button small-panel-select">
+		<option value="-2" id="-2" selected disabled><?= TACTIC; ?></option>
+		<option value="-1" id="-1"><?= DEFAULT_TACTIC; ?></option>
+	</select>
+	<input id="fleet-assignTactic-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
+</div>
+
+<div id="fleet-tacticsManager-panel">
+	<span id="fleet-tacticsManager-close" class="close-button">X</span>
+
+	<ul id="fleet-tacticsManager-orderList">
+		
+	</ul>
+	<input type="button" id="fleet-tacticsManager-addOrder" class="ui-medium-button" value="<?= FLEET_TACTIC_ADD_ORDER ?>">
+
+	<div id="fleet-tacticsManager-orderEditor">
+		<label for="fleet-tacticsManager-unitType"><?= FLEET_UNIT_TYPE ?></label>
+		<select id="fleet-tacticsManager-unitType" name="fleet-tacticsManager-unitType" class="ui-large-select">
+			// GENERER OPTION
+		</select>
+		<br/>
+
+		<label for="fleet-tacticsManager-unitTarget"><?= FLEET_UNIT_TARGET ?></label>
+		<select id="fleet-tacticsManager-unitTarget" name="fleet-tacticsManager-unitType" class="ui-large-select">
+			// GENERER OPTION
+		</select>
+		<br/>
+
+		<label for="fleet-tacticsManager-priorityLevel"><?= FLEET_PRIORITY ?></label>
+		<input type="number" id="fleet-tacticsManager-priorityLevel" name="fleet-tacticsManager-priorityLevel" min="1" max="100" class="ui-large-input" value="0">
+		<br/>
+
+
+		<input type="button" id="fleet-tacticsManager-deleteOrder" name="fleet-tacticsManager-deleteOrder" class="ui-large-button" value="<?= FLEET_TACTIC_DELETE_ORDER ?>">
+		<input type="button" id="fleet-tacticsManager-saveOrder" name="fleet-tacticsManager-saveOrder" class="ui-large-button" value="<?= FLEET_TACTIC_SAVE_ORDER ?>">
+
+		<hr/>
+
+		<input type="text" id="fleet-tacticsManager-tacticName" name="fleet-tacticsManager-tacticName" class="ui-large-input" placeholder="<?= FLEET_TACTIC_NAME ?>">
+		<input type="button" id="fleet-tacticsManager-tacticSave" name="fleet-tacticsManager-tacticSave" class="ui-large-button" value="<?= FLEET_TACTIC_SAVE ?>">
+	</div>
+
 </div>
 
 <?php /* Researchs */ ?>
@@ -682,24 +734,36 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<svg id="research-links" width="10000px" height="10000px"></svg>
 	</div>
 </div>
+
+<?php /* Tutorials */ ?>
+<div id="tutorial-panel">
+	<div id="tutorial-panel-content">
+		<h2 id="tutorial-panel-title"></h2>
+		<span id="tutorial-panel-desc"></span>
+		<ul id="tutorial-panel-objectives"></ul>
+		<input type="button" id="tutorial-panel-ok" class="ui-large-button" value="Ok">
+	</div>
+</div>
+
 <?php /* Bonus quotidien */ ?>
 <div id="day-bonus">
-	<h1><?php echo DAY_BONUS_TITLE; ?></h1>
-	<h3><?php echo DAY; ?> <span id="day-bonus-current"></span> - <?php echo DAY_BEST; ?> <span id="day-bonus-best"></span></h3>
-	<p id="day-bonus-choice"><?php echo DAY_BONUS_CHOICE; ?>
+	<h1><?= DAY_BONUS_TITLE; ?></h1>
+	<h3><?= DAY; ?> <span id="day-bonus-current"></span> - <?= DAY_BEST; ?> <span id="day-bonus-best"></span></h3>
+	<p id="day-bonus-choice"><?= DAY_BONUS_CHOICE; ?>
 	<table id="day-bonus-desc"></table>
-	<span id="day-bonus-confirm"><?php echo DAY_BONUS_CONFIRM; ?></span>
-	<span id="day-bonus-later"><?php echo DAY_BONUS_LATER; ?></span>
+	<span id="day-bonus-confirm"><?= DAY_BONUS_CONFIRM; ?></span>
+	<span id="day-bonus-later"><?= DAY_BONUS_LATER; ?></span>
 </div>
 <?php /* Notifications */ ?>
 <div id="notifications-panel">
 	<span id="notifications-closeAll">☒</span>
 </div>
 <?php /* Game Version & Copyright */ ?>
-<div id="game-version"><?php echo file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?php echo CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Elanis</a> - Copyright 2016-<?php echo date("Y"); ?></div>
+<div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/remove-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
@@ -716,7 +780,10 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/research.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/tactics.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Tutorials.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/tutorialsUI.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Unit.js"></script>
@@ -725,4 +792,4 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>
 </body>
 <?php /* Block Portrait Screens */ ?>
-<div id="portrait-warn"><h1><?php echo PORTRAIT_ERROR; ?></h1></div>
+<div id="portrait-warn"><h1><?= PORTRAIT_ERROR; ?></h1></div>

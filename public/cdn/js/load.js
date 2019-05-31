@@ -8,6 +8,7 @@ let loadStatusArr = {
 	'maps': false,
 	'load': false,
 	'service-worker': false,
+	'tactics': false,
 };
 
 class loadScreen {
@@ -22,6 +23,7 @@ class loadScreen {
 			'maps': false,
 			'load': false,
 			'service-worker': false,
+			'tactics': false,
 		};
 		loadScreen.complete();
 		ui.show('#loading-overlay');
@@ -30,13 +32,13 @@ class loadScreen {
 	/**
 	 * Notify loader that we loaded a new part of the game
 	 *
-	 * @param      {string}  title   Part loaded
+	 * @param	  {string}  title   Part loaded
 	 */
 	static complete(title='') {
 		let loadCount = 0;
 		let loadMax = 0;
-		for(let i in loadStatusArr) {
-			if(loadStatusArr[i]) { loadCount++; }
+		for(const key in loadStatusArr) {
+			if(loadStatusArr[key]) { loadCount++; }
 			loadMax++;
 		}
 
@@ -46,21 +48,21 @@ class loadScreen {
 		if(title !== '') {
 			loadStatusArr[title] = true;
 
-			for(let i in loadStatusArr) {
-				if(loadStatusArr[i] === true) { continue; }
+			for(const key in loadStatusArr) {
+				if(loadStatusArr[key] === true) { continue; }
 
 				ui.hide('.loading-overlay-bar-secondary');
-				if(i === 'pictures') {
+				if(key === 'pictures') {
 					ui.show('.loading-overlay-bar-secondary');
 				}
 
-				if(translate.load[i] !== undefined) {
-					document.getElementById('loading-overlay-desc').innerHTML = translate.load[i];
+				if(translate.load[key] !== undefined) {
+					document.getElementById('loading-overlay-desc').innerHTML = translate.load[key];
 				}
 				break;
 			}
 
-			let percentage = Math.round(loadCount/loadMax*100);
+			const percentage = Math.round(loadCount/loadMax*100);
 			let DOMElts = document.querySelectorAll('.loading-overlay-bar-primary .loading-overlay-bar-value');
 			for(let i=0; i<DOMElts.length; i++) {
 				DOMElts[i].innerText = percentage + '%';
@@ -106,17 +108,17 @@ ready(function() {
 
 			let serviceWorker;
 
-	        if (registration.installing) {
-	            serviceWorker = registration.installing;
-	        } else if (registration.waiting) {
-	            serviceWorker = registration.waiting;
-	        } else if (registration.active) {
-	            serviceWorker = registration.active;
-	        }
+			if (registration.installing) {
+				serviceWorker = registration.installing;
+			} else if (registration.waiting) {
+				serviceWorker = registration.waiting;
+			} else if (registration.active) {
+				serviceWorker = registration.active;
+			}
 
-	        if (serviceWorker) {
-	        	loadScreen.complete('service-worker');
-	        }
+			if (serviceWorker) {
+				loadScreen.complete('service-worker');
+			}
 		}, function(err) {
 			// registration failed :(
 			console.info('[SW] Registration failed: ', err);

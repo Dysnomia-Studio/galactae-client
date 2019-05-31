@@ -2,7 +2,7 @@
 	define('DEFAULT_LOAD','Connecting to server ...');
 ?>
 <script type="text/javascript">
-let translate = translate || {};
+var translate = translate || {};
 
 translate['messages'] = {
 	// Building
@@ -44,7 +44,7 @@ translate['messages'] = {
 	'ENDED_BUILDING_02': ' has just finished to upgrade to ',
 	// Not Belonging
 	'ERROR_NOT_BELONGING': 'You don\'t own this planet !',
-	// Server kick messages
+	// Server messages
 	'CONNECT_LOSS': 'You lost the connection to the server. Trying to reconnect ...',
 	'KICK': 'You\'re kicked from the game. Reason:',
 	'BAN': 'The ban hammer has spoken. Reason:',
@@ -82,6 +82,13 @@ translate['messages'] = {
 	'DISABLED_FUNCTIONALIY': 'Error: this functionallity isn\'t avaiable yet.',
 	// Anti Self XSS Warning
 	'selfXSSWarn': 'Warning: if someone told you to paste something here, it\'s probably a scam, this kind of attack are called "Self XSS" and are made to take control of your account. Be careful !',
+	// Move Panel
+	'movePanelPt1': [
+		'Defend planet',
+		'Attack planet',
+		'Move to',
+		'Spy planet',
+	],
 	'IN_BUILDING_FLEET': 'Error: Your fleet building list isn\'t finish.',
 	'ALREADY_MOVING_FLEET': 'Error: Your fleet is already moving.',
 	'NO_ENOUGHT_CARRIER': 'Error: You haven\'t enough carrier capacity.',
@@ -101,11 +108,14 @@ translate['messages'] = {
 translate['load'] = {
 	'fleet': 'Loading fleets',
 	'pictures': 'Loading pictures',
+	'load': 'Loading page',
 	'maps': 'Loading maps',
 	'planet': 'Loading planet data',
 	'player': 'Loading player data',
 	'server': 'Connecting to server ...',
+	'service-worker': 'Preloading resources',
 	'settings': 'Loading settings',
+	'tactics': 'Loading des tactics',
 	'units': 'Loading units',
 };
 </script>

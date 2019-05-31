@@ -204,6 +204,10 @@
 			let haveToUpdate = [];
 			for(let i=0; i<fleetList.length; i++) {
 				if(fleetList[i].fuel === undefined) { fleetList[i].fuel = 0; }
+
+				fleetList[i].fuel = parseInt(fleetList[i].fuel);
+				fleetList[i].maxFuel = parseInt(fleetList[i].maxFuel);
+
 				if(fleetList[i].fuel < fleetList[i].maxFuel && fleetList[i].position === fleetList[i].motherPlanetAddress) {
 					haveToUpdate.push(i);
 				}

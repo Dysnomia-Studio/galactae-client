@@ -82,6 +82,14 @@ class planetUI {
 			planetData[key] = data.data[key];
 		}
 
+		if(planetData.nextBuildingTime) {
+			planetData.nextBuildingTime = parseInt(planetData.nextBuildingTime);
+		}
+
+		if(planetData.unitBuildingEndTime) {
+			planetData.unitBuildingEndTime = parseInt(planetData.unitBuildingEndTime);
+		}
+
 		// Chargement de la map
 		map.init(planetData.address);
 
@@ -610,7 +618,7 @@ class planetUI {
 			document.getElementById('building-message').innerHTML = translate.messages['UPGRADE_MAX'];
 			ui.hide('#building-cost');
 		} else if(requirements !== '') { // Another building in build mode
-			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ": " + requirements;
+			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
 		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
 			let dateEnd = new Date(planetData.nextBuildingTime + planetUI.deltaNow);
 			let dateTom = new Date(Date.now() + (24*60*60*1000));
@@ -745,7 +753,7 @@ class planetUI {
 	 * Hide the buildpanel
 	 */
 	static buildPanelHide() {
-		if(planetUI.buildPanelInterval!=-1) {
+		if(planetUI.buildPanelInterval !== -1) {
 			clearTimeout(planetUI.buildPanelInterval);
 			planetUI.buildPanelInterval = -1;
 			planetUI.enoughResources = -1;
@@ -755,18 +763,30 @@ class planetUI {
 
 		ui.closeTab('#building-area');
 	}
-	
+
+
+	static getPlanetData(planetId) {
+		if(planetId < 0) { planetId = userData.planetlist.length - 1; }
+		if(planetId >= userData.planetlist.length) { planetId = 0; }
+
+		socket.emit('planet-ask-data', { id: userData.id, username: userData.username, pid: userData.planetlist[planetId] });
+	}
+
 	/**
 	 * Go to previous planet
 	 */
 	static prev() {
-		socket.emit('planet-ask-data-prev', userData);
+		const currPlanet = userData.planetlist.indexOf(userData.pid);
+
+		planetUI.getPlanetData(currPlanet - 1);
 	}
 	/**
 	 * Go to next planet
 	 */
 	static next() {
-		socket.emit('planet-ask-data-next', userData);
+		const currPlanet = userData.planetlist.indexOf(userData.pid);
+
+		planetUI.getPlanetData(currPlanet + 1);
 	}
 
 	/**
@@ -787,7 +807,7 @@ class planetUI {
 
 		if(pData !== undefined) {
 			if(pData.ally == '') {
-				document.getElementById('planet-other-ally-data').innerText = 'Aucune alliance';
+				document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
 			} else {
 				document.getElementById('planet-other-ally-data').innerText = pData.ally;
 			}
@@ -799,8 +819,8 @@ class planetUI {
 			document.getElementById('planet-other-planet').style.display = 'inline';
 			document.getElementById('planet-other-points').style.display = 'inline';
 		} else {
-			document.getElementById('planet-other-ally-data').innerText = 'Aucune alliance';
-			document.getElementById('planet-other-player-data').innerText = 'Aucun joueur';
+			document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
+			document.getElementById('planet-other-player-data').innerText = translate['ui']['no-player'];
 			document.getElementById('planet-other-planet').style.display = 'none';
 			document.getElementById('planet-other-points').style.display = 'none';
 		}

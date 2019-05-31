@@ -41,7 +41,7 @@ class map {
 		/**
 		 * Load XML
 		 */
-		map.focusAddress(map.currentAddress);
+		map.focusAddress(address);
 
 		/**
 		 * Global Map Events
@@ -426,30 +426,47 @@ class map {
 		}
 	}
 
-	/**
-	 * Opens a solar system map.
-	 *
-	 * @param	  {string}  address  The address
-	 */
-	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
-		// Check Address
-		if(typeof(address) !== 'string' || address.split('-').length != 3) {
-			console.error('INVALID ADRESS FORMAT !');
-			return;
+	// View info
+	static viewPlanetInfo(e) {
+		if(ui.hasClass(this.parentNode.parentNode, 'orbit')) {
+			units.planetTarget = this.parentNode.parentNode.id;
+		} else {
+			units.planetTarget = this.id.split('liste_').join(''); // Center star or bottom bar
 		}
 
+		let system = units.planetTarget.split('-');
+		system.pop();
+		system = system.join('-');
+
+		if(map.planetData[system][units.planetTarget].ownerName === null) {
+			document.getElementById('map-planet-menu-planetname').innerText = '';
+			document.getElementById('map-planet-menu-username').innerText = '';
+
+			ui.hide('#map-planet-menu img');
+			ui.show('#map-planet-menu-infos');
+			ui.show('#map-planet-menu-move');
+
+		} else { // Player planet
+			ui.show('#map-planet-menu img');
+
+			document.getElementById('map-planet-menu-planetname').innerText = map.planetData[system][units.planetTarget].name;
+			document.getElementById('map-planet-menu-username').innerText = '(' + map.planetData[system][units.planetTarget].ownerName + ')';
+		}
+
+		document.getElementById('map-planet-menu').style.left = e.pageX + 'px';
+		document.getElementById('map-planet-menu').style.top = e.pageY + 'px';
+
+		ui.show('#map-planet-menu');
+	}
+
+	static parseSystemXML(address) {
 		let sector = address.split('-');
 		sector = [sector[0],sector[1]].join('-');
 
-		map.currentMap = 'system';
-		document.getElementById('map-system-solarFront').innerHTML = '';
-		document.getElementById('map-system-solarFront-list').innerHTML = '';
+		const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + address + '"]');
 
-		// Parse XML
-		let systemXML = map.xmlDoc[sector].querySelector('sy[id="' + address + '"]');
-
-		let stars = [];
-		let starsXML = systemXML.querySelectorAll('st');
+		const stars = [];
+		const starsXML = systemXML.querySelectorAll('st');
 		for(let i=0; i< starsXML.length; i++) {
 			stars[i] = {};
 			stars[i].address = starsXML[i].id;
@@ -457,8 +474,8 @@ class map {
 			stars[i].type	= starsXML[i].getAttribute('t');
 		}
 
-		let planets = [];
-		let planetsXML = systemXML.querySelectorAll('p');
+		const planets = [];
+		const planetsXML = systemXML.querySelectorAll('p');
 		for(let i=0; i< planetsXML.length; i++) {
 			planets[i] = {};
 			planets[i].address = planetsXML[i].id;
@@ -466,6 +483,72 @@ class map {
 			planets[i].type	= planetsXML[i].getAttribute('t');
 			planets[i].gtype   = planetsXML[i].getAttribute('gt');
 		}
+
+		return [stars, planets];
+	}
+
+	static declareSolarSystemEvents() {
+		document.querySelectorAll('#map-system .planet').forEach(function(elt) {
+			elt.addEventListener('click', map.viewPlanetInfo);
+		});
+		document.querySelectorAll('#map-system .star').forEach(function(elt) {
+			elt.addEventListener('click', map.viewPlanetInfo);
+		});
+
+		document.addEventListener('click', function(e) {
+			if(!ui.hasClass(e.target, 'planet') && !ui.hasClass(e.target, 'pos') && !ui.hasClass(e.target, 'star')) {
+				ui.hide('#map-planet-menu');
+			}
+		});
+		document.querySelectorAll('#map-planet-menu img').forEach(function(elt) {
+			elt.addEventListener('click', function(e) {
+				switch(e.target.id) {
+					case 'map-planet-menu-infos':
+						planetUI.openOtherPlanetPanel();
+						break;
+					case 'map-planet-menu-move':
+						units.openMovePanel(2);
+						break;
+					case 'map-planet-menu-attack':
+						units.openMovePanel(1);
+						break;
+					case 'map-planet-menu-defend':
+						units.openMovePanel(0);
+						break;
+					case 'map-planet-menu-spy':
+						units.openMovePanel(3);
+						break;
+					case 'map-planet-menu-trade':
+						trade.openPlanetPanel();
+						break;
+				}
+
+				ui.hide('#map-planet-menu');
+			});
+		});
+		document.getElementById('map-move-panel-close').addEventListener('click', function() {
+			ui.hide('#map-move-panel');
+		});
+	}
+
+	/**
+	 * Opens a solar system map.
+	 *
+	 * @param	  {string}  address  The address
+	 */
+	static openSolarSystemMap(address) { // CSS inspired by work of Julian Garnier - codepen.io/juliangarnier/pen/idhuG
+		// Check Address
+		if(typeof(address) !== 'string' || address.split('-').length !== 3) {
+			console.error('INVALID ADRESS FORMAT !');
+			return;
+		}
+
+		map.currentMap = 'system';
+		document.getElementById('map-system-solarFront').innerHTML = '';
+		document.getElementById('map-system-solarFront-list').innerHTML = '';
+
+		// Parse XML
+		const [stars, planets] = map.parseSystemXML(address);
 
 		/**
 		 * Stars drawing
@@ -484,7 +567,7 @@ class map {
 		});
 
 		// Calc star positions for ...
-		if(stars.length == 1) { // one star
+		if(stars.length === 1) { // one star
 			orbitSize[0] = 0;
 
 			firstPlanet = stars[0].size * STAR_ECART;
@@ -550,7 +633,7 @@ class map {
 				if(stars.length === 3 && orbitSize[0] === orbitSize[1] && orbitSize[0] === orbitSize[2]) {
 					document.getElementById(stars[i].address).style.animationDelay = '-' + i*orbitDuration/3 + 's';
 					document.querySelector('div[id="' + stars[i].address + '"] .pos').style.animationDelay = '-' + i*orbitDuration/3 + 's';
-				} else if((i==1 && orbitSize[0] === orbitSize[1]) ||(i === 2 && orbitSize[1] === orbitSize[2])) {
+				} else if((i === 1 && orbitSize[0] === orbitSize[1]) ||(i === 2 && orbitSize[1] === orbitSize[2])) {
 					document.getElementById(stars[i].address).style.animationDelay = '-' + i*orbitDuration/2 + 's';
 					document.querySelector('div[id="' + stars[i].address + '"] .pos').style.animationDelay = '-' + i*orbitDuration/2 + 's';
 				}
@@ -563,7 +646,7 @@ class map {
 				document.getElementById(stars[i].address).style.marginLeft = '-' + (orbitSize[i]/2) + 'vh';
 
 				/* Star Pos */
-				let posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+				const posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 
 				document.querySelector('div[id="' + stars[i].address + '"] .pos').style.top = 'calc(50% + ' + (orbitSize[i]/2) * Math.sin((2* Math.PI) - posAng) + 'vh)';
 				document.querySelector('div[id="' + stars[i].address + '"] .pos').style.left = 'calc(50% + ' + (orbitSize[i]/2) * Math.cos((2* Math.PI) - posAng) + 'vh)';
@@ -571,7 +654,7 @@ class map {
 
 			// Add it to stars/planet list
 			document.getElementById('map-system-solarFront-list').innerHTML += '<div class="star ' + stars[i].type + '" id="liste_' + stars[i].address + '"><div class="name">' + stars[i].address + '</div></div>';
-			let position = i/(stars.length + planets.length - 1);
+			const position = i/(stars.length + planets.length - 1);
 			document.getElementById('liste_' + stars[i].address).style.left = Math.round(5 + position * 90) + '%';
 
 			// Set Size
@@ -589,10 +672,10 @@ class map {
 			document.getElementById('map-system-solarFront').innerHTML += '<div class="orbit" id="' + planets[i].address + '"><div class="pos"></div></div>';
 
 			// Set Size
-			let size = PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF;
+			const size = PLANET_SIZE_BASE + parseFloat(planets[i].size)*PLANET_SIZE_COEF;
 			document.getElementById(planets[i].address).style.fontSize = size + 'vh';
 
-			if(i==0) {
+			if(i === 0) {
 				orbitSize += size * PLANET_ECART/2;
 			} else {
 				orbitSize += (PLANET_SIZE_BASE + parseFloat(planets[i - 1].size)*PLANET_SIZE_COEF) * PLANET_ECART/2 + size * PLANET_ECART/2;
@@ -614,7 +697,7 @@ class map {
 			document.getElementById(planets[i].address).style.marginLeft ='-' + (orbitSize/2) + 'vh';
 
 			/* Planet Pos */
-			let posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
+			const posAng = (((Date.now() + planetUI.deltaNow)/1000)%orbitDuration)/orbitDuration * (2* Math.PI); // in radians
 
 			document.querySelector('div[id="' + planets[i].address + '"] .pos').style.top = 'calc(50% + ' + (Math.sin((2* Math.PI) - posAng) * orbitSize/2) + 'vh)';
 			document.querySelector('div[id="' + planets[i].address + '"] .pos').style.left = 'calc(50% + ' + (Math.cos((2* Math.PI) - posAng) * orbitSize/2) + 'vh)';
@@ -626,7 +709,7 @@ class map {
 			/* Set & Place shadow anim */
 			document.querySelector('div[id="' + planets[i].address + '"] .pos .planet').style.animationName = 'planetShadow';
 
-			let currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
+			const currShadow = (posAng/(2*Math.PI))*orbitDuration - orbitDuration;
 			document.querySelector('div[id="' + planets[i].address + '"] .pos .planet').style.animationDelay = currShadow + 's';
 
 			document.querySelector('div[id="' + planets[i].address + '"] .pos .planet').style.animationDuration = orbitDuration + 's';
@@ -634,88 +717,16 @@ class map {
 			// @ADD: Rings & Moons
 
 			// Add it to stars/planet list
-			let name = (map.planetData[address] && map.planetData[address][planets[i].address] && map.planetData[address][planets[i].address].name) ? map.planetData[address][planets[i].address].name : planets[i].address;
+			const name = (map.planetData[address] && map.planetData[address][planets[i].address] && map.planetData[address][planets[i].address].name) ? map.planetData[address][planets[i].address].name : planets[i].address;
 			document.getElementById('map-system-solarFront-list').innerHTML += '<div class="planet" id="liste_' + planets[i].address + '"><div class="name">' + name + '</div></div>';
 			document.getElementById('liste_' + planets[i].address).style.backgroundImage = 'url('+cdnURL+'/img/planets/front/' + planets[i].type + '.jpg)';
-			let position = (stars.length + i)/(stars.length + planets.length - 1);
+			const position = (stars.length + i)/(stars.length + planets.length - 1);
 			document.getElementById('liste_' + planets[i].address).style.left = Math.round(5 + position * 90) + '%';
 			document.getElementById('liste_' + planets[i].address).style.fontSize = size + 'vh';
 			document.querySelector('#liste_' + planets[i].address + ' .name').style.top = (6 + size/2) + 'vh';
 		}
 
-		// View info
-		function viewInfo(e) {
-			if(ui.hasClass(this.parentNode.parentNode, 'orbit')) {
-				units.planetTarget = this.parentNode.parentNode.id;
-			} else {
-				units.planetTarget = this.id.split('liste_').join(''); // Center star or bottom bar
-			}
-
-			let system = units.planetTarget.split('-');
-			system.pop();
-			system = system.join('-');
-
-			if(map.planetData[system][units.planetTarget].ownerName === null) {
-				document.getElementById('map-planet-menu-planetname').innerText = '';
-				document.getElementById('map-planet-menu-username').innerText = '';
-
-				ui.hide('#map-planet-menu img');
-				ui.show('#map-planet-menu-infos');
-				ui.show('#map-planet-menu-move');
-
-			} else { // Player planet
-				ui.show('#map-planet-menu img');
-
-				document.getElementById('map-planet-menu-planetname').innerText = map.planetData[system][units.planetTarget].name;
-				document.getElementById('map-planet-menu-username').innerText = '(' + map.planetData[system][units.planetTarget].ownerName + ')';
-			}
-
-			document.getElementById('map-planet-menu').style.left = e.pageX + 'px';
-			document.getElementById('map-planet-menu').style.top = e.pageY + 'px';
-
-			ui.show('#map-planet-menu');
-		}
-		document.querySelectorAll('#map-system .planet').forEach(function(elt) {
-			elt.addEventListener('click', viewInfo);
-		});
-		document.querySelectorAll('#map-system .star').forEach(function(elt) {
-			elt.addEventListener('click', viewInfo);
-		});
-
-		document.addEventListener('click', function(e) {
-			if(!ui.hasClass(e.target, 'planet') && !ui.hasClass(e.target, 'pos') && !ui.hasClass(e.target, 'star')) {
-				ui.hide('#map-planet-menu');
-			}
-		});
-		document.querySelectorAll('#map-planet-menu img').forEach(function(elt) {
-			elt.addEventListener('click', function(e) {
-				switch(e.target.id) {
-					case 'map-planet-menu-infos':
-						planetUI.openOtherPlanetPanel();
-						break;
-					case 'map-planet-menu-move':
-						units.openMovePanel(2);
-						break;
-					case 'map-planet-menu-attack':
-						units.openMovePanel(1);
-						break;
-					case 'map-planet-menu-defend':
-						units.openMovePanel(0);
-						break;
-					case 'map-planet-menu-spy':
-						units.openMovePanel(3);
-						break;
-					case 'map-planet-menu-trade':
-						trade.openPlanetPanel();
-						break;
-				}
-
-				ui.hide('#map-planet-menu');
-			});
-		});
-		document.getElementById('map-move-panel-close').addEventListener('click', function() {
-			ui.hide('#map-move-panel');
-		});
+		map.declareSolarSystemEvents();
 
 		// Back button
 		ui.show('#map-back');
@@ -796,7 +807,7 @@ class map {
 				fill: 'url(#' + starBType + ')'});
 			document.getElementById('map-global').appendChild(circle);
 
-			//@TODO: Generate other visual helps
+			//@TODO: Generate other visual helps (including all planets of current player)
 
 			// Events
 			document.getElementById(systemList[i].id).addEventListener('click', function() {
@@ -826,8 +837,8 @@ class map {
 
 		map.loadXML(sector, function() {
 			const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
-			const newX = document.documentElement.clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
-			const newY = document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
+			const newX = (1/map.zoom)*document.documentElement.clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
+			const newY = (1/map.zoom)*document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
 
 			map.moveUI([newX, newY]);
 		});

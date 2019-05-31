@@ -3,24 +3,25 @@ const RESEARCH_DIV_SIZE = 10000;
 const RESEARCH_MIN_ZOOM = 0.4;
 const RESEARCH_MAX_ZOOM = 1.75;
 
-let researchPrevMouse = [0,0];
+const researchPrevMouse = [0,0];
 
 class research {
 	/**
 	 * Handle mobile touch and bind it to mouse events
 	 */
 	static touchHandler(event) {
-		let touch = event.changedTouches[0];
+		const touch = event.changedTouches[0];
 
-		let simulatedEvent = document.createEvent('MouseEvent');
-			simulatedEvent.initMouseEvent({
+		const simulatedEvent = document.createEvent('MouseEvent');
+		simulatedEvent.initMouseEvent({
 			touchstart: 'mousedown',
 			touchmove: 'mousemove',
 			touchend: 'mouseup'
 		}[event.type], true, true, window, 1,
 			touch.screenX, touch.screenY,
 			touch.clientX, touch.clientY, false,
-			false, false, false, 0, null);
+			false, false, false, 0, null
+		);
 
 		touch.target.dispatchEvent(simulatedEvent);
 		//event.preventDefault();
@@ -43,19 +44,19 @@ class research {
 		});
 
 		document.getElementById('hud-research').addEventListener('touchstart', function(e) {
-			if(e.touches.length == 2) { 
+			if(e.touches.length === 2) {
 				researchPrevMouse[0] = Math.round((e.touches[0].pageX + e.touches[1].pageX)/2);
 				researchPrevMouse[1] = Math.round((e.touches[0].pageY + e.touches[1].pageY)/2);
-				return; 
+				return;
 			}
 
 			researchPrevMouse[0] = e.pageX;
 			researchPrevMouse[1] = e.pageY;
 		});
-		
+
 		document.getElementById('hud-research').addEventListener('mousemove', function(e) {
 			if(ui.mouseStatus[1] === 1) {
-				let pos = ui.position('#hud-research');
+				const pos = ui.position('#hud-research');
 
 				research.moveUI([pos.left + (e.pageX - researchPrevMouse[0]),
 								pos.top + (e.pageY - researchPrevMouse[1])]);
@@ -64,18 +65,18 @@ class research {
 			researchPrevMouse[1] = e.pageY;
 		});
 
-		let mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
+		const mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
 		document.getElementById('research-content').addEventListener(mousewheelevt, function(e){
 			let coef = -0.03;
 			if (e.wheelDelta > 0 || e.detail < 0) {
-				coef = 0.03; // Scroll up
+				coef = -coef; // Scroll up
 			}
 
 			research.makeZoom(coef);
 		});
 
 		document.getElementById('research-content').addEventListener('touchstart', function(e) {
-			if(e.touches.length == 2 && !research.scaling) {
+			if(e.touches.length === 2 && !research.scaling) {
 				research.scaling = true;
 
 				research.dist = Math.hypot(
@@ -87,7 +88,7 @@ class research {
 		});
 		document.getElementById('research-content').addEventListener('touchmove', function(e) {
 			if(research.scaling) {
-				let newDist = Math.hypot(
+				const newDist = Math.hypot(
 					e.touches[0].pageX - e.touches[1].pageX,
 					e.touches[0].pageY - e.touches[1].pageY);
 
@@ -95,7 +96,7 @@ class research {
 				let coef = (research.dist / newDist) - 1;
 				if(coef > 0.1) { coef = 0.1; }
 				if(coef < -0.1) { coef = -0.1; }
-				if(coef == 0) { return; }
+				if(coef === 0) { return; }
 
 				research.makeZoom(-coef);
 
@@ -129,13 +130,13 @@ class research {
 		if(research.zoom < RESEARCH_MIN_ZOOM) { research.zoom -= coef; return; }
 		if(research.zoom > RESEARCH_MAX_ZOOM) { research.zoom -= coef; return; }
 
-		let pos = ui.position('#hud-research');
+		const pos = ui.position('#hud-research');
 		pos.left = ((pos.left - researchPrevMouse[0]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[0]*1.1;
 		pos.top = ((pos.top - researchPrevMouse[1]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[1]*1.1;
 		document.getElementById('hud-research').style.left = pos.left + 'px';
 		document.getElementById('hud-research').style.top = pos.top + 'px';
-		
-		document.getElementById('research-content').style.zoom = research.zoom; 
+
+		document.getElementById('research-content').style.zoom = research.zoom;
 		document.getElementById('research-content').style.MozTransform = 'scale(' + research.zoom + ')';
 	}
 
@@ -165,7 +166,7 @@ class research {
 		ui.closeTab('#hud-map',false); /* A no-bug fix */
 		// On centre sur la recherche courante
 		if(researchPos[planetData.currResearch] !== undefined) {
-			let newUIPos = [
+			const newUIPos = [
 				document.documentElement.clientWidth/2  - researchPos[planetData.currResearch][0]*research.zoom,
 				document.documentElement.clientHeight/2 - researchPos[planetData.currResearch][1]*research.zoom
 			];
@@ -173,7 +174,7 @@ class research {
 		}
 		// On affiche le panel de recherches
 		ui.show('#hud-research');
-		// On cache le chat et memorise son statut pour plus tard	
+		// On cache le chat et memorise son statut pour plus tard
 		ui.researchChat = (document.getElementById('hud-chat').style.display === 'block');
 		ui.closeTab('#hud-chat',false);
 		ui.chat = false;
@@ -216,19 +217,19 @@ class research {
 		document.getElementById('research-content').innerHTML = '<svg id="research-links" width="10000px" height="10000px"></svg>';
 
 		// Create nodes
-		for(let key in userData.research) {
+		for(const key in userData.research) {
 			research.drawNode(key);
 		}
 
 		// Link Them
-		for(let key in userData.research) {
-			let current = researchList[key];
+		for(const key in userData.research) {
+			const current = researchList[key];
 
 			for(let i=0; i<current.parents.length; i++) {
 				research.drawLink(key,current.parents[i]);
 			}
 
-			if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch!=key) {
+			if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch !== key && !!document.getElementById(key)) {
 				document.getElementById(key).addEventListener('click', function(){
 					research.change(key);
 				});
@@ -255,7 +256,7 @@ class research {
 
 		// Place this node
 		let content;
-		if(planetData.currResearch==key && !research.isSearched(key)) {
+		if(planetData.currResearch === key && !research.isSearched(key)) {
 			content = '<div class="research-node current-research-node" id="' + key + '-node">';
 		} else {
 			content = '<div class="research-node" id="' + key + '-node">';
@@ -266,9 +267,9 @@ class research {
 			content += '<span class="research-desc text-justify">' + translate['research'][key].desc + '</span>';
 			content += '<div class="research-bottom">';
 			if(!research.isSearched(key)) {
-				content += '<span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
-				if(planetData.currResearch!=key) {
-					content += '<a class="research-search" id="'+key+'" src="#research">' + translate['research'].search + '</a>';
+				content += '<span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
+				if(planetData.currResearch !== key) {
+					content += '<a class="research-search" id="' + key + '" src="#research">' + translate['research'].search + '</a>';
 				} else {
 					content += '<span class="research-search">' + translate['research'].ongoing + '</span>';
 				}
@@ -279,12 +280,12 @@ class research {
 		} else {
 			content += '<h2>???</h2>';
 			content += '<span class="research-desc text-center">' + research.getMissingParents(key) + '</span>';
-			content += '<div class="research-bottom"><span class="research-cost"><img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">?/?</span></div>';
+			content += '<div class="research-bottom"><span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">?/?</span></div>';
 		}
 		document.getElementById('research-content').innerHTML = document.getElementById('research-content').innerHTML + content;
 
 		// Position
-		let node = document.getElementById(key + '-node');
+		const node = document.getElementById(key + '-node');
 		if(node) {
 			node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + 'px';
 			node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + 'px';
@@ -301,19 +302,19 @@ class research {
 
 		if( !(document.querySelectorAll('#'+child+'-node').length) || !(document.querySelectorAll('#'+parent+'-node').length) ) { return; }
 
-		let childPos = ui.position('#' + child + '-node');
-		let parentPos = ui.position('#' + parent + '-node');
+		const childPos = ui.position('#' + child + '-node');
+		const parentPos = ui.position('#' + parent + '-node');
 
-		let x1 = parseInt(childPos.left) + (parseInt(document.getElementById(child + '-node').clientWidth)/2);
-		let y1 = parseInt(childPos.top) + (parseInt(document.getElementById(child + '-node').clientHeight)/2);
-		let x2 = parseInt(parentPos.left) + (parseInt(document.getElementById(parent + '-node').clientWidth)/2);
-		let y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
-		let color; //default 
+		const x1 = parseInt(childPos.left) + (parseInt(document.getElementById(child + '-node').clientWidth)/2);
+		const y1 = parseInt(childPos.top) + (parseInt(document.getElementById(child + '-node').clientHeight)/2);
+		const x2 = parseInt(parentPos.left) + (parseInt(document.getElementById(parent + '-node').clientWidth)/2);
+		const y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
+		let color; //default
 
-		if(research.isSearched(parent)) { color = '#0EC6C6'; } 
+		if(research.isSearched(parent)) { color = '#0EC6C6'; }
 		else { color = 'rgba(14,198,198,0.2)'; }
 
-		let newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+		const newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
 		newLine.setAttribute('stroke',color);
 		newLine.setAttribute('stroke-width','2');
 		newLine.setAttribute('x1',x1);
@@ -329,15 +330,11 @@ class research {
 	 * @return	 {boolean}  True if able to research, False otherwise.
 	 */
 	static canResearch(key) {
-		let parents = researchList[key].parents;
+		const parents = researchList[key].parents;
 
 		for(let i=0; i<parents.length; i++) {
 			if(typeof parents[i] === 'string') {
-				if(userData.research[parents[i]] === undefined) { 
-					userData.research[parents[i]]=0; 
-				}
-
-				if(!research.isSearched(parents[i]) && parents[i]!='researchCenter') {
+				if(!research.isSearched(parents[i]) && parents[i] !== 'researchCenter') {
 					return false;
 				}
 			} else if(typeof parents[i] === 'object' &&
@@ -349,7 +346,7 @@ class research {
 			} else if(typeof parents[i] === 'object' &&
 					typeof parents[i][0] === 'string') {
 
-				if(parents[i][0] === 'planet' && 
+				if(parents[i][0] === 'planet' &&
 					userData.planetlist.length < parents[i][1]) {
 					return false;
 				}
@@ -366,17 +363,13 @@ class research {
 	 * @return     {string}  The missing parents listed as a string
 	 */
 	static getMissingParents(key) {
-		let parents = researchList[key].parents;
+		const parents = researchList[key].parents;
 		let oneParentOK = false;
 		let missingParents = '';
 
 		for(let i=0; i<parents.length; i++) {
 			if(typeof parents[i] === 'string') {
-				if(userData.research[parents[i]] === undefined) { 
-					userData.research[parents[i]]=0; 
-				}
-
-				if(!research.isSearched(parents[i]) && parents[i]!='researchCenter') {
+				if(!research.isSearched(parents[i]) && parents[i] !== 'researchCenter') {
 					missingParents += ', ' + translate['research'][parents[i]].name;
 
 				} else { oneParentOK = true; }
@@ -390,15 +383,14 @@ class research {
 			} else if(typeof parents[i] === 'object' &&
 					typeof parents[i][0] === 'string') {
 
-				if(parents[i][0] === 'planet' && 
+				if(parents[i][0] === 'planet' &&
 					userData.planetlist !== undefined &&
 					userData.planetlist.length < parents[i][1]) {
-					
+
 					missingParents += ', ' + parents[i][1] + ' ' + translate.messages['PLANETS'];
 				} else { oneParentOK = true; }
 			}
 		}
-		
 
 		if(oneParentOK && parents.length>1) {
 			return translate['messages']['MISSING_PARENTS'] + ':' + missingParents.substring(1);
@@ -416,7 +408,7 @@ class research {
 	static isSearched(key,key2) {
 		if(key2 !== undefined) { key = key2; } // used in shared libraries - @TODO: Fix this
 
-		return (userData.research[key]==-1 || key=='researchCenter');
+		return (userData.research[key] === -1 || key === 'researchCenter');
 	}
 
 	/**
@@ -426,34 +418,34 @@ class research {
 	 */
 	static change(id) {
 		socket.emit('research-change', { username: userData.username, id: userData.id, pid: userData.pid, research: id });
- 	}
+	}
 
- 	/**
- 	 * Ask server to recalc research
- 	 *
- 	 * @param      {<type>}  id      Research identifier
- 	 */
- 	static sync(id) {
- 		socket.emit('research-sync', { username: userData.username, id: userData.id, pid: userData.pid });
- 	}	
+	/**
+	 * Ask server to recalc research
+	 *
+	 * @param      {<type>}  id      Research identifier
+	 */
+	static sync(id) {
+		socket.emit('research-sync', { username: userData.username, id: userData.id, pid: userData.pid });
+	}
 
- 	/**
- 	 * Simulate research evolution (client side calculation)
- 	 */
- 	static sim() {
- 		if(userData.research[planetData.currResearch] === undefined) { return; } // If research is undefined
- 		if(userData.research[planetData.currResearch]==-1) { return; } // If research is finished
- 		
- 		userData.research[planetData.currResearch]+= (researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2])/1800
- 		
- 		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
- 			userData.research[planetData.currResearch] = -1;
+	/**
+	 * Simulate research evolution (client side calculation)
+	 */
+	static sim() {
+		if(userData.research[planetData.currResearch] === undefined) { return; } // If research is undefined
+		if(userData.research[planetData.currResearch] === -1) { return; } // If research is finished
 
- 			research.sync();
- 		}
- 		
- 		document.querySelector('#'+planetData.currResearch+'-node .research-cost').innerHTML = '<img height="20" src="'+cdnURL+'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) +'/'+researchList[planetData.currResearch].cost;
- 	}
+		userData.research[planetData.currResearch]+= (researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2])/1800;
+
+		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
+			userData.research[planetData.currResearch] = -1;
+
+			research.sync();
+		}
+
+		document.querySelector('#' + planetData.currResearch + '-node .research-cost').innerHTML = '<img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
+	}
 }
 
-let Research = research;
+const Research = research;
