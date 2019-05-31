@@ -105,6 +105,9 @@ class webSockets {
 		socket.on('notification', function(data) {
 			notifications.notify(data.type, data.args);
 		});
+		socket.on('tutorial', (tutorial) => {
+			TutorialsUI.newTutorial(tutorial);
+		});
 
 		// Daily bonus !
 		socket.on('day-bonus', function(data) {

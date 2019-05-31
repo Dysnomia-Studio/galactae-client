@@ -210,3 +210,5 @@ function unNormalizeText(str) {
 
     return str;
 }
+
+function log(txt) { console.log(txt); } // Compatibility with server for shared libraries

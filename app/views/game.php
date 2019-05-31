@@ -734,6 +734,17 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<svg id="research-links" width="10000px" height="10000px"></svg>
 	</div>
 </div>
+
+<?php /* Tutorials */ ?>
+<div id="tutorial-panel">
+	<div id="tutorial-panel-content">
+		<h2 id="tutorial-panel-title"></h2>
+		<span id="tutorial-panel-desc"></span>
+		<ul id="tutorial-panel-objectives"></ul>
+		<input type="button" id="tutorial-panel-ok" class="ui-large-button" value="Ok">
+	</div>
+</div>
+
 <?php /* Bonus quotidien */ ?>
 <div id="day-bonus">
 	<h1><?= DAY_BONUS_TITLE; ?></h1>
@@ -771,6 +782,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/tactics.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Tutorials.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/tutorialsUI.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Unit.js"></script>

@@ -189,6 +189,9 @@ class ui {
 		// Load tactics UI
 		tactics.loadUI();
 
+		// Load tutorials UI
+		TutorialsUI.loadUI();
+
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');
 			ui.ranks = false;
