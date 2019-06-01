@@ -3392,3 +3392,7 @@ a[class="research-search"]:hover {
 		height: calc(100% - 2em);
 	}
 }
+.tutorial-active {
+	border: 3px solid;
+	border-color: yellow !important;
+}

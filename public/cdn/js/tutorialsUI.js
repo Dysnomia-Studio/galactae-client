@@ -22,14 +22,19 @@ class TutorialsUI {
 	static newTutorial(type) {
 		TutorialsUI.currTutorial = type;
 
-		userData = Tutorials.updateTutorialList(userData, planetData);
-
 		//@TODO: draw yellow outline on buildings needs to be build
 
 		TutorialsUI.openTutorialPanel();
+
+		TutorialsUI.highlightButtons();
 	}
 
 	static openTutorialPanel() {
+		const notif = document.getElementsByClassName('notif-tutorial')[0];
+		if(notif) {
+			notif.parentNode.removeChild(notif);
+		}
+
 		document.getElementById('tutorial-panel-title').innerText = translate.tutorials[TutorialsUI.currTutorial + '-title'];
 
 		document.getElementById('tutorial-panel-desc').innerText =
@@ -51,5 +56,26 @@ class TutorialsUI {
 		setTimeout(() => {
 			ui.show('#tutorial-panel');
 		}, 100);
+	}
+
+	static highlightButtons() {
+		for(const objective of tutorialObjectives[TutorialsUI.currTutorial]) {
+			switch(objective.type) {
+				case 'building':
+					document.getElementById(buildingsNames[objective.building]).classList.add('tutorial-active');
+					document.getElementById(buildingsNames[objective.building]).addEventListener('click', function() {
+						this.classList.remove('tutorial-active');
+					});
+					break;
+				case 'research':
+					document.getElementById('hud-bottom-button-research').classList.add('tutorial-active');
+					document.getElementById('hud-bottom-button-research').addEventListener('click', function() {
+						this.classList.remove('tutorial-active');
+					});
+					break;
+				//@TODO do other objectives types
+				default:
+			}
+		}
 	}
 }
