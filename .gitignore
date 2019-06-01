@@ -2,3 +2,4 @@
 *.bat
 .scannerwork/*
 app/views/gvars.php
+public/cdn/maps/milkyway/

@@ -22,14 +22,17 @@ class TutorialsUI {
 	static newTutorial(type) {
 		TutorialsUI.currTutorial = type;
 
-		userData = Tutorials.updateTutorialList(userData, planetData);
-
 		//@TODO: draw yellow outline on buildings needs to be build
 
 		TutorialsUI.openTutorialPanel();
 	}
 
 	static openTutorialPanel() {
+		const notif = document.getElementsByClassName('notif-tutorial')[0];
+		if(notif) {
+			notif.parentNode.removeChild(notif);
+		}
+
 		document.getElementById('tutorial-panel-title').innerText = translate.tutorials[TutorialsUI.currTutorial + '-title'];
 
 		document.getElementById('tutorial-panel-desc').innerText =
