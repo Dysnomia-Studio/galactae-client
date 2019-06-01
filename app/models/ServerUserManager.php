@@ -48,12 +48,12 @@ class ServerUserManager extends SQLInterface {
 		$this->addUser([
 			'name' => $name,
 			'gvt' => $choice,
-			'ally' => '',
+			'ally' => null,
 			'sid' => '-1',
 			
-			// planetlist
+			'planetlist' => '{}',
 
-			'tutorials' => null,
+			'tutorials' => '{}',
 			
 			'beginnerProtectEnd' => ((time() + ($beginnerProtectionDuration * 24 * 60 * 60)) * 1000),
 
@@ -63,7 +63,7 @@ class ServerUserManager extends SQLInterface {
 			'points' => 47,
 			'money' => 0,
 			// Research
-				'research' => [],
+				'research' => '{"researchCenter": -1}',
 				'lastResearchUpdate' => 0,
 			// Bonus journalier
 				'lastBonus' => 0,
