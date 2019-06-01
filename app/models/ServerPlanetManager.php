@@ -48,13 +48,11 @@ class ServerPlanetManager extends SQLInterface {
 	public function createPlanetModel($user) {
 		$planet = $this->getAvailablePlanet($user);
 
-		return array_merge(
-			$planet
-				, [
+		return [
 				// General informations
-					// id
+					'id' => $planet['id'],
 					'name' => 'Planète de '.$user['name'], //@ADD: Translation
-					// address
+					'address' => $planet['address'],
 					// owner
 					'points' => 47,
 
@@ -66,24 +64,22 @@ class ServerPlanetManager extends SQLInterface {
 
 
 				// Buildings
-					'Buildings' => [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+					'Buildings' => '{1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0}',
 					'nextBuilding' => -1,
 					'nextBuildingTime' => -1,
 
 				// Resources
-					'resources' => [ 100, 0, 350, 500, 40, 100 ],
+					'resources' => '{100, 0, 350, 500, 40, 100}',
 					'lastResourcesUpdate' => time()*1000,
 
 				// Units
-					'unitBuildingID' => '-1',
 					'unitBuildingCount' => -1,
 					'unitBuildingEndTime'  => -1,
 					'lastUnitUpdate' => time()*1000,
 
 				// Misc
 					'currResearch' => '',
-			]
-		);
+			];
 	}
 
 	/**
