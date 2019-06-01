@@ -41,12 +41,11 @@ class ServerPlanetManager extends SQLInterface {
 	/**
 	 * Creates a planet model.
 	 *
-	 * @param      <string>  $serverName  The server name
 	 * @param      <array>  $user        User data
 	 *
 	 * @return     <array>  A new planet owned by current user (its data)
 	 */
-	public function createPlanetModel($serverName, $user) {
+	public function createPlanetModel($user) {
 		$planet = $this->getAvailablePlanet($user);
 
 		return array_merge(
@@ -93,7 +92,7 @@ class ServerPlanetManager extends SQLInterface {
 	 * @param      <string>  $dbname  The server name
 	 * @param      <array>  $planet  Planet data
 	 */
-	public function updatePlanet($dbname, $planet) {
+	public function updatePlanet($planet) {
 		$this->updateContent('planets',
 			$planet,
 			[ 'id' => $planet['id'] ]
