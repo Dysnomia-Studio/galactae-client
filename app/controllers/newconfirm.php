@@ -1,12 +1,12 @@
 <?php
 try {
-	$srvusermng = new ServerUserManager($dburl);
+	$srvusermng = new ServerUserManager();
 } catch(Exception $e) {
 	redirect('main-home');
 }
 
 try {
-	$srvplnmng = new ServerPlanetManager($dburl);
+	$srvplnmng = new ServerPlanetManager();
 } catch(Exception $e) {
 	redirect('main-home');
 }
@@ -23,11 +23,10 @@ $user = $srvusermng->createUserModel(
 );
 
 $planet = $srvplnmng->createPlanetModel(
-	$dbname,
 	$user
 );
 
-$user['planetlist'] = [ (string) $planet['address'] ];
+$user['planetlist'] = [ $planet['address'] ];
 
 // Share game-id to SQL server
 $usrmngr->addUserGameData(
@@ -37,8 +36,7 @@ $usrmngr->addUserGameData(
 );
 
 // Ajout de la planet et de l'utilisateur in game
-$srvusermng->addUser($dbname, $user);
-$srvplnmng->updatePlanet($dbname, $planet);
+$srvusermng->updateUser($user);
 
 $_SESSION['game_id'] = (string) $user['id'];
 

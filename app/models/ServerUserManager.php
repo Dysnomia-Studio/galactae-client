@@ -22,7 +22,7 @@ class ServerUserManager extends SQLInterface {
 	 *
 	 * @return     <array>  User data
 	 */
-	public function getUserByName($srvName, $name) {
+	public function getUserByName($name) {
 		$data = $this->getCondContent('users',
 			['name' => $name]
 		);
@@ -45,7 +45,7 @@ class ServerUserManager extends SQLInterface {
 	public function createUserModel($name, $choice) {
 		global $beginnerProtectionDuration;
 
-		return [
+		$this->addUser([
 			'name' => $name,
 			'gvt' => $choice,
 			'ally' => '',
@@ -53,7 +53,7 @@ class ServerUserManager extends SQLInterface {
 			
 			// planetlist
 
-			'currTutorial' => 0,
+			'tutorials' => null,
 			
 			'beginnerProtectEnd' => ((time() + ($beginnerProtectionDuration * 24 * 60 * 60)) * 1000),
 
@@ -70,7 +70,9 @@ class ServerUserManager extends SQLInterface {
 				'dayBonusStreak' => 0,
 				'dayBonusBest' => 0,
 				
-		];
+		]);
+
+		return $this->getUserByName($name);
 	}
 
 	/**
@@ -79,7 +81,15 @@ class ServerUserManager extends SQLInterface {
 	 * @param      <string>  $dbname  The server name
 	 * @param      <array>  $user    User data
 	 */
-	public function addUser($dbname, $user) {
+	public function addUser($user) {
 		$this->addContent('users', [$user]);
+	}
+
+
+	public function updateUser($user) {
+		$this->updateContent('users',
+			$user,
+			[ 'id' => $user['id'] ]
+		);
 	}
 }
