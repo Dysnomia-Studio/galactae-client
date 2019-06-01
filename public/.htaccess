@@ -19,7 +19,3 @@ ErrorDocument 504 ../errors/time_out.html
     Header set Expires "Wed, 12 Jan 1980 05:00:00 GMT"
   </IfModule>
 </FilesMatch>
-
-<IfModule mod_headers.c>
-	Header set Access-Control-Allow-Origin "*.galactae.eu"
-</IfModule>
