@@ -25,6 +25,8 @@ class TutorialsUI {
 		//@TODO: draw yellow outline on buildings needs to be build
 
 		TutorialsUI.openTutorialPanel();
+
+		TutorialsUI.highlightButtons();
 	}
 
 	static openTutorialPanel() {
@@ -54,5 +56,26 @@ class TutorialsUI {
 		setTimeout(() => {
 			ui.show('#tutorial-panel');
 		}, 100);
+	}
+
+	static highlightButtons() {
+		for(const objective of tutorialObjectives[TutorialsUI.currTutorial]) {
+			switch(objective.type) {
+				case 'building':
+					document.getElementById(buildingsNames[objective.building]).classList.add('tutorial-active');
+					document.getElementById(buildingsNames[objective.building]).addEventListener('click', function() {
+						this.classList.remove('tutorial-active');
+					});
+					break;
+				case 'research':
+					document.getElementById('hud-bottom-button-research').classList.add('tutorial-active');
+					document.getElementById('hud-bottom-button-research').addEventListener('click', function() {
+						this.classList.remove('tutorial-active');
+					});
+					break;
+				//@TODO do other objectives types
+				default:
+			}
+		}
 	}
 }
