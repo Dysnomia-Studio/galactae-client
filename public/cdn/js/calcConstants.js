@@ -883,7 +883,7 @@ const hangarMiss = {
 
 const TACTIC_MAX_ORDERS = 50;
 
-var cdnURL = cdnURL || 'https://cdn.galactae.eu/cdn/game/';
+var cdnURL = cdnURL || 'https://cdn.galactae.eu/game/';
 
 const imgCache = [
 	// Misc UI
