@@ -59,6 +59,10 @@ class TutorialsUI {
 	}
 
 	static highlightButtons() {
+		Array.from(document.getElementsByClassName('tutorial-active')).forEach((elt) => {
+			elt.classList.remove('tutorial-active');
+		});
+
 		for(const objective of tutorialObjectives[TutorialsUI.currTutorial]) {
 			switch(objective.type) {
 				case 'building':
