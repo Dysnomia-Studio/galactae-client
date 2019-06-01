@@ -883,38 +883,40 @@ const hangarMiss = {
 
 const TACTIC_MAX_ORDERS = 50;
 
+var cdnURL = cdnURL || 'https://cdn.galactae.eu/game/';
+
 const imgCache = [
 	// Misc UI
-	'cdn/img/ui/hud-top.png',
-	'cdn/img/ui/hud-bottom-left.png',
-	'cdn/img/ui/hud-bottom-right.png',
-	'cdn/img/ui/hud-chat.png',
-	'cdn/img/ui/chat-voice.png',
-	'cdn/img/ui/build-panel.png',
-	'cdn/img/ui/window.png',
+	cdnURL + 'img/ui/hud-top.png',
+	cdnURL + 'img/ui/hud-bottom-left.png',
+	cdnURL + 'img/ui/hud-bottom-right.png',
+	cdnURL + 'img/ui/hud-chat.png',
+	cdnURL + 'img/ui/chat-voice.png',
+	cdnURL + 'img/ui/build-panel.png',
+	cdnURL + 'img/ui/window.png',
 
-	'cdn/img/favicon.png',
+	cdnURL + 'img/favicon.png',
 
 	// HUD TOP
-	'cdn/img/ui/population.png',
-	'cdn/img/ui/moral.png',
-	'cdn/img/ui/money.png',
-	'cdn/img/ui/minerals.png',
+	cdnURL + 'img/ui/population.png',
+	cdnURL + 'img/ui/moral.png',
+	cdnURL + 'img/ui/money.png',
+	cdnURL + 'img/ui/minerals.png',
 
 	// HUD BOTTOM
-	'cdn/img/ui/fleets.png',
+	cdnURL + 'img/ui/fleets.png',
 ];
 
 // Buildings
 for(let i=0; i<buildingsNames.length; i++) {
 	// Panel picture
-	imgCache.push('cdn/img/buildings/desc/' + buildingsNames[i] + '.jpg');
+	imgCache.push(cdnURL + 'img/buildings/desc/' + buildingsNames[i] + '.jpg');
 }
 
 // Planets
 const backPlanetList = [0];
 for(const i in backPlanetList) {
-	imgCache.push('cdn/img/planets/back/' + backPlanetList[i] + '.png');
+	imgCache.push(cdnURL + 'img/planets/back/' + backPlanetList[i] + '.png');
 }
 const planetList = [0,1,2,3,4,5,6,7,8,9,
 	101,102,103,104,105,106,107,108,109,110,111,112,113,
@@ -923,39 +925,39 @@ const planetList = [0,1,2,3,4,5,6,7,8,9,
 	1000,1001,1002,//1003,1004,1005,1006,1007,1008,
 ];
 for(const i in planetList) {
-	imgCache.push('cdn/img/planets/front/' + planetList[i] + '.jpg');
-	imgCache.push('cdn/img/planets/halo/' + planetList[i] + '.png');
+	imgCache.push(cdnURL + 'img/planets/front/' + planetList[i] + '.jpg');
+	imgCache.push(cdnURL + 'img/planets/halo/' + planetList[i] + '.png');
 }
 
 const neededCache = [
-	'cdn/css/style.css',
+	cdnURL + 'css/style.css',
 
-	'cdn/js/cookies.js',
-	'cdn/js/readyEvent.js',
-	'cdn/js/remove-polyfill.js',
-	'cdn/js/details-polyfill.js',
-	'cdn/js/socket.min.js',
-	'cdn/js/css_globe_perspectivetransform.js',
-	'cdn/js/Buildings.js',
-	'cdn/js/calcConstants.js',
-	'cdn/js/chat.js',
-	'cdn/js/Fleet.js',
-	'cdn/js/GameMap.js',
-	'cdn/js/map.js',
-	'cdn/js/misc.js',
-	'cdn/js/notifications.js',
-	'cdn/js/planetUI.js',
-	'cdn/js/planetback.js',
-	'cdn/js/research.js',
-	'cdn/js/Resources.js',
-	'cdn/js/settings.js',
-	'cdn/js/tactics.js',
-	'cdn/js/trade.js',
-	'cdn/js/ui.js',
-	'cdn/js/Unit.js',
-	'cdn/js/units.js',
-	'cdn/js/websockets.js',
-	'cdn/js/load.js',
+	cdnURL + 'js/cookies.js',
+	cdnURL + 'js/readyEvent.js',
+	cdnURL + 'js/remove-polyfill.js',
+	cdnURL + 'js/details-polyfill.js',
+	cdnURL + 'js/socket.min.js',
+	cdnURL + 'js/css_globe_perspectivetransform.js',
+	cdnURL + 'js/Buildings.js',
+	cdnURL + 'js/calcConstants.js',
+	cdnURL + 'js/chat.js',
+	cdnURL + 'js/Fleet.js',
+	cdnURL + 'js/GameMap.js',
+	cdnURL + 'js/map.js',
+	cdnURL + 'js/misc.js',
+	cdnURL + 'js/notifications.js',
+	cdnURL + 'js/planetUI.js',
+	cdnURL + 'js/planetback.js',
+	cdnURL + 'js/research.js',
+	cdnURL + 'js/Resources.js',
+	cdnURL + 'js/settings.js',
+	cdnURL + 'js/tactics.js',
+	cdnURL + 'js/trade.js',
+	cdnURL + 'js/ui.js',
+	cdnURL + 'js/Unit.js',
+	cdnURL + 'js/units.js',
+	cdnURL + 'js/websockets.js',
+	cdnURL + 'js/load.js',
 ].concat(imgCache.slice());
 
 
