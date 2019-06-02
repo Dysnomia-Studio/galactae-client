@@ -233,12 +233,12 @@ class planetUI {
 		document.getElementById('moral_nmb').innerHTML = Math.round(planetData.Buildings[3]/planetData.Buildings[2]*100)+'%';
 
 		//Top right
-		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(planetData.resources[0],'t',mineralStorageBase);
-		document.getElementById('he_nmb').innerHTML = GetBetterUnit(planetData.resources[1],'t',storageHelium);
-		document.getElementById('fe_nmb').innerHTML = GetBetterUnit(planetData.resources[2],'t',metalsStorageBase*ratio.ironRatio);
-		document.getElementById('al_nmb').innerHTML = GetBetterUnit(planetData.resources[3],'t',metalsStorageBase*ratio.aluRatio);
-		document.getElementById('cu_nmb').innerHTML = GetBetterUnit(planetData.resources[4],'t',metalsStorageBase*ratio.copperRatio);
-		document.getElementById('ti_nmb').innerHTML = GetBetterUnit(planetData.resources[5],'t',metalsStorageBase*ratio.titanRatio);
+		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[0]),'t',mineralStorageBase);
+		document.getElementById('he_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[1]),'t',storageHelium);
+		document.getElementById('fe_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[2]),'t',metalsStorageBase*ratio.ironRatio);
+		document.getElementById('al_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[3]),'t',metalsStorageBase*ratio.aluRatio);
+		document.getElementById('cu_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[4]),'t',metalsStorageBase*ratio.copperRatio);
+		document.getElementById('ti_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[5]),'t',metalsStorageBase*ratio.titanRatio);
 	}
 
 	/**
