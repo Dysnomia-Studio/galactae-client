@@ -29,12 +29,25 @@ $expire = time() - 600; // 10 min
 
 $loadCache = '';
 $pageData['ranks'] = [];
+$pageData['pageCount'] = 0;
+$pageData['pageOuverte'] = 0;
 
 if(file_exists($cache) && filemtime($cache) > $expire) {
 	$loadCache = $cache;
 } else {
-	if($type === 'galaxy-players' && !isset($_GET['page'])) {
-		$pageData['ranks'] = $rkMngr->getGlobalListByName($userData['user_name']);
+	if($type === 'galaxy-players') {
+		$pageDemandee = ($pageDemandee < 0) ? 0 : $pageDemandee;
+
+		if($user !== '') {
+			$pageData['ranks'] = $rkMngr->getGlobalListByName($user);
+			$pageData['pageOuverte'] = 1 + ((int) $pageData['ranks'][0]['rank'])/15;
+		} else {
+			$pageData['ranks'] = $rkMngr->getGlobalListByPage($pageDemandee);
+			$pageData['pageOuverte'] = $pageDemandee + 1;
+		}
+
+		$pageData['pageCount'] = $rkMngr->getGlobalListPageCount();
+
 	} else {
 		// @TODO
 	}
