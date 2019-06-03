@@ -336,8 +336,7 @@ class ui {
 			ui.menu = false;
 
 		} else if(ui.settingsMenu) {
-			ui.closeTab('#settings-menu');
-			ui.settingsMenu = false;
+			settings.closeUI();
 
 		} else if(ui.research === true) {
 			research.closeUI();

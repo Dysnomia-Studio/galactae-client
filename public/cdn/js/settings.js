@@ -15,10 +15,10 @@ class settings {
 						'de': 'Deutsch',*/
 					}
 				},
-				deskNotifications: {
+				/*deskNotifications: {
 					default: true,
 					type: 'checkbox'
-				}
+				}*/
 			},
 			graphical: {
 				planetRotation: {
@@ -87,15 +87,14 @@ class settings {
 	static loadUI() {
 		document.getElementById('hud-settings').addEventListener('click', function () {
 			if(ui.settingsMenu) {
-				ui.closeTab('#settings-menu');
+				settings.closeUI();
 			} else {
 				ui.show('#settings-menu');
+				ui.settingsMenu = true;
 			}
-			ui.settingsMenu = !(ui.settingsMenu);
 		});
 		document.getElementById('settings-menu-cancel').addEventListener('click', () => {
-			this.initUI();
-			ui.closeTab('#settings-menu');
+			settings.closeUI();
 		});
 		document.getElementById('settings-menu-save').addEventListener('click', () => {
 			this.saveSettings();
@@ -104,10 +103,16 @@ class settings {
 		this.initUI();
 	}
 
+	static closeUI() {
+		this.initUI();
+		ui.closeTab('#settings-menu');
+		ui.settingsMenu = false;
+	}
+
 	static generateMenu() {
 		const menu = document.getElementById('settings-menu-choice');
 		while(menu.firstChild) {
-			menu.removeChild(firstChild);
+			menu.removeChild(menu.firstChild);
 		}
 
 		let first = false;
@@ -196,7 +201,6 @@ class settings {
 	static generatePanelContent(settingsCategory) {
 		const paneContent = document.createElement('table');
 
-
 		for(const currSetting in this.settingsList[settingsCategory]) {
 			const paneLine = document.createElement('tr');
 
@@ -219,9 +223,9 @@ class settings {
 	}
 
 	static generatePanels() {
-		const menu = document.getElementById('settings-menu-panes');
-		while(menu.firstChild) {
-			menu.classList.add('ul-choice-line-li-active');
+		const panes = document.getElementById('settings-menu-panes');
+		while(panes.firstChild) {
+			panes.removeChild(panes.firstChild);
 		}
 
 		let first = false;
@@ -239,7 +243,7 @@ class settings {
 				first = true;
 			}
 
-			menu.appendChild(pane);
+			panes.appendChild(pane);
 		}
 	}
 
