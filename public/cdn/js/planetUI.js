@@ -82,7 +82,7 @@ class planetUI {
 			planetData[key] = data.data[key];
 		}
 
-		userData = Tutorials.updateTutorialList(userData, planetData);
+		userData = Tutorials.updateTutorialList(userData, planetData, units.fleetList, units.list);
 
 		if(planetData.nextBuildingTime) {
 			planetData.nextBuildingTime = parseInt(planetData.nextBuildingTime);

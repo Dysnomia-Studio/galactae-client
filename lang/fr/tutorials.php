@@ -63,7 +63,7 @@ Afin de pouvoir créer facilement une grande diversité de vaisseaux, un outil d
 
 	// unitBuild
 	'unitBuild-title': 'Construction d\'unité',
-	'unitBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation même pacifique doit se préparer à la guerre.`,
+	'unitBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation, même pacifique, doit se préparer à la guerre pour maintenir une paix et sa mainmise sur ses intérêts stratégiques.`,
 	'unitBuild-objective-0': 'Construisez 5 unités de n’importe quel type',
 
 	// interplanetaryFlight
