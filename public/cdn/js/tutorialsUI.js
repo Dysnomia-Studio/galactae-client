@@ -1,7 +1,7 @@
 class TutorialsUI {
 	static loadUI() {
 		document.getElementById('tutorial-panel-ok').addEventListener('click', () => {
-			if(Tutorials.hasCompletedTutorial(TutorialsUI.currTutorial, userData, planetData)) {
+			if(Tutorials.hasCompletedTutorial(TutorialsUI.currTutorial, userData, planetData, false)) {
 				socket.emit('tutorial-confirm', {
 					id: userData.id,
 					username: userData.username,
