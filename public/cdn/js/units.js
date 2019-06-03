@@ -43,7 +43,7 @@ class units {
 
 		units.fname = '';
 		units.currUnit = -1;
-		units.fleetList = units.fleetList || {};
+		units.fleetList = units.fleetList || [];
 
 		units.sortTypes = 'name';
 

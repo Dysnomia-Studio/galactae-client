@@ -22,6 +22,15 @@ if($loadCache !== '') {
 		a:hover {
 			text-decoration: underline;
 		}
+
+		#ranks-page {
+			margin-top: 1em;
+
+			float: right;
+		}
+		.ranks-curr-page {
+			font-weight: bold;
+		}
 	</style>
 	<?php
 	echo '<table style="width: 100%; text-align: center;">
@@ -52,6 +61,22 @@ if($loadCache !== '') {
 		echo '
 		</tr>';
 	}
+	echo '</table>';
+
+	echo '<div id="ranks-page">Page: ';
+	for($i=0; $i<$pageData['pageCount']; $i++) {
+		if($i > 0) {
+			echo ' - ';
+		}
+
+		$currPage = ($i+1);
+		if($currPage === $pageData['pageOuverte']) {
+			$currPage = '<span class="ranks-curr-page">'.$currPage.'</span>';
+		}
+
+		echo '<a href="ranks.php?page='.($i+1).'">'.$currPage.'</a>';
+	}
+	echo '</div>';
 
 	$pageContent = ob_get_contents(); // copie du contenu du tampon dans une chaîne
     ob_end_clean(); // effacement du contenu du tampon et arrêt de son fonctionnement

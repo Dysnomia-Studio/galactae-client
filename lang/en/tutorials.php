@@ -28,6 +28,10 @@ translate['tutorials'] = {
 	'research-desc': `Not translated yet`, //@TODO
 	'research-objective-0': 'Do your first scientific research',
 
+	// endFirstPart
+	'endFirstPart-title': 'End of first part of tutorials',
+	'endFirstPart-desc': `Not translated yet`, //@TODO
+
 
 	// unitsCreate
 	'unitsCreate-title': 'Unit type creation',

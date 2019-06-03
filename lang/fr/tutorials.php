@@ -50,6 +50,10 @@ Bien sûr, l'évolution de votre centre de recherches influencera la rapidité d
 	'research-objective-0': 'Faire une première recherche',
 
 
+	// endFirstPart
+	'endFirstPart-title': 'Fin de la première partie des didacticiels',
+	'endFirstPart-desc': `Vous avez maintenant terminé la première partie des didacticiels, évoluez votre planète et vos recherches jusqu’à découvrir les premières unités spatiales. A ce moment là, une nouvelle série de didacticiels vous sera disponible.`,
+
 	// unitsCreate
 	'unitsCreate-title': 'Conception d\'unité',
 	'unitsCreate-desc': `La puissance d’une armée peut se mesurer de différentes manières: le nombre, la technologie, ou bien la diversité. Dans le secteur spatial, le nombre est quelque chose de facile à mettre en place avec le travail à la chaîne; la technologie dépends de la chance et du talent de nos scientifiques; la diversité par contre est facilement contrôlable par l’amirauté et le gouvernement.
@@ -59,7 +63,7 @@ Afin de pouvoir créer facilement une grande diversité de vaisseaux, un outil d
 
 	// unitBuild
 	'unitBuild-title': 'Construction d\'unité',
-	'unitBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation même pacifique doit se préparer à la guerre.`,
+	'unitBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation, même pacifique, doit se préparer à la guerre pour maintenir une paix et sa mainmise sur ses intérêts stratégiques.`,
 	'unitBuild-objective-0': 'Construisez 5 unités de n’importe quel type',
 
 	// interplanetaryFlight

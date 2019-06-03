@@ -23,6 +23,7 @@ class planetBack {
 		this.calc.lat = 0;
 
 		this.tick = 1;
+		this.frames = 0;
 
 		// Create planet
 		this.createPlanet();
@@ -141,12 +142,12 @@ class planetBack {
 		planetBack.calc.long = (-Date.now()/1000)%360 - 180;
 
 		// Rotate
-		if(settings.get('graphical_planetRotation')) {
-			planetBack.rotatePlanet();
-		}
+		planetBack.rotatePlanet();
 
 		// Loop it
-		requestAnimationFrame(planetBack.renderPlanet);
+		if(settings.get('graphical_planetRotation') || ++planetBack.frames < 5) {
+			requestAnimationFrame(planetBack.renderPlanet);
+		}
 	}
 
 	/**

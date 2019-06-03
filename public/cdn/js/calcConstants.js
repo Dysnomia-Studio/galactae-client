@@ -972,6 +972,7 @@ const tutorialsList = [
 	'inhabitants',
 	'resources',
 	'research',
+	'endFirstPart',
 	'unitsCreate',
 	'unitsBuild',
 	// 'buyAndSell',
@@ -1004,6 +1005,11 @@ const tutorialsDependancies = {
 		[{
 			type: 'tutorial',
 			tutorial: 'resources',
+		}],
+	'endFirstPart':
+		[{
+			type: 'tutorial',
+			tutorial: 'research',
 		}],
 	'unitsCreate':[
 		{
@@ -1107,6 +1113,7 @@ const tutorialObjectives = {
 			'industrialistion',
 		]
 	}],
+	'endFirstPart': [],
 	'unitsCreate': [{
 		type: 'unitModel',
 		count: 1,
