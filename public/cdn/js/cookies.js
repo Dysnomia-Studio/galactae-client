@@ -6,7 +6,7 @@
  * @param	  {number}  exdays  Expirations days
  */
 function setCookie(cname, cvalue, exdays=30) {
-	if(!cvalue) { return; }
+	if(cvalue === undefined || cvalue === null) { return; }
 
 	const d = new Date();
 	d.setTime(d.getTime() + (exdays*TIME.DAY_TO_MS));
