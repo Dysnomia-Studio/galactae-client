@@ -339,7 +339,6 @@
 <div id="game-menu">
 	<a href="https://galactae.eu/portal"><?= PORTAL; ?></a><br/>
 	<a href="https://galactae.eu/profil"><?= PROFIL; ?></a><br/>
-	<a href="https://galactae.eu/forum"><?= FORUM; ?></a><br/>
 	<a href="https://galactae.eu/support"><?= SUPPORT; ?></a><br/>
 	<a href="https://galactae.eu/deconnexion"><?= DISCONNECT; ?></a>
 </div>
