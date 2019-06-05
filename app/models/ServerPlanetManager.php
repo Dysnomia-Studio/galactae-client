@@ -54,7 +54,7 @@ class ServerPlanetManager extends SQLInterface {
 					'name' => 'Planète de '.$user['name'], //@ADD: Translation
 					'address' => $planet['address'],
 					// owner
-					'points' => 47,
+					'points' => 44,
 
 				// Geographic informations
 					// orbitDist
