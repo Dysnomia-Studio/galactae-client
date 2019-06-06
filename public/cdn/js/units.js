@@ -1029,9 +1029,12 @@ class units {
 
 			desc = desc.replace('%speed%', refSpeed.toFixed(3));
 		} else if(type === 'sup_propulsion') {
-			let refSpeed = shipPartsSpeed[tech][0]*100 + shipPartsSpeed[tech][1]*10 + shipPartsSpeed[tech][2];
-			refSpeed = GALACTIC_PARSEC_SIZE/(refSpeed * TIME.HOUR_TO_SECONDS);
-			refSpeed *= Math.pow(1.5, supEngineCount - 1);
+			let refSpeed = 0;
+			if(shipPartsSpeed['none'] !== undefined) {
+				refSpeed = shipPartsSpeed[tech][0]*100 + shipPartsSpeed[tech][1]*10 + shipPartsSpeed[tech][2];
+				refSpeed = GALACTIC_PARSEC_SIZE/(refSpeed * TIME.HOUR_TO_SECONDS);
+				refSpeed *= Math.pow(1.5, supEngineCount - 1);
+			}
 
 			desc = desc.replace('%speed%', refSpeed.toFixed(3));
 		} else if(type === 'hangar') {
