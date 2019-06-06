@@ -60,7 +60,7 @@ class ServerUserManager extends SQLInterface {
 			'lastConnected' => 0,
 			'lastAction' => 0,
 
-			'points' => 47,
+			'points' => 44,
 			'money' => 0,
 			// Research
 				'research' => '{"researchCenter": -1}',
