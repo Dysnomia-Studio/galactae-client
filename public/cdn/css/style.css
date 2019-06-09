@@ -606,6 +606,16 @@ select, input, summary {
 	bottom: 0.7em;
 	text-align: center;
 }
+@media (min-width: 630px) and (min-height: 430px) {
+	#settings-menu-cancel, #settings-menu-save {
+		bottom: 0.7em;
+	}
+}
+@media (max-width: 629px), (max-height: 429px) {
+	#settings-menu-cancel, #settings-menu-save {
+		bottom: calc(7vw + 0.7em);
+	}
+}
 #settings-menu-cancel {
 	right: calc(125px + 1em);
 	width: 125px;
