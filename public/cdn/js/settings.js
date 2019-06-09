@@ -77,6 +77,11 @@ class settings {
 			}
 		};
 
+		// Mobile low settings mode
+		if(isMobileBrowser()) {
+			this.settingsList.graphical.planetRotation.default = false;
+		}
+
 		this.initUI();
 
 		loadScreen.complete('settings');
