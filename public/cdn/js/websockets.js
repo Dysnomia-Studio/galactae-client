@@ -57,7 +57,11 @@ class webSockets {
 
 		//Sync the fleet data
 		socket.on('fleet-recieve-data',function(data) {
-			units.fleetList = data.map((fleet) => { fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name; return fleet; });
+			const fleetList = data.FleetList.map((fleet) => { fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name; return fleet; });
+
+			units.fleetList = units.fleetList.filter((fleet) => fleet.motherPlanetId !== data.pid);
+
+			units.fleetList = units.fleetList.concat(fleetList);
 			units.regenerateSelectFleetLists();
 			units.refresh(units.list);
 			loadScreen.complete('fleet');
