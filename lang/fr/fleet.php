@@ -141,6 +141,15 @@ const fleetTranslate = {
 	get hangarDouble_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
 	'none': 'Aucune pièce',
 	'none_desc': '&nbsp;',
+	'noPartResearched': 'Aucune piece recherchée',
+	'noPartResearched_desc': 'Aucune piece recherchée',
+
+	// Types
+	'cannon': 'Canons',
+	'rocketLauncher': 'Lance missiles',
+	'shield': 'Defenses',
+	'sub_propulsion': 'Propulsion subluminique',
+	'sup_propulsion': 'Propulsion supraluminique',
 
 	// Texts
 	'fleet-build-openPanel': 'Construire l\'unité',

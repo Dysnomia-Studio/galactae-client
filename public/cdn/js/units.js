@@ -908,30 +908,7 @@ class units {
 			for(const shipShape in shipShapesDetails[unitTypes[i]]) {
 				// Check ship research
 				if(shipResearchDependencies[shipShape] === undefined || research.isSearched(shipResearchDependencies[shipShape])) {
-					let allParts = true;
-
-					// Check ship parts research
-					for(const parttype in shipShapesDetails[unitTypes[i]][shipShape].content) {
-						let atLeastOne = false;
-
-						for(const part of shipShapesDetails[unitTypes[i]][shipShape].content[parttype]) {
-
-							if(shipResearchDependencies[part] === undefined || research.isSearched(shipResearchDependencies[part])) {
-								atLeastOne = true;
-								break;
-							}
-						}
-
-						if(!atLeastOne) {
-							allParts = false;
-							break;
-						}
-					}
-					// End ship parts research
-
-					if(allParts) {
-						disabled = false;
-					}
+					disabled = false;
 					break;
 				}
 			}
@@ -1030,7 +1007,7 @@ class units {
 			desc = desc.replace('%speed%', refSpeed.toFixed(3));
 		} else if(type === 'sup_propulsion') {
 			let refSpeed = 0;
-			if(shipPartsSpeed['none'] !== undefined) {
+			if(shipPartsSpeed[tech] !== undefined) {
 				refSpeed = shipPartsSpeed[tech][0]*100 + shipPartsSpeed[tech][1]*10 + shipPartsSpeed[tech][2];
 				refSpeed = GALACTIC_PARSEC_SIZE/(refSpeed * TIME.HOUR_TO_SECONDS);
 				refSpeed *= Math.pow(1.5, supEngineCount - 1);
@@ -1039,6 +1016,10 @@ class units {
 			desc = desc.replace('%speed%', refSpeed.toFixed(3));
 		} else if(type === 'hangar') {
 			desc = desc.replace('%hangarCapacity%', hangarSize[tech]);
+		}
+
+		if(tech === 'noPartResearched') {
+			tech = type;
 		}
 
 		content += '<span style="color:#93fcfc">' + fleetTranslate[tech] + '</span><br/>';
@@ -1058,6 +1039,7 @@ class units {
 		document.getElementById('fleet-type-create-selects').innerHTML = '';
 		let svgContent = '';
 		const clickEvent = [];
+		let disableForm = false;
 
 		const subEngineCount = shape.filter(e => e[0] === 'sub_propulsion').length,
 			supEngineCount = shape.filter(e => e[0] === 'sup_propulsion').length;
@@ -1098,17 +1080,40 @@ class units {
 			// Draw HTML
 			if(shape[i][0] !== 'struct') {
 				/* Hidden Select */
-				let hiddenSelect = '<select id="part-selecting-hidden-' + i + '" partName="' + shape[i][6] + '" partType="' + shape[i][0] + '" style="display: none;">';
+				const hiddenSelect = document.createElement('select');
+				hiddenSelect.id = 'part-selecting-hidden-' + id;
+				hiddenSelect.setAttribute('partName', shape[i][6]);
+				hiddenSelect.setAttribute('partType', shape[i][0]);
+				hiddenSelect.style.display = 'none';
+
 				for(let j=0; j<content[shape[i][0]].length; j++) {
-					if(content[shape[i][0]][j] !== 'none' && shipResearchDependencies[content[shape[i][0]][j]] !== undefined && !research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
+					if(content[shape[i][0]][j] !== 'none' &&
+						shipResearchDependencies[content[shape[i][0]][j]] !== undefined &&
+						!research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
+
+					const newOption = document.createElement('option');
+					newOption.value = content[shape[i][0]][j];
+					newOption.id = content[shape[i][0]][j];
+
 					if(unitsParts[shape[i][6]] !== undefined && unitsParts[shape[i][6]] === content[shape[i][0]][j]) {
-						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '" selected>';
-					} else {
-						hiddenSelect += '<option value="' + content[shape[i][0]][j] + '" id="' + content[shape[i][0]][j] + '"></option>';
+						newOption.setAttribute('selected', true);
 					}
+
+					hiddenSelect.appendChild(newOption);
 				}
-				hiddenSelect += '</select>';
-				document.getElementById('fleet-type-create-selects').innerHTML += hiddenSelect;
+
+				if(hiddenSelect.childNodes.length === 0) {
+					const newOption = document.createElement('option');
+					newOption.value = 'noPartResearched';
+					newOption.id = 'noPartResearched';
+
+					hiddenSelect.appendChild(newOption);
+
+					disableForm = true;
+				}
+
+				document.getElementById('fleet-type-create-selects').innerHTML += hiddenSelect.outerHTML;
+
 
 				/* Seen Select */
 				const source = document.getElementById('part-selecting-hidden-' + id);
@@ -1138,7 +1143,7 @@ class units {
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
 						'" class="tooltip">' +
-						'<span class="tooltip-wrapper tooltip-wrapper-right"><span class="tooltip-content">' + units.getTooltipText(shape[i][0], content[shape[i][0]][0], subEngineCount, supEngineCount) + '</span></span></a></dt>' +
+						'<span class="tooltip-wrapper tooltip-wrapper-right"><span class="tooltip-content">' + units.getTooltipText(shape[i][0], source.options[0].id, subEngineCount, supEngineCount) + '</span></span></a></dt>' +
 						'<dd><ul></ul></dd>' +
 					'</dl>';
 
@@ -1149,7 +1154,7 @@ class units {
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
 						'"class="tooltip">' +
-						'<span class="tooltip-wrapper tooltip-wrapper-right"><span class="tooltip-content">' + units.getTooltipText(shape[i][0], content[shape[i][0]][eltId], subEngineCount, supEngineCount) + '</span></span></a></li>';
+						'<span class="tooltip-wrapper tooltip-wrapper-right"><span class="tooltip-content">' + units.getTooltipText(shape[i][0], source.options[eltId].id, subEngineCount, supEngineCount) + '</span></span></a></li>';
 				}
 
 				clickEvent.push(id);
@@ -1215,6 +1220,8 @@ class units {
 				});
 			});
 		}
+
+		document.getElementById('fleet-type-create-submit').disabled = disableForm;
 	}
 
 	static updateTypeCreateStats() {
@@ -1262,7 +1269,7 @@ class units {
 		ui.show(div + ' div');
 
 		for(let i=0; i<parts.length; i++) {
-			if(parts[i].tech === 'none') { continue; }
+			if(parts[i].tech === 'none' || parts[i].tech === 'noPartResearched') { continue; }
 
 			switch(parts[i].type) {
 				case 'sub_propulsion':

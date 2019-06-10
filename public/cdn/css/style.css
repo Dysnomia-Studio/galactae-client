@@ -606,6 +606,16 @@ select, input, summary {
 	bottom: 0.7em;
 	text-align: center;
 }
+@media (min-width: 630px) and (min-height: 430px) {
+	#settings-menu-cancel, #settings-menu-save {
+		bottom: 0.7em;
+	}
+}
+@media (max-width: 629px), (max-height: 429px) {
+	#settings-menu-cancel, #settings-menu-save {
+		bottom: calc(7vw + 0.7em);
+	}
+}
 #settings-menu-cancel {
 	right: calc(125px + 1em);
 	width: 125px;
@@ -1167,8 +1177,14 @@ select, input, summary {
 	background-color: #0b1012;
 	color: #EEEEEE;
 }
+.ui-large-button:disabled, .ui-medium-button:disabled, .ui-small-button:disabled {
+	background-color: #232829;
+}
 .ui-large-button:hover, .ui-medium-button:hover, .ui-small-button:hover {
 	background-color: #0f1619;
+}
+.ui-large-button:disabled:hover, .ui-medium-button:disabled:hover, .ui-small-button:disabled:hover {
+	background-color: #232829;
 }
 .ui-large-button, .ui-large-select, .ui-large-input, .ui-large-span {
 	height: 50px;
