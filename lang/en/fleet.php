@@ -141,6 +141,8 @@ const fleetTranslate = {
 	get hangarDouble_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
 	'none': 'No part',
 	'none_desc': '&nbsp;',
+	'noPartResearched': 'No part researched',
+	'noPartResearched_desc': 'No part researched',
 
 	// Texts
 	'fleet-build-openPanel': 'Build this unit',
