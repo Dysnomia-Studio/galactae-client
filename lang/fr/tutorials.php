@@ -46,7 +46,17 @@ Afin d’augmenter votre production veuillez augmenter votre production de resso
 	// Recherches
 	'research-title': 'Recherches',
 	'research-desc': `Les recherches scientifiques sont une activité commune à toute nation moderne. Afin d’optimiser les recherches de la nation, cette interface vous permet d’ordonner un domaine de recherche prioritaire pour la planète au complet.
-Bien sûr, l'évolution de votre centre de recherches influencera la rapidité d’avancée de la science.`,
+
+L’arbre de recherche part du centre de recherche vers 3 domaines qui bien que différents sont liés entre eux:
+- Thermodynamique: permet de débloquer tout ce qui attrait à la propulsion
+- Physique contemporaine: permet d’évoluer les connaissances en physique de la nation (qui nous seront utiles dans bien des domaines)
+- Industrialisation: Permet d’augmenter la production de ressources, la productivité de certains bâtiments ou encore la vitesse de construction d’unités.
+
+Bien sûr, l'évolution de votre centre de recherches influencera la rapidité d’avancée de la science.
+
+ Pour réaliser une recherche: ouvrez le panel de recherche, puis choisissez l’une des 3 recherches disponibles en cliquant sur “Rechercher”.
+
+Note: Il n’est possible de faire qu’une recherche à la fois sur une planète précise.`,
 	'research-objective-0': 'Faire une première recherche',
 
 
@@ -58,12 +68,18 @@ Bien sûr, l'évolution de votre centre de recherches influencera la rapidité d
 	'unitsCreate-title': 'Conception d\'unité',
 	'unitsCreate-desc': `La puissance d’une armée peut se mesurer de différentes manières: le nombre, la technologie, ou bien la diversité. Dans le secteur spatial, le nombre est quelque chose de facile à mettre en place avec le travail à la chaîne; la technologie dépends de la chance et du talent de nos scientifiques; la diversité par contre est facilement contrôlable par l’amirauté et le gouvernement.
 
-Afin de pouvoir créer facilement une grande diversité de vaisseaux, un outil de création et personnalisation de vaisseau est disponible dans cette interface.`,
+Afin de pouvoir créer facilement une grande diversité de vaisseaux, un outil de création et personnalisation de vaisseau est disponible dans cette interface.
+
+Pour cela allez sur l’interface des unités, cliquez sur “Nouveau Plan”, puis choisissez les pièces de votre vaisseau.
+
+Attention: si le message “Aucune piece recherchée” s’affiche au survol d’une partie du vaisseau (ou symbole “?” affiché), il vous faudra au moins rechercher une technologie de cette catégorie afin pouvoir créer votre type de vaisseau. En conséquence, le bouton “Creer” sera grisé.`,
 	'unitsCreate-objective-0': 'Créez un premier modèle d’unité militaire',
 
 	// unitBuild
 	'unitBuild-title': 'Construction d\'unité',
-	'unitBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation, même pacifique, doit se préparer à la guerre pour maintenir une paix et sa mainmise sur ses intérêts stratégiques.`,
+	'unitBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation, même pacifique, doit se préparer à la guerre pour maintenir une paix et sa mainmise sur ses intérêts stratégiques.
+
+Afin de construire une unité, allez sur l’interface de gestion des unités, choisissez le type d’unité que vous souhaitez construire, cliquez sur “Construire l’unité” (l’icône en forme de clé et marteau), créez votre flotte si nécessaire, indiquez le nombre d’unités que vous souhaitez construire, puis cliquez sur “Construire”.`,
 	'unitBuild-objective-0': 'Construisez 5 unités de n’importe quel type',
 
 	// interplanetaryFlight
