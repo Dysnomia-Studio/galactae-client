@@ -847,6 +847,8 @@ const shipPartsSpeed = {
 	vsl: 			[    -0.027,   7.23, 0.001],
 	wd: 			[    -0.016,   5.13, 0.001],
 	hyperespace: 	[    -0.014,   3.68, 0.001],
+
+	noPartResearched: [0,0,0],
 };
 const fuelCost = {
 	// Propulsions subluminiques
