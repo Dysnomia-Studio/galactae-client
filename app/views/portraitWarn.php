@@ -1,0 +1,1 @@
+<div id="portrait-warn"><h1><?= PORTRAIT_ERROR; ?></h1></div>

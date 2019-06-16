@@ -790,5 +790,4 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Launch Game ! */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>
 </body>
-<?php /* Block Portrait Screens */ ?>
-<div id="portrait-warn"><h1><?= PORTRAIT_ERROR; ?></h1></div>
+<?php /* Block Portrait Screens */ include(DIR_VIEW.'/portraitWarn.php');
