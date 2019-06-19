@@ -600,6 +600,24 @@ class planetUI {
 		if(id > 8) { // Faster if shipyard have higher lvl
 			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
 		}
+		// Research bonus
+		let timeSpeed = 1;
+		if(Research.isSearched(userData,'cp_mecanisation')) {
+			timeSpeed += researchBonus.cp_mecanisation;
+		}
+
+		if(id >= globalConst.groundBuildingNumber) {
+			if(Research.isSearched(userData,'cp_tracteur')) {
+				timeSpeed += researchBonus.cp_tracteur;
+			}
+			if(Research.isSearched(userData,'cp_materielTp')) {
+				timeSpeed += researchBonus.cp_materielTp;
+			}
+
+			// Faster if shipyard have higher lvl
+			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
+		}
+		cost.time *= timeSpeed;
 		document.getElementById('building-cost-time-val').innerHTML = getStringTime(cost.time);
 
 		/* Bouton upgrade ou message */
