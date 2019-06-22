@@ -145,7 +145,7 @@ class planetUI {
 
 			if(units.fleetList && units.fleetList.length > 0) {
 				let empty;
-				[planetData, units.fleetList, empty] = Fleet.distributeFuel(Object.assign({}, planetData), Object.assign({}, units.fleetList));
+				[planetData, units.fleetList, empty] = Fleet.distributeFuel(Object.assign({}, planetData), units.fleetList.slice(0));
 
 				// @TODO: Update before full on server
 
