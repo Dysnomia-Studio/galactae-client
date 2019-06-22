@@ -59,8 +59,6 @@ class webSockets {
 		socket.on('fleet-recieve-data',function(data) {
 			units.fleetList = units.fleetList.filter((fleet) => fleet.motherPlanetId !== data.pid);
 
-			console.log(data.FleetList);
-
 			for(const fleet of data.FleetList) {
 				fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name;
 
