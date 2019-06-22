@@ -4,6 +4,7 @@
 	define('POPULATION','Population');
 	define('ELECTRICITY','Electricité');
 	define('HELIUM3','Helium 3');
+	define('DISTRIBUTING_FUEL', 'Rechargement des flottes<br/> en carburant');
 	define('METAL_CATEGORY','Metal');
 	define('METAL_IRON','Fer');
 	define('METAL_ALUMINIUM','Aluminium');

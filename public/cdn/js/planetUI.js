@@ -149,8 +149,12 @@ class planetUI {
 
 				// @TODO: Update before full on server
 
-				if(!empty) {
+				if(empty) {
+					document.getElementById('he-fuel-distribute').style.display = 'none';
+
 					// @TODO: Same owner, same ally, trade
+				} else {
+					document.getElementById('he-fuel-distribute').style.display = 'inline';
 				}
 			}
 		}

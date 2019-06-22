@@ -196,6 +196,7 @@
 					<?= HELIUM3; ?><br/>
 					<?= CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
+					<span id="he-fuel-distribute"><?= DISTRIBUTING_FUEL ?></span>
 				</span>
 			</span>
 		</span>
