@@ -145,12 +145,16 @@ class planetUI {
 
 			if(units.fleetList && units.fleetList.length > 0) {
 				let empty;
-				[planetData, units.fleetList, empty] = Fleet.distributeFuel(planetData, units.fleetList);
+				[planetData, units.fleetList, empty] = Fleet.distributeFuel(Object.assign({}, planetData), units.fleetList.slice(0));
 
 				// @TODO: Update before full on server
 
-				if(!empty) {
+				if(empty) {
+					document.getElementById('he-fuel-distribute').style.display = 'none';
+
 					// @TODO: Same owner, same ally, trade
+				} else {
+					document.getElementById('he-fuel-distribute').style.display = 'inline';
 				}
 			}
 		}
@@ -600,6 +604,24 @@ class planetUI {
 		if(id > 8) { // Faster if shipyard have higher lvl
 			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
 		}
+		// Research bonus
+		let timeSpeed = 1;
+		if(Research.isSearched(userData,'cp_mecanisation')) {
+			timeSpeed += researchBonus.cp_mecanisation;
+		}
+
+		if(id >= globalConst.groundBuildingNumber) {
+			if(Research.isSearched(userData,'cp_tracteur')) {
+				timeSpeed += researchBonus.cp_tracteur;
+			}
+			if(Research.isSearched(userData,'cp_materielTp')) {
+				timeSpeed += researchBonus.cp_materielTp;
+			}
+
+			// Faster if shipyard have higher lvl
+			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
+		}
+		cost.time *= timeSpeed;
 		document.getElementById('building-cost-time-val').innerHTML = getStringTime(cost.time);
 
 		/* Bouton upgrade ou message */

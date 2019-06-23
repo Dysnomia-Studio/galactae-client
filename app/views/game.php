@@ -196,6 +196,7 @@
 					<?= HELIUM3; ?><br/>
 					<?= CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
+					<span id="he-fuel-distribute"><?= DISTRIBUTING_FUEL ?></span>
 				</span>
 			</span>
 		</span>
@@ -790,5 +791,4 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Launch Game ! */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>
 </body>
-<?php /* Block Portrait Screens */ ?>
-<div id="portrait-warn"><h1><?= PORTRAIT_ERROR; ?></h1></div>
+<?php /* Block Portrait Screens */ include(DIR_VIEW.'/portraitWarn.php');
