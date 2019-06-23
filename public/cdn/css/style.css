@@ -1756,7 +1756,6 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 }
 .fleet-show-table {
 	width: 100%;
-	margin-top: -1em;
 }
 .fleet-show-table td {
 	width: 33%;
@@ -1765,6 +1764,9 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	margin: 0.5em;
 
 	border: 1px solid #0EC6C6;
+}
+#hud-fleet summary::-webkit-details-marker {
+	display: none;
 }
 .fleet-show-fuel {
 	max-height: 0.8em;
