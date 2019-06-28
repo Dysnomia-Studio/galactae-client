@@ -636,6 +636,7 @@ const shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				shield: ['none','magnetic','projector'],
 			},
+			partCount: 2,
 		},
 	},
 	SHIP_BATTLECRUISER: {
@@ -662,6 +663,7 @@ const shipShapesDetails = {
 				sup_propulsion: ['vsl','wd'],
 				shield: ['none','magnetic','turret'],
 			},
+			partCount: 6,
 		},
 	},
 	SHIP_CUIRASSE: {
@@ -685,6 +687,7 @@ const shipShapesDetails = {
 				sup_propulsion: ['vsl','wd'],
 				shield: ['none','magnetic','turret','singularity','projector'],
 			},
+			partCount: 6,
 		},
 	},
 	SHIP_FIGHTER: {
@@ -702,6 +705,7 @@ const shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				sub_propulsion: ['vsolaire','ion'],
 			},
+			partCount: 2,
 		},
 		SHIP_FIGHTER_MEDIUM: {
 			svg: [
@@ -718,6 +722,7 @@ const shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				sub_propulsion: ['vsolaire','ion'],
 			},
+			partCount: 3,
 		},
 	},
 	SHIP_CORVET: {
@@ -742,6 +747,7 @@ const shipShapesDetails = {
 				sub_propulsion: ['vsolaire','ion','pplasma'],
 				sup_propulsion: ['none','vsl','wd'],
 			},
+			partCount: 5,
 		},
 	},
 	SHIP_CARRIER: {
@@ -769,6 +775,7 @@ const shipShapesDetails = {
 				sup_propulsion: ['vsl','wd','hyperespace'],
 				shield: ['none','magnetic','turret'],
 			},
+			partCount: 7,
 		},
 	},
 };
