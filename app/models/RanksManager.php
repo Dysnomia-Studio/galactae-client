@@ -80,7 +80,7 @@ class RanksManager extends SQLInterface {
 			) - 8, 0) LIMIT 15', 
 		[
 			'serverName' => $dbname,
-			'userName' => $player,
+			'userName' => $userName,
 			'sector' => $sector
 		]);
 	}
