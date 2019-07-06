@@ -658,7 +658,7 @@ class planetUI {
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
-		} else if(!Buildings.hasEnoughtStorage(planetData, id)) {
+		} else if(!Buildings.hasEnoughtStorage(planetData, id, Research.isSearched('cp_molecular_compression'))) {
 			document.getElementById('building-message').innerHTML = translate.messages['BUILDING_ERROR_STORAGE'];
 		} else if(planetUI.enoughResources>0) { // No enough Ressources
 			let dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
