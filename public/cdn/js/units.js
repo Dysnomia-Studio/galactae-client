@@ -1527,7 +1527,7 @@ class units {
 
 		// Fuel
 		if(fleet.maxFuel > 0) {
-			content += '<td class="text-center"><img class="fleet-show-fuel" src="./cdn/img/ui/fuel.svg"> ' + GetBetterUnit(fleet.fuel, '', -1, true) + '/' + GetBetterUnit(fleet.maxFuel) +
+			content += '<td class="text-center"><img class="fleet-show-fuel" src="./cdn/img/ui/fuel.svg"> ' + GetBetterUnit(fleet.fuel, 't', -1, true) + '/' + GetBetterUnit(fleet.maxFuel, 't') +
 			'(~' + Math.round(100*fleet.fuel/fleet.maxFuel) + '%)</td>';
 		} else {
 			content += '<td></td>';
