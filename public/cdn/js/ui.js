@@ -672,11 +672,17 @@ class ui {
 		document.getElementById('day-bonus-desc').innerHTML = desc;
 		ui.show('#day-bonus');
 
-		const DOMElts = document.querySelectorAll('day-bonus-desc td');
+		const DOMElts = document.querySelectorAll('#day-bonus-desc td');
 		for(let elt=0; elt<DOMElts.length; elt++) {
 			DOMElts[elt].addEventListener('click', function() {
 				ui.toggleClass('#day-bonus-desc .day-bonus-active', 'day-bonus-active', this);
 			});
+		}
+
+		if(DOMElts.length < 2) {
+			document.getElementById('day-bonus-choice').style.display = 'none';
+		} else {
+			document.getElementById('day-bonus-choice').style.display = 'block';
 		}
 
 		const dateNow = new Date();
