@@ -75,12 +75,12 @@ Pour cela allez sur l’interface des unités, cliquez sur “Nouveau Plan”, p
 Attention: si le message “Aucune piece recherchée” s’affiche au survol d’une partie du vaisseau (ou symbole “?” affiché), il vous faudra au moins rechercher une technologie de cette catégorie afin pouvoir créer votre type de vaisseau. En conséquence, le bouton “Creer” sera grisé.`,
 	'unitsCreate-objective-0': 'Créez un premier modèle d’unité militaire',
 
-	// unitBuild
-	'unitBuild-title': 'Construction d\'unité',
-	'unitBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation, même pacifique, doit se préparer à la guerre pour maintenir une paix et sa mainmise sur ses intérêts stratégiques.
+	// unitsBuild
+	'unitsBuild-title': 'Construction d\'unité',
+	'unitsBuild-desc': `La construction de flottes militaires (de combat, d’espionnage) sont nécessaires afin de tenir sa domination sur sa ou ses planètes face aux nations belliqueuses. Tout nation, même pacifique, doit se préparer à la guerre pour maintenir une paix et sa mainmise sur ses intérêts stratégiques.
 
 Afin de construire une unité, allez sur l’interface de gestion des unités, choisissez le type d’unité que vous souhaitez construire, cliquez sur “Construire l’unité” (l’icône en forme de clé et marteau), créez votre flotte si nécessaire, indiquez le nombre d’unités que vous souhaitez construire, puis cliquez sur “Construire”.`,
-	'unitBuild-objective-0': 'Construisez 5 unités de n’importe quel type',
+	'unitsBuild-objective-0': 'Construisez 5 unités de n’importe quel type',
 
 	// interplanetaryFlight
 	'interplanetaryFlight-title': 'Déplacement interplanétaire',
