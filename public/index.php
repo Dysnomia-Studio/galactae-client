@@ -1,4 +1,19 @@
 <?php
+// Cookies
+if(!isset($_COOKIE['rememberMe']) || (!$_COOKIE['rememberMe'] && $_COOKIE['rememberMe'] != "false")) {
+    $expTime = 2678400; // One month
+} else {
+    $expTime = 1800; // 30 min
+}
+
+ini_set('session.cookie_domain', '.galactae.eu' );
+ini_set('session.cookie_lifetime ', $expTime); // Set expiration to 1 month
+ini_set('session.gc_maxlifetime', $expTime); // Set expiration to 1 month
+
+if(isset($_COOKIE['galactae-phpsessid']) && $_COOKIE['galactae-phpsessid'] != "") {
+    session_id($_COOKIE['galactae-phpsessid']);
+}
+
 session_start();
 
 define('DIR_CTRL', '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'controllers'.DIRECTORY_SEPARATOR);
@@ -13,7 +28,15 @@ require_once DIR_CTRL.'autoload.php';
 
 include_once(FILE_CONFIG);
 
-$lang = new Language(); // Init Translation system
+$langCookie = '';
+if(isset($_COOKIE['galactae_settings_general_language'])) {
+	$langCookie = $_COOKIE['galactae_settings_general_language'];
+}
+
+$lang = new Language($langCookie); // Init Translation system
+
+setcookie ( 'galactae_settings_general_language', $lang->getLanguage(), time()+$expTime,'/', '.galactae.eu');
+setcookie ( 'galactae_settings_general_language', $lang->getLanguage(), time()+$expTime,'/', 'galactae.eu');
 
 define('DIR_CACHE', '..'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.$lang->getLanguage().'-');
 

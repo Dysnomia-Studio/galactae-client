@@ -84,9 +84,9 @@ class chat {
 
 		document.querySelector('#'+data.channel).scrollTop = document.querySelector('#'+data.channel+' .chat_logs').clientHeight;
 
-		if(data.sound) {
+		if(data.sound && settings.get('sounds_privateMessage')) {
 			const pmSound = new Audio('snd/ui/private_message.mp3');
-			pmSound.volume = 0.2;
+			pmSound.volume = 0.2 * settings.get('sounds_soundLvl')/100;
 			pmSound.play();
 		}
 	}

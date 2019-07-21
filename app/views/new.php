@@ -78,3 +78,5 @@
 		});
 	});
 </script>
+</body>
+<?php /* Block Portrait Screens */ include(DIR_VIEW.'/portraitWarn.php');

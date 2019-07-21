@@ -52,6 +52,10 @@
 	define('FLEET_TACTIC_SAVE_ORDER', 'Sauvegarder l\'ordre');
 	define('FLEET_TACTIC_SAVE', 'Sauvegarder la tactique');
 
+	define('TACTIC', 'Tactique');
+	define('DEFAULT_TACTIC', 'Tactique par defaut');
+	define('FLEET_ASSIGN_TACTIC', 'Tactique à assigner à');
+
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','Vous n\'avez encore aucun modèle');
 ?>
@@ -90,21 +94,62 @@ const fleetTranslate = {
 
 	// Armes
 	'railgun': 'Canon Electrique',
+	'railgun_desc': 'Projectile accéléré par électromagnetisme',
 	'laser': 'Canon Laser',
+	'laser_desc': 'Armes à laser',
 	'plasma': 'Canon Plasma',
-	'missile_explosive': 'Missile Conventionnel',
-	'missile_nuke': 'Missile Nucléaire',
-	'missile_iem': 'Missile Electromagnetique',
-	'missile_antimater': 'Missile à antimatière',
+	'plasma_desc': 'Armes à projectiles à très haute température',
+	'explosive': 'Missile Conventionnel',
+	'explosive_desc': 'Missile explosif conventionnel à moyenne porté',
+	'nuke': 'Missile Nucléaire',
+	'nuke_desc': 'Arme de destruction massive radioactive',
+	'iem': 'Missile Electromagnetique',
+	'iem_desc': 'Missile générant une impulsion électromagnetique en explosant',
+	'antimater': 'Missile à antimatière',
 
 	// Defenses
 	'magnetic': 'Bouclier magnetique',
+	'magnetic_desc': 'Bouclier utilisant la force electromagnetique pour repousser les projectiles',
 	'turret': 'Tourelles anti-projectiles',
+	'turret_desc': 'Tourelles utilisées afin d\'intercepter les projectiles explosifs',
 	'projector': 'Projecteur de bouclier magnetique',
+	'projector_desc': 'Bouclier magnetique reporté sur un vaisseau allié',
 	'singularity': 'Systeme à Singularité',
+	'singularity_desc': 'Système permettant d\'attirer les projectiles légers visant des vaisseaux alliés vers le courant',
+
+	// Propulsion
+	'engine_speed': 'Vitesse max.',
+	'ion': 'Moteur à ion',
+	get ion_desc() { return `${this['engine_speed']}: %speed% au/s`; },
+	'pplasma': 'Moteur à plasma',
+	get pplasma_desc() { return `${this['engine_speed']}: %speed% au/s`; },
+	'vsolaire': 'Voile solaire',
+	get vsolaire_desc() { return `${this['engine_speed']}: %speed% au/s`; },
+	'vsl': 'Moteur supraluminique',
+	get vsl_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
+	'wd': 'Generateur de saut',
+	get wd_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
+	'hyperespace': 'Moteur Hyperespace',
+	get hyperespace_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
 
 	// Other
 	'hangar': 'Hangar',
+	'hangarCapacity': 'Capacité',
+	'hangarSimple': 'Hangar Simple',
+	get hangarSimple_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
+	'hangarDouble': 'Hangar Double',
+	get hangarDouble_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
+	'none': 'Aucune pièce',
+	'none_desc': '&nbsp;',
+	'noPartResearched': 'Aucune piece recherchée',
+	'noPartResearched_desc': 'Aucune piece recherchée',
+
+	// Types
+	'cannon': 'Canons',
+	'rocketLauncher': 'Lance missiles',
+	'shield': 'Defenses',
+	'sub_propulsion': 'Propulsion subluminique',
+	'sup_propulsion': 'Propulsion supraluminique',
 
 	// Texts
 	'fleet-build-openPanel': 'Construire l\'unité',
@@ -123,7 +168,7 @@ const fleetTranslate = {
 
 	'mergeInto': 'Fusionner dans ...',
 	'transferFuel': 'Transferer Carburant vers ...',
-	'editTactic': 'Tactiques de flotte',
+	'assignTactic': 'Assigner tactique',
 
 	'no-orbit-unit': 'Aucune unité en orbite',
 	'no-move-unit': 'Aucune flotte ne se déplace',
@@ -135,5 +180,8 @@ const fleetTranslate = {
 	'arriveAt': ', arrivée:',
 
 	'unit': 'unité(s)',
+
+	'tactic': 'Tactique',
+	'defaultTactic': 'Par Défaut',
 };
 </script>

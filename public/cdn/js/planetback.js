@@ -4,7 +4,7 @@ class planetBack {
 	 */
 	static init(type) {
 		/* DOM */
-		this.planet = document.getElementById('planet-back');	
+		this.planet = document.getElementById('planet-back');
 		this.planetBg = document.getElementById('planet-back-bg');
 		this.planetSphere = document.getElementById('planet-back-sphere');
 		this.planetContent = document.getElementById('planet-back-content');
@@ -23,6 +23,7 @@ class planetBack {
 		this.calc.lat = 0;
 
 		this.tick = 1;
+		this.frames = 0;
 
 		// Create planet
 		this.createPlanet();
@@ -95,24 +96,27 @@ class planetBack {
 		for (let y=0; y < this.calc.Yparts; y++) {
 			for (let x = 0; x < this.calc.Xparts; ++x ) {
 				/* Create element */
-			    let elt = document.createElement('div');
-			    /* Size and place */
-			    elt.style.width = this.calc.partWidth + 'px';
-			    elt.style.height = this.calc.partHeight + 'px';
-			    elt.style[PerspectiveTransform.transformOriginStyleName] = '0 0';
-			    elt.style.backgroundImage = this.planetMap;
-			    elt.perspectiveTransform = new PerspectiveTransform(elt , this.calc.partWidth, this.calc.partHeight);
-			    elt.topLeft = this.calc.vertices[y][x];
-			    elt.topRight = this.calc.vertices[y][x+1];
-			    elt.bottomLeft = this.calc.vertices[y+1][x];
-			    elt.bottomRight = this.calc.vertices[y+1][x+1];
-			    /* Bg image */
-			    let bgX = x*(-this.calc.partWidth);
-			    let bgY = y*(-this.calc.partHeight);
-			    elt.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
-			    /* Add it to the HTML Code */
-			    this.planetContent.appendChild(elt);
-			    this.contentDOM.push(elt);
+				let elt = document.createElement('div');
+
+				/* Size and place */
+				elt.style.width = this.calc.partWidth + 'px';
+				elt.style.height = this.calc.partHeight + 'px';
+				elt.style[PerspectiveTransform.transformOriginStyleName] = '0 0';
+				elt.style.backgroundImage = this.planetMap;
+				elt.perspectiveTransform = new PerspectiveTransform(elt , this.calc.partWidth, this.calc.partHeight);
+				elt.topLeft = this.calc.vertices[y][x];
+				elt.topRight = this.calc.vertices[y][x+1];
+				elt.bottomLeft = this.calc.vertices[y+1][x];
+				elt.bottomRight = this.calc.vertices[y+1][x+1];
+
+				/* Bg image */
+				let bgX = x*(-this.calc.partWidth);
+				let bgY = y*(-this.calc.partHeight);
+				elt.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
+
+				/* Add it to the HTML Code */
+				this.planetContent.appendChild(elt);
+				this.contentDOM.push(elt);
 			}
 		}
 	}
@@ -141,7 +145,9 @@ class planetBack {
 		planetBack.rotatePlanet();
 
 		// Loop it
-		requestAnimationFrame(planetBack.renderPlanet);
+		if(settings.get('graphical_planetRotation') || ++planetBack.frames < 5) {
+			requestAnimationFrame(planetBack.renderPlanet);
+		}
 	}
 
 	/**
@@ -198,20 +204,20 @@ class planetBack {
 					elt.perspectiveTransform.bottomRight.y = pos[3].ty;
 					elt.perspectiveTransform.hasError = elt.perspectiveTransform.checkError();
 
-	                if(!(elt.perspectiveTransform.hasError = elt.perspectiveTransform.checkError())) {
-	                    elt.perspectiveTransform.calc();
-	                }
-	            }
+					if(!(elt.perspectiveTransform.hasError = elt.perspectiveTransform.checkError())) {
+						elt.perspectiveTransform.calc();
+					}
+				}
 			}
 		} else {
-	        for (let i=0; i<planetBack.contentDOM.length; i++) {
-	            let perspectiveTransform = planetBack.contentDOM[i].perspectiveTransform;
-	            if(!perspectiveTransform.hasError) {
-	                perspectiveTransform.update();
-	            } else {
-	                perspectiveTransform.style[PerspectiveTransform.transformStyleName] = 'translate3d(-8192px, 0, 0)';
-	            }
-	        }
+			for (let i=0; i<planetBack.contentDOM.length; i++) {
+				let perspectiveTransform = planetBack.contentDOM[i].perspectiveTransform;
+				if(!perspectiveTransform.hasError) {
+					perspectiveTransform.update();
+				} else {
+					perspectiveTransform.style[PerspectiveTransform.transformStyleName] = 'translate3d(-8192px, 0, 0)';
+				}
+			}
 		}
 	}
 
@@ -229,10 +235,10 @@ class planetBack {
 			return; // Don't calc with the other method ...
 		}
 
-	    let DeltaI = 1.5 / Math.sqrt(delta);
+		let DeltaI = 1.5 / Math.sqrt(delta);
 
-	    deltaX *= DeltaI; 
-	    deltaY *= DeltaI;
+		deltaX *= DeltaI; 
+		deltaY *= DeltaI;
 
 		u.tx = u.px - deltaX;
 		u.ty = u.py - deltaY;

@@ -5,14 +5,14 @@ translate['research'] = {
 	// Noeud Central
 	researchCenter:		{ name: 'Centre de recherches', desc: 'Les centres de recherches travaillent ensemble ou seul afin de débloquer des techniques ou des technologies bénéfiques à la nation.' },
 	industrialistion:	{ name: 'Industrialisation', desc: 'La partie de l\'arbre de recherche concernant la productivité et la construction.' },
-	phyContemporaine:	{ name: 'Physique Contemporaine', desc: '' },
+	phyContemporaine:	{ name: 'Physique Contemporaine', desc: 'Bases de la physique afin d\'apprehender tout les autres domaines de la physique et de l\'astrophysique' },
 	thermodynamique:	{ name: 'Thermodynamique', desc: 'Science des chaleurs permettant de travailler par la suite notamment sur des systèmes de propulsion.' },
 	// Mise en orbite et propulsion
 	prop_main:			{ name: 'Propulsion', desc: 'Permet de debloquer les recherches concernant le déplacements interplanétaires et interstellaires.' },
 	prop_vSolaire:		{ name: 'Voile solaire', desc: 'Propulsion lente pour vaisseaux légers ne necessitant pas de carburant.' },
 	prop_ions:			{ name: 'Moteurs a ions', desc: 'Moteur qui produit sa force de propulsion en accélérant des ions à très haute vitesse. C\'est un moteur interplanétaire à haut rendement.' },
 	prop_plasma: 		{ name: 'Moteurs à Plasma', desc: '' },
-	prop_vsl:			{ name: 'Vitesse Supraluminique (VSL)', desc: '' },
+	prop_vsl:			{ name: 'Vitesse Supraluminique (VSL)', desc: 'Moteurs génerant une poussée permettant une vitesse supérieure à celle de la lumière pour les voyages interstéllaires.' },
 	prop_wd: 			{ name: 'Generateur de saut (Warp Drive)', desc: ''},
 	prop_hyperespace:	{ name: 'Hyperespace', desc: '' },
 	prop_manoeuvre:		{ name: 'Propulseurs de manoeuvre', desc: 'Ces propulseurs permettent d\'eviter les mines et les missiles (2% de chance d\'evitement)' },
@@ -27,19 +27,19 @@ translate['research'] = {
 	// Armes
 	wep_railgun:		{ name: 'Canons éléctriques', desc: 'Aussi connu sous le nom de railgun, accélère les projectiles par une force électromagnetique.' },
 	wep_nuke:			{ name: 'Armes nucléaires', desc: 'Arme de destruction massive radioactive.' },
-	wep_laser:			{ name: 'Armes lasers', desc: '' },
-	wep_plasma:			{ name: 'Armes plasma', desc: '' },
+	wep_laser:			{ name: 'Armes lasers', desc: 'Armes à laser' },
+	wep_plasma:			{ name: 'Armes plasma', desc: 'Armes à projectiles à très haute température' },
 	// Shields & Defenses
-	def_turret:			{ name: 'Tourelles anti-projectiles', desc: '' },
-	def_shield_magnetic:{ name: 'Bouclier magnetique', desc: '' },
-	def_shield_projector:{ name: 'Projecteur de bouclier', desc: '' },
-	def_shield_singularity:{ name: 'Systeme à Singularité', desc: '' },
+	def_turret:			{ name: 'Tourelles anti-projectiles', desc: 'Tourelles utilisées afin d\'intercepter les projectiles explosifs' },
+	def_shield_magnetic:{ name: 'Bouclier magnetique', desc: 'Bouclier utilisant la force electromagnetique pour repousser les projectiles' },
+	def_shield_projector:{ name: 'Projecteur de bouclier', desc: 'Bouclier magnetique reporté sur un vaisseau allié' },
+	def_shield_singularity:{ name: 'Systeme à Singularité', desc: 'Système permettant d\'attirer les projectiles légers visant des vaisseaux alliés vers le vaisseau courant' },
 	// Hangar
 	hangarDouble:		{ name: 'Hangar Double', desc: 'Le hangar double permet de stocker près de deux fois plus de chasseurs qu\'un hangar normal.' },
 	// Mines
-	wep_mines:			{ name: 'Mines', desc: '' },
-	wep_mines_nuke:		{ name: 'Mines nucléaires', desc: '' },
-	wep_mines_iem:		{ name: 'Mines à impulsions électromagnetiques (IEM)', desc: '' },
+	wep_mines:			{ name: 'Mines', desc: 'Explosifs conventionnels spatiaux par détection de proximité.' },
+	wep_mines_nuke:		{ name: 'Mines nucléaires', desc: 'Explosifs nucléaires spatiaux par détection de proximité.' },
+	wep_mines_iem:		{ name: 'Mines à impulsions électromagnetiques (IEM)', desc: 'Explosifs génerant des impulsions électromagnetiques afin de brouiller les systèmes ennemis par détection de proximité.' },
 	// Figther
 	figther_light_interceptor: { name: 'Intercepteur Léger', desc: '' },
 	figther_heavy_interceptor: { name: 'Intercepteur Lourd', desc: '' },

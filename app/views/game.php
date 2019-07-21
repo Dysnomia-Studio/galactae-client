@@ -132,11 +132,11 @@
 <div id="hud-top">
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/population.png" alt="population">
 			<span class="nmb" id="population_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="population-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="population-tooltips">
 					<?= POPULATION; ?><br/>
 					<?= AVAILABLE; ?>: <span id="population-available">XXX</span><br/>
 					<?= USED; ?>: <span id="population-used">XXX</span><br/>
@@ -151,11 +151,11 @@
 		<img height="15" src="<?= $cdnURL ?>img/ui/moral.png" alt="moral">
 		<span class="nmb" id="moral_nmb">1</span>
 
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/electricity.svg" alt="electricity">
 			<span class="nmb" id="electricity_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="electricity-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="electricity-tooltips">
 					<?= ELECTRICITY; ?><br/>
 					<?= AVAILABLE; ?>: <span id="electricity-available">XXX t</span><br/>
 					<?= USED; ?>: <span id="electricity-used">XXX t</span><br/>
@@ -171,15 +171,16 @@
 		<span id="hud-planet-prev" onclick="planetUI.prev();">&#9664;</span>
 		<span id="hud-planet-name">SomeLongName</span>
 		<span id="hud-planet-next" onclick="planetUI.next();">&#9654;</span>
+		<img id="hud-gameMenu" height="15" src="<?= $cdnURL ?>img/ui/gameMenu.png" alt="gameMenu">
 	</div>
 
 	<div id="hud-top-right">
 		<span id="hud-top-right-moveLeft">&#9664;</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<img height="20" src="<?= $cdnURL ?>img/ui/minerals.png" alt="minerals">
 			<span class="nmb" id="minerals_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="minerals-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="minerals-tooltips">
 					<?= MINERALS; ?><br/>
 					<?= CAPACITY; ?>: <span id="minerals-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="minerals-prod">XXX t</span><br/>
@@ -187,22 +188,23 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">&sup3;He </span>
 			<span class="nmb" id="he_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="he-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="he-tooltips">
 					<?= HELIUM3; ?><br/>
 					<?= CAPACITY; ?>: <span id="he-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="he-prod">XXX t</span><br/>
+					<span id="he-fuel-distribute"><?= DISTRIBUTING_FUEL ?></span>
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Al </span>
 			<span class="nmb" id="al_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="al-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="al-tooltips">
 					<?= METAL_ALUMINIUM; ?><br/>
 					<?= CAPACITY; ?>: <span id="al-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="al-prod">XXX t</span><br/>
@@ -210,11 +212,11 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element" id="element_fe">Fe </span>
 			<span class="nmb" id="fe_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="fe-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="fe-tooltips">
 					<?= METAL_IRON; ?><br/>
 					<?= CAPACITY; ?>: <span id="fe-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="fe-prod">XXX t</span><br/>
@@ -222,11 +224,11 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Ti </span>
 			<span class="nmb" id="ti_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="ti-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="ti-tooltips">
 					<?= METAL_TITANIUM; ?><br/>
 					<?= CAPACITY; ?>: <span id="ti-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="ti-prod">XXX t</span><br/>
@@ -234,11 +236,11 @@
 				</span>
 			</span>
 		</span>
-		<span class="hud-top-tooltip">
+		<span class="tooltip">
 			<span class="element">Cu </span>
 			<span class="nmb" id="cu_nmb">1</span>
-			<span class="hud-top-tooltip-wrapper">
-				<span class="hud-top-tooltip-content" id="cu-tooltips">
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="cu-tooltips">
 					<?= METAL_COPPER; ?><br/>
 					<?= CAPACITY; ?>: <span id="cu-cap">XXX t</span><br/>
 					<?= PRODUCTION; ?>: <span id="cu-prod">XXX t</span><br/>
@@ -252,96 +254,103 @@
 <?php /* HUD Bottom */ ?>
 <div id="hud-bottom">
 	<div id="hud-bottom-left">
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#map" id="hud-bottom-button-map"><img src="<?= $cdnURL ?>img/ui/map.svg" alt="map"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_MAP; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_MAP; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#researchs" id="hud-bottom-button-research"><img src="<?= $cdnURL ?>img/ui/researchs.svg" alt="researchs"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RESEARCH; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RESEARCH; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#units" id="hud-bottom-button-units"><img src="<?= $cdnURL ?>img/ui/units.svg" alt="units"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_UNITS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_UNITS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#fleets" id="hud-bottom-button-fleets"><img src="<?= $cdnURL ?>img/ui/fleets.png" alt="fleets"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_FLEETS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_FLEETS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#radar" id="hud-bottom-button-radar"><img src="<?= $cdnURL ?>img/ui/radar.svg" alt="radar"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RADAR; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RADAR; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#ally" id="hud-bottom-button-ally"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>
 		</span>
 	</div>
 	<div id="hud-bottom-right">
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#quests" id="hud-bottom-button-quests"><img src="<?= $cdnURL ?>img/ui/quests.svg" alt="quests"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_QUEST; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_QUEST; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#trade" id="hud-bottom-button-trade"><img src="<?= $cdnURL ?>img/ui/trade.svg" alt="trade"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_TRADE; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_TRADE; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#ranks" id="hud-bottom-button-ranks"><img src="<?= $cdnURL ?>img/ui/ranks.svg" alt="ranks"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_RANKS; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_RANKS; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#profil" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_PROFIL; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_PROFIL; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#messages" id="hud-bottom-button-messages"><img src="<?= $cdnURL ?>img/ui/messages.svg" alt="messages"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_MESSAGES; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_MESSAGES; ?></span>
 			</span>
 		</span>
-		<span class="hud-bottom-tooltip">
+		<span class="tooltip">
 			<a href="#chat" id="hud-bottom-button-chat"><img src="<?= $cdnURL ?>img/ui/chat.svg" alt="chat"></a>
-			<span class="hud-bottom-tooltip-wrapper">
-				<span class="hud-bottom-tooltip-content"><?= HUD_BOTTOM_CHAT; ?></span>
+			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
+				<span class="tooltip-content"><?= HUD_BOTTOM_CHAT; ?></span>
 			</span>
 		</span>
 	</div>
 </div>
-<?php /* ESC */ ?>
-<div id="settings-menu">
+<?php /* Main menu */ ?>
+<div id="game-menu">
 	<a href="https://galactae.eu/portal"><?= PORTAL; ?></a><br/>
 	<a href="https://galactae.eu/profil"><?= PROFIL; ?></a><br/>
-	<a href="https://galactae.eu/forum"><?= FORUM; ?></a><br/>
 	<a href="https://galactae.eu/support"><?= SUPPORT; ?></a><br/>
-	<a href="#settings-tabs"><?= SETTINGS; ?></a><br/>
 	<a href="https://galactae.eu/deconnexion"><?= DISCONNECT; ?></a>
+</div>
+<?php /* Settings menu */ ?>
+<div id="settings-menu">
+	<ul id="settings-menu-choice" class="ul-choice-line"></ul>
+
+	<ul id="settings-menu-panes"></ul>
+
+	<input type="button" class="ui-small-button" id="settings-menu-cancel" value="<?= SETTINGS_CANCEL ?>">
+	<input type="button" class="ui-small-button" id="settings-menu-save" value="<?= SETTINGS_VALIDATE ?>">
 </div>
 <?php /* Chat */ ?>
 <div id="hud-chat">
@@ -363,8 +372,8 @@
 	<ul class="ul-choice-line ranks-ul">
 		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active"><?= RANKS_GALAXY_PLAYER; ?></li>
 		<li choice="sector-players" id="ranks-secPly-button"><?= RANKS_SECTOR_PLAYER; ?></li>
-		<li choice="galaxy-alliance" id="ranks-galAly-button"><?= RANKS_GALAXY_ALLY; ?></li>
-		<li choice="sector-alliance" id="ranks-secAly-button"><?= RANKS_SECTOR_ALLY; ?></li>
+		<li choice="galaxy-ally" id="ranks-galAly-button"><?= RANKS_GALAXY_ALLY; ?></li>
+		<li choice="sector-ally" id="ranks-secAly-button"><?= RANKS_SECTOR_ALLY; ?></li>
 	</ul>
 
 	<span id="hud-ranks-close">X</span>
@@ -497,6 +506,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<li id="fleet-orbit-button"><?= FLEET_ORBIT; ?></li>
 		<li id="fleet-move-button"><?= FLEET_MOVE; ?></li>
 		<li id="fleet-out-button"><?= FLEET_OUT; ?></li>
+		<li id="fleet-tactics-button"><?= FLEET_TACTICS; ?></li>
 	</ul>
 	<?php /* Fleet Building */ ?>
 	<div id="fleet-build">
@@ -520,8 +530,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						<th id="fleet-build-list-type-note"><?= FLEET_BUILD_NOTE; // Sa note estimée par le systeme		 ?></th>
 					</tr>
 				</thead>
-				<tbody>
-				</tbody>
+				<tbody id="fleet-build-list-tbody"></tbody>
 			</table>
 
 			<div id="fleet-build-info">
@@ -543,7 +552,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<div id="fleet-build-buttons">
 					<img id="fleet-build-type-copy" src="<?= $cdnURL ?>img/ui/copy.svg" alt="copy">
 					<img id="fleet-build-openPanel" src="<?= $cdnURL ?>img/ui/build.svg" alt="build">
-					<img id="fleet-build-type-delete" src=<?= $cdnURL ?>img/ui/delete.svg alt="delete">
+					<img id="fleet-build-type-delete" src="<?= $cdnURL ?>img/ui/delete.svg" alt="delete">
 					<br/>
 					<span id="fleet-build-desc">Build unit</span>
 				</div>
@@ -553,16 +562,17 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</div>
 	</div>
 	<?php /* Fleet Orbit */ ?>
-	<div id="fleet-orbit">
-		<div id="fleet-orbit-content"></div>
-	</div>
+	<div id="fleet-orbit" class="fleet-tab"></div>
 	<?php /* Fleet Moves */ ?>
-	<div id="fleet-move">
-		<div id="fleet-move-content"></div>
-	</div>
+	<div id="fleet-move" class="fleet-tab"></div>
 	<?php /* Fleet Out */ ?>
-	<div id="fleet-out">
-		<div id="fleet-out-content"></div>
+	<div id="fleet-out" class="fleet-tab"></div>
+	<?php /* Tactics */ ?>
+	<div id="fleet-tactics" class="fleet-tab">
+		<div class="text-center fleet-tactics-header">
+			<input type="button" class="ui-large-button" id="fleet-tactics-new" value="<?= TACTIC_NEW ?>">
+		</div>
+		<div id="fleets-tactics-content"></div>
 	</div>
 </div>
 
@@ -642,7 +652,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 <div id="fleet-units-transfer-panel" class="small-panel">
 	<span id="fleet-units-transfer-close" class="small-panel-close">X</span>
-	<p><?= FLEET_TRANSFER_TYPE ?> <span id="fleet-units-transfer-name">SHIPNAME</span> <?= FLEET_TRANSFER_TYPETO ?> :</p>
+	<p><?= FLEET_TRANSFER_TYPE ?> <span id="fleet-units-transfer-name">SHIPNAME</span> <?= FLEET_TRANSFER_TO ?> :</p>
 	<select id="fleet-units-transfer-fleetSelect" class="ui-large-button small-panel-select">
 		<option id="-2" selected disabled><?= FLEET; ?></option>
 		<option id="-1"><?= NEW_FLEET; ?></option>
@@ -652,7 +662,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 <div id="fleet-merge-panel" class="small-panel">
 	<span id="fleet-merge-panel-close" class="small-panel-close">X</span>
-	<p><?= FLEET_TRANSFERALL_TYPE ?> <span id="fleet-merge-name">FLEETNAME</span> <?= FLEET_TRANSFER_TYPETO ?>:</p>
+	<p><?= FLEET_TRANSFERALL_TYPE ?> <span id="fleet-merge-name">FLEETNAME</span> <?= FLEET_TRANSFER_TO ?>:</p>
 	<select id="fleet-merge-fleetSelect" class="ui-large-button small-panel-select">
 		<option id="-2" selected disabled><?= FLEET; ?></option>
 		<option id="-1"><?= NEW_FLEET; ?></option>
@@ -670,6 +680,53 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-transferFuel-submit" class="ui-large-button small-panel-submit" type="submit" value="<?= CONFIRM; ?>">
 </div>
 
+<div id="fleet-assignTactic-panel" class="small-panel">
+	<span id="fleet-assignTactic-panel-close" class="small-panel-close">X</span>
+	<p><?= FLEET_ASSIGN_TACTIC ?> <span id="fleet-assignTactic-name">FLEETNAME</span>:</p>
+	<select id="fleet-assignTactic-tacticSelect" class="ui-large-button small-panel-select">
+		<option value="-2" id="-2" selected disabled><?= TACTIC; ?></option>
+		<option value="-1" id="-1"><?= DEFAULT_TACTIC; ?></option>
+	</select>
+	<input id="fleet-assignTactic-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
+</div>
+
+<div id="fleet-tacticsManager-panel">
+	<span id="fleet-tacticsManager-close" class="close-button">X</span>
+
+	<ul id="fleet-tacticsManager-orderList">
+		
+	</ul>
+	<input type="button" id="fleet-tacticsManager-addOrder" class="ui-medium-button" value="<?= FLEET_TACTIC_ADD_ORDER ?>">
+
+	<div id="fleet-tacticsManager-orderEditor">
+		<label for="fleet-tacticsManager-unitType"><?= FLEET_UNIT_TYPE ?></label>
+		<select id="fleet-tacticsManager-unitType" name="fleet-tacticsManager-unitType" class="ui-large-select">
+			// GENERER OPTION
+		</select>
+		<br/>
+
+		<label for="fleet-tacticsManager-unitTarget"><?= FLEET_UNIT_TARGET ?></label>
+		<select id="fleet-tacticsManager-unitTarget" name="fleet-tacticsManager-unitType" class="ui-large-select">
+			// GENERER OPTION
+		</select>
+		<br/>
+
+		<label for="fleet-tacticsManager-priorityLevel"><?= FLEET_PRIORITY ?></label>
+		<input type="number" id="fleet-tacticsManager-priorityLevel" name="fleet-tacticsManager-priorityLevel" min="1" max="100" class="ui-large-input" value="0">
+		<br/>
+
+
+		<input type="button" id="fleet-tacticsManager-deleteOrder" name="fleet-tacticsManager-deleteOrder" class="ui-large-button" value="<?= FLEET_TACTIC_DELETE_ORDER ?>">
+		<input type="button" id="fleet-tacticsManager-saveOrder" name="fleet-tacticsManager-saveOrder" class="ui-large-button" value="<?= FLEET_TACTIC_SAVE_ORDER ?>">
+
+		<hr/>
+
+		<input type="text" id="fleet-tacticsManager-tacticName" name="fleet-tacticsManager-tacticName" class="ui-large-input" placeholder="<?= FLEET_TACTIC_NAME ?>">
+		<input type="button" id="fleet-tacticsManager-tacticSave" name="fleet-tacticsManager-tacticSave" class="ui-large-button" value="<?= FLEET_TACTIC_SAVE ?>">
+	</div>
+
+</div>
+
 <?php /* Researchs */ ?>
 <div id="hud-research">
 	<span id="research-close">X</span>
@@ -677,6 +734,17 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<svg id="research-links" width="10000px" height="10000px"></svg>
 	</div>
 </div>
+
+<?php /* Tutorials */ ?>
+<div id="tutorial-panel">
+	<div id="tutorial-panel-content">
+		<h2 id="tutorial-panel-title"></h2>
+		<span id="tutorial-panel-desc"></span>
+		<ul id="tutorial-panel-objectives"></ul>
+		<input type="button" id="tutorial-panel-ok" class="ui-large-button" value="Ok">
+	</div>
+</div>
+
 <?php /* Bonus quotidien */ ?>
 <div id="day-bonus">
 	<h1><?= DAY_BONUS_TITLE; ?></h1>
@@ -695,6 +763,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/remove-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
@@ -711,7 +780,10 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/research.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/tactics.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Tutorials.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/tutorialsUI.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Unit.js"></script>
@@ -719,5 +791,4 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Launch Game ! */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>
 </body>
-<?php /* Block Portrait Screens */ ?>
-<div id="portrait-warn"><h1><?= PORTRAIT_ERROR; ?></h1></div>
+<?php /* Block Portrait Screens */ include(DIR_VIEW.'/portraitWarn.php');

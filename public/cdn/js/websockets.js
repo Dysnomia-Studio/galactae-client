@@ -8,7 +8,7 @@ class webSockets {
 		//Catch connection errors (like server offline)
 		socket.on('connect_failed', function(){
 			kick('CONNECT_LOSS',10000,true);
-			
+
 			if(ui.research) {
 				ui.show('#hud-research');
 			}
@@ -57,10 +57,24 @@ class webSockets {
 
 		//Sync the fleet data
 		socket.on('fleet-recieve-data',function(data) {
-			units.fleetList = data.map((fleet) => { fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name; return fleet; });
+			units.fleetList = units.fleetList.filter((fleet) => fleet.motherPlanetId !== data.pid);
+
+			for(const fleet of data.FleetList) {
+				fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name;
+
+				units.fleetList.push(fleet);
+			}
+
 			units.regenerateSelectFleetLists();
 			units.refresh(units.list);
 			loadScreen.complete('fleet');
+		});
+
+		// Sync the tactics
+		socket.on('tactics-recieve-data', (data) => {
+			tactics.tacticList = data;
+			tactics.drawList();
+			loadScreen.complete('tactics');
 		});
 
 		//Sync the player data
@@ -97,6 +111,9 @@ class webSockets {
 		});
 		socket.on('notification', function(data) {
 			notifications.notify(data.type, data.args);
+		});
+		socket.on('tutorial', (tutorial) => {
+			TutorialsUI.newTutorial(tutorial);
 		});
 
 		// Daily bonus !

@@ -180,7 +180,6 @@ class SQLInterface {
 			return;
 		}
 
-
 		$content = ' (';
 
 		foreach($data[0] as $name => $value) {
@@ -234,16 +233,16 @@ class SQLInterface {
 			$where_cond = '';
 			foreach($where as $name => $value) {
 				if($where_cond != '') { $where_cond .= ' AND '; } //@ADD : OR/NOT/AND
-				$where_cond .= $name.' = :'.$name;
+				$where_cond .= '"'.$name.'" = :'.$name;
 			}
 
-			$set_cond = '';
+			$setString = '';
 			foreach($data as $name => $value) {
-				if($set_cond != '') { $set_cond .= ' AND '; } //@ADD : OR/NOT/AND
-				$set_cond .= $name.' = :'.$name;
+				if($setString != '') { $setString .= ' , '; }
+				$setString .= '"'.$name.'" = :'.$name;
 			}
 
-			$query = $this->bd->prepare('UPDATE "'.$table.'" SET '.$set_cond.' WHERE '.$where_cond);
+			$query = $this->bd->prepare('UPDATE "'.$table.'" SET '.$setString.' WHERE '.$where_cond);
 
 			$this->bindValues($query, $data);
 			$this->bindValues($query, $where);

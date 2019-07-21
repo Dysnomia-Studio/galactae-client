@@ -82,6 +82,8 @@ class planetUI {
 			planetData[key] = data.data[key];
 		}
 
+		userData = Tutorials.updateTutorialList(userData, planetData, units.fleetList, units.list);
+
 		if(planetData.nextBuildingTime) {
 			planetData.nextBuildingTime = parseInt(planetData.nextBuildingTime);
 		}
@@ -143,12 +145,16 @@ class planetUI {
 
 			if(units.fleetList && units.fleetList.length > 0) {
 				let empty;
-				[planetData, units.fleetList, empty] = Fleet.distributeFuel(planetData, units.fleetList);
+				[planetData, units.fleetList, empty] = Fleet.distributeFuel(Object.assign({}, planetData), units.fleetList.slice(0));
 
 				// @TODO: Update before full on server
 
-				if(!empty) {
+				if(empty) {
+					document.getElementById('he-fuel-distribute').style.display = 'none';
+
 					// @TODO: Same owner, same ally, trade
+				} else {
+					document.getElementById('he-fuel-distribute').style.display = 'inline';
 				}
 			}
 		}
@@ -231,12 +237,12 @@ class planetUI {
 		document.getElementById('moral_nmb').innerHTML = Math.round(planetData.Buildings[3]/planetData.Buildings[2]*100)+'%';
 
 		//Top right
-		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(planetData.resources[0],'t',mineralStorageBase);
-		document.getElementById('he_nmb').innerHTML = GetBetterUnit(planetData.resources[1],'t',storageHelium);
-		document.getElementById('fe_nmb').innerHTML = GetBetterUnit(planetData.resources[2],'t',metalsStorageBase*ratio.ironRatio);
-		document.getElementById('al_nmb').innerHTML = GetBetterUnit(planetData.resources[3],'t',metalsStorageBase*ratio.aluRatio);
-		document.getElementById('cu_nmb').innerHTML = GetBetterUnit(planetData.resources[4],'t',metalsStorageBase*ratio.copperRatio);
-		document.getElementById('ti_nmb').innerHTML = GetBetterUnit(planetData.resources[5],'t',metalsStorageBase*ratio.titanRatio);
+		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[0]),'t',mineralStorageBase);
+		document.getElementById('he_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[1]),'t',storageHelium);
+		document.getElementById('fe_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[2]),'t',metalsStorageBase*ratio.ironRatio);
+		document.getElementById('al_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[3]),'t',metalsStorageBase*ratio.aluRatio);
+		document.getElementById('cu_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[4]),'t',metalsStorageBase*ratio.copperRatio);
+		document.getElementById('ti_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[5]),'t',metalsStorageBase*ratio.titanRatio);
 	}
 
 	/**
@@ -598,6 +604,24 @@ class planetUI {
 		if(id > 8) { // Faster if shipyard have higher lvl
 			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
 		}
+		// Research bonus
+		let timeSpeed = 1;
+		if(Research.isSearched(userData,'cp_mecanisation')) {
+			timeSpeed += researchBonus.cp_mecanisation;
+		}
+
+		if(id >= globalConst.groundBuildingNumber) {
+			if(Research.isSearched(userData,'cp_tracteur')) {
+				timeSpeed += researchBonus.cp_tracteur;
+			}
+			if(Research.isSearched(userData,'cp_materielTp')) {
+				timeSpeed += researchBonus.cp_materielTp;
+			}
+
+			// Faster if shipyard have higher lvl
+			cost.time *= (1-(buildLvlUnitBuildingSpeedBonus*planetData.Buildings[7]));
+		}
+		cost.time *= timeSpeed;
 		document.getElementById('building-cost-time-val').innerHTML = getStringTime(cost.time);
 
 		/* Bouton upgrade ou message */
@@ -634,7 +658,7 @@ class planetUI {
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
-		} else if(!Buildings.hasEnoughtStorage(planetData, id)) {
+		} else if(!Buildings.hasEnoughtStorage(planetData, id, Research.isSearched('cp_molecular_compression'))) {
 			document.getElementById('building-message').innerHTML = translate.messages['BUILDING_ERROR_STORAGE'];
 		} else if(planetUI.enoughResources>0) { // No enough Ressources
 			let dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
@@ -753,7 +777,7 @@ class planetUI {
 	 * Hide the buildpanel
 	 */
 	static buildPanelHide() {
-		if(planetUI.buildPanelInterval!=-1) {
+		if(planetUI.buildPanelInterval !== -1) {
 			clearTimeout(planetUI.buildPanelInterval);
 			planetUI.buildPanelInterval = -1;
 			planetUI.enoughResources = -1;
@@ -763,18 +787,30 @@ class planetUI {
 
 		ui.closeTab('#building-area');
 	}
-	
+
+
+	static getPlanetData(planetId) {
+		if(planetId < 0) { planetId = userData.planetlist.length - 1; }
+		if(planetId >= userData.planetlist.length) { planetId = 0; }
+
+		socket.emit('planet-ask-data', { id: userData.id, username: userData.username, pid: userData.planetlist[planetId] });
+	}
+
 	/**
 	 * Go to previous planet
 	 */
 	static prev() {
-		socket.emit('planet-ask-data-prev', userData);
+		const currPlanet = userData.planetlist.indexOf(userData.pid);
+
+		planetUI.getPlanetData(currPlanet - 1);
 	}
 	/**
 	 * Go to next planet
 	 */
 	static next() {
-		socket.emit('planet-ask-data-next', userData);
+		const currPlanet = userData.planetlist.indexOf(userData.pid);
+
+		planetUI.getPlanetData(currPlanet + 1);
 	}
 
 	/**

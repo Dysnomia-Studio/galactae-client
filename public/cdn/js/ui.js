@@ -80,7 +80,7 @@ class ui {
 		inputAccept.addEventListener('click', () => {
 			clearConfirmBox();
 			if(cbYes) {
-				cbNo();
+				cbYes();
 			}
 		});
 		elt.appendChild(inputAccept);
@@ -117,6 +117,7 @@ class ui {
 		// Panels
 		ui.renaming = false;
 		ui.menu = false;
+		ui.settingsMenu = false;
 		ui.map = false;
 		ui.research = false;
 		ui.researchChat = false;
@@ -146,6 +147,22 @@ class ui {
 			ui.keydown(e);
 		});
 
+		// Main menu
+		document.getElementById('hud-gameMenu').addEventListener('click', function () {
+			if(ui.menu) {
+				ui.closeTab('#game-menu');
+			} else {
+				ui.show('#game-menu');
+			}
+			ui.menu = !(ui.menu);
+		});
+		document.addEventListener('click', function(e) {
+			if(ui.menu && e.target.id != 'game-menu' && e.target.id != 'hud-gameMenu') {
+				ui.closeTab('#game-menu', false);
+				ui.menu = !(ui.menu);
+			}
+		});
+
 		// Settings panel
 		settings.loadUI();
 
@@ -168,6 +185,12 @@ class ui {
 
 		// Load Chat UI
 		chat.loadUI();
+
+		// Load tactics UI
+		tactics.loadUI();
+
+		// Load tutorials UI
+		TutorialsUI.loadUI();
 
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');
@@ -307,37 +330,49 @@ class ui {
 		}
 	}
 
+	static closeWindow() {
+		if(ui.menu) { // Priorité
+			ui.closeTab('#game-menu');
+			ui.menu = false;
+
+		} else if(ui.settingsMenu) {
+			settings.closeUI();
+
+		} else if(ui.research === true) {
+			research.closeUI();
+
+		} else if(ui.fleet === true && !preventFleetHUDClosing) {
+			ui.closeTab('#hud-fleet');
+			ui.fleet = false;
+
+		} else if(ui.ranks === true) {
+			ui.closeTab('#hud-ranks');
+			ui.ranks = false;
+
+		} else if(ui.map === true) {
+			if(map.currentMap  ===  '' || map.currentMap  ===  'global') {
+				map.closeTab();
+			} else {
+				map.openGlobalMap(map.currentAddress);
+			}
+		} else if(planetUI.buildPanel !== -1) {
+			planetUI.buildPanelHide(); // Ferme la vue du batiment
+		}
+	}
+
 	/**
 	 * Tout les événements lorsqu'une touche est appuyée
 	 */
 	static keydown(e) {
+		if(e.target.tagName.toLowerCase() === 'input') { return; }
+
 		// Fermer une fenêtre
-		if(e.which === KEYBOARD.ESC){ // Echap
-			if(ui.menu) { // Priorité
-				ui.closeTab('#settings-menu');
-				ui.menu = false;
-			} else if(ui.research==true) {
-				research.closeUI();
-			} else if(ui.fleet==true && !preventFleetHUDClosing) {
-				ui.closeTab('#hud-fleet');
-				ui.fleet= false;
-			} else if(ui.ranks==true) {
-				ui.closeTab('#hud-ranks');
-				ui.ranks = false;
-			} else if(ui.map==true) {
-				if(map.currentMap == '' || map.currentMap == 'global') {
-					map.closeTab();
-				} else {
-					map.openGlobalMap(map.currentAddress);
-				}
-				
-			} else if(planetUI.buildPanel!=-1) {
-				planetUI.buildPanelHide(); // Ferme la vue du batiment
-			}
+		if(e.which === settings.get('keyboard_escape')){ // Echap
+			ui.closeWindow();
 		}
 
 		// Save nom planete
-		if(e.which === KEYBOARD.ENTER && ui.renaming==true){
+		if(e.which === KEYBOARD.ENTER && ui.renaming === true){
 			ui.planetNameSwitchToSpan();
 		}
 
@@ -351,10 +386,10 @@ class ui {
 		}
 
 		// Planetes suivantes/precedente
-		if(e.which === KEYBOARD.LARROW && document.getElementById('chat_message') !== document.activeElement) { // Gauche
+		if(e.which === settings.get('keyboard_prevPlanet') && document.getElementById('chat_message') !== document.activeElement) { // Gauche
 			planetUI.prev();
 		}
-		if(e.which === KEYBOARD.RARROW && document.getElementById('chat_message') !== document.activeElement) { // Droite
+		if(e.which === settings.get('keyboard_nextPlanet') && document.getElementById('chat_message') !== document.activeElement) { // Droite
 			planetUI.next();
 		}
 
@@ -370,9 +405,9 @@ class ui {
 	static closeTab(tab,sound=true) {
 		ui.hide(tab);
 
-		if(sound) {
+		if(sound && settings.get('sounds_escape')) {
 			const closeUISound = new Audio(cdnURL+'snd/ui/wclose.mp3');
-			closeUISound.volume = 0.5;
+			closeUISound.volume = 0.5 * settings.get('sounds_soundLvl')/100;
 			closeUISound.play();
 		}
 
@@ -559,6 +594,7 @@ class ui {
 				ui.hide('#fleet-build');
 				ui.hide('#fleet-move');
 				ui.hide('#fleet-out');
+				ui.hide('#fleet-tactics');
 				ui.fleet = true;
 
 				ui.show('#' + elt);
@@ -636,11 +672,17 @@ class ui {
 		document.getElementById('day-bonus-desc').innerHTML = desc;
 		ui.show('#day-bonus');
 
-		const DOMElts = document.querySelectorAll('day-bonus-desc td');
+		const DOMElts = document.querySelectorAll('#day-bonus-desc td');
 		for(let elt=0; elt<DOMElts.length; elt++) {
 			DOMElts[elt].addEventListener('click', function() {
 				ui.toggleClass('#day-bonus-desc .day-bonus-active', 'day-bonus-active', this);
 			});
+		}
+
+		if(DOMElts.length < 2) {
+			document.getElementById('day-bonus-choice').style.display = 'none';
+		} else {
+			document.getElementById('day-bonus-choice').style.display = 'block';
 		}
 
 		const dateNow = new Date();

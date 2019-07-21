@@ -57,9 +57,27 @@ class notifications {
 		}
 
 		document.getElementById('notifications-closeAll').addEventListener('click', function() {
-			document.getElementById('notifications-panel').innerHTML = '<span id="notifications-closeAll">☒</span>';
+			const list = document.getElementById('notifications-panel');
+			while(list.firstChild) {
+				if(ui.hasClass(list.firstChild, 'notif-tutorial')) {
+					break;
+				}
+				list.removeChild(list.firstChild);
+			}
+			while(list.lastChild) {
+				if(ui.hasClass(list.lastChild, 'notif-tutorial')) {
+					break;
+				}
+				list.removeChild(list.lastChild);
+			}
 
-			ui.notifCount = 0;
+			const closeAllButton = document.createElement('span');
+			closeAllButton.id = 'notifications-closeAll';
+			closeAllButton.innerText = '☒';
+
+			list.appendChild(closeAllButton);
+
+			ui.notifCount = list.children.length - 1;
 			ui.updatePageTitle();
 			notifications.updateClearButtonDisplay();
 		});
@@ -78,8 +96,10 @@ class notifications {
 			planetUI.buildPanelOpen(parseInt(element.id));
 		} else if(ui.hasClass(element, 'notif-research')) {
 			research.openUI();
+		} else if(ui.hasClass(element, 'notif-tutorial')) {
+			ui.show('#tutorial-panel');
 		}
-		
+
 		// Remove element
 		element.parentNode.removeChild(element);
 	}
@@ -95,7 +115,7 @@ class notifications {
 		}
 	}
 
-		/**
+	/**
 	 * Create an in-game notification (left tab)
 	 *
 	 * @param      {string}  type     Notification typr

@@ -52,8 +52,12 @@
 	define('FLEET_TACTIC_SAVE_ORDER', 'Save this order');
 	define('FLEET_TACTIC_SAVE', 'Save tactic');
 
+	define('TACTIC', 'Tactic');
+	define('DEFAULT_TACTIC', 'Default tactic');
+	define('FLEET_ASSIGN_TACTIC', 'Tactic to assign to');
+
 	//== Erreurs ==\\
-	define('FLEET_NO_MODEL','You hav\'nt models yet');
+	define('FLEET_NO_MODEL','You have\'nt models yet');
 ?>
 <script type="text/javascript">
 const fleetTranslate = {
@@ -90,21 +94,55 @@ const fleetTranslate = {
 
 	// Armes
 	'railgun': 'Railgun',
+	'railgun_desc': 'Electromagnetic speeded-up projectile',
 	'laser': 'Laser Cannon',
+	'laser_desc': 'Laser powered weapons',
 	'plasma': 'Plasma Cannon',
-	'missile_explosive': 'Conventional Missile',
-	'missile_nuke': 'Nuclear Missile',
-	'missile_iem': 'Electromagnetic Missile',
-	'missile_antimater': 'Antimater Missile',
+	'plasma_desc': 'Highly heated projectile weapons',
+	'explosive': 'Conventional Missile',
+	'explosive_desc': 'Mid-range conventionnal explosive missile',
+	'nuke': 'Nuclear Missile',
+	'nuke_desc': 'Massive and radioactive destruction weapon',
+	'iem': 'Electromagnetic Missile',
+	'iem_desc': 'Missile creating electromagnetic impulsion on explosion',
+	'antimater': 'Antimater Missile',
 
 	// Defenses
 	'magnetic': 'Magnetic shield',
+	'magnetic_desc': 'Shield using electromagnetic force to repulse projectiles',
 	'turret': 'Counter-Missile turrets',
+	'turret_desc': 'Turret used to intercept explosive projectiles',
 	'projector': 'Magnetic shield projector',
+	'projector_desc': 'Magnetic shield projected on allied ship',
 	'singularity': 'Singularity system',
+	'singularity_desc': 'System that bring light projectiles targetting allied ships to current ship',
+
+	// Propulsion
+	'engine_speed': 'Max. speed',
+	'ion': 'Ion engine',
+	get ion_desc() { return `${this['engine_speed']}: %speed% au/s`; },
+	'pplasma': 'Plasma engines',
+	get pplasma_desc() { return `${this['engine_speed']}: %speed% au/s`; },
+	'vsolaire': 'Solar sail',
+	get vsolaire_desc() { return `${this['engine_speed']}: %speed% au/s`; },
+	'vsl': 'Faster Than Light engine',
+	get vsl_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
+	'wd': 'Warp Drive',
+	get wd_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
+	'hyperespace': 'Hyperspace engine',
+	get hyperespace_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
 
 	// Other
 	'hangar': 'Hangar',
+	'hangarCapacity': 'Capacity',
+	'hangarSimple': 'Simple Hangar',
+	get hangarSimple_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
+	'hangarDouble': 'Double Hangar',
+	get hangarDouble_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
+	'none': 'No part',
+	'none_desc': '&nbsp;',
+	'noPartResearched': 'No part researched',
+	'noPartResearched_desc': 'No part researched',
 
 	// Texts
 	'fleet-build-openPanel': 'Build this unit',
@@ -123,7 +161,7 @@ const fleetTranslate = {
 
 	'mergeInto': 'Merge into ...',
 	'transferFuel': 'Transfer fuel to ...',
-	'editTactic': 'Fleet Tactics',
+	'assignTactic': 'Assign tactic',
 
 	'no-orbit-unit': 'No unit is in orbit of this planet',
 	'no-move-unit': 'No fleet is moving',
@@ -135,5 +173,8 @@ const fleetTranslate = {
 	'arriveAt': ', arriving:',
 
 	'unit': 'unit(s)',
+
+	'tactic': 'Tactic',
+	'defaultTactic': 'Default',
 };
 </script>

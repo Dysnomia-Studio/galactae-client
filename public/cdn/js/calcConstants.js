@@ -28,6 +28,265 @@ const TIME = {
 	SECOND_MARGIN: 5,
 };
 
+const keyboardMap = [
+	'CHAR?', // [0]
+	'CHAR?', // [1]
+	'CHAR?', // [2]
+	'CANCEL', // [3]
+	'CHAR?', // [4]
+	'CHAR?', // [5]
+	'HELP', // [6]
+	'CHAR?', // [7]
+	'BACK_SPACE', // [8]
+	'TAB', // [9]
+	'CHAR?', // [10]
+	'CHAR?', // [11]
+	'CLEAR', // [12]
+	'ENTER', // [13]
+	'ENTER_SPECIAL', // [14]
+	'CHAR?', // [15]
+	'SHIFT', // [16]
+	'CONTROL', // [17]
+	'ALT', // [18]
+	'PAUSE', // [19]
+	'CAPS_LOCK', // [20]
+	'KANA', // [21]
+	'EISU', // [22]
+	'JUNJA', // [23]
+	'FINAL', // [24]
+	'HANJA', // [25]
+	'CHAR?', // [26]
+	'ESC', // [27]
+	'CONVERT', // [28]
+	'NONCONVERT', // [29]
+	'ACCEPT', // [30]
+	'MODECHANGE', // [31]
+	'SPACE', // [32]
+	'PAGE_UP', // [33]
+	'PAGE_DOWN', // [34]
+	'END', // [35]
+	'HOME', // [36]
+	'←', // [37]
+	'↑', // [38]
+	'→', // [39]
+	'↓', // [40]
+	'SELECT', // [41]
+	'PRINT', // [42]
+	'EXECUTE', // [43]
+	'PRINTSCREEN', // [44]
+	'INSERT', // [45]
+	'DELETE', // [46]
+	'CHAR?', // [47]
+	'0', // [48]
+	'1', // [49]
+	'2', // [50]
+	'3', // [51]
+	'4', // [52]
+	'5', // [53]
+	'6', // [54]
+	'7', // [55]
+	'8', // [56]
+	'9', // [57]
+	'COLON', // [58]
+	'SEMICOLON', // [59]
+	'LESS_THAN', // [60]
+	'EQUALS', // [61]
+	'GREATER_THAN', // [62]
+	'QUESTION_MARK', // [63]
+	'AT', // [64]
+	'A', // [65]
+	'B', // [66]
+	'C', // [67]
+	'D', // [68]
+	'E', // [69]
+	'F', // [70]
+	'G', // [71]
+	'H', // [72]
+	'I', // [73]
+	'J', // [74]
+	'K', // [75]
+	'L', // [76]
+	'M', // [77]
+	'N', // [78]
+	'O', // [79]
+	'P', // [80]
+	'Q', // [81]
+	'R', // [82]
+	'S', // [83]
+	'T', // [84]
+	'U', // [85]
+	'V', // [86]
+	'W', // [87]
+	'X', // [88]
+	'Y', // [89]
+	'Z', // [90]
+	'OS_KEY', // [91] Windows Key (Windows) or Command Key (Mac)
+	'CHAR?', // [92]
+	'CONTEXT_MENU', // [93]
+	'CHAR?', // [94]
+	'SLEEP', // [95]
+	'NUMPAD0', // [96]
+	'NUMPAD1', // [97]
+	'NUMPAD2', // [98]
+	'NUMPAD3', // [99]
+	'NUMPAD4', // [100]
+	'NUMPAD5', // [101]
+	'NUMPAD6', // [102]
+	'NUMPAD7', // [103]
+	'NUMPAD8', // [104]
+	'NUMPAD9', // [105]
+	'MULTIPLY', // [106]
+	'ADD', // [107]
+	'SEPARATOR', // [108]
+	'SUBTRACT', // [109]
+	'DECIMAL', // [110]
+	'DIVIDE', // [111]
+	'F1', // [112]
+	'F2', // [113]
+	'F3', // [114]
+	'F4', // [115]
+	'F5', // [116]
+	'F6', // [117]
+	'F7', // [118]
+	'F8', // [119]
+	'F9', // [120]
+	'F10', // [121]
+	'F11', // [122]
+	'F12', // [123]
+	'F13', // [124]
+	'F14', // [125]
+	'F15', // [126]
+	'F16', // [127]
+	'F17', // [128]
+	'F18', // [129]
+	'F19', // [130]
+	'F20', // [131]
+	'F21', // [132]
+	'F22', // [133]
+	'F23', // [134]
+	'F24', // [135]
+	'CHAR?', // [136]
+	'CHAR?', // [137]
+	'CHAR?', // [138]
+	'CHAR?', // [139]
+	'CHAR?', // [140]
+	'CHAR?', // [141]
+	'CHAR?', // [142]
+	'CHAR?', // [143]
+	'NUM_LOCK', // [144]
+	'SCROLL_LOCK', // [145]
+	'WIN_OEM_FJ_JISHO', // [146]
+	'WIN_OEM_FJ_MASSHOU', // [147]
+	'WIN_OEM_FJ_TOUROKU', // [148]
+	'WIN_OEM_FJ_LOYA', // [149]
+	'WIN_OEM_FJ_ROYA', // [150]
+	'CHAR?', // [151]
+	'CHAR?', // [152]
+	'CHAR?', // [153]
+	'CHAR?', // [154]
+	'CHAR?', // [155]
+	'CHAR?', // [156]
+	'CHAR?', // [157]
+	'CHAR?', // [158]
+	'CHAR?', // [159]
+	'CIRCUMFLEX', // [160]
+	'EXCLAMATION', // [161]
+	'DOUBLE_QUOTE', // [162]
+	'HASH', // [163]
+	'DOLLAR', // [164]
+	'PERCENT', // [165]
+	'AMPERSAND', // [166]
+	'UNDERSCORE', // [167]
+	'OPEN_PAREN', // [168]
+	'CLOSE_PAREN', // [169]
+	'ASTERISK', // [170]
+	'PLUS', // [171]
+	'PIPE', // [172]
+	'HYPHEN_MINUS', // [173]
+	'OPEN_CURLY_BRACKET', // [174]
+	'CLOSE_CURLY_BRACKET', // [175]
+	'TILDE', // [176]
+	'CHAR?', // [177]
+	'CHAR?', // [178]
+	'CHAR?', // [179]
+	'CHAR?', // [180]
+	'VOLUME_MUTE', // [181]
+	'VOLUME_DOWN', // [182]
+	'VOLUME_UP', // [183]
+	'CHAR?', // [184]
+	'CHAR?', // [185]
+	'SEMICOLON', // [186]
+	'EQUALS', // [187]
+	'COMMA', // [188]
+	'MINUS', // [189]
+	'PERIOD', // [190]
+	'SLASH', // [191]
+	'BACK_QUOTE', // [192]
+	'CHAR?', // [193]
+	'CHAR?', // [194]
+	'CHAR?', // [195]
+	'CHAR?', // [196]
+	'CHAR?', // [197]
+	'CHAR?', // [198]
+	'CHAR?', // [199]
+	'CHAR?', // [200]
+	'CHAR?', // [201]
+	'CHAR?', // [202]
+	'CHAR?', // [203]
+	'CHAR?', // [204]
+	'CHAR?', // [205]
+	'CHAR?', // [206]
+	'CHAR?', // [207]
+	'CHAR?', // [208]
+	'CHAR?', // [209]
+	'CHAR?', // [210]
+	'CHAR?', // [211]
+	'CHAR?', // [212]
+	'CHAR?', // [213]
+	'CHAR?', // [214]
+	'CHAR?', // [215]
+	'CHAR?', // [216]
+	'CHAR?', // [217]
+	'CHAR?', // [218]
+	'OPEN_BRACKET', // [219]
+	'BACK_SLASH', // [220]
+	'CLOSE_BRACKET', // [221]
+	'QUOTE', // [222]
+	'CHAR?', // [223]
+	'META', // [224]
+	'ALTGR', // [225]
+	'CHAR?', // [226]
+	'WIN_ICO_HELP', // [227]
+	'WIN_ICO_00', // [228]
+	'CHAR?', // [229]
+	'WIN_ICO_CLEAR', // [230]
+	'CHAR?', // [231]
+	'CHAR?', // [232]
+	'WIN_OEM_RESET', // [233]
+	'WIN_OEM_JUMP', // [234]
+	'WIN_OEM_PA1', // [235]
+	'WIN_OEM_PA2', // [236]
+	'WIN_OEM_PA3', // [237]
+	'WIN_OEM_WSCTRL', // [238]
+	'WIN_OEM_CUSEL', // [239]
+	'WIN_OEM_ATTN', // [240]
+	'WIN_OEM_FINISH', // [241]
+	'WIN_OEM_COPY', // [242]
+	'WIN_OEM_AUTO', // [243]
+	'WIN_OEM_ENLW', // [244]
+	'WIN_OEM_BACKTAB', // [245]
+	'ATTN', // [246]
+	'CRSEL', // [247]
+	'EXSEL', // [248]
+	'EREOF', // [249]
+	'PLAY', // [250]
+	'ZOOM', // [251]
+	'CHAR?', // [252]
+	'PA1', // [253]
+	'WIN_OEM_CLEAR', // [254]
+	'CHAR?' // [255]
+];
+
 /**
  * Production
  */
@@ -331,7 +590,7 @@ const shipResearchDependencies = {
 	// Scanners
 
 	// Hangar
-	hangarDouble: 'hangar_double',
+	hangarDouble: 'hangarDouble',
 
 	// Propulsion
 	vsl: 'prop_vsl',
@@ -377,6 +636,7 @@ const shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				shield: ['none','magnetic','projector'],
 			},
+			partCount: 2,
 		},
 	},
 	SHIP_BATTLECRUISER: {
@@ -403,6 +663,7 @@ const shipShapesDetails = {
 				sup_propulsion: ['vsl','wd'],
 				shield: ['none','magnetic','turret'],
 			},
+			partCount: 6,
 		},
 	},
 	SHIP_CUIRASSE: {
@@ -426,6 +687,7 @@ const shipShapesDetails = {
 				sup_propulsion: ['vsl','wd'],
 				shield: ['none','magnetic','turret','singularity','projector'],
 			},
+			partCount: 6,
 		},
 	},
 	SHIP_FIGHTER: {
@@ -443,6 +705,7 @@ const shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				sub_propulsion: ['vsolaire','ion'],
 			},
+			partCount: 2,
 		},
 		SHIP_FIGHTER_MEDIUM: {
 			svg: [
@@ -459,6 +722,7 @@ const shipShapesDetails = {
 				cannon: ['railgun','laser','plasma'],
 				sub_propulsion: ['vsolaire','ion'],
 			},
+			partCount: 3,
 		},
 	},
 	SHIP_CORVET: {
@@ -481,8 +745,9 @@ const shipShapesDetails = {
 				cloak: ['none'],
 				scanner: ['none'],
 				sub_propulsion: ['vsolaire','ion','pplasma'],
-				sup_propulsion: ['vsl','wd'],
+				sup_propulsion: ['none','vsl','wd'],
 			},
+			partCount: 5,
 		},
 	},
 	SHIP_CARRIER: {
@@ -510,6 +775,7 @@ const shipShapesDetails = {
 				sup_propulsion: ['vsl','wd','hyperespace'],
 				shield: ['none','magnetic','turret'],
 			},
+			partCount: 7,
 		},
 	},
 };
@@ -588,6 +854,8 @@ const shipPartsSpeed = {
 	vsl: 			[    -0.027,   7.23, 0.001],
 	wd: 			[    -0.016,   5.13, 0.001],
 	hyperespace: 	[    -0.014,   3.68, 0.001],
+
+	noPartResearched: [0,0,0],
 };
 const fuelCost = {
 	// Propulsions subluminiques
@@ -622,38 +890,44 @@ const hangarMiss = {
 	hangarDouble: -10,
 };
 
+const TACTIC_MAX_ORDERS = 50;
+
+if(!cdnURL) {
+	var cdnURL = 'https://cdn.galactae.eu/game/';
+}
+
 const imgCache = [
 	// Misc UI
-	'cdn/img/ui/hud-top.png',
-	'cdn/img/ui/hud-bottom-left.png',
-	'cdn/img/ui/hud-bottom-right.png',
-	'cdn/img/ui/hud-chat.png',
-	'cdn/img/ui/chat-voice.png',
-	'cdn/img/ui/build-panel.png',
-	'cdn/img/ui/window.png',
+	cdnURL + 'img/ui/hud-top.png',
+	cdnURL + 'img/ui/hud-bottom-left.png',
+	cdnURL + 'img/ui/hud-bottom-right.png',
+	cdnURL + 'img/ui/hud-chat.png',
+	cdnURL + 'img/ui/chat-voice.png',
+	cdnURL + 'img/ui/build-panel.png',
+	cdnURL + 'img/ui/window.png',
 
-	'cdn/img/favicon.png',
+	cdnURL + 'img/favicon.png',
 
 	// HUD TOP
-	'cdn/img/ui/population.png',
-	'cdn/img/ui/moral.png',
-	'cdn/img/ui/money.png',
-	'cdn/img/ui/minerals.png',
+	cdnURL + 'img/ui/population.png',
+	cdnURL + 'img/ui/moral.png',
+	cdnURL + 'img/ui/money.png',
+	cdnURL + 'img/ui/minerals.png',
 
 	// HUD BOTTOM
-	'cdn/img/ui/fleets.png',
+	cdnURL + 'img/ui/fleets.png',
 ];
 
 // Buildings
 for(let i=0; i<buildingsNames.length; i++) {
 	// Panel picture
-	imgCache.push('cdn/img/buildings/desc/' + buildingsNames[i] + '.jpg');
+	imgCache.push(cdnURL + 'img/buildings/desc/' + buildingsNames[i] + '.jpg');
 }
 
 // Planets
 const backPlanetList = [0];
 for(const i in backPlanetList) {
-	imgCache.push('cdn/img/planets/back/' + backPlanetList[i] + '.png');
+	imgCache.push(cdnURL + 'img/planets/back/' + backPlanetList[i] + '.png');
 }
 const planetList = [0,1,2,3,4,5,6,7,8,9,
 	101,102,103,104,105,106,107,108,109,110,111,112,113,
@@ -662,30 +936,219 @@ const planetList = [0,1,2,3,4,5,6,7,8,9,
 	1000,1001,1002,//1003,1004,1005,1006,1007,1008,
 ];
 for(const i in planetList) {
-	imgCache.push('cdn/img/planets/front/' + planetList[i] + '.jpg');
-	imgCache.push('cdn/img/planets/halo/' + planetList[i] + '.png');
+	imgCache.push(cdnURL + 'img/planets/front/' + planetList[i] + '.jpg');
+	imgCache.push(cdnURL + 'img/planets/halo/' + planetList[i] + '.png');
 }
 
 const neededCache = [
-	'cdn/css/style.css',
+	cdnURL + 'css/style.css',
 
-	'cdn/js/readyEvent.js',
-	'cdn/js/details-polyfill.js',
-	'cdn/js/socket.min.js',
-	'cdn/js/css_globe_perspectivetransform.js',
-	'cdn/js/calcConstants.js',
-	'cdn/js/chat.js',
-	'cdn/js/fleet.js',
-	'cdn/js/map.js',
-	'cdn/js/misc.js',
-	'cdn/js/notifications.js',
-	'cdn/js/planetUI.js',
-	'cdn/js/planetback.js',
-	'cdn/js/research.js',
-	'cdn/js/settings.js',
-	'cdn/js/trade.js',
-	'cdn/js/ui.js',
-	'cdn/js/units.js',
-	'cdn/js/websockets.js',
-	'cdn/js/load.js',
+	cdnURL + 'js/cookies.js',
+	cdnURL + 'js/readyEvent.js',
+	cdnURL + 'js/remove-polyfill.js',
+	cdnURL + 'js/details-polyfill.js',
+	cdnURL + 'js/socket.min.js',
+	cdnURL + 'js/css_globe_perspectivetransform.js',
+	cdnURL + 'js/Buildings.js',
+	cdnURL + 'js/calcConstants.js',
+	cdnURL + 'js/chat.js',
+	cdnURL + 'js/Fleet.js',
+	cdnURL + 'js/GameMap.js',
+	cdnURL + 'js/map.js',
+	cdnURL + 'js/misc.js',
+	cdnURL + 'js/notifications.js',
+	cdnURL + 'js/planetUI.js',
+	cdnURL + 'js/planetback.js',
+	cdnURL + 'js/research.js',
+	cdnURL + 'js/Resources.js',
+	cdnURL + 'js/settings.js',
+	cdnURL + 'js/tactics.js',
+	cdnURL + 'js/trade.js',
+	cdnURL + 'js/ui.js',
+	cdnURL + 'js/Unit.js',
+	cdnURL + 'js/units.js',
+	cdnURL + 'js/websockets.js',
+	cdnURL + 'js/load.js',
 ].concat(imgCache.slice());
+
+
+/**
+ * Tutorials
+ */
+const tutorialsList = [
+	'welcome',
+	'energy',
+	'inhabitants',
+	'resources',
+	'research',
+	'endFirstPart',
+	'unitsCreate',
+	'unitsBuild',
+	// 'buyAndSell',
+	'interplanetaryFlight',
+	'interstellarFlight',
+	//'spy',
+	'battle',
+	// 'joinAlly',
+	// 'quests',
+	// 'secondPlanet',
+];
+const tutorialsDependancies = {
+	'welcome': [],
+	'energy':
+		[{
+			type: 'tutorial',
+			tutorial: 'welcome',
+		}],
+	'inhabitants':
+		[{
+			type: 'tutorial',
+			tutorial: 'energy',
+		}],
+	'resources':
+		[{
+			type: 'tutorial',
+			tutorial: 'inhabitants',
+		}],
+	'research':
+		[{
+			type: 'tutorial',
+			tutorial: 'resources',
+		}],
+	'endFirstPart':
+		[{
+			type: 'tutorial',
+			tutorial: 'research',
+		}],
+	'unitsCreate':[
+		{
+			type: 'oneOfManyResearch',
+			researchList: [
+				'figther_light_interceptor',
+				'figther_heavy_interceptor',
+				'figther_bomber',
+
+				'battlecruiser_small',
+				'cuirasse_small',
+
+				'corvet_small',
+
+				'carrier_small',
+				'carrier_medium',
+
+				'wep_sat_ag1',
+				'wep_sat_ag2',
+				'wep_sat_ag3',
+			]
+		}
+	],
+	'unitsBuild':
+		[{ //@TODO: prendre en compte les mines
+			type: 'tutorial',
+			tutorial: 'unitsCreate',
+		}],
+	// 'buyAndSell':[],
+	'interplanetaryFlight':[
+		{
+			type: 'tutorial',
+			tutorial: 'unitsBuild',
+		},
+		{
+			type: 'oneOfManyResearch',
+			researchList: [
+				'prop_vSolaire',
+				'prop_ions',
+			]
+		}
+	],
+	'interstellarFlight':[
+		{
+			type: 'tutorial',
+			tutorial: 'unitsBuild',
+		},
+		{
+			type: 'research',
+			research: 'prop_vsl',
+		}
+	],
+	/*'spy':
+		[{ //@TODO: prendre en compte corvette
+			type: 'tutorial',
+			tutorial: 'unitsBuild',
+		}],*/
+	'battle':
+		[{
+			type: 'tutorial',
+			tutorial: 'interplanetaryFlight',
+		}],
+	// 'joinAlly':[],
+	// 'quests':[],
+	// 'secondPlanet':[],
+};
+const tutorialObjectives = {
+	'welcome': [],
+	'energy':
+	[{
+		type: 'building',
+		building: 4,
+		level: 2,
+	}],
+	'inhabitants':
+	[{
+		type: 'building',
+		building: 2,
+		level: 2,
+	},{
+		type: 'building',
+		building: 3,
+		level: 2,
+	}],
+	'resources':
+	[{
+		type: 'building',
+		building: 0,
+		level: 2,
+	},{
+		type: 'building',
+		building: 1,
+		level: 2,
+	}],
+	'research':
+	[{
+		type: 'oneOfManyResearch',
+		researchList: [
+			'thermodynamique',
+			'phyContemporaine',
+			'industrialistion',
+		]
+	}],
+	'endFirstPart': [],
+	'unitsCreate': [{
+		type: 'unitModel',
+		count: 1,
+	}],
+	'unitsBuild': [{
+		type: 'unitBuild',
+		count: 5,
+	}],
+	// 'buyAndSell': [],
+	'interplanetaryFlight': [{
+		type: 'move',
+		moveType: 'move',
+		location: 'all',
+	}],
+	'interstellarFlight': [{
+		type: 'move',
+		moveType: 'move',
+		location: 'outerSystem',
+	}],
+	//'spy': [],
+	'battle': [{
+		type: 'move',
+		moveType: 'attack',
+		location: 'all',
+	}],
+	// 'joinAlly': [],
+	// 'quests': [],
+	// 'secondPlanet': [],
+};
