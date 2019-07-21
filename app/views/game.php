@@ -767,26 +767,26 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
-<script type="text/javascript" src="<?= $cdnURL ?>js/Buildings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/Fleet.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/GameMap.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Fleets.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/GameMap.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/planetUI.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/planetback.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/research.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/Resources.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/tactics.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/Tutorials.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Tutorials.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/tutorialsUI.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/Unit.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Units.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/websockets.js"></script>
 <?php /* Launch Game ! */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>
