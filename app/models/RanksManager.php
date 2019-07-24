@@ -44,7 +44,6 @@ class RanksManager extends SQLInterface {
 		]);
 	}
 
-
 	public function getGlobalListByGameIdAndServer($gameId, $serverName) {
 		
 		return $this->selectQuery('SELECT name, points, planets, server_name, (
@@ -61,6 +60,23 @@ class RanksManager extends SQLInterface {
 			'serverName' => $serverName,
 			'game_id' => $gameId
 		]);
+	}
+
+
+	public function getSectorListPageCount($sector) {
+		global $dbname;
+
+		return ceil(
+				$this->selectQuery('SELECT COUNT(*) as "plyCount"
+					FROM "sectorRanks"
+					WHERE server_name = :serverName
+					AND sector = :sector', 
+				[
+					'serverName' => $dbname,
+					'sector' => $sector
+				],
+				true)['plyCount']
+			/15);
 	}
 
 	public function getSectorListByNameAndSector($userName, $sector) {
@@ -84,6 +100,22 @@ class RanksManager extends SQLInterface {
 			'sector' => $sector
 		]);
 	}
+
+	public function getSectorListByPage($page, $sector) {
+		global $dbname;
+		
+		return $this->selectQuery('SELECT name, points, planets, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
+			FROM "sectorRanks"
+			WHERE server_name = :serverName
+			AND sector = :sector
+			OFFSET :beginRank LIMIT 15', 
+		[
+			'serverName' => $dbname,
+			'beginRank' => $page*15,
+			'sector' => $sector
+		]);
+	}
+
 
 	public function getSectorListByGameIdAndServer($gameId, $serverName) {
 		

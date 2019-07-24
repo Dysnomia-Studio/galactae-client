@@ -19,7 +19,7 @@ class notifications {
 		let notification;
 
 		if (!('Notification' in window)) {
-			return; 
+			return;
 		} else if (Notification.permission === 'granted') {
 			notification = new Notification(txt,options);
 		} else if (Notification.permission !== 'denied') { 
