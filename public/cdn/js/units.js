@@ -1956,6 +1956,13 @@ class units {
 	 */
 	static updateMovePanel() {
 		const currentFleet = units.getFleetData(units.currFleet);
+
+		// No fleet
+		if(!currentFleet.position && !!document.getElementById('map-move-panel-list-ul').firstChild) {
+			document.getElementById('map-move-panel-list-ul').firstChild.click();
+			return;
+		}
+
 		const movePanel = document.getElementById('map-move-panel-move');
 		movePanel.disabled = false;
 
@@ -1999,6 +2006,12 @@ class units {
 		if(fighterCount > fighterCap) {
 			document.getElementById('map-move-panel-hangar').style.color = 'red';
 			movePanel.disabled = true;
+		}
+
+		// No fleet
+		if(!currentFleet.position) {
+			movePanel.disabled = true;
+			return;
 		}
 
 		let systemeDepart = currentFleet.position.split('-');
