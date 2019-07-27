@@ -759,7 +759,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="notifications-closeAll">☒</span>
 </div>
 <?php /* Game Version & Copyright */ ?>
-<div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://elanis.eu/" target="_blank">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
+<div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
