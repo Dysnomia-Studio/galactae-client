@@ -223,7 +223,10 @@ class ui {
 			DOMElts[i].addEventListener('click', function() {
 				ui.toggleClass('.ranks-ul .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
-				document.getElementById('hud-ranks-frame').src = 'ranks.php?type=' + this.getAttribute('choice');
+				let sector = planetData.address.split('-');
+				sector = sector[0] + '-' + sector[1];
+
+				document.getElementById('hud-ranks-frame').src = 'ranks.php?type=' + this.getAttribute('choice')  + '&sector=' + sector;
 			});
 		}
 
