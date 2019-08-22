@@ -209,7 +209,7 @@ class ui {
 			if(dayBonus2 && ui.hasClass(dayBonus2, 'day-bonus-active')) {
 				choice = 2;
 			}
-			socket.emit('daily-bonus', { id: userData.id, username: userData.username, choice: choice });
+			socket.emit('daily-bonus', { id: userData.id, username: userData.username, choice: choice, pid: userData.pid });
 			ui.closeTab('#day-bonus');
 		});
 
