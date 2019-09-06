@@ -45,5 +45,5 @@ function getCookie(cname) {
  */
 function existCookie(cname) {
 	const content = getCookie(cname);
-	return (content !== '' || content !== null);
+	return (content !== '');
 }
