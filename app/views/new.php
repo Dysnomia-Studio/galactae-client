@@ -38,30 +38,30 @@
 </form>
 
 <script type="text/javascript">
-	window.addEventListener('load',function() {
-		let choice = document.getElementById('choice');
-		let choice1 = document.getElementById('choosebtn1');
-		let choice2 = document.getElementById('choosebtn2');
-		let choice3 = document.getElementById('choosebtn3');
-		let confirm = document.getElementById('gvt-confbtn');
-		let form = document.getElementById('choose');
+	window.addEventListener('load', () => {
+		const choice = document.getElementById('choice');
+		const choice1 = document.getElementById('choosebtn1');
+		const choice2 = document.getElementById('choosebtn2');
+		const choice3 = document.getElementById('choosebtn3');
+		const confirm = document.getElementById('gvt-confbtn');
+		const form = document.getElementById('choose');
 
 		function setActive(chx) {
-			choice1.className = "gvt-choosebtn gvt-btn";
-			choice2.className = "gvt-choosebtn gvt-btn";
-			choice3.className = "gvt-choosebtn gvt-btn";
+			choice1.className = 'gvt-choosebtn gvt-btn';
+			choice2.className = 'gvt-choosebtn gvt-btn';
+			choice3.className = 'gvt-choosebtn gvt-btn';
 
 			switch(chx) {
 				case 1:
-					choice1.className = "gvt-choosebtn gvt-btn gvt-btn-active";
+					choice1.className = 'gvt-choosebtn gvt-btn gvt-btn-active';
 					choice.value = chx;
 				break;
 				case 2:
-					choice2.className = "gvt-choosebtn gvt-btn gvt-btn-active";
+					choice2.className = 'gvt-choosebtn gvt-btn gvt-btn-active';
 					choice.value = chx;
 				break;
 				case 3:
-					choice3.className = "gvt-choosebtn gvt-btn gvt-btn-active";
+					choice3.className = 'gvt-choosebtn gvt-btn gvt-btn-active';
 					choice.value = chx;
 				break;
 				default:

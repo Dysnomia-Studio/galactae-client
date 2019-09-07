@@ -6,7 +6,7 @@ class RanksManager extends SQLInterface {
 		return ceil(
 				$this->selectQuery('SELECT COUNT(*) as "plyCount"
 					FROM "globalRanks"
-					WHERE server_name = :server_name', 
+					WHERE server_name = :server_name',
 				['server_name' => $dbname],
 				true)['plyCount']
 			/15);
@@ -24,7 +24,7 @@ class RanksManager extends SQLInterface {
 					FROM "globalRanks"
 					WHERE server_name = :serverName
 				) ranksList WHERE name = :userName
-			) - 8, 0) LIMIT 15', 
+			) - 8, 0) LIMIT 15',
 		[
 			'serverName' => $dbname,
 			'userName' => $player
@@ -37,7 +37,7 @@ class RanksManager extends SQLInterface {
 		return $this->selectQuery('SELECT name, points, planets, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 			FROM "globalRanks"
 			WHERE server_name = :serverName
-			OFFSET :beginRank LIMIT 15', 
+			OFFSET :beginRank LIMIT 15',
 		[
 			'serverName' => $dbname,
 			'beginRank' => $page*15
@@ -55,7 +55,7 @@ class RanksManager extends SQLInterface {
 			) AS rank
 			FROM "globalRanks"
 			WHERE server_name = :serverName
-			AND game_id = :game_id', 
+			AND game_id = :game_id',
 		[
 			'serverName' => $serverName,
 			'game_id' => $gameId
@@ -70,7 +70,7 @@ class RanksManager extends SQLInterface {
 				$this->selectQuery('SELECT COUNT(*) as "plyCount"
 					FROM "sectorRanks"
 					WHERE server_name = :serverName
-					AND sector = :sector', 
+					AND sector = :sector',
 				[
 					'serverName' => $dbname,
 					'sector' => $sector
@@ -93,7 +93,7 @@ class RanksManager extends SQLInterface {
 					WHERE server_name = :serverName
 					AND sector = :sector
 				) ranksList WHERE name = :userName
-			) - 8, 0) LIMIT 15', 
+			) - 8, 0) LIMIT 15',
 		[
 			'serverName' => $dbname,
 			'userName' => $userName,
@@ -108,7 +108,7 @@ class RanksManager extends SQLInterface {
 			FROM "sectorRanks"
 			WHERE server_name = :serverName
 			AND sector = :sector
-			OFFSET :beginRank LIMIT 15', 
+			OFFSET :beginRank LIMIT 15',
 		[
 			'serverName' => $dbname,
 			'beginRank' => $page*15,
@@ -128,7 +128,7 @@ class RanksManager extends SQLInterface {
 			) AS rank
 			FROM "sectorRanks" as SR
 			WHERE server_name = :serverName
-			AND game_id = :game_id', 
+			AND game_id = :game_id',
 		[
 			'serverName' => $serverName,
 			'game_id' => $gameId

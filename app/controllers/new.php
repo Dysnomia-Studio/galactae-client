@@ -17,5 +17,5 @@ if(isset($srvUserData['name'])) { // Autofix
 
 	$_SESSION['game_id'] = $srvUserData['id'];
 
-	//redirect('reload');
+	redirect('reload');
 }

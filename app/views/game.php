@@ -364,7 +364,7 @@
 	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<form action="#chat_text" method="post" id="chat_form">
 		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
-		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?= $cdnURL ?>img/ui/chat-voice.svg" alt="voice"></a>
+		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank" rel="noopener noreferrer"><img src="<?= $cdnURL ?>img/ui/chat-voice.svg" alt="voice"></a>
 	</form>
 </div>
 <?php /* Ranks */ ?>
@@ -521,7 +521,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</ul>
 		<div id="fleet-build-content">
 			<h2 id="fleet-build-list-empty"><?= FLEET_NO_MODEL; ?></h2>
-			<table id="fleet-build-list" class="unit-list-table">
+			<table id="fleet-build-list" class="unit-list-table" aria-describedby="Unit list">
 				<thead>
 					<tr>
 						<th id="fleet-build-list-type-name"><?= FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
@@ -750,7 +750,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<h1><?= DAY_BONUS_TITLE; ?></h1>
 	<h3><?= DAY; ?> <span id="day-bonus-current"></span> - <?= DAY_BEST; ?> <span id="day-bonus-best"></span></h3>
 	<p id="day-bonus-choice"><?= DAY_BONUS_CHOICE; ?>
-	<table id="day-bonus-desc"></table>
+	<table id="day-bonus-desc" aria-describedby="Daily bonus description"></table>
 	<span id="day-bonus-confirm"><?= DAY_BONUS_CONFIRM; ?></span>
 	<span id="day-bonus-later"><?= DAY_BONUS_LATER; ?></span>
 </div>
@@ -759,7 +759,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="notifications-closeAll">☒</span>
 </div>
 <?php /* Game Version & Copyright */ ?>
-<div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
+<div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank" rel="noopener noreferrer">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank" rel="noopener noreferrer">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
