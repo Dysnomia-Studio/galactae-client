@@ -121,11 +121,11 @@
 				let offsetX = 0;
 				let offsetY = 0;
 				let offset = this.computedStyle.getPropertyValue(PerspectiveTransform.transformOriginDomStyleName);
-				if(offset.indexOf('px')>-1){
+				if(offset.indexOf('px') > -1){
 					offset = offset.split('px');
 					offsetX = -parseFloat(offset[0]);
 					offsetY = -parseFloat(offset[1]);
-				}else if(offset.indexOf('%')>-1){
+				} else if(offset.indexOf('%') > -1) {
 					offset = offset.split('%');
 					offsetX = -parseFloat(offset[0]) * width / 100;
 					offsetY = -parseFloat(offset[1]) * height / 100;
@@ -146,24 +146,29 @@
 					aM[i][2] = aM[i+4][5] = 1;
 					aM[i][3] = aM[i][4] = aM[i][5] = aM[i+4][0] = aM[i+4][1] = aM[i+4][2] = 0;
 				}
+
 				let kmax, sum;
 				let row;
 				const col = [];
 				let tmp, k;
 				for(let j = 0; j < 8; j++) {
-					for(let i = 0; i < 8; i++)  col[i] = aM[i][j];
-					for(i = 0; i < 8; i++) {
+					for(let i = 0; i < 8; i++) {
+						col[i] = aM[i][j];
+					}
+
+					for(let i = 0; i < 8; i++) {
 						row = aM[i];
 						kmax = i<j?i:j;
 						sum = 0.0;
 						for(k = 0; k < kmax; k++) sum += row[k] * col[k];
 						row[j] = col[i] -= sum;
 					}
+
 					let p = j;
-					for(i = j + 1; i < 8; i++) {
+					for(let i = j + 1; i < 8; i++) {
 						if(Math.abs(col[i]) > Math.abs(col[p])) p = i;
 					}
-					if(p != j) {
+					if(p !== j) {
 						for(k = 0; k < 8; k++) {
 							tmp = aM[p][k];
 							aM[p][k] = aM[j][k];
@@ -173,15 +178,29 @@
 						arr[p] = arr[j];
 						arr[j] = tmp;
 					}
-					if(aM[j][j] != 0.0) for(i = j + 1; i < 8; i++) aM[i][j] /= aM[j][j];
+
+					if(aM[j][j] !== 0.0) {
+						for(i = j + 1; i < 8; i++) {
+							aM[i][j] /= aM[j][j];
+						}
+					}
 				}
-				for(i = 0; i < 8; i++) arr[i] = bM[arr[i]];
-				for(k = 0; k < 8; k++) {
-					for(i = k + 1; i < 8; i++) arr[i] -= arr[k] * aM[i][k];
+				for(let i = 0; i < 8; i++) {
+					arr[i] = bM[arr[i]];
 				}
-				for(k = 7; k > -1; k--) {
+
+				for(let k = 0; k < 8; k++) {
+					for(let i = k + 1; i < 8; i++) {
+						arr[i] -= arr[k] * aM[i][k];
+					}
+				}
+
+				for(let k = 7; k > -1; k--) {
 					arr[k] /= aM[k][k];
-					for(i = 0; i < k; i++) arr[i] -= arr[k] * aM[i][k];
+
+					for(let i = 0; i < k; i++) {
+						arr[i] -= arr[k] * aM[i][k];
+					}
 				}
 
 				this.calcStyle = 'matrix3d(' + arr[0].toFixed(9) + ',' + arr[3].toFixed(9) + ', 0,' + arr[6].toFixed(9) + ',' + arr[1].toFixed(9) + ',' + arr[4].toFixed(9) + ', 0,' + arr[7].toFixed(9) + ',0, 0, 1, 0,' + arr[2].toFixed(9) + ',' + arr[5].toFixed(9) + ', 0, 1)';
