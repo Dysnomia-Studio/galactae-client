@@ -1,4 +1,6 @@
 /*
+ *  Updated By Elanis for Galactae, removed some not needed function and updated to latest ES features
+ *
  *  Optimized version of PerspectiveTransform.js
  *  by Edan Kwan
  *  website: http://www.edankwan.com/
@@ -39,7 +41,7 @@
 		PerspectiveTransform.prototype = (function(){
 
 			const app = {
-				stylePrefix: ''
+				stylePrefix: '',
 			};
 
 			const aM = [[0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0]];
@@ -63,22 +65,45 @@
 			function _hasDistancesError(){
 				let lenX = this.topLeft.x - this.topRight.x;
 				let lenY = this.topLeft.y - this.topRight.y;
-				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) return true;
+
+				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) {
+					return true;
+				}
+
 				lenX = this.bottomLeft.x - this.bottomRight.x;
 				lenY = this.bottomLeft.y - this.bottomRight.y;
-				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) return true;
+
+				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) {
+					return true;
+				}
+
 				lenX = this.topLeft.x - this.bottomLeft.x;
 				lenY = this.topLeft.y - this.bottomLeft.y;
-				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) return true;
+
+				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) {
+					return true;
+				}
+
 				lenX = this.topRight.x - this.bottomRight.x;
 				lenY = this.topRight.y - this.bottomRight.y;
-				if( Math.sqrt(lenX * lenX +  lenY * lenY)<=1) return true;
+
+				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) {
+					return true;
+				}
+
 				lenX = this.topLeft.x - this.bottomRight.x;
 				lenY = this.topLeft.y - this.bottomRight.y;
-				if( Math.sqrt(lenX * lenX +  lenY * lenY)<=1) return true;
+
+				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) {
+					return true;
+				}
+
 				lenX = this.topRight.x - this.bottomLeft.x;
 				lenY = this.topRight.y - this.bottomLeft.y;
-				if( Math.sqrt(lenX * lenX +  lenY * lenY)<=1) return true;
+
+				if(Math.sqrt(lenX * lenX +  lenY * lenY)<=1) {
+					return true;
+				}
 
 				return false;
 			}
@@ -92,24 +117,40 @@
 			function _hasPolyonError(){
 				let det1 = _getDeterminant(this.topLeft, this.topRight, this.bottomRight);
 				let det2 = _getDeterminant(this.bottomRight, this.bottomLeft, this.topLeft);
-				if(this.useBackFacing){
-					if(det1*det2<=0) return true;
-				}else{
-					if(det1<=0||det2<=0) return true;
+				if(this.useBackFacing) {
+					if(det1*det2<=0) {
+						return true;
+					}
+				} else {
+					if(det1<=0||det2<=0) {
+						return true;
+					}
 				}
 				det1 = _getDeterminant(this.topRight, this.bottomRight, this.bottomLeft);
 				det2 = _getDeterminant(this.bottomLeft, this.topLeft, this.topRight);
-				if(this.useBackFacing){
-					if(det1*det2<=0) return true;
-				}else{
-					if(det1<=0||det2<=0) return true;
+
+				if(this.useBackFacing) {
+					if(det1*det2<=0) {
+						return true;
+					}
+				} else {
+					if(det1<=0||det2<=0) {
+						return true;
+					}
 				}
+
 				return false;
 			}
 
 			function checkError(){
-				if(_hasDistancesError.apply(this)) return 1; // Points are too close to each other.
-				if(_hasPolyonError.apply(this)) return 2; // Concave or backfacing if the useBackFacing property is false
+				if(_hasDistancesError.apply(this)) { // Points are too close to each other.
+					return 1;
+				}
+
+				if(_hasPolyonError.apply(this)) { // Concave or backfacing if the useBackFacing property is false
+					return 2;
+				}
+
 				return 0; // no error
 			}
 
@@ -160,13 +201,19 @@
 						row = aM[i];
 						kmax = i<j?i:j;
 						sum = 0.0;
-						for(k = 0; k < kmax; k++) sum += row[k] * col[k];
+
+						for(k = 0; k < kmax; k++) {
+							sum += row[k] * col[k];
+						}
+
 						row[j] = col[i] -= sum;
 					}
 
 					let p = j;
 					for(let i = j + 1; i < 8; i++) {
-						if(Math.abs(col[i]) > Math.abs(col[p])) p = i;
+						if(Math.abs(col[i]) > Math.abs(col[p])) {
+							p = i;
+						}
 					}
 					if(p !== j) {
 						for(k = 0; k < 8; k++) {
@@ -180,7 +227,7 @@
 					}
 
 					if(aM[j][j] !== 0.0) {
-						for(i = j + 1; i < 8; i++) {
+						for(let i = j + 1; i < 8; i++) {
 							aM[i][j] /= aM[j][j];
 						}
 					}
@@ -189,13 +236,13 @@
 					arr[i] = bM[arr[i]];
 				}
 
-				for(let k = 0; k < 8; k++) {
+				for(k = 0; k < 8; k++) {
 					for(let i = k + 1; i < 8; i++) {
 						arr[i] -= arr[k] * aM[i][k];
 					}
 				}
 
-				for(let k = 7; k > -1; k--) {
+				for(k = 7; k > -1; k--) {
 					arr[k] /= aM[k][k];
 
 					for(let i = 0; i < k; i++) {
