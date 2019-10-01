@@ -2,7 +2,7 @@ let resourcesinterval = -1;
 let autobuildingrefresh = -1;
 let canbebuildtimeout = -1;
 
-const planetData = { //Not complete but some are needed on init because of bugs
+let planetData = { //Not complete but some are needed on init because of bugs
 	planetType: 0,
 	address: userData.pid,
 	resources: {},
