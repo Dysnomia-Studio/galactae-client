@@ -1,204 +1,85 @@
-(function (exports) {
-	exports.Tutorials = class Tutorials {
-		/**
-		 * Determines if the user has finished tutorials.
-		 *
-		 * @param      {object}   user    The user
-		 * @return     {boolean}  True if has finished tutorials, False otherwise.
-		 */
-		static hasFinishedTutorials(user) {
-			return Object.keys(user.tutorials).length === tutorialsList.length;
+class Tutorials extends _Tutorials {
+	static loadUI() {
+		document.getElementById('tutorial-panel-ok').addEventListener('click', () => {
+			if(Tutorials.hasCompletedTutorial(Tutorials.currTutorial, userData, planetData, units.fleetList, units.list, false)) {
+				socket.emit('tutorial-confirm', {
+					id: userData.id,
+					username: userData.username,
+					tutorial: Tutorials.currTutorial,
+				});
+			} else {
+				notifications.notifyOnGame(
+					'tutorial',
+					translate.tutorials[Tutorials.currTutorial + '-title'],
+					{ id: 'tutorial-' + Tutorials.currTutorial }
+				);
+			}
+
+			ui.hide('#tutorial-panel');
+		});
+	}
+
+	static newTutorial(type) {
+		Tutorials.currTutorial = type;
+
+		//@TODO: draw yellow outline on buildings needs to be build
+
+		Tutorials.openTutorialPanel();
+
+		Tutorials.highlightButtons();
+	}
+
+	static openTutorialPanel() {
+		const notif = document.getElementsByClassName('notif-tutorial')[0];
+		if(notif) {
+			notif.parentNode.removeChild(notif);
 		}
 
-		static hasAllDependancies(currTuto, user, planet) {
-			if(!tutorialsDependancies[currTuto]) {
-				log('No dependency for tutorial: ' + currTuto, 'warn');
-				return true;
-			}
+		document.getElementById('tutorial-panel-title').innerText = translate.tutorials[Tutorials.currTutorial + '-title'];
 
-			for(const dependency of tutorialsDependancies[currTuto]) {
-				switch(dependency.type) {
-					case 'building':
-						if(planet.Buildings[dependency.building] < dependency.level) {
-							return false;
-						}
-						break;
-					case 'research':
-						if(!Research.isSearched(user, dependency.research)) {
-							return false;
-						}
-						break;
+		document.getElementById('tutorial-panel-desc').innerText =
+			translate.tutorials[Tutorials.currTutorial + '-desc']
+				.replace(/{PlayerName}/g, userData.username);
 
-					case 'oneOfManyResearch':
-						let ok = false;
-						for(const currResearch of dependency.researchList) {
-							if(Research.isSearched(user, currResearch)) {
-								ok = true;
-								break;
-							}
-						}
+		const objectivesUL = document.getElementById('tutorial-panel-objectives');
+		while(objectivesUL.firstChild) {
+			objectivesUL.removeChild(objectivesUL.firstChild);
+		}
+		for(let currTutorial = 0; currTutorial < tutorialObjectives[Tutorials.currTutorial].length; currTutorial++) {
+			const listElt = document.createElement('li');
+			listElt.innerText = translate.tutorials[Tutorials.currTutorial + '-objective-' + currTutorial];
+			//@TODO: draw done objectives
 
-
-						if(!ok) {
-							return false;
-						}
-						break;
-					case 'tutorial':
-						if(!user.tutorials[dependency.tutorial]) {
-							return false;
-						}
-						break;
-					default:
-						log('Invalid tutorial dependency type: ' + dependency.type, 'warn');
-						return false;
-				}
-			}
-
-			return true;
+			objectivesUL.appendChild(listElt);
 		}
 
-		static checkTutorials(user, planet) {
-			if(Tutorials.hasFinishedTutorials(user)) {
-				return;
-			}
+		setTimeout(() => {
+			ui.show('#tutorial-panel');
+		}, 100);
+	}
 
-			for(let currTuto=0; currTuto<tutorialsList.length; currTuto++) {
-				if( !user.tutorials[tutorialsList[currTuto]] &&
-					Tutorials.hasAllDependancies(tutorialsList[currTuto], user, planet)) {
+	static highlightButtons() {
+		Array.from(document.getElementsByClassName('tutorial-active')).forEach((elt) => {
+			elt.classList.remove('tutorial-active');
+		});
 
-					Websocket.sendTutorial(user, tutorialsList[currTuto]);
+		for(const objective of tutorialObjectives[Tutorials.currTutorial]) {
+			switch(objective.type) {
+				case 'building':
+					document.getElementById(buildingsNames[objective.building]).classList.add('tutorial-active');
+					document.getElementById(buildingsNames[objective.building]).addEventListener('click', function() {
+						this.classList.remove('tutorial-active');
+					});
 					break;
-				}
+				case 'research':
+					document.getElementById('hud-bottom-button-research').classList.add('tutorial-active');
+					document.getElementById('hud-bottom-button-research').addEventListener('click', function() {
+						this.classList.remove('tutorial-active');
+					});
+					break;
+				//@TODO do other objectives types
+				default:
 			}
 		}
-
-		static updateTutorialList(user, planet, fleets, units) {
-			if(Tutorials.hasFinishedTutorials(user)) {
-				return user;
-			}
-
-			for(let currTuto=0; currTuto<tutorialsList.length; currTuto++) {
-				if( !user.tutorials[tutorialsList[currTuto]] &&
-					Tutorials.hasCompletedTutorial(tutorialsList[currTuto], user, planet, fleets, units)) {
-
-					user.tutorials[tutorialsList[currTuto]] = true;
-				}
-			}
-
-			return user;
-		}
-
-		static hasCompletedTutorial(currTuto, user, planet, fleets, units, manually=true) {
-			if(user.tutorials[currTuto]) {
-				return true;
-			}
-
-			if(!tutorialObjectives[currTuto]) {
-				log('No objective for tutorial: ' + currTuto, 'warn');
-				return true;
-			}
-
-			if(!Tutorials.hasAllDependancies(currTuto, user, planet)) {
-				return false;
-			}
-
-			if(manually && tutorialObjectives[currTuto].length === 0) {
-				return false; // Must be completed manually
-			}
-
-			for(const objective of tutorialObjectives[currTuto]) {
-				switch(objective.type) {
-					case 'building':
-						if(planet.Buildings[objective.building] < objective.level) {
-							return false;
-						}
-						break;
-					case 'research':
-						if(!Research.isSearched(user, objective.research)) {
-							return false;
-						}
-						break;
-
-					case 'oneOfManyResearch':
-						let ok = false;
-						for(const currResearch of objective.researchList) {
-							if(Research.isSearched(user, currResearch)) {
-								ok = true;
-								break;
-							}
-						}
-
-						if(!ok) {
-							return false;
-						}
-						break;
-					case 'tutorial':
-						if(!user.tutorials[objective.tutorial]) {
-							return false;
-						}
-						break;
-
-					case 'unitModel':
-						if(!units || units.length < objective.count) {
-							return false;
-						}
-						break;
-
-					case 'unitBuild':
-						const sum = units.reduce((total, elt) => total + (elt.owned || 0), 0);
-
-						if(!units || sum < objective.count) {
-							return false;
-						}
-						break;
-
-					case 'move':
-						// @TODO: improve this
-						let moveType = -1;
-						if(objective.moveType === 'move') {
-							moveType = 2;
-						} else if(objective.moveType === 'attack') {
-							moveType = 1;
-						}
-
-						if(moveType < 0) {
-							log('Invalid move type: ' + objective.moveType);
-							return false;
-						}
-
-						let index = -1;
-						for(let i=0; i<fleets.length; i++) {
-							if(fleets[i].endMoveTime > 0 && fleets[i].orbitPosition === moveType) {
-								index = i;
-							}
-						}
-
-						if(index === -1) {
-							return false;
-						}
-
-						if(objective.location === 'outerSystem') {
-							let origin = fleets[index].motherPlanetAddress;
-							origin = origin.substring(0, origin.lastIndexOf('-'));
-
-							let destination = fleets[index].position;
-							destination = destination.substring(0, destination.lastIndexOf('-'));
-
-							if(origin === destination) {
-
-								return false;
-							}
-						}
-
-						break;
-
-					default:
-						log('Invalid tutorial objective type: ' + objective.type, 'warn');
-						return false;
-				}
-			}
-
-			return true;
-		}
-	};
-})(typeof exports === 'undefined'? window : exports);
+	}
+}

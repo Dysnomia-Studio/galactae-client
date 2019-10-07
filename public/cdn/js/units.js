@@ -1,7 +1,7 @@
 let preventFleetHUDClosing = false;
 let preventUnitBuildPanelClose = false;
 
-class units {
+class units extends _Units {
 	/**
 	 * Ask units from server
 	 */
@@ -1822,21 +1822,21 @@ class units {
 				unitList.push(units.getUnitData(key));
 			}
 
-			minSpeed = Fleet.getMinSubSpeed(unitList, fleet.units);
+			minSpeed = Fleets.getMinSubSpeed(unitList, fleet.units);
 
 			const baseDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
 				now/TIME.SECONDS_TO_MS);
 			if(Number.isNaN(baseDist) || baseDist < 0) { return; }
-			const baseTravelTime = Fleet.calcMoveTime(baseDist, minSpeed.speed);
+			const baseTravelTime = Fleets.calcMoveTime(baseDist, minSpeed.speed);
 
 			const previewDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
 				now/TIME.SECONDS_TO_MS + Math.round(baseTravelTime*TIME.HOUR_TO_SECONDS*100)/100);
 			if(Number.isNaN(previewDist) || previewDist < 0) { return; }
-			const previewTime = Fleet.calcMoveTime(previewDist, minSpeed.speed);
+			const previewTime = Fleets.calcMoveTime(previewDist, minSpeed.speed);
 
 			/* Final travel time:
 				Average of ...
@@ -1857,17 +1857,17 @@ class units {
 				unitList.push(units.list[currUnitId]);
 			}
 
-			minSpeed = Fleet.getMinSupraSpeed(unitList, fleet.units);
+			minSpeed = Fleets.getMinSupraSpeed(unitList, fleet.units);
 
 			const dist = Math.sqrt(
 				Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) +
 				Math.pow(systemeDepart.getAttribute('y') - planeteArrivee.galacticPos[1],2)
 			);
 
-			time = Fleet.calcMoveTime(dist, minSpeed.speed);
+			time = Fleets.calcMoveTime(dist, minSpeed.speed);
 		}
 
-		const fuel = [Fleet.calcFuelCost(minSpeed.engines) * time, fleet.fuel];
+		const fuel = [Fleets.calcFuelCost(minSpeed.engines) * time, fleet.fuel];
 
 		return { time, fuel };
 	}

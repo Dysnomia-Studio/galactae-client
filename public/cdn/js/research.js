@@ -5,7 +5,7 @@ const RESEARCH_MAX_ZOOM = 1.75;
 
 const researchPrevMouse = [0,0];
 
-class research {
+class research extends _Research {
 	/**
 	 * Handle mobile touch and bind it to mouse events
 	 */
