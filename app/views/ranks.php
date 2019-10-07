@@ -64,6 +64,11 @@ if($loadCache !== '') {
 	echo '</table>';
 
 	echo '<div id="ranks-page">Page: ';
+
+	if($sector != '') {
+		$sector = '&sector='.$sector;
+	}
+
 	for($i=0; $i<$pageData['pageCount']; $i++) {
 		if($i > 0) {
 			echo ' - ';
@@ -74,7 +79,7 @@ if($loadCache !== '') {
 			$currPage = '<span class="ranks-curr-page">'.$currPage.'</span>';
 		}
 
-		echo '<a href="ranks.php?page='.($i+1).'">'.$currPage.'</a>';
+		echo '<a href="ranks.php?type='.$type.$sector.'&page='.($i+1).'">'.$currPage.'</a>';
 	}
 	echo '</div>';
 

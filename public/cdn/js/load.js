@@ -82,11 +82,6 @@ class loadScreen {
 }
 
 ready(function() {
-	// Basic Security (ClientSide)
-	if(!existCookie('galactae-account-username') || !existCookie('galactae-account-id')) { //Why are you here ?!
-		kick('not-connected');
-	}
-
 	document.getElementById('loading-overlay-desc').innerHTML = translate.load['server'];
 
 	// Load settings

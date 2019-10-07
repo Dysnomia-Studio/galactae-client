@@ -113,7 +113,7 @@ class planetUI {
 		}
 		// Create timeout: sync where the next building is ended
 		if(planetData.nextBuildingTime !== -1) {
-			autobuildingrefresh = setTimeout(function() {	
+			autobuildingrefresh = setTimeout(function() {
 				planetUI.sync();
 				autobuildingrefresh = -1;
 			},planetData.nextBuildingTime-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
@@ -132,7 +132,7 @@ class planetUI {
 	 * Clientside simulation of growing resources
 	 */
 	static simMyRealRessources() {
-		let time = 2/3600; // 2 sec
+		const time = 2/3600; // 2 sec
 
 		//Minerals
 		if(currentBuilding !== 0) {
@@ -140,7 +140,7 @@ class planetUI {
 		}
 
 		//Helium 3
-		if(buildings[13] !== 0 && currentBuilding !== 13) { 
+		if(buildings[13] !== 0 && currentBuilding !== 13) {
 			planetData.resources[1] += heliumProdBase*time;
 
 			if(units.fleetList && units.fleetList.length > 0) {
@@ -175,24 +175,24 @@ class planetUI {
 		}
 
 		// Si Max de tout les metaux
-		if((planetData.resources[5]>metalsStorageBase*ratio.titanRatio) && 
-			(planetData.resources[4]>metalsStorageBase*ratio.copperRatio) && 
-			(planetData.resources[3]>metalsStorageBase*ratio.aluRatio) && 
+		if((planetData.resources[5]>metalsStorageBase*ratio.titanRatio) &&
+			(planetData.resources[4]>metalsStorageBase*ratio.copperRatio) &&
+			(planetData.resources[3]>metalsStorageBase*ratio.aluRatio) &&
 			(planetData.resources[2]>metalsStorageBase*ratio.ironRatio)) {
 
 			let min = (planetData.resources[2] - metalsStorageBase*ratios[0])/ratios[0];
 
 			for(let i=3; i<6; i++) {
-				let temp = (planetData.resources[i] - metalsStorageBase*ratios[i-2])/ratios[i-2];
+				const temp = (planetData.resources[i] - metalsStorageBase*ratios[i-2])/ratios[i-2];
 
 				if(temp<min) {
 					min = temp;
 				}
 			}
 			planetData.resources[0]+=min;
-		    for(let i=2; i<6; i++) {
-		    	planetData.resources[i] -= min*ratios[i-2];
-		    }
+		for(let i=2; i<6; i++) {
+				planetData.resources[i] -= min*ratios[i-2];
+			}
 		}
 
 		//Max Storage
@@ -379,14 +379,14 @@ class planetUI {
 			canbebuildtimeout = -1;
 		}
 		// Update all when building could be upgraded
-		let timeLeft = planetUI.getNextBuildingReady();
+		const timeLeft = planetUI.getNextBuildingReady();
 		if(timeLeft>0) {
 			canbebuildtimeout = setTimeout(function() {
 				planetUI.drawCanBeBuild();
 			},timeLeft);
 		}
 		// Refresh this when a building is ended
-		let timeBeforeEndBuild = (planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
+		const timeBeforeEndBuild = (planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
 		if(timeBeforeEndBuild>0) {
 			setTimeout(function() {
 				planetUI.drawCanBeBuild();
@@ -405,7 +405,7 @@ class planetUI {
 	 */
 	static getHabitantConsomation() {
 		let habitants = 0;
-		let buildings = planetData.Buildings;
+		const buildings = planetData.Buildings;
 
 		// Buildings
 		for(let i=0; i<14; i++) {
@@ -413,7 +413,7 @@ class planetUI {
 			if(i===planetData.nextBuilding) {
 				// Current in-build building
 				habitants += parseInt(Buildings.GetCost(i,buildings[i] + 1).habitants);
-				continue; 
+				continue;
 			}
 			habitants += parseInt(Buildings.GetCost(i,buildings[i]).habitants);
 		}
@@ -434,24 +434,28 @@ class planetUI {
 	 */
 	static getTimeBeforeBuild(building) {
 		let cost;
-		if(planetData.nextBuilding===building) { cost = Buildings.GetCost(building,planetData.Buildings[building] + 2); } 
-		else							      { cost = Buildings.GetCost(building,planetData.Buildings[building] + 1); }
-		let costs = [
+		if(planetData.nextBuilding===building) {
+			cost = Buildings.GetCost(building,planetData.Buildings[building] + 2);
+		} else {
+			cost = Buildings.GetCost(building,planetData.Buildings[building] + 1);
+		}
+
+		const costs = [
 			['building-cost-iron',cost.iron],
 			['building-cost-aluminium',cost.aluminium],
 			['building-cost-copper',cost.copper],
 			['building-cost-titanium',cost.titanium],
 		];
 
-		let ratios = [ratio.ironRatio,ratio.aluRatio,ratio.copperRatio,ratio.titanRatio];
+		const ratios = [ratio.ironRatio,ratio.aluRatio,ratio.copperRatio,ratio.titanRatio];
 
 		let timeCurrent = 0;
 		for(let i=0; i<4; i++) {
 			if(planetData.resources[i+2] < costs[i][1]) {
-				let time = ((costs[i][1] - planetData.resources[i+2])/(metalProdBase*ratios[i]));
+				const time = ((costs[i][1] - planetData.resources[i+2])/(metalProdBase*ratios[i]));
 				if(time > timeCurrent) {
 					timeCurrent = time;
-				}	
+				}
 			}
 		}
 
@@ -481,7 +485,7 @@ class planetUI {
 		let timeLeft = planetUI.getTimeBeforeBuild(0);
 
 		for(let i=1; i<14; i++) {
-			let timeCurrent = planetUI.getTimeBeforeBuild(i);
+			const timeCurrent = planetUI.getTimeBeforeBuild(i);
 			if(timeCurrent < timeLeft && timeCurrent!==0) {
 				timeLeft = timeCurrent;
 			}
@@ -539,20 +543,23 @@ class planetUI {
 		}
 
 		planetUI.buildPanel = id;
-		let dateNow = new Date();
+		const dateNow = new Date();
 
 		if(planetUI.buildPanelInterval!==-1) {
 			clearTimeout(planetUI.buildPanelInterval);
 			planetUI.buildPanelInterval = -1;
 		}
 
-		 //Next level cost
+		//Next level cost
 		let cost;
-		if(planetData.nextBuilding===id) { cost = Buildings.GetCost(id,planetData.Buildings[id] + 2); } 
-		else							{ cost = Buildings.GetCost(id,planetData.Buildings[id] + 1); }
+		if(planetData.nextBuilding===id) {
+			cost = Buildings.GetCost(id,planetData.Buildings[id] + 2);
+		} else {
+			cost = Buildings.GetCost(id,planetData.Buildings[id] + 1);
+		}
 
-		let max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
-		let max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding==id));
+		const max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
+		const max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding === id));
 
 		/* Planet Construction Tab */
 		document.getElementById('building-name').innerText = translate.buildings[id].name;
@@ -563,14 +570,14 @@ class planetUI {
 		ui.show('#building-cost');
 
 		/* Ressources */
-		let costs = [
+		const costs = [
 			['building-cost-iron',cost.iron],
 			['building-cost-aluminium',cost.aluminium],
 			['building-cost-copper',cost.copper],
-			['building-cost-titanium',cost.titanium]
+			['building-cost-titanium',cost.titanium],
 		];
 		for(let i=0; i<4; i++) {
-			if(costs[i][1]==0) {
+			if(costs[i][1] === 0) {
 				ui.hide('#' + costs[i][0]);
 			} else {
 				ui.show('#' + costs[i][0], 'inline-block');
@@ -581,22 +588,22 @@ class planetUI {
 		planetUI.enoughResources = planetUI.getTimeBeforeBuild(id);
 
 		/* Energie */
-		if(cost.energy==0) {
+		if(cost.energy === 0) {
 			ui.hide('#building-cost-energy');
 		} else {
 			ui.show('#building-cost-energy', 'inline-block');
 			document.getElementById('building-cost-energy-val').innerHTML =
-				GetBetterUnit(cost.energy,'Wh (+' + 
+				GetBetterUnit(cost.energy,'Wh (+' +
 					GetBetterUnit(cost.energy_difference,'Wh',energyProd-energyCons) + ')',
 					cost.energy + energyProd - energyCons - cost.energy_difference);
 		}
 		/* Habitants */
-		if(cost.habitants==0) {
+		if(cost.habitants === 0) {
 			ui.hide('#building-cost-population');
 		} else {
 			ui.show('#building-cost-population', 'inline-block');
 			document.getElementById('building-cost-population-val').innerHTML =
-				GetBetterUnit(cost.habitants,' (+' + 
+				GetBetterUnit(cost.habitants,' (+' +
 					GetBetterUnit(cost.habitants_difference,'',habProd-habCons) + ')',
 					cost.habitants + habProd - habCons - cost.habitants_difference);
 		}
@@ -626,7 +633,7 @@ class planetUI {
 
 		/* Bouton upgrade ou message */
 		// Defaut Value
-		if(planetData.Buildings[id]==0) {
+		if(planetData.Buildings[id] === 0) {
 			document.getElementById('building-upgrade').value = translate.messages['BUILD'];
 		} else {
 			document.getElementById('building-upgrade').value = translate.messages['UPGRADE'];
@@ -635,7 +642,7 @@ class planetUI {
 		ui.hide('#building-upgrade');
 		ui.show('#building-message', 'inline-block');
 
-		let requirements = Buildings.GetRequirements(userData, planetData, id);
+		const requirements = Buildings.GetRequirements(userData, planetData, id);
 
 		// Edits
 		if(max) { // Max Level
@@ -643,13 +650,13 @@ class planetUI {
 			ui.hide('#building-cost');
 		} else if(requirements !== '') { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
-		} else if(planetData.nextBuilding == id && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
-			let dateEnd = new Date(planetData.nextBuildingTime + planetUI.deltaNow);
-			let dateTom = new Date(Date.now() + (24*60*60*1000));
+		} else if(planetData.nextBuilding === id && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
+			const dateEnd = new Date(planetData.nextBuildingTime + planetUI.deltaNow);
+			const dateTom = new Date(Date.now() + (24*60*60*1000));
 
-			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
+			if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
 				document.getElementById('building-message').innerHTML = translate.messages['BUILD_FINISH_TODAY_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
-			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
+			} else if(dateTom.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Tomorrow
 				document.getElementById('building-message').innerHTML = translate.messages['BUILD_FINISH_TOMORROW_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
 			} else {
 				document.getElementById('building-message').innerHTML = translate.messages['BUILD_FINISH_THE'] + ' <em>' + dateEnd.toLocaleDateString() + '</em> ' + translate.messages['BUILD_FINISH_AT'] + ' <em>' + dateEnd.toLocaleTimeString() + '</em>';
@@ -661,8 +668,8 @@ class planetUI {
 		} else if(!Buildings.hasEnoughtStorage(planetData, id, Research.isSearched('cp_molecular_compression'))) {
 			document.getElementById('building-message').innerHTML = translate.messages['BUILDING_ERROR_STORAGE'];
 		} else if(planetUI.enoughResources>0) { // No enough Ressources
-			let dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
-			let dateTom = new Date(Date.now() + (24*60*60*1000));
+			const dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
+			const dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
 				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_TODAY_AT'] + ' ' + dateEnd.toLocaleTimeString();
@@ -675,7 +682,7 @@ class planetUI {
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
-		} else if(planetData.nextBuilding!=-1 && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Another building in build mode
+		} else if(planetData.nextBuilding !== -1 && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['ANOTHER_IN_BUILD'];
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
@@ -691,7 +698,7 @@ class planetUI {
 			icon = '',
 			value = '',
 			valuep1 = '';
-	
+
 		ui.show('#building-bonus-br');
 
 		switch(id) {
@@ -699,33 +706,33 @@ class planetUI {
 				title = translate['planet-ui']['production'];
 				icon = '<img height="20" src="'+cdnURL+'img/ui/minerals.png" alt="minerals">';
 				value = GetBetterUnit(mineralProdBase,'t/h');
-				valuep1 = ' (+ ' + GetBetterUnit(mineralProdBase1 - mineralProdBase,'t/h') 
+				valuep1 = ' (+ ' + GetBetterUnit(mineralProdBase1 - mineralProdBase,'t/h')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 1: // Metallurgie
 				title = translate['planet-ui']['production'];
 				icon = translate['planet-ui']['metal'];
 				value = GetBetterUnit(metalProdBase,'t/h');
-				valuep1 = ' (+ ' + GetBetterUnit(metalProdBase1 - metalProdBase,'t/h') 
+				valuep1 = ' (+ ' + GetBetterUnit(metalProdBase1 - metalProdBase,'t/h')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 2: // Houses
 				title = translate['planet-ui']['population'];
 				value = GetBetterUnit(habProd,'');
-				valuep1 = ' (+ ' + GetBetterUnit(habProd1 - habProd,'') 
+				valuep1 = ' (+ ' + GetBetterUnit(habProd1 - habProd,'')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 4: // Solar panel
 				title = translate['planet-ui']['production'];
 				icon = '<img height="15" src="'+cdnURL+'img/ui/electricity.svg" alt="electricity">';
 				value = GetBetterUnit(energyProd,'Wh');
-				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh') 
+				valuep1 = ' (+ ' + GetBetterUnit(energyProd1 - energyProd,'Wh')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 5: // Warehouse
 				title = translate['planet-ui']['storage'];
 				icon = translate['planet-ui']['min&met'];
-				value = GetBetterUnit(mineralStorageBase,'t') + '/' + GetBetterUnit(metalsStorageBase,'t') + translate['planet-ui']['total']; 
+				value = GetBetterUnit(mineralStorageBase,'t') + '/' + GetBetterUnit(metalsStorageBase,'t') + translate['planet-ui']['total'];
 				valuep1 = ' (+ ' + GetBetterUnit(mineralStorageBase1 - mineralStorageBase,'t') + '/+ ' +  GetBetterUnit(metalsStorageBase1 - metalsStorageBase,'t')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				ui.hide('#building-bonus-br');
@@ -739,15 +746,15 @@ class planetUI {
 			case 8: // Research Center
 				title = translate['planet-ui']['production'];
 				icon = '<img height="15" src="'+cdnURL+'img/ui/research.svg" alt="research">';
-				value = GetBetterUnit(researchProd,'/h'); 
-				valuep1 = ' (+ ' + GetBetterUnit(researchProd1 - researchProd,'/h') 
+				value = GetBetterUnit(researchProd,'/h');
+				valuep1 = ' (+ ' + GetBetterUnit(researchProd1 - researchProd,'/h')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 10: // Tank
 				title = translate['planet-ui']['storage'];
 				icon = '&sup3;He';
-				value = GetBetterUnit(storageHelium,'t'); 
-				valuep1 = ' (+ ' + GetBetterUnit(storageHelium1 - storageHelium,'t') 
+				value = GetBetterUnit(storageHelium,'t');
+				valuep1 = ' (+ ' + GetBetterUnit(storageHelium1 - storageHelium,'t')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			case 13: // Helium production facility
@@ -756,13 +763,13 @@ class planetUI {
 				value = GetBetterUnit(heliumProdBase,'t/h');
 				let val = heliumProdBase1 - heliumProdBase;
 				if(val < 0) { val = heliumProdBase1; }
-				valuep1 = ' (+ ' + GetBetterUnit(val,'t/h') 
+				valuep1 = ' (+ ' + GetBetterUnit(val,'t/h')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			default:
 		}
 
-		if(planetData.Buildings[id]==0 && value != '') { value = '0'; } // If lvl, we set to 0
+		if(planetData.Buildings[id] === 0 && value !== '') { value = '0'; } // If lvl, we set to 0
 
 		document.getElementById('building-bonus-title').innerHTML = title;
 		document.getElementById('building-bonus-icon').innerHTML = icon;
@@ -817,25 +824,25 @@ class planetUI {
 	 * Opens the planet panel of a different planet than current (mostly other players)
 	 */
 	static openOtherPlanetPanel() {
-		let type = planetUI.getTypeOfPlanet(units.planetTarget);
+		const type = planetUI.getTypeOfPlanet(units.planetTarget);
 		planetBack.init(type);
 
 		let system = units.planetTarget.split('-');
 		system.pop();
 		system = system.join('-');
 
-		let pData = map.planetData[system][units.planetTarget];
+		const pData = map.planetData[system][units.planetTarget];
 
 		// Set informations
 		document.getElementById('planet-other-address-data').innerText = units.planetTarget;
 
 		if(pData !== undefined) {
-			if(pData.ally == '') {
+			if(pData.ally === '') {
 				document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
 			} else {
 				document.getElementById('planet-other-ally-data').innerText = pData.ally;
 			}
-			
+
 			document.getElementById('planet-other-player-data').innerText = pData.ownerName;
 			document.getElementById('planet-other-planet-data').innerText =  pData.name;
 			document.getElementById('planet-other-points-data').innerText =  pData.points;
@@ -849,7 +856,7 @@ class planetUI {
 			document.getElementById('planet-other-points').style.display = 'none';
 		}
 
-		if(units.planetTarget.split('S').length == 2) {
+		if(units.planetTarget.split('S').length === 2) {
 			document.getElementById('planet-other-ally').style.display = 'none';
 			document.getElementById('planet-other-player').style.display = 'none';
 		} else {

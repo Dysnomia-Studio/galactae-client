@@ -93,7 +93,7 @@ function GetBetterUnit(nmbr,unit='',max=-1,disableMax=false) {
 		end = (Math.round(newnbr*10)/10)+units[unitId]+unit;
 	}
 
-	if(!disableMax && (nmbr >= max && max >= 0)) {
+	if(!disableMax && (nmbr >= Math.floor(max) && max >= 0)) {
 		end = '<span class="max-value">' + end + '</span>';
 	}
 

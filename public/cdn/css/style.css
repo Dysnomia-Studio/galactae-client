@@ -228,8 +228,7 @@ select, input, summary {
 	left: calc(50% - 112px);
 
 	z-index: 1000;
-}
-.confirmBox {
+
 	padding: 0.5em;
 
 	text-align: center;
@@ -711,8 +710,7 @@ select, input, summary {
 #hud-top-right, #hud-top-left {
 	margin: 0 1.5em;
 	white-space:nowrap;
-}
-#hud-top-left, #hud-top-right {
+
 	height: 2vw;
 }
 #hud-top-left, #hud-top-center, #hud-top-right {
@@ -1753,6 +1751,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 #hud-fleet summary::-webkit-details-marker {
 	opacity: 0;
 	width: 0;
+	display: none;
 }
 .fleet-show-table {
 	width: 100%;
@@ -1764,9 +1763,6 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	margin: 0.5em;
 
 	border: 1px solid #0EC6C6;
-}
-#hud-fleet summary::-webkit-details-marker {
-	display: none;
 }
 .fleet-show-fuel {
 	max-height: 0.8em;
@@ -1819,8 +1815,10 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 }
 #fleet-tacticsManager-orderList {
 	height: calc(100% - 40px);
+	width: calc(40% - 0.55em);
 
 	list-style: none;
+	border: 1px solid #0EC6C6;	
 }
 #fleet-tacticsManager-orderList li {
 	border: 1px solid transparent;
@@ -1829,9 +1827,6 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 }
 #fleet-tacticsManager-orderList li.active {
 	border: 1px solid #0EC6C6 !important;
-}
-#fleet-tacticsManager-orderEditor {
-	height: 100%;
 }
 #fleet-tacticsManager-orderList, #fleet-tacticsManager-orderEditor {
 	padding: 0;
@@ -1843,11 +1838,6 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 
 	box-sizing: border-box;
 }
-#fleet-tacticsManager-orderList {
-	border: 1px solid #0EC6C6;
-
-	width: calc(40% - 0.55em);
-}
 #fleet-tacticsManager-addOrder {
 	position: absolute;
 
@@ -1858,6 +1848,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 }
 #fleet-tacticsManager-orderEditor {
 	width: calc(60% - 0.55em);
+	height: 100%;
 
 	margin-top: 2em;
 }

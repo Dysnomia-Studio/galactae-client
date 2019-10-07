@@ -38,10 +38,10 @@ translate['tutorials'] = {
 	'unitsCreate-desc': `Not translated yet`, //@TODO
 	'unitsCreate-objective-0': 'Create your first military unit',
 
-	// unitBuild
-	'unitBuild-title': 'Unit building',
-	'unitBuild-desc': `Not translated yet`, //@TODO
-	'unitBuild-objective-0': 'Build 5 units (whatever the type)',
+	// unitsBuild
+	'unitsBuild-title': 'Unit building',
+	'unitsBuild-desc': `Not translated yet`, //@TODO
+	'unitsBuild-objective-0': 'Build 5 units (whatever the type)',
 
 	// interplanetaryFlight
 	'interplanetaryFlight-title': 'Interplanetary filght',
