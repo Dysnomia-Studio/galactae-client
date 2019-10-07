@@ -1,7 +1,7 @@
 let preventFleetHUDClosing = false;
 let preventUnitBuildPanelClose = false;
 
-class units {
+class units extends _Units {
 	/**
 	 * Ask units from server
 	 */

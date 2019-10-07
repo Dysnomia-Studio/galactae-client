@@ -1,17 +1,17 @@
-class TutorialsUI {
+class Tutorials extends _Tutorials {
 	static loadUI() {
 		document.getElementById('tutorial-panel-ok').addEventListener('click', () => {
-			if(Tutorials.hasCompletedTutorial(TutorialsUI.currTutorial, userData, planetData, units.fleetList, units.list, false)) {
+			if(Tutorials.hasCompletedTutorial(Tutorials.currTutorial, userData, planetData, units.fleetList, units.list, false)) {
 				socket.emit('tutorial-confirm', {
 					id: userData.id,
 					username: userData.username,
-					tutorial: TutorialsUI.currTutorial,
+					tutorial: Tutorials.currTutorial,
 				});
 			} else {
 				notifications.notifyOnGame(
 					'tutorial',
-					translate.tutorials[TutorialsUI.currTutorial + '-title'],
-					{ id: 'tutorial-' + TutorialsUI.currTutorial }
+					translate.tutorials[Tutorials.currTutorial + '-title'],
+					{ id: 'tutorial-' + Tutorials.currTutorial }
 				);
 			}
 
@@ -20,13 +20,13 @@ class TutorialsUI {
 	}
 
 	static newTutorial(type) {
-		TutorialsUI.currTutorial = type;
+		Tutorials.currTutorial = type;
 
 		//@TODO: draw yellow outline on buildings needs to be build
 
-		TutorialsUI.openTutorialPanel();
+		Tutorials.openTutorialPanel();
 
-		TutorialsUI.highlightButtons();
+		Tutorials.highlightButtons();
 	}
 
 	static openTutorialPanel() {
@@ -35,19 +35,19 @@ class TutorialsUI {
 			notif.parentNode.removeChild(notif);
 		}
 
-		document.getElementById('tutorial-panel-title').innerText = translate.tutorials[TutorialsUI.currTutorial + '-title'];
+		document.getElementById('tutorial-panel-title').innerText = translate.tutorials[Tutorials.currTutorial + '-title'];
 
 		document.getElementById('tutorial-panel-desc').innerText =
-			translate.tutorials[TutorialsUI.currTutorial + '-desc']
+			translate.tutorials[Tutorials.currTutorial + '-desc']
 				.replace(/{PlayerName}/g, userData.username);
 
 		const objectivesUL = document.getElementById('tutorial-panel-objectives');
 		while(objectivesUL.firstChild) {
 			objectivesUL.removeChild(objectivesUL.firstChild);
 		}
-		for(let currTutorial = 0; currTutorial < tutorialObjectives[TutorialsUI.currTutorial].length; currTutorial++) {
+		for(let currTutorial = 0; currTutorial < tutorialObjectives[Tutorials.currTutorial].length; currTutorial++) {
 			const listElt = document.createElement('li');
-			listElt.innerText = translate.tutorials[TutorialsUI.currTutorial + '-objective-' + currTutorial];
+			listElt.innerText = translate.tutorials[Tutorials.currTutorial + '-objective-' + currTutorial];
 			//@TODO: draw done objectives
 
 			objectivesUL.appendChild(listElt);
@@ -63,7 +63,7 @@ class TutorialsUI {
 			elt.classList.remove('tutorial-active');
 		});
 
-		for(const objective of tutorialObjectives[TutorialsUI.currTutorial]) {
+		for(const objective of tutorialObjectives[Tutorials.currTutorial]) {
 			switch(objective.type) {
 				case 'building':
 					document.getElementById(buildingsNames[objective.building]).classList.add('tutorial-active');

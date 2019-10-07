@@ -190,7 +190,7 @@ class ui {
 		tactics.loadUI();
 
 		// Load tutorials UI
-		TutorialsUI.loadUI();
+		Tutorials.loadUI();
 
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');

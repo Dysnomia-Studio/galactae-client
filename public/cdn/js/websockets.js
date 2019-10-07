@@ -113,7 +113,7 @@ class webSockets {
 			notifications.notify(data.type, data.args);
 		});
 		socket.on('tutorial', (tutorial) => {
-			TutorialsUI.newTutorial(tutorial);
+			Tutorials.newTutorial(tutorial);
 		});
 
 		// Daily bonus !
