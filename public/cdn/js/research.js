@@ -400,18 +400,6 @@ class research extends _Research {
 	}
 
 	/**
-	 * Determines if a research is over
-	 *
-	 * @param	  {string}   key	 The research name
-	 * @return	 {boolean}  True if searched, False otherwise.
-	 */
-	static isSearched(key,key2) {
-		if(key2 !== undefined) { key = key2; } // used in shared libraries - @TODO: Fix this
-
-		return (userData.research[key] === -1 || key === 'researchCenter');
-	}
-
-	/**
 	 * Change current research
 	 *
 	 * @param      {<type>}  id      Research identifier
