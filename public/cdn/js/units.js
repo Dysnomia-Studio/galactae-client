@@ -29,7 +29,7 @@ class units extends _Units {
 		// Research depending unit type
 		const researchUnitsTypes = ['SHIP_WEP_MINES', 'SHIP_WEP_MINES_IEM', 'SHIP_WEP_MINES_NUKE'];
 		for(const unitType of researchUnitsTypes) {
-			if(research.isSearched(shipResearchDependencies[unitType])) {
+			if(research.isSearched(userData, shipResearchDependencies[unitType])) {
 				units.list.push({
 					id: unitType,
 					name: fleetTranslate[unitType],
@@ -631,7 +631,7 @@ class units extends _Units {
 		let disabledButton = true;
 		for(let i=0; i<unitTypes.length; i++) {
 			for(const index in shipShapesDetails[unitTypes[i]]) {
-				if(shipResearchDependencies[index] === undefined || research.isSearched(shipResearchDependencies[index])) {
+				if(shipResearchDependencies[index] === undefined || research.isSearched(userData, shipResearchDependencies[index])) {
 					disabledButton = false;
 					break;
 				}
@@ -907,7 +907,7 @@ class units extends _Units {
 			let disabled = true;
 			for(const shipShape in shipShapesDetails[unitTypes[i]]) {
 				// Check ship research
-				if(shipResearchDependencies[shipShape] === undefined || research.isSearched(shipResearchDependencies[shipShape])) {
+				if(shipResearchDependencies[shipShape] === undefined || research.isSearched(userData, shipResearchDependencies[shipShape])) {
 					disabled = false;
 					break;
 				}
@@ -953,7 +953,7 @@ class units extends _Units {
 		let selectShipShape = '';
 		for(const index in shipShapesDetails[type]) {
 			if(shape === '') { shape = index; }
-			if(shipResearchDependencies[index] !== undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
+			if(shipResearchDependencies[index] !== undefined && !research.isSearched(userData, shipResearchDependencies[index])) { continue; }
 			if(index === selectedShape) {
 				selectShipShape += '<option value="' + index + '" selected>' + fleetTranslate[index] + '</option>';
 			} else {
@@ -1089,7 +1089,7 @@ class units extends _Units {
 				for(let j=0; j<content[shape[i][0]].length; j++) {
 					if(content[shape[i][0]][j] !== 'none' &&
 						shipResearchDependencies[content[shape[i][0]][j]] !== undefined &&
-						!research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
+						!research.isSearched(userData, shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 
 					const newOption = document.createElement('option');
 					newOption.value = content[shape[i][0]][j];

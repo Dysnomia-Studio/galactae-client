@@ -264,8 +264,8 @@ class planetUI {
 		heliumProdBase  = heliumProd[0]*Math.pow(buildings[13],2)  + heliumProd[1]*buildings[13]  + heliumProd[2];
 		heliumProdBase1  = heliumProd[0]*Math.pow((buildings[13] + 1),2)  + heliumProd[1]*(buildings[13]+1)  + heliumProd[2];
 
-		[ mineralStorageBase, metalsStorageBase, storageHelium ] = Buildings.calcStorageCapacity(buildings[5], buildings[10], research.isSearched('cp_molecular_compression'));
-		[ mineralStorageBase1, metalsStorageBase1, storageHelium1 ] = Buildings.calcStorageCapacity(buildings[5] + 1, buildings[10] + 1, research.isSearched('cp_molecular_compression'));
+		[ mineralStorageBase, metalsStorageBase, storageHelium ] = Buildings.calcStorageCapacity(buildings[5], buildings[10], research.isSearched(userData, 'cp_molecular_compression'));
+		[ mineralStorageBase1, metalsStorageBase1, storageHelium1 ] = Buildings.calcStorageCapacity(buildings[5] + 1, buildings[10] + 1, research.isSearched(userData, 'cp_molecular_compression'));
 
 		// Energy
 		energyProd = Buildings.getEnergyProd(buildings);
@@ -665,7 +665,7 @@ class planetUI {
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
-		} else if(!Buildings.hasEnoughtStorage(planetData, id, Research.isSearched('cp_molecular_compression'))) {
+		} else if(!Buildings.hasEnoughtStorage(planetData, id, Research.isSearched(userData, 'cp_molecular_compression'))) {
 			document.getElementById('building-message').innerHTML = translate.messages['BUILDING_ERROR_STORAGE'];
 		} else if(planetUI.enoughResources>0) { // No enough Ressources
 			const dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);

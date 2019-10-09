@@ -229,8 +229,8 @@ class research extends _Research {
 				research.drawLink(key,current.parents[i]);
 			}
 
-			if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch !== key && !!document.getElementById(key)) {
-				document.getElementById(key).addEventListener('click', function(){
+			if(research.canResearch(key) && !research.isSearched(userData, key) && planetData.currResearch !== key && !!document.getElementById(key)) {
+				document.getElementById(key).addEventListener('click', () => {
 					research.change(key);
 				});
 			}
@@ -256,7 +256,7 @@ class research extends _Research {
 
 		// Place this node
 		let content;
-		if(planetData.currResearch === key && !research.isSearched(key)) {
+		if(planetData.currResearch === key && !research.isSearched(userData, key)) {
 			content = '<div class="research-node current-research-node" id="' + key + '-node">';
 		} else {
 			content = '<div class="research-node" id="' + key + '-node">';
@@ -266,7 +266,7 @@ class research extends _Research {
 			content += '<h2>' + translate.research[key].name + '</h2>';
 			content += '<span class="research-desc text-justify">' + translate['research'][key].desc + '</span>';
 			content += '<div class="research-bottom">';
-			if(!research.isSearched(key)) {
+			if(!research.isSearched(userData, key)) {
 				content += '<span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
 				if(planetData.currResearch !== key) {
 					content += '<a class="research-search" id="' + key + '" src="#research">' + translate['research'].search + '</a>';
@@ -311,7 +311,7 @@ class research extends _Research {
 		const y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
 		let color; //default
 
-		if(research.isSearched(parent)) { color = '#0EC6C6'; }
+		if(research.isSearched(userData, parent)) { color = '#0EC6C6'; }
 		else { color = 'rgba(14,198,198,0.2)'; }
 
 		const newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -334,7 +334,7 @@ class research extends _Research {
 
 		for(let i=0; i<parents.length; i++) {
 			if(typeof parents[i] === 'string') {
-				if(!research.isSearched(parents[i]) && parents[i] !== 'researchCenter') {
+				if(!research.isSearched(userData, parents[i]) && parents[i] !== 'researchCenter') {
 					return false;
 				}
 			} else if(typeof parents[i] === 'object' &&
@@ -369,7 +369,7 @@ class research extends _Research {
 
 		for(let i=0; i<parents.length; i++) {
 			if(typeof parents[i] === 'string') {
-				if(!research.isSearched(parents[i]) && parents[i] !== 'researchCenter') {
+				if(!research.isSearched(userData, parents[i]) && parents[i] !== 'researchCenter') {
 					missingParents += ', ' + translate['research'][parents[i]].name;
 
 				} else { oneParentOK = true; }
