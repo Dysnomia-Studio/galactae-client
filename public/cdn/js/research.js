@@ -436,7 +436,7 @@ class research extends _Research {
 		if(userData.research[planetData.currResearch] === undefined) { return; } // If research is undefined
 		if(userData.research[planetData.currResearch] === -1) { return; } // If research is finished
 
-		userData.research[planetData.currResearch]+= (researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2])/1800;
+		userData.research[planetData.currResearch]+= Research.getResearchProduction(planetData.Buildings[8])/1800;
 
 		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
 			userData.research[planetData.currResearch] = -1;

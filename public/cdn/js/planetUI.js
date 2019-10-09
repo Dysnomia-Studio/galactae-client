@@ -278,8 +278,8 @@ class planetUI {
 		habCons = planetUI.getHabitantConsomation();
 
 		// Research
-		researchProd = Math.round(researchProduction[0]*Math.pow(buildings[8],2) + researchProduction[1]*buildings[8] + researchProduction[2]);
-		researchProd1 = Math.round(researchProduction[0]*Math.pow((buildings[8] + 1),2) + researchProduction[1]*(buildings[8] + 1) + researchProduction[2]);
+		researchProd = Research.getResearchProduction(buildings[8]);
+		researchProd1 = Research.getResearchProduction(buildings[8] + 1);
 	}
 
 	/**
