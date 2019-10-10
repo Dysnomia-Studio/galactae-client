@@ -982,6 +982,15 @@ const neededCache = [
 	cdnURL + 'js/load.js',
 ].concat(imgCache.slice());
 
+/**
+ * Fleets move type
+ */
+const FLEET_MOVE_TYPE = {
+	DEFEND: 0,
+	ATTACK: 1,
+	MOVE: 2,
+	SPY: 3,
+};
 
 /**
  * Tutorials

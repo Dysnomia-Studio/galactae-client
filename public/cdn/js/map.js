@@ -507,16 +507,16 @@ class map {
 						planetUI.openOtherPlanetPanel();
 						break;
 					case 'map-planet-menu-move':
-						units.openMovePanel(2);
+						units.openMovePanel(FLEET_MOVE_TYPE.MOVE);
 						break;
 					case 'map-planet-menu-attack':
-						units.openMovePanel(1);
+						units.openMovePanel(FLEET_MOVE_TYPE.ATTACK);
 						break;
 					case 'map-planet-menu-defend':
-						units.openMovePanel(0);
+						units.openMovePanel(FLEET_MOVE_TYPE.DEFEND);
 						break;
 					case 'map-planet-menu-spy':
-						units.openMovePanel(3);
+						units.openMovePanel(FLEET_MOVE_TYPE.SPY);
 						break;
 					case 'map-planet-menu-trade':
 						trade.openPlanetPanel();
