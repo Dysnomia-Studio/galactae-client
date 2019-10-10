@@ -488,20 +488,20 @@ class map {
 	}
 
 	static declareSolarSystemEvents() {
-		document.querySelectorAll('#map-system .planet').forEach(function(elt) {
+		document.querySelectorAll('#map-system .planet').forEach((elt) => {
 			elt.addEventListener('click', map.viewPlanetInfo);
 		});
-		document.querySelectorAll('#map-system .star').forEach(function(elt) {
+		document.querySelectorAll('#map-system .star').forEach((elt) => {
 			elt.addEventListener('click', map.viewPlanetInfo);
 		});
 
-		document.addEventListener('click', function(e) {
+		document.addEventListener('click', (e) => {
 			if(!ui.hasClass(e.target, 'planet') && !ui.hasClass(e.target, 'pos') && !ui.hasClass(e.target, 'star')) {
 				ui.hide('#map-planet-menu');
 			}
 		});
-		document.querySelectorAll('#map-planet-menu img').forEach(function(elt) {
-			elt.addEventListener('click', function(e) {
+		document.querySelectorAll('#map-planet-menu img').forEach((elt) => {
+			elt.addEventListener('click', (e) => {
 				switch(e.target.id) {
 					case 'map-planet-menu-infos':
 						planetUI.openOtherPlanetPanel();
@@ -526,7 +526,7 @@ class map {
 				ui.hide('#map-planet-menu');
 			});
 		});
-		document.getElementById('map-move-panel-close').addEventListener('click', function() {
+		document.getElementById('map-move-panel-close').addEventListener('click', () => {
 			ui.hide('#map-move-panel');
 		});
 	}
