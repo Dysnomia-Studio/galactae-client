@@ -832,7 +832,9 @@ class map {
 		const system = GameMap.getSystemFromAdress(address);
 
 		map.loadXML(sector, function() {
-			const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
+			const systemXML = map.xmlDoc[sector].getElementById(system);
+			console.log(map.xmlDoc[sector]);
+			console.log(systemXML);
 			const newX = (1/map.zoom)*document.documentElement.clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
 			const newY = (1/map.zoom)*document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
 
