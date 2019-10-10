@@ -434,9 +434,7 @@ class map {
 			units.planetTarget = this.id.split('liste_').join(''); // Center star or bottom bar
 		}
 
-		let system = units.planetTarget.split('-');
-		system.pop();
-		system = system.join('-');
+		let system = GameMap.getSystemFromAdress(units.planetTarget);
 
 		if(map.planetData[system][units.planetTarget].ownerName === null) {
 			document.getElementById('map-planet-menu-planetname').innerText = '';
@@ -460,8 +458,7 @@ class map {
 	}
 
 	static parseSystemXML(address) {
-		let sector = address.split('-');
-		sector = [sector[0],sector[1]].join('-');
+		const sector = GameMap.getSectorFromAdress(address);
 
 		const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + address + '"]');
 
@@ -831,9 +828,8 @@ class map {
 			return;
 		}
 
-		const coords = address.split('-');
-		const sector = coords[0] + '-' + coords[1];
-		const system = [coords[0],coords[1],coords[2]].join('-');
+		const sector = GameMap.getSectorFromAdress(address);
+		const system = GameMap.getSystemFromAdress(address);
 
 		map.loadXML(sector, function() {
 			const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
