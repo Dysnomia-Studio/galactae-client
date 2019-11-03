@@ -1,8 +1,15 @@
+let lastRenderedPlanet;
+
 class planetBack {
 	/**
 	 * Initializing all variables
 	 */
 	static init(type) {
+		if(lastRenderedPlanet === type) {
+			return;
+		}
+		lastRenderedPlanet = type;
+
 		/* DOM */
 		this.planet = document.getElementById('planet-back');
 		this.planetBg = document.getElementById('planet-back-bg');
