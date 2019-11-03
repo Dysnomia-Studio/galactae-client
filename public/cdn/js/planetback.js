@@ -145,6 +145,8 @@ class planetBack {
 	 * Render the planet
 	 */
 	static renderPlanet() {
+		if(ui.research || ui.map && map.currentMap === 'sector') { return; }
+
 		// New position
 		planetBack.calc.long = (-Date.now()/1000)%360 - 180;
 
