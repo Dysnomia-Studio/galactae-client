@@ -145,16 +145,17 @@ class planetBack {
 	 * Render the planet
 	 */
 	static renderPlanet() {
-		if(ui.research || ui.map && map.currentMap === 'sector') { return; }
+		if(!ui.research &&
+			(!ui.map || map.currentMap !== 'sector') &&
+			settings.get('graphical_planetRotation') || ++planetBack.frames < 5) {
 
-		// New position
-		planetBack.calc.long = (-Date.now()/1000)%360 - 180;
+			// New position
+			planetBack.calc.long = (-Date.now()/1000)%360 - 180;
 
-		// Rotate
-		planetBack.rotatePlanet();
+			// Rotate
+			planetBack.rotatePlanet();
 
-		// Loop it
-		if(settings.get('graphical_planetRotation') || ++planetBack.frames < 5) {
+			// Loop it
 			requestAnimationFrame(planetBack.renderPlanet);
 		}
 	}
