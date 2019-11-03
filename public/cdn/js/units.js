@@ -1779,6 +1779,14 @@ class units extends _Units {
 			if(preventFleetHUDClosing) { event.preventDefault(); }
 		}));
 
+		Array.from(document.getElementsByClassName('fleet-show-upgrade')).forEach((elt) => elt.addEventListener('click', function(event) {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+		}));
+
+		Array.from(document.getElementsByClassName('fleet-show-recycle')).forEach((elt) => elt.addEventListener('click', function(event) {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+		}));
+
 		const priorityElts = document.getElementsByClassName('priority-fleet');
 		for(let i=0; i<priorityElts.length; i++) {
 			priorityElts[i].addEventListener('click', function(e) {
