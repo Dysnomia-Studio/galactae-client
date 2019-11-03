@@ -206,7 +206,7 @@ class map {
 		}
 		window.requestAnimationFrame(stepMove);
 
-		//@ADD: display none/block on sectors
+		//@TODO: display none/block on sectors
 
 		// At borders ?
 		const coords = [];
@@ -663,7 +663,7 @@ class map {
 
 			document.querySelector('div[id="' + planets[i].address + '"] .pos .planet').style.animationDuration = orbitDuration + 's';
 
-			// @ADD: Rings & Moons
+			// @TODO: Rings & Moons
 
 			// Add it to stars/planet list
 			const name = (map.planetData[address] && map.planetData[address][planets[i].address] && map.planetData[address][planets[i].address].name) ? map.planetData[address][planets[i].address].name : planets[i].address;

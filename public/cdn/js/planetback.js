@@ -47,7 +47,7 @@ class planetBack {
 		this.resetPlanet();
 
 		/* Images */
-		this.planetBg.style.backgroundImage = 'url('+cdnURL+'img/planets/back/0.png)'; // Temp one back @ADD: new backgrounds
+		this.planetBg.style.backgroundImage = 'url('+cdnURL+'img/planets/back/0.png)'; // Temp one back @TODO: new backgrounds
 		this.planetHalo.style.backgroundImage = 'url('+cdnURL+'img/planets/halo/' + this.planet.type + '.png)';
 		this.planetMap = 'url('+cdnURL+'img/planets/front/' + this.planet.type + '.jpg)';
 

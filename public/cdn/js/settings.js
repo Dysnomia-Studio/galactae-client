@@ -26,7 +26,7 @@ class settings {
 					type: 'checkbox'
 				},
 				/*animationLvl: {
-					default: 'high', // @ADD: auto-detect
+					default: 'high', // @TODO: auto-detect
 					type: 'select',
 					choices: [
 						'high',
@@ -331,7 +331,7 @@ class settings {
 	 * @param      {?}  value        The value
 	 */
 	static set(settingName, value) {
-		setCookie('galactae_settings_' + settingName, value, 365); //@ADD: Time depends on remember me
+		setCookie('galactae_settings_' + settingName, value, 365); //@TODO: Time depends on remember me
 	}
 	/**
 	 * Test if a setting has a value

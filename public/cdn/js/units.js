@@ -33,7 +33,7 @@ class units extends _Units {
 				units.list.push({
 					id: unitType,
 					name: fleetTranslate[unitType],
-					note: 0, // @ADD: Note
+					note: 0, // @TODO: Note
 					cost: shipCosts[unitType],
 					shipShape: unitType,
 					shipType: 'SHIP_DEF',
@@ -335,7 +335,7 @@ class units extends _Units {
 			const count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value);
 
 			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') { return; }
-			if(Number.isNaN(count) || count <= 0) { return; } // TODO: check max
+			if(Number.isNaN(count) || count <= 0) { return; } //@TODO: check max
 
 			let fleet = document.getElementById('fleet-units-transfer-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -361,7 +361,7 @@ class units extends _Units {
 			const count = parseInt(document.getElementById('fleet-transferFuel-fuelCount').value);
 
 			if(document.getElementById('fleet-transferFuel-fleetSelect').selectedIndex === '-2') { return; }
-			if(Number.isNaN(count) || count <= 0) { return; } // TODO: check max
+			if(Number.isNaN(count) || count <= 0) { return; } //@TODO: check max
 
 			let fleet = document.getElementById('fleet-transferFuel-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -1179,7 +1179,7 @@ class units extends _Units {
 				});
 			});
 
-			// TODO: ameliorer ca, utiliser une liste globale ou virer les anciens event
+			//@TODO: ameliorer ca, utiliser une liste globale ou virer les anciens event
 			document.addEventListener('click', (e) => {
 				if(!!e.target.parentNode.parentNode && !ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
 					ui.hide('#part-selecting-seen-' + id + ' dd ul');
@@ -1264,7 +1264,7 @@ class units extends _Units {
 			'hangar': 0,
 		};
 
-		let miss = 0; // @ADD: Calc miss
+		let miss = 0; // @TODO: Calc miss
 
 		// Hide some things if needed
 		ui.show(div + ' div');
@@ -1333,7 +1333,7 @@ class units extends _Units {
 
 		// Calcul des données si données
 		if(note === undefined) {
-			note = 'X.X'; // @ADD: Calc note
+			note = 'X.X'; // @TODO: Calc note
 		}
 
 		// Note

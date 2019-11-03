@@ -662,7 +662,7 @@ class ui {
 			helium = 2000 * streak; // 40000 to 58000
 		} else {
 			credits = 1000;
-		} // @ADD: generate random special bonus
+		} // @TODO: generate random special bonus
 
 		let desc = '<tr><td class="day-bonus-active" id="day-bonus-1">' + credits + ' ' + translate['ui']['credits'] + '</td>';
 
