@@ -213,48 +213,7 @@ class map {
 		coords[0] = Math.floor((document.documentElement.clientWidth/2 - pos[0])/MAP_SIZE_WIDTH*10);
 		coords[1] = Math.floor((document.documentElement.clientHeight/2 - pos[1])/MAP_SIZE_HEIGHT*10);
 
-		const topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
-		const bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
-		const leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
-		const rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
-
-		const top =  coords[0] === 0 || (topDist * 2 < document.documentElement.clientHeight);
-		const bottom = coords[0] === 9 || (bottomDist * 2 < document.documentElement.clientHeight);
-		const left = coords[1] === 0 || (leftDist * 2 < document.documentElement.clientHeight);
-		const right = coords[1] === 9 || (rightDist * 2 < document.documentElement.clientHeight);
-
-		/**
-		 * Load all needed xml
-		 */
-		if(!top) {
-			if(!left) { // Haut gauche
-				map.loadXML((coords[0]-1) + '-' + (coords[1]-1));
-			}
-			// Haut
-			map.loadXML((coords[0]-1) + '-' + (coords[1]));
-			if(!right) { // Haut droite
-				map.loadXML((coords[0]-1) + '-' + (coords[1]+1));
-			}
-		}
-
-		if(!left) { // Gauche
-			map.loadXML((coords[0]) + '-' + (coords[1]-1));
-		}
-
-		if(!right) { // Droite
-			map.loadXML((coords[0]) + '-' + (coords[1]+1));
-		}
-
-		if(!bottom) {
-			if(!left) { // Bas gauche
-				map.loadXML((coords[0]+1) + '-' + (coords[1]-1));
-			}
-			// Bas
-			map.loadXML((coords[0]+1) + '-' + (coords[1]));
-			if(!right) { // Bas droite
-				map.loadXML((coords[0]+1) + '-' + (coords[1]+1));
-			}
-		}
+		map.loadMapAndNeighborhood(coords[0] + '-' + coords[1]);
 
 		// @TODO: ability to disable this with some settings
 		if(document.documentElement.clientWidth < MAP_BG_WIDTH || document.documentElement.clientHeight < MAP_BG_HEIGHT) {
@@ -264,24 +223,19 @@ class map {
 	}
 
 	/**
-	 * Loads a map.
-	 *
-	 * @param	  {string}  sector  The sector
-	 */
-	static loadMap(sector,callback) {
-		if(document.documentElement.clientWidth > MAP_4K_LOADER_WIDTH) { // 4K Only loader, it's slow, but needed to make game working
-			map.loadMapAndNeighborhood(sector,callback);
-		} else { // Full HD and lower screens
-			map.loadXML(sector,callback);
-		}
-	}
-
-	/**
 	 * Loads a map and neighborhood.
 	 *
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector,callback) {
+		if(typeof map.xmlDoc[sector] !== 'undefined') {
+			if(callback) {
+				callback();
+			}
+
+			return;
+		} // Already loaded
+
 		const coords = sector.split('-');
 
 		// At borders ?
@@ -334,14 +288,12 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadXML(sector, callback) {
-		if(map.xmlhttp === undefined) { map.xmlhttp = []; }
-		if(map.xmlDoc === undefined) { map.xmlDoc = []; }
-		if(map.xmlDoc[sector] !== undefined && callback) {
+		if(typeof map.xmlDoc[sector] !== 'undefined' && callback) {
 			callback();
 			return;
 		} // Already loaded
 
-		const toSend = map.xmlhttp[sector] === undefined;
+		const toSend = typeof map.xmlhttp[sector] === 'undefined';
 		if(toSend) {
 			if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 				map.xmlhttp[sector] = new XMLHttpRequest();
@@ -355,7 +307,7 @@ class map {
 				if (this.status === HTTP.OK) {
 					map.xmlDoc[sector] = new DOMParser().parseFromString(map.xmlhttp[sector].responseText,'text/xml');
 					map.drawSector(sector);
-					if(callback !== undefined) {
+					if(typeof callback !== 'undefined') {
 						callback();
 					}
 				} else {

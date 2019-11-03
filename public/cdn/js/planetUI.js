@@ -511,10 +511,12 @@ class planetUI {
 		sector.pop();
 		sector = sector.join('-');
 
-		map.loadXML(sector, function() {
-			//Set background
-			planetBack.init(planetData.planetType);
-		});
+		if(typeof map.xmlDoc !== 'undefined') {
+			map.loadMapAndNeighborhood(sector, function() {
+				//Set background
+				planetBack.init(planetData.planetType);
+			});
+		}
 	}
 
 	/**
