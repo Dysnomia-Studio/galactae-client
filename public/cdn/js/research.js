@@ -229,7 +229,7 @@ class research extends _Research {
 				research.drawLink(key,current.parents[i]);
 			}
 
-			if(research.canResearch(key) && !research.isSearched(userData, key) && planetData.currResearch !== key && !!document.getElementById(key)) {
+			if(research.researchedParent(userData, planetData, key) && !research.isSearched(userData, key) && planetData.currResearch !== key && !!document.getElementById(key)) {
 				document.getElementById(key).addEventListener('click', () => {
 					research.change(key);
 				});
@@ -262,7 +262,7 @@ class research extends _Research {
 			content = '<div class="research-node" id="' + key + '-node">';
 		}
 
-		if(research.canResearch(key)) {
+		if(research.researchedParent(userData, planetData, key)) {
 			content += '<h2>' + translate.research[key].name + '</h2>';
 			content += '<span class="research-desc text-justify">' + translate['research'][key].desc + '</span>';
 			content += '<div class="research-bottom">';
@@ -322,38 +322,6 @@ class research extends _Research {
 		newLine.setAttribute('x2',x2);
 		newLine.setAttribute('y2',y2);
 		document.getElementById('research-links').append(newLine);
-	}
-	/**
-	 * Determines ability to research.
-	 *
-	 * @param	  {<type>}   key	 The research name
-	 * @return	 {boolean}  True if able to research, False otherwise.
-	 */
-	static canResearch(key) {
-		const parents = researchList[key].parents;
-
-		for(let i=0; i<parents.length; i++) {
-			if(typeof parents[i] === 'string') {
-				if(!research.isSearched(userData, parents[i]) && parents[i] !== 'researchCenter') {
-					return false;
-				}
-			} else if(typeof parents[i] === 'object' &&
-					typeof parents[i][0] === 'number') {
-
-				if(planetData.Buildings[parents[i][0]] < parents[i][1]) {
-					return false;
-				}
-			} else if(typeof parents[i] === 'object' &&
-					typeof parents[i][0] === 'string') {
-
-				if(parents[i][0] === 'planet' &&
-					userData.planetlist.length < parents[i][1]) {
-					return false;
-				}
-			}
-		}
-
-		return true;
 	}
 
 	/**
