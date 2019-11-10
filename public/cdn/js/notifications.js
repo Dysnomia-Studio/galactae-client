@@ -123,10 +123,15 @@ class notifications {
 	 * @param      {<type>}  options  Notification options
 	 */
 	static notifyOnGame(type, text, options={}) {
-		let notifPanel = document.getElementById('notifications-panel');
+		const notifPanel = document.getElementById('notifications-panel');
 		let content = '<div class="notif-elt notif-' + type + '"';
 
 		if(options.id !== undefined) {
+			const previousNotif = document.getElementById(options.id);
+			if(previousNotif) {
+				previousNotif.remove();
+			}
+
 			content += ' id="' + options.id + '" ';
 		}
 		content +=' title="' + text + '"></div>' + notifPanel.innerHTML;
