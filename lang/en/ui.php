@@ -20,7 +20,7 @@
 	define('HUD_BOTTOM_TRADE','Trades');
 	define('HUD_BOTTOM_RANKS','Ranks');
 	define('HUD_BOTTOM_PROFIL','Profile');
-	define('HUD_BOTTOM_MESSAGES','Messages');
+	define('HUD_BOTTOM_MESSAGES','Private Messages');
 	define('HUD_BOTTOM_CHAT','Chat');
 
 	//== DAY BONUS ==\\
