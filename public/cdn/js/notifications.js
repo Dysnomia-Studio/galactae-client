@@ -175,6 +175,10 @@ class notifications {
 				desc = translate['messages']['ENDED_RESEARCH'] + ': ' + translate.research[args.research].name;
 				break;
 			case 'unit':
+				if(fleetTranslate[args.unitName]) {
+					args.unitName = fleetTranslate[args.unitName];
+				}
+
 				title = 'Galactae: ' + translate.messages['ENDED_UNIT_TITLE'];
 				desc = translate.messages['ENDED_UNIT_01'] + args.unitCount + translate.messages['ENDED_UNIT_02'] + args.unitName + translate.messages['ENDED_UNIT_03'];
 				break;
