@@ -901,7 +901,9 @@ select, input, summary {
 	margin-left: 10px !important;
 }
 .tooltips-hud-bottom .tooltip-content {
-	width: 75px;
+	width: auto;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 .tooltips-hud-bottom .tooltip-content::after {
 	margin-left: -10px;
