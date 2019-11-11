@@ -317,7 +317,7 @@
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#profil" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
+			<a href="https://galactae.eu/profil" target="_blank" rel="noopener noreferrer" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_PROFIL; ?></span>
 			</span>
