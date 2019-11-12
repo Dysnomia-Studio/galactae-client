@@ -77,7 +77,7 @@ class webSockets {
 			loadScreen.complete('tactics');
 		});
 
-		//Sync the player data
+		// Sync the player data
 		socket.on('player-recieve-data',function(data) {
 			for(const key in data) {
 				userData[key] = data[key];
@@ -89,6 +89,15 @@ class webSockets {
 			}
 			planetUI.MiscDrawUpdate();
 			loadScreen.complete('player');
+		});
+
+		// Sync the player reports
+		socket.on('player-report-list', (reports) => {
+			Reports.init(reports);
+		});
+		socket.on('player-report-full', (report) => {
+			Reports.cache[report.battleLog_id] = report;
+			Reports.displayReport(report.battleLog_id);
 		});
 
 		//Launch the chat

@@ -1540,7 +1540,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	cursor: url(../img/mouse_pointer.png), pointer; 
 	font-size: 1.2rem;
 }
-#hud-ranks-close, #news-close, #map-move-panel-close {
+#hud-ranks-close, #news-close, #map-move-panel-close, #report-panel-close {
 	position: absolute;
 	top: 1vw;
 	right: 0.89vw;
@@ -3324,6 +3324,9 @@ a[class="research-search"]:hover {
 .notif-research {
 	background: url(../img/ui/researchs.svg);
 }
+.notif-report {
+	background: url(../img/ui/rapports.svg);
+}
 .notif-tutorial {
 	background: url(../img/ui/tutorial.svg);
 }
@@ -3421,4 +3424,94 @@ a[class="research-search"]:hover {
 .tutorial-active {
 	border: 3px solid;
 	border-color: yellow !important;
+}
+
+/**
+ * Reports
+ */
+@media all and (min-width: 900px) {
+	#report-panel {
+		position: fixed;
+		left: 10vw;
+		top: calc(50vh - 22.25vw); /* calc((100vh - 45vw)/2); */
+		width: 80vw;
+		height: 45vw;
+
+		z-index: 100;
+
+		background: url(../img/ui/window.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+	}
+}
+@media all and (max-width: 900px) { /* Mobile and small screens*/
+	#report-panel {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: calc(100vh - 6vw);
+
+		padding: 35px 0;
+		padding-bottom: calc(35px + 0.4em);
+
+		background-color: #0b1012;
+	}
+}
+#report-panel {
+	display: none;
+}
+.report-panel-table {
+	width: 100%;
+}
+.report-panel-container {
+	width: calc(100% - 6em);
+	padding: 2em;
+	max-height: calc(100% - 6em);
+	padding-top: 0;
+	margin-top: 2em;
+	overflow-y: auto;
+}
+.report-panel-table tr, .report-panel-table a{
+	color: #ddd;
+}
+.report-panel-table tr.unread, .report-panel-table tr.unread a {
+	font-weight: bold;
+	color: #fff;
+}
+.report-panel-table a {
+	cursor: url(../img/mouse_pointer.png), pointer;
+	user-select: none;
+}
+.report-panel-table a:hover {
+	text-decoration: underline;
+}
+#report-preview-back {
+	font-weight: bold;
+	font-size: 1.6em;
+
+	cursor: url(../img/mouse_pointer.png), pointer;
+}
+#report-preview tr td {
+	width: 50%;
+}
+#report-preview-atk, #report-preview-def {
+	text-align: center;
+	font-size: 1.25em;
+}
+#report-preview-status {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+
+	font-size: 1.1em;
+}
+#report-preview table {
+	width: 100%;
+}
+#report-details-atk {
+	text-align: left;
+}
+#report-details-def {
+	text-align: right;
 }

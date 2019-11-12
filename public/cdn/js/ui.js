@@ -125,6 +125,7 @@ class ui {
 		ui.chat = (document.getElementById('hud-chat').style.display !== 'none');
 		ui.ranks = false;
 		ui.news = false;
+		ui.reports = false;
 		ui.bonusStreak = 0;
 		ui.bonusStreakBest = 0;
 
@@ -428,12 +429,24 @@ class ui {
 	}
 
 	/**
-	 * Show somethinf
+	 * Show something
 	 */
 	static show(selector, display='block') {
 		const DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
 			DOMelts[elt].style.display = display;
+		}
+	}
+
+	static empty(selector) {
+		for(const elt of document.querySelectorAll('selector')) {
+			ui.emptyElt(elt);
+		}
+	}
+
+	static emptyElt(DOMElt) {
+		while(DOMElt.firstChild) {
+			DOMElt.firstChild.remove();
 		}
 	}
 
@@ -620,7 +633,13 @@ class ui {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
 		document.getElementById('hud-bottom-button-rapports').addEventListener('click', function() {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			if(!ui.reports) {
+				ui.show('#report-panel');
+			} else {
+				ui.hide('#report-panel');
+			}
+
+			ui.reports = !ui.reports;
 		});
 		document.getElementById('hud-bottom-button-quests').addEventListener('click', function() {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);

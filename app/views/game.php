@@ -758,6 +758,32 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <div id="notifications-panel">
 	<span id="notifications-closeAll">☒</span>
 </div>
+<?php /* Rapports */ ?>
+<div id="report-panel">
+	<a id="report-panel-close" class="close-button">X</a>
+	<div id="report-list-container" class="report-panel-container">
+		<table id="report-list" class="report-panel-table">
+		</table>
+	</div>
+
+	<div id="report-preview-container" class="report-panel-container">
+		<span id="report-preview-back">←</span>
+		<table id="report-preview" class="report-panel-table">
+			<tr>
+				<td id="report-preview-atk"></td>
+				<td id="report-preview-def"></td>
+			</tr>
+			<tr>
+				<td id="report-preview-status" class="text-center" colspan="2"></td>
+			</tr>
+			<tr>
+				<td id="report-details-atk"></td>
+				<td id="report-details-def"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
 <?php /* Game Version & Copyright */ ?>
 <div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank" rel="noopener noreferrer">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank" rel="noopener noreferrer">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>
@@ -771,6 +797,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/GameMap.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Reports.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Research.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Tutorials.js"></script>
@@ -786,6 +813,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/planetback.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/planetUI.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Reports.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/research.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>

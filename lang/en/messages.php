@@ -103,6 +103,13 @@ translate['messages'] = {
 	'FLEET_AT_DIFFERENT_POSITIONS': 'Error: the fleets are at the same place.',
 	'FLEET_UNIT_TRANSFER_SUCCESSFUL': 'Units have been successfuly tranfered between fleets',
 	'FLEET_MERGE_SUCCESSFUL': 'Fleets have been successfuly merged',
+
+	// Reports
+	'NEW_REPORT_AVAILABLE': 'New battle report available',
+	'REPORT_ATTACK': ' attacks ',
+	'NO_REPORTS_AVAILABLE': 'No battle report available',
+	'REPORT_DEF_WINS': 'Defenders wins',
+	'REPORT_ATK_WINS': 'Attackers wins',
 };
 
 translate['load'] = {

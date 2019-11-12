@@ -103,6 +103,13 @@ translate['messages'] = {
 	'FLEET_AT_DIFFERENT_POSITIONS': 'Erreur: les flottes sont à des lieux differents',
 	'FLEET_UNIT_TRANSFER_SUCCESSFUL': 'Transfert d\'unité reussi !',
 	'FLEET_MERGE_SUCCESSFUL': 'Les deux flottes ont bien été fusionnées',
+
+	// Reports
+	'NEW_REPORT_AVAILABLE': 'Nouveau rapport de combat disponible',
+	'REPORT_ATTACK': ' attaque ',
+	'NO_REPORTS_AVAILABLE': 'Aucun rapport de combat disponible',
+	'REPORT_DEF_WINS': 'Les défenseurs ont repoussés l\'attaque',
+	'REPORT_ATK_WINS': 'Les attaquants sont victorieux',
 };
 
 translate['load'] = {
