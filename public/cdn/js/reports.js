@@ -34,6 +34,12 @@ class Reports extends _Reports {
 			ui.hide('#report-preview-container');
 		});
 
+		document.getElementById('report-list-select-all').addEventListener('change', function() {
+			for(const elt of document.querySelectorAll('#report-list input[type=checkbox]')) {
+				elt.checked = this.checked;
+			}
+		});
+
 		ui.hide('#report-preview-container');
 	}
 

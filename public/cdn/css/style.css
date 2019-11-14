@@ -3515,3 +3515,17 @@ a[class="research-search"]:hover {
 #report-details-def {
 	text-align: right;
 }
+#report-list-container table tr td:first-child {
+	width: 2em;
+}
+
+#report-preview-buttons {
+	margin: 1em;
+	float: right;
+}
+#report-list-buttons {
+	margin: 0.5em 0;
+}
+#report-list-buttons input[type="button"] {
+	margin-right: 0.25em;
+}

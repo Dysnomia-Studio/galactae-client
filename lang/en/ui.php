@@ -37,6 +37,11 @@
 	define('RANKS_GALAXY_ALLY', 'Galaxy - Alliance');
 	define('RANKS_SECTOR_ALLY', 'Sector - Alliance');
 
+	//== REPORTS ==\\
+	define('DELETE', 'Delete');
+	define('MARK_AS_READ', 'Mark as read');
+	define('MARK_AS_UNREAD', 'Mark as unread');
+
 	//== OTHER ==\\
 	define('GAME_LOADING','Loading game ...');
 	define('PORTRAIT_ERROR','You need a screen in landscape orientation to play.');

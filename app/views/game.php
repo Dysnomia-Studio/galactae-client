@@ -762,12 +762,29 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <div id="report-panel">
 	<a id="report-panel-close" class="close-button">X</a>
 	<div id="report-list-container" class="report-panel-container">
+		<table id="report-list-buttons">
+			<tr>
+				<td><input type="checkbox" class="ui-medium-button" id="report-list-select-all" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-list-mark-read" value="<?= MARK_AS_READ ?>" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-list-mark-unread" value="<?= MARK_AS_UNREAD ?>" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-list-delete" value="<?= DELETE ?>" /></td>
+			</tr>
+		</table>
+
 		<table id="report-list" class="report-panel-table">
 		</table>
 	</div>
 
 	<div id="report-preview-container" class="report-panel-container">
 		<span id="report-preview-back">←</span>
+
+		<table id="report-preview-buttons">
+			<tr>
+				<td><input type="button" class="ui-medium-button" id="report-preview-mark-unread" value="<?= MARK_AS_UNREAD ?>" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-preview-delete" value="<?= DELETE ?>" /></td>
+			</tr>
+		</table>
+
 		<table id="report-preview" class="report-panel-table">
 			<tr>
 				<td id="report-preview-atk"></td>

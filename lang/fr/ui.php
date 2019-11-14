@@ -37,6 +37,11 @@
 	define('RANKS_GALAXY_ALLY', 'Galaxie - Alliance');
 	define('RANKS_SECTOR_ALLY', 'Secteur - Alliance');
 
+	//== REPORTS ==\\
+	define('DELETE', 'Supprimer');
+	define('MARK_AS_READ', 'Marquer comme lu');
+	define('MARK_AS_UNREAD', 'Marquer comme non lu');
+
 	//== OTHER ==\\
 	define('GAME_LOADING','Chargement du jeu ...');
 	define('PORTRAIT_ERROR','Il est nécessaire d\'avoir un écran en orientation paysage pour pouvoir jouer.');
