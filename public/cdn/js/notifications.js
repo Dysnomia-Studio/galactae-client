@@ -100,6 +100,8 @@ class notifications {
 			ui.show('#tutorial-panel');
 		} else if(ui.hasClass(element, 'notif-report')) {
 			Reports.showReport(element.id.substring('notif-'.length));
+		} else if(ui.hasClass(element, 'notif-attack')) {
+			// @TODO
 		}
 
 		// Remove element
@@ -168,7 +170,9 @@ class notifications {
 		switch(type) {
 			case 'attack':
 				title = translate.messages['ATTACK_INCOMING_TITLE'];
-				desc = translate.messages['ATTACK_INCOMING_01'] + getStringTime(args.arriveTime);
+				desc = translate.messages['ATTACK_INCOMING_FROM'] + args.origin + '(' + args.player + ')' +
+					translate.messages['ATTACK_INCOMING_TO'] + args.destination +
+					translate.messages['ATTACK_INCOMING_TIME'] + args.arriveTime.toLocaleDateString() + ' ' + args.arriveTime.toLocaleTimeString();
 				break;
 			case 'building':
 				title = translate.messages['ENDED_BUILDING_TITLE'];

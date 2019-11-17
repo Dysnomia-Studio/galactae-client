@@ -113,6 +113,12 @@ translate['messages'] = {
 	'REPORT_NO_FLEET': 'Aucune flotte',
 	'REPORT_DELETE_ONE': 'Voulez-vous vraiment supprimer ce rapport ?',
 	'REPORT_DELETE_MULTIPLE': 'Voulez-vous vraiment supprimer ces rapports ?',
+
+	// Attack notif
+	'ATTACK_INCOMING_TITLE': 'Attaque entrante',
+	'ATTACK_INCOMING_FROM': 'Attaque entrante provenant de ',
+	'ATTACK_INCOMING_TO': ' à destination de ',
+	'ATTACK_INCOMING_TIME': ', arrivée: ',
 };
 
 translate['load'] = {
