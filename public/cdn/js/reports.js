@@ -21,26 +21,79 @@ class Reports extends _Reports {
 
 		Reports.displayList();
 
+		// Main UI Buttons
 		document.getElementById('report-panel-close').addEventListener('click', () => {
 			ui.closeTab('#report-panel');
 			ui.reports = false;
 
-			ui.show('#report-list-container');
-			ui.hide('#report-preview-container');
+			Reports.backToList();
 		});
 
+		// Preview UI Buttons
 		document.getElementById('report-preview-back').addEventListener('click', () => {
-			ui.show('#report-list-container');
-			ui.hide('#report-preview-container');
+			Reports.backToList();
+		});
+		document.getElementById('report-preview-mark-unread').addEventListener('click', () => {
+			Reports.serverMarkUnRead([Reports.currReport]);
+		});
+		document.getElementById('report-preview-delete').addEventListener('click', () => {
+			ui.confirm(
+				translate.messages['REPORT_DELETE_ONE'],
+				translate['ui']['CONFIRM_YES'],
+				translate['ui']['CONFIRM_NO'],
+				() => Reports.serverDelete([Reports.currReport])
+			);
 		});
 
+		// List UI Buttons
 		document.getElementById('report-list-select-all').addEventListener('change', function() {
 			for(const elt of document.querySelectorAll('#report-list input[type=checkbox]')) {
 				elt.checked = this.checked;
 			}
 		});
+		document.getElementById('report-list-mark-read').addEventListener('click', () => {
+			Reports.serverMarkRead(
+				Reports.getCheckedReports()
+			);
+		});
+		document.getElementById('report-list-mark-unread').addEventListener('click', () => {
+			Reports.serverMarkUnRead(
+				Reports.getCheckedReports()
+			);
+		});
+		document.getElementById('report-list-delete').addEventListener('click', () => {
+			ui.confirm(
+				translate.messages['REPORT_DELETE_ONE'],
+				translate['ui']['CONFIRM_YES'],
+				translate['ui']['CONFIRM_NO'],
+				() => Reports.serverDelete(
+					Reports.getCheckedReports()
+				)
+			);
+		});
 
 		ui.hide('#report-preview-container');
+	}
+
+	static backToList() {
+		ui.show('#report-list-container');
+		ui.hide('#report-preview-container');
+	}
+
+	static getCheckedReports() {
+		return Array.from(document.querySelectorAll('#report-list input:checked')).map((elt) => elt.id);
+	}
+
+	static serverMarkRead(reports) {
+		socket.emit('player-report-set-read', { username: userData.username, id: userData.id, reports });
+	}
+
+	static serverMarkUnRead(reports) {
+		socket.emit('player-report-set-unread', { username: userData.username, id: userData.id, reports });
+	}
+
+	static serverDelete(reports) {
+		socket.emit('player-report-delete', { username: userData.username, id: userData.id, reports });
 	}
 
 	static markRead(reportId) {
@@ -59,7 +112,7 @@ class Reports extends _Reports {
 		Reports.markRead(reportId);
 
 		if(!Reports.cache[reportId]) {
-			socket.emit('player-report-ask', { username: userData.username, id: userData.id,  reportId });
+			socket.emit('player-report-ask', { username: userData.username, id: userData.id, reportId });
 		} else {
 			Reports.displayReport(reportId);
 		}
@@ -82,7 +135,7 @@ class Reports extends _Reports {
 
 		const tickInput = document.createElement('input');
 		tickInput.type = 'checkbox';
-		tickInput.id = report.id;
+		tickInput.id = report.battleLogId;
 		tickTd.append(tickInput);
 
 		// Name
@@ -128,13 +181,12 @@ class Reports extends _Reports {
 			header.classList.add('text-center');
 		}
 
-
-		// @TODO: buttons "delete", "mark as read", "mark as not read"
-
 		// Generate DOM
 		for(const report of Reports.reportList) {
 			reportList.append(Reports.generateLine(report));
 		}
+
+		Reports.backToList();
 	}
 
 	static generateFleetDetail(fleet, losts, atk) {
@@ -182,12 +234,11 @@ class Reports extends _Reports {
 	static displayReport(reportId) {
 		if(!Reports.cache[reportId]) { return; }
 
+		Reports.currReport = reportId;
+
 		const report = Reports.cache[reportId];
 
 		// Generate DOM
-
-		// @TODO: buttons "delete", "mark as read", "mark as not read"
-
 		document.getElementById('report-preview-atk').innerText = Reports.buildAtkText(report);
 		document.getElementById('report-preview-def').innerText = Reports.buildDefText(report);
 
@@ -211,7 +262,15 @@ class Reports extends _Reports {
 			defFleetsDetail.append(Reports.generateFleetDetail(fleet, losts[fleet.id], false));
 		}
 
-		// @TODO: manage empty def fleet
+		if(!document.getElementById('report-details-def').firstChild) {
+			const emptyFleetTr = document.createElement('tr');
+			const emptyFleetTd = document.createElement('td');
+			emptyFleetTr.append(emptyFleetTd);
+
+			emptyFleetTd.innerText = translate['messages']['REPORT_NO_FLEET'];
+
+			defFleetsDetail.append(emptyFleetTr);
+		}
 
 		// @TODO: resources stolen
 

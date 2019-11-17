@@ -110,6 +110,9 @@ translate['messages'] = {
 	'NO_REPORTS_AVAILABLE': 'No battle report available',
 	'REPORT_DEF_WINS': 'Defenders wins',
 	'REPORT_ATK_WINS': 'Attackers wins',
+	'REPORT_NO_FLEET': 'No fleet',
+	'REPORT_DELETE_ONE': 'Do you really want to delete this report ?',
+	'REPORT_DELETE_MULTIPLE': 'Do you really want to delete these reports ?',
 };
 
 translate['load'] = {
