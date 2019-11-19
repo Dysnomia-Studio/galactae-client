@@ -57,13 +57,20 @@ class webSockets {
 
 		//Sync the fleet data
 		socket.on('fleet-recieve-data',function(data) {
-			units.fleetList = units.fleetList.filter((fleet) => fleet.motherPlanetId !== data.pid);
+			const ids = units.fleetList.map((elt) => elt.id);
 
 			for(const fleet of data.FleetList) {
 				fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name;
 
+				const index = ids.indexOf(fleet.id);
+				if(index !== -1) {
+					units.fleetList.splice(index, 1);
+				}
+
 				units.fleetList.push(fleet);
 			}
+
+			units.fleetList = units.fleetList.filter((elt) => elt.position === planetData.address || elt.motherPlanetAddress === planetData.address);
 
 			units.regenerateSelectFleetLists();
 			units.refresh(units.list);
