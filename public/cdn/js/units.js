@@ -8,6 +8,7 @@ class units extends _Units {
 	static sync() {
 		const data = userData;
 		data.planet = planetData.id;
+		data.address = planetData.address;
 		socket.emit('units-ask-data', data);
 	}
 
