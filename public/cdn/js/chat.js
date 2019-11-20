@@ -34,7 +34,6 @@ class chat {
 
 		/**
 		 * Recieving message
-		 * @TODO: Notify messages on tabs
 		 */
 		socket.on('chat-message', function(data) {
 			const listElt = document.createElement('li');
@@ -50,6 +49,11 @@ class chat {
 			document.querySelector('#'+data.channel+' .chat_logs').append(listElt);
 
 			document.querySelector('#'+data.channel).scrollTop = document.querySelector('#'+data.channel+' .chat_logs').clientHeight;
+
+			if(data.channel !== chatChannel) {
+				console.log('show #hud-chat-channels li[chatchannel="'+data.channel+'"] .read');
+				ui.show('#hud-chat-channels li[chatchannel="'+data.channel+'"] .read', 'initial');
+			}
 		});
 
 		/*
@@ -143,6 +147,7 @@ class chat {
 
 				chatChannel = this.getAttribute('chatChannel');
 				ui.show('#' + chatChannel);
+				ui.hide('#hud-chat-channels li[chatchannel="'+chatChannel+'"] .read');
 
 				document.querySelector('#' + chatChannel).scrollTop = document.querySelector('#' + chatChannel).clientHeight;
 			});

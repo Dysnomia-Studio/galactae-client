@@ -975,6 +975,10 @@ select, input, summary {
 /**
  * Chat
  */
+#hud-chat-channels .read {
+	display: none;
+}
+
 @media (min-width: 1050px) {
 	#hud-chat {
 		background-image: url(../img/ui/hud-chat.png);

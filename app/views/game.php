@@ -355,9 +355,9 @@
 <?php /* Chat */ ?>
 <div id="hud-chat">
 	<ul id="hud-chat-channels" class="ul-choice-line">
-		<li chatChannel="hud-chat-global" class="chatTab ul-choice-line-li-active"><?= CHAT_GLOBAL; ?></li>
-		<li chatChannel="hud-chat-trade" class="chatTab"><?= CHAT_TRADE; ?></li>
-		<li chatChannel="hud-chat-ally" class="chatTab"><?= CHAT_ALLY; ?></li>
+		<li chatChannel="hud-chat-global" class="chatTab ul-choice-line-li-active"><span class="read">•&nbsp;</span><?= CHAT_GLOBAL; ?></li>
+		<li chatChannel="hud-chat-trade" class="chatTab"><span class="read">•&nbsp;</span><?= CHAT_TRADE; ?></li>
+		<li chatChannel="hud-chat-ally" class="chatTab"><span class="read">•&nbsp;</span><?= CHAT_ALLY; ?></li>
 	</ul>
 	<div id="hud-chat-global" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-trade" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
