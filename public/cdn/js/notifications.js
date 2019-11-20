@@ -172,7 +172,7 @@ class notifications {
 				title = translate.messages['ATTACK_INCOMING_TITLE'];
 				desc = translate.messages['ATTACK_INCOMING_FROM'] + args.origin + '(' + args.player + ')' +
 					translate.messages['ATTACK_INCOMING_TO'] + args.destination +
-					translate.messages['ATTACK_INCOMING_TIME'] + args.arriveTime.toLocaleDateString() + ' ' + args.arriveTime.toLocaleTimeString();
+					translate.messages['ATTACK_INCOMING_TIME'] + new Date(args.arriveTime).toLocaleDateString() + ' ' + new Date(args.arriveTime).toLocaleTimeString();
 				break;
 			case 'building':
 				title = translate.messages['ENDED_BUILDING_TITLE'];
