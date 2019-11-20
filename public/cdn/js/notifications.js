@@ -101,7 +101,7 @@ class notifications {
 		} else if(ui.hasClass(element, 'notif-report')) {
 			Reports.showReport(element.id.substring('notif-'.length));
 		} else if(ui.hasClass(element, 'notif-attack')) {
-			// @TODO
+			ui.fleetPanelToggle('fleet-move');
 		}
 
 		// Remove element

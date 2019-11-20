@@ -537,6 +537,34 @@ class ui {
 		}
 		ui.renaming = false;
 	}
+
+	static fleetPanelToggle(elt) {
+		if(ui.fleet && !preventFleetHUDClosing && document.getElementById(elt).style.display === 'block') {
+			if(units.unitPanelTimeout !== -1) {
+				clearTimeout(units.unitPanelInterval);
+				units.unitPanelTimeout = -1;
+			}
+
+			ui.closeTab('#hud-fleet');
+			ui.fleet = false;
+		} else {
+			ui.show('#hud-fleet');
+
+			ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', document.getElementById(elt + '-button'));
+
+			ui.hide('#fleet-orbit');
+			ui.hide('#fleet-build');
+			ui.hide('#fleet-move');
+			ui.hide('#fleet-out');
+			ui.hide('#fleet-tactics');
+			ui.fleet = true;
+
+			ui.show('#' + elt);
+
+			ui.updateBottom();
+		}
+	}
+
 	/************ BOUTONS ************/
 	/**
 	 * Add events for bottom buttons
@@ -592,41 +620,14 @@ class ui {
 			}
 		});
 
-		function fleetPanelToggle(elt) {
-			if(ui.fleet && !preventFleetHUDClosing && document.getElementById(elt).style.display === 'block') {
-				if(units.unitPanelTimeout !== -1) {
-					clearTimeout(units.unitPanelInterval);
-					units.unitPanelTimeout = -1;
-				}
-
-				ui.closeTab('#hud-fleet');
-				ui.fleet = false;
-			} else {
-				ui.show('#hud-fleet');
-
-				ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', document.getElementById(elt + '-button'));
-
-				ui.hide('#fleet-orbit');
-				ui.hide('#fleet-build');
-				ui.hide('#fleet-move');
-				ui.hide('#fleet-out');
-				ui.hide('#fleet-tactics');
-				ui.fleet = true;
-
-				ui.show('#' + elt);
-
-				ui.updateBottom();
-			}
-		}
-
 		document.getElementById('hud-bottom-button-units').addEventListener('click', function() {
-			fleetPanelToggle('fleet-build');
+			ui.fleetPanelToggle('fleet-build');
 		});
 		document.getElementById('hud-bottom-button-fleets').addEventListener('click', function() {
-			fleetPanelToggle('fleet-orbit');
+			ui.fleetPanelToggle('fleet-orbit');
 		});
 		document.getElementById('hud-bottom-button-radar').addEventListener('click', function() {
-			fleetPanelToggle('fleet-move');
+			ui.fleetPanelToggle('fleet-move');
 		});
 
 		document.getElementById('hud-bottom-button-ally').addEventListener('click', function() {
