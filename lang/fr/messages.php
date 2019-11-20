@@ -51,6 +51,8 @@ translate['messages'] = {
 	'MAINTENANCE': 'Une maintenance est en cours.',
 	'RESTARTING_SERVER': 'Redemarrage des serveurs de jeu ...',
 	'DOUBLE_ACCOUNTS_CONNECTED': 'Vous êtes connecté plusieurs fois sur le jeu en même temps.',
+	'ERR_BANNED': 'Erreur: vous êtes banni de ce serveur',
+	'ERR_WHITELIST': 'Erreur: vous n\'êtes pas dans la liste blanche de ce serveur',
 	'SYSTEM_MESSAGE': 'Message Systeme:',
 	// Chat Mute
 	'CHAT_MUTED': 'Vous ne pouvez plus parler pendant',

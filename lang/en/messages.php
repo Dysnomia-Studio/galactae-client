@@ -51,6 +51,8 @@ translate['messages'] = {
 	'MAINTENANCE': 'Maintenance ongoing.',
 	'RESTARTING_SERVER': 'Restarting game servers ...',
 	'DOUBLE_ACCOUNTS_CONNECTED': 'You\'re already connected with this account on another game-client.',
+	'ERR_BANNED': 'Erreur: you\'re banned from this server',
+	'ERR_WHITELIST': 'Erreur: you\'re not whitelisted on this server',
 	'SYSTEM_MESSAGE': 'Message Systeme:',
 	// Chat Mute
 	'CHAT_MUTED': 'You\'ve been muted for',
