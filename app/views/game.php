@@ -119,9 +119,7 @@
 			<span id="planet-other-points"><?= MAP_PLANET_INFO_POINTS ?>: <span id="planet-other-points-data"></span></span><br/><br/>
 			<div id="planet-other-lastReports">
 				<?= MAP_PLANET_INFO_LASTREPORTS ?>:
-				<ul id="planet-other-lastReports-list">
-					<li><?= MAP_PLANET_INFO_NOREPORTS ?></li>
-				</ul>
+				<ul id="planet-other-lastReports-list"></ul>
 			</div>
 		</div>
 	</div>

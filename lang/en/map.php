@@ -11,4 +11,11 @@
 	define('MAP_PLANET_INFO_PLANET', 'Planet');
 	define('MAP_PLANET_INFO_POINTS', 'Points');
 	define('MAP_PLANET_INFO_LASTREPORTS', 'Last reports');
-	define('MAP_PLANET_INFO_NOREPORTS', 'No reports');
+?>
+<script type="text/javascript">
+var translate = translate || {};
+
+translate['map'] = {
+	PLANET_INFO_NOREPORTS: 'No reports',
+};
+</script>

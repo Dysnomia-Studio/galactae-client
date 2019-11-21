@@ -3134,6 +3134,9 @@ a[class="research-search"]:hover {
 
 	max-width: 25vw;
 
+	overflow: auto;
+	max-height: 50vh;
+
 	background-color: #0b1012;
 	border: 1px solid #0EC6C6;
 }

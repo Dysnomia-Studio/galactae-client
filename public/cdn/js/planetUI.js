@@ -849,22 +849,45 @@ class planetUI {
 			document.getElementById('planet-other-planet-data').innerText =  pData.name;
 			document.getElementById('planet-other-points-data').innerText =  pData.points;
 
-			document.getElementById('planet-other-planet').style.display = 'inline';
-			document.getElementById('planet-other-points').style.display = 'inline';
+			ui.show('#planet-other-planet', 'inline');
+			ui.show('#planet-other-points', 'inline');
 		} else {
 			document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
 			document.getElementById('planet-other-player-data').innerText = translate['ui']['no-player'];
-			document.getElementById('planet-other-planet').style.display = 'none';
-			document.getElementById('planet-other-points').style.display = 'none';
+
+			ui.hide('#planet-other-planet');
+			ui.hide('#planet-other-points');
 		}
 
 		if(units.planetTarget.split('S').length === 2) {
-			document.getElementById('planet-other-ally').style.display = 'none';
-			document.getElementById('planet-other-player').style.display = 'none';
+			ui.hide('#planet-other-ally');
+			ui.hide('#planet-other-player');
 		} else {
-			document.getElementById('planet-other-ally').style.display = 'inline';
-			document.getElementById('planet-other-player').style.display = 'inline';
+			ui.show('#planet-other-ally', 'inline');
+			ui.show('#planet-other-player', 'inline');
 		}
+
+		const reports = Reports.reportList.filter((elt) => elt.location === units.planetTarget);
+		const reportListElt = document.getElementById('planet-other-lastReports-list');
+		ui.emptyElt(reportListElt);
+
+		// @TODO: Spy reports
+		if(reports.length === 0) {
+			const liElt = document.createElement('li');
+			liElt.innerText = translate.map.PLANET_INFO_NOREPORTS;
+
+			reportListElt.append(liElt);
+		} else {
+			for(const report of reports) {
+				const liElt = document.createElement('li');
+
+				liElt.innerText = Reports.buildAtkText(report) + translate['messages']['REPORT_ATTACK'] + Reports.buildDefText(report);
+				liElt.addEventListener('click', () => Reports.showReport(report.battleLogId));
+
+				reportListElt.append(liElt);
+			}
+		}
+
 
 		//@TODO: Add last reports
 
