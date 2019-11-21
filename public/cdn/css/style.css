@@ -3275,7 +3275,7 @@ a[class="research-search"]:hover {
 	position: fixed;
 	left: 0;
 
-	z-index: 1;
+	z-index: 1000;
 
 	padding: 0.25em;
 
@@ -3385,7 +3385,7 @@ a[class="research-search"]:hover {
 	background-position: center;
 	background-size: 100%;
 
-	z-index: 100;
+	z-index: 1000;
 }
 #tutorial-panel-content {
 	overflow-y: auto;
@@ -3415,7 +3415,9 @@ a[class="research-search"]:hover {
 		left: 0;
 		top: 0;
 
-		width: calc(100vw - 2em);
+		padding-left: 3.5em;
+
+		width: calc(100vw - 4em);
 		height: calc(100vh - 2em);
 
 		background-color: #0b1012;
