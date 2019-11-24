@@ -888,9 +888,6 @@ class planetUI {
 			}
 		}
 
-
-		//@TODO: Add last reports
-
 		// Show/Hide UIs
 		if(!ui.chat) {
 			if(ui.mapChat) {

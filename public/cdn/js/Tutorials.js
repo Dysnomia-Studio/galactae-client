@@ -22,8 +22,6 @@ class Tutorials extends _Tutorials {
 	static newTutorial(type) {
 		Tutorials.currTutorial = type;
 
-		//@TODO: draw yellow outline on buildings needs to be build
-
 		Tutorials.openTutorialPanel();
 
 		Tutorials.highlightButtons();
