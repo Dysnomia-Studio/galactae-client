@@ -205,6 +205,9 @@ class Reports extends _Reports {
 			container.append(lineTr);
 
 			const unitName = document.createElement('td');
+			if(fleetTranslate[unit.name]) {
+				unit.name = fleetTranslate[unit.name];
+			}
 			unitName.innerText = unit.name;
 
 			const unitCount = document.createElement('td');
