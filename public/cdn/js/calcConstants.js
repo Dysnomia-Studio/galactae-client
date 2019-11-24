@@ -969,6 +969,7 @@ const neededCache = [
 	cdnURL + 'js/planetback.js',
 	cdnURL + 'js/planetUI.js',
 	cdnURL + 'js/research.js',
+	cdnURL + 'js/Reports.js',
 	cdnURL + 'js/Resources.js',
 	cdnURL + 'js/settings.js',
 	cdnURL + 'js/tactics.js',
