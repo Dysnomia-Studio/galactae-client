@@ -198,6 +198,9 @@ class Reports extends _Reports {
 		const headerTh = document.createElement('th');
 		headerTr.append(headerTh);
 		headerTh.setAttribute('colspan', 2);
+		if(fleetTranslate[fleet.name]) {
+			fleet.name = fleetTranslate[fleet.name];
+		}
 		headerTh.innerText = fleet.name;
 
 		for(const unit of fleet.units) {
@@ -263,6 +266,7 @@ class Reports extends _Reports {
 		ui.emptyElt(defFleetsDetail);
 		for(const fleet of report.defFleets) {
 			defFleetsDetail.append(Reports.generateFleetDetail(fleet, losts[fleet.id], false));
+			defFleetsDetail.append(document.createElement('br'));
 		}
 
 		if(!document.getElementById('report-details-def').firstChild) {
