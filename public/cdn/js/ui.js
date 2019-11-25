@@ -125,6 +125,7 @@ class ui {
 		ui.chat = (document.getElementById('hud-chat').style.display !== 'none');
 		ui.ranks = false;
 		ui.news = false;
+		ui.reports = false;
 		ui.bonusStreak = 0;
 		ui.bonusStreakBest = 0;
 
@@ -190,7 +191,7 @@ class ui {
 		tactics.loadUI();
 
 		// Load tutorials UI
-		TutorialsUI.loadUI();
+		Tutorials.loadUI();
 
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');
@@ -428,12 +429,24 @@ class ui {
 	}
 
 	/**
-	 * Show somethinf
+	 * Show something
 	 */
 	static show(selector, display='block') {
 		const DOMelts = document.querySelectorAll(selector);
 		for(let elt = 0; elt<DOMelts.length; elt++) {
 			DOMelts[elt].style.display = display;
+		}
+	}
+
+	static empty(selector) {
+		for(const elt of document.querySelectorAll('selector')) {
+			ui.emptyElt(elt);
+		}
+	}
+
+	static emptyElt(DOMElt) {
+		while(DOMElt.firstChild) {
+			DOMElt.firstChild.remove();
 		}
 	}
 
@@ -524,6 +537,34 @@ class ui {
 		}
 		ui.renaming = false;
 	}
+
+	static fleetPanelToggle(elt) {
+		if(ui.fleet && !preventFleetHUDClosing && document.getElementById(elt).style.display === 'block') {
+			if(units.unitPanelTimeout !== -1) {
+				clearTimeout(units.unitPanelInterval);
+				units.unitPanelTimeout = -1;
+			}
+
+			ui.closeTab('#hud-fleet');
+			ui.fleet = false;
+		} else {
+			ui.show('#hud-fleet');
+
+			ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', document.getElementById(elt + '-button'));
+
+			ui.hide('#fleet-orbit');
+			ui.hide('#fleet-build');
+			ui.hide('#fleet-move');
+			ui.hide('#fleet-out');
+			ui.hide('#fleet-tactics');
+			ui.fleet = true;
+
+			ui.show('#' + elt);
+
+			ui.updateBottom();
+		}
+	}
+
 	/************ BOUTONS ************/
 	/**
 	 * Add events for bottom buttons
@@ -579,48 +620,27 @@ class ui {
 			}
 		});
 
-		function fleetPanelToggle(elt) {
-			if(ui.fleet && !preventFleetHUDClosing && document.getElementById(elt).style.display === 'block') {
-				if(units.unitPanelTimeout !== -1) {
-					clearTimeout(units.unitPanelInterval);
-					units.unitPanelTimeout = -1;
-				}
-
-				ui.closeTab('#hud-fleet');
-				ui.fleet = false;
-			} else {
-				ui.show('#hud-fleet');
-
-				ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', document.getElementById(elt + '-button'));
-
-				ui.hide('#fleet-orbit');
-				ui.hide('#fleet-build');
-				ui.hide('#fleet-move');
-				ui.hide('#fleet-out');
-				ui.hide('#fleet-tactics');
-				ui.fleet = true;
-
-				ui.show('#' + elt);
-
-				ui.updateBottom();
-			}
-		}
-
 		document.getElementById('hud-bottom-button-units').addEventListener('click', function() {
-			fleetPanelToggle('fleet-build');
+			ui.fleetPanelToggle('fleet-build');
 		});
 		document.getElementById('hud-bottom-button-fleets').addEventListener('click', function() {
-			fleetPanelToggle('fleet-orbit');
+			ui.fleetPanelToggle('fleet-orbit');
 		});
 		document.getElementById('hud-bottom-button-radar').addEventListener('click', function() {
-			fleetPanelToggle('fleet-move');
+			ui.fleetPanelToggle('fleet-move');
 		});
 
 		document.getElementById('hud-bottom-button-ally').addEventListener('click', function() {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
 		document.getElementById('hud-bottom-button-rapports').addEventListener('click', function() {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			if(!ui.reports) {
+				ui.show('#report-panel');
+			} else {
+				ui.hide('#report-panel');
+			}
+
+			ui.reports = !ui.reports;
 		});
 		document.getElementById('hud-bottom-button-quests').addEventListener('click', function() {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
@@ -662,7 +682,7 @@ class ui {
 			helium = 2000 * streak; // 40000 to 58000
 		} else {
 			credits = 1000;
-		} // @ADD: generate random special bonus
+		} // @TODO: generate random special bonus
 
 		let desc = '<tr><td class="day-bonus-active" id="day-bonus-1">' + credits + ' ' + translate['ui']['credits'] + '</td>';
 

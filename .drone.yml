@@ -11,7 +11,7 @@ steps:
     showProfiling: true
   when:
     branch:
-    - master
+    - dev
 
 - name: discord
   pull: default

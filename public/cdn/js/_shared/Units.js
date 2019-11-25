@@ -1,5 +1,5 @@
 (function (exports) {
-	exports.Unit = class Unit {
+	exports._Units = class Units {
 		/**
 		 * Check if two ships have the same parts
 		 *
@@ -58,7 +58,7 @@
 					unitList[currObj].shipShape === ship.shipShape &&
 					unitList[currObj].parts.length === ship.parts.length) {
 
-					duplicate = Unit.checkIfSameParts(unitList[currObj], ship);
+					duplicate = Units.checkIfSameParts(unitList[currObj], ship);
 					if(duplicate) {
 						break;
 					}
@@ -106,21 +106,35 @@
 			return totalCost;
 		}
 
-		get specialUnits() {
+		static get specialUnits() {
 			const units = {};
 
 			for(const name in specialUnitsUID) {
 				units[specialUnitsUID[name]] = {
-					id: [specialUnitsUID[name]],
+					id: specialUnitsUID[name],
 					name: fleetTranslate[name],
-					note: 0, // @ADD: Note
+					note: 0, // @TODO: Note
 					cost: shipCosts[name],
+					parts: specialUnitsParts[name],
 					shipShape: name,
 					shipType: 'SHIP_DEF',
+					oneShot: true,
 				};
+
+				if(!units[specialUnitsUID[name]].name) {
+					units[specialUnitsUID[name]].name = name;
+				}
 			}
 
 			return units;
+		}
+
+		static getWeapons(unit) {
+			return unit.parts.filter((part) => part.type === 'cannon' || part.type === 'rocketLauncher');
+		}
+
+		static getShields(unit) {
+			return unit.parts.filter((part) => part.type === 'shield');
 		}
 	};
 })(typeof exports === 'undefined'? window : exports);

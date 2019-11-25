@@ -206,55 +206,14 @@ class map {
 		}
 		window.requestAnimationFrame(stepMove);
 
-		//@ADD: display none/block on sectors
+		//@TODO: display none/block on sectors
 
 		// At borders ?
 		const coords = [];
 		coords[0] = Math.floor((document.documentElement.clientWidth/2 - pos[0])/MAP_SIZE_WIDTH*10);
 		coords[1] = Math.floor((document.documentElement.clientHeight/2 - pos[1])/MAP_SIZE_HEIGHT*10);
 
-		const topDist = pos[0]%(MAP_SIZE_HEIGHT/10);
-		const bottomDist = pos[0]%(MAP_SIZE_HEIGHT/10) + (MAP_SIZE_HEIGHT/10);
-		const leftDist = pos[1]%(MAP_SIZE_WIDTH/10);
-		const rightDist = pos[1]%(MAP_SIZE_WIDTH/10) + (MAP_SIZE_WIDTH/10);
-
-		const top =  coords[0] === 0 || (topDist * 2 < document.documentElement.clientHeight);
-		const bottom = coords[0] === 9 || (bottomDist * 2 < document.documentElement.clientHeight);
-		const left = coords[1] === 0 || (leftDist * 2 < document.documentElement.clientHeight);
-		const right = coords[1] === 9 || (rightDist * 2 < document.documentElement.clientHeight);
-
-		/**
-		 * Load all needed xml
-		 */
-		if(!top) {
-			if(!left) { // Haut gauche
-				map.loadXML((coords[0]-1) + '-' + (coords[1]-1));
-			}
-			// Haut
-			map.loadXML((coords[0]-1) + '-' + (coords[1]));
-			if(!right) { // Haut droite
-				map.loadXML((coords[0]-1) + '-' + (coords[1]+1));
-			}
-		}
-
-		if(!left) { // Gauche
-			map.loadXML((coords[0]) + '-' + (coords[1]-1));
-		}
-
-		if(!right) { // Droite
-			map.loadXML((coords[0]) + '-' + (coords[1]+1));
-		}
-
-		if(!bottom) {
-			if(!left) { // Bas gauche
-				map.loadXML((coords[0]+1) + '-' + (coords[1]-1));
-			}
-			// Bas
-			map.loadXML((coords[0]+1) + '-' + (coords[1]));
-			if(!right) { // Bas droite
-				map.loadXML((coords[0]+1) + '-' + (coords[1]+1));
-			}
-		}
+		map.loadMapAndNeighborhood(coords[0] + '-' + coords[1]);
 
 		// @TODO: ability to disable this with some settings
 		if(document.documentElement.clientWidth < MAP_BG_WIDTH || document.documentElement.clientHeight < MAP_BG_HEIGHT) {
@@ -264,24 +223,19 @@ class map {
 	}
 
 	/**
-	 * Loads a map.
-	 *
-	 * @param	  {string}  sector  The sector
-	 */
-	static loadMap(sector,callback) {
-		if(document.documentElement.clientWidth > MAP_4K_LOADER_WIDTH) { // 4K Only loader, it's slow, but needed to make game working
-			map.loadMapAndNeighborhood(sector,callback);
-		} else { // Full HD and lower screens
-			map.loadXML(sector,callback);
-		}
-	}
-
-	/**
 	 * Loads a map and neighborhood.
 	 *
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector,callback) {
+		if(typeof map.xmlDoc[sector] !== 'undefined') {
+			if(callback) {
+				callback();
+			}
+
+			return;
+		} // Already loaded
+
 		const coords = sector.split('-');
 
 		// At borders ?
@@ -334,14 +288,12 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadXML(sector, callback) {
-		if(map.xmlhttp === undefined) { map.xmlhttp = []; }
-		if(map.xmlDoc === undefined) { map.xmlDoc = []; }
-		if(map.xmlDoc[sector] !== undefined && callback) {
+		if(typeof map.xmlDoc[sector] !== 'undefined' && callback) {
 			callback();
 			return;
 		} // Already loaded
 
-		const toSend = map.xmlhttp[sector] === undefined;
+		const toSend = typeof map.xmlhttp[sector] === 'undefined';
 		if(toSend) {
 			if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
 				map.xmlhttp[sector] = new XMLHttpRequest();
@@ -355,7 +307,7 @@ class map {
 				if (this.status === HTTP.OK) {
 					map.xmlDoc[sector] = new DOMParser().parseFromString(map.xmlhttp[sector].responseText,'text/xml');
 					map.drawSector(sector);
-					if(callback !== undefined) {
+					if(typeof callback !== 'undefined') {
 						callback();
 					}
 				} else {
@@ -434,9 +386,7 @@ class map {
 			units.planetTarget = this.id.split('liste_').join(''); // Center star or bottom bar
 		}
 
-		let system = units.planetTarget.split('-');
-		system.pop();
-		system = system.join('-');
+		let system = GameMap.getSystemFromAdress(units.planetTarget);
 
 		if(map.planetData[system][units.planetTarget].ownerName === null) {
 			document.getElementById('map-planet-menu-planetname').innerText = '';
@@ -460,8 +410,7 @@ class map {
 	}
 
 	static parseSystemXML(address) {
-		let sector = address.split('-');
-		sector = [sector[0],sector[1]].join('-');
+		const sector = GameMap.getSectorFromAdress(address);
 
 		const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + address + '"]');
 
@@ -488,35 +437,35 @@ class map {
 	}
 
 	static declareSolarSystemEvents() {
-		document.querySelectorAll('#map-system .planet').forEach(function(elt) {
+		document.querySelectorAll('#map-system .planet').forEach((elt) => {
 			elt.addEventListener('click', map.viewPlanetInfo);
 		});
-		document.querySelectorAll('#map-system .star').forEach(function(elt) {
+		document.querySelectorAll('#map-system .star').forEach((elt) => {
 			elt.addEventListener('click', map.viewPlanetInfo);
 		});
 
-		document.addEventListener('click', function(e) {
+		document.addEventListener('click', (e) => {
 			if(!ui.hasClass(e.target, 'planet') && !ui.hasClass(e.target, 'pos') && !ui.hasClass(e.target, 'star')) {
 				ui.hide('#map-planet-menu');
 			}
 		});
-		document.querySelectorAll('#map-planet-menu img').forEach(function(elt) {
-			elt.addEventListener('click', function(e) {
+		document.querySelectorAll('#map-planet-menu img').forEach((elt) => {
+			elt.addEventListener('click', (e) => {
 				switch(e.target.id) {
 					case 'map-planet-menu-infos':
 						planetUI.openOtherPlanetPanel();
 						break;
 					case 'map-planet-menu-move':
-						units.openMovePanel(2);
+						units.openMovePanel(FLEET_MOVE_TYPE.MOVE);
 						break;
 					case 'map-planet-menu-attack':
-						units.openMovePanel(1);
+						units.openMovePanel(FLEET_MOVE_TYPE.ATTACK);
 						break;
 					case 'map-planet-menu-defend':
-						units.openMovePanel(0);
+						units.openMovePanel(FLEET_MOVE_TYPE.DEFEND);
 						break;
 					case 'map-planet-menu-spy':
-						units.openMovePanel(3);
+						units.openMovePanel(FLEET_MOVE_TYPE.SPY);
 						break;
 					case 'map-planet-menu-trade':
 						trade.openPlanetPanel();
@@ -526,7 +475,7 @@ class map {
 				ui.hide('#map-planet-menu');
 			});
 		});
-		document.getElementById('map-move-panel-close').addEventListener('click', function() {
+		document.getElementById('map-move-panel-close').addEventListener('click', () => {
 			ui.hide('#map-move-panel');
 		});
 	}
@@ -714,7 +663,7 @@ class map {
 
 			document.querySelector('div[id="' + planets[i].address + '"] .pos .planet').style.animationDuration = orbitDuration + 's';
 
-			// @ADD: Rings & Moons
+			// @TODO: Rings & Moons
 
 			// Add it to stars/planet list
 			const name = (map.planetData[address] && map.planetData[address][planets[i].address] && map.planetData[address][planets[i].address].name) ? map.planetData[address][planets[i].address].name : planets[i].address;
@@ -831,12 +780,11 @@ class map {
 			return;
 		}
 
-		const coords = address.split('-');
-		const sector = coords[0] + '-' + coords[1];
-		const system = [coords[0],coords[1],coords[2]].join('-');
+		const sector = GameMap.getSectorFromAdress(address);
+		const system = GameMap.getSystemFromAdress(address);
 
 		map.loadXML(sector, function() {
-			const systemXML = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
+			const systemXML = map.xmlDoc[sector].getElementById(system);
 			const newX = (1/map.zoom)*document.documentElement.clientWidth/2 - (MAP_SIZE_WIDTH * systemXML.getAttribute('x')/10); // /10 = *10 / 100
 			const newY = (1/map.zoom)*document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
 

@@ -57,13 +57,20 @@ class webSockets {
 
 		//Sync the fleet data
 		socket.on('fleet-recieve-data',function(data) {
-			units.fleetList = units.fleetList.filter((fleet) => fleet.motherPlanetId !== data.pid);
+			const ids = units.fleetList.map((elt) => elt.id);
 
 			for(const fleet of data.FleetList) {
 				fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name;
 
+				const index = ids.indexOf(fleet.id);
+				if(index !== -1) {
+					units.fleetList.splice(index, 1);
+				}
+
 				units.fleetList.push(fleet);
 			}
+
+			units.fleetList = units.fleetList.filter((elt) => elt.position === planetData.address || elt.motherPlanetAddress === planetData.address);
 
 			units.regenerateSelectFleetLists();
 			units.refresh(units.list);
@@ -77,7 +84,7 @@ class webSockets {
 			loadScreen.complete('tactics');
 		});
 
-		//Sync the player data
+		// Sync the player data
 		socket.on('player-recieve-data',function(data) {
 			for(const key in data) {
 				userData[key] = data[key];
@@ -89,6 +96,15 @@ class webSockets {
 			}
 			planetUI.MiscDrawUpdate();
 			loadScreen.complete('player');
+		});
+
+		// Sync the player reports
+		socket.on('player-report-list', (reports) => {
+			Reports.init(reports);
+		});
+		socket.on('player-report-full', (report) => {
+			Reports.cache[report.battleLog_id] = report;
+			Reports.displayReport(report.battleLog_id);
 		});
 
 		//Launch the chat
@@ -113,7 +129,7 @@ class webSockets {
 			notifications.notify(data.type, data.args);
 		});
 		socket.on('tutorial', (tutorial) => {
-			TutorialsUI.newTutorial(tutorial);
+			Tutorials.newTutorial(tutorial);
 		});
 
 		// Daily bonus !

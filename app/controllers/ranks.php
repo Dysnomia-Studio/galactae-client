@@ -1,4 +1,4 @@
-<?php 
+<?php
 $rkMngr = new RanksManager();
 
 // URL Parameters

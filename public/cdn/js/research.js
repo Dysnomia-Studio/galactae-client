@@ -5,7 +5,7 @@ const RESEARCH_MAX_ZOOM = 1.75;
 
 const researchPrevMouse = [0,0];
 
-class research {
+class research extends _Research {
 	/**
 	 * Handle mobile touch and bind it to mouse events
 	 */
@@ -229,8 +229,8 @@ class research {
 				research.drawLink(key,current.parents[i]);
 			}
 
-			if(research.canResearch(key) && !research.isSearched(key) && planetData.currResearch !== key && !!document.getElementById(key)) {
-				document.getElementById(key).addEventListener('click', function(){
+			if(research.researchedParent(userData, planetData, key) && !research.isSearched(userData, key) && planetData.currResearch !== key && !!document.getElementById(key)) {
+				document.getElementById(key).addEventListener('click', () => {
 					research.change(key);
 				});
 			}
@@ -256,17 +256,17 @@ class research {
 
 		// Place this node
 		let content;
-		if(planetData.currResearch === key && !research.isSearched(key)) {
+		if(planetData.currResearch === key && !research.isSearched(userData, key)) {
 			content = '<div class="research-node current-research-node" id="' + key + '-node">';
 		} else {
 			content = '<div class="research-node" id="' + key + '-node">';
 		}
 
-		if(research.canResearch(key)) {
+		if(research.researchedParent(userData, planetData, key)) {
 			content += '<h2>' + translate.research[key].name + '</h2>';
 			content += '<span class="research-desc text-justify">' + translate['research'][key].desc + '</span>';
 			content += '<div class="research-bottom">';
-			if(!research.isSearched(key)) {
+			if(!research.isSearched(userData, key)) {
 				content += '<span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
 				if(planetData.currResearch !== key) {
 					content += '<a class="research-search" id="' + key + '" src="#research">' + translate['research'].search + '</a>';
@@ -311,7 +311,7 @@ class research {
 		const y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
 		let color; //default
 
-		if(research.isSearched(parent)) { color = '#0EC6C6'; }
+		if(research.isSearched(userData, parent)) { color = '#0EC6C6'; }
 		else { color = 'rgba(14,198,198,0.2)'; }
 
 		const newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -322,38 +322,6 @@ class research {
 		newLine.setAttribute('x2',x2);
 		newLine.setAttribute('y2',y2);
 		document.getElementById('research-links').append(newLine);
-	}
-	/**
-	 * Determines ability to research.
-	 *
-	 * @param	  {<type>}   key	 The research name
-	 * @return	 {boolean}  True if able to research, False otherwise.
-	 */
-	static canResearch(key) {
-		const parents = researchList[key].parents;
-
-		for(let i=0; i<parents.length; i++) {
-			if(typeof parents[i] === 'string') {
-				if(!research.isSearched(parents[i]) && parents[i] !== 'researchCenter') {
-					return false;
-				}
-			} else if(typeof parents[i] === 'object' &&
-					typeof parents[i][0] === 'number') {
-
-				if(planetData.Buildings[parents[i][0]] < parents[i][1]) {
-					return false;
-				}
-			} else if(typeof parents[i] === 'object' &&
-					typeof parents[i][0] === 'string') {
-
-				if(parents[i][0] === 'planet' &&
-					userData.planetlist.length < parents[i][1]) {
-					return false;
-				}
-			}
-		}
-
-		return true;
 	}
 
 	/**
@@ -369,7 +337,7 @@ class research {
 
 		for(let i=0; i<parents.length; i++) {
 			if(typeof parents[i] === 'string') {
-				if(!research.isSearched(parents[i]) && parents[i] !== 'researchCenter') {
+				if(!research.isSearched(userData, parents[i]) && parents[i] !== 'researchCenter') {
 					missingParents += ', ' + translate['research'][parents[i]].name;
 
 				} else { oneParentOK = true; }
@@ -400,18 +368,6 @@ class research {
 	}
 
 	/**
-	 * Determines if a research is over
-	 *
-	 * @param	  {string}   key	 The research name
-	 * @return	 {boolean}  True if searched, False otherwise.
-	 */
-	static isSearched(key,key2) {
-		if(key2 !== undefined) { key = key2; } // used in shared libraries - @TODO: Fix this
-
-		return (userData.research[key] === -1 || key === 'researchCenter');
-	}
-
-	/**
 	 * Change current research
 	 *
 	 * @param      {<type>}  id      Research identifier
@@ -436,7 +392,7 @@ class research {
 		if(userData.research[planetData.currResearch] === undefined) { return; } // If research is undefined
 		if(userData.research[planetData.currResearch] === -1) { return; } // If research is finished
 
-		userData.research[planetData.currResearch]+= (researchProduction[0]*Math.pow(planetData.Buildings[8],2) + researchProduction[1]* planetData.Buildings[8] + researchProduction[2])/1800;
+		userData.research[planetData.currResearch]+= Research.getResearchProduction(planetData.Buildings[8])/1800;
 
 		if(userData.research[planetData.currResearch]>researchList[planetData.currResearch].cost) {
 			userData.research[planetData.currResearch] = -1;

@@ -19,8 +19,8 @@
 	define('HUD_BOTTOM_QUEST','Quêtes');
 	define('HUD_BOTTOM_TRADE','Commerce');
 	define('HUD_BOTTOM_RANKS','Classement');
-	define('HUD_BOTTOM_PROFIL','Profils');
-	define('HUD_BOTTOM_MESSAGES','Messages');
+	define('HUD_BOTTOM_PROFIL','Profil');
+	define('HUD_BOTTOM_MESSAGES','Messages Privés');
 	define('HUD_BOTTOM_CHAT','Chat');
 
 	//== DAY BONUS ==\\
@@ -36,6 +36,11 @@
 	define('RANKS_SECTOR_PLAYER', 'Secteur - Joueur');
 	define('RANKS_GALAXY_ALLY', 'Galaxie - Alliance');
 	define('RANKS_SECTOR_ALLY', 'Secteur - Alliance');
+
+	//== REPORTS ==\\
+	define('DELETE', 'Supprimer');
+	define('MARK_AS_READ', 'Marquer comme lu');
+	define('MARK_AS_UNREAD', 'Marquer comme non lu');
 
 	//== OTHER ==\\
 	define('GAME_LOADING','Chargement du jeu ...');

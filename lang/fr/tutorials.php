@@ -15,7 +15,7 @@ N’oubliez pas que les autorités galactiques n’interviennent pas dans les co
 
 Veuillez appuyer sur “OK” afin de commencer le didacticiel de cette interface.
 
-PS: Cette interface étant en bêta, certaines fonctionnalités peuvent être manquantes, mais ne vous inquiétez pas: les fonctionnalités critiques sont déjà fonctionnelles.
+PS: Cette interface étant en bêta, certaines fonctionnalités peuvent être manquantes, mais ne vous inquiétez pas: les fonctionnalités critiques sont déjà présentes.
 	`,
 
 	// Energy
@@ -50,11 +50,11 @@ Afin d’augmenter votre production veuillez augmenter votre production de resso
 L’arbre de recherche part du centre de recherche vers 3 domaines qui bien que différents sont liés entre eux:
 - Thermodynamique: permet de débloquer tout ce qui attrait à la propulsion
 - Physique contemporaine: permet d’évoluer les connaissances en physique de la nation (qui nous seront utiles dans bien des domaines)
-- Industrialisation: Permet d’augmenter la production de ressources, la productivité de certains bâtiments ou encore la vitesse de construction d’unités.
+- Industrialisation: Permet d’augmenter la production de ressources, la productivité de certains bâtiments ou encore la vitesse de construction de vaisseaux;
 
 Bien sûr, l'évolution de votre centre de recherches influencera la rapidité d’avancée de la science.
 
- Pour réaliser une recherche: ouvrez le panel de recherche, puis choisissez l’une des 3 recherches disponibles en cliquant sur “Rechercher”.
+ Pour réaliser une recherche: ouvrez le panel de recherche , puis choisissez l’une des 3 recherches disponibles en cliquant sur “Rechercher”.
 
 Note: Il n’est possible de faire qu’une recherche à la fois sur une planète précise.`,
 	'research-objective-0': 'Faire une première recherche',
@@ -62,7 +62,12 @@ Note: Il n’est possible de faire qu’une recherche à la fois sur une planèt
 
 	// endFirstPart
 	'endFirstPart-title': 'Fin de la première partie des didacticiels',
-	'endFirstPart-desc': `Vous avez maintenant terminé la première partie des didacticiels, évoluez votre planète et vos recherches jusqu’à découvrir les premières unités spatiales. A ce moment là, une nouvelle série de didacticiels vous sera disponible.`,
+	'endFirstPart-desc': `Vous avez maintenant terminé la première partie des didacticiels, évoluez votre planète et vos recherches jusqu’à découvrir les premières unités spatiales. A ce moment là, une nouvelle série de didacticiels vous sera disponible.
+
+		Afin d'accéder aux unités spatiales, il vous faudra découvrir la propulsion interplanétaire et/ou interstellaire, un ou plusieurs modèles de vaisseaux, et une ou plusieurs armes.
+
+		Indice: Les propulsions interplanétaires font intervenir la thermodynamique, l'astronomie et la physique stellaire.
+	`,
 
 	// unitsCreate
 	'unitsCreate-title': 'Conception d\'unité',
@@ -84,17 +89,22 @@ Afin de construire une unité, allez sur l’interface de gestion des unités, c
 
 	// interplanetaryFlight
 	'interplanetaryFlight-title': 'Déplacement interplanétaire',
-	'interplanetaryFlight-desc': ``, //@TODO
+	'interplanetaryFlight-desc': `Maintenant que votre première flotte est construite, vous pouvez commencer à vous déplacer dans votre système. Allez sur la carte, puis cliquez sur votre système courant (il est entouré d'un cercle bleu pour le reconnaitre).
+Cliquez sur n'importe quel astre (étoile ou planète) puis sur "déplacer" (la flêche) et ensuite, “Se déplacer”.
+
+Attention: un symbole vous indiquera votre capacité de carburant, s'il est rouge, vous ne pouvez pas vous déplacer, il faut attendre que votre flotte se remplisse; s'il est orange, vous ne pouvez faire que l'aller; s'il est vert vous pouvez faire l'aller-retour.
+
+Note: n'oubliez pas que les planètes bougent et que la quantité de carburant nécessaire à l'aller peut être différente de celle du retour.`,
 	'interplanetaryFlight-objective-0': 'Voyagez vers une autre planète',
 
 	// interstellarFlight
 	'interstellarFlight-title': 'Déplacement interstellaire',
-	'interstellarFlight-desc': ``, //@TODO
+	'interstellarFlight-desc': `En cours d'écriture ...`, //@TODO
 	'interstellarFlight-objective-0': 'Voyagez vers un autre système solaire',
 
 	// battle
 	'battle-title': 'Combats',
-	'battle-desc': ``, //@TODO
+	'battle-desc': `En cours d'écriture ...`, //@TODO
 	'battle-objective-0': 'Attaquez une planète',
 };
 </script>

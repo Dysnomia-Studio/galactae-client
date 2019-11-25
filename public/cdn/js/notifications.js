@@ -22,7 +22,7 @@ class notifications {
 			return;
 		} else if (Notification.permission === 'granted') {
 			notification = new Notification(txt,options);
-		} else if (Notification.permission !== 'denied') { 
+		} else if (Notification.permission !== 'denied') {
 			// Note : Chrome n'implémente pas la propriété statique permission
 			Notification.requestPermission(function (permission) {
 				if(!('permission' in Notification)) {
@@ -44,9 +44,9 @@ class notifications {
 	 * Add all events of notification panel
 	 */
 	static gameNotifAddEvents() {
-		let DOMElts = document.querySelectorAll('.notif-elt');
+		const DOMElts = document.querySelectorAll('.notif-elt');
 		for(let elt=0; elt<DOMElts.length; elt++) {
-			let element = DOMElts[elt];
+			const element = DOMElts[elt];
 			element.addEventListener('click', function() {
 				notifications.gameNotifClick(this);
 
@@ -98,10 +98,16 @@ class notifications {
 			research.openUI();
 		} else if(ui.hasClass(element, 'notif-tutorial')) {
 			ui.show('#tutorial-panel');
+		} else if(ui.hasClass(element, 'notif-report')) {
+			Reports.showReport(element.id.substring('notif-'.length));
+		} else if(ui.hasClass(element, 'notif-attack')) {
+			ui.fleetPanelToggle('fleet-move');
 		}
 
 		// Remove element
-		element.parentNode.removeChild(element);
+		if(element) {
+			element.remove();
+		}
 	}
 
 	/**
@@ -115,6 +121,14 @@ class notifications {
 		}
 	}
 
+	static removeInGameNotif(id) {
+		const notifElt = document.getElementById('notif-' + id);
+		if(notifElt) {
+			notifElt.remove();
+			ui.notifCount--;
+		}
+	}
+
 	/**
 	 * Create an in-game notification (left tab)
 	 *
@@ -123,11 +137,13 @@ class notifications {
 	 * @param      {<type>}  options  Notification options
 	 */
 	static notifyOnGame(type, text, options={}) {
-		let notifPanel = document.getElementById('notifications-panel');
+		const notifPanel = document.getElementById('notifications-panel');
 		let content = '<div class="notif-elt notif-' + type + '"';
 
 		if(options.id !== undefined) {
-			content += ' id="' + options.id + '" ';
+			notifications.removeInGameNotif(options.id);
+
+			content += ' id="notif-' + options.id + '" ';
 		}
 		content +=' title="' + text + '"></div>' + notifPanel.innerHTML;
 
@@ -148,13 +164,15 @@ class notifications {
 	 */
 	static notify(type, args={}) {
 		let title = '';
-		let osOpt = { icon: cdnURL + 'img/favicon.png' };
+		const osOpt = { icon: cdnURL + 'img/favicon.png' };
 		let desc = '';
 
 		switch(type) {
 			case 'attack':
 				title = translate.messages['ATTACK_INCOMING_TITLE'];
-				desc = translate.messages['ATTACK_INCOMING_01'] + getStringTime(args.arriveTime);
+				desc = translate.messages['ATTACK_INCOMING_FROM'] + args.origin + '(' + args.player + ')' +
+					translate.messages['ATTACK_INCOMING_TO'] + args.destination +
+					translate.messages['ATTACK_INCOMING_TIME'] + new Date(args.arriveTime).toLocaleDateString() + ' ' + new Date(args.arriveTime).toLocaleTimeString();
 				break;
 			case 'building':
 				title = translate.messages['ENDED_BUILDING_TITLE'];
@@ -165,11 +183,19 @@ class notifications {
 				title = translate.messages['ENDED_MOVE'];
 				desc = args.fleetName + translate.messages['ENDED_MOVE_01'] + args.destination;
 				break;
+			case 'report':
+				title = translate.messages['NEW_REPORT_AVAILABLE'];
+				desc = translate.messages['NEW_REPORT_AVAILABLE']; // TODO planet name/address/player
+				break;
 			case 'research':
 				title = 'Galactae: ' + translate.messages['ENDED_RESEARCH'];
 				desc = translate['messages']['ENDED_RESEARCH'] + ': ' + translate.research[args.research].name;
 				break;
 			case 'unit':
+				if(fleetTranslate[args.unitName]) {
+					args.unitName = fleetTranslate[args.unitName];
+				}
+
 				title = 'Galactae: ' + translate.messages['ENDED_UNIT_TITLE'];
 				desc = translate.messages['ENDED_UNIT_01'] + args.unitCount + translate.messages['ENDED_UNIT_02'] + args.unitName + translate.messages['ENDED_UNIT_03'];
 				break;

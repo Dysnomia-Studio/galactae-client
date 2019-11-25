@@ -51,6 +51,8 @@ translate['messages'] = {
 	'MAINTENANCE': 'Maintenance ongoing.',
 	'RESTARTING_SERVER': 'Restarting game servers ...',
 	'DOUBLE_ACCOUNTS_CONNECTED': 'You\'re already connected with this account on another game-client.',
+	'ERR_BANNED': 'Erreur: you\'re banned from this server',
+	'ERR_WHITELIST': 'Erreur: you\'re not whitelisted on this server',
 	'SYSTEM_MESSAGE': 'Message Systeme:',
 	// Chat Mute
 	'CHAT_MUTED': 'You\'ve been muted for',
@@ -103,6 +105,22 @@ translate['messages'] = {
 	'FLEET_AT_DIFFERENT_POSITIONS': 'Error: the fleets are at the same place.',
 	'FLEET_UNIT_TRANSFER_SUCCESSFUL': 'Units have been successfuly tranfered between fleets',
 	'FLEET_MERGE_SUCCESSFUL': 'Fleets have been successfuly merged',
+
+	// Reports
+	'NEW_REPORT_AVAILABLE': 'New battle report available',
+	'REPORT_ATTACK': ' attacks ',
+	'NO_REPORTS_AVAILABLE': 'No battle report available',
+	'REPORT_DEF_WINS': 'Defenders wins',
+	'REPORT_ATK_WINS': 'Attackers wins',
+	'REPORT_NO_FLEET': 'No fleet',
+	'REPORT_DELETE_ONE': 'Do you really want to delete this report ?',
+	'REPORT_DELETE_MULTIPLE': 'Do you really want to delete these reports ?',
+
+	// Attack notif
+	'ATTACK_INCOMING_TITLE': 'Incoming attack',
+	'ATTACK_INCOMING_FROM': 'Incoming attack from ',
+	'ATTACK_INCOMING_TO': ' to ',
+	'ATTACK_INCOMING_TIME': ', ETA: ',
 };
 
 translate['load'] = {

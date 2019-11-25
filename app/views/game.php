@@ -119,9 +119,7 @@
 			<span id="planet-other-points"><?= MAP_PLANET_INFO_POINTS ?>: <span id="planet-other-points-data"></span></span><br/><br/>
 			<div id="planet-other-lastReports">
 				<?= MAP_PLANET_INFO_LASTREPORTS ?>:
-				<ul id="planet-other-lastReports-list">
-					<li><?= MAP_PLANET_INFO_NOREPORTS ?></li>
-				</ul>
+				<ul id="planet-other-lastReports-list"></ul>
 			</div>
 		</div>
 	</div>
@@ -317,7 +315,7 @@
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#profil" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
+			<a href="https://galactae.eu/profil" target="_blank" rel="noopener noreferrer" id="hud-bottom-button-profil"><img src="<?= $cdnURL ?>img/ui/profil.svg" alt="profil"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_PROFIL; ?></span>
 			</span>
@@ -355,16 +353,16 @@
 <?php /* Chat */ ?>
 <div id="hud-chat">
 	<ul id="hud-chat-channels" class="ul-choice-line">
-		<li chatChannel="hud-chat-global" class="chatTab ul-choice-line-li-active"><?= CHAT_GLOBAL; ?></li>
-		<li chatChannel="hud-chat-trade" class="chatTab"><?= CHAT_TRADE; ?></li>
-		<li chatChannel="hud-chat-ally" class="chatTab"><?= CHAT_ALLY; ?></li>
+		<li chatChannel="hud-chat-global" class="chatTab ul-choice-line-li-active"><span class="read">•&nbsp;</span><?= CHAT_GLOBAL; ?></li>
+		<li chatChannel="hud-chat-trade" class="chatTab"><span class="read">•&nbsp;</span><?= CHAT_TRADE; ?></li>
+		<li chatChannel="hud-chat-ally" class="chatTab"><span class="read">•&nbsp;</span><?= CHAT_ALLY; ?></li>
 	</ul>
 	<div id="hud-chat-global" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-trade" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<form action="#chat_text" method="post" id="chat_form">
 		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
-		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank"><img src="<?= $cdnURL ?>img/ui/chat-voice.svg" alt="voice"></a>
+		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank" rel="noopener noreferrer"><img src="<?= $cdnURL ?>img/ui/chat-voice.svg" alt="voice"></a>
 	</form>
 </div>
 <?php /* Ranks */ ?>
@@ -521,7 +519,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</ul>
 		<div id="fleet-build-content">
 			<h2 id="fleet-build-list-empty"><?= FLEET_NO_MODEL; ?></h2>
-			<table id="fleet-build-list" class="unit-list-table">
+			<table id="fleet-build-list" class="unit-list-table" aria-describedby="Unit list">
 				<thead>
 					<tr>
 						<th id="fleet-build-list-type-name"><?= FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
@@ -750,7 +748,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<h1><?= DAY_BONUS_TITLE; ?></h1>
 	<h3><?= DAY; ?> <span id="day-bonus-current"></span> - <?= DAY_BEST; ?> <span id="day-bonus-best"></span></h3>
 	<p id="day-bonus-choice"><?= DAY_BONUS_CHOICE; ?>
-	<table id="day-bonus-desc"></table>
+	<table id="day-bonus-desc" aria-describedby="Daily bonus description"></table>
 	<span id="day-bonus-confirm"><?= DAY_BONUS_CONFIRM; ?></span>
 	<span id="day-bonus-later"><?= DAY_BONUS_LATER; ?></span>
 </div>
@@ -758,8 +756,51 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <div id="notifications-panel">
 	<span id="notifications-closeAll">☒</span>
 </div>
+<?php /* Rapports */ ?>
+<div id="report-panel">
+	<a id="report-panel-close" class="close-button">X</a>
+	<div id="report-list-container" class="report-panel-container">
+		<table id="report-list-buttons">
+			<tr>
+				<td><input type="checkbox" class="ui-medium-button" id="report-list-select-all" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-list-mark-read" value="<?= MARK_AS_READ ?>" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-list-mark-unread" value="<?= MARK_AS_UNREAD ?>" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-list-delete" value="<?= DELETE ?>" /></td>
+			</tr>
+		</table>
+
+		<table id="report-list" class="report-panel-table">
+		</table>
+	</div>
+
+	<div id="report-preview-container" class="report-panel-container">
+		<span id="report-preview-back">←</span>
+
+		<table id="report-preview-buttons">
+			<tr>
+				<td><input type="button" class="ui-medium-button" id="report-preview-mark-unread" value="<?= MARK_AS_UNREAD ?>" /></td>
+				<td><input type="button" class="ui-medium-button" id="report-preview-delete" value="<?= DELETE ?>" /></td>
+			</tr>
+		</table>
+
+		<table id="report-preview" class="report-panel-table">
+			<tr>
+				<td id="report-preview-atk"></td>
+				<td id="report-preview-def"></td>
+			</tr>
+			<tr>
+				<td id="report-preview-status" class="text-center" colspan="2"></td>
+			</tr>
+			<tr>
+				<td id="report-details-atk"></td>
+				<td id="report-details-def"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
 <?php /* Game Version & Copyright */ ?>
-<div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
+<div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank" rel="noopener noreferrer">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank" rel="noopener noreferrer">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/readyEvent.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/details-polyfill.js"></script>
@@ -767,26 +808,35 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
 <?php /* Client Classes */ ?>
+
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Fleets.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/GameMap.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Reports.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Research.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Resources.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Tutorials.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Units.js"></script>
+
 <script type="text/javascript" src="<?= $cdnURL ?>js/Buildings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/Fleet.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/GameMap.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/planetUI.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/planetback.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/planetUI.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Reports.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/research.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/tactics.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Tutorials.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/tutorialsUI.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/Unit.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/websockets.js"></script>
 <?php /* Launch Game ! */ ?>
 <script type="text/javascript" src="<?= $cdnURL ?>js/load.js"></script>

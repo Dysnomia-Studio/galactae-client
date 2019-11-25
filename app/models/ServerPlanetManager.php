@@ -28,7 +28,7 @@ class ServerPlanetManager extends SQLInterface {
 			address
 			FROM planets
 			WHERE "owner" = \'00000000-0000-0000-0000-000000000001\'
-			ORDER BY distanceToCenter 
+			ORDER BY distanceToCenter
 			LIMIT 1) as distanceOrdered )',
 		[ 'owner' => $user['id'] ]);
 

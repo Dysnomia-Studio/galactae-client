@@ -1,13 +1,14 @@
 let preventFleetHUDClosing = false;
 let preventUnitBuildPanelClose = false;
 
-class units {
+class units extends _Units {
 	/**
 	 * Ask units from server
 	 */
 	static sync() {
 		const data = userData;
 		data.planet = planetData.id;
+		data.address = planetData.address;
 		socket.emit('units-ask-data', data);
 	}
 
@@ -29,11 +30,11 @@ class units {
 		// Research depending unit type
 		const researchUnitsTypes = ['SHIP_WEP_MINES', 'SHIP_WEP_MINES_IEM', 'SHIP_WEP_MINES_NUKE'];
 		for(const unitType of researchUnitsTypes) {
-			if(research.isSearched(shipResearchDependencies[unitType])) {
+			if(research.isSearched(userData, shipResearchDependencies[unitType])) {
 				units.list.push({
 					id: unitType,
 					name: fleetTranslate[unitType],
-					note: 0, // @ADD: Note
+					note: 0, // @TODO: Note
 					cost: shipCosts[unitType],
 					shipShape: unitType,
 					shipType: 'SHIP_DEF',
@@ -65,7 +66,7 @@ class units {
 		units.lastType = 'SHIP_ALL';
 
 		// Fleet panels close events
-		document.getElementById('fleet-close').addEventListener('click', function() {
+		document.getElementById('fleet-close').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 			if(units.unitPanelTimeout !== -1) {
 				clearTimeout(units.unitPanelTimeout);
@@ -151,7 +152,7 @@ class units {
 		units.fleetListEvents();
 
 		// Move
-		document.getElementById('map-move-panel-move').addEventListener('click', function() {
+		document.getElementById('map-move-panel-move').addEventListener('click', () => {
 			if(ui.moveType === 3) { ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']); return; }
 
 			socket.emit('fleet-move', {
@@ -159,7 +160,7 @@ class units {
 				username: userData.username,
 				fleetId: units.currFleet,
 				destination: units.planetTarget,
-				moveType: units.moveType
+				moveType: units.moveType,
 			});
 		});
 	}
@@ -170,24 +171,24 @@ class units {
 			units.createNewType();
 		});
 
-		document.getElementById('fleet-type-create-close').addEventListener('click', function() {
+		document.getElementById('fleet-type-create-close').addEventListener('click', () => {
 			preventFleetHUDClosing = false;
 			ui.closeTab('#fleet-type-create');
 		});
 
-		document.getElementById('fleet-build-create').addEventListener('click', function() {
+		document.getElementById('fleet-build-create').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			units.drawCreateTypePanel();
 		});
 		// Type copy
-		document.getElementById('fleet-build-type-copy').addEventListener('click', function() {
+		document.getElementById('fleet-build-type-copy').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			units.drawCreateTypePanel();
 		});
 		// Type delete
-		document.getElementById('fleet-build-type-delete').addEventListener('click', function() {
+		document.getElementById('fleet-build-type-delete').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			ui.confirm(
@@ -199,7 +200,7 @@ class units {
 					socket.emit('unit-type-delete', {
 						id: userData.id,
 						username: userData.username,
-						unit: units.list[units.currUnit].id
+						unit: units.list[units.currUnit].id,
 					});
 					preventFleetHUDClosing = false;
 
@@ -212,7 +213,7 @@ class units {
 		});
 
 		// Type rename
-		document.getElementById('fleet-build-rename').addEventListener('click', function() {
+		document.getElementById('fleet-build-rename').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			const oldName = units.list[units.currUnit].name;
@@ -222,42 +223,42 @@ class units {
 			ui.show('#fleet-type-rename');
 			preventFleetHUDClosing = true;
 		});
-		document.getElementById('fleet-type-rename-submit').addEventListener('click', function() {
+		document.getElementById('fleet-type-rename-submit').addEventListener('click', () => {
 			if(document.getElementById('fleet-type-rename-newName').value === '') { return; }
 
 			socket.emit('unit-type-rename', {
 				id: userData.id,
 				username: userData.username,
 				shipId: units.list[units.currUnit].id,
-				shipNewName: document.getElementById('fleet-type-rename-newName').value
+				shipNewName: document.getElementById('fleet-type-rename-newName').value,
 			});
 			ui.hide('#fleet-type-rename');
 			preventFleetHUDClosing = false;
 		});
-		document.getElementById('fleet-type-rename-close').addEventListener('click', function() {
+		document.getElementById('fleet-type-rename-close').addEventListener('click', () => {
 			ui.hide('#fleet-type-rename');
 			preventFleetHUDClosing = false;
 		});
 	}
 
 	static fleetBuildEvents() {
-		document.getElementById('fleet-build-openPanel').addEventListener('click', function() {
+		document.getElementById('fleet-build-openPanel').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			preventFleetHUDClosing = true;
 			units.drawBuildPanel();
 		});
-		document.getElementById('fleet-newFleet-submit').addEventListener('click', function() {
+		document.getElementById('fleet-newFleet-submit').addEventListener('click', () => {
 			units.validFleetName();
 		});
 
-		document.getElementById('fleet-newFleet-panel-close').addEventListener('click', function() {
+		document.getElementById('fleet-newFleet-panel-close').addEventListener('click', () => {
 			ui.hide('#fleet-newFleet-panel');
 			preventUnitBuildPanelClose = false;
 			units.regenerateSelectFleetLists();
 		});
 
-		document.getElementById('fleet-ship-build-upgrade').addEventListener('click', function() {
+		document.getElementById('fleet-ship-build-upgrade').addEventListener('click', () => {
 			units.askUnitBuild();
 		});
 
@@ -276,7 +277,7 @@ class units {
 			units.updateCount(parseInt(this.value));
 		});
 
-		document.getElementById('fleet-ship-build-fleetSelect').addEventListener('change', function() {
+		document.getElementById('fleet-ship-build-fleetSelect').addEventListener('change', () => {
 			let fleetSelect = document.getElementById('fleet-ship-build-fleetSelect');
 			fleetSelect = fleetSelect.options[fleetSelect.selectedIndex].id;
 
@@ -285,7 +286,7 @@ class units {
 			}
 		});
 
-		document.getElementById('fleet-ship-build-close').addEventListener('click', function() {
+		document.getElementById('fleet-ship-build-close').addEventListener('click', () => {
 			if(preventUnitBuildPanelClose) { return; }
 			preventFleetHUDClosing = false;
 			ui.closeTab('#fleet-ship-build');
@@ -293,24 +294,24 @@ class units {
 	}
 
 	static fleetListEvents() {
-		document.getElementById('fleet-rename-submit').addEventListener('click', function() {
+		document.getElementById('fleet-rename-submit').addEventListener('click', () => {
 			if(document.getElementById('fleet-rename-newName').value === '') { return; }
 
 			socket.emit('fleet-rename', {
 				id: userData.id,
 				username: userData.username,
 				fleetId: document.getElementById('fleet-rename').getAttribute('fleetId'),
-				fleetNewName: document.getElementById('fleet-rename-newName').value
+				fleetNewName: document.getElementById('fleet-rename-newName').value,
 			});
 			ui.hide('#fleet-rename');
 			preventFleetHUDClosing = false;
 		});
-		document.getElementById('fleet-rename-close').addEventListener('click', function() {
+		document.getElementById('fleet-rename-close').addEventListener('click', () => {
 			ui.hide('#fleet-rename');
 			preventFleetHUDClosing = false;
 		});
 
-		document.getElementById('fleet-merge-submit').addEventListener('click', function() {
+		document.getElementById('fleet-merge-submit').addEventListener('click', () => {
 			if(document.getElementById('fleet-merge-fleetSelect').selectedIndex === '-2') { return; }
 
 			let fleet = document.getElementById('fleet-merge-fleetSelect');
@@ -326,16 +327,16 @@ class units {
 			ui.hide('#fleet-merge-panel');
 			preventFleetHUDClosing = false;
 		});
-		document.getElementById('fleet-merge-panel-close').addEventListener('click', function() {
+		document.getElementById('fleet-merge-panel-close').addEventListener('click', () => {
 			ui.hide('#fleet-merge-panel');
 			preventFleetHUDClosing = false;
 		});
 
-		document.getElementById('fleet-units-transfer-submit').addEventListener('click', function() {
+		document.getElementById('fleet-units-transfer-submit').addEventListener('click', () => {
 			const count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value);
 
 			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') { return; }
-			if(Number.isNaN(count) || count <= 0) { return; } // TODO: check max
+			if(Number.isNaN(count) || count <= 0) { return; } //@TODO: check max
 
 			let fleet = document.getElementById('fleet-units-transfer-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -352,16 +353,16 @@ class units {
 			ui.hide('#fleet-units-transfer-panel');
 			preventFleetHUDClosing = false;
 		});
-		document.getElementById('fleet-units-transfer-close').addEventListener('click', function() {
+		document.getElementById('fleet-units-transfer-close').addEventListener('click', () => {
 			ui.hide('#fleet-units-transfer-panel');
 			preventFleetHUDClosing = false;
 		});
 
-		document.getElementById('fleet-transferFuel-submit').addEventListener('click', function() {
+		document.getElementById('fleet-transferFuel-submit').addEventListener('click', () => {
 			const count = parseInt(document.getElementById('fleet-transferFuel-fuelCount').value);
 
 			if(document.getElementById('fleet-transferFuel-fleetSelect').selectedIndex === '-2') { return; }
-			if(Number.isNaN(count) || count <= 0) { return; } // TODO: check max
+			if(Number.isNaN(count) || count <= 0) { return; } //@TODO: check max
 
 			let fleet = document.getElementById('fleet-transferFuel-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -377,12 +378,12 @@ class units {
 			ui.hide('#fleet-transferFuel-panel');
 			preventFleetHUDClosing = false;
 		});
-		document.getElementById('fleet-transferFuel-close').addEventListener('click', function() {
+		document.getElementById('fleet-transferFuel-close').addEventListener('click', () => {
 			ui.hide('#fleet-transferFuel-panel');
 			preventFleetHUDClosing = false;
 		});
 
-		document.getElementById('fleet-assignTactic-submit').addEventListener('click', function() {
+		document.getElementById('fleet-assignTactic-submit').addEventListener('click', () => {
 			const select = document.getElementById('fleet-assignTactic-tacticSelect');
 			let currTactic = select.options[select.selectedIndex].id;
 
@@ -405,7 +406,7 @@ class units {
 			ui.hide('#fleet-assignTactic-panel');
 			preventFleetHUDClosing = false;
 		});
-		document.getElementById('fleet-assignTactic-panel-close').addEventListener('click', function() {
+		document.getElementById('fleet-assignTactic-panel-close').addEventListener('click', () => {
 			ui.hide('#fleet-assignTactic-panel');
 			preventFleetHUDClosing = false;
 		});
@@ -539,11 +540,11 @@ class units {
 			}
 
 			if(dateNow.toLocaleDateString() !== dateEnd.toLocaleDateString()) {
-				units.unitPanelTimeout = setTimeout(function() {
+				units.unitPanelTimeout = setTimeout(() => {
 					units.drawMain();
 				},(((TIME.DAY_TO_HOUR - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (TIME.HOUR_TO_MINUTES - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + ((TIME.MINUTES_TO_SECONDS + TIME.SECOND_MARGIN) - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh at 00:00:05
 			} else {
-				units.unitPanelTimeout = setTimeout(function() {
+				units.unitPanelTimeout = setTimeout(() => {
 					planetUI.sync();
 				},(((dateEnd.getHours() - dateNow.getHours())*TIME.HOUR_TO_MINUTES + (dateEnd.getMinutes() - dateNow.getMinutes()))*TIME.MINUTES_TO_SECONDS + (dateEnd.getSeconds() + TIME.SECOND_MARGIN - dateNow.getSeconds()))*TIME.SECONDS_TO_MS); // Refresh 5 sec after end
 			}
@@ -631,7 +632,7 @@ class units {
 		let disabledButton = true;
 		for(let i=0; i<unitTypes.length; i++) {
 			for(const index in shipShapesDetails[unitTypes[i]]) {
-				if(shipResearchDependencies[index] === undefined || research.isSearched(shipResearchDependencies[index])) {
+				if(shipResearchDependencies[index] === undefined || research.isSearched(userData, shipResearchDependencies[index])) {
 					disabledButton = false;
 					break;
 				}
@@ -783,7 +784,7 @@ class units {
 		for(let i=0; i<units.fleetList.length; i++) {
 			units.fleetList[i].endMoveTime = parseInt(units.fleetList[i].endMoveTime);
 			if(units.fleetList[i].endMoveTime > 0) {
-				units.fleetTimers[u] = setTimeout(function() {
+				units.fleetTimers[u] = setTimeout(() => {
 					units.sync();
 				}, units.fleetList[i].endMoveTime-Date.now()+planetUI.deltaNow+ TIME.SECOND_MARGIN * TIME.SECONDS_TO_MS); // Wait 5 sec
 
@@ -862,7 +863,7 @@ class units {
 			username: userData.username,
 			planet: userData.pid,
 			count: count,
-			unit: units.list[units.currUnit].id
+			unit: units.list[units.currUnit].id,
 		};
 
 		if(fleet === -1) {
@@ -907,7 +908,7 @@ class units {
 			let disabled = true;
 			for(const shipShape in shipShapesDetails[unitTypes[i]]) {
 				// Check ship research
-				if(shipResearchDependencies[shipShape] === undefined || research.isSearched(shipResearchDependencies[shipShape])) {
+				if(shipResearchDependencies[shipShape] === undefined || research.isSearched(userData, shipResearchDependencies[shipShape])) {
 					disabled = false;
 					break;
 				}
@@ -953,7 +954,7 @@ class units {
 		let selectShipShape = '';
 		for(const index in shipShapesDetails[type]) {
 			if(shape === '') { shape = index; }
-			if(shipResearchDependencies[index] !== undefined && !research.isSearched(shipResearchDependencies[index])) { continue; }
+			if(shipResearchDependencies[index] !== undefined && !research.isSearched(userData, shipResearchDependencies[index])) { continue; }
 			if(index === selectedShape) {
 				selectShipShape += '<option value="' + index + '" selected>' + fleetTranslate[index] + '</option>';
 			} else {
@@ -1041,8 +1042,8 @@ class units {
 		const clickEvent = [];
 		let disableForm = false;
 
-		const subEngineCount = shape.filter(e => e[0] === 'sub_propulsion').length,
-			supEngineCount = shape.filter(e => e[0] === 'sup_propulsion').length;
+		const subEngineCount = shape.filter((e) => e[0] === 'sub_propulsion').length,
+			supEngineCount = shape.filter((e) => e[0] === 'sup_propulsion').length;
 
 		for(let i=0; i<shape.length; i++) {
 			const id = i;
@@ -1089,7 +1090,7 @@ class units {
 				for(let j=0; j<content[shape[i][0]].length; j++) {
 					if(content[shape[i][0]][j] !== 'none' &&
 						shipResearchDependencies[content[shape[i][0]][j]] !== undefined &&
-						!research.isSearched(shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
+						!research.isSearched(userData, shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
 
 					const newOption = document.createElement('option');
 					newOption.value = content[shape[i][0]][j];
@@ -1168,7 +1169,7 @@ class units {
 			const id = clickEvent[i];
 
 			document.querySelectorAll('#part-selecting-seen-' + id + ' dt a').forEach(function(elt) {
-				elt.addEventListener('click', function() {
+				elt.addEventListener('click', () => {
 					document.querySelectorAll('#part-selecting-seen-' + id + ' dd ul').forEach(function(e) {
 						if(e.style.display === 'none') {
 							e.style.display = 'block';
@@ -1179,7 +1180,8 @@ class units {
 				});
 			});
 
-			document.addEventListener('click', function(e) {
+			//@TODO: ameliorer ca, utiliser une liste globale ou virer les anciens event
+			document.addEventListener('click', (e) => {
 				if(!!e.target.parentNode.parentNode && !ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
 					ui.hide('#part-selecting-seen-' + id + ' dd ul');
 				}
@@ -1263,7 +1265,7 @@ class units {
 			'hangar': 0,
 		};
 
-		let miss = 0; // @ADD: Calc miss
+		let miss = 0; // @TODO: Calc miss
 
 		// Hide some things if needed
 		ui.show(div + ' div');
@@ -1332,7 +1334,7 @@ class units {
 
 		// Calcul des données si données
 		if(note === undefined) {
-			note = 'X.X'; // @ADD: Calc note
+			note = 'X.X'; // @TODO: Calc note
 		}
 
 		// Note
@@ -1449,7 +1451,7 @@ class units {
 		const ship = {
 			name: document.getElementById('fleet-type-create-name').value,
 			type: shipType,
-			shape: shipShape
+			shape: shipShape,
 		};
 
 		/* Checks ... */
@@ -1614,7 +1616,7 @@ class units {
 	 */
 	static drawFleetLists() {
 		if(planetData.address === undefined) {
-			setTimeout(function() {
+			setTimeout(() => {
 				units.drawFleetLists();
 			}, 500);
 
@@ -1686,7 +1688,7 @@ class units {
 			preventFleetHUDClosing = true;
 		}));
 
-		Array.from(document.getElementsByClassName('fleet-show-mergeInto')).forEach((elt) => elt.addEventListener('click', function() {
+		Array.from(document.getElementsByClassName('fleet-show-mergeInto')).forEach((elt) => elt.addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			units.regenerateSelectFleetLists();
@@ -1704,7 +1706,7 @@ class units {
 			preventFleetHUDClosing = true;
 		}));
 
-		Array.from(document.getElementsByClassName('fleet-show-transferFuel')).forEach((elt) => elt.addEventListener('click', function() {
+		Array.from(document.getElementsByClassName('fleet-show-transferFuel')).forEach((elt) => elt.addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			units.regenerateSelectFleetLists();
@@ -1724,7 +1726,7 @@ class units {
 			preventFleetHUDClosing = true;
 		}));
 
-		Array.from(document.getElementsByClassName('fleet-show-transferUnits')).forEach((elt) => elt.addEventListener('click', function() {
+		Array.from(document.getElementsByClassName('fleet-show-transferUnits')).forEach((elt) => elt.addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
 			units.regenerateSelectFleetLists();
@@ -1778,6 +1780,14 @@ class units {
 			if(preventFleetHUDClosing) { event.preventDefault(); }
 		}));
 
+		Array.from(document.getElementsByClassName('fleet-show-upgrade')).forEach((elt) => elt.addEventListener('click', function(event) {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+		}));
+
+		Array.from(document.getElementsByClassName('fleet-show-recycle')).forEach((elt) => elt.addEventListener('click', function(event) {
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+		}));
+
 		const priorityElts = document.getElementsByClassName('priority-fleet');
 		for(let i=0; i<priorityElts.length; i++) {
 			priorityElts[i].addEventListener('click', function(e) {
@@ -1821,21 +1831,21 @@ class units {
 				unitList.push(units.getUnitData(key));
 			}
 
-			minSpeed = Fleet.getMinSubSpeed(unitList, fleet.units);
+			minSpeed = Fleets.getMinSubSpeed(unitList, fleet.units);
 
 			const baseDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
 				now/TIME.SECONDS_TO_MS);
 			if(Number.isNaN(baseDist) || baseDist < 0) { return; }
-			const baseTravelTime = Fleet.calcMoveTime(baseDist, minSpeed.speed);
+			const baseTravelTime = Fleets.calcMoveTime(baseDist, minSpeed.speed);
 
 			const previewDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
 				now/TIME.SECONDS_TO_MS + Math.round(baseTravelTime*TIME.HOUR_TO_SECONDS*100)/100);
 			if(Number.isNaN(previewDist) || previewDist < 0) { return; }
-			const previewTime = Fleet.calcMoveTime(previewDist, minSpeed.speed);
+			const previewTime = Fleets.calcMoveTime(previewDist, minSpeed.speed);
 
 			/* Final travel time:
 				Average of ...
@@ -1856,17 +1866,17 @@ class units {
 				unitList.push(units.list[currUnitId]);
 			}
 
-			minSpeed = Fleet.getMinSupraSpeed(unitList, fleet.units);
+			minSpeed = Fleets.getMinSupraSpeed(unitList, fleet.units);
 
 			const dist = Math.sqrt(
 				Math.pow(systemeDepart.getAttribute('x') - planeteArrivee.galacticPos[0],2) +
 				Math.pow(systemeDepart.getAttribute('y') - planeteArrivee.galacticPos[1],2)
 			);
 
-			time = Fleet.calcMoveTime(dist, minSpeed.speed);
+			time = Fleets.calcMoveTime(dist, minSpeed.speed);
 		}
 
-		const fuel = [Fleet.calcFuelCost(minSpeed.engines) * time, fleet.fuel];
+		const fuel = [Fleets.calcFuelCost(minSpeed.engines) * time, fleet.fuel];
 
 		return { time, fuel };
 	}
