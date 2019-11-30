@@ -783,7 +783,8 @@ class units extends _Units {
 		let u = 0;
 		for(let i=0; i<units.fleetList.length; i++) {
 			units.fleetList[i].endMoveTime = parseInt(units.fleetList[i].endMoveTime);
-			if(units.fleetList[i].endMoveTime > 0) {
+			// Note: We must disable timeouts that are stored in more than 32 bits
+			if(units.fleetList[i].endMoveTime > 0 && units.fleetList[i].endMoveTime-Date.now() < Math.pow(2, 31)) {
 				units.fleetTimers[u] = setTimeout(() => {
 					units.sync();
 				}, units.fleetList[i].endMoveTime-Date.now()+planetUI.deltaNow+ TIME.SECOND_MARGIN * TIME.SECONDS_TO_MS); // Wait 5 sec
