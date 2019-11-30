@@ -57,12 +57,10 @@ class webSockets {
 
 		//Sync the fleet data
 		socket.on('fleet-recieve-data',function(data) {
-			const ids = units.fleetList.map((elt) => elt.id);
-
 			for(const fleet of data.FleetList) {
 				fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name;
 
-				const index = ids.indexOf(fleet.id);
+				const index = units.fleetList.map((elt) => elt.id).indexOf(fleet.id);
 				if(index !== -1) {
 					units.fleetList.splice(index, 1);
 				}
