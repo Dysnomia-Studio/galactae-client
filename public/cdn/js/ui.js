@@ -648,9 +648,6 @@ class ui {
 		document.getElementById('hud-bottom-button-trade').addEventListener('click', function() {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
-		document.getElementById('hud-bottom-button-profil').addEventListener('click', function() {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
-		});
 		document.getElementById('hud-bottom-button-messages').addEventListener('click', function() {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
