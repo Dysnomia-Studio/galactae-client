@@ -15,7 +15,7 @@ class RanksManager extends SQLInterface {
 	public function getGlobalListByName($player) {
 		global $dbname;
 		
-		return $this->selectQuery('SELECT name, points, planets, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
+		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 			FROM "globalRanks"
 			WHERE server_name = :serverName
 			OFFSET GREATEST((
@@ -34,7 +34,7 @@ class RanksManager extends SQLInterface {
 	public function getGlobalListByPage($page) {
 		global $dbname;
 		
-		return $this->selectQuery('SELECT name, points, planets, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
+		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 			FROM "globalRanks"
 			WHERE server_name = :serverName
 			OFFSET :beginRank LIMIT 15',
@@ -46,7 +46,7 @@ class RanksManager extends SQLInterface {
 
 	public function getGlobalListByGameIdAndServer($gameId, $serverName) {
 		
-		return $this->selectQuery('SELECT name, points, planets, server_name, (
+		return $this->selectQuery('SELECT name, points, planets, ally, server_name, (
 				SELECT rank FROM (
 					SELECT game_id, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 					FROM "globalRanks"
@@ -82,7 +82,7 @@ class RanksManager extends SQLInterface {
 	public function getSectorListByNameAndSector($userName, $sector) {
 		global $dbname;
 		
-		return $this->selectQuery('SELECT name, points, planets, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
+		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 			FROM "sectorRanks"
 			WHERE server_name = :serverName
 			AND sector = :sector
@@ -104,7 +104,7 @@ class RanksManager extends SQLInterface {
 	public function getSectorListByPage($page, $sector) {
 		global $dbname;
 		
-		return $this->selectQuery('SELECT name, points, planets, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
+		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 			FROM "sectorRanks"
 			WHERE server_name = :serverName
 			AND sector = :sector
@@ -119,7 +119,7 @@ class RanksManager extends SQLInterface {
 
 	public function getSectorListByGameIdAndServer($gameId, $serverName) {
 		
-		return $this->selectQuery('SELECT name, points, planets, server_name, sector, (
+		return $this->selectQuery('SELECT name, points, planets, ally, server_name, sector, (
 				SELECT rank FROM (
 					SELECT game_id, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 					FROM "sectorRanks"

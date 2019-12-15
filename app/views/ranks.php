@@ -39,7 +39,7 @@ if($loadCache !== '') {
 			<th>Noms</th>
 			<th>Points</th>
 			<th>Planetes</th>
-			<th>Alliance</th>
+			<th>Alliances</th>
 		</tr>';
 
 	foreach ($pageData['ranks'] as $player) {
@@ -90,6 +90,6 @@ if($loadCache !== '') {
 }
 
 // Draw page !
-$pageContent = str_replace($userData['user_name'], '<em>'.$userData['user_name'].'</em>', $pageContent);
+$pageContent = str_replace('<td class="rank-name">'.$userData['user_name'].'</td>', '<td class="rank-name"><em>'.$userData['user_name'].'</em></td>', $pageContent);
 
 echo $pageContent; // on affiche notre page :D*/
