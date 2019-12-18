@@ -636,7 +636,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input type="number" name="fleet-ship-build-count" id="fleet-ship-build-count" class="ui-large-button">
 	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?= BUILD; ?>">
 </div>
-<div id="fleet-newFleet-panel">
+<div id="fleet-newFleet-panel" class="small-panel">
 	<span id="fleet-newFleet-panel-close" class="small-panel-close">X</span>
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?= FLEET_NAME; ?>">
 	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?= CONFIRM; ?>">

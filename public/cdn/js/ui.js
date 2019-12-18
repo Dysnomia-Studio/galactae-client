@@ -67,6 +67,7 @@ class ui {
 
 		const elt = document.createElement('div');
 		elt.classList.add('confirmBox');
+		elt.classList.add('small-panel');
 
 		const spanQuestion = document.createElement('span');
 		spanQuestion.innerText = question;
