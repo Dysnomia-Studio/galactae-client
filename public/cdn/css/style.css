@@ -140,7 +140,7 @@ em {
 }
 .small-panel p {
 	text-align: center;
-    margin: 0.5em;
+	margin: 0.5em;
 }
 .small-panel-submit {
 	width: 202px;
@@ -155,8 +155,8 @@ em {
 }
 .small-panel-close {
 	position: absolute;
-    top: 0;
-    right: 5px;
+	top: 0;
+	right: 5px;
 }
 
 /**
@@ -584,9 +584,9 @@ select, input, summary {
 	text-align: center;
 	z-index: 1000001;
 
-    -webkit-animation: spin 3s linear infinite;
-    -moz-animation: spin 3s linear infinite;
-    animation: spin 3s linear infinite;
+	-webkit-animation: spin 3s linear infinite;
+	-moz-animation: spin 3s linear infinite;
+	animation: spin 3s linear infinite;
 }
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
@@ -1454,7 +1454,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 }
 #fleet-type-create-schematic {
 	width: 800px;
-    height: 450px;
+	height: 450px;
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -1645,7 +1645,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	float: right;
 }
 #fleet-build-desc {
- 	color: transparent;
+	color: transparent;
 }
 #fleet-build-openPanel:hover ~ #fleet-build-desc,
 	#fleet-build-type-copy:hover ~ #fleet-build-desc,
@@ -1883,7 +1883,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	min-height: 50px;
 }
 .research-desc {
-    display: inline-block;
+	display: inline-block;
 }
 .research-bottom {
 	margin-top: 0.5em;
@@ -1898,8 +1898,8 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 .research-search {
 	float: left;
 	height: 1.2em;
-    line-height: 1.2em;
-    padding: 0.2em;
+	line-height: 1.2em;
+	padding: 0.2em;
 }
 a[class="research-search"] {
 	cursor: url(../img/mouse_pointer.png), pointer;
@@ -3031,8 +3031,8 @@ a[class="research-search"]:hover {
 	max-height: 50%;
 }
 #building-img {
-    display: inline-block;
-    float: left; 
+	display: inline-block;
+	float: left; 
 }
 #building-cost, #buildings-bonus {
 	width: calc(75% - 1em);
@@ -3148,8 +3148,8 @@ a[class="research-search"]:hover {
 
 	position: relative;
 
-    background-position: 25% 20%;
-    background-size: 90%;
+	background-position: 25% 20%;
+	background-size: 90%;
 	background-repeat: no-repeat;
 
 	color: #0ec6c6;
