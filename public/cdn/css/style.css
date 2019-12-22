@@ -340,7 +340,7 @@ select, input, summary {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
-	
+
 	background-color: rgb(11,17,19);
 	background-color: rgba(11,17,19,1);
 	border: 1px solid #0d8384;
@@ -636,7 +636,7 @@ select, input, summary {
 }
 .loading-overlay-bar-content {
 	height: 100%;
-	
+
 	margin: 0;
 	margin-left: -1px;
 	padding: 0;
@@ -657,7 +657,7 @@ select, input, summary {
  */
 #game-menu {
 	position: fixed;
-	
+
 	left: 30.5vw;
 
 	box-sizing: content-box;
@@ -766,7 +766,7 @@ select, input, summary {
 }
 #hud-top-right {
 	float: right;
-	
+
 	width: calc(43vw - 3em);
 }
 #hud-top-center span, #hud-top-center img {
@@ -888,7 +888,7 @@ select, input, summary {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
-	
+
 	top: 0.2vw;
 }
 #hud-top-right-moveLeft {
@@ -1038,7 +1038,7 @@ select, input, summary {
 }
 #hud-bottom-right {
 	right: 0;
-	
+
 	padding-left: 2.5vw;
 
 	background-image: url('../img/ui/hud-bottom-right.png');
@@ -1487,7 +1487,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	text-align: right;
 }
 #fleet-type-create-close {
-	 z-index: 100;
+	z-index: 100;
 }
 #fleet-close, #research-close, #map-close, #hud-ranks-close, #news-close, #building-quit, #fleet-type-create-close,
 #fleet-ship-build-close, .close-button { 
@@ -1648,8 +1648,8 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	color: transparent;
 }
 #fleet-build-openPanel:hover ~ #fleet-build-desc,
-	#fleet-build-type-copy:hover ~ #fleet-build-desc,
-	#fleet-build-type-delete:hover ~ #fleet-build-desc {
+#fleet-build-type-copy:hover ~ #fleet-build-desc,
+#fleet-build-type-delete:hover ~ #fleet-build-desc {
 
 	color: inherit;
 }
@@ -1684,7 +1684,7 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	-ms-user-select: none;
 
 	list-style-type: none; /* Only for hiding arrow on firefox */
-	
+
 	padding: 0.5em;
 	padding-top: 0;
 
