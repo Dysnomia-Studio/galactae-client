@@ -342,7 +342,7 @@
 	<a href="https://galactae.eu/deconnexion"><?= DISCONNECT; ?></a>
 </div>
 <?php /* Settings menu */ ?>
-<div id="settings-menu">
+<div id="settings-menu" class="medium-panel">
 	<ul id="settings-menu-choice" class="ul-choice-line"></ul>
 
 	<ul id="settings-menu-panes"></ul>
@@ -366,7 +366,7 @@
 	</form>
 </div>
 <?php /* Ranks */ ?>
-<div id="hud-ranks">
+<div id="hud-ranks" class="extra-large-panel">
 	<ul class="ul-choice-line ranks-ul">
 		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active"><?= RANKS_GALAXY_PLAYER; ?></li>
 		<li choice="sector-players" id="ranks-secPly-button"><?= RANKS_SECTOR_PLAYER; ?></li>
@@ -379,9 +379,9 @@
 </div>
 <?php /* News */
 if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNewsNumber) {
-	echo '<div id="hud-news" style="display: block;">';
+	echo '<div id="hud-news" class="extra-large-panel" style="display: block;">';
 } else {
-	echo '<div id="hud-news">';
+	echo '<div id="hud-news" class="extra-large-panel">';
 }
 ?>
 	<span id="news-close">X</span>
@@ -476,7 +476,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
         </div>
     </div>
 
-    <div id="map-move-panel">
+    <div id="map-move-panel" class="medium-panel">
     	<span id="map-move-panel-close">X</span>
 
     	<div id="map-move-panel-list">
@@ -496,7 +496,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
     </div>
 </div>
 <?php /* Fleet */ ?>
-<div id="hud-fleet">
+<div id="hud-fleet" class="extra-large-panel">
 	<span id="fleet-close">X</span>
 
 	<ul class="ul-choice-line fleet-ul1">
@@ -574,7 +574,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</div>
 </div>
 
-<div id="fleet-type-create">
+<div id="fleet-type-create" class="large-panel">
 	<form id="fleet-type-create-form">
 		<span id="fleet-type-create-close">X</span>
 
@@ -604,7 +604,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-type-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
 </div>
 
-<div id="fleet-ship-build">
+<div id="fleet-ship-build" class="medium-panel">
 	<span id="fleet-ship-build-close">X</span>
 	<div class="fleet-ship-build-cost">
 		<h4><?= FLEET_TOTAL_COST; ?></h4>
@@ -636,7 +636,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input type="number" name="fleet-ship-build-count" id="fleet-ship-build-count" class="ui-large-button">
 	<input type="button" id="fleet-ship-build-upgrade" class="ui-large-button" value="<?= BUILD; ?>">
 </div>
-<div id="fleet-newFleet-panel">
+<div id="fleet-newFleet-panel" class="small-panel">
 	<span id="fleet-newFleet-panel-close" class="small-panel-close">X</span>
 	<input id="fleet-newFleet-name" class="ui-large-button" type="text" placeholder="<?= FLEET_NAME; ?>">
 	<input id="fleet-newFleet-submit" class="ui-large-button" type="submit" placeholder="<?= CONFIRM; ?>">
@@ -688,7 +688,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="fleet-assignTactic-submit" class="ui-large-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
 </div>
 
-<div id="fleet-tacticsManager-panel">
+<div id="fleet-tacticsManager-panel" class="large-panel">
 	<span id="fleet-tacticsManager-close" class="close-button">X</span>
 
 	<ul id="fleet-tacticsManager-orderList">
@@ -734,7 +734,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 
 <?php /* Tutorials */ ?>
-<div id="tutorial-panel">
+<div id="tutorial-panel" class="large-panel">
 	<div id="tutorial-panel-content">
 		<h2 id="tutorial-panel-title"></h2>
 		<span id="tutorial-panel-desc"></span>
@@ -744,7 +744,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 
 <?php /* Bonus quotidien */ ?>
-<div id="day-bonus">
+<div id="day-bonus" class="large-panel">
 	<h1><?= DAY_BONUS_TITLE; ?></h1>
 	<h3><?= DAY; ?> <span id="day-bonus-current"></span> - <?= DAY_BEST; ?> <span id="day-bonus-best"></span></h3>
 	<p id="day-bonus-choice"><?= DAY_BONUS_CHOICE; ?>
@@ -757,7 +757,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="notifications-closeAll">☒</span>
 </div>
 <?php /* Rapports */ ?>
-<div id="report-panel">
+<div id="report-panel" class="extra-large-panel">
 	<a id="report-panel-close" class="close-button">X</a>
 	<div id="report-list-container" class="report-panel-container">
 		<table id="report-list-buttons">
