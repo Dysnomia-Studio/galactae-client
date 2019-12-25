@@ -1131,8 +1131,8 @@ class units extends _Units {
 
 				document.getElementById('fleet-type-create-selects').innerHTML +=
 					'<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
-						'left: ' + ((shape[id][2])/SHIP_SHAPE_SVG_WIDTH)*selw + 'px;' +
-						'top: ' + ((shape[id][3])/SHIP_SHAPE_SVG_HEIGHT)*selh + 'px;' +
+						'left: calc(1em + ' + ((shape[id][2])/SHIP_SHAPE_SVG_WIDTH)*selw + 'px);' +
+						'top: calc(1em + ' + ((shape[id][3])/SHIP_SHAPE_SVG_HEIGHT)*selh + 'px);' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
 					'"><dt>'+
