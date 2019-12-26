@@ -46,8 +46,8 @@ class settings {
 					min: 0,
 					max: 100
 				},
-				musicLvl: {
-					default: 100,
+				musicVol: {
+					default: 10,
 					type: 'slider',
 					min: 0,
 					max: 100
@@ -83,6 +83,8 @@ class settings {
 		}
 
 		this.initUI();
+
+		ui.playMusic();
 
 		loadScreen.complete('settings');
 	}

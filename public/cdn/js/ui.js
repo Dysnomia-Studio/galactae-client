@@ -107,6 +107,23 @@ class ui {
 		win.focus();
 	}
 
+	static playMusic() {
+		if(!ui.music) {
+			ui.music = new Audio(cdnURL + 'snd/music/music01.wav');
+
+			window.addEventListener('blur', () => {
+				ui.music.pause();
+			});
+
+			window.addEventListener('focus', () => {
+				ui.music.play();
+			});
+		}
+
+		ui.music.play();
+		ui.music.volume = parseInt(settings.get('sounds_musicVol')) / 100;
+	}
+
 	/**
 	 * Tout les événements à creer au lancement
 	 */
