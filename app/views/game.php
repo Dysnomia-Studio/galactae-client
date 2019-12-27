@@ -560,13 +560,13 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</div>
 	</div>
 	<?php /* Fleet Orbit */ ?>
-	<div id="fleet-orbit" class="fleet-tab"></div>
+	<div id="fleet-orbit" class="fleet-tab extra-large-panel-tab"></div>
 	<?php /* Fleet Moves */ ?>
-	<div id="fleet-move" class="fleet-tab"></div>
+	<div id="fleet-move" class="fleet-tab extra-large-panel-tab"></div>
 	<?php /* Fleet Out */ ?>
-	<div id="fleet-out" class="fleet-tab"></div>
+	<div id="fleet-out" class="fleet-tab extra-large-panel-tab"></div>
 	<?php /* Tactics */ ?>
-	<div id="fleet-tactics" class="fleet-tab">
+	<div id="fleet-tactics" class="fleet-tab extra-large-panel-tab">
 		<div class="text-center fleet-tactics-header">
 			<input type="button" class="ui-large-button" id="fleet-tactics-new" value="<?= TACTIC_NEW ?>">
 		</div>
@@ -799,6 +799,58 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</div>
 </div>
 
+<?php /* Alliances */ ?>
+<div id="alliances-panel" class="extra-large-panel">
+	<span id="alliances-close" class="close-button">X</span>
+	<ul id="alliances-panel-menu" class="ul-choice-line">
+		<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
+		<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
+		<li id="alliances-panel-newMembers-button"><?= ALLY_NEW_PLAYERS ?></li>
+		<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
+	</ul>
+
+	<div id="alliances-panel-info" class="alliances-tab extra-large-panel-tab">
+		<table>
+			<tr>
+				<th scope="row"><?= ALLY_NAME ?></th>
+				<td id="alliances-panel-info-name"></td>
+			</tr>
+
+			<tr>
+				<th scope="row"><?= ALLY_DESC ?></th>
+				<td id="alliances-panel-info-desc"></td>
+			</tr>
+
+			<!-- @TODO: modify button -->
+			<!-- @TODO: quit / delete button -->
+		</table>
+	</div>
+	<div id="alliances-panel-members" class="alliances-tab extra-large-panel-tab">
+		<table>
+			<thead>
+				<tr>
+					<th><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
+					<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
+					<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
+					<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
+				</tr>
+			</thead>
+
+			<tbody id="alliances-panel-members-list">
+				
+			</tbody>
+		</table>
+
+		<!-- @TODO: save button -->
+	</div>
+	<div id="alliances-panel-newMembers" class="alliances-tab extra-large-panel-tab">
+		newMembers
+	</div>
+	<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
+		diplomacy
+	</div>
+</div>
+
 <?php /* Game Version & Copyright */ ?>
 <div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank" rel="noopener noreferrer">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank" rel="noopener noreferrer">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>
@@ -818,6 +870,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Tutorials.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Units.js"></script>
 
+<script type="text/javascript" src="<?= $cdnURL ?>js/Alliances.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Buildings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>

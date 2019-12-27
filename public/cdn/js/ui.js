@@ -194,6 +194,9 @@ class ui {
 		// Load tutorials UI
 		Tutorials.loadUI();
 
+		// Load alliances UI
+		Alliances.loadUI();
+
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');
 			ui.ranks = false;
@@ -632,7 +635,13 @@ class ui {
 		});
 
 		document.getElementById('hud-bottom-button-ally').addEventListener('click', function() {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			if(!ui.allys) {
+				ui.show('#alliances-panel');
+			} else {
+				ui.hide('#alliances-panel');
+			}
+
+			ui.allys = !ui.allys;
 		});
 		document.getElementById('hud-bottom-button-rapports').addEventListener('click', function() {
 			if(!ui.reports) {

@@ -288,6 +288,22 @@ em {
 	}
 }
 
+.extra-large-panel-tab { /* Tabs hidden by default */
+	display: none;
+
+	margin: 1.5em;
+	overflow-y: auto;
+}
+@media (min-width: 900px) {
+	.extra-large-panel-tab {
+		height: calc(100% - 5.5em);
+	}
+}
+@media (max-width: 900px) {
+	.extra-large-panel-tab  {
+		height: calc(100% - 6em);
+	}
+}
 
 
 
@@ -1252,22 +1268,6 @@ select, input, summary {
 .fleet-ul1, .ranks-ul {
 	margin-left: 25px;
 	width: calc(100% - 75px);
-}
-.fleet-tab { /* Tabs hidden by default */
-	display: none;
-
-	margin: 1.5em;
-	overflow-y: auto;
-}
-@media (min-width: 900px) {
-	.fleet-tab {
-		height: calc(100% - 5.5em);
-	}
-}
-@media (max-width: 900px) {
-	.fleet-tab  {
-		height: calc(100% - 6em);
-	}
 }
 .ul-choice-line-li-active {
 	background-color: #0EC6C6 !important;
@@ -3258,4 +3258,22 @@ a[class="research-search"]:hover {
 }
 #report-list-buttons input[type="button"] {
 	margin-right: 0.25em;
+}
+
+/**
+ * Alliances
+ */
+#alliances-panel {
+	padding: 0.5em 1em;
+}
+#alliances-panel .ul-choice-line {
+	width: calc(100% - 1em);
+}
+#alliances-panel-info {
+	display: block; /* Default opened panel */
+}
+#alliances-panel-members table {
+	width: 100%;
+
+	text-align: center;
 }

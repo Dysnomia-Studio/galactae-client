@@ -78,6 +78,7 @@ class units extends _Units {
 		});
 
 		// Fleet Menu
+		// @TODO: refacto to group up with alliances tabs
 		document.querySelectorAll('.fleet-ul1 li').forEach(function(elt) {
 			elt.addEventListener('click', function() {
 				if(preventFleetHUDClosing) { return; }
