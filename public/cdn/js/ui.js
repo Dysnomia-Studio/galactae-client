@@ -281,6 +281,11 @@ class ui {
 					}
 				}
 			});
+
+		// Set hour
+		setInterval(() => {
+			document.getElementById('hud-bottom-hour').innerText = new Date().toLocaleTimeString();
+		}, 1000);
 	}
 
 	static position(selector) {

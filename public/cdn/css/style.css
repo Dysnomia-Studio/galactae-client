@@ -1043,6 +1043,15 @@ select, input, summary {
 
 	background-image: url('../img/ui/hud-bottom-right.png');
 }
+#hud-bottom-hour {
+	text-align: center;
+	font-size: 1.2rem;
+}
+@media (max-width: 850px) {
+	#hud-bottom-hour {
+		display: none;
+	}
+}
 #hud-bottom-left {
 	left: 0;
 

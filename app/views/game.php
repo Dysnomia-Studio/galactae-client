@@ -295,6 +295,11 @@
 			</span>
 		</span>
 	</div>
+
+	<div id="hud-bottom-hour">
+		12:00:00
+	</div>
+
 	<div id="hud-bottom-right">
 		<span class="tooltip">
 			<a href="#quests" id="hud-bottom-button-quests"><img src="<?= $cdnURL ?>img/ui/quests.svg" alt="quests"></a>
