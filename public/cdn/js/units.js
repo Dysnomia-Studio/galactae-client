@@ -185,7 +185,7 @@ class units extends _Units {
 		document.getElementById('fleet-build-type-copy').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
-			units.drawCreateTypePanel();
+			units.drawCreateTypePanel(true);
 		});
 		// Type delete
 		document.getElementById('fleet-build-type-delete').addEventListener('click', () => {
@@ -885,12 +885,12 @@ class units extends _Units {
 	/**
 	 * Draw the panel to create a new unit type
 	 */
-	static drawCreateTypePanel() {
+	static drawCreateTypePanel(edit) {
 		const unitsParts = [];
 		let selectedType = '';
 		let selectedShape = '';
 
-		if(units.currUnit !== -1 && units.list[units.currUnit] !== undefined) {
+		if(edit && units.currUnit !== -1 && units.list[units.currUnit] !== undefined) {
 			for(const i in units.list[units.currUnit].parts) {
 				unitsParts[units.list[units.currUnit].parts[i].name] = units.list[units.currUnit].parts[i].tech;
 			}
@@ -948,14 +948,14 @@ class units extends _Units {
 	static changeShipType(unitsParts=[],selectedShape='') {
 		let type = document.getElementById('fleet-type-create-shipType');
 		type = type.options[type.selectedIndex].value;
-		let shape = '';
 
 		document.getElementById('fleet-type-create-name').value = '';
 
 		let selectShipShape = '';
 		for(const index in shipShapesDetails[type]) {
-			if(shape === '') { shape = index; }
+			if(selectedShape === '') { selectedShape = index; }
 			if(shipResearchDependencies[index] !== undefined && !research.isSearched(userData, shipResearchDependencies[index])) { continue; }
+
 			if(index === selectedShape) {
 				selectShipShape += '<option value="' + index + '" selected>' + fleetTranslate[index] + '</option>';
 			} else {
@@ -970,7 +970,7 @@ class units extends _Units {
 
 			document.getElementById('fleet-type-create-shipShape').innerHTML = selectShipShape;
 
-			units.drawShipShape(shipShapesDetails[type][shape].svg,shipShapesDetails[type][shape].content,unitsParts);
+			units.drawShipShape(shipShapesDetails[type][selectedShape].svg,shipShapesDetails[type][selectedShape].content,unitsParts);
 			units.updateTypeCreateStats();
 		} else {
 			document.getElementById('fleet-type-create-shipType').value = document.querySelectorAll('#fleet-type-create-shipType option')[0].value;
