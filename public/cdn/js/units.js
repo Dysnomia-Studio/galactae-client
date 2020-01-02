@@ -728,7 +728,7 @@ class units extends _Units {
 			if(costs[i] !== 'fleet-ship-build-cost-time-val') {
 				document.getElementById(costs[i]).innerText = GetBetterUnit(Math.round(count * parseFloat(currUnit.cost[i])));
 			} else {
-				document.getElementById(costs[i]).innerText = getStringTime(count * parseFloat(currUnit.cost[i]) * (1 - buildLvlUnitBuildingSpeedBonus * planetData.Buildings[7]));
+				document.getElementById(costs[i]).innerText = getStringTime(count * parseFloat(currUnit.cost[i]) * (1 - buildLvlUnitBuildingSpeedBonus * (planetData.Buildings[7] + planetData.Buildings[11])));
 			}
 		}
 	}
