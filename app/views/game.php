@@ -397,6 +397,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="map-close">X</span>
 	<div id="map-back"><?= MAP_BACKTO_GLOBAL_MAP; ?></div>
 	<div id="map-focus"><?= MAP_FOCUS_CURRENT_SYSTEM; ?></div>
+	<div id="map-address"></div>
 	<svg height="40000" width="50000" id="map-global">
 		<defs>
 			<radialGradient id="redDwarf" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">

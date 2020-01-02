@@ -1941,7 +1941,7 @@ a[class="research-search"]:hover {
 
 	user-select : none;
 }
-#map-back, #map-focus {
+#map-back, #map-focus, #map-address {
 	position: fixed;
 	top: 1em;
 	left: 1em;
