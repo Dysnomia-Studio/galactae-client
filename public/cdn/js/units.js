@@ -1333,6 +1333,13 @@ class units extends _Units {
 			document.getElementById(div + '-fcap-val').innerText = modules.hangar;
 		}
 
+		if(typeof fighterWeight[shape] === 'undefined') {
+			ui.hide('#' + div + '-fweight');
+		} else {
+			ui.show('#' + div + '-fweight');
+			document.getElementById(div + '-fweight-val').innerText = fighterWeight[shape];
+		}
+
 		// Calcul des données si données
 		if(note === undefined) {
 			note = 'X.X'; // @TODO: Calc note

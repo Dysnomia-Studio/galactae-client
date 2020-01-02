@@ -31,6 +31,7 @@
 	define('SHIP_SUPSPEED','Interstellaire');
 	define('SHIP_MISS_CHANCE','Chance d\'évitement');
 	define('SHIP_FCAP','Capacité chasseurs');
+	define('SHIP_FWEIGHT', 'Capacité chasseurs utilisée');
 
 	//== Fleet ==\\
 	define('FLEET','Flotte');
