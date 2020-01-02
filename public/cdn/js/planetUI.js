@@ -234,7 +234,7 @@ class planetUI {
 		// Top left
 		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd - habCons);
 		document.getElementById('research_nmb').innerHTML = GetBetterUnit(researchProd,'/h');
-		document.getElementById('moral_nmb').innerHTML = Math.round(planetData.Buildings[3]/planetData.Buildings[2]*100)+'%';
+		document.getElementById('moral_nmb').innerHTML = Math.round(Buildings.calcPlanetMorale(planetData.Buildings)*100)+'%';
 
 		//Top right
 		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[0]),'t',mineralStorageBase);
