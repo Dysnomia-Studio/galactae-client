@@ -82,6 +82,11 @@ class planetUI {
 			planetData[key] = data.data[key];
 		}
 
+		if(Object.keys(data.data).length === 1 && typeof data.data.resources !== 'undefined') {
+			// Next update will draw it, no need to recalc all planet, etc.
+			return;
+		}
+
 		userData = Tutorials.updateTutorialList(userData, planetData, units.fleetList, units.list);
 
 		if(planetData.nextBuildingTime) {
