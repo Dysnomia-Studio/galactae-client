@@ -67,6 +67,7 @@ class ui {
 
 		const elt = document.createElement('div');
 		elt.classList.add('confirmBox');
+		elt.classList.add('small-panel');
 
 		const spanQuestion = document.createElement('span');
 		spanQuestion.innerText = question;
@@ -104,6 +105,23 @@ class ui {
 	static openProfile(username) {
 		const win = window.open('https://galactae.eu/profil?u='+ username, '_blank');
 		win.focus();
+	}
+
+	static playMusic() {
+		if(!ui.music) {
+			ui.music = new Audio(cdnURL + 'snd/music/music01.wav');
+
+			window.addEventListener('blur', () => {
+				ui.music.pause();
+			});
+
+			window.addEventListener('focus', () => {
+				ui.music.play();
+			});
+		}
+
+		ui.music.play();
+		ui.music.volume = parseInt(settings.get('sounds_musicVol')) / 100;
 	}
 
 	/**
@@ -263,6 +281,11 @@ class ui {
 					}
 				}
 			});
+
+		// Set hour
+		setInterval(() => {
+			document.getElementById('hud-bottom-hour').innerText = new Date().toLocaleTimeString();
+		}, 1000);
 	}
 
 	static position(selector) {

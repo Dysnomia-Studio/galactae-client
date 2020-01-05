@@ -31,6 +31,7 @@
 	define('SHIP_SUPSPEED','Interstellar');
 	define('SHIP_MISS_CHANCE','Miss Chance');
 	define('SHIP_FCAP','Fighters Capacity');
+	define('SHIP_FWEIGHT', 'Used Fighter Capacity');
 
 	//== Fleet ==\\
 	define('FLEET','Fleet');

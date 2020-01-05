@@ -74,6 +74,17 @@ class map {
 			}
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
+
+			if(e.target.id.split('-').length === 3) {
+				document.getElementById('map-address').style.left = e.pageX + 'px';
+				document.getElementById('map-address').style.top = (e.pageY - 25) + 'px';
+
+				document.getElementById('map-address').innerText = e.target.id;
+
+				ui.show('#map-address');
+			} else {
+				ui.hide('#map-address');
+			}
 		});
 
 		const mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
@@ -368,6 +379,7 @@ class map {
 	static resetMaps() {
 		/* Hide all maps */
 		ui.hide('#map-global');
+		ui.hide('#map-address');
 		ui.hide('#map-system');
 
 		ui.show('#hud-map');

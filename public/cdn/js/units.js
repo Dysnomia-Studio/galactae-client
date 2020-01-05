@@ -185,7 +185,7 @@ class units extends _Units {
 		document.getElementById('fleet-build-type-copy').addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
-			units.drawCreateTypePanel();
+			units.drawCreateTypePanel(true);
 		});
 		// Type delete
 		document.getElementById('fleet-build-type-delete').addEventListener('click', () => {
@@ -728,7 +728,7 @@ class units extends _Units {
 			if(costs[i] !== 'fleet-ship-build-cost-time-val') {
 				document.getElementById(costs[i]).innerText = GetBetterUnit(Math.round(count * parseFloat(currUnit.cost[i])));
 			} else {
-				document.getElementById(costs[i]).innerText = getStringTime(count * parseFloat(currUnit.cost[i]) * (1 - buildLvlUnitBuildingSpeedBonus * planetData.Buildings[7]));
+				document.getElementById(costs[i]).innerText = getStringTime(count * parseFloat(currUnit.cost[i]) * (1 - buildLvlUnitBuildingSpeedBonus * (planetData.Buildings[7] + planetData.Buildings[11])));
 			}
 		}
 	}
@@ -885,12 +885,12 @@ class units extends _Units {
 	/**
 	 * Draw the panel to create a new unit type
 	 */
-	static drawCreateTypePanel() {
+	static drawCreateTypePanel(edit) {
 		const unitsParts = [];
 		let selectedType = '';
 		let selectedShape = '';
 
-		if(units.currUnit !== -1 && units.list[units.currUnit] !== undefined) {
+		if(edit && units.currUnit !== -1 && units.list[units.currUnit] !== undefined) {
 			for(const i in units.list[units.currUnit].parts) {
 				unitsParts[units.list[units.currUnit].parts[i].name] = units.list[units.currUnit].parts[i].tech;
 			}
@@ -948,14 +948,14 @@ class units extends _Units {
 	static changeShipType(unitsParts=[],selectedShape='') {
 		let type = document.getElementById('fleet-type-create-shipType');
 		type = type.options[type.selectedIndex].value;
-		let shape = '';
 
 		document.getElementById('fleet-type-create-name').value = '';
 
 		let selectShipShape = '';
 		for(const index in shipShapesDetails[type]) {
-			if(shape === '') { shape = index; }
+			if(selectedShape === '') { selectedShape = index; }
 			if(shipResearchDependencies[index] !== undefined && !research.isSearched(userData, shipResearchDependencies[index])) { continue; }
+
 			if(index === selectedShape) {
 				selectShipShape += '<option value="' + index + '" selected>' + fleetTranslate[index] + '</option>';
 			} else {
@@ -970,7 +970,7 @@ class units extends _Units {
 
 			document.getElementById('fleet-type-create-shipShape').innerHTML = selectShipShape;
 
-			units.drawShipShape(shipShapesDetails[type][shape].svg,shipShapesDetails[type][shape].content,unitsParts);
+			units.drawShipShape(shipShapesDetails[type][selectedShape].svg,shipShapesDetails[type][selectedShape].content,unitsParts);
 			units.updateTypeCreateStats();
 		} else {
 			document.getElementById('fleet-type-create-shipType').value = document.querySelectorAll('#fleet-type-create-shipType option')[0].value;
@@ -1131,8 +1131,8 @@ class units extends _Units {
 
 				document.getElementById('fleet-type-create-selects').innerHTML +=
 					'<dl id="part-selecting-seen-' + id + '" class="part-selecting dropdown" style="' +
-						'left: ' + ((shape[id][2])/SHIP_SHAPE_SVG_WIDTH)*selw + 'px;' +
-						'top: ' + ((shape[id][3])/SHIP_SHAPE_SVG_HEIGHT)*selh + 'px;' +
+						'left: calc(1em + ' + ((shape[id][2])/SHIP_SHAPE_SVG_WIDTH)*selw + 'px);' +
+						'top: calc(1em + ' + ((shape[id][3])/SHIP_SHAPE_SVG_HEIGHT)*selh + 'px);' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
 					'"><dt>'+
@@ -1331,6 +1331,13 @@ class units extends _Units {
 		} else {
 			ui.show('#' + div + '-fcap');
 			document.getElementById(div + '-fcap-val').innerText = modules.hangar;
+		}
+
+		if(typeof fighterWeight[shape] === 'undefined') {
+			ui.hide('#' + div + '-fweight');
+		} else {
+			ui.show('#' + div + '-fweight');
+			document.getElementById(div + '-fweight-val').innerText = fighterWeight[shape];
 		}
 
 		// Calcul des données si données
