@@ -448,7 +448,7 @@ const researchPos = {
 	figther_heavy_interceptor:	[7000,6000],
 	figther_bomber: 			[7000,7500],
 	// Battlecruiser
-	battlecruiser_small: 		[6600,3500],
+	battlecruiser_atrios: 		[6600,3500],
 	// Cuirasse
 	cuirasse_small: 			[6333,4150],
 	// Corvet
@@ -514,7 +514,7 @@ const researchList = {
 	figther_heavy_interceptor: 	{ cost: 850, 	parents: ['figther_light_interceptor'] },
 	figther_bomber: 			{ cost: 1320, 	parents: ['figther_heavy_interceptor', 'wep_nuke'] },
 	// Battlecruiser
-	battlecruiser_small: 		{ cost: 2550, 	parents: ['prop_ions','misc_advTelemetrie'] },
+	battlecruiser_atrios: 		{ cost: 2550, 	parents: ['prop_ions','misc_advTelemetrie'] },
 	// Cuirasse
 	cuirasse_small: 			{ cost: 2580, 	parents: ['prop_ions','misc_advTelemetrie'] },
 	// Corvet
@@ -557,7 +557,7 @@ const shipResearchDependencies = {
 	SHIP_FIGHTER_MEDIUM: 'figther_heavy_interceptor',
 
 	// Battlecruiser
-	SHIP_BATTLECRUISER_SMALL: 'battlecruiser_small',
+	SHIP_BATTLECRUISER_ATRIOS: 'battlecruiser_atrios',
 
 	// Cuirasse
 	SHIP_CUIRASSE_SMALL: 'cuirasse_small',
@@ -640,7 +640,7 @@ const shipShapesDetails = {
 		},
 	},
 	SHIP_BATTLECRUISER: {
-		SHIP_BATTLECRUISER_SMALL: {
+		SHIP_BATTLECRUISER_ATRIOS: {
 			svg: [
 				// Structure
 				['struct','path','M200',130,'Q',300,165,200,200,'L100',200,'L100',130,'L200',130], // Moteur gauche
@@ -798,7 +798,7 @@ const shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	SHIP_SAT_AG2: 				[ 15, 20, 50, 23,0.37,   0],
 	SHIP_SAT_AG3: 				[ 30, 35, 60, 36,0.70,   0],
 	// Battlecruisers
-	SHIP_BATTLECRUISER_SMALL: 	[260,250,120, 60,1.12, 160],
+	SHIP_BATTLECRUISER_ATRIOS: 	[260,250,120, 60,1.12, 160],
 	// Cruisaders
 	SHIP_CUIRASSE_SMALL: 		[330,350,180, 95,1.45, 220],
 	// Fighters
@@ -1049,7 +1049,7 @@ const tutorialsDependancies = {
 				'figther_heavy_interceptor',
 				'figther_bomber',
 
-				'battlecruiser_small',
+				'battlecruiser_atrios',
 				'cuirasse_small',
 
 				'corvet_small',

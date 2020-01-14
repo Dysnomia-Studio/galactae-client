@@ -77,7 +77,7 @@ const fleetTranslate = {
 	'SHIP_WEP_MINES_NUKE': 'Mines nucléaires',
 
 	'SHIP_BATTLECRUISER': 'Croiseur',
-	'SHIP_BATTLECRUISER_SMALL': 'Petit',
+	'SHIP_BATTLECRUISER_ATRIOS': 'Classe Atrios',
 
 	'SHIP_CUIRASSE': 'Cuirassé',
 	'SHIP_CUIRASSE_SMALL': 'Petit',
