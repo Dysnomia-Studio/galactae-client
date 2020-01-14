@@ -452,7 +452,7 @@ const researchPos = {
 	// Cuirasse
 	cuirasse_small: 			[6333,4150],
 	// Corvet
-	corvet_small: 				[6000,4500],
+	corvet_aegis: 				[6000,4500],
 	// Carrier
 	carrier_small: 				[5000,3500],
 	carrier_medium: 			[5000,3000],
@@ -518,7 +518,7 @@ const researchList = {
 	// Cuirasse
 	cuirasse_small: 			{ cost: 2580, 	parents: ['prop_ions','misc_advTelemetrie'] },
 	// Corvet
-	corvet_small: 				{ cost: 680, 	parents: ['prop_main', 'misc_advTelemetrie'] },
+	corvet_aegis: 				{ cost: 680, 	parents: ['prop_main', 'misc_advTelemetrie'] },
 	// Carrier
 	carrier_small: 				{ cost: 2580, 	parents: ['figther_light_interceptor','prop_ions'] },
 	carrier_medium: 			{ cost: 2850, 	parents: ['carrier_small'] },
@@ -563,7 +563,7 @@ const shipResearchDependencies = {
 	SHIP_CUIRASSE_SMALL: 'cuirasse_small',
 
 	// Corvet
-	SHIP_CORVET_SMALL: 'corvet_small',
+	SHIP_CORVET_AEGIS: 'corvet_aegis',
 
 	// Carrier
 	SHIP_CARRIER_MEDIUM: 'carrier_medium',
@@ -726,7 +726,7 @@ const shipShapesDetails = {
 		},
 	},
 	SHIP_CORVET: {
-		SHIP_CORVET_SMALL: {
+		SHIP_CORVET_AEGIS: {
 			svg: [
 				['struct','rect'  , 50,150,120, 60], // Moteur 1
 				['struct','rect'  , 50,290,120, 60], // Moteur 2
@@ -806,7 +806,7 @@ const shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
 	SHIP_FIGHTER_MEDIUM: 		[ 70, 35, 60, 25, 0.52,  10],
 	SHIP_FIGHTER_BOMBER: 		[ 95, 60,100, 40, 0.78,  20],
 	// Corvets
-	SHIP_CORVET_SMALL: 			[110, 18, 85, 35, 0.62,  40],
+	SHIP_CORVET_AEGIS: 			[110, 18, 85, 35, 0.62,  40],
 	// Carriers
 	SHIP_CARRIER_SMALL: 		[405,300,140, 75,1.25, 920],
 	SHIP_CARRIER_MEDIUM: 		[510,420,190, 95,1.65,1200],
@@ -1052,7 +1052,7 @@ const tutorialsDependancies = {
 				'battlecruiser_atrios',
 				'cuirasse_small',
 
-				'corvet_small',
+				'corvet_aegis',
 
 				'carrier_small',
 				'carrier_medium',
