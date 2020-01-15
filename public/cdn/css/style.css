@@ -2212,8 +2212,11 @@ a[class="research-search"]:hover {
 .view-3D .orbit .star {
 	transform: rotateX(0deg);
 }
-#map-system-solarFront-list .planet {
+.view-3D #map-system-solarFront-list .planet {
 	transform: rotateX(-90deg);
+}
+.view-2D #map-system-solarFront-list .planet {
+	transform: rotateX(-0deg);
 }
 .view-2D #map-system-solarFront {
 	font-size: 26%;
@@ -2452,10 +2455,16 @@ a[class="research-search"]:hover {
 #map-system-solarFront-list {
 	position: fixed;
 	left: 5%;
-	height: 70vh;
 	right: 5%;
-	bottom: -17.5vh;
 	border: 1px solid #0EC6C6;
+}
+.view-3D #map-system-solarFront-list {
+	height: 70vh;
+	bottom: -17.5vh;
+}
+.view-2D #map-system-solarFront-list {
+	height: 20vh;
+	bottom: 7.5vh;
 }
 #map-system-solarFront-list .name {
 	position: relative;
