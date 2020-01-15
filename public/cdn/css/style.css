@@ -256,10 +256,9 @@ em {
 	}
 
 	.extra-large-panel iframe {
-		height: calc(94% - 3em);
+		height: 89%;
 		width: 94%;
-
-		margin: 0 3% 3% 3%;
+		margin: 3%;
 	}
 }
 
@@ -278,6 +277,8 @@ em {
 	}
 
 	.extra-large-panel iframe {
+		position: fixed;
+
 		width: calc(100% - 3em);
 		height: calc(100% - 40px - 0.4em - 3em);
 
