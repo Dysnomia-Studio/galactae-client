@@ -412,7 +412,7 @@ const researchPos = {
 	thermodynamique:			[4666,4666],
 	// Mise en orbite et propulsion
 	prop_main:					[3333,4333],
-	prop_vSolaire:				[3666,5000],
+	prop_vSolaire:				[3666,4900],
 	prop_ions:					[4500,4100],
 	prop_plasma:				[4000,3666],
 	prop_vsl:					[7500,4000],
@@ -456,6 +456,9 @@ const researchPos = {
 	// Carrier
 	carrier_small: 				[5000,3500],
 	carrier_medium: 			[5000,3000],
+	// Colony ship
+	colony_ship: 				[3000,4900],
+	heavy_colony_ship:  		[2666,4900],
 	// Satellites
 	wep_sat_ag1:				[6000,6500],
 	wep_sat_ag2:				[6000,7000],
@@ -469,6 +472,7 @@ const researchPos = {
 	misc_phyQuantique:			[4000,6000],
 	misc_calcGravit:			[5000,6666],
 	misc_em:					[4800,7800],
+	misc_colony:				[3000,6666],
 };
 const researchList = {
 	// Noeud Central
@@ -522,6 +526,9 @@ const researchList = {
 	// Carrier
 	carrier_small: 				{ cost: 2580, 	parents: ['figther_light_interceptor','prop_ions'] },
 	carrier_medium: 			{ cost: 2850, 	parents: ['carrier_small'] },
+	// Colony ship
+	colony_ship:  				{ cost: 3500,	parents: ['prop_vsl', 'misc_colony', 'cp_molecular_compression', [11,10] ]},
+	heavy_colony_ship: 			{ cost: 8500, 	parents: ['colony_ship', [11,15] ]},
 	// Satellites
 	wep_sat_ag1:				{ cost: 360, 	parents: ['misc_calcGravit','misc_telemetrie', [7,5] ] },
 	wep_sat_ag2:				{ cost: 650, 	parents: ['wep_sat_ag1','misc_advTelemetrie', [7,10]] },
@@ -535,6 +542,7 @@ const researchList = {
 	misc_phySolaire: 			{ cost: 280, 	parents: ['misc_phyQuantique'] },
 	misc_calcGravit: 			{ cost: 240, 	parents: ['misc_astronomie'] },
 	misc_em: 					{ cost: 110, 	parents: ['phyContemporaine'] },
+	misc_colony: 				{ cost: 850,    parents: ['misc_mecStellaire'] },
 };
 
 /**
