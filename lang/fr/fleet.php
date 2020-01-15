@@ -88,7 +88,7 @@ const fleetTranslate = {
 	'SHIP_FIGHTER_HUGE': 'Bombardier',
 
 	'SHIP_CORVET': 'Corvette',
-	'SHIP_CORVET_SMALL': 'Classe Aegis',
+	'SHIP_CORVET_AEGIS': 'Classe Aegis',
 
 	'SHIP_CARRIER': 'Transporteur',
 	'SHIP_CARRIER_MEDIUM': 'Moyen',
