@@ -45,11 +45,11 @@ translate['research'] = {
 	figther_heavy_interceptor: { name: 'Heavy Interceptor', desc: '' },
 	figther_bomber: 	{ name: 'Bomber', desc: '' },
 	// Battlecruiser
-	battlecruiser_small: { name: 'Small battlecruiser', desc: '' },
+	battlecruiser_atrios: { name: 'Atrios Class battlecruiser', desc: '' },
 	// Cuirasse
 	cuirasse_small: 	{ name: 'Small battleship', desc: '' },
 	// Corvet
-	corvet_small: 		{ name: 'Small corvet', desc: '' },
+	corvet_aegis: 		{ name: 'Aegis Class Corvet', desc: '' },
 	// Carrier
 	carrier_small: 		{ name: 'Small carrier', desc: '' },
 	carrier_medium: 	{ name: 'Medium carrier', desc: '' },
