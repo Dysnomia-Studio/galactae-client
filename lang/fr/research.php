@@ -45,14 +45,17 @@ translate['research'] = {
 	figther_heavy_interceptor: { name: 'Intercepteur Lourd', desc: '' },
 	figther_bomber: 	{ name: 'Bombardier', desc: '' },
 	// Battlecruiser
-	battlecruiser_small: { name: 'Petit Croiseur', desc: '' },
+	battlecruiser_atrios: { name: 'Croiseur - Classe Atrios', desc: '' },
 	// Cuirasse
 	cuirasse_small: 	{ name: 'Petit Cuirassé', desc: '' },
 	// Corvet
-	corvet_small: 		{ name: 'Petite Corvette', desc: '' },
+	corvet_aegis: 		{ name: 'Corvette - Classe Aegis', desc: '' },
 	// Carrier
 	carrier_small: 		{ name: 'Petit Transporteur', desc: '' },
 	carrier_medium: 	{ name: 'Transporteur Moyen', desc: '' },
+	// Colony ship
+	colony_ship:  		{ name: 'Vaisseau de colonisation', desc: '' },
+	heavy_colony_ship: 	{ name: 'Vaisseau de colonisation lourd', desc: '' },
 	// Satellites
 	wep_sat_ag1:		{ name: 'Satellites AG-I', desc: '' },
 	wep_sat_ag2:		{ name: 'Satellites AG-II', desc: '' },
@@ -66,6 +69,7 @@ translate['research'] = {
 	misc_phyQuantique:	{ name: 'Physique Quantique', desc: ''},
 	misc_calcGravit:	{ name: 'Calculs Gravitationels', desc: ''},
 	misc_em:			{ name: 'Electromagnetisme', desc: ''},
+	misc_colony:		{ name: 'Colonisation', desc:''},
 	// Messages
 	tech_owned: 'Technologie possédée',
 	ongoing: 	'Recherche en cours ...',

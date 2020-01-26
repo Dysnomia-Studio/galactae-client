@@ -256,10 +256,9 @@ em {
 	}
 
 	.extra-large-panel iframe {
-		height: calc(94% - 3em);
+		height: 89%;
 		width: 94%;
-
-		margin: 0 3% 3% 3%;
+		margin: 3%;
 	}
 }
 
@@ -278,6 +277,8 @@ em {
 	}
 
 	.extra-large-panel iframe {
+		position: fixed;
+
 		width: calc(100% - 3em);
 		height: calc(100% - 40px - 0.4em - 3em);
 
@@ -1262,6 +1263,12 @@ select, input, summary {
 	margin-left: 25px;
 	width: calc(100% - 75px);
 }
+@media (max-width: 749px), (max-height: 40vw) {
+	.ranks-ul {
+		position: absolute;
+		top: 0;
+	}
+}
 .fleet-tab { /* Tabs hidden by default */
 	display: none;
 
@@ -2212,8 +2219,11 @@ a[class="research-search"]:hover {
 .view-3D .orbit .star {
 	transform: rotateX(0deg);
 }
-#map-system-solarFront-list .planet {
+.view-3D #map-system-solarFront-list .planet {
 	transform: rotateX(-90deg);
+}
+.view-2D #map-system-solarFront-list .planet {
+	transform: rotateX(-0deg);
 }
 .view-2D #map-system-solarFront {
 	font-size: 26%;
@@ -2452,10 +2462,16 @@ a[class="research-search"]:hover {
 #map-system-solarFront-list {
 	position: fixed;
 	left: 5%;
-	height: 70vh;
 	right: 5%;
-	bottom: -17.5vh;
 	border: 1px solid #0EC6C6;
+}
+.view-3D #map-system-solarFront-list {
+	height: 70vh;
+	bottom: -17.5vh;
+}
+.view-2D #map-system-solarFront-list {
+	height: 20vh;
+	bottom: 7.5vh;
 }
 #map-system-solarFront-list .name {
 	position: relative;

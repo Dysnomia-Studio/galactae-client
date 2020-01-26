@@ -145,6 +145,8 @@ class planetUI {
 		}
 
 		//Helium 3
+		document.getElementById('he-fuel-distribute').style.display = 'none';
+
 		if(buildings[13] !== 0 && currentBuilding !== 13) {
 			planetData.resources[1] += heliumProdBase*time;
 
@@ -154,11 +156,9 @@ class planetUI {
 
 				// @TODO: Update before full on server
 
-				if(empty) {
-					document.getElementById('he-fuel-distribute').style.display = 'none';
+				// @TODO: Same owner, same ally, trade
 
-					// @TODO: Same owner, same ally, trade
-				} else {
+				if(!empty) {
 					document.getElementById('he-fuel-distribute').style.display = 'inline';
 				}
 			}
