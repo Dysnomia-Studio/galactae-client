@@ -82,6 +82,8 @@ const fleetTranslate = {
 	'SHIP_CUIRASSE': 'Cuirassé',
 	'SHIP_CUIRASSE_SMALL': 'Petit',
 
+	'SHIP_COLONY': 'Vaisseau Colonial',
+
 	'SHIP_FIGHTER': 'Chasseur',
 	'SHIP_FIGHTER_SMALL': 'Intercepteur Leger',
 	'SHIP_FIGHTER_MEDIUM': 'Intercepteur Lourd',
