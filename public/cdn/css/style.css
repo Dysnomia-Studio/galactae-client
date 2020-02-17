@@ -483,7 +483,53 @@ select, input, summary {
 	display: inline-block;
 	line-height: 3em;
 }
-
+.gvt-choosebtn-nextButton {
+	-webkit-animation: gvt-choicebtn-anim 1.5s linear infinite;
+	-moz-animation: gvt-choicebtn-anim 1.5s linear infinite;
+	animation: gvt-choicebtn-anim 1.5s linear infinite;
+}
+@-moz-keyframes gvt-choicebtn-anim {
+	0% {
+		border: 1px solid #0EC6C6;
+		background-color: #0b1012;
+	}
+	50% {
+		border: 1px solid white;
+		background-color: #1c282d;
+	}
+	100% {
+		border: 1px solid #0EC6C6;
+		background-color: #0b1012;
+	}
+}
+@-webkit-keyframes gvt-choicebtn-anim {
+	0% {
+		border: 1px solid #0EC6C6;
+		background-color: #0b1012;
+	}
+	50% {
+		border: 1px solid white;
+		background-color: #1c282d;
+	}
+	100% {
+		border: 1px solid #0EC6C6;
+		background-color: #0b1012;
+	}
+}
+@keyframes gvt-choicebtn-anim {
+	0% {
+		border: 1px solid #0EC6C6;
+		background-color: #0b1012;
+	}
+	50% {
+		border: 1px solid white;
+		background-color: #1c282d;
+	}
+	100% {
+		border: 1px solid #0EC6C6;
+		background-color: #0b1012;
+	}
+}
 /**
  * Securité Portrait
  */
