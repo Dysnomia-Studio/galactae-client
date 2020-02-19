@@ -70,6 +70,15 @@ class planetUI {
 
 		planetUI.deltaNow = data.sNow - Date.now();
 
+		if(data.data.nextBuildingTime !== null) {
+			data.data.nextBuildingTime = new Date(data.data.nextBuildingTime);
+		}
+		data.data.lastResourcesUpdate = new Date(data.data.lastResourcesUpdate);
+		data.data.lastUnitUpdate = new Date(data.data.lastUnitUpdate);
+		if(data.data.unitBuildingEndTime !== null) {
+			data.data.unitBuildingEndTime = new Date(data.data.unitBuildingEndTime);
+		}
+
 		// Clientside Calc for ressource auto-update
 		if(resourcesinterval === -1) {
 			resourcesinterval = setInterval(function() {
@@ -88,14 +97,6 @@ class planetUI {
 		}
 
 		userData = Tutorials.updateTutorialList(userData, planetData, units.fleetList, units.list);
-
-		if(planetData.nextBuildingTime) {
-			planetData.nextBuildingTime = parseInt(planetData.nextBuildingTime);
-		}
-
-		if(planetData.unitBuildingEndTime) {
-			planetData.unitBuildingEndTime = parseInt(planetData.unitBuildingEndTime);
-		}
 
 		// Chargement de la map
 		map.init(planetData.address);
@@ -117,11 +118,11 @@ class planetUI {
 			autobuildingrefresh = -1;
 		}
 		// Create timeout: sync where the next building is ended
-		if(planetData.nextBuildingTime !== -1) {
+		if(planetData.nextBuildingTime !== null) {
 			autobuildingrefresh = setTimeout(function() {
 				planetUI.sync();
 				autobuildingrefresh = -1;
-			},planetData.nextBuildingTime-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
+			},planetData.nextBuildingTime.getTime()-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
 		}
 
 		// Refresh buildPanel
@@ -390,9 +391,11 @@ class planetUI {
 				planetUI.drawCanBeBuild();
 			},timeLeft);
 		}
+
 		// Refresh this when a building is ended
-		const timeBeforeEndBuild = (planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
-		if(timeBeforeEndBuild>0) {
+		const nextBuildingTime = (planetData.nextBuildingTime === null) ? -1 : planetData.nextBuildingTime.getTime();
+		const timeBeforeEndBuild = (nextBuildingTime- (Date.now() + planetUI.deltaNow + 1000));
+		if(timeBeforeEndBuild > 0) {
 			setTimeout(function() {
 				planetUI.drawCanBeBuild();
 			},timeBeforeEndBuild + 1000);
@@ -473,10 +476,11 @@ class planetUI {
 	 * @param      {<type>}  building  The building ID
 	 */
 	static canBeBuild(id) {
+		const nextBuildingTime = (planetData.nextBuildingTime === null) ? -1 : planetData.nextBuildingTime.getTime();
 		return (
 			planetUI.getTimeBeforeBuild(id) === 0 &&
 			planetData.Buildings[id] + 1 <= buildingMaxLvl[id] &&
-			(planetData.nextBuildingTime-Date.now()+planetUI.deltaNow) < 0 &&
+			(nextBuildingTime-Date.now()+planetUI.deltaNow) < 0 &&
 			Buildings.HasRequirements(userData, planetData, id)
 		);
 	}
@@ -657,8 +661,8 @@ class planetUI {
 			ui.hide('#building-cost');
 		} else if(requirements !== '') { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
-		} else if(planetData.nextBuilding === id && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
-			const dateEnd = new Date(planetData.nextBuildingTime + planetUI.deltaNow);
+		} else if(planetData.nextBuilding === id && planetData.nextBuildingTime !== null && planetData.nextBuildingTime.getTime() > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
+			const dateEnd = new Date(planetData.nextBuildingTime.getTime() + planetUI.deltaNow);
 			const dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
@@ -689,11 +693,11 @@ class planetUI {
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
-		} else if(planetData.nextBuilding !== -1 && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Another building in build mode
+		} else if(planetData.nextBuilding !== -1 && planetData.nextBuildingTime.getTime() > (Date.now() + planetUI.deltaNow)) { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['ANOTHER_IN_BUILD'];
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
-			},planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
+			},planetData.nextBuildingTime.getTime() - (Date.now() + planetUI.deltaNow + 1000));
 		} else {
 			ui.hide('#building-message');
 			ui.show('#building-upgrade');

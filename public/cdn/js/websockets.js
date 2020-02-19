@@ -59,6 +59,9 @@ class webSockets {
 		socket.on('fleet-recieve-data',function(data) {
 			for(const fleet of data.FleetList) {
 				fleet.name = (fleetTranslate[fleet.name])?fleetTranslate[fleet.name]:fleet.name;
+				if(fleet.endMoveTime !== null) {
+					fleet.endMoveTime = new Date(fleet.endMoveTime);
+				}
 
 				const index = units.fleetList.map((elt) => elt.id).indexOf(fleet.id);
 				if(index !== -1) {
@@ -84,6 +87,12 @@ class webSockets {
 
 		// Sync the player data
 		socket.on('player-recieve-data',function(data) {
+			data.beginerProtectEnd = new Date(data.beginerProtectEnd);
+			data.lastConnected = new Date(data.lastConnected);
+			data.lastAction = new Date(data.lastAction);
+			data.lastResearchUpdate = new Date(data.lastResearchUpdate);
+			data.lastBonus = new Date(data.lastBonus);
+
 			for(const key in data) {
 				userData[key] = data[key];
 
