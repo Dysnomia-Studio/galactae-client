@@ -1911,6 +1911,19 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 #research-content, #research-links {
 	background-color: #0b1012;
 }
+.research-node {
+	color: #93fcfb;
+	border: 1px solid #1E7879;
+	background-color: #0b1012;
+
+	position: absolute;
+	top: calc(50% - 33.5px);
+	left: calc(50% - 101px);
+
+	font-size: 0.8em;
+	width: 200px;
+	padding: 1em;
+}
 @keyframes researchActive {
 	0% {
 		box-shadow: 0 0 0 #0EC6C6;
@@ -1922,25 +1935,18 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 		box-shadow: 0 0 0 #0EC6C6;
 	}
 }
-.current-research-node {
+.research-node-current {
 	box-shadow: 0 0 2em #0EC6C6;
 	animation-name: researchActive;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
-.research-node {
-	color: #93fcfb;
+.research-node-done {
 	border: 1px solid #0EC6C6;
-	background-color: #0b1012;
-
-	position: absolute;
-	top: calc(50% - 33.5px);
-	left: calc(50% - 101px);
-
-	font-size: 0.8em;
-	width: 200px;
-	padding: 1em;
+}
+.research-node-notAvailable {
+	border: 1px solid #052323;
 }
 .research-node h2 {
 	font-size: 1.3em;

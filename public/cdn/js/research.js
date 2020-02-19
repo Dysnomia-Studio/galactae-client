@@ -255,12 +255,15 @@ class research extends _Research {
 		if(document.querySelectorAll('#'+key+'-node').length > 0) { return; }
 
 		// Place this node
-		let content;
-		if(planetData.currResearch === key && !research.isSearched(userData, key)) {
-			content = '<div class="research-node current-research-node" id="' + key + '-node">';
-		} else {
-			content = '<div class="research-node" id="' + key + '-node">';
+		let className = '';
+		if(!research.researchedParent(userData, planetData, key)) {
+			className = ' research-node-notAvailable';
+		} else if(research.isSearched(userData, key)) {
+			className = ' research-node-done';
+		} else if(planetData.currResearch === key && !research.isSearched(userData, key)) {
+			className = ' research-node-current';
 		}
+		let content = '<div class="research-node' + className + '" id="' + key + '-node">';
 
 		if(research.researchedParent(userData, planetData, key)) {
 			content += '<h2>' + translate.research[key].name + '</h2>';
