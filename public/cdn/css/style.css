@@ -706,6 +706,7 @@ select, input, summary {
 	position: fixed;
 
 	left: 30.5vw;
+	top: 40px;
 
 	box-sizing: content-box;
 
@@ -722,16 +723,6 @@ select, input, summary {
 	border-top: 0 solid transparent;
 
 	z-index: 200;
-}
-@media (min-width: 1000px) {
-	#game-menu {
-		top: 3vw;
-	}
-}
-@media (max-width: 1000px) {
-	#game-menu {
-		top: 30px;
-	}
 }
 #game-menu a {
 	text-decoration: none;
