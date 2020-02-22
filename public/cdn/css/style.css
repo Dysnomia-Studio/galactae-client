@@ -792,8 +792,7 @@ select, input, summary {
 	background-size: 100% 100%;
 
 	width: 100vw;
-	height: 3vw;
-	min-height: 30px;
+	height: 40px;
 
 	position: fixed;
 	top: 0;
@@ -846,12 +845,14 @@ select, input, summary {
 	height: 2vw;
 }
 #hud-top-left, #hud-top-center, #hud-top-right {
-	min-height: 17px;
-
 	display: inline-block;
 
 	overflow: hidden;
 	text-align: center;
+
+	vertical-align: top;
+
+	margin-top: 5px;
 }
 @media (min-width: 851px) and (max-width: 1200px) {
 	#hud-top-left, #hud-top-right {
@@ -870,26 +871,7 @@ select, input, summary {
 	height: 90%;
 	max-height: 20px;
 }
-@media (min-width: 1801px) {
-	#hud-top-left, #hud-top-right {
-		margin-top: 0.7vw;
-	}
-}
-@media (min-width: 1401px) and (max-width: 1800px) {
-	#hud-top-left, #hud-top-right {
-		margin-top: 0.5vw;
-	}
-}
-@media (min-width: 501px) and (max-width: 1400px) {
-	#hud-top-left, #hud-top-right {
-		margin-top: 0.2vw;
-	}
-}
-@media (max-width: 500px) {
-	#hud-top-left, #hud-top-right {
-		margin-top: 1px;
-	}
-}
+
 .nmb {
 	display: inline-block;
 	font-weight: bold;
@@ -912,8 +894,8 @@ select, input, summary {
 
 	overflow: hidden;
 
-	height: 2vw;
-	line-height: 1.8vw;
+	height: 30px;
+	line-height: 30px;
 
 	background-color: rgb(180,180,180);
 	border: 1px solid rgb(230,230,230);
