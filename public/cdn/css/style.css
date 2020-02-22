@@ -2422,6 +2422,7 @@ a[class="research-search"]:hover {
 }
 
 #map-move-panel  {
+	z-index: 1000;
 	text-align: left;
 }
 #map-move-panel-list {
