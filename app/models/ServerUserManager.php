@@ -55,23 +55,19 @@ class ServerUserManager extends SQLInterface {
 
 			'tutorials' => '{}',
 			
-			'beginnerProtectEnd' => ((time() + ($beginnerProtectionDuration * 24 * 60 * 60)) * 1000),
-
-			'lastConnected' => 0,
-			'lastAction' => 0,
+			'beginnerProtectEnd' => date('Y-m-d H:i:s', (time() + ($beginnerProtectionDuration * 24 * 60 * 60))),
 
 			'points' => 44,
 			'money' => 0,
 			// Research
 				'research' => '{"researchCenter": -1}',
-				'lastResearchUpdate' => 0,
+
 			// Bonus journalier
-				'lastBonus' => 0,
 				'dayBonusStreak' => 0,
 				'dayBonusBest' => 0,
 				
 		]);
-
+		
 		return $this->getUserByName($name);
 	}
 
