@@ -77,7 +77,7 @@ class map {
 
 			if(e.target.id.split('-').length === 3) {
 				document.getElementById('map-address').style.left = e.pageX + 'px';
-				document.getElementById('map-address').style.top = (e.pageY - 25) + 'px';
+				document.getElementById('map-address').style.top = (e.pageY - 30) + 'px';
 
 				document.getElementById('map-address').innerText = e.target.id;
 

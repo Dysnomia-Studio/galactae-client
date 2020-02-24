@@ -514,9 +514,9 @@ class units extends _Units {
 	}
 
 	static drawCurrentInBuildingUnitMessage() {
-		if(planetData.unitBuildingEndTime > (Date.now() + planetUI.deltaNow)) { // An unit is building
+		if(!!planetData.unitBuildingEndTime && planetData.unitBuildingEndTime.getTime() > (Date.now() + planetUI.deltaNow)) { // An unit is building
 			const dateNow = new Date();
-			const dateEnd = new Date(parseInt(planetData.unitBuildingEndTime) + planetUI.deltaNow);
+			const dateEnd = new Date(planetData.unitBuildingEndTime.getTime() + planetUI.deltaNow);
 			const dateTom = new Date(Date.now() + TIME.DAY_TO_MS);
 
 			if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
@@ -782,12 +782,11 @@ class units extends _Units {
 		units.fleetTimers = [];
 		let u = 0;
 		for(let i=0; i<units.fleetList.length; i++) {
-			units.fleetList[i].endMoveTime = parseInt(units.fleetList[i].endMoveTime);
 			// Note: We must disable timeouts that are stored in more than 32 bits
-			if(units.fleetList[i].endMoveTime > 0 && units.fleetList[i].endMoveTime-Date.now() < Math.pow(2, 31)) {
+			if(units.fleetList[i].endMoveTime !== null && units.fleetList[i].endMoveTime.getTime()-Date.now() < Math.pow(2, 31)) {
 				units.fleetTimers[u] = setTimeout(() => {
 					units.sync();
-				}, units.fleetList[i].endMoveTime-Date.now()+planetUI.deltaNow+ TIME.SECOND_MARGIN * TIME.SECONDS_TO_MS); // Wait 5 sec
+				}, units.fleetList[i].endMoveTime.getTime()-Date.now()+planetUI.deltaNow+ TIME.SECOND_MARGIN * TIME.SECONDS_TO_MS); // Wait 5 sec
 
 				u++;
 			}
@@ -1573,7 +1572,7 @@ class units extends _Units {
 					action = fleetTranslate['movingToDef'];
 					break;
 			}
-			content += '<td class="text-center">' + action + ' ' + fleet.position + fleetTranslate['arriveAt'] + ' ' + getDateTime(new Date(fleet.endMoveTime)) + '</td>'; // @TODO: pname (username) instead of position
+			content += '<td class="text-center">' + action + ' ' + fleet.position + fleetTranslate['arriveAt'] + ' ' + getDateTime(fleet.endMoveTime) + '</td>'; // @TODO: pname (username) instead of position
 		}
 
 		content +='</tr></table></summary>' +
@@ -1644,7 +1643,7 @@ class units extends _Units {
 
 			if(units.fleetList[i].name === 'SHIP_DEF') { units.fleetList[i].name = fleetTranslate[units.fleetList[i].name]; }
 
-			if(units.fleetList[i].position === planetData.address && units.fleetList[i].endMoveTime === -1) {
+			if(units.fleetList[i].position === planetData.address && units.fleetList[i].endMoveTime === null) {
 
 				if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { // Defence fleet always first
 					orbitDOM = units.getFleetSpoilerDOM(units.fleetList[i], 'orbit', disableTransfers) + orbitDOM;
@@ -1652,7 +1651,7 @@ class units extends _Units {
 					orbitDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'orbit', disableTransfers);
 				}
 
-			} else if(units.fleetList[i].endMoveTime !== -1) {
+			} else if(units.fleetList[i].endMoveTime !== null) {
 				movingDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'moving', disableTransfers);
 			} else {
 				outDOM += units.getFleetSpoilerDOM(units.fleetList[i], 'out', disableTransfers);
@@ -1905,7 +1904,7 @@ class units extends _Units {
 		let fleetListDOM = '';
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; }
-			if(units.fleetList[i].endMoveTime > 0) { continue; }
+			if(units.fleetList[i].endMoveTime !== null) { continue; }
 			if(units.fleetList[i].position === units.planetTarget) { continue; }
 
 			const mt = units.calcTimeAndFuel(units.fleetList[i]);

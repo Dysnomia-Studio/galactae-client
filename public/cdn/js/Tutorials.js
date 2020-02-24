@@ -20,6 +20,10 @@ class Tutorials extends _Tutorials {
 	}
 
 	static newTutorial(type) {
+		if(Tutorials.currTutorial === type) {
+			return;
+		}
+
 		Tutorials.currTutorial = type;
 
 		Tutorials.openTutorialPanel();
