@@ -66,16 +66,16 @@ class ServerPlanetManager extends SQLInterface {
 				// Buildings
 					'Buildings' => '{1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0}',
 					'nextBuilding' => -1,
-					'nextBuildingTime' => -1,
+					'nextBuildingTime' => null,
 
 				// Resources
 					'resources' => '{100, 0, 350, 500, 40, 100}',
-					'lastResourcesUpdate' => time()*1000,
+					'lastResourcesUpdate' => date('Y-m-d H:i:s'),
 
 				// Units
 					'unitBuildingCount' => -1,
-					'unitBuildingEndTime'  => -1,
-					'lastUnitUpdate' => time()*1000,
+					'unitBuildingEndTime'  => null,
+					'lastUnitUpdate' => date('Y-m-d H:i:s'),
 
 				// Misc
 					'currResearch' => '',
