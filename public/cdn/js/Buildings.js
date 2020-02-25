@@ -1,3 +1,3 @@
 class Buildings extends _Buildings {
-	
+	// No function here yet ...
 }
