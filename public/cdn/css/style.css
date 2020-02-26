@@ -1773,6 +1773,10 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 	width: 30%;
 	margin: 1em 1.5%;
 }
+.fleet-show-backToMotherPlanet-td {
+	text-align: right;
+	padding-right: 2em;
+}
 .priority-fleet {
 	cursor: url(../img/mouse_pointer.png), pointer;
 }
