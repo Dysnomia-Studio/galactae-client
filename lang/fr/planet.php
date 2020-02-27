@@ -38,12 +38,12 @@ translate['buildings'] = [
 	{id: 'solar', name: 'Centrales Solaires', desc: 'Ces centrales transforment l\'energie solaire en energie electrique.' },
 	{id: 'warehouse', name: 'Entrepots', desc: 'Dans les entrepôts sont stockés les minerais bruts ainsi que les metaux traités.' },
 	{id: 'headquarter', name: 'Etat Major', desc: 'L\'Etat Major est le centre névralgique de la gestion des flottes et du système millitaire de la planète.' },
-	{id: 'launchpad', name: 'Centre Spatial', desc: 'Le centre spatial gère la création des défenses spatiales, des chasseurs ainsi que l\'acheminements des ressources necessaires à la création de bâtiments spatiaux.' },
+	{id: 'launchpad', name: 'Centre Spatial', desc: 'Le centre spatial gère la création des défenses spatiales, des chasseurs ainsi que l\'acheminements des ressources necessaires à la création de bâtiments spatiaux. Chaque niveau augmente la productivité.' },
 	{id: 'research', name: 'Centre de recherches', desc: 'Les differents centres de recherches de vos planètes travaillent ensemble afin de découvrir de nouvelles technologies.' },
 	// Space
 	{id: 'radar', name: 'Satellite Radar', desc: 'Le Satellite Radar vous permet de détecter les flottes à une certaine distance de votre planète, il permet aussi de communiquer avec vos flottes en mouvement.' },
 	{id: 'tank', name: 'Réservoirs', desc: 'Cette station spatiale stocke l\'helium 3.' },
-	{id: 'shipyard', name: 'Chantier Naval', desc: 'Le chantier naval vous permet de concevoir ainsi que de construire vos differents vaisseaux.' },
+	{id: 'shipyard', name: 'Chantier Naval', desc: 'Le chantier naval vous permet de concevoir ainsi que de construire vos differents vaisseaux. Chaque niveau augmente la productivité.' },
 	{id: 'trade', name: 'Hub Commercial', desc: 'Cette station est le centre névralgique de toutes les activités commerciales autour de votre planète.' },
 	{id: 'he3exp', name: 'Station d\'exploitation d\'Helium 3', desc: 'Cette station va exploiter les astéroides environnants afin de recuperer automatiquement de l\'helium 3.' },
 ];
