@@ -224,7 +224,7 @@ class planetUI {
 	 * @param      {<type>}  id      Building ID
 	 */
 	static build(id) {
-		if(planetData.Buildings[id]+1 > buildingMaxLvl[id]) {
+		if(planetData.Buildings[id]+1 > buildingMaxLvl[planetData.planetType][id]) {
 			ui.drawMessage('MAX_LEVEL');
 		} else {
 			socket.emit('planet-build', { planet: planetData.address, id: userData.id, username: userData.username, building: id });
@@ -479,7 +479,7 @@ class planetUI {
 		const nextBuildingTime = (planetData.nextBuildingTime === null) ? -1 : planetData.nextBuildingTime.getTime();
 		return (
 			planetUI.getTimeBeforeBuild(id) === 0 &&
-			planetData.Buildings[id] + 1 <= buildingMaxLvl[id] &&
+			planetData.Buildings[id] + 1 <= buildingMaxLvl[planetData.planetType][id] &&
 			(nextBuildingTime-Date.now()+planetUI.deltaNow) < 0 &&
 			Buildings.HasRequirements(userData, planetData, id)
 		);
@@ -569,8 +569,8 @@ class planetUI {
 			cost = Buildings.GetCost(id,planetData.Buildings[id] + 1);
 		}
 
-		const max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
-		const max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding === id));
+		const max = planetData.Buildings[id]+1 > buildingMaxLvl[planetData.planetType][id];
+		const max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[planetData.planetType][id]) && (planetData.nextBuilding === id));
 
 		/* Planet Construction Tab */
 		document.getElementById('building-name').innerText = translate.buildings[id].name;
