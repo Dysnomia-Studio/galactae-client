@@ -7,7 +7,9 @@ if(!isset($_GET['n'])) {
 
 $news_needed = htmlspecialchars(htmlentities($_GET['n']));
 
-if(!is_int((int) $news_needed)) {
+$news_needed = (int) $news_needed;
+
+if(!is_int($news_needed)) {
 	die();
 }
 
@@ -75,18 +77,18 @@ if(file_exists($cache)) {
 		if($curr["id"] == $news_needed) { $found = true; }
 	}
 
-	if($curr == [] || !isset($curr['blog_title_'.$_SESSION['lang']])) {
+	if($curr == [] || !isset($curr['blog_title'])) {
 		die();
 	}
 
 	/* Echo this news */
 	echo "<article>
-		<h2>".$curr['blog_title_'.$_SESSION['lang']]."</h2>
+		<h2>".$curr['blog_title']."</h2>
 		<i>".date("d/m/Y",$curr['blog_time'])."</i>
 		<br/>
 		<br/>
 		<div class=\"devblog-description\">
-			".$curr['blog_desc_'.$_SESSION['lang']]."
+			".$curr['blog_desc']."
 		</div>
 	</article><br/><br/>";
 

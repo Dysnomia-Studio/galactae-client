@@ -20,6 +20,10 @@ class Tutorials extends _Tutorials {
 	}
 
 	static newTutorial(type) {
+		if(Tutorials.currTutorial === type) {
+			return;
+		}
+
 		Tutorials.currTutorial = type;
 
 		Tutorials.openTutorialPanel();
@@ -64,8 +68,8 @@ class Tutorials extends _Tutorials {
 		for(const objective of tutorialObjectives[Tutorials.currTutorial]) {
 			switch(objective.type) {
 				case 'building':
-					document.getElementById(buildingsNames[objective.building]).classList.add('tutorial-active');
-					document.getElementById(buildingsNames[objective.building]).addEventListener('click', function() {
+					document.getElementById(buildingsNames[objective.id]).classList.add('tutorial-active');
+					document.getElementById(buildingsNames[objective.id]).addEventListener('click', function() {
 						this.classList.remove('tutorial-active');
 					});
 					break;

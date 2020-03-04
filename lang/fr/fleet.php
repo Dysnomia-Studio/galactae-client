@@ -31,6 +31,7 @@
 	define('SHIP_SUPSPEED','Interstellaire');
 	define('SHIP_MISS_CHANCE','Chance d\'évitement');
 	define('SHIP_FCAP','Capacité chasseurs');
+	define('SHIP_FWEIGHT', 'Capacité chasseurs utilisée');
 
 	//== Fleet ==\\
 	define('FLEET','Flotte');
@@ -76,10 +77,12 @@ const fleetTranslate = {
 	'SHIP_WEP_MINES_NUKE': 'Mines nucléaires',
 
 	'SHIP_BATTLECRUISER': 'Croiseur',
-	'SHIP_BATTLECRUISER_SMALL': 'Petit',
+	'SHIP_BATTLECRUISER_ATRIOS': 'Classe Atrios',
 
 	'SHIP_CUIRASSE': 'Cuirassé',
 	'SHIP_CUIRASSE_SMALL': 'Petit',
+
+	'SHIP_COLONY': 'Vaisseau Colonial',
 
 	'SHIP_FIGHTER': 'Chasseur',
 	'SHIP_FIGHTER_SMALL': 'Intercepteur Leger',
@@ -87,7 +90,7 @@ const fleetTranslate = {
 	'SHIP_FIGHTER_HUGE': 'Bombardier',
 
 	'SHIP_CORVET': 'Corvette',
-	'SHIP_CORVET_SMALL': 'Petite',
+	'SHIP_CORVET_AEGIS': 'Classe Aegis',
 
 	'SHIP_CARRIER': 'Transporteur',
 	'SHIP_CARRIER_MEDIUM': 'Moyen',
@@ -165,6 +168,7 @@ const fleetTranslate = {
 	'transferUnits': 'Transférer unités',
 	'recycle': 'Recycler unités',
 	'upgrade': 'Ameliorer unités',
+	'backToMotherPlanet': 'Rappeler',
 
 	'mergeInto': 'Fusionner dans ...',
 	'transferFuel': 'Transferer Carburant vers ...',

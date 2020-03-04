@@ -69,6 +69,15 @@ class planetUI {
 		setCookie('galactae-account-pid', data.data.address, 1);
 
 		planetUI.deltaNow = data.sNow - Date.now();
+		
+		if(data.data.nextBuildingTime) {
+			data.data.nextBuildingTime = new Date(data.data.nextBuildingTime);
+		}
+		data.data.lastResourcesUpdate = new Date(data.data.lastResourcesUpdate);
+		data.data.lastUnitUpdate = new Date(data.data.lastUnitUpdate);
+		if(data.data.unitBuildingEndTime) {
+			data.data.unitBuildingEndTime = new Date(data.data.unitBuildingEndTime);
+		}
 
 		// Clientside Calc for ressource auto-update
 		if(resourcesinterval === -1) {
@@ -82,15 +91,12 @@ class planetUI {
 			planetData[key] = data.data[key];
 		}
 
+		if(Object.keys(data.data).length === 1 && typeof data.data.resources !== 'undefined') {
+			// Next update will draw it, no need to recalc all planet, etc.
+			return;
+		}
+
 		userData = Tutorials.updateTutorialList(userData, planetData, units.fleetList, units.list);
-
-		if(planetData.nextBuildingTime) {
-			planetData.nextBuildingTime = parseInt(planetData.nextBuildingTime);
-		}
-
-		if(planetData.unitBuildingEndTime) {
-			planetData.unitBuildingEndTime = parseInt(planetData.unitBuildingEndTime);
-		}
 
 		// Chargement de la map
 		map.init(planetData.address);
@@ -112,11 +118,11 @@ class planetUI {
 			autobuildingrefresh = -1;
 		}
 		// Create timeout: sync where the next building is ended
-		if(planetData.nextBuildingTime !== -1) {
+		if(planetData.nextBuildingTime !== null) {
 			autobuildingrefresh = setTimeout(function() {
 				planetUI.sync();
 				autobuildingrefresh = -1;
-			},planetData.nextBuildingTime-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
+			},planetData.nextBuildingTime.getTime()-Date.now()+planetUI.deltaNow+5000); // Wait 5 sec
 		}
 
 		// Refresh buildPanel
@@ -140,6 +146,8 @@ class planetUI {
 		}
 
 		//Helium 3
+		document.getElementById('he-fuel-distribute').style.display = 'none';
+
 		if(buildings[13] !== 0 && currentBuilding !== 13) {
 			planetData.resources[1] += heliumProdBase*time;
 
@@ -149,11 +157,9 @@ class planetUI {
 
 				// @TODO: Update before full on server
 
-				if(empty) {
-					document.getElementById('he-fuel-distribute').style.display = 'none';
+				// @TODO: Same owner, same ally, trade
 
-					// @TODO: Same owner, same ally, trade
-				} else {
+				if(!empty) {
 					document.getElementById('he-fuel-distribute').style.display = 'inline';
 				}
 			}
@@ -218,7 +224,7 @@ class planetUI {
 	 * @param      {<type>}  id      Building ID
 	 */
 	static build(id) {
-		if(planetData.Buildings[id]+1 > buildingMaxLvl[id]) {
+		if(planetData.Buildings[id]+1 > buildingMaxLvl[planetData.planetType][id]) {
 			ui.drawMessage('MAX_LEVEL');
 		} else {
 			socket.emit('planet-build', { planet: planetData.address, id: userData.id, username: userData.username, building: id });
@@ -234,7 +240,7 @@ class planetUI {
 		// Top left
 		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd - habCons);
 		document.getElementById('research_nmb').innerHTML = GetBetterUnit(researchProd,'/h');
-		document.getElementById('moral_nmb').innerHTML = Math.round(planetData.Buildings[3]/planetData.Buildings[2]*100)+'%';
+		document.getElementById('moral_nmb').innerHTML = Math.round(Buildings.calcPlanetMorale(planetData.Buildings)*100)+'%';
 
 		//Top right
 		document.getElementById('minerals_nmb').innerHTML = GetBetterUnit(Math.floor(planetData.resources[0]),'t',mineralStorageBase);
@@ -385,9 +391,11 @@ class planetUI {
 				planetUI.drawCanBeBuild();
 			},timeLeft);
 		}
+
 		// Refresh this when a building is ended
-		const timeBeforeEndBuild = (planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
-		if(timeBeforeEndBuild>0) {
+		const nextBuildingTime = (planetData.nextBuildingTime === null) ? -1 : planetData.nextBuildingTime.getTime();
+		const timeBeforeEndBuild = (nextBuildingTime- (Date.now() + planetUI.deltaNow + 1000));
+		if(timeBeforeEndBuild > 0) {
 			setTimeout(function() {
 				planetUI.drawCanBeBuild();
 			},timeBeforeEndBuild + 1000);
@@ -468,10 +476,11 @@ class planetUI {
 	 * @param      {<type>}  building  The building ID
 	 */
 	static canBeBuild(id) {
+		const nextBuildingTime = (planetData.nextBuildingTime === null) ? -1 : planetData.nextBuildingTime.getTime();
 		return (
 			planetUI.getTimeBeforeBuild(id) === 0 &&
-			planetData.Buildings[id] + 1 <= buildingMaxLvl[id] &&
-			(planetData.nextBuildingTime-Date.now()+planetUI.deltaNow) < 0 &&
+			planetData.Buildings[id] + 1 <= buildingMaxLvl[planetData.planetType][id] &&
+			(nextBuildingTime-Date.now()+planetUI.deltaNow) < 0 &&
 			Buildings.HasRequirements(userData, planetData, id)
 		);
 	}
@@ -560,8 +569,8 @@ class planetUI {
 			cost = Buildings.GetCost(id,planetData.Buildings[id] + 1);
 		}
 
-		const max = planetData.Buildings[id]+1 > buildingMaxLvl[id];
-		const max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[id]) && (planetData.nextBuilding === id));
+		const max = planetData.Buildings[id]+1 > buildingMaxLvl[planetData.planetType][id];
+		const max2 = ((planetData.Buildings[id]+2 > buildingMaxLvl[planetData.planetType][id]) && (planetData.nextBuilding === id));
 
 		/* Planet Construction Tab */
 		document.getElementById('building-name').innerText = translate.buildings[id].name;
@@ -652,8 +661,8 @@ class planetUI {
 			ui.hide('#building-cost');
 		} else if(requirements !== '') { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
-		} else if(planetData.nextBuilding === id && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
-			const dateEnd = new Date(planetData.nextBuildingTime + planetUI.deltaNow);
+		} else if(planetData.nextBuilding === id && planetData.nextBuildingTime !== null && planetData.nextBuildingTime.getTime() > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
+			const dateEnd = new Date(planetData.nextBuildingTime.getTime() + planetUI.deltaNow);
 			const dateTom = new Date(Date.now() + (24*60*60*1000));
 
 			if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
@@ -684,11 +693,11 @@ class planetUI {
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
 			},(((24 - dateNow.getHours())*60 + (60 - dateNow.getMinutes()))*60 + (65 - dateNow.getSeconds()))*1000 + planetUI.deltaNow); // Refresh at 00:00:05
-		} else if(planetData.nextBuilding !== -1 && planetData.nextBuildingTime > (Date.now() + planetUI.deltaNow)) { // Another building in build mode
+		} else if(planetData.nextBuilding !== -1 && planetData.nextBuildingTime.getTime() > (Date.now() + planetUI.deltaNow)) { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['ANOTHER_IN_BUILD'];
 			planetUI.buildPanelInterval = setTimeout(function() {
 				planetUI.buildPanelOpen(id);
-			},planetData.nextBuildingTime - (Date.now() + planetUI.deltaNow + 1000));
+			},planetData.nextBuildingTime.getTime() - (Date.now() + planetUI.deltaNow + 1000));
 		} else {
 			ui.hide('#building-message');
 			ui.show('#building-upgrade');

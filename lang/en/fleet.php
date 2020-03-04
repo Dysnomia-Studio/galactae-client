@@ -31,6 +31,7 @@
 	define('SHIP_SUPSPEED','Interstellar');
 	define('SHIP_MISS_CHANCE','Miss Chance');
 	define('SHIP_FCAP','Fighters Capacity');
+	define('SHIP_FWEIGHT', 'Used Fighter Capacity');
 
 	//== Fleet ==\\
 	define('FLEET','Fleet');
@@ -76,10 +77,12 @@ const fleetTranslate = {
 	'SHIP_WEP_MINES_NUKE': 'Nuclear mines',
 
 	'SHIP_BATTLECRUISER': 'Battlecruiser',
-	'SHIP_BATTLECRUISER_SMALL': 'Small',
+	'SHIP_BATTLECRUISER_ATRIOS': 'Atrios Class',
 
 	'SHIP_CUIRASSE': 'Battleship',
 	'SHIP_CUIRASSE_SMALL': 'Small',
+
+	'SHIP_COLONY': 'Colony ship',
 
 	'SHIP_FIGHTER': 'Fighter',
 	'SHIP_FIGHTER_SMALL': 'Light Interceptor',
@@ -87,7 +90,7 @@ const fleetTranslate = {
 	'SHIP_FIGHTER_HUGE': 'Bomber',
 
 	'SHIP_CORVET': 'Corvet',
-	'SHIP_CORVET_SMALL': 'Small',
+	'SHIP_CORVET_AEGIS': 'Aegis Class',
 
 	'SHIP_CARRIER': 'Carrier',
 	'SHIP_CARRIER_MEDIUM': 'Medium',
@@ -158,6 +161,7 @@ const fleetTranslate = {
 	'transferUnits': 'Transfer units',
 	'recycle': 'Recycle units',
 	'upgrade': 'Upgrade units',
+	'backToMotherPlanet': 'Call back',
 
 	'mergeInto': 'Merge into ...',
 	'transferFuel': 'Transfer fuel to ...',

@@ -97,6 +97,11 @@ class UserManager extends SQLInterface {
 
 		if(isset($data[0])) {
 			$data = (array) $data[0];
+
+			if(strtolower($data['user_name']) !== strtolower($name) &&
+				strtolower($data['user_mail']) !== strtolower($name)) {
+				$data = [];
+			}
 		}
 
 		return $data;
@@ -132,7 +137,8 @@ class UserManager extends SQLInterface {
 			'user_mail' => $mail,
 			'user_passwd' => $passwd,
 			'newsletter_misc' => $misc,
-			'newsletter_updates' => $updates
+			'newsletter_updates' => $updates,
+			'lastViewedNews' => (new BlogManager())->getLastNewsNumber()
 		]]);
 
 		$conf_link = Security::hashPassword(time().$name);
@@ -240,7 +246,7 @@ class UserManager extends SQLInterface {
 	public function updateUserLastNews($uid, $newsId) {
 		$this->updateContent('users',
             [ 'lastViewedNews' => $newsId ],
-			['id' => $uid]
+			['id' => $uid],
 		);
 	}
 }

@@ -1,3 +1,3 @@
 class GameMap extends _GameMap {
-	
+	// No function here yet ...
 }

@@ -226,7 +226,9 @@ class research extends _Research {
 			const current = researchList[key];
 
 			for(let i=0; i<current.parents.length; i++) {
-				research.drawLink(key,current.parents[i]);
+				if(current.parents[i].name) {
+					research.drawLink(key,current.parents[i].name);
+				}
 			}
 
 			if(research.researchedParent(userData, planetData, key) && !research.isSearched(userData, key) && planetData.currResearch !== key && !!document.getElementById(key)) {
@@ -255,12 +257,15 @@ class research extends _Research {
 		if(document.querySelectorAll('#'+key+'-node').length > 0) { return; }
 
 		// Place this node
-		let content;
-		if(planetData.currResearch === key && !research.isSearched(userData, key)) {
-			content = '<div class="research-node current-research-node" id="' + key + '-node">';
-		} else {
-			content = '<div class="research-node" id="' + key + '-node">';
+		let className = '';
+		if(!research.researchedParent(userData, planetData, key)) {
+			className = ' research-node-notAvailable';
+		} else if(research.isSearched(userData, key)) {
+			className = ' research-node-done';
+		} else if(planetData.currResearch === key && !research.isSearched(userData, key)) {
+			className = ' research-node-current';
 		}
+		let content = '<div class="research-node' + className + '" id="' + key + '-node">';
 
 		if(research.researchedParent(userData, planetData, key)) {
 			content += '<h2>' + translate.research[key].name + '</h2>';
@@ -336,26 +341,23 @@ class research extends _Research {
 		let missingParents = '';
 
 		for(let i=0; i<parents.length; i++) {
-			if(typeof parents[i] === 'string') {
-				if(!research.isSearched(userData, parents[i]) && parents[i] !== 'researchCenter') {
-					missingParents += ', ' + translate['research'][parents[i]].name;
+			if(parents[i].type === 'research') {
+				if(!research.isSearched(userData, parents[i].name) && parents[i].name !== 'researchCenter') {
+					missingParents += ', ' + translate['research'][parents[i].name].name;
 
 				} else { oneParentOK = true; }
-			} else if(typeof parents[i] === 'object' &&
-					typeof parents[i][0] === 'number') {
+			} else if(parents[i].type === 'building') {
 
-				if(planetData.Buildings[parents[i][0]] < parents[i][1]) {
-					missingParents += ', ' + translate['buildings'][parents[i][0]].name + ' ' + translate.messages['LEVEL'] + ' ' + parents[i][1];
+				if(planetData.Buildings[parents[i].id] < parents[i].lvl) {
+					missingParents += ', ' + translate['buildings'][parents[i].id].name + ' ' + translate.messages['LEVEL'] + ' ' + parents[i].lvl;
 
 				} else { oneParentOK = true; }
-			} else if(typeof parents[i] === 'object' &&
-					typeof parents[i][0] === 'string') {
+			} else if(parents[i].type === 'planetCount') {
 
-				if(parents[i][0] === 'planet' &&
-					userData.planetlist !== undefined &&
-					userData.planetlist.length < parents[i][1]) {
+				if(userData.planetlist !== undefined &&
+					userData.planetlist.length < parents[i].count) {
 
-					missingParents += ', ' + parents[i][1] + ' ' + translate.messages['PLANETS'];
+					missingParents += ', ' + parents[i].count + ' ' + translate.messages['PLANETS'];
 				} else { oneParentOK = true; }
 			}
 		}

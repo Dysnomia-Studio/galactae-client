@@ -1,3 +1,3 @@
 class Resources extends _Resources {
-	
+	// No function here yet ...
 }

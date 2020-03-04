@@ -26,7 +26,7 @@ translate['settings'] = {
 	},
 	'sounds': {
 		'soundLvl': 'Volume interface',
-		'musicLvl': 'Volume musique',
+		'musicVol': 'Volume musique',
 		'escape': 'Son à la fermeture d\'une fenètre',
 		'privateMessage': 'Son lors d\'un message privé',
 	},

@@ -295,6 +295,11 @@
 			</span>
 		</span>
 	</div>
+
+	<div id="hud-bottom-hour">
+		12:00:00
+	</div>
+
 	<div id="hud-bottom-right">
 		<span class="tooltip">
 			<a href="#quests" id="hud-bottom-button-quests"><img src="<?= $cdnURL ?>img/ui/quests.svg" alt="quests"></a>
@@ -392,6 +397,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<span id="map-close">X</span>
 	<div id="map-back"><?= MAP_BACKTO_GLOBAL_MAP; ?></div>
 	<div id="map-focus"><?= MAP_FOCUS_CURRENT_SYSTEM; ?></div>
+	<div id="map-address"></div>
 	<svg height="40000" width="50000" id="map-global">
 		<defs>
 			<radialGradient id="redDwarf" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -544,6 +550,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 					</div>
 					<div id="fleet-build-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-build-stat-miss-val"></span></div>
 					<div id="fleet-build-stat-fcap">'.SHIP_FCAP.' : <span id="fleet-build-stat-fcap-val"></span></div>
+					<div id="fleet-build-stat-fweight">'.SHIP_FWEIGHT.' : <span id="fleet-build-stat-fweight-val"></span></div>
 					<div id="fleet-build-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-build-stat-note-val"></span></div>'; ?>
 				</div>
 	
@@ -590,6 +597,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<div id="fleet-type-create-stat-supspeed">'.SHIP_SUPSPEED.' : <span id="fleet-type-create-stat-supspeed-val"></span><br /></div>
 			<div id="fleet-type-create-stat-miss">'.SHIP_MISS_CHANCE.' : <span id="fleet-type-create-stat-miss-val"></span><br /></div>
 			<div id="fleet-type-create-stat-fcap">'.SHIP_FCAP.' : <span id="fleet-type-create-stat-fcap-val"></span><br /></div>
+			<div id="fleet-type-create-stat-fweight">'.SHIP_FWEIGHT.' : <span id="fleet-type-create-stat-fweight-val"></span><br /></div>
 			<div id="fleet-type-create-stat-note">'.FLEET_BUILD_NOTE.' : <span id="fleet-type-create-stat-note-val"></span><br /></div>'; ?>
 		</div>
 
@@ -862,6 +870,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Client Classes */ ?>
 
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/GameMap.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Reports.js"></script>
@@ -874,6 +883,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/Buildings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/GameMap.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>

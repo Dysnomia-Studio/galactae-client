@@ -14,7 +14,7 @@
 				Sa carrière lui a permis de savoir cerner les besoins des gens, et ainsi sous sa direction, le peuple est plus facilement satisfait.
 				</p>
 			</div>
-			<span id="choosebtn1" class="gvt-choosebtn ui-medium-button">Choisir Président !</span>
+			<span id="choosebtn1" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton">Choisir Président !</span>
 		</td>
 		<td class="gvt-choosecard">
 			<h1>PDG</h1>
@@ -23,7 +23,7 @@
 				<p>À la tête d'un conglomérat, il dirige ses planètes dans le but de toujours augmenter ses profits. Il lui a fallu faire des OPA chez ses concurrents afin de prendre le contrôle de sa planète, et cette expérience lui permettra d'en prendre d'autres ...<br/>
 				Sa grande maîtrise des outils économiques va lui permettre d'éviter les taxes galactiques lors des échanges commerciaux.</p>
 			</div>
-			<span id="choosebtn2" class="gvt-choosebtn ui-medium-button">Choisir PDG !</span>
+			<span id="choosebtn2" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton">Choisir PDG !</span>
 		</td>
 		<td class="gvt-choosecard">
 			<h1>Empereur</h1>
@@ -33,11 +33,11 @@
 				<br/>
 				Il dirige d'une main de fer ses armées, ce qui lui permet une meilleure efficacité lors des combats.</p>
 			</div>
-			<span id="choosebtn3" class="gvt-choosebtn ui-medium-button">Choisir Empereur !</span>
+			<span id="choosebtn3" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton">Choisir Empereur !</span>
 		</td>
 	</tr>
 
-	<tr><td colspan="3" id="gvt-confbtn" class="gvt-footer"> <span class="ui-large-button">Commencer l'aventure !</span></td></tr>
+	<tr><td colspan="3" class="gvt-footer"> <span id="gvt-confbtn" class="ui-large-button">Commencer l'aventure !</span></td></tr>
 </table>
 
 <form method="post" action="index.php" id="choose">
@@ -74,6 +74,8 @@
 				default:
 					// Do Nothing
 			}
+
+			confirm.className = 'ui-large-button gvt-choosebtn-nextButton'
 		}
 
 		choice1.addEventListener('click',function() { setActive(1); });
