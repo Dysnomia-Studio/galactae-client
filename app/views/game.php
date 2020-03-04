@@ -829,6 +829,11 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<td id="alliances-panel-info-desc"></td>
 			</tr>
 
+			<tr>
+				<th scope="row"><?= ALLY_MEMBERS ?>:</th>
+				<td id="alliances-panel-info-membersCount"></td>
+			</tr>
+
 			<!-- @TODO: modify button -->
 			<!-- @TODO: quit / delete button -->
 		</table>

@@ -39,6 +39,7 @@ class Alliances {
 	static writeDetails() {
 		document.getElementById('alliances-panel-info-name').innerText = Alliances.details.name;
 		document.getElementById('alliances-panel-info-desc').innerText = Alliances.details.description;
+		document.getElementById('alliances-panel-info-membersCount').innerText = Alliances.details.members.length;
 	}
 
 	static writeMembers() {
