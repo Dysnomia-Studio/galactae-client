@@ -45,7 +45,7 @@ Afin d’augmenter votre production veuillez augmenter votre production de resso
 
 	// Recherches
 	'research-title': 'Recherches',
-	'research-desc': `Les recherches scientifiques sont une activité commune à toute nation moderne. Afin d’optimiser les recherches de la nation, cette interface vous permet d’ordonner un domaine de recherche prioritaire pour la planète au complet.
+	'research-desc': `Les recherches scientifiques sont une activité commune à toute nation moderne. Afin d’optimiser les recherches de la nation, cette interface vous permet d’ordonner un domaine de recherche prioritaire pour la planète au complet. Les recherches fonctionnent par un système de points, il faut atteindre l'objectif afin de maitriser la technologie. Vos points peuvent être produits par une ou plusieurs planètes, vous pouvez voir cette production en haut à gauche de l'interface.
 
 L’arbre de recherche part du centre de recherche vers 3 domaines qui bien que différents sont liés entre eux:
 - Thermodynamique: permet de débloquer tout ce qui attrait à la propulsion

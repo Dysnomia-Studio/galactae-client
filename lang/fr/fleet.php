@@ -168,6 +168,7 @@ const fleetTranslate = {
 	'transferUnits': 'Transférer unités',
 	'recycle': 'Recycler unités',
 	'upgrade': 'Ameliorer unités',
+	'backToMotherPlanet': 'Rappeler',
 
 	'mergeInto': 'Fusionner dans ...',
 	'transferFuel': 'Transferer Carburant vers ...',
