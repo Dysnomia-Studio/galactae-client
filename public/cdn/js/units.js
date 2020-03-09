@@ -347,7 +347,7 @@ class units extends _Units {
 				id: userData.id,
 				username: userData.username,
 				from: units.currFleet,
-				to: fleet,
+				to: fleet.id,
 				unitId: units.currTransferUnit,
 				unitCount: count,
 			});
