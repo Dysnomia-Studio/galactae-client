@@ -813,7 +813,6 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<ul id="alliances-panel-menu" class="ul-choice-line">
 		<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
 		<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
-		<li id="alliances-panel-newMembers-button"><?= ALLY_NEW_PLAYERS ?></li>
 		<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
 	</ul>
 
@@ -839,28 +838,47 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</table>
 	</div>
 	<div id="alliances-panel-members" class="alliances-tab extra-large-panel-tab">
-		<table>
-			<thead>
-				<tr>
-					<th><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
-					<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
-					<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
-					<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
-				</tr>
-			</thead>
+		<div class="alliances-tab-half alliances-tab-cell">
+			<table>
+				<thead>
+					<tr>
+						<th><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
+						<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
+						<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
+						<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
+					</tr>
+				</thead>
 
-			<tbody id="alliances-panel-members-list">
-				
-			</tbody>
-		</table>
+				<tbody id="alliances-panel-members-list">
+					<!-- @TODO: events on edit -->
+				</tbody>
+			</table>
+		</div>
 
-		<!-- @TODO: save button -->
-	</div>
-	<div id="alliances-panel-newMembers" class="alliances-tab extra-large-panel-tab">
-		newMembers
+		<div class="alliances-tab-half">
+			<div class="alliances-tab-half-cell alliances-tab-cell">
+				Demandes a rejoindre
+			</div>		
+
+			<div class="alliances-tab-half-cell alliances-tab-cell">
+				Invitations envoyées
+			</div>
+		</div>
 	</div>
 	<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
-		diplomacy
+		<div class="alliances-tab-half alliances-tab-cell">
+			Pactes
+		</div>
+
+		<div class="alliances-tab-half">
+			<div class="alliances-tab-half-cell alliances-tab-cell">
+				Demandes de pacte
+			</div>		
+
+			<div class="alliances-tab-half-cell alliances-tab-cell">
+				Invitations envoyées
+			</div>
+		</div>
 	</div>
 </div>
 

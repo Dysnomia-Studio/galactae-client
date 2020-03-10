@@ -3355,3 +3355,26 @@ a[class="research-search"]:hover {
 
 	text-align: center;
 }
+.alliances-tab-cell {
+	border: 1px solid #0EC6C6;
+	padding: 1% 0;
+	box-sizing: border-box;
+}
+.alliances-tab-half {
+	display: inline-block;
+
+	width: 49.5%;
+
+	height: 100%;
+	vertical-align: top;
+}
+
+.alliances-tab-half-cell {
+	height: 49%;
+
+	margin: 0 1%;
+	padding: 1%;
+}
+.alliances-tab-half-cell:last-child {
+	margin-top: 2%;
+}

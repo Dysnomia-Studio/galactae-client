@@ -51,19 +51,29 @@ class Alliances {
 			'leader',
 			'diplomacy',
 		];
+		const currUser = Alliances.details.members.filter((user) => user.name === userData.username)[0];
+
 		for(const player of Alliances.details.members) {
 			const tr = document.createElement('tr');
 
 			// Name
 			const tdName = document.createElement('td');
-			tdName.innerText = player;
+			tdName.innerText = player.name;
 			tr.append(tdName);
 
 			// Perms
 			for(const perm of permsList) {
 				const checkBox = document.createElement('input');
-				checkBox.setAttribute('type', 'checkbox');
+				checkBox.setAttribute('type', 'radio');
 				checkBox.setAttribute('permType', perm);
+
+				if(player[perm]) {
+					checkBox.setAttribute('checked', true);
+				}
+
+				if(currUser.founder || (currUser.leader && !player.founder && !player.leader)) {
+					checkBox.setAttribute('disabled', true);
+				}
 
 				// TODO: set checkbox value
 				// TODO: disable if no perm

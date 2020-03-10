@@ -1,6 +1,5 @@
 <?php
 // Menu
-define('ALLY_NEW_PLAYERS', 'New members');
 define('ALLY_MEMBERS', 'Members');
 define('ALLY_INFOS', 'Informations');
 define('ALLY_DIPLOMACY', 'Diplomacy');
