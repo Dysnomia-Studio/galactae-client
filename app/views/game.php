@@ -857,26 +857,44 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 
 		<div class="alliances-tab-half">
 			<div class="alliances-tab-half-cell alliances-tab-cell">
-				Demandes a rejoindre
+				<ul id="alliances-panel-membersAsk-list"></ul>
 			</div>		
 
 			<div class="alliances-tab-half-cell alliances-tab-cell">
-				Invitations envoyées
+				<ul id="alliances-panel-membersInvit-list"></ul>
+				<input
+					type="text"
+					name="alliances-panel-membersInvit-input"
+					id="alliances-panel-membersInvit-input"
+					class="ui-small-input"
+					placeholder="Nom du joueur"
+					size="50"
+					autocomplete="off"
+				/>
 			</div>
 		</div>
 	</div>
 	<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
 		<div class="alliances-tab-half alliances-tab-cell">
-			Pactes
+			<ul id="alliances-panel-pacts-list"></ul>
 		</div>
 
 		<div class="alliances-tab-half">
 			<div class="alliances-tab-half-cell alliances-tab-cell">
-				Demandes de pacte
+				<ul id="alliances-panel-pactsAsk-list"></ul>
 			</div>		
 
 			<div class="alliances-tab-half-cell alliances-tab-cell">
-				Invitations envoyées
+				<ul id="alliances-panel-pactsInvit-list"></ul>
+				<input
+					type="text"
+					name="alliances-panel-pactsInvit-input"
+					id="alliances-panel-pactsInvit-input"
+					class="ui-small-input"
+					placeholder="Nom de l'alliance"
+					size="50"
+					autocomplete="off"
+				/>
 			</div>
 		</div>
 	</div>

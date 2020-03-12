@@ -3375,6 +3375,16 @@ a[class="research-search"]:hover {
 	margin: 0 1%;
 	padding: 1%;
 }
+#alliances-panel-pactsInvit-list, #alliances-panel-membersInvit-list {
+	height: calc(100% - 60px);
+	overflow-y: auto;
+}
+#alliances-panel-pactsInvit-input, #alliances-panel-membersInvit-input {
+	width: calc(100% - 14px);
+}
 .alliances-tab-half-cell:last-child {
 	margin-top: 2%;
+}
+.alliances-tab-half ul {
+	list-style: none;
 }
