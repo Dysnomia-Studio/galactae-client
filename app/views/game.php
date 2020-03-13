@@ -832,10 +832,11 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<th scope="row"><?= ALLY_MEMBERS ?>:</th>
 				<td id="alliances-panel-info-membersCount"></td>
 			</tr>
-
-			<!-- @TODO: modify button -->
-			<!-- @TODO: quit / delete button -->
 		</table>
+
+		<input type="button" id="alliance-panel-info-edit" class="ui-medium-button" value="<?= ALLY_EDIT ?>" />
+		<input type="button" id="alliance-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
+		<input type="button" id="alliance-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
 	</div>
 	<div id="alliances-panel-members" class="alliances-tab extra-large-panel-tab">
 		<div class="alliances-tab-half alliances-tab-cell">
@@ -846,6 +847,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
 						<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
 						<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
+						<th><?= ALLY_MEMBERS_PERMS_NONE ?></th>
 					</tr>
 				</thead>
 
