@@ -74,77 +74,36 @@ class Alliances {
 
 			if(pact.accepted) {
 				li.innerText = allyName;
+				// @TODO: stop pact button
 				ulOk.appendChild(li);
 			} else if(pact.ally_2_name === Alliances.details.name) {
-				const span = document.createElement('span');
-				span.innerText = allyName;
-
-				const validationButton = document.createElement('span');
-				validationButton.classList.add('alliance-panel-validate');
-				validationButton.innerText = '✓';
-				validationButton.addEventListener('click', () => { Alliances.choicePact(allyName, true); });
-
-				const refuseButton = document.createElement('span');
-				refuseButton.classList.add('alliance-panel-refuse');
-				refuseButton.innerText = '✗';
-				refuseButton.addEventListener('click', () => { Alliances.choicePact(allyName, false); });
-
-				li.appendChild(span);
-				li.appendChild(refuseButton);
-				li.appendChild(validationButton);
+				li.appendChild(ui.createSpanText(allyName));
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyName, false); }, 'alliance-panel-refuse'));
+				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyName, true); }, 'alliance-panel-validate'));
 				ulAsk.appendChild(li);
 			} else {
-				const span = document.createElement('span');
-				span.innerText = allyName;
-
-				const cancelButton = document.createElement('span');
-				cancelButton.classList.add('alliance-panel-cancel');
-				cancelButton.innerText = '✗';
-				cancelButton.addEventListener('click', () => { Alliances.cancelPactInvite(allyName); });
-
-				li.appendChild(span);
-				li.appendChild(cancelButton);
+				li.appendChild(ui.createSpanText(allyName));
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyName); }, 'alliance-panel-cancel'));
 				ulInvit.appendChild(li);
 			}
 		}
 
 		if(!ulOk.firstChild) {
-			const li = document.createElement('li');
-			li.innerText = 'Aucun pacte en cours';
-
-			ulOk.appendChild(li);
+			ulOk.appendChild(ui.createLiText('Aucun pacte en cours')); // @TODO: translate
 		} else {
-			const li = document.createElement('li');
-			li.classList.add('alliance-panel-list-header');
-			li.innerText = 'Pactes en cours:';
-
-			ulOk.prepend(li);
+			ulOk.prepend(ui.createLiText('Pactes en cours:','alliance-panel-list-header')); // @TODO: translate
 		}
 
 		if(!ulAsk.firstChild) {
-			const li = document.createElement('li');
-			li.innerText = 'Aucune demande en cours';
-
-			ulAsk.appendChild(li);
+			ulAsk.appendChild(ui.createLiText('Aucune demande en cours')); // @TODO: translate
 		} else {
-			const li = document.createElement('li');
-			li.classList.add('alliance-panel-list-header');
-			li.innerText = 'Demandes de pactes entrantes:';
-
-			ulAsk.prepend(li);
+			ulAsk.prepend(ui.createLiText('Demandes de pactes entrantes:','alliance-panel-list-header')); // @TODO: translate
 		}
 
 		if(!ulInvit.firstChild) {
-			const li = document.createElement('li');
-			li.innerText = 'Aucune invitation en cours';
-
-			ulInvit.appendChild(li);
+			ulInvit.appendChild(ui.createLiText('Aucune invitation en cours')); // @TODO: translate
 		} else {
-			const li = document.createElement('li');
-			li.classList.add('alliance-panel-list-header');
-			li.innerText = 'Demandes de pactes sortantes:';
-
-			ulInvit.prepend(li);
+			ulInvit.prepend(ui.createLiText('Demandes de pactes sortantes','alliance-panel-list-header')); // @TODO: translate
 		}
 	}
 
@@ -198,66 +157,30 @@ class Alliances {
 		const ulAsk = document.getElementById('alliances-panel-membersAsk-list');
 		for(const player of Alliances.details.askToJoin) {
 			const li = document.createElement('li');
-
-			const span = document.createElement('span');
-			span.innerText = player.player;
-
-			const validationButton = document.createElement('span');
-			validationButton.classList.add('alliance-panel-validate');
-			validationButton.innerText = '✓';
-			validationButton.addEventListener('click', () => { Alliances.choiceAskToJoin(allyName, true); });
-
-			const refuseButton = document.createElement('span');
-			refuseButton.classList.add('alliance-panel-refuse');
-			refuseButton.innerText = '✗';
-			refuseButton.addEventListener('click', () => { Alliances.choiceAskToJoin(allyName, false); });
-
-			li.appendChild(span);
-			li.appendChild(refuseButton);
-			li.appendChild(validationButton);
+			li.appendChild(ui.createSpanText(player.player));
+			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceAskToJoin(player.player, false); }, 'alliance-panel-refuse'));
+			li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceAskToJoin(player.player, true); }, 'alliance-panel-validate'));
 			ulAsk.appendChild(li);
 		}
 
 		if(!ulAsk.firstChild) {
-			const li = document.createElement('li');
-			li.innerText = 'Aucune demande de joueur pour rejoindre l\'alliance';
-
-			ulAsk.appendChild(li);
+			ulAsk.appendChild(ui.createLiText('Aucune demande de joueur pour rejoindre l\'alliance')); // @TODO: translate
 		} else {
-			const li = document.createElement('li');
-			li.classList.add('alliance-panel-list-header');
-			li.innerText = 'Demandes de joueur à rejoindre l\'alliance:';
-
-			ulAsk.prepend(li);
+			ulAsk.prepend(ui.createLiText('Demandes de joueur à rejoindre l\'alliance:','alliance-panel-list-header')); // @TODO: translate
 		}
 
 		const ulInvit = document.getElementById('alliances-panel-membersInvit-list');
 		for(const player of Alliances.details.invitations) {
 			const li = document.createElement('li');
-			const span = document.createElement('span');
-			span.innerText = player.player;
-
-			const cancelButton = document.createElement('span');
-			cancelButton.classList.add('alliance-panel-cancel');
-			cancelButton.innerText = '✗';
-			cancelButton.addEventListener('click', () => { Alliances.cancelPlayerInvite(allyName); });
-
-			li.appendChild(span);
-			li.appendChild(cancelButton);
+			li.appendChild(ui.createSpanText(player.player));
+			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvite(player.player); }, 'alliance-panel-cancel'));
 			ulInvit.appendChild(li);
 		}
 
 		if(!ulInvit.firstChild) {
-			const li = document.createElement('li');
-			li.innerText = 'Aucune invitation à rejoindre l\'alliance';
-
-			ulInvit.appendChild(li);
+			ulInvit.appendChild(ui.createLiText('Aucune invitation à rejoindre l\'alliance')); // @TODO: translate
 		} else {
-			const li = document.createElement('li');
-			li.classList.add('alliance-panel-list-header');
-			li.innerText = 'Invitations à rejoindre l\'alliance:';
-
-			ulInvit.prepend(li);
+			ulInvit.prepend(ui.createLiText('Invitations à rejoindre l\'alliance:','alliance-panel-list-header')); // @TODO: translate
 		}
 	}
 }

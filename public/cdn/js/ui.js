@@ -102,6 +102,29 @@ class ui {
 		document.body.appendChild(elt);
 	}
 
+	static createTextElement(element, text, className='') {
+		const createdElement = document.createElement(element);
+		createdElement.className = className;
+		createdElement.innerText = text;
+
+		return createdElement;
+	}
+
+	static createLiText(text, className='') {
+		return ui.createTextElement('li', text, className);
+	}
+
+	static createSpanText(text, className='') {
+		return ui.createTextElement('span', text, className);
+	}
+
+	static createSpanBtn(text, onClick, className='') {
+		const button = ui.createSpanText(text, className);
+		button.addEventListener('click', onClick);
+
+		return button;
+	}
+
 	static openProfile(username) {
 		const win = window.open('https://galactae.eu/profil?u='+ username, '_blank');
 		win.focus();
