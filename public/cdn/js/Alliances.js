@@ -26,6 +26,28 @@ class Alliances {
 				}
 			});
 		});
+
+		/**
+		 * Info page events
+		 */
+		document.getElementById('alliance-panel-info-quit').addEventListener('click', Alliances.quit);
+		document.getElementById('alliance-panel-info-dissolve').addEventListener('click', Alliances.dissolve);
+
+		// @TODO: alliance-edit
+
+		/**
+		 * Player page events
+		 */
+		document.getElementById('alliances-panel-membersInvit-input').addEventListener('keypress', Alliances.invitPlayer);
+		document.getElementById('alliances-panel-pactsInvit-input').addEventListener('keypress', Alliances.askPact);
+
+
+		// @TODO: alliance-search
+		// @TODO: alliance-create
+		// @TODO: alliance-join-ask
+		// @TODO: alliance-join-remove
+		// @TODO: alliance-invite-choice
+		// @TODO: alliance-members-permissionsEdit
 	}
 
 	static getCurrentUser() {
@@ -58,8 +80,8 @@ class Alliances {
 
 	static renderPacts() {
 		ui.empty('#alliances-panel-pacts-list');
-		ui.empty('#alliances-panel-pacts-list');
-		ui.empty('#alliances-panel-pacts-list');
+		ui.empty('#alliances-panel-pactsAsk-list');
+		ui.empty('#alliances-panel-pactsInvit-list');
 
 		const ulOk = document.getElementById('alliances-panel-pacts-list');
 		const ulAsk = document.getElementById('alliances-panel-pactsAsk-list');
@@ -68,22 +90,24 @@ class Alliances {
 			const li = document.createElement('li');
 
 			let allyName = pact.ally_1_name;
+			let allyId = pact.first;
 			if(allyName === Alliances.details.name) {
 				allyName =  pact.ally_2_name;
+				allyId =  pact.second;
 			}
 
 			if(pact.accepted) {
-				li.innerText = allyName;
-				// @TODO: stop pact button
+				li.appendChild(ui.createSpanText(allyName));
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId); }, 'alliance-panel-cancel'));
 				ulOk.appendChild(li);
 			} else if(pact.ally_2_name === Alliances.details.name) {
 				li.appendChild(ui.createSpanText(allyName));
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyName, false); }, 'alliance-panel-refuse'));
-				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyName, true); }, 'alliance-panel-validate'));
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyId, false); }, 'alliance-panel-refuse'));
+				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyId, true); }, 'alliance-panel-validate'));
 				ulAsk.appendChild(li);
 			} else {
 				li.appendChild(ui.createSpanText(allyName));
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyName); }, 'alliance-panel-cancel'));
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyId); }, 'alliance-panel-cancel'));
 				ulInvit.appendChild(li);
 			}
 		}
@@ -109,6 +133,8 @@ class Alliances {
 
 	static renderMembers() {
 		ui.empty('#alliances-panel-members-list');
+		ui.empty('#alliances-panel-membersAsk-list');
+		ui.empty('#alliances-panel-membersInvit-list');
 
 		const tbody = document.getElementById('alliances-panel-members-list');
 		const permsList = [
@@ -134,6 +160,7 @@ class Alliances {
 				checkBox.setAttribute('name', player.name);
 				checkBox.setAttribute('type', 'radio');
 				checkBox.setAttribute('permType', perm);
+				checkBox.addEventListener('click', (e) => Alliances.changePermission(player.name, perm, e));
 
 				if(player[perm] || (!havePerm && perm === 'none')) {
 					havePerm = true;
@@ -150,6 +177,11 @@ class Alliances {
 				tr.appendChild(tdCheckBox);
 			}
 
+			const tdKick = document.createElement('td');
+			if(currUser.name !== player.name && (currUser.founder || (currUser.leader && (!player.founder && !player.leader)))) {
+				tdKick.appendChild(ui.createSpanBtn('✗', () => { Alliances.kick(player.name); }, 'alliance-panel-kick'));
+			}
+			tr.appendChild(tdKick);
 
 			tbody.appendChild(tr);
 		}
@@ -173,7 +205,7 @@ class Alliances {
 		for(const player of Alliances.details.invitations) {
 			const li = document.createElement('li');
 			li.appendChild(ui.createSpanText(player.player));
-			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvite(player.player); }, 'alliance-panel-cancel'));
+			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvitation(player.player); }, 'alliance-panel-cancel'));
 			ulInvit.appendChild(li);
 		}
 
@@ -182,5 +214,209 @@ class Alliances {
 		} else {
 			ulInvit.prepend(ui.createLiText('Invitations à rejoindre l\'alliance:','alliance-panel-list-header')); // @TODO: translate
 		}
+	}
+
+	/**
+	 * Socket interactions
+	 */
+	static quit() {
+		ui.confirm(
+			'Voulez-vous vraiment quitter l\'alliance ?', // @TODO: translate
+			translate['ui']['CONFIRM_YES'],
+			translate['ui']['CONFIRM_NO'],
+
+			() => { // Yes
+				socket.emit(
+					'alliance-leave',
+					userData
+				);
+			}, () => { // No
+				// Do nothing
+			}
+		);
+	}
+
+	static dissolve() {
+		ui.confirm(
+			'Voulez-vous vraiment dissoudre l\'alliance ?', // @TODO: translate
+			translate['ui']['CONFIRM_YES'],
+			translate['ui']['CONFIRM_NO'],
+
+			() => { // Yes
+				socket.emit(
+					'alliance-disslove',
+					userData
+				);
+			}, () => { // No
+				// Do nothing
+			}
+		);
+	}
+
+	static invitPlayer(e) {
+		if(e.key === 'Enter' && this.value.length > 0) {
+			socket.emit(
+				'alliance-invite-ask',
+				{
+					...userData,
+					playerName: this.value,
+				}
+			);
+		}
+
+		this.value = '';
+	}
+
+	static choicePact(allyId, choice) {
+		socket.emit(
+			'alliance-pact-choice',
+			{
+				...userData,
+				allyId,
+				choice,
+			}
+		);
+	}
+
+	static cancelPactInvite(allyId) {
+		socket.emit(
+			'alliance-pact-cancelInvite',
+			{
+				...userData,
+				allyId,
+			}
+		);
+	}
+
+	static askPact(e) {
+		// @TODO: Autocomplete with available list of alliances (use search method)
+
+		if(e.key === 'Enter' && this.value.length > 0) {
+			socket.emit(
+				'alliance-pact-ask',
+				{
+					...userData,
+					allyName: this.value,
+				}
+			);
+		}
+
+		this.value = '';
+	}
+
+	static stopPact(allyId) {
+		ui.confirm(
+			'Voulez-vous vraiment stopper ce pacte ?', // @TODO: translate
+			translate['ui']['CONFIRM_YES'],
+			translate['ui']['CONFIRM_NO'],
+
+			() => { // Yes
+				socket.emit(
+					'alliance-pact-stop',
+					{
+						...userData,
+						allyId,
+					}
+				);
+			}, () => { // No
+				// Do nothing
+			}
+		);
+	}
+
+	static choiceAskToJoin(plyName, choice) {
+		socket.emit(
+			'alliance-join-choice',
+			{
+				...userData,
+				plyName,
+				choice,
+			}
+		);
+	}
+
+	static cancelPlayerInvitation(playerName) {
+		socket.emit(
+			'alliance-invite-remove',
+			{
+				...userData,
+				playerName,
+			}
+		);
+	}
+
+	static changePermission(playerName, permission, e) {
+		console.log(playerName);
+		console.log(permission);
+
+		const playerPerms = {
+			playerName,
+			founder: false,
+			leader: false,
+			diplomacy: false
+		};
+
+		switch (permission) {
+			case 'founder':
+				playerPerms.founder = true;
+				break;
+			case 'leader':
+				playerPerms.leader = true;
+				break;
+			case 'diplomacy':
+				playerPerms.diplomacy = true;
+				break;
+			default:
+				// Do nothing
+				break;
+		}
+
+		if(!playerPerms.founder) {
+			socket.emit(
+				'alliance-members-permissionsEdit',
+				{
+					...userData,
+					...playerPerms,
+				}
+			);
+		} else {
+			ui.confirm(
+				'Voulez-vous quitter votre rôle de fondateur de l\'alliance au profit de ' + playerName + ' ?', // @TODO: translate
+				translate['ui']['CONFIRM_YES'],
+				translate['ui']['CONFIRM_NO'],
+
+				() => { // Yes
+					socket.emit(
+						'alliance-members-permissionsEdit',
+						{
+							...userData,
+							...playerPerms,
+						}
+					);
+				}, () => { // No
+					Alliances.renderMembers(); // Roll back radio input
+				}
+			);
+		}
+	}
+
+	static kick(playerName) {
+		ui.confirm(
+			'Voulez-vous vraiment exclure ' + playerName + ' de l\'alliance ?', // @TODO: translate
+			translate['ui']['CONFIRM_YES'],
+			translate['ui']['CONFIRM_NO'],
+
+			() => { // Yes
+				socket.emit(
+					'alliance-members-kick',
+					{
+						...userData,
+						playerName,
+					}
+				);
+			}, () => { // No
+				// Do nothing
+			}
+		);
 	}
 }

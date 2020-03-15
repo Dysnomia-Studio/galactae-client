@@ -3394,14 +3394,14 @@ a[class="research-search"]:hover {
 .alliances-tab-half ul {
 	list-style: none;
 }
-.alliance-panel-validate, .alliance-panel-refuse, .alliance-panel-cancel {
+.alliance-panel-validate, .alliance-panel-refuse, .alliance-panel-cancel, .alliance-panel-kick {
 	float: right;
 	margin: 0 0.5em;
 }
 .alliance-panel-validate {
 	color: #00ff00;
 }
-.alliance-panel-refuse, .alliance-panel-cancel {
+.alliance-panel-refuse, .alliance-panel-cancel, .alliance-panel-kick {
 	color: red;
 }
 .alliance-panel-list-header {

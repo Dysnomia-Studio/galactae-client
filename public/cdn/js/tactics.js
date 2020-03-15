@@ -135,6 +135,7 @@ class tactics {
 			return;
 		}
 
+		// @TODO: translate
 		ui.confirm('Voulez vous supprimer la tactique ' + currTactic.name + ' ?', 'Oui', 'Non', () => {
 			socket.emit('tactics-delete', {
 				id: userData.id,

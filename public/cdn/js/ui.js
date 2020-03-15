@@ -488,14 +488,14 @@ class ui {
 	}
 
 	static empty(selector) {
-		for(const elt of document.querySelectorAll('selector')) {
+		for(const elt of document.querySelectorAll(selector)) {
 			ui.emptyElt(elt);
 		}
 	}
 
 	static emptyElt(DOMElt) {
 		while(DOMElt.firstChild) {
-			DOMElt.firstChild.remove();
+			DOMElt.removeChild(DOMElt.firstChild);
 		}
 	}
 
