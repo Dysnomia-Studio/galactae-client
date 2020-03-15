@@ -83,6 +83,8 @@ class Alliances {
 		ui.empty('#alliances-panel-pactsAsk-list');
 		ui.empty('#alliances-panel-pactsInvit-list');
 
+		const currentUser = Alliances.getCurrentUser();
+
 		const ulOk = document.getElementById('alliances-panel-pacts-list');
 		const ulAsk = document.getElementById('alliances-panel-pactsAsk-list');
 		const ulInvit = document.getElementById('alliances-panel-pactsInvit-list');
@@ -98,16 +100,28 @@ class Alliances {
 
 			if(pact.accepted) {
 				li.appendChild(ui.createSpanText(allyName));
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId); }, 'alliance-panel-cancel'));
+
+				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
+					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId); }, 'alliance-panel-cancel'));
+				}
+
 				ulOk.appendChild(li);
 			} else if(pact.ally_2_name === Alliances.details.name) {
 				li.appendChild(ui.createSpanText(allyName));
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyId, false); }, 'alliance-panel-refuse'));
-				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyId, true); }, 'alliance-panel-validate'));
+
+				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
+					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyId, false); }, 'alliance-panel-refuse'));
+					li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyId, true); }, 'alliance-panel-validate'));
+				}
+
 				ulAsk.appendChild(li);
 			} else {
 				li.appendChild(ui.createSpanText(allyName));
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyId); }, 'alliance-panel-cancel'));
+
+				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
+					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyId); }, 'alliance-panel-cancel'));
+				}
+
 				ulInvit.appendChild(li);
 			}
 		}
@@ -190,8 +204,12 @@ class Alliances {
 		for(const player of Alliances.details.askToJoin) {
 			const li = document.createElement('li');
 			li.appendChild(ui.createSpanText(player.player));
-			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceAskToJoin(player.player, false); }, 'alliance-panel-refuse'));
-			li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceAskToJoin(player.player, true); }, 'alliance-panel-validate'));
+
+			if(currUser.founder || currUser.leader) {
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceAskToJoin(player.player, false); }, 'alliance-panel-refuse'));
+				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceAskToJoin(player.player, true); }, 'alliance-panel-validate'));
+			}
+
 			ulAsk.appendChild(li);
 		}
 
@@ -205,7 +223,11 @@ class Alliances {
 		for(const player of Alliances.details.invitations) {
 			const li = document.createElement('li');
 			li.appendChild(ui.createSpanText(player.player));
-			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvitation(player.player); }, 'alliance-panel-cancel'));
+
+			if(currUser.founder || currUser.leader) {
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvitation(player.player); }, 'alliance-panel-cancel'));
+			}
+
 			ulInvit.appendChild(li);
 		}
 
