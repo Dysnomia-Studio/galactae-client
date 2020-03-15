@@ -809,95 +809,113 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 
 <?php /* Alliances */ ?>
 <div id="alliances-panel" class="extra-large-panel">
-	<span id="alliances-close" class="close-button">X</span>
-	<ul id="alliances-panel-menu" class="ul-choice-line">
-		<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
-		<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
-		<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
-	</ul>
+	<div id="alliances-panel-haveAlly">
+		<span id="alliances-close" class="close-button">X</span>
+		<ul id="alliances-panel-menu" class="ul-choice-line">
+			<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
+			<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
+			<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
+		</ul>
 
-	<div id="alliances-panel-info" class="alliances-tab extra-large-panel-tab">
-		<table>
-			<tr>
-				<th scope="row"><?= ALLY_NAME ?></th>
-				<td id="alliances-panel-info-name"></td>
-			</tr>
-
-			<tr>
-				<th scope="row"><?= ALLY_DESC ?></th>
-				<td id="alliances-panel-info-desc"></td>
-			</tr>
-
-			<tr>
-				<th scope="row"><?= ALLY_MEMBERS ?>:</th>
-				<td id="alliances-panel-info-membersCount"></td>
-			</tr>
-		</table>
-
-		<input type="button" id="alliance-panel-info-edit" class="ui-medium-button" value="<?= ALLY_EDIT ?>" />
-		<input type="button" id="alliance-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
-		<input type="button" id="alliance-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
-	</div>
-	<div id="alliances-panel-members" class="alliances-tab extra-large-panel-tab">
-		<div class="alliances-tab-half alliances-tab-cell">
+		<div id="alliances-panel-info" class="alliances-tab extra-large-panel-tab">
 			<table>
-				<thead>
-					<tr>
-						<th><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
-						<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
-						<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
-						<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
-						<th><?= ALLY_MEMBERS_PERMS_NONE ?></th>
-					</tr>
-				</thead>
+				<tr>
+					<th scope="row"><?= ALLY_NAME ?></th>
+					<td id="alliances-panel-info-name"></td>
+				</tr>
 
-				<tbody id="alliances-panel-members-list">
-					<!-- @TODO: events on edit -->
-				</tbody>
+				<tr>
+					<th scope="row"><?= ALLY_DESC ?></th>
+					<td id="alliances-panel-info-desc"></td>
+				</tr>
+
+				<tr>
+					<th scope="row"><?= ALLY_MEMBERS ?>:</th>
+					<td id="alliances-panel-info-membersCount"></td>
+				</tr>
 			</table>
+
+			<input type="button" id="alliance-panel-info-edit" class="ui-medium-button" value="<?= ALLY_EDIT ?>" />
+			<input type="button" id="alliance-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
+			<input type="button" id="alliance-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
 		</div>
+		<div id="alliances-panel-members" class="alliances-tab extra-large-panel-tab">
+			<div class="alliances-tab-half alliances-tab-cell">
+				<table>
+					<thead>
+						<tr>
+							<th><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_NONE ?></th>
+						</tr>
+					</thead>
 
-		<div class="alliances-tab-half">
-			<div class="alliances-tab-half-cell alliances-tab-cell">
-				<ul id="alliances-panel-membersAsk-list"></ul>
-			</div>		
+					<tbody id="alliances-panel-members-list">
+						<!-- @TODO: events on edit -->
+					</tbody>
+				</table>
+			</div>
 
-			<div class="alliances-tab-half-cell alliances-tab-cell">
-				<ul id="alliances-panel-membersInvit-list"></ul>
-				<input
-					type="text"
-					name="alliances-panel-membersInvit-input"
-					id="alliances-panel-membersInvit-input"
-					class="ui-small-input"
-					placeholder="Nom du joueur"
-					size="50"
-					autocomplete="off"
-				/>
+			<div class="alliances-tab-half">
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-membersAsk-list"></ul>
+				</div>		
+
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-membersInvit-list"></ul>
+					<input
+						type="text"
+						name="alliances-panel-membersInvit-input"
+						id="alliances-panel-membersInvit-input"
+						class="ui-small-input"
+						placeholder="Nom du joueur"
+						size="50"
+						autocomplete="off"
+					/>
+				</div>
+			</div>
+		</div>
+		<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
+			<div class="alliances-tab-half alliances-tab-cell">
+				<ul id="alliances-panel-pacts-list"></ul>
+			</div>
+
+			<div class="alliances-tab-half">
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-pactsAsk-list"></ul>
+				</div>		
+
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-pactsInvit-list"></ul>
+					<input
+						type="text"
+						name="alliances-panel-pactsInvit-input"
+						id="alliances-panel-pactsInvit-input"
+						class="ui-small-input"
+						placeholder="Nom de l'alliance"
+						size="50"
+						autocomplete="off"
+					/>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
+
+	<div id="alliances-panel-haveNoAlly" class="alliances-tab extra-large-panel-tab">
 		<div class="alliances-tab-half alliances-tab-cell">
-			<ul id="alliances-panel-pacts-list"></ul>
+			Search ally
 		</div>
 
 		<div class="alliances-tab-half">
-			<div class="alliances-tab-half-cell alliances-tab-cell">
-				<ul id="alliances-panel-pactsAsk-list"></ul>
-			</div>		
+			<ul id="alliance-panel-noAlly-invitations" class="alliances-tab-half-cell alliances-tab-cell">
+				Invitations
+			</ul>		
 
-			<div class="alliances-tab-half-cell alliances-tab-cell">
-				<ul id="alliances-panel-pactsInvit-list"></ul>
-				<input
-					type="text"
-					name="alliances-panel-pactsInvit-input"
-					id="alliances-panel-pactsInvit-input"
-					class="ui-small-input"
-					placeholder="Nom de l'alliance"
-					size="50"
-					autocomplete="off"
-				/>
-			</div>
+			<ul id="alliance-panel-noAlly-askToJoin" class="alliances-tab-half-cell alliances-tab-cell">
+				AskToJoin
+			</ul>
 		</div>
 	</div>
 </div>

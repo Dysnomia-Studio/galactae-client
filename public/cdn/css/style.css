@@ -3408,3 +3408,6 @@ a[class="research-search"]:hover {
 	font-weight: bold;
 	margin-bottom: 0.7em;
 }
+#alliances-panel-haveAlly {
+	height: 100%;
+}
