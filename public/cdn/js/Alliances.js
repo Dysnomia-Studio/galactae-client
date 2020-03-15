@@ -143,6 +143,12 @@ class Alliances {
 		} else {
 			ulInvit.prepend(ui.createLiText('Demandes de pactes sortantes','alliance-panel-list-header')); // @TODO: translate
 		}
+
+		if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
+			ui.show('#alliances-panel-pactsInvit-input');
+		} else {
+			ui.hide('#alliances-panel-pactsInvit-input');
+		}
 	}
 
 	static renderMembers() {
@@ -236,6 +242,13 @@ class Alliances {
 		} else {
 			ulInvit.prepend(ui.createLiText('Invitations à rejoindre l\'alliance:','alliance-panel-list-header')); // @TODO: translate
 		}
+
+
+		if(currUser.founder || currUser.leader) {
+			ui.show('#alliances-panel-membersInvit-input');
+		} else {
+			ui.hide('#alliances-panel-membersInvit-input');
+		}
 	}
 
 	/**
@@ -284,9 +297,9 @@ class Alliances {
 					playerName: this.value,
 				}
 			);
-		}
 
-		this.value = '';
+			this.value = '';
+		}
 	}
 
 	static choicePact(allyId, choice) {
@@ -321,9 +334,9 @@ class Alliances {
 					allyName: this.value,
 				}
 			);
-		}
 
-		this.value = '';
+			this.value = '';
+		}
 	}
 
 	static stopPact(allyId) {
