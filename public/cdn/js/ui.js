@@ -102,6 +102,17 @@ class ui {
 		document.body.appendChild(elt);
 	}
 
+	static createTextInput(value='', className='') {
+		const createdElement = document.createElement('input');
+		createdElement.setAttribute('type', 'text');
+		createdElement.className = className;
+		createdElement.value = value;
+
+		console.log(createdElement);
+
+		return createdElement;
+	}
+
 	static createTextElement(element, text, className='') {
 		const createdElement = document.createElement(element);
 		createdElement.className = className;

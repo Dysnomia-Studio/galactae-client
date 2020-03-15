@@ -836,6 +836,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			</table>
 
 			<input type="button" id="alliance-panel-info-edit" class="ui-medium-button" value="<?= ALLY_EDIT ?>" />
+			<input type="button" id="alliance-panel-info-cancelEdit" class="ui-medium-button" value="<?= ALLY_EDIT_CANCEL ?>" />
+			<input type="button" id="alliance-panel-info-saveEdit" class="ui-medium-button" value="<?= ALLY_EDIT_SAVE ?>" />
 			<input type="button" id="alliance-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
 			<input type="button" id="alliance-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
 		</div>

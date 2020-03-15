@@ -32,6 +32,9 @@ class Alliances {
 		 */
 		document.getElementById('alliance-panel-info-quit').addEventListener('click', Alliances.quit);
 		document.getElementById('alliance-panel-info-dissolve').addEventListener('click', Alliances.dissolve);
+		document.getElementById('alliance-panel-info-edit').addEventListener('click', Alliances.beginEdit);
+		document.getElementById('alliance-panel-info-cancelEdit').addEventListener('click', () => Alliances.renderDetails());
+		document.getElementById('alliance-panel-info-saveEdit').addEventListener('click', Alliances.saveEdit);
 
 		// @TODO: alliance-edit
 
@@ -45,9 +48,6 @@ class Alliances {
 		// @TODO: alliance-search
 		// @TODO: alliance-create
 		// @TODO: alliance-join-ask
-		// @TODO: alliance-join-remove
-		// @TODO: alliance-invite-choice
-		// @TODO: alliance-edit
 	}
 
 	static getCurrentUser() {
@@ -86,6 +86,15 @@ class Alliances {
 			ui.show('#alliance-panel-info-quit');
 			ui.hide('#alliance-panel-info-dissolve');
 		}
+
+		if(currUser.founder || currUser.leader) {
+			ui.show('#alliance-panel-info-edit', 'inline');
+		} else {
+			ui.hide('#alliance-panel-info-edit');
+		}
+
+		ui.hide('#alliance-panel-info-cancelEdit');
+		ui.hide('#alliance-panel-info-saveEdit');
 	}
 
 	static renderPacts() {
@@ -520,6 +529,39 @@ class Alliances {
 			{
 				...userData,
 				allyId,
+			}
+		);
+	}
+
+	static beginEdit() {
+		const allyNameTd = document.getElementById('alliances-panel-info-name');
+		allyNameTd.innerText = '';
+		allyNameTd.appendChild(ui.createTextInput(Alliances.details.name, 'ui-small-input'));
+
+		const allyDescTd = document.getElementById('alliances-panel-info-desc');
+		allyDescTd.innerText = '';
+		allyDescTd.appendChild(ui.createTextInput(Alliances.details.description, 'ui-small-input'));
+
+		ui.hide('#alliance-panel-info-edit');
+		ui.show('#alliance-panel-info-cancelEdit', 'inline-block');
+		ui.show('#alliance-panel-info-saveEdit', 'inline-block');
+	}
+
+	static saveEdit() {
+		const name = document.getElementById('alliances-panel-info-name').firstChild.value;
+		const description = document.getElementById('alliances-panel-info-desc').firstChild.value;
+
+		if(name === Alliances.details.name && description === Alliances.details.description) {
+			Alliances.renderDetails();
+			return;
+		}
+
+		socket.emit(
+			'alliance-edit',
+			{
+				...userData,
+				name,
+				description,
 			}
 		);
 	}

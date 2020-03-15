@@ -8,6 +8,8 @@ define('ALLY_DIPLOMACY', 'Diplomatie');
 define('ALLY_NAME', 'Nom de l\'alliance:');
 define('ALLY_DESC', 'Description:');
 define('ALLY_EDIT', 'Modifier');
+define('ALLY_EDIT_CANCEL', 'Cancel Edit');
+define('ALLY_EDIT_SAVE', 'Save Edit');
 define('ALLY_DISSOLVE', 'Dissoudre l\'alliance');
 define('ALLY_QUIT', 'Quitter l\'alliance');
 
