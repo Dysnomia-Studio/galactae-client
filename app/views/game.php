@@ -567,13 +567,13 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</div>
 	</div>
 	<?php /* Fleet Orbit */ ?>
-	<div id="fleet-orbit" class="fleet-tab"></div>
+	<div id="fleet-orbit" class="fleet-tab extra-large-panel-tab"></div>
 	<?php /* Fleet Moves */ ?>
-	<div id="fleet-move" class="fleet-tab"></div>
+	<div id="fleet-move" class="fleet-tab extra-large-panel-tab"></div>
 	<?php /* Fleet Out */ ?>
-	<div id="fleet-out" class="fleet-tab"></div>
+	<div id="fleet-out" class="fleet-tab extra-large-panel-tab"></div>
 	<?php /* Tactics */ ?>
-	<div id="fleet-tactics" class="fleet-tab">
+	<div id="fleet-tactics" class="fleet-tab extra-large-panel-tab">
 		<div class="text-center fleet-tactics-header">
 			<input type="button" class="ui-large-button" id="fleet-tactics-new" value="<?= TACTIC_NEW ?>">
 		</div>
@@ -807,6 +807,144 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</div>
 </div>
 
+<?php /* Alliances */ ?>
+<div id="alliances-panel" class="large-panel">
+	<span id="alliances-close" class="close-button">X</span>
+	<div id="alliances-panel-haveAlly">
+		<ul id="alliances-panel-menu" class="ul-choice-line">
+			<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
+			<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
+			<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
+		</ul>
+
+		<div id="alliances-panel-info" class="alliances-tab large-panel-tab">
+			<table>
+				<tr>
+					<th scope="row"><?= ALLY_NAME ?></th>
+					<td id="alliances-panel-info-name"></td>
+				</tr>
+
+				<tr>
+					<th scope="row"><?= ALLY_DESC ?></th>
+					<td id="alliances-panel-info-desc"></td>
+				</tr>
+
+				<tr>
+					<th scope="row"><?= ALLY_MEMBERS ?>:</th>
+					<td id="alliances-panel-info-membersCount"></td>
+				</tr>
+			</table>
+
+			<input type="button" id="alliances-panel-info-edit" class="ui-medium-button" value="<?= ALLY_EDIT ?>" />
+			<input type="button" id="alliances-panel-info-cancelEdit" class="ui-medium-button" value="<?= ALLY_EDIT_CANCEL ?>" />
+			<input type="button" id="alliances-panel-info-saveEdit" class="ui-medium-button" value="<?= ALLY_EDIT_SAVE ?>" />
+			<input type="button" id="alliances-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
+			<input type="button" id="alliances-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
+		</div>
+		<div id="alliances-panel-members" class="alliances-tab large-panel-tab">
+			<div class="alliances-tab-half alliances-tab-cell">
+				<table>
+					<thead>
+						<tr>
+							<th><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
+							<th><?= ALLY_MEMBERS_PERMS_NONE ?></th>
+						</tr>
+					</thead>
+
+					<tbody id="alliances-panel-members-list">
+						<!-- @TODO: events on edit -->
+					</tbody>
+				</table>
+			</div>
+
+			<div class="alliances-tab-half">
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-membersAsk-list"></ul>
+				</div>		
+
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-membersInvit-list"></ul>
+					<input
+						type="text"
+						name="alliances-panel-membersInvit-input"
+						id="alliances-panel-membersInvit-input"
+						class="ui-small-input"
+						placeholder="Nom du joueur"
+						size="50"
+						autocomplete="off"
+					/>
+				</div>
+			</div>
+		</div>
+		<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
+			<div class="alliances-tab-half alliances-tab-cell">
+				<ul id="alliances-panel-pacts-list"></ul>
+			</div>
+
+			<div class="alliances-tab-half">
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-pactsAsk-list"></ul>
+				</div>		
+
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-pactsInvit-list"></ul>
+					<input
+						type="text"
+						name="alliances-panel-pactsInvit-input"
+						id="alliances-panel-pactsInvit-input"
+						class="ui-small-input"
+						placeholder="Nom de l'alliance"
+						size="50"
+						autocomplete="off"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="alliances-panel-haveNoAlly" class="alliances-tab extra-large-panel-tab">
+		<div class="alliances-tab-half alliances-tab-cell" id="alliance-search">
+			<ul id="alliance-search-results">
+
+			</ul>
+
+			<input
+				type="text"
+				name="alliances-panel-search-input"
+				id="alliances-panel-search-input"
+				class="ui-small-input"
+				placeholder="Rechercher une alliance ..."
+				size="50"
+				autocomplete="off"
+			/>
+		</div>
+
+		<div class="alliances-tab-half">
+			<ul id="alliances-panel-noAlly-invitations" class="alliances-tab-half-cell alliances-tab-cell">
+				Invitations
+			</ul>
+
+			<div class="alliances-tab-half-cell alliances-tab-cell">
+				<ul id="alliances-panel-noAlly-askToJoin">
+					AskToJoin
+				</ul>
+			</div>	
+		</div>
+
+		<input type="button" id="alliances-panel-createBtn" class="ui-medium-button" value="Créer une alliance" />
+	</div>
+</div>
+
+<div id="alliances-panel-create" class="small-panel">
+	<span id="alliances-panel-createBtn-close" class="small-panel-close">X</span>
+	<input id="alliances-panel-create-name" class="ui-medium-input small-panel-input" placeholder="Nom d'alliance" type="text">
+	<input id="alliances-panel-create-description" class="ui-medium-input small-panel-input" placeholder="Description" type="text">
+	<input id="alliances-panel-createBtn-validate" class="ui-medium-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
+</div>
+
 <?php /* Game Version & Copyright */ ?>
 <div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank" rel="noopener noreferrer">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank" rel="noopener noreferrer">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>
@@ -827,6 +965,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Tutorials.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Units.js"></script>
 
+<script type="text/javascript" src="<?= $cdnURL ?>js/Alliances.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Buildings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>

@@ -102,6 +102,40 @@ class ui {
 		document.body.appendChild(elt);
 	}
 
+	static createTextInput(value='', className='') {
+		const createdElement = document.createElement('input');
+		createdElement.setAttribute('type', 'text');
+		createdElement.className = className;
+		createdElement.value = value;
+
+		console.log(createdElement);
+
+		return createdElement;
+	}
+
+	static createTextElement(element, text, className='') {
+		const createdElement = document.createElement(element);
+		createdElement.className = className;
+		createdElement.innerText = text;
+
+		return createdElement;
+	}
+
+	static createLiText(text, className='') {
+		return ui.createTextElement('li', text, className);
+	}
+
+	static createSpanText(text, className='') {
+		return ui.createTextElement('span', text, className);
+	}
+
+	static createSpanBtn(text, onClick, className='') {
+		const button = ui.createSpanText(text, className);
+		button.addEventListener('click', onClick);
+
+		return button;
+	}
+
 	static openProfile(username) {
 		const win = window.open('https://galactae.eu/profil?u='+ username, '_blank');
 		win.focus();
@@ -210,6 +244,9 @@ class ui {
 
 		// Load tutorials UI
 		Tutorials.loadUI();
+
+		// Load alliances UI
+		Alliances.loadUI();
 
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');
@@ -462,14 +499,14 @@ class ui {
 	}
 
 	static empty(selector) {
-		for(const elt of document.querySelectorAll('selector')) {
+		for(const elt of document.querySelectorAll(selector)) {
 			ui.emptyElt(elt);
 		}
 	}
 
 	static emptyElt(DOMElt) {
 		while(DOMElt.firstChild) {
-			DOMElt.firstChild.remove();
+			DOMElt.removeChild(DOMElt.firstChild);
 		}
 	}
 
@@ -654,7 +691,13 @@ class ui {
 		});
 
 		document.getElementById('hud-bottom-button-ally').addEventListener('click', function() {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			if(!ui.allys) {
+				ui.show('#alliances-panel');
+			} else {
+				ui.hide('#alliances-panel');
+			}
+
+			ui.allys = !ui.allys;
 		});
 		document.getElementById('hud-bottom-button-rapports').addEventListener('click', function() {
 			if(!ui.reports) {

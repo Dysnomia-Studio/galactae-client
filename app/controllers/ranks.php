@@ -1,5 +1,6 @@
 <?php
 $rkMngr = new RanksManager();
+$allyRkMngr = new AllyRanksManager();
 
 // URL Parameters
 $type = (isset($_GET['type']))?(string)$_GET['type']:'';
@@ -10,6 +11,7 @@ if(!in_array($type, ['galaxy-players', 'galaxy-ally', 'sector-players', 'sector-
 
 $pageDemandee = (isset($_GET['page']))?(int)$_GET['page']-1:-1;
 $user = (isset($_GET['user']))?$_GET['user']:'';
+$ally = (isset($_GET['ally']))?$_GET['ally']:'';
 
 $sector = (isset($_GET['sector']))?$_GET['sector']:'4-4';
 $sectorCoords = explode('-', $sector);
@@ -29,6 +31,9 @@ if(explode('-', $type)[0] !== 'sector') {
 if($user === '' && $pageDemandee < 0) {
 	$user = $userData['user_name'];
 }
+if($ally === '' && $pageDemandee < 0 && isset($userGameData['ally'])) {
+	$ally = $userGameData['ally'];
+}
 
 // Cache
 $cache = DIR_CACHE.'ranks-'.$type;
@@ -37,6 +42,9 @@ if($pageDemandee >= 0) {
 }
 if($user != '') {
 	$cache .= '-user'.$user;
+}
+if($ally != '') {
+	$cache .= '-ally'.$ally;
 }
 if($sector != '') {
 	$cache .= '-sector'.$sector;
@@ -76,5 +84,29 @@ if(file_exists($cache) && filemtime($cache) > $expire) {
 		}
 
 		$pageData['pageCount'] = $rkMngr->getSectorListPageCount($sector);
+
+	} else if($type === 'galaxy-ally') {
+		if($ally !== '') {
+			$pageData['ranks'] = $allyRkMngr->getGlobalListByName($user);
+			$pageData['pageOuverte'] = 1 + ((int) $pageData['ranks'][0]['rank'])/15;
+		} else {
+			$pageData['ranks'] = $allyRkMngr->getGlobalListByPage($pageDemandee);
+			$pageData['pageOuverte'] = $pageDemandee + 1;
+		}
+
+		$pageData['pageCount'] = $allyRkMngr->getGlobalListPageCount();
+		$pageData['pageName'] = 'allyRanks.php';
+
+	} else if($type === 'sector-ally') {
+		if($ally !== '') {
+			$pageData['ranks'] = $allyRkMngr->getSectorListByNameAndSector($user, $sector);
+			$pageData['pageOuverte'] = 1 + ((int) $pageData['ranks'][0]['rank'])/15;
+		} else {
+			$pageData['ranks'] = $allyRkMngr->getSectorListByPage($pageDemandee, $sector);
+			$pageData['pageOuverte'] = $pageDemandee + 1;
+		}
+
+		$pageData['pageCount'] = $allyRkMngr->getSectorListPageCount($sector);
+		$pageData['pageName'] = 'allyRanks.php';
 	}
 }
