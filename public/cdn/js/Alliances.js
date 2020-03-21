@@ -30,13 +30,11 @@ class Alliances {
 		/**
 		 * Info page events
 		 */
-		document.getElementById('alliance-panel-info-quit').addEventListener('click', Alliances.quit);
-		document.getElementById('alliance-panel-info-dissolve').addEventListener('click', Alliances.dissolve);
-		document.getElementById('alliance-panel-info-edit').addEventListener('click', Alliances.beginEdit);
-		document.getElementById('alliance-panel-info-cancelEdit').addEventListener('click', () => Alliances.renderDetails());
-		document.getElementById('alliance-panel-info-saveEdit').addEventListener('click', Alliances.saveEdit);
-
-		// @TODO: alliance-edit
+		document.getElementById('alliances-panel-info-quit').addEventListener('click', Alliances.quit);
+		document.getElementById('alliances-panel-info-dissolve').addEventListener('click', Alliances.dissolve);
+		document.getElementById('alliances-panel-info-edit').addEventListener('click', Alliances.beginEdit);
+		document.getElementById('alliances-panel-info-cancelEdit').addEventListener('click', () => Alliances.renderDetails());
+		document.getElementById('alliances-panel-info-saveEdit').addEventListener('click', Alliances.saveEdit);
 
 		/**
 		 * Player page events
@@ -44,9 +42,11 @@ class Alliances {
 		document.getElementById('alliances-panel-membersInvit-input').addEventListener('keypress', Alliances.invitPlayer);
 		document.getElementById('alliances-panel-pactsInvit-input').addEventListener('keypress', Alliances.askPact);
 		document.getElementById('alliances-panel-search-input').addEventListener('keypress', Alliances.search);
+		document.getElementById('alliances-panel-createBtn').addEventListener('click', () => { ui.show('#alliances-panel-create'); });
+		document.getElementById('alliances-panel-createBtn-close').addEventListener('click', () => { ui.hide('#alliances-panel-create'); });
+		document.getElementById('alliances-panel-createBtn-validate').addEventListener('click', Alliances.create);
 
 
-		// @TODO: alliance-search
 		// @TODO: alliance-create
 	}
 
@@ -80,21 +80,21 @@ class Alliances {
 
 		const currUser = Alliances.getCurrentUser();
 		if(currUser.founder) {
-			ui.show('#alliance-panel-info-dissolve');
-			ui.hide('#alliance-panel-info-quit');
+			ui.show('#alliances-panel-info-dissolve');
+			ui.hide('#alliances-panel-info-quit');
 		} else {
-			ui.show('#alliance-panel-info-quit');
-			ui.hide('#alliance-panel-info-dissolve');
+			ui.show('#alliances-panel-info-quit');
+			ui.hide('#alliances-panel-info-dissolve');
 		}
 
 		if(currUser.founder || currUser.leader) {
-			ui.show('#alliance-panel-info-edit', 'inline');
+			ui.show('#alliances-panel-info-edit', 'inline');
 		} else {
-			ui.hide('#alliance-panel-info-edit');
+			ui.hide('#alliances-panel-info-edit');
 		}
 
-		ui.hide('#alliance-panel-info-cancelEdit');
-		ui.hide('#alliance-panel-info-saveEdit');
+		ui.hide('#alliances-panel-info-cancelEdit');
+		ui.hide('#alliances-panel-info-saveEdit');
 	}
 
 	static renderPacts() {
@@ -121,7 +121,7 @@ class Alliances {
 				li.appendChild(ui.createSpanText(allyName));
 
 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId); }, 'alliance-panel-cancel'));
+					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId); }, 'alliances-panel-cancel'));
 				}
 
 				ulOk.appendChild(li);
@@ -129,8 +129,8 @@ class Alliances {
 				li.appendChild(ui.createSpanText(allyName));
 
 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyId, false); }, 'alliance-panel-refuse'));
-					li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyId, true); }, 'alliance-panel-validate'));
+					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyId, false); }, 'alliances-panel-refuse'));
+					li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyId, true); }, 'alliances-panel-validate'));
 				}
 
 				ulAsk.appendChild(li);
@@ -138,7 +138,7 @@ class Alliances {
 				li.appendChild(ui.createSpanText(allyName));
 
 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyId); }, 'alliance-panel-cancel'));
+					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyId); }, 'alliances-panel-cancel'));
 				}
 
 				ulInvit.appendChild(li);
@@ -148,19 +148,19 @@ class Alliances {
 		if(!ulOk.firstChild) {
 			ulOk.appendChild(ui.createLiText('Aucun pacte en cours')); // @TODO: translate
 		} else {
-			ulOk.prepend(ui.createLiText('Pactes en cours:','alliance-panel-list-header')); // @TODO: translate
+			ulOk.prepend(ui.createLiText('Pactes en cours:','alliances-panel-list-header')); // @TODO: translate
 		}
 
 		if(!ulAsk.firstChild) {
 			ulAsk.appendChild(ui.createLiText('Aucune demande en cours')); // @TODO: translate
 		} else {
-			ulAsk.prepend(ui.createLiText('Demandes de pactes entrantes:','alliance-panel-list-header')); // @TODO: translate
+			ulAsk.prepend(ui.createLiText('Demandes de pactes entrantes:','alliances-panel-list-header')); // @TODO: translate
 		}
 
 		if(!ulInvit.firstChild) {
 			ulInvit.appendChild(ui.createLiText('Aucune invitation en cours')); // @TODO: translate
 		} else {
-			ulInvit.prepend(ui.createLiText('Demandes de pactes sortantes','alliance-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText('Demandes de pactes sortantes','alliances-panel-list-header')); // @TODO: translate
 		}
 
 		if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
@@ -218,7 +218,7 @@ class Alliances {
 
 			const tdKick = document.createElement('td');
 			if(currUser.name !== player.name && (currUser.founder || (currUser.leader && (!player.founder && !player.leader)))) {
-				tdKick.appendChild(ui.createSpanBtn('✗', () => { Alliances.kick(player.name); }, 'alliance-panel-kick'));
+				tdKick.appendChild(ui.createSpanBtn('✗', () => { Alliances.kick(player.name); }, 'alliances-panel-kick'));
 			}
 			tr.appendChild(tdKick);
 
@@ -231,8 +231,8 @@ class Alliances {
 			li.appendChild(ui.createSpanText(player.player));
 
 			if(currUser.founder || currUser.leader) {
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceAskToJoin(player.player, false); }, 'alliance-panel-refuse'));
-				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceAskToJoin(player.player, true); }, 'alliance-panel-validate'));
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceAskToJoin(player.player, false); }, 'alliances-panel-refuse'));
+				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceAskToJoin(player.player, true); }, 'alliances-panel-validate'));
 			}
 
 			ulAsk.appendChild(li);
@@ -241,7 +241,7 @@ class Alliances {
 		if(!ulAsk.firstChild) {
 			ulAsk.appendChild(ui.createLiText('Aucune demande de joueur pour rejoindre l\'alliance')); // @TODO: translate
 		} else {
-			ulAsk.prepend(ui.createLiText('Demandes de joueur à rejoindre l\'alliance:','alliance-panel-list-header')); // @TODO: translate
+			ulAsk.prepend(ui.createLiText('Demandes de joueur à rejoindre l\'alliance:','alliances-panel-list-header')); // @TODO: translate
 		}
 
 		const ulInvit = document.getElementById('alliances-panel-membersInvit-list');
@@ -250,7 +250,7 @@ class Alliances {
 			li.appendChild(ui.createSpanText(player.player));
 
 			if(currUser.founder || currUser.leader) {
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvitation(player.player); }, 'alliance-panel-cancel'));
+				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvitation(player.player); }, 'alliances-panel-cancel'));
 			}
 
 			ulInvit.appendChild(li);
@@ -259,7 +259,7 @@ class Alliances {
 		if(!ulInvit.firstChild) {
 			ulInvit.appendChild(ui.createLiText('Aucune invitation à rejoindre l\'alliance')); // @TODO: translate
 		} else {
-			ulInvit.prepend(ui.createLiText('Invitations à rejoindre l\'alliance:','alliance-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText('Invitations à rejoindre l\'alliance:','alliances-panel-list-header')); // @TODO: translate
 		}
 
 
@@ -271,15 +271,15 @@ class Alliances {
 	}
 
 	static renderNoAlliancePage() {
-		ui.empty('#alliance-panel-noAlly-askToJoin');
-		ui.empty('#alliance-panel-noAlly-invitations');
+		ui.empty('#alliances-panel-noAlly-askToJoin');
+		ui.empty('#alliances-panel-noAlly-invitations');
 
-		const ulAsk = document.getElementById('alliance-panel-noAlly-askToJoin');
+		const ulAsk = document.getElementById('alliances-panel-noAlly-askToJoin');
 		for(const ask of Alliances.details.askToJoin) {
 			const li = document.createElement('li');
 			li.appendChild(ui.createSpanText(ask.alliance_name));
 
-			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelAskToJoin(ask.alliance); }, 'alliance-panel-cancel'));
+			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelAskToJoin(ask.alliance); }, 'alliances-panel-cancel'));
 
 			ulAsk.appendChild(li);
 		}
@@ -287,16 +287,16 @@ class Alliances {
 		if(!ulAsk.firstChild) {
 			ulAsk.appendChild(ui.createLiText('Aucune demande pour rejoindre une alliance')); // @TODO: translate
 		} else {
-			ulAsk.prepend(ui.createLiText('Demandes de afin de rejoindre une alliance:','alliance-panel-list-header')); // @TODO: translate
+			ulAsk.prepend(ui.createLiText('Demandes de afin de rejoindre une alliance:','alliances-panel-list-header')); // @TODO: translate
 		}
 
-		const ulInvit = document.getElementById('alliance-panel-noAlly-invitations');
+		const ulInvit = document.getElementById('alliances-panel-noAlly-invitations');
 		for(const invitation of Alliances.details.invitations) {
 			const li = document.createElement('li');
 			li.appendChild(ui.createSpanText(invitation.alliance_name));
 
-			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceInvite(invitation.alliance, false); }, 'alliance-panel-refuse'));
-			li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceInvite(invitation.alliance, true); }, 'alliance-panel-validate'));
+			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceInvite(invitation.alliance, false); }, 'alliances-panel-refuse'));
+			li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceInvite(invitation.alliance, true); }, 'alliances-panel-validate'));
 
 			ulInvit.appendChild(li);
 		}
@@ -304,7 +304,7 @@ class Alliances {
 		if(!ulInvit.firstChild) {
 			ulInvit.appendChild(ui.createLiText('Aucune invitation à rejoindre une alliance')); // @TODO: translate
 		} else {
-			ulInvit.prepend(ui.createLiText('Invitations à rejoindre une alliance:','alliance-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText('Invitations à rejoindre une alliance:','alliances-panel-list-header')); // @TODO: translate
 		}
 	}
 
@@ -326,9 +326,9 @@ class Alliances {
 			li.appendChild(ui.createSpanText(alliance.name));
 
 			if(!cantAskAllys.find((elt) => elt === alliance.name)) {
-				li.appendChild(ui.createSpanBtn('Demander à rejoindre', () => { Alliances.askToJoin(alliance.name); }, 'alliance-panel-askToJoin'));
+				li.appendChild(ui.createSpanBtn('Demander à rejoindre', () => { Alliances.askToJoin(alliance.name); }, 'alliances-panel-askToJoin'));
 			} else {
-				li.appendChild(ui.createSpanText('-', 'alliance-panel-askToJoin'));
+				li.appendChild(ui.createSpanText('-', 'alliances-panel-askToJoin'));
 			}
 
 			ulInvit.appendChild(li);
@@ -337,7 +337,7 @@ class Alliances {
 		if(!ulInvit.firstChild) {
 			ulInvit.appendChild(ui.createLiText('Aucun résultat')); // @TODO: translate
 		} else {
-			ulInvit.prepend(ui.createLiText('Résultats:','alliance-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText('Résultats:','alliances-panel-list-header')); // @TODO: translate
 		}
 	}
 
@@ -422,6 +422,24 @@ class Alliances {
 					searchText: this.value,
 				}
 			);
+		}
+	}
+
+	static create(e) {
+		const name = document.getElementById('alliances-panel-create-name').value;
+		const description = document.getElementById('alliances-panel-create-description').value;
+
+		if(name.length > 2) { // @TODO: err message
+			socket.emit(
+				'alliance-create',
+				{
+					...userData,
+					name,
+					description,
+				}
+			);
+
+			ui.hide('#alliances-panel-create');
 		}
 	}
 
@@ -597,9 +615,9 @@ class Alliances {
 		allyDescTd.innerText = '';
 		allyDescTd.appendChild(ui.createTextInput(Alliances.details.description, 'ui-small-input'));
 
-		ui.hide('#alliance-panel-info-edit');
-		ui.show('#alliance-panel-info-cancelEdit', 'inline-block');
-		ui.show('#alliance-panel-info-saveEdit', 'inline-block');
+		ui.hide('#alliances-panel-info-edit');
+		ui.show('#alliances-panel-info-cancelEdit', 'inline-block');
+		ui.show('#alliances-panel-info-saveEdit', 'inline-block');
 	}
 
 	static saveEdit() {

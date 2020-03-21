@@ -835,11 +835,11 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				</tr>
 			</table>
 
-			<input type="button" id="alliance-panel-info-edit" class="ui-medium-button" value="<?= ALLY_EDIT ?>" />
-			<input type="button" id="alliance-panel-info-cancelEdit" class="ui-medium-button" value="<?= ALLY_EDIT_CANCEL ?>" />
-			<input type="button" id="alliance-panel-info-saveEdit" class="ui-medium-button" value="<?= ALLY_EDIT_SAVE ?>" />
-			<input type="button" id="alliance-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
-			<input type="button" id="alliance-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
+			<input type="button" id="alliances-panel-info-edit" class="ui-medium-button" value="<?= ALLY_EDIT ?>" />
+			<input type="button" id="alliances-panel-info-cancelEdit" class="ui-medium-button" value="<?= ALLY_EDIT_CANCEL ?>" />
+			<input type="button" id="alliances-panel-info-saveEdit" class="ui-medium-button" value="<?= ALLY_EDIT_SAVE ?>" />
+			<input type="button" id="alliances-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
+			<input type="button" id="alliances-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
 		</div>
 		<div id="alliances-panel-members" class="alliances-tab large-panel-tab">
 			<div class="alliances-tab-half alliances-tab-cell">
@@ -923,19 +923,26 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</div>
 
 		<div class="alliances-tab-half">
-			<ul id="alliance-panel-noAlly-invitations" class="alliances-tab-half-cell alliances-tab-cell">
+			<ul id="alliances-panel-noAlly-invitations" class="alliances-tab-half-cell alliances-tab-cell">
 				Invitations
 			</ul>
 
 			<div class="alliances-tab-half-cell alliances-tab-cell">
-				<ul id="alliance-panel-noAlly-askToJoin">
+				<ul id="alliances-panel-noAlly-askToJoin">
 					AskToJoin
 				</ul>
 			</div>	
 		</div>
 
-		<input type="button" id="alliance-panel-createBtn" class="ui-medium-button" value="Créer une alliance" />
+		<input type="button" id="alliances-panel-createBtn" class="ui-medium-button" value="Créer une alliance" />
 	</div>
+</div>
+
+<div id="alliances-panel-create" class="small-panel">
+	<span id="alliances-panel-createBtn-close" class="small-panel-close">X</span>
+	<input id="alliances-panel-create-name" class="ui-medium-input small-panel-input" placeholder="Nom d'alliance" type="text">
+	<input id="alliances-panel-create-description" class="ui-medium-input small-panel-input" placeholder="Description" type="text">
+	<input id="alliances-panel-createBtn-validate" class="ui-medium-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
 </div>
 
 <?php /* Game Version & Copyright */ ?>

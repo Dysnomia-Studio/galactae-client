@@ -142,13 +142,16 @@ em {
 	text-align: center;
 	margin: 0.5em;
 }
-.small-panel-submit {
+.small-panel-input {
+	box-sizing: border-box !important;
+}
+.small-panel-submit, .small-panel-input {
 	width: 202px;
 }
 .small-panel-text, .small-panel-select {
 	width: 200px;
 }
-.small-panel-text, .small-panel-submit, .small-panel-select {
+.small-panel-text, .small-panel-submit, .small-panel-select, .small-panel-input {
 	margin: 5px 15px;
 	padding: 0;
 	text-align: center;
@@ -3354,7 +3357,7 @@ a[class="research-search"]:hover {
 #alliances-panel-info input[type="button"] {
 	margin-top: 1em;
 }
-#alliance-panel-info-dissolve, #alliance-panel-info-quit {
+#alliances-panel-info-dissolve, #alliances-panel-info-quit {
 	float: right;
 }
 #alliances-panel-members table {
@@ -3382,7 +3385,7 @@ a[class="research-search"]:hover {
 	margin: 0 1%;
 	padding: 1%;
 }
-#alliances-panel-pactsInvit-list, #alliances-panel-membersInvit-list, #alliance-panel-noAlly-askToJoin, #alliance-search-results {
+#alliances-panel-pactsInvit-list, #alliances-panel-membersInvit-list, #alliances-panel-noAlly-askToJoin, #alliance-search-results {
 	height: calc(100% - 60px);
 	overflow-y: auto;
 }
@@ -3395,27 +3398,29 @@ a[class="research-search"]:hover {
 .alliances-tab-half ul {
 	list-style: none;
 }
-.alliance-panel-validate, .alliance-panel-refuse, .alliance-panel-cancel, .alliance-panel-kick, .alliance-panel-askToJoin {
+.alliances-panel-validate, .alliances-panel-refuse, .alliances-panel-cancel, .alliances-panel-kick, .alliances-panel-askToJoin {
 	float: right;
 	margin: 0 0.5em;
+	user-select: none;
+	cursor: url(../img/mouse_pointer.png), pointer;
 }
-.alliance-panel-validate {
+.alliances-panel-validate {
 	color: #00ff00;
 }
-.alliance-panel-refuse, .alliance-panel-cancel, .alliance-panel-kick {
+.alliances-panel-refuse, .alliances-panel-cancel, .alliances-panel-kick {
 	color: red;
 }
-.alliance-panel-askToJoin {
+.alliances-panel-askToJoin {
 	color: #0EC6C6;
 }
-.alliance-panel-list-header {
+.alliances-panel-list-header {
 	font-weight: bold;
 	margin-bottom: 0.7em;
 }
 #alliances-panel-haveAlly {
 	height: 100%;
 }
-#alliance-panel-createBtn {
+#alliances-panel-createBtn {
 	position: absolute;
 	bottom: 2.5em;
 	left: 50%;
@@ -3427,4 +3432,7 @@ a[class="research-search"]:hover {
 }
 #alliances-panel-haveNoAlly ul {
 	padding-left: 0.5em;
+}
+#alliances-panel-create {
+	padding-top: 1.5em;
 }
