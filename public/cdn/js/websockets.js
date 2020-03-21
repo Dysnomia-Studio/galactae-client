@@ -119,6 +119,11 @@ class webSockets {
 			Alliances.updateDetails(alliance);
 		});
 
+		socket.on('player-search-results', (alliances) => {
+			Alliances.searchResults = alliances;
+			Alliances.updateSearchResults();
+		});
+
 		//Launch the chat
 		chat.init();
 

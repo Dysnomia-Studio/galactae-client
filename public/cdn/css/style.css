@@ -285,19 +285,19 @@ em {
 	}
 }
 
-.extra-large-panel-tab { /* Tabs hidden by default */
+.large-panel-tab, .extra-large-panel-tab { /* Tabs hidden by default */
 	display: none;
 
 	margin: 1.5em;
 	overflow-y: auto;
 }
 @media (min-width: 900px) {
-	.extra-large-panel-tab {
+	.large-panel-tab, .extra-large-panel-tab {
 		height: calc(100% - 5.5em);
 	}
 }
 @media (max-width: 900px) {
-	.extra-large-panel-tab  {
+	.large-panel-tab, .extra-large-panel-tab  {
 		height: calc(100% - 6em);
 	}
 }
@@ -3342,6 +3342,7 @@ a[class="research-search"]:hover {
  * Alliances
  */
 #alliances-panel {
+	z-index: 100;
 	padding: 0.5em 1em;
 }
 #alliances-panel .ul-choice-line {
@@ -3381,11 +3382,11 @@ a[class="research-search"]:hover {
 	margin: 0 1%;
 	padding: 1%;
 }
-#alliances-panel-pactsInvit-list, #alliances-panel-membersInvit-list {
+#alliances-panel-pactsInvit-list, #alliances-panel-membersInvit-list, #alliance-panel-noAlly-askToJoin, #alliance-search-results {
 	height: calc(100% - 60px);
 	overflow-y: auto;
 }
-#alliances-panel-pactsInvit-input, #alliances-panel-membersInvit-input {
+#alliances-panel-pactsInvit-input, #alliances-panel-membersInvit-input, #alliances-panel-askToAlly-input, #alliances-panel-search-input {
 	width: calc(100% - 14px);
 }
 .alliances-tab-half-cell:last-child {
@@ -3394,7 +3395,7 @@ a[class="research-search"]:hover {
 .alliances-tab-half ul {
 	list-style: none;
 }
-.alliance-panel-validate, .alliance-panel-refuse, .alliance-panel-cancel, .alliance-panel-kick {
+.alliance-panel-validate, .alliance-panel-refuse, .alliance-panel-cancel, .alliance-panel-kick, .alliance-panel-askToJoin {
 	float: right;
 	margin: 0 0.5em;
 }
@@ -3404,10 +3405,26 @@ a[class="research-search"]:hover {
 .alliance-panel-refuse, .alliance-panel-cancel, .alliance-panel-kick {
 	color: red;
 }
+.alliance-panel-askToJoin {
+	color: #0EC6C6;
+}
 .alliance-panel-list-header {
 	font-weight: bold;
 	margin-bottom: 0.7em;
 }
 #alliances-panel-haveAlly {
 	height: 100%;
+}
+#alliance-panel-createBtn {
+	position: absolute;
+	bottom: 2.5em;
+	left: 50%;
+	margin-left: -75px;
+	width: 150px;
+}
+#alliance-search {
+	padding: 0.5%;
+}
+#alliances-panel-haveNoAlly ul {
+	padding-left: 0.5em;
 }

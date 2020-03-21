@@ -43,11 +43,11 @@ class Alliances {
 		 */
 		document.getElementById('alliances-panel-membersInvit-input').addEventListener('keypress', Alliances.invitPlayer);
 		document.getElementById('alliances-panel-pactsInvit-input').addEventListener('keypress', Alliances.askPact);
+		document.getElementById('alliances-panel-search-input').addEventListener('keypress', Alliances.search);
 
 
 		// @TODO: alliance-search
 		// @TODO: alliance-create
-		// @TODO: alliance-join-ask
 	}
 
 	static getCurrentUser() {
@@ -56,7 +56,6 @@ class Alliances {
 
 	static updateDetails(newAllyDetails) {
 		Alliances.details = newAllyDetails;
-		console.log(Alliances.details);
 
 		if(Alliances.details.name) {
 			ui.show('#alliances-panel-haveAlly');
@@ -70,6 +69,7 @@ class Alliances {
 			ui.show('#alliances-panel-haveNoAlly');
 
 			Alliances.renderNoAlliancePage();
+			Alliances.updateSearchResults();
 		}
 	}
 
@@ -285,7 +285,7 @@ class Alliances {
 		}
 
 		if(!ulAsk.firstChild) {
-			ulAsk.appendChild(ui.createLiText('Aucune demande de joueur pour rejoindre l\'alliance')); // @TODO: translate
+			ulAsk.appendChild(ui.createLiText('Aucune demande pour rejoindre une alliance')); // @TODO: translate
 		} else {
 			ulAsk.prepend(ui.createLiText('Demandes de afin de rejoindre une alliance:','alliance-panel-list-header')); // @TODO: translate
 		}
@@ -302,9 +302,42 @@ class Alliances {
 		}
 
 		if(!ulInvit.firstChild) {
-			ulInvit.appendChild(ui.createLiText('Aucune invitation à rejoindre l\'alliance')); // @TODO: translate
+			ulInvit.appendChild(ui.createLiText('Aucune invitation à rejoindre une alliance')); // @TODO: translate
 		} else {
 			ulInvit.prepend(ui.createLiText('Invitations à rejoindre une alliance:','alliance-panel-list-header')); // @TODO: translate
+		}
+	}
+
+	static updateSearchResults() {
+		ui.empty('#alliance-search-results');
+
+		if(!Alliances.searchResults) {
+			return;
+		}
+
+		const cantAskAllys = [
+			...Alliances.details.askToJoin.map((elt) => elt.alliance_name),
+			...Alliances.details.invitations.map((elt) => elt.alliance_name),
+		];
+
+		const ulInvit = document.getElementById('alliance-search-results');
+		for(const alliance of Alliances.searchResults) {
+			const li = document.createElement('li');
+			li.appendChild(ui.createSpanText(alliance.name));
+
+			if(!cantAskAllys.find((elt) => elt === alliance.name)) {
+				li.appendChild(ui.createSpanBtn('Demander à rejoindre', () => { Alliances.askToJoin(alliance.name); }, 'alliance-panel-askToJoin'));
+			} else {
+				li.appendChild(ui.createSpanText('-', 'alliance-panel-askToJoin'));
+			}
+
+			ulInvit.appendChild(li);
+		}
+
+		if(!ulInvit.firstChild) {
+			ulInvit.appendChild(ui.createLiText('Aucun résultat')); // @TODO: translate
+		} else {
+			ulInvit.prepend(ui.createLiText('Résultats:','alliance-panel-list-header')); // @TODO: translate
 		}
 	}
 
@@ -380,10 +413,22 @@ class Alliances {
 		);
 	}
 
+	static search(e) {
+		if(this.value.length > 2) {
+			socket.emit(
+				'alliance-search',
+				{
+					...userData,
+					searchText: this.value,
+				}
+			);
+		}
+	}
+
 	static askPact(e) {
 		// @TODO: Autocomplete with available list of alliances (use search method)
 
-		if(e.key === 'Enter' && this.value.length > 0) {
+		if(this.value.length > 0) {
 			socket.emit(
 				'alliance-pact-ask',
 				{
@@ -394,6 +439,16 @@ class Alliances {
 
 			this.value = '';
 		}
+	}
+
+	static askToJoin(allyName) {
+		socket.emit(
+			'alliance-join-ask',
+			{
+				...userData,
+				allyName: allyName,
+			}
+		);
 	}
 
 	static stopPact(allyId) {

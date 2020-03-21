@@ -808,16 +808,16 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 
 <?php /* Alliances */ ?>
-<div id="alliances-panel" class="extra-large-panel">
+<div id="alliances-panel" class="large-panel">
+	<span id="alliances-close" class="close-button">X</span>
 	<div id="alliances-panel-haveAlly">
-		<span id="alliances-close" class="close-button">X</span>
 		<ul id="alliances-panel-menu" class="ul-choice-line">
 			<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
 			<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
 			<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
 		</ul>
 
-		<div id="alliances-panel-info" class="alliances-tab extra-large-panel-tab">
+		<div id="alliances-panel-info" class="alliances-tab large-panel-tab">
 			<table>
 				<tr>
 					<th scope="row"><?= ALLY_NAME ?></th>
@@ -841,7 +841,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<input type="button" id="alliance-panel-info-dissolve" class="ui-medium-button" value="<?= ALLY_DISSOLVE ?>" />
 			<input type="button" id="alliance-panel-info-quit" class="ui-medium-button" value="<?= ALLY_QUIT ?>" />
 		</div>
-		<div id="alliances-panel-members" class="alliances-tab extra-large-panel-tab">
+		<div id="alliances-panel-members" class="alliances-tab large-panel-tab">
 			<div class="alliances-tab-half alliances-tab-cell">
 				<table>
 					<thead>
@@ -906,19 +906,35 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	</div>
 
 	<div id="alliances-panel-haveNoAlly" class="alliances-tab extra-large-panel-tab">
-		<div class="alliances-tab-half alliances-tab-cell">
-			Search ally
+		<div class="alliances-tab-half alliances-tab-cell" id="alliance-search">
+			<ul id="alliance-search-results">
+
+			</ul>
+
+			<input
+				type="text"
+				name="alliances-panel-search-input"
+				id="alliances-panel-search-input"
+				class="ui-small-input"
+				placeholder="Rechercher une alliance ..."
+				size="50"
+				autocomplete="off"
+			/>
 		</div>
 
 		<div class="alliances-tab-half">
 			<ul id="alliance-panel-noAlly-invitations" class="alliances-tab-half-cell alliances-tab-cell">
 				Invitations
-			</ul>		
-
-			<ul id="alliance-panel-noAlly-askToJoin" class="alliances-tab-half-cell alliances-tab-cell">
-				AskToJoin
 			</ul>
+
+			<div class="alliances-tab-half-cell alliances-tab-cell">
+				<ul id="alliance-panel-noAlly-askToJoin">
+					AskToJoin
+				</ul>
+			</div>	
 		</div>
+
+		<input type="button" id="alliance-panel-createBtn" class="ui-medium-button" value="Créer une alliance" />
 	</div>
 </div>
 
