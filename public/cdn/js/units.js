@@ -1296,7 +1296,7 @@ class units extends _Units {
 					break;
 				case 'hangar':
 					modules.hangar += hangarSize[parts[i].tech];
-					miss -= hangarMiss[parts[i].tech];
+					miss += hangarMiss[parts[i].tech];
 					break;
 				default:
 					// Do nothing

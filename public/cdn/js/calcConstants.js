@@ -1187,8 +1187,8 @@ const hangarSize = {
 };
 
 const hangarMiss = {
-	hangarSimple:  -2,
-	hangarDouble: -10,
+	hangarSimple: -0.01,
+	hangarDouble: -0.03,
 };
 
 const TACTIC_MAX_ORDERS = 50;
