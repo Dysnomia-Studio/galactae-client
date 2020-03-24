@@ -446,7 +446,7 @@ class Alliances {
 	static askPact(e) {
 		// @TODO: Autocomplete with available list of alliances (use search method)
 
-		if(this.value.length > 0) {
+		if(e.key === 'Enter' && this.value.length > 0) {
 			socket.emit(
 				'alliance-pact-ask',
 				{
