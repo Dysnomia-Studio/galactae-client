@@ -872,7 +872,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						name="alliances-panel-membersInvit-input"
 						id="alliances-panel-membersInvit-input"
 						class="ui-small-input"
-						placeholder="Nom du joueur"
+						placeholder="<?= ALLY_PLY_NAME ?>"
 						size="50"
 						autocomplete="off"
 					/>
@@ -896,7 +896,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						name="alliances-panel-pactsInvit-input"
 						id="alliances-panel-pactsInvit-input"
 						class="ui-small-input"
-						placeholder="Nom de l'alliance"
+						placeholder="<?= ALLY_NAME ?>"
 						size="50"
 						autocomplete="off"
 					/>
@@ -916,7 +916,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				name="alliances-panel-search-input"
 				id="alliances-panel-search-input"
 				class="ui-small-input"
-				placeholder="Rechercher une alliance ..."
+				placeholder="<?= ALLY_SEARCH ?>"
 				size="50"
 				autocomplete="off"
 			/>
@@ -924,24 +924,24 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 
 		<div class="alliances-tab-half">
 			<ul id="alliances-panel-noAlly-invitations" class="alliances-tab-half-cell alliances-tab-cell">
-				Invitations
+				
 			</ul>
 
 			<div class="alliances-tab-half-cell alliances-tab-cell">
 				<ul id="alliances-panel-noAlly-askToJoin">
-					AskToJoin
+					
 				</ul>
 			</div>	
 		</div>
 
-		<input type="button" id="alliances-panel-createBtn" class="ui-medium-button" value="Créer une alliance" />
+		<input type="button" id="alliances-panel-createBtn" class="ui-medium-button" value="<?= ALLY_CREATE ?>" />
 	</div>
 </div>
 
 <div id="alliances-panel-create" class="small-panel">
 	<span id="alliances-panel-createBtn-close" class="small-panel-close">X</span>
-	<input id="alliances-panel-create-name" class="ui-medium-input small-panel-input" placeholder="Nom d'alliance" type="text">
-	<input id="alliances-panel-create-description" class="ui-medium-input small-panel-input" placeholder="Description" type="text">
+	<input id="alliances-panel-create-name" class="ui-medium-input small-panel-input" placeholder="<?= ALLY_NAME ?>" type="text">
+	<input id="alliances-panel-create-description" class="ui-medium-input small-panel-input" placeholder="<?= ALLY_DESC ?>" type="text">
 	<input id="alliances-panel-createBtn-validate" class="ui-medium-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
 </div>
 

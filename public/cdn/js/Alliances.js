@@ -146,21 +146,21 @@ class Alliances {
 		}
 
 		if(!ulOk.firstChild) {
-			ulOk.appendChild(ui.createLiText('Aucun pacte en cours')); // @TODO: translate
+			ulOk.appendChild(ui.createLiText(translate['alliance']['pact-no']));
 		} else {
-			ulOk.prepend(ui.createLiText('Pactes en cours:','alliances-panel-list-header')); // @TODO: translate
+			ulOk.prepend(ui.createLiText(translate['alliance']['pact-current'],'alliances-panel-list-header'));
 		}
 
 		if(!ulAsk.firstChild) {
-			ulAsk.appendChild(ui.createLiText('Aucune demande en cours')); // @TODO: translate
+			ulAsk.appendChild(ui.createLiText(translate['alliance']['pact-askToJoin-no']));
 		} else {
-			ulAsk.prepend(ui.createLiText('Demandes de pactes entrantes:','alliances-panel-list-header')); // @TODO: translate
+			ulAsk.prepend(ui.createLiText(translate['alliance']['pact-askToJoin-current'],'alliances-panel-list-header'));
 		}
 
 		if(!ulInvit.firstChild) {
-			ulInvit.appendChild(ui.createLiText('Aucune invitation en cours')); // @TODO: translate
+			ulInvit.appendChild(ui.createLiText(translate['alliance']['pact-invitations-no']));
 		} else {
-			ulInvit.prepend(ui.createLiText('Demandes de pactes sortantes','alliances-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText(translate['alliance']['pact-invitations-no'],'alliances-panel-list-header'));
 		}
 
 		if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
@@ -239,9 +239,9 @@ class Alliances {
 		}
 
 		if(!ulAsk.firstChild) {
-			ulAsk.appendChild(ui.createLiText('Aucune demande de joueur pour rejoindre l\'alliance')); // @TODO: translate
+			ulAsk.appendChild(ui.createLiText(translate['alliance']['members-askToJoin-no']));
 		} else {
-			ulAsk.prepend(ui.createLiText('Demandes de joueur à rejoindre l\'alliance:','alliances-panel-list-header')); // @TODO: translate
+			ulAsk.prepend(ui.createLiText(translate['alliance']['members-askToJoin-current'],'alliances-panel-list-header'));
 		}
 
 		const ulInvit = document.getElementById('alliances-panel-membersInvit-list');
@@ -257,9 +257,9 @@ class Alliances {
 		}
 
 		if(!ulInvit.firstChild) {
-			ulInvit.appendChild(ui.createLiText('Aucune invitation à rejoindre l\'alliance')); // @TODO: translate
+			ulInvit.appendChild(ui.createLiText(translate['alliance']['members-invitations-no']));
 		} else {
-			ulInvit.prepend(ui.createLiText('Invitations à rejoindre l\'alliance:','alliances-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText(translate['alliance']['members-invitations-current'],'alliances-panel-list-header'));
 		}
 
 
@@ -285,9 +285,9 @@ class Alliances {
 		}
 
 		if(!ulAsk.firstChild) {
-			ulAsk.appendChild(ui.createLiText('Aucune demande pour rejoindre une alliance')); // @TODO: translate
+			ulAsk.appendChild(ui.createLiText(translate['alliance']['noAlly-askToJoin-no']));
 		} else {
-			ulAsk.prepend(ui.createLiText('Demandes de afin de rejoindre une alliance:','alliances-panel-list-header')); // @TODO: translate
+			ulAsk.prepend(ui.createLiText(translate['alliance']['noAlly-askToJoin-current'],'alliances-panel-list-header'));
 		}
 
 		const ulInvit = document.getElementById('alliances-panel-noAlly-invitations');
@@ -302,9 +302,9 @@ class Alliances {
 		}
 
 		if(!ulInvit.firstChild) {
-			ulInvit.appendChild(ui.createLiText('Aucune invitation à rejoindre une alliance')); // @TODO: translate
+			ulInvit.appendChild(ui.createLiText(translate['alliance']['noAlly-invitations-no']));
 		} else {
-			ulInvit.prepend(ui.createLiText('Invitations à rejoindre une alliance:','alliances-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText(translate['alliance']['noAlly-invitations-current'],'alliances-panel-list-header'));
 		}
 	}
 
@@ -326,7 +326,7 @@ class Alliances {
 			li.appendChild(ui.createSpanText(alliance.name));
 
 			if(!cantAskAllys.find((elt) => elt === alliance.name)) {
-				li.appendChild(ui.createSpanBtn('Demander à rejoindre', () => { Alliances.askToJoin(alliance.name); }, 'alliances-panel-askToJoin'));
+				li.appendChild(ui.createSpanBtn(translate['alliance']['askToJoin'], () => { Alliances.askToJoin(alliance.name); }, 'alliances-panel-askToJoin'));
 			} else {
 				li.appendChild(ui.createSpanText('-', 'alliances-panel-askToJoin'));
 			}
@@ -335,9 +335,9 @@ class Alliances {
 		}
 
 		if(!ulInvit.firstChild) {
-			ulInvit.appendChild(ui.createLiText('Aucun résultat')); // @TODO: translate
+			ulInvit.appendChild(ui.createLiText(translate['alliance']['results-no']));
 		} else {
-			ulInvit.prepend(ui.createLiText('Résultats:','alliances-panel-list-header')); // @TODO: translate
+			ulInvit.prepend(ui.createLiText(translate['alliance']['results'],'alliances-panel-list-header'));
 		}
 	}
 
@@ -346,7 +346,7 @@ class Alliances {
 	 */
 	static quit() {
 		ui.confirm(
-			'Voulez-vous vraiment quitter l\'alliance ?', // @TODO: translate
+			translate['alliance']['quit-confirm'],
 			translate['ui']['CONFIRM_YES'],
 			translate['ui']['CONFIRM_NO'],
 
@@ -363,7 +363,7 @@ class Alliances {
 
 	static dissolve() {
 		ui.confirm(
-			'Voulez-vous vraiment dissoudre l\'alliance ?', // @TODO: translate
+			translate['alliance']['dissolve-confirm'],
 			translate['ui']['CONFIRM_YES'],
 			translate['ui']['CONFIRM_NO'],
 
@@ -471,7 +471,7 @@ class Alliances {
 
 	static stopPact(allyId) {
 		ui.confirm(
-			'Voulez-vous vraiment stopper ce pacte ?', // @TODO: translate
+			translate['alliance']['stopPact-confirm'],
 			translate['ui']['CONFIRM_YES'],
 			translate['ui']['CONFIRM_NO'],
 
@@ -511,9 +511,6 @@ class Alliances {
 	}
 
 	static changePermission(playerName, permission, e) {
-		console.log(playerName);
-		console.log(permission);
-
 		const playerPerms = {
 			playerName,
 			founder: false,
@@ -546,7 +543,7 @@ class Alliances {
 			);
 		} else {
 			ui.confirm(
-				'Voulez-vous quitter votre rôle de fondateur de l\'alliance au profit de ' + playerName + ' ?', // @TODO: translate
+				translate['alliance']['abandon-founder-confirm'](playerName),
 				translate['ui']['CONFIRM_YES'],
 				translate['ui']['CONFIRM_NO'],
 
@@ -567,7 +564,7 @@ class Alliances {
 
 	static kick(playerName) {
 		ui.confirm(
-			'Voulez-vous vraiment exclure ' + playerName + ' de l\'alliance ?', // @TODO: translate
+			translate['alliance']['kick-confirm'](playerName),
 			translate['ui']['CONFIRM_YES'],
 			translate['ui']['CONFIRM_NO'],
 
