@@ -121,6 +121,10 @@ translate['messages'] = {
 	'ATTACK_INCOMING_FROM': 'Incoming attack from ',
 	'ATTACK_INCOMING_TO': ' to ',
 	'ATTACK_INCOMING_TIME': ', ETA: ',
+
+	// Alliances notif
+	'ALLIANCE_CREATE_ERROR': 'Error: An alliance with the same name already exists',
+	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: This alliance does not exists',
 };
 
 translate['load'] = {
