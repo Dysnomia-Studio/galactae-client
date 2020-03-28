@@ -69,7 +69,7 @@ class planetUI {
 		setCookie('galactae-account-pid', data.data.address, 1);
 
 		planetUI.deltaNow = data.sNow - Date.now();
-		
+
 		if(data.data.nextBuildingTime) {
 			data.data.nextBuildingTime = new Date(data.data.nextBuildingTime);
 		}
@@ -118,7 +118,7 @@ class planetUI {
 			autobuildingrefresh = -1;
 		}
 		// Create timeout: sync where the next building is ended
-		if(planetData.nextBuildingTime !== null) {
+		if(planetData.nextBuildingTime) {
 			autobuildingrefresh = setTimeout(function() {
 				planetUI.sync();
 				autobuildingrefresh = -1;
@@ -393,7 +393,7 @@ class planetUI {
 		}
 
 		// Refresh this when a building is ended
-		const nextBuildingTime = (planetData.nextBuildingTime === null) ? -1 : planetData.nextBuildingTime.getTime();
+		const nextBuildingTime = (!planetData.nextBuildingTime) ? -1 : planetData.nextBuildingTime.getTime();
 		const timeBeforeEndBuild = (nextBuildingTime- (Date.now() + planetUI.deltaNow + 1000));
 		if(timeBeforeEndBuild > 0) {
 			setTimeout(function() {
