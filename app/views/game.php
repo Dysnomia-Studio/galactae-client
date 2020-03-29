@@ -768,7 +768,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <div id="report-panel" class="extra-large-panel">
 	<a id="report-panel-close" class="close-button">X</a>
 	<div id="report-list-container" class="report-panel-container">
-		<table id="report-list-buttons">
+		<table id="report-list-buttons" aria-describedby="report buttons">
 			<tr>
 				<td><input type="checkbox" class="ui-medium-button" id="report-list-select-all" /></td>
 				<td><input type="button" class="ui-medium-button" id="report-list-mark-read" value="<?= MARK_AS_READ ?>" /></td>
@@ -777,21 +777,21 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			</tr>
 		</table>
 
-		<table id="report-list" class="report-panel-table">
+		<table id="report-list" class="report-panel-table" aria-describedby="reports list">
 		</table>
 	</div>
 
 	<div id="report-preview-container" class="report-panel-container">
 		<span id="report-preview-back">←</span>
 
-		<table id="report-preview-buttons">
+		<table id="report-preview-buttons" aria-describedby="report preview buttons">
 			<tr>
 				<td><input type="button" class="ui-medium-button" id="report-preview-mark-unread" value="<?= MARK_AS_UNREAD ?>" /></td>
 				<td><input type="button" class="ui-medium-button" id="report-preview-delete" value="<?= DELETE ?>" /></td>
 			</tr>
 		</table>
 
-		<table id="report-preview" class="report-panel-table">
+		<table id="report-preview" class="report-panel-table" aria-describedby="report preview content">
 			<tr>
 				<td id="report-preview-atk"></td>
 				<td id="report-preview-def"></td>
@@ -818,7 +818,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</ul>
 
 		<div id="alliances-panel-info" class="alliances-tab large-panel-tab">
-			<table>
+			<table aria-describedby="alliance informations">
 				<tr>
 					<th scope="row"><?= ALLY_NAME ?></th>
 					<td id="alliances-panel-info-name"></td>
@@ -843,14 +843,14 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</div>
 		<div id="alliances-panel-members" class="alliances-tab large-panel-tab">
 			<div class="alliances-tab-half alliances-tab-cell">
-				<table>
+				<table aria-describedby="alliance members list">
 					<thead>
 						<tr>
-							<th><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
-							<th><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
-							<th><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
-							<th><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
-							<th><?= ALLY_MEMBERS_PERMS_NONE ?></th>
+							<th scope="col"><?= ALLY_MEMBERS_PLAYER_NAME ?></th>
+							<th scope="col"><?= ALLY_MEMBERS_PERMS_FOUNDER ?></th>
+							<th scope="col"><?= ALLY_MEMBERS_PERMS_LEADER ?></th>
+							<th scope="col"><?= ALLY_MEMBERS_PERMS_DIPLOMACY ?></th>
+							<th scope="col"><?= ALLY_MEMBERS_PERMS_NONE ?></th>
 						</tr>
 					</thead>
 
@@ -863,7 +863,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<div class="alliances-tab-half">
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-membersAsk-list"></ul>
-				</div>		
+				</div>
 
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-membersInvit-list"></ul>
@@ -887,7 +887,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<div class="alliances-tab-half">
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-pactsAsk-list"></ul>
-				</div>		
+				</div>	
 
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-pactsInvit-list"></ul>
@@ -931,7 +931,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<ul id="alliances-panel-noAlly-askToJoin">
 					
 				</ul>
-			</div>	
+			</div>
 		</div>
 
 		<input type="button" id="alliances-panel-createBtn" class="ui-medium-button" value="<?= ALLY_CREATE ?>" />
