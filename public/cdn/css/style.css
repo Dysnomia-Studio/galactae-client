@@ -142,13 +142,16 @@ em {
 	text-align: center;
 	margin: 0.5em;
 }
-.small-panel-submit {
+.small-panel-input {
+	box-sizing: border-box !important;
+}
+.small-panel-submit, .small-panel-input {
 	width: 202px;
 }
 .small-panel-text, .small-panel-select {
 	width: 200px;
 }
-.small-panel-text, .small-panel-submit, .small-panel-select {
+.small-panel-text, .small-panel-submit, .small-panel-select, .small-panel-input {
 	margin: 5px 15px;
 	padding: 0;
 	text-align: center;
@@ -285,6 +288,22 @@ em {
 	}
 }
 
+.large-panel-tab, .extra-large-panel-tab { /* Tabs hidden by default */
+	display: none;
+
+	margin: 1.5em;
+	overflow-y: auto;
+}
+@media (min-width: 900px) {
+	.large-panel-tab, .extra-large-panel-tab {
+		height: calc(100% - 5.5em);
+	}
+}
+@media (max-width: 900px) {
+	.large-panel-tab, .extra-large-panel-tab  {
+		height: calc(100% - 6em);
+	}
+}
 
 
 
@@ -3320,4 +3339,100 @@ a[class="research-search"]:hover {
 }
 #report-list-buttons input[type="button"] {
 	margin-right: 0.25em;
+}
+
+/**
+ * Alliances
+ */
+#alliances-panel {
+	z-index: 100;
+	padding: 0.5em 1em;
+}
+#alliances-panel .ul-choice-line {
+	width: calc(100% - 1em);
+}
+#alliances-panel-info {
+	display: block; /* Default opened panel */
+}
+#alliances-panel-info input[type="button"] {
+	margin-top: 1em;
+}
+#alliances-panel-info-dissolve, #alliances-panel-info-quit {
+	float: right;
+}
+#alliances-panel-members table {
+	width: 100%;
+
+	text-align: center;
+}
+.alliances-tab-cell {
+	border: 1px solid #0EC6C6;
+	padding: 1% 0;
+	box-sizing: border-box;
+}
+.alliances-tab-half {
+	display: inline-block;
+
+	width: 49.5%;
+
+	height: 100%;
+	vertical-align: top;
+}
+
+.alliances-tab-half-cell {
+	height: 49%;
+
+	margin: 0 1%;
+	padding: 1%;
+}
+#alliances-panel-pactsInvit-list, #alliances-panel-membersInvit-list, #alliances-panel-noAlly-askToJoin, #alliance-search-results {
+	height: calc(100% - 60px);
+	overflow-y: auto;
+}
+#alliances-panel-pactsInvit-input, #alliances-panel-membersInvit-input, #alliances-panel-askToAlly-input, #alliances-panel-search-input {
+	width: calc(100% - 14px);
+}
+.alliances-tab-half-cell:last-child {
+	margin-top: 2%;
+}
+.alliances-tab-half ul {
+	list-style: none;
+}
+.alliances-panel-validate, .alliances-panel-refuse, .alliances-panel-cancel, .alliances-panel-kick, .alliances-panel-askToJoin {
+	float: right;
+	margin: 0 0.5em;
+	user-select: none;
+	cursor: url(../img/mouse_pointer.png), pointer;
+}
+.alliances-panel-validate {
+	color: #00ff00;
+}
+.alliances-panel-refuse, .alliances-panel-cancel, .alliances-panel-kick {
+	color: red;
+}
+.alliances-panel-askToJoin {
+	color: #0EC6C6;
+}
+.alliances-panel-list-header {
+	font-weight: bold;
+	margin-bottom: 0.7em;
+}
+#alliances-panel-haveAlly {
+	height: 100%;
+}
+#alliances-panel-createBtn {
+	position: absolute;
+	bottom: 2.5em;
+	left: 50%;
+	margin-left: -75px;
+	width: 150px;
+}
+#alliance-search {
+	padding: 0.5%;
+}
+#alliances-panel-haveNoAlly ul {
+	padding-left: 0.5em;
+}
+#alliances-panel-create {
+	padding-top: 1.5em;
 }

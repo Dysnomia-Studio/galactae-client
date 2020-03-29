@@ -114,6 +114,16 @@ class webSockets {
 			Reports.displayReport(report.battleLog_id);
 		});
 
+		// Sync the alliance details
+		socket.on('player-alliance-data', (alliance) => {
+			Alliances.updateDetails(alliance);
+		});
+
+		socket.on('player-search-results', (alliances) => {
+			Alliances.searchResults = alliances;
+			Alliances.updateSearchResults();
+		});
+
 		//Launch the chat
 		chat.init();
 

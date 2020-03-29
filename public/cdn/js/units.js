@@ -78,6 +78,7 @@ class units extends _Units {
 		});
 
 		// Fleet Menu
+		// @TODO: refacto to group up with alliances tabs
 		document.querySelectorAll('.fleet-ul1 li').forEach(function(elt) {
 			elt.addEventListener('click', function() {
 				if(preventFleetHUDClosing) { return; }
@@ -346,7 +347,7 @@ class units extends _Units {
 				id: userData.id,
 				username: userData.username,
 				from: units.currFleet,
-				to: fleet,
+				to: fleet.id,
 				unitId: units.currTransferUnit,
 				unitCount: count,
 			});
@@ -1295,7 +1296,7 @@ class units extends _Units {
 					break;
 				case 'hangar':
 					modules.hangar += hangarSize[parts[i].tech];
-					miss -= hangarMiss[parts[i].tech];
+					miss += hangarMiss[parts[i].tech];
 					break;
 				default:
 					// Do nothing
