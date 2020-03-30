@@ -3361,9 +3361,10 @@ a[class="research-search"]:hover {
 	float: right;
 }
 #alliances-panel-members table {
-	width: 100%;
-
 	text-align: center;
+
+    width:100%;
+    font-size: 0.9em;
 }
 .alliances-tab-cell {
 	border: 1px solid #0EC6C6;
@@ -3377,6 +3378,12 @@ a[class="research-search"]:hover {
 
 	height: 100%;
 	vertical-align: top;
+}
+@media (max-width: 830px) {
+	.alliances-tab-half {
+		width: 99%;
+		margin-bottom: 0.5em;
+	}
 }
 
 .alliances-tab-half-cell {
