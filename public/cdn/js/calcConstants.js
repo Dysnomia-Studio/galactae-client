@@ -300,6 +300,8 @@ const heliumStorageRatio = 0.2;
 const electricity = [2080000,165000,550000];
 const habGen = [25447,419910,-170000];
 
+const buildingSlowDown = 0.7; // 70%
+
 const buildLvlUnitBuildingSpeedBonus = 0.004;
 
 /**
