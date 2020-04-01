@@ -9,9 +9,6 @@ let planetData = { //Not complete but some are needed on init because of bugs
 	Buildings: {},
 };
 
-let buildings;
-let currentBuilding;
-
 let ratio;
 let ratios;
 
@@ -138,18 +135,19 @@ class planetUI {
 	 * Clientside simulation of growing resources
 	 */
 	static simMyRealRessources() {
-		const time = 2/3600; // 2 sec
-
-		//Minerals
-		if(currentBuilding !== 0) {
-			planetData.resources[0] += mineralProdBase*time;
-		}
+		planetData.resources = Resources.CalcNewResources(
+			planetData.resources,
+			planetData.Buildings,
+			planetData.planetType,
+			2*TIME.SECONDS_TO_MS, // 2 secondes
+			userData,
+			planetData.nextBuilding
+		);
 
 		//Helium 3
 		document.getElementById('he-fuel-distribute').style.display = 'none';
 
-		if(buildings[13] !== 0 && currentBuilding !== 13) {
-			planetData.resources[1] += heliumProdBase*time;
+		if(planetData.Buildings[13] !== 0 && planetData.nextBuilding !== 13) {
 
 			if(units.fleetList && units.fleetList.length > 0) {
 				let empty;
@@ -157,62 +155,11 @@ class planetUI {
 
 				// @TODO: Update before full on server
 
-				// @TODO: Same owner, same ally, trade
-
 				if(!empty) {
 					document.getElementById('he-fuel-distribute').style.display = 'inline';
 				}
 			}
 		}
-
-		//Metals
-		if(planetData.resources[0]-(metalProdBase*time)>0 && currentBuilding !== 1) { //Verify if you can use basic ressources
-		    for(let i=2; i<6; i++) {
-		    	planetData.resources[i] += (metalProdBase*time)*ratios[i-2];
-		    }
-
-			planetData.resources[0] -= (metalProdBase*time); //Consomation Algorithm
-		} else if(currentBuilding !== 1) { // Do the max we can
-		    for(let i=2; i<6; i++) {
-		    	planetData.resources[i] += planetData.resources[0]*ratios[i-2];
-		    }
-
-			planetData.resources[0] = 0;
-		}
-
-		// Si Max de tout les metaux
-		if((planetData.resources[5]>metalsStorageBase*ratio.titanRatio) &&
-			(planetData.resources[4]>metalsStorageBase*ratio.copperRatio) &&
-			(planetData.resources[3]>metalsStorageBase*ratio.aluRatio) &&
-			(planetData.resources[2]>metalsStorageBase*ratio.ironRatio)) {
-
-			let min = (planetData.resources[2] - metalsStorageBase*ratios[0])/ratios[0];
-
-			for(let i=3; i<6; i++) {
-				const temp = (planetData.resources[i] - metalsStorageBase*ratios[i-2])/ratios[i-2];
-
-				if(temp<min) {
-					min = temp;
-				}
-			}
-			planetData.resources[0]+=min;
-		for(let i=2; i<6; i++) {
-				planetData.resources[i] -= min*ratios[i-2];
-			}
-		}
-
-		//Max Storage
-		if(planetData.resources[0]>mineralStorageBase) {
-			planetData.resources[0] = mineralStorageBase;
-		}
-		if(planetData.resources[1]>storageHelium) {
-			planetData.resources[1] = storageHelium;
-		}
-	    for(let i=2; i<6; i++) {
-	    	if(planetData.resources[i]>metalsStorageBase*ratios[i-2]) { // You can't have more iron than your storage capacity
-				planetData.resources[i] = metalsStorageBase*ratios[i-2];
-			}
-	    }
 
 		planetUI.ResourcesDrawUpdate();
 	}
@@ -255,8 +202,7 @@ class planetUI {
 	 * Recalc ressources
 	 */
 	static recalcBaseRessources() {
-		buildings = planetData.Buildings;
-		currentBuilding = planetData.nextBuilding;
+		const buildings = planetData.Buildings;
 
 		ratio = Resources.GetRatiosPerPlanet(planetData.planetType);
 		ratios = [ratio.ironRatio,ratio.aluRatio,ratio.copperRatio,ratio.titanRatio];
