@@ -5,19 +5,19 @@ translate['research'] = {
 	// Noeud Central
 	researchCenter:		{ name: 'Research Center', desc: 'Research centers works together or alone to discover new skills or technologies usefull to the whole nation.' },
 	industrialistion:	{ name: 'Industrialisation', desc: 'Research tree part concerning productivity and building.' },
-	phyContemporaine:	{ name: 'Modern Physics', desc: '' },
+	phyContemporaine:	{ name: 'Modern Physics', desc: 'Physics basic to prepare nation to research other domain of physics and astophysics.' },
 	thermodynamique:	{ name: 'Thermodynamics', desc: 'Science about heating used to work in especially on propulsion systems.' },
 	// Mise en orbite et propulsion
 	prop_main:			{ name: 'Propulsion', desc: 'Used to unlock research concerning interplanetary and interstellar moving.' },
 	prop_vSolaire:		{ name: 'Solar sail', desc: 'Slow propulsion used on lightweight ships using no fuel.' },
-	prop_ions:			{ name: 'Ion engines', desc: '' },
+	prop_ions:			{ name: 'Ion engines', desc: 'Thruster that uses high speed ions. It\'s an very efficient engine.' },
 	prop_plasma: 		{ name: 'Plasma engines', desc: '' },
-	prop_vsl:			{ name: 'Faster Than Light speed (FTL)', desc: '' },
+	prop_vsl:			{ name: 'Faster Than Light speed (FTL)', desc: 'Thrusters that can move a ship fater that light speed. It\'s used to move between solar systems.' },
 	prop_wd: 			{ name: 'Warp Drive', desc: '' },
 	prop_hyperespace:	{ name: 'Hyperspace', desc: '' },
-	prop_manoeuvre:		{ name: 'Bow thrusters', desc: '' },
-	prop_advManoeuvre:	{ name: 'Advanced bow thrusters', desc: '' },
-	prop_suprastability:{ name: 'Interstellar engines stability', desc: '' },
+	prop_manoeuvre:		{ name: 'Bow thrusters', desc: 'This thrusters help ship to avoid mines and missiles (2% miss chance).' },
+	prop_advManoeuvre:	{ name: 'Advanced bow thrusters', desc: 'This thrusters help ship to avoid mines and missiles (5% miss chance)' },
+	prop_suprastability:{ name: 'Interstellar engines stability', desc: 'Calculation on ETA in interstellar flights are 50% more accurate.' },
 	// Construction et production
 	cp_mecanisation:	{ name: 'Automation', desc: '5% less time to build an unit' },
 	cp_tracteur:		{ name: 'Tractive beam', desc: '5% less time to build an unit or a space buildings' },
@@ -37,9 +37,9 @@ translate['research'] = {
 	// Hangar
 	hangarDouble:		{ name: 'Double Hangar', desc: 'The double hangar can store about 2 times interceptors than usual hangars.' },
 	// Mines
-	wep_mines:			{ name: 'Mine', desc: '' },
-	wep_mines_nuke:		{ name: 'Nuclear Mine', desc: '' },
-	wep_mines_iem:		{ name: 'Electromagnetic pulse Mine', desc: '' },
+	wep_mines:			{ name: 'Mine', desc: 'Conventionnal explosive in space using proximity detection to damage ships.' },
+	wep_mines_nuke:		{ name: 'Nuclear Mine', desc: 'Nuclear explosive in space using proximity detection to damage ships' },
+	wep_mines_iem:		{ name: 'Electromagnetic pulse Mine (EMP)', desc: 'Mine creating electromagnetic pluse to jam enemmy systems. It uses proximity detection.' },
 	// Figther
 	figther_light_interceptor: { name: 'Light Interceptor', desc: '' },
 	figther_heavy_interceptor: { name: 'Heavy Interceptor', desc: '' },
