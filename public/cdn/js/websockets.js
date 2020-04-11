@@ -124,6 +124,11 @@ class webSockets {
 			Alliances.updateSearchResults();
 		});
 
+		// Sync the conquest list
+		socket.on('player-conquest-list', (conquestList) => {
+			Conquest.init(conquestList);
+		});
+
 		//Launch the chat
 		chat.init();
 
