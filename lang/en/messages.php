@@ -125,7 +125,11 @@ translate['messages'] = {
 	// Alliances notif
 	'ALLIANCE_CREATE_ERROR': 'Error: An alliance with the same name already exists',
 	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: This alliance does not exists',
+
+	// Conquest
+	'BEING_CONQUESTED_BUILD': 'Planet is being conquested, you can\'t build anything',
 };
+
 
 translate['load'] = {
 	'fleet': 'Loading fleets',

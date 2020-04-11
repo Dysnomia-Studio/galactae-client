@@ -135,14 +135,16 @@ class planetUI {
 	 * Clientside simulation of growing resources
 	 */
 	static simMyRealRessources() {
-		planetData.resources = Resources.CalcNewResources(
-			planetData.resources,
-			planetData.Buildings,
-			planetData.planetType,
-			2*TIME.SECONDS_TO_MS, // 2 secondes
-			userData,
-			planetData.nextBuilding
-		);
+		if(!Conquest.isBeingConquested()) {
+			planetData.resources = Resources.CalcNewResources(
+				planetData.resources,
+				planetData.Buildings,
+				planetData.planetType,
+				2*TIME.SECONDS_TO_MS, // 2 secondes
+				userData,
+				planetData.nextBuilding
+			);
+		}
 
 		//Helium 3
 		document.getElementById('he-fuel-distribute').style.display = 'none';
@@ -605,6 +607,8 @@ class planetUI {
 		if(max) { // Max Level
 			document.getElementById('building-message').innerHTML = translate.messages['UPGRADE_MAX'];
 			ui.hide('#building-cost');
+		} else if(Conquest.isBeingConquested()) {
+			document.getElementById('building-message').innerHTML = translate.messages['BEING_CONQUESTED_BUILD'];
 		} else if(requirements !== '') { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
 		} else if(planetData.nextBuilding === id && planetData.nextBuildingTime !== null && planetData.nextBuildingTime.getTime() > (Date.now() + planetUI.deltaNow)) { // Current building in build mode

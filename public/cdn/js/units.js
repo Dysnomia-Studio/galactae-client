@@ -515,7 +515,9 @@ class units extends _Units {
 	}
 
 	static drawCurrentInBuildingUnitMessage() {
-		if(!!planetData.unitBuildingEndTime && planetData.unitBuildingEndTime.getTime() > (Date.now() + planetUI.deltaNow)) { // An unit is building
+		if(Conquest.isBeingConquested()) {
+			document.getElementById('fleet-build-message').innerHTML = translate.messages['BEING_CONQUESTED_BUILD'];
+		} else if(!!planetData.unitBuildingEndTime && planetData.unitBuildingEndTime.getTime() > (Date.now() + planetUI.deltaNow)) { // An unit is building
 			const dateNow = new Date();
 			const dateEnd = new Date(planetData.unitBuildingEndTime.getTime() + planetUI.deltaNow);
 			const dateTom = new Date(Date.now() + TIME.DAY_TO_MS);
@@ -614,6 +616,10 @@ class units extends _Units {
 			}
 
 			units.drawCurrentInBuildingUnitMessage();
+
+			if(document.getElementById('fleet-build-message').innerHTML !== '') {
+				ui.hide('#fleet-build-openPanel');
+			}
 
 			// Fleet Build
 			const DOMElts = document.querySelectorAll('#fleet-build-list tbody tr');

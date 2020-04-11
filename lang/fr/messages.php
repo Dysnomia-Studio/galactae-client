@@ -125,6 +125,9 @@ translate['messages'] = {
 	// Alliances notif
 	'ALLIANCE_CREATE_ERROR': 'Erreur: Une alliance avec le même nom existe déjà',
 	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: Cette Alliance n\'existe pas',
+
+	// Conquest
+	'BEING_CONQUESTED_BUILD': 'La planète est en train de se faire conquerir, il est impossible de construire.',
 };
 
 translate['load'] = {
