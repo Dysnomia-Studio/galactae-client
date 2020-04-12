@@ -107,6 +107,7 @@ class planetUI {
 		planetUI.BuildingDrawUpdate();
 		planetUI.ResourcesDrawUpdate(); // Needed to be after building for ratios
 		planetUI.MiscDrawUpdate();
+		planetUI.InfoPopupDrawUpdate();
 		planetUI.drawCanBeBuild();
 
 		// Clear existing timeout
@@ -473,6 +474,69 @@ class planetUI {
 				//Set background
 				planetBack.init(planetData.planetType);
 			});
+		}
+	}
+
+	static InfoPopupDrawUpdate() {
+		ui.hide('#planet-research-popup');
+
+		if(planetData.currResearch && !Research.isSearched(userData, planetData.currResearch)) {
+			ui.empty('#planet-research-popup');
+
+			const production = Research.getResearchProduction(planetData.Buildings[8]);
+
+			const popup = document.getElementById('planet-research-popup');
+
+			const description = document.createElement('p');
+
+			const spanCurrResearch = document.createElement('span');
+			spanCurrResearch.innerText = translate['research'].current_research;
+			description.appendChild(spanCurrResearch);
+
+			description.appendChild(document.createElement('br'));
+
+			const spanCurrResearchName = document.createElement('span');
+			spanCurrResearchName.innerText = translate.research[planetData.currResearch].name;
+			description.appendChild(spanCurrResearchName);
+
+			description.appendChild(document.createElement('br'));
+
+			// Research status
+			const spanCurrResearchStatus = document.createElement('span');
+			spanCurrResearchStatus.innerText = Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
+			description.appendChild(spanCurrResearchStatus);
+
+			description.appendChild(document.createElement('br'));
+
+			// Research time
+			const spanCurrResearchTime = document.createElement('span');
+
+			let researchTime = (researchList[planetData.currResearch].cost - userData.research[planetData.currResearch]) / production;
+			spanCurrResearchTime.innerText = getStringTime(researchTime);
+
+			description.appendChild(spanCurrResearchTime);
+
+			popup.appendChild(description);
+
+			const link = document.createElement('a');
+			link.id = 'planet-info-popup-right';
+			link.classList.add('research-search');
+			link.innerText = translate['research'].go_to_research;
+			link.addEventListener('click', () => {
+				research.openUI();
+			});
+			popup.appendChild(link);
+
+			ui.show('#planet-research-popup');
+
+			// Refresh periodically
+			clearInterval(planetUI.InfoPopupResearchInterval);
+			planetUI.InfoPopupResearchInterval = setInterval(() => {
+				researchTime -= 1/3600;
+				spanCurrResearchTime.innerText = getStringTime(researchTime);
+
+				spanCurrResearchStatus.innerText = Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
+			},1000);
 		}
 	}
 

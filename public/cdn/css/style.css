@@ -136,6 +136,8 @@ em {
 	top: calc(50% - 75px);
 	left: calc(50% - 112px);
 
+	opacity: 0.8;
+
 	z-index: 1000;
 }
 .small-panel p {
@@ -2982,6 +2984,38 @@ a[class="research-search"]:hover {
 	animation-name: building-list-animActive;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
+}
+
+.planet-info-popup {
+	position: fixed;
+	top: 75px;
+
+	opacity: 0.8;
+
+	text-align: center;
+
+	z-index: 1 !important;
+}
+#planet-info-popup-right {
+	float: right;
+
+	color: #0EC6C6;
+}
+#planet-info-popup-right:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+	#planet-research-popup {
+		visibility: hidden;
+	}
+}
+
+@media (min-height: 825px) {
+	.planet-info-popup {
+		top: 50px;
+		left: 50px;
+	}
 }
 
 /**

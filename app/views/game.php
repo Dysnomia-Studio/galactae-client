@@ -91,6 +91,9 @@
 			<span id="lvl-research"></span>
 		</div>
 
+		<?php /* Research info popup */ ?>
+		<div id="planet-research-popup" class="planet-info-popup small-panel"></div>
+
 		<?php /* Space Building */ ?>
 		<div class="building-space">
 			<span id="building-space-title"><?= ORBITAL_BUILDING; ?></span>
