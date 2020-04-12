@@ -91,7 +91,8 @@
 			<span id="lvl-research"></span>
 		</div>
 
-		<?php /* Research info popup */ ?>
+		<?php /* Conquest/Research info popup */ ?>
+		<div id="planet-conquest-popup" class="planet-info-popup small-panel"></div>
 		<div id="planet-research-popup" class="planet-info-popup small-panel"></div>
 
 		<?php /* Space Building */ ?>

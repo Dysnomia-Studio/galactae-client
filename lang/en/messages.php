@@ -127,7 +127,9 @@ translate['messages'] = {
 	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: This alliance does not exists',
 
 	// Conquest
-	'BEING_CONQUESTED_BUILD': 'Planet is being conquested, you can\'t build anything',
+	'BEING_CONQUESTED_BUILD': 'Planet is being conquered, you can\'t build anything', // @TODO: Conquest type
+	'BEING_CONQUESTED_BY': 'To arms! Your planet is being conquered by ', // @TODO: Conquest type
+	'BEING_CONQUESTED_END': 'End time: ',
 };
 
 

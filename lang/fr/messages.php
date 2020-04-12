@@ -127,7 +127,9 @@ translate['messages'] = {
 	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: Cette Alliance n\'existe pas',
 
 	// Conquest
-	'BEING_CONQUESTED_BUILD': 'La planète est en train de se faire conquerir, il est impossible de construire.',
+	'BEING_CONQUESTED_BUILD': 'La planète est en train de se faire conquerir, il est impossible de construire.', // @TODO: Conquest type
+	'BEING_CONQUESTED_BY': 'Aux armes ! Votre planète est en train de se faire conquerir par ', // @TODO: Conquest type
+	'BEING_CONQUESTED_END': 'Fin: ',
 };
 
 translate['load'] = {

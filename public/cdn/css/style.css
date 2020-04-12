@@ -2988,7 +2988,6 @@ a[class="research-search"]:hover {
 
 .planet-info-popup {
 	position: fixed;
-	top: 75px;
 
 	opacity: 0.8;
 
@@ -2996,10 +2995,17 @@ a[class="research-search"]:hover {
 
 	z-index: 1 !important;
 }
+#planet-research-popup {
+	top: 75px;
+}
+#planet-conquest-popup {
+	zoom: 1.4;
+}
+.planet-info-important {
+	color: #0EC6C6;
+}
 #planet-info-popup-right {
 	float: right;
-
-	color: #0EC6C6;
 }
 #planet-info-popup-right:hover {
 	text-decoration: underline;
@@ -3009,10 +3015,14 @@ a[class="research-search"]:hover {
 	#planet-research-popup {
 		visibility: hidden;
 	}
+
+	#planet-conquest-popup {
+		z-index: 3 !important;
+	}
 }
 
 @media (min-height: 825px) {
-	.planet-info-popup {
+	#planet-research-popup {
 		top: 50px;
 		left: 50px;
 	}
