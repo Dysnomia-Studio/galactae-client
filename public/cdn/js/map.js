@@ -155,23 +155,20 @@ class map {
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
 		map.zoom += coef;
-		if(map.zoom < MAP_MIN_ZOOM) { map.zoom -= coef; return; }
-		if(map.zoom > MAP_MAX_ZOOM) { map.zoom -= coef; return; }
 
-		const pos = ui.position('#map-global');
-		pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
-		pos.top = pos.top + mapPrevMouse[1] - mapPrevMouse[1]*((map.zoom)/(map.zoom - coef));
+		if(map.zoom < MAP_MIN_ZOOM || map.zoom > MAP_MAX_ZOOM) {
+			map.zoom -= coef;
+			return;
+		}
 
-		document.getElementById('map-global').style.left = pos.left + 'px';
-		document.getElementById('map-global').style.top = pos.top + 'px';
+		window.cancelAnimationFrame(map.zoomFrameId);
 
-		document.getElementById('map-global').style.width = document.getElementById('map-global').clientWidth * map.zoom / (map.zoom - coef);
-		document.getElementById('map-global').style.height = document.getElementById('map-global').clientHeight * map.zoom / (map.zoom - coef);
+		map.zoomFrameId =  window.requestAnimationFrame(() => {
+			document.getElementById('map-global').style.zoom = map.zoom;
+			document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
 
-		document.getElementById('map-global').style.zoom = map.zoom;
-		document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
-
-		map.updateSectorVisibility();
+			map.updateSectorVisibility();
+		});
 	}
 
 	static updateSectorVisibility() {
@@ -181,9 +178,8 @@ class map {
 			return;
 		}
 
-
-		const width = document.documentElement.clientWidth * 1.5;
-		const height = document.documentElement.clientHeight * 1.5;
+		const width = document.documentElement.clientWidth * 1.5 / map.zoom;
+		const height = document.documentElement.clientHeight * 1.5 / map.zoom;
 
 		const realLeft = MAP_SIZE_WIDTH + pos.left + width / 2;
 		const realTop = MAP_SIZE_HEIGHT + pos.top + height / 2;
@@ -270,14 +266,6 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector,callback) {
-		if(typeof map.xmlDoc[sector] !== 'undefined') {
-			if(callback) {
-				callback();
-			}
-
-			return;
-		} // Already loaded
-
 		const coords = sector.split('-');
 
 		// At borders ?
