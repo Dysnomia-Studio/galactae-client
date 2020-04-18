@@ -87,12 +87,6 @@ class webSockets {
 
 		// Sync the player data
 		socket.on('player-recieve-data',function(data) {
-			data.beginerProtectEnd = new Date(data.beginerProtectEnd);
-			data.lastConnected = new Date(data.lastConnected);
-			data.lastAction = new Date(data.lastAction);
-			data.lastResearchUpdate = new Date(data.lastResearchUpdate);
-			data.lastBonus = new Date(data.lastBonus);
-
 			for(const key in data) {
 				userData[key] = data[key];
 
