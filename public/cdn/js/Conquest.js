@@ -1,4 +1,4 @@
-class Conquest {
+class Conquest extends _Conquest {
 	static async init(list) {
 		Conquest.list = list.map((elt) => {
 			return {

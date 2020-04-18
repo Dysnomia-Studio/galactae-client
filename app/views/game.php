@@ -960,6 +960,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Client Classes */ ?>
 
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Conquest.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/GameMap.js"></script>
