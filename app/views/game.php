@@ -366,7 +366,7 @@
 	<div id="hud-chat-trade" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<div id="hud-chat-ally" class="chatContent"><ul class="chat_logs"><li><?= CHAT_WELCOME; ?></li></ul></div>
 	<form action="#chat_text" method="post" id="chat_form">
-		<input type="text" name="chat_message" id="chat_message" placeholder="Votre message..." size="50" autocomplete="off" />
+		<input type="text" name="chat_message" id="chat_message" placeholder="<?= CHAT_INPUT ?>" size="50" autocomplete="off" />
 		<a href="https://discord.gg/c8aARey" id="chat-voice" target="_blank" rel="noopener noreferrer"><img src="<?= $cdnURL ?>img/ui/chat-voice.svg" alt="voice"></a>
 	</form>
 </div>

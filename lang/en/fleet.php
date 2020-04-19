@@ -147,6 +147,13 @@ const fleetTranslate = {
 	'noPartResearched': 'No part researched',
 	'noPartResearched_desc': 'No part researched',
 
+	// Types
+	'cannon': 'Cannons',
+	'rocketLauncher': 'Missile Launchers',
+	'shield': 'Defenses',
+	'sub_propulsion': 'Subluminic propulsion',
+	'sup_propulsion': 'Supraluminic propulsion',
+
 	// Texts
 	'fleet-build-openPanel': 'Build this unit',
 	'fleet-build-type-copy': 'Duplicate this model',

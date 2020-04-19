@@ -7,6 +7,7 @@ define('SETTINGS_VALIDATE', 'Validate');
 var translate = translate || {};
 
 translate['settings'] = {
+	// Menu
 	'menu': {
 		'general': 'General',
 		'graphical': 'Graphics',

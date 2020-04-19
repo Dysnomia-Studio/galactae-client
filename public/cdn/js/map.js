@@ -1,5 +1,4 @@
 const mapPrevMouse = [0,0];
-let moving = false;
 
 class map {
 	/**
@@ -38,6 +37,8 @@ class map {
 
 		map.planetData = (map.planetData === undefined) ? [] : map.planetData;
 
+		map.oldPos = [0,0];
+
 		/**
 		 * Load XML
 		 */
@@ -55,36 +56,38 @@ class map {
 		 */
 		'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(e) {
 			document.getElementById('map-global').addEventListener(e, function(event) {
-				if(research.scaling) { return; }
+				if(map.scaling) { return; }
 
-				map.touchHandler(e);
+				map.touchHandler(event);
 			});
 		});
 
 		document.getElementById('map-global').addEventListener('touchstart', function(e) {
-			if(moving) { return; }
 			mapPrevMouse[0] = e.pageX;
 			mapPrevMouse[1] = e.pageY;
 		});
 		document.getElementById('map-global').addEventListener('mousemove', function(e) {
-			if(moving) { return; }
-			if(ui.mouseStatus[1] === 1) {
-				map.moveUI([(e.pageX - mapPrevMouse[0]),
-					(e.pageY - mapPrevMouse[1])], true);
-			}
-			mapPrevMouse[0] = e.pageX;
-			mapPrevMouse[1] = e.pageY;
+			window.cancelAnimationFrame(map.frameId);
 
-			if(e.target.id.split('-').length === 3) {
-				document.getElementById('map-address').style.left = e.pageX + 'px';
-				document.getElementById('map-address').style.top = (e.pageY - 30) + 'px';
+			map.frameId =  window.requestAnimationFrame(() => {
+				if(ui.mouseStatus[1] === 1) {
+					map.moveUI([(e.pageX - mapPrevMouse[0]),
+						(e.pageY - mapPrevMouse[1])], true);
+				}
+				mapPrevMouse[0] = e.pageX;
+				mapPrevMouse[1] = e.pageY;
 
-				document.getElementById('map-address').innerText = e.target.id;
+				if(e.target.id.split('-').length === 3) {
+					document.getElementById('map-address').style.left = e.pageX + 'px';
+					document.getElementById('map-address').style.top = (e.pageY - 30) + 'px';
 
-				ui.show('#map-address');
-			} else {
-				ui.hide('#map-address');
-			}
+					document.getElementById('map-address').innerText = e.target.id;
+
+					ui.show('#map-address');
+				} else {
+					ui.hide('#map-address');
+				}
+			});
 		});
 
 		const mousewheelevt=(/Firefox/i.test(navigator.userAgent))?'DOMMouseScroll' :'mousewheel'; // Because firefox doesn't know the "mousewheel" event ...
@@ -152,21 +155,60 @@ class map {
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
 		map.zoom += coef;
-		if(map.zoom < MAP_MIN_ZOOM) { map.zoom -= coef; return; }
-		if(map.zoom > MAP_MAX_ZOOM) { map.zoom -= coef; return; }
 
+		if(map.zoom < MAP_MIN_ZOOM || map.zoom > MAP_MAX_ZOOM) {
+			map.zoom -= coef;
+			return;
+		}
+
+		window.cancelAnimationFrame(map.zoomFrameId);
+
+		map.zoomFrameId =  window.requestAnimationFrame(() => {
+			document.getElementById('map-global').style.zoom = map.zoom;
+			document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
+
+			map.updateSectorVisibility();
+		});
+	}
+
+	static updateSectorVisibility() {
 		const pos = ui.position('#map-global');
-		pos.left = pos.left + mapPrevMouse[0] - mapPrevMouse[0]*((map.zoom)/(map.zoom - coef));
-		pos.top = pos.top + mapPrevMouse[1] - mapPrevMouse[1]*((map.zoom)/(map.zoom - coef));
 
-		document.getElementById('map-global').style.left = pos.left + 'px';
-		document.getElementById('map-global').style.top = pos.top + 'px';
+		if(pos.left === 0 && pos.top === 0) {
+			return;
+		}
 
-		document.getElementById('map-global').style.width = document.getElementById('map-global').clientWidth * map.zoom / (map.zoom - coef);
-		document.getElementById('map-global').style.height = document.getElementById('map-global').clientHeight * map.zoom / (map.zoom - coef);
+		const width = document.documentElement.clientWidth * 1.5 / map.zoom;
+		const height = document.documentElement.clientHeight * 1.5 / map.zoom;
 
-		document.getElementById('map-global').style.zoom = map.zoom;
-		document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
+		const realLeft = MAP_SIZE_WIDTH + pos.left + width / 2;
+		const realTop = MAP_SIZE_HEIGHT + pos.top + height / 2;
+
+		const cellSizeX = MAP_SIZE_WIDTH / 100;
+		const cellSizeY = MAP_SIZE_HEIGHT / 100;
+
+		for(const group of document.getElementById('map-global').children) {
+			let x = group.getAttribute('x');
+			let y = group.getAttribute('y');
+
+			if(!x || !y) {
+				continue;
+			}
+
+			x = MAP_SIZE_WIDTH - parseInt(x, 10) * cellSizeX;
+			y = MAP_SIZE_HEIGHT - parseInt(y, 10) * cellSizeY;
+
+			const xDiff = Math.abs(x - realLeft);
+			const xDiff2 = Math.abs((x + cellSizeX) - realLeft);
+			const yDiff = Math.abs(y - realTop);
+			const yDiff2 = Math.abs((y + cellSizeY) - realTop);
+
+			if((xDiff <= width || xDiff2 <= width) && (yDiff <= height ||yDiff2 <= height)) {
+				group.style.display = 'block';
+			} else {
+				group.style.display = 'none';
+			}
+		}
 	}
 
 	/**
@@ -175,14 +217,13 @@ class map {
 	 * @param	  {2D vector}  pos	 The position
 	 */
 	static moveUI(pos, diff=false) {
-		moving = true;
+		if(Number.isNaN(pos[0]) || Number.isNaN(pos[1])) {
+			return;
+		}
 
-		let oldPos = ui.position('#map-global');
 		if(diff) {
-			oldPos = [oldPos.left, oldPos.top];
-
-			pos[0] += oldPos[0];
-			pos[1] += oldPos[1];
+			pos[0] += map.oldPos[0];
+			pos[1] += map.oldPos[1];
 		}
 
 		if(parseInt(pos[0]) > 0) {
@@ -198,26 +239,16 @@ class map {
 			pos[1] = document.documentElement.clientHeight-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
-		let translated = false;
-		function stepMove() {
-			if(!translated) {
-				document.getElementById('map-global').style.transform = 'translate(' + (pos[0] - oldPos[0]) + 'px, ' + (pos[1] - oldPos[1]) + 'px)';
-
-				translated = true;
-
-				window.requestAnimationFrame(stepMove);
-			} else {
-				document.getElementById('map-global').style.left = pos[0] + 'px';
-				document.getElementById('map-global').style.top = pos[1] + 'px';
-
-				document.getElementById('map-global').style.transform = '';
-
-				moving = false;
-			}
+		if(pos[0] === map.oldPos[0] && pos[1] === map.oldPos[1]) {
+			return;
 		}
-		window.requestAnimationFrame(stepMove);
 
-		//@TODO: display none/block on sectors
+		map.oldPos = pos;
+
+		document.getElementById('map-global').style.left = pos[0] + 'px';
+		document.getElementById('map-global').style.top = pos[1] + 'px';
+
+		map.updateSectorVisibility();
 
 		// At borders ?
 		const coords = [];
@@ -239,14 +270,6 @@ class map {
 	 * @param	  {string}  sector  The sector
 	 */
 	static loadMapAndNeighborhood(sector,callback) {
-		if(typeof map.xmlDoc[sector] !== 'undefined') {
-			if(callback) {
-				callback();
-			}
-
-			return;
-		} // Already loaded
-
 		const coords = sector.split('-');
 
 		// At borders ?
@@ -322,7 +345,8 @@ class map {
 						callback();
 					}
 				} else {
-					map.xmlDoc[sector] = '';
+					delete map.xmlDoc[sector];
+					console.trace('');
 					console.error('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
 				}
 			}
@@ -742,12 +766,22 @@ class map {
 				}
 			}
 
-			// Draw current planet circle under planet
-			let currSystem = planetData.address.split('-');
-			currSystem.pop();
-			currSystem = currSystem.join('-');
+			const x = Math.floor(systemList[i].getAttribute('x') * 10);
+			const y = Math.floor(systemList[i].getAttribute('y') * 10);
 
-			if(currSystem === systemList[i].id) {
+			// Draw current planet circle under planet
+			const sectorAddress = x + '-' + y;
+			let sector = document.getElementById(sectorAddress);
+			if(!sector) {
+				sector = makeSVGElt('g', {
+					id: sectorAddress,
+				});
+				sector.setAttribute('x', sectorAddress.split('-')[0]);
+				sector.setAttribute('y', sectorAddress.split('-')[1]);
+				document.getElementById('map-global').appendChild(sector);
+			}
+
+			if(GameMap.getSystemFromAdress(planetData.address) === systemList[i].id) {
 				const currPlanetLegend = makeSVGElt('circle', {
 					id: 'currPlanet',
 					cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
@@ -756,7 +790,7 @@ class map {
 					stroke: '#0EC6C6',
 					'stroke-width': 1,
 				});
-				document.getElementById('map-global').appendChild(currPlanetLegend);
+				sector.appendChild(currPlanetLegend);
 			}
 
 			// Draw planet
@@ -766,7 +800,7 @@ class map {
 				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
 				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
 				fill: 'url(#' + starBType + ')'});
-			document.getElementById('map-global').appendChild(circle);
+			sector.appendChild(circle);
 
 			//@TODO: Generate other visual helps (including all planets of current player)
 
@@ -779,6 +813,8 @@ class map {
 				});
 			});
 		}
+
+		map.updateSectorVisibility();
 	}
 
 	/**

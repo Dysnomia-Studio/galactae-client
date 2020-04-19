@@ -3,3 +3,4 @@ define('CHAT_WELCOME','Bienvenue sur le Chat ! Respectez les autres ou vous sere
 define('CHAT_GLOBAL','Global');
 define('CHAT_TRADE','Commerce');
 define('CHAT_ALLY','Alliance');
+define('CHAT_INPUT','Votre message...');

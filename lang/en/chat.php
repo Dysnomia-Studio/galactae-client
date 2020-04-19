@@ -3,3 +3,4 @@ define('CHAT_WELCOME','Welcome to the Chat ! Respect the others or you will be s
 define('CHAT_GLOBAL','Global');
 define('CHAT_TRADE','Trade');
 define('CHAT_ALLY','Ally');
+define('CHAT_INPUT','Your message ...');

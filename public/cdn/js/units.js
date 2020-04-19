@@ -1137,7 +1137,7 @@ class units extends _Units {
 						'height: ' + h + 'px;' +
 					'"><dt>'+
 					'<a href="#" value="' + selected.value + '" style="' +
-						'background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.value  + '.svg\'); ' +
+						'background-image: url(\''+ cdnURL + 'img/units-modules/' + selected.value  + '.png\'); ' +
 						'background-size: 95%;' +
 						'background-repeat: no-repeat;' +
 						'background-position: left top;' +
@@ -1151,7 +1151,7 @@ class units extends _Units {
 
 				for(let eltId=0; eltId<source.options.length; eltId++) {
 					document.querySelector('#part-selecting-seen-' + id + ' dd ul').innerHTML += '<li><a href="#" value="' + source.options[eltId].id  + '"' +
-						'style="background-image: url(\''+ cdnURL + 'img/units-modules/' + source.options[eltId].id + '.svg\');' +
+						'style="background-image: url(\''+ cdnURL + 'img/units-modules/' + source.options[eltId].id + '.png\');' +
 						'background-size: 95%;background-repeat: no-repeat;background-position: left top;display: block;' +
 						'width: ' + w + 'px;' +
 						'height: ' + h + 'px;' +
