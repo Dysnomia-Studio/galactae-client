@@ -324,6 +324,15 @@ class planetUI {
 		document.getElementById('population-available').innerHTML = GetBetterUnit(habProd-habCons,'');
 		document.getElementById('population-used').innerHTML = GetBetterUnit(habCons,'');
 		document.getElementById('population-total').innerHTML = GetBetterUnit(habProd,'');
+
+		const pCountTotal = Conquest.getPlanetMaxCount(userData.points);
+		const pCountUsed = userData.planetlist.length;
+
+		document.getElementById('planetCount_nmb').innerHTML = pCountUsed + '/' + pCountTotal;
+		document.getElementById('planetCount-available').innerHTML = pCountTotal - pCountUsed;
+		document.getElementById('planetCount-used').innerHTML = pCountUsed;
+		document.getElementById('planetCount-total').innerHTML = pCountTotal;
+		document.getElementById('planetCount-next-level').innerHTML = Conquest.minPointForPlanetCount(pCountTotal + 1) + ' pts';
 	}
 	/*
 	* Draws if buildings can be build.

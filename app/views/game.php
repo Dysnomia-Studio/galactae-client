@@ -134,6 +134,21 @@
 <div id="hud-top">
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
+
+		<span class="tooltip">
+			<img height="15" src="<?= $cdnURL ?>img/ui/planetCount.png" alt="planetCount">
+			<span class="nmb" id="planetCount_nmb">?/?</span>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="planetCount-tooltips">
+					<?= PLANET_COUNT; ?><br/>
+					<?= AVAILABLE; ?>: <span id="planetCount-available">XXX</span><br/>
+					<?= USED; ?>: <span id="planetCount-used">XXX</span><br/>
+					<?= TOTAL; ?>: <span id="planetCount-total">XXX</span><br/>
+					<?= NEXT_LEVEL; ?>: <span id="planetCount-next-level">XXX</span><br/>
+				</span>
+			</span>
+		</span>
+
 		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/population.png" alt="population">
 			<span class="nmb" id="population_nmb">1</span>
