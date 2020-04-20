@@ -35,7 +35,7 @@ class webSockets {
 		//Sync the planet data
 		socket.on('planet-recieve-data',function(data) {
 			planetUI.refresh(data);
-			if(userData.research !== undefined && data.currResearch !== undefined && planetData.currResearch !== data.currResearch) {
+			if(userData.research !== undefined) {
 				research.drawPanel();
 			}
 			loadScreen.complete('planet');

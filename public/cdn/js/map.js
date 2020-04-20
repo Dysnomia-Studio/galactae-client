@@ -56,9 +56,9 @@ class map {
 		 */
 		'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(e) {
 			document.getElementById('map-global').addEventListener(e, function(event) {
-				if(research.scaling) { return; }
+				if(map.scaling) { return; }
 
-				map.touchHandler(e);
+				map.touchHandler(event);
 			});
 		});
 
@@ -217,6 +217,10 @@ class map {
 	 * @param	  {2D vector}  pos	 The position
 	 */
 	static moveUI(pos, diff=false) {
+		if(Number.isNaN(pos[0]) || Number.isNaN(pos[1])) {
+			return;
+		}
+
 		if(diff) {
 			pos[0] += map.oldPos[0];
 			pos[1] += map.oldPos[1];
@@ -341,7 +345,8 @@ class map {
 						callback();
 					}
 				} else {
-					map.xmlDoc[sector] = '';
+					delete map.xmlDoc[sector];
+					console.trace('');
 					console.error('ERROR: CANNOT LOAD MAP OF SECTOR ' + sector);
 				}
 			}
