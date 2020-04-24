@@ -168,6 +168,66 @@ class notifications {
 		let desc = '';
 
 		switch(type) {
+			case 'ally_askToJoin':
+				title = translate.message['ALLIANCE_PLY_ASKED_TO_JOIN'];
+				desc = translate.message['ALLIANCE_PLY_ASKED_TO_JOIN'] + ': ' + args.playerName;
+				break;
+			case 'ally_askToPact':
+				title = translate.message['ALLIANCE_ASKED_TO_PACT'];
+				desc = translate.message['ALLIANCE_ASKED_TO_PACT'] + ': ' + args.name;
+				break;
+			case 'ally_refusedPact':
+				title = translate.message['ALLIANCE_REFUSED_PACT'];
+				desc = translate.message['ALLIANCE_REFUSED_PACT'] + ': ' + args.name;
+				break;
+			case 'ally_stopPact':
+				title = translate.message['ALLIANCE_STOPPED_PACT'];
+				desc = translate.message['ALLIANCE_STOPPED_PACT'] + ': ' + args.name;
+				break;
+			case 'ally_accepted':
+				title = translate.message['ALLIANCE_GRANTED'](args.name);
+				desc = translate.message['ALLIANCE_GRANTED'](args.name);
+				break;
+			case 'ally_refused':
+				title = translate.message['ALLIANCE_REFUSED'](args.name);
+				desc = translate.message['ALLIANCE_REFUSED'](args.name);
+				break;
+			case 'ally_invited':
+				title = translate.message['ALLIANCE_INVITED'](args.name);
+				desc = translate.message['ALLIANCE_INVITED'](args.name);
+				break;
+			case 'ally_kicked':
+				title = translate.message['ALLIANCE_KICKED'] + args.staffName;
+				desc = translate.message['ALLIANCE_KICKED'] + args.staffName;
+				break;
+			case 'ally_newPerms':
+				title = translate.message['ALLIANCE_NEWPERMS'] + args.staffName;
+				desc = translate.message['ALLIANCE_NEWPERMS'] + args.staffName;
+				break;
+			case 'ally_joined':
+				title = translate.message['ALLIANCE_NEW_PLAYER'](args.playerName);
+				desc = translate.message['ALLIANCE_NEW_PLAYER'](args.playerName);
+				break;
+			case 'ally_refuse_join':
+				title = translate.message['ALLIANCE_INVITE_REFUSED'](args.playerName);
+				desc = translate.message['ALLIANCE_INVITE_REFUSED'](args.playerName);
+				break;
+			case 'ally_member_kicked':
+				title = translate.message['ALLIANCE_MEMBER_KICKED'](args.playerName, args.staffName);
+				desc = translate.message['ALLIANCE_MEMBER_KICKED'](args.playerName, args.staffName);
+				break;
+			case 'ally_member_left':
+				title = translate.message['ALLIANCE_MEMBER_LEFT'](args.playerName);
+				desc = translate.message['ALLIANCE_MEMBER_LEFT'](args.playerName);
+				break;
+			case 'ally_edited':
+				title = translate.message['ALLIANCE_EDITED'](args.playerName);
+				desc = translate.message['ALLIANCE_EDITED'](args.playerName);
+				break;
+			case 'ally_dissolved':
+				title = translate.message['ALLIANCE_DISSOLVED'];
+				desc = translate.message['ALLIANCE_DISSOLVED'];
+				break;
 			case 'attack':
 				title = translate.messages['ATTACK_INCOMING_TITLE'];
 				desc = translate.messages['ATTACK_INCOMING_FROM'] + args.origin + '(' + args.player + ')' +
