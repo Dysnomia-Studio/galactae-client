@@ -125,6 +125,10 @@ translate['messages'] = {
 	// Alliances notif
 	'ALLIANCE_CREATE_ERROR': 'Erreur: Une alliance avec le même nom existe déjà',
 	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: Cette Alliance n\'existe pas',
+	'ALLIANCE_YOU_ALREADY_HAVE': 'Erreur: Vous êtes déjà membre d\'une alliance',
+	'ALLIANCE_NOT_ENOUGH_RIGHTS': 'Erreur: Vous n\'avez pas les permissions necessaires.',
+	'ALLIANCE_INVALID_PLAYER_PERMISSIONS': 'Erreur: Permissions invalides.',
+	'ALLIANCE_ERR_SAME_ALLY': 'Erreur: Vous ne pouvez pas effectuer de diplomatie avec votre propre alliance.',
 };
 
 translate['load'] = {
