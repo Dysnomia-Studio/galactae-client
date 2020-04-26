@@ -7,7 +7,25 @@ class Conquest extends _Conquest {
 			};
 		});
 
-		console.log(Conquest.list);
+		for(const conquest of Conquest.list) {
+			if(conquest.endDate.getTime() < Date.now()) {
+				return;
+			}
+
+			if(userData.username === conquest.prevPlayer) {
+				notifications.notifyOnGame(
+					'conquest',
+					conquest.planet + ' - ' + translate.messages['BEING_CONQUESTED_BY'] + conquest.newplayer,
+					{ id: 'conquest_' + conquest.planet }
+				);
+			} else {
+				notifications.notifyOnGame(
+					'conquest',
+					translate.messages['YOU_ARE_CONQUERING'] + conquest.planet,
+					{ id: 'conquest_' + conquest.planet }
+				);
+			}
+		}
 	}
 
 	static getConquestListOnCurrentPlanet() {

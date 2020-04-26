@@ -149,6 +149,7 @@ translate['messages'] = {
 	// Conquest
 	'BEING_CONQUESTED_BUILD': 'La planète est en train de se faire conquerir, il est impossible de construire.', // @TODO: Conquest type
 	'BEING_CONQUESTED_BY': 'Aux armes ! Votre planète est en train de se faire conquerir par ', // @TODO: Conquest type
+	'YOU_ARE_CONQUERING': 'Vous êtes en train de conquerir ',
 	'BEING_CONQUESTED_END': 'Fin: ',
 };
 

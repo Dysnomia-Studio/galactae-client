@@ -149,9 +149,9 @@ translate['messages'] = {
 	// Conquest
 	'BEING_CONQUESTED_BUILD': 'Planet is being conquered, you can\'t build anything', // @TODO: Conquest type
 	'BEING_CONQUESTED_BY': 'To arms! Your planet is being conquered by ', // @TODO: Conquest type
+	'YOU_ARE_CONQUERING': 'You are conquering ',
 	'BEING_CONQUESTED_END': 'End time: ',
 };
-
 
 translate['load'] = {
 	'fleet': 'Loading fleets',

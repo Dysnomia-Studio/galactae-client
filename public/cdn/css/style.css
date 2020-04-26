@@ -3240,6 +3240,9 @@ a[class="research-search"]:hover {
 .notif-building {
 	background: url(../img/ui/notif-building.svg);
 }
+.notif-conquest {
+	background: url(../img/ui/notif-conquest.svg);
+}
 .notif-fleetMove {
 	background: url(../img/ui/fleets.png);
 }
