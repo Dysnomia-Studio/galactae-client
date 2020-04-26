@@ -168,6 +168,16 @@ class webSockets {
 			socket.emit('game-disconnect',{username: userData.username, id: userData.id, pid: userData.pid});
 		});
 
+		window.addEventListener('error', function(event) {
+			socket.emit('client-error', {
+				username: userData.username,
+				id: userData.id,
+				errorName: event.error.name,
+				errorMessage: event.error.message,
+				errorStack: event.error.stack,
+			});
+		});
+
 		loadScreen.complete('server');
 	}
 
