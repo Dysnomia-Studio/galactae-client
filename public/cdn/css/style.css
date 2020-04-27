@@ -136,6 +136,8 @@ em {
 	top: calc(50% - 75px);
 	left: calc(50% - 112px);
 
+	opacity: 0.8;
+
 	z-index: 1000;
 }
 .small-panel p {
@@ -2983,6 +2985,48 @@ a[class="research-search"]:hover {
 	animation-iteration-count: infinite;
 }
 
+.planet-info-popup {
+	position: fixed;
+
+	opacity: 0.8;
+
+	text-align: center;
+
+	z-index: 1 !important;
+}
+#planet-research-popup {
+	top: 75px;
+}
+#planet-conquest-popup {
+	zoom: 1.4;
+}
+.planet-info-important {
+	color: #0EC6C6;
+}
+#planet-info-popup-right {
+	float: right;
+}
+#planet-info-popup-right:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+	#planet-research-popup {
+		visibility: hidden;
+	}
+
+	#planet-conquest-popup {
+		z-index: 3 !important;
+	}
+}
+
+@media (min-height: 825px) {
+	#planet-research-popup {
+		top: 50px;
+		left: 50px;
+	}
+}
+
 /**
  * Other planet
  */
@@ -3195,6 +3239,9 @@ a[class="research-search"]:hover {
 }
 .notif-building {
 	background: url(../img/ui/notif-building.svg);
+}
+.notif-conquest {
+	background: url(../img/ui/notif-conquest.svg);
 }
 .notif-fleetMove {
 	background: url(../img/ui/fleets.png);

@@ -1254,6 +1254,7 @@ const neededCache = [
 	cdnURL + 'js/css_globe_perspectivetransform.js',
 
 	cdnURL + 'js/_shared/Buildings.js',
+	cdnURL + 'js/_shared/DependencyEngine.js',
 	cdnURL + 'js/_shared/Fleets.js',
 	cdnURL + 'js/_shared/GameMap.js',
 	cdnURL + 'js/_shared/Research.js',
@@ -1261,9 +1262,12 @@ const neededCache = [
 	cdnURL + 'js/_shared/Tutorials.js',
 	cdnURL + 'js/_shared/Units.js',
 
+	cdnURL + 'js/Alliances.js',
 	cdnURL + 'js/Buildings.js',
 	cdnURL + 'js/calcConstants.js',
 	cdnURL + 'js/chat.js',
+	cdnURL + 'js/Conquest.js',
+	cdnURL + 'js/DependencyEngine.js',
 	cdnURL + 'js/Fleets.js',
 	cdnURL + 'js/GameMap.js',
 	cdnURL + 'js/map.js',
@@ -1279,7 +1283,6 @@ const neededCache = [
 	cdnURL + 'js/trade.js',
 	cdnURL + 'js/Tutorials.js',
 	cdnURL + 'js/ui.js',
-	cdnURL + 'js/units.js',
 	cdnURL + 'js/Units.js',
 	cdnURL + 'js/websockets.js',
 

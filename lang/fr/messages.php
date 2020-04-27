@@ -145,6 +145,12 @@ translate['messages'] = {
 	'ALLIANCE_MEMBER_LEFT': (plyName) => plyName + ' a quitté l\'alliance.',
 	'ALLIANCE_EDITED': (plyName) => plyName + ' a modifié le nom et/ou la description de l\'alliance.',
 	'ALLIANCE_DISSOLVED': 'L\'alliance a été dissoute.',
+
+	// Conquest
+	'BEING_CONQUESTED_BUILD': 'La planète est en train de se faire conquerir, il est impossible de construire.', // @TODO: Conquest type
+	'BEING_CONQUESTED_BY': 'Aux armes ! Votre planète est en train de se faire conquerir par ', // @TODO: Conquest type
+	'YOU_ARE_CONQUERING': 'Vous êtes en train de conquerir ',
+	'BEING_CONQUESTED_END': 'Fin: ',
 };
 
 translate['load'] = {

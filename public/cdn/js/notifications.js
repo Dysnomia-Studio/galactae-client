@@ -102,6 +102,12 @@ class notifications {
 			Reports.showReport(element.id.substring('notif-'.length));
 		} else if(ui.hasClass(element, 'notif-attack')) {
 			ui.fleetPanelToggle('fleet-move');
+		} else if(ui.hasClass(element, 'notif-conquest')) {
+			socket.emit('planet-ask-data', {
+				...userData,
+				pid: element.id.substring('notif-conquest_'.length),
+			});
+			return;
 		}
 
 		// Remove element

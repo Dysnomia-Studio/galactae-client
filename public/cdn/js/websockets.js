@@ -87,12 +87,6 @@ class webSockets {
 
 		// Sync the player data
 		socket.on('player-recieve-data',function(data) {
-			data.beginerProtectEnd = new Date(data.beginerProtectEnd);
-			data.lastConnected = new Date(data.lastConnected);
-			data.lastAction = new Date(data.lastAction);
-			data.lastResearchUpdate = new Date(data.lastResearchUpdate);
-			data.lastBonus = new Date(data.lastBonus);
-
 			for(const key in data) {
 				userData[key] = data[key];
 
@@ -122,6 +116,11 @@ class webSockets {
 		socket.on('player-search-results', (alliances) => {
 			Alliances.searchResults = alliances;
 			Alliances.updateSearchResults();
+		});
+
+		// Sync the conquest list
+		socket.on('player-conquest-list', (conquestList) => {
+			Conquest.init(conquestList);
 		});
 
 		//Launch the chat
@@ -167,6 +166,16 @@ class webSockets {
 		});
 		window.addEventListener('beforeunload', function() {
 			socket.emit('game-disconnect',{username: userData.username, id: userData.id, pid: userData.pid});
+		});
+
+		window.addEventListener('error', function(event) {
+			socket.emit('client-error', {
+				username: userData.username,
+				id: userData.id,
+				errorName: event.error.name,
+				errorMessage: event.error.message,
+				errorStack: event.error.stack,
+			});
 		});
 
 		loadScreen.complete('server');

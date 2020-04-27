@@ -74,5 +74,7 @@ translate['research'] = {
 	tech_owned: 'Already searched technology',
 	ongoing: 	'Research in progress ...',
 	search: 	'Research',
+	current_research: 'Current research:',
+	go_to_research: 'Go to research panel',
 };
 </script>

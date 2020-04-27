@@ -91,6 +91,10 @@
 			<span id="lvl-research"></span>
 		</div>
 
+		<?php /* Conquest/Research info popup */ ?>
+		<div id="planet-conquest-popup" class="planet-info-popup small-panel"></div>
+		<div id="planet-research-popup" class="planet-info-popup small-panel"></div>
+
 		<?php /* Space Building */ ?>
 		<div class="building-space">
 			<span id="building-space-title"><?= ORBITAL_BUILDING; ?></span>
@@ -130,6 +134,21 @@
 <div id="hud-top">
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
+
+		<span class="tooltip">
+			<img height="15" src="<?= $cdnURL ?>img/ui/planetCount.png" alt="planetCount">
+			<span class="nmb" id="planetCount_nmb">?/?</span>
+			<span class="tooltip-wrapper tooltip-wrapper-bottom">
+				<span class="tooltip-content" id="planetCount-tooltips">
+					<?= PLANET_COUNT; ?><br/>
+					<?= AVAILABLE; ?>: <span id="planetCount-available">XXX</span><br/>
+					<?= USED; ?>: <span id="planetCount-used">XXX</span><br/>
+					<?= TOTAL; ?>: <span id="planetCount-total">XXX</span><br/>
+					<?= NEXT_LEVEL; ?>: <span id="planetCount-next-level">XXX</span><br/>
+				</span>
+			</span>
+		</span>
+
 		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/population.png" alt="population">
 			<span class="nmb" id="population_nmb">1</span>
@@ -956,6 +975,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <?php /* Client Classes */ ?>
 
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Conquest.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/GameMap.js"></script>
@@ -969,6 +989,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/Buildings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/calcConstants.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/chat.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Conquest.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/GameMap.js"></script>

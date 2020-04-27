@@ -107,9 +107,9 @@ function GetBetterUnit(nmbr,unit='',max=-1,disableMax=false) {
  * @return	 {string}  The string time.
  */
 function getStringTime(number) {
-	let hours = (number<10)?'0'+Math.floor(number):Math.floor(number);
-	let min = ((number*60)%60<10)?'0'+Math.floor((number*60)%60):Math.floor((number*60)%60);
-	let sec = ((number*3600)%60<10)?'0'+Math.floor((number*3600)%60):Math.floor((number*3600)%60);
+	const hours = (number<10)?'0'+Math.floor(number):Math.floor(number);
+	const min = ((number*60)%60<10)?'0'+Math.floor((number*60)%60):Math.floor((number*60)%60);
+	const sec = ((number*3600)%60<10)?'0'+Math.floor((number*3600)%60):Math.floor((number*3600)%60);
 	return hours+':'+min+':'+sec;
 }
 
@@ -134,8 +134,8 @@ function getDateTime(date = new Date()) {
 	return day + '/' + month + '/' + year + ' ' + hour + ':' + min + ':' + sec;
 }
 
-let charList = [
-	// a	
+const charList = [
+	// a
 	['à','&agrave;'],
 	['á','&aacute;'],
 	['â','&acirc;'],
