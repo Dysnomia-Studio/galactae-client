@@ -43,6 +43,10 @@ class Conquest extends _Conquest {
 	}
 
 	static getConquestListOnCurrentPlanet() {
+		if(!Conquest.list) {
+			return [];
+		}
+
 		return Conquest.list.filter((elt) =>
 			elt.planet === planetData.address &&
 			elt.endDate.getTime() > Date.now() &&
