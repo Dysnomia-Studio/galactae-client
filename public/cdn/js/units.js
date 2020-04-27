@@ -515,7 +515,7 @@ class units extends _Units {
 	}
 
 	static drawCurrentInBuildingUnitMessage() {
-		if(Conquest.isBeingConquested()) {
+		if(Conquest.isPlanetBeingConquested()) {
 			document.getElementById('fleet-build-message').innerHTML = translate.messages['BEING_CONQUESTED_BUILD'];
 		} else if(!!planetData.unitBuildingEndTime && planetData.unitBuildingEndTime.getTime() > (Date.now() + planetUI.deltaNow)) { // An unit is building
 			const dateNow = new Date();

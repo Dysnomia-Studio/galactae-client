@@ -36,8 +36,14 @@ class Conquest extends _Conquest {
 		);
 	}
 
-	static isBeingConquested() {
+	static isPlanetBeingConquested() {
 		return Conquest.getConquestListOnCurrentPlanet().length > 0;
+	}
+
+	static isDefender() {
+		return Conquest.getConquestListOnCurrentPlanet().filter((elt) => {
+			return elt.prevplayer === userData.username;
+		}).length > 0;
 	}
 
 	static getConquestor() {

@@ -136,7 +136,7 @@ class planetUI {
 	 * Clientside simulation of growing resources
 	 */
 	static simMyRealRessources() {
-		if(!Conquest.isBeingConquested()) {
+		if(!Conquest.isPlanetBeingConquested()) {
 			planetData.resources = Resources.CalcNewResources(
 				planetData.resources,
 				planetData.Buildings,
@@ -490,7 +490,7 @@ class planetUI {
 		ui.hide('#planet-conquest-popup');
 		ui.hide('#planet-research-popup');
 
-		if(Conquest.isBeingConquested()) {
+		if(Conquest.isPlanetBeingConquested()) {
 			planetUI.InfoPopupDrawConquest();
 		} else if(planetData.currResearch && !Research.isSearched(userData, planetData.currResearch)) {
 			planetUI.InfoPopupDrawResearch();
@@ -502,14 +502,25 @@ class planetUI {
 
 		const popup = document.getElementById('planet-conquest-popup');
 
-		const span = document.createElement('span');
-		span.innerText = translate['messages'].BEING_CONQUESTED_BY;
-		popup.appendChild(span);
+		if(Conquest.isDefender()) {
+			const span = document.createElement('span');
+			span.innerText = translate['messages'].BEING_CONQUESTED_BY;
+			popup.appendChild(span);
 
-		const span2 = document.createElement('span');
-		span2.classList.add('planet-info-important');
-		span2.innerText = Conquest.getConquestor();
-		popup.appendChild(span2);
+			const span2 = document.createElement('span');
+			span2.classList.add('planet-info-important');
+			span2.innerText = Conquest.getConquestor();
+			popup.appendChild(span2);
+		} else {
+			const span = document.createElement('span');
+			span.innerText = translate['messages'].YOU_ARE_CONQUERING;
+			popup.appendChild(span);
+
+			const span2 = document.createElement('span');
+			span2.classList.add('planet-info-important');
+			span2.innerText = planetData.address;
+			popup.appendChild(span2);
+		}
 
 		popup.appendChild(document.createElement('br'));
 		popup.appendChild(document.createElement('br'));
@@ -717,7 +728,7 @@ class planetUI {
 		if(max) { // Max Level
 			document.getElementById('building-message').innerHTML = translate.messages['UPGRADE_MAX'];
 			ui.hide('#building-cost');
-		} else if(Conquest.isBeingConquested()) {
+		} else if(Conquest.isPlanetBeingConquested()) {
 			document.getElementById('building-message').innerHTML = translate.messages['BEING_CONQUESTED_BUILD'];
 		} else if(requirements !== '') { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
