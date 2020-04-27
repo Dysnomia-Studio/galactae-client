@@ -7,9 +7,15 @@ class Conquest extends _Conquest {
 			};
 		});
 
+		let minEndTime = null;
+
 		for(const conquest of Conquest.list) {
 			if(conquest.endDate.getTime() < Date.now()) {
 				return;
+			}
+
+			if(!minEndTime || minEndTime > conquest.endDate.getTime()) {
+				minEndTime = conquest.endDate.getTime();
 			}
 
 			if(userData.username === conquest.prevPlayer) {
@@ -25,6 +31,14 @@ class Conquest extends _Conquest {
 					{ id: 'conquest_' + conquest.planet }
 				);
 			}
+		}
+
+		clearTimeout(Conquest.refreshTimeout);
+
+		if(minEndTime) {
+			Conquest.refreshTimeout = setTimeout(() => {
+				socket.emit('conquest-ask-refresh', userData);
+			}, minEndTime - Date.now());
 		}
 	}
 
