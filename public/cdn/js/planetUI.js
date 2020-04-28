@@ -228,9 +228,8 @@ class planetUI {
 		energyCons = Buildings.getEnergyCons(buildings);
 
 		// Habitants
-		habProd = Math.round(habGen[0]*Math.pow(buildings[2],2) + habGen[1]* buildings[2] + habGen[2]);
+		[ habProd, habCons ] = Buildings.getPeopleConsAndProd(planetData, units.fleetList);
 		habProd1 = Math.round(habGen[0]*Math.pow((buildings[2]+1),2) + habGen[1]*(buildings[2]+1) + habGen[2]);
-		habCons = planetUI.getHabitantConsomation();
 
 		// Research
 		researchProd = Research.getResearchProduction(buildings[8]);
@@ -362,34 +361,6 @@ class planetUI {
 		ui.toggleClass('.building-list-active', 'building-list-active', document.getElementById(buildingsNames[planetData.nextBuilding]));
 
 		// @TODO: Draw if a building can be upgraded (use of planetUI.canBeBuild())
-	}
-
-	/**
-	 * Gets the current habitant use.
-	 *
-	 * @return     {number}  The current habitant use
-	 */
-	static getHabitantConsomation() {
-		let habitants = 0;
-		const buildings = planetData.Buildings;
-
-		// Buildings
-		for(let i=0; i<14; i++) {
-			if(buildings[i]===0) { continue; }
-			if(i===planetData.nextBuilding) {
-				// Current in-build building
-				habitants += parseInt(Buildings.GetCost(i,buildings[i] + 1).habitants);
-				continue;
-			}
-			habitants += parseInt(Buildings.GetCost(i,buildings[i]).habitants);
-		}
-
-		// Units builded and in-build
-		for(let i=0; i<units.fleetList.length; i++) {
-			habitants += units.fleetList[i].population;
-		}
-
-		return habitants;
 	}
 
 	/**
