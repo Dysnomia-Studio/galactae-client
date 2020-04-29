@@ -54,7 +54,7 @@ class ServerPlanetManager extends SQLInterface {
 					'name' => 'Planète de '.$user['name'], //@ADD: Translation
 					'address' => $planet['address'],
 					// owner
-					'points' => 44,
+					// points
 
 				// Geographic informations
 					// orbitDist
@@ -64,21 +64,21 @@ class ServerPlanetManager extends SQLInterface {
 
 
 				// Buildings
-					'Buildings' => '{1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0}',
-					'nextBuilding' => -1,
-					'nextBuildingTime' => null,
+					// Buildings
+					// nextBuilding
+					// nextBuildingTime
 
 				// Resources
-					'resources' => '{100, 0, 350, 500, 40, 100}',
+					// resources
 					'lastResourcesUpdate' => date('Y-m-d H:i:s'),
 
 				// Units
-					'unitBuildingCount' => -1,
-					'unitBuildingEndTime'  => null,
+					// unitBuildingCount
+					// unitBuildingEndTime
 					'lastUnitUpdate' => date('Y-m-d H:i:s'),
 
 				// Misc
-					'currResearch' => '',
+					// currResearch
 			];
 	}
 
