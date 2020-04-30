@@ -135,6 +135,9 @@
 	<div id="hud-top-left">
 		<span id="hud-top-left-moveLeft">&#9664;</span>
 
+		<img height="15" src="<?= $cdnURL ?>img/ui/credits.png" alt="credits">
+		<span class="nmb" id="credits_nmb">1</span>
+
 		<span class="tooltip">
 			<img height="15" src="<?= $cdnURL ?>img/ui/planetCount.png" alt="planetCount">
 			<span class="nmb" id="planetCount_nmb">?/?</span>

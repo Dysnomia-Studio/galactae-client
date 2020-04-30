@@ -188,6 +188,7 @@ class planetUI {
 	 */
 	static ResourcesDrawUpdate() {
 		// Top left
+		document.getElementById('credits_nmb').innerText = GetBetterUnit(userData.money);
 		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd - habCons);
 		document.getElementById('research_nmb').innerHTML = GetBetterUnit(researchProd,'/h');
 		document.getElementById('moral_nmb').innerHTML = Math.round(Buildings.calcPlanetMorale(planetData.Buildings)*100)+'%';
