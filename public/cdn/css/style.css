@@ -372,7 +372,7 @@ select, input, summary {
 
 	padding: 0.75em;
 
-	z-index: 999; /* Above all */
+	z-index: 1001; /* Above all */
 }
 
 /**

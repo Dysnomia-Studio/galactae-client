@@ -218,7 +218,7 @@ class Reports extends _Reports {
 			previousCount.innerText = unit.count;
 			unitCount.append(previousCount);
 
-			if(losts[unit.id]) {
+			if(losts && losts[unit.id]) {
 				const lostUnits = document.createElement('span');
 				lostUnits.innerText = ' -' + Math.floor(losts[unit.id]);
 				lostUnits.style.color = 'red';

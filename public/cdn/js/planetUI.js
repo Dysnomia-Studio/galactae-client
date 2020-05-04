@@ -464,7 +464,7 @@ class planetUI {
 
 		if(Conquest.isPlanetBeingConquested()) {
 			planetUI.InfoPopupDrawConquest();
-		} else if(planetData.currResearch && !Research.isSearched(userData, planetData.currResearch)) {
+		} else if(planetData.currResearch && planetData.currResearch !== '' && !Research.isSearched(userData, planetData.currResearch)) {
 			planetUI.InfoPopupDrawResearch();
 		}
 	}
