@@ -399,7 +399,7 @@ class units extends _Units {
 			socket.emit('fleet-tactics-assign', {
 				id: userData.id,
 				username: userData.username,
-				pid: planetData.id,
+				pid: planetData.address,
 				fleetId: units.currFleet,
 				tacticId: currTactic,
 			});
