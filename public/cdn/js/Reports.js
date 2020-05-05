@@ -13,6 +13,8 @@ class Reports extends _Reports {
 		});
 		Reports.cache = (!Reports.cache) ? [] : Reports.cache;
 
+		document.getElementById('report-list-select-all').checked = false;
+
 		for(const report of reports.filter((elt) => !elt.read)) {
 			notifications.notify('report', {
 				id: report.battleLogId
@@ -85,6 +87,10 @@ class Reports extends _Reports {
 	}
 
 	static serverMarkRead(reports) {
+		for(const report of reports) {
+			notifications.removeInGameNotif(report);
+		}
+
 		socket.emit('player-report-set-read', { username: userData.username, id: userData.id, reports });
 	}
 
