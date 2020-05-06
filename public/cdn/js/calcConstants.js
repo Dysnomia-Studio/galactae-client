@@ -552,7 +552,7 @@ const MAP_BG_HEIGHT = 2160;
 /**
  * Research
  */
-const researchProduction = [-0.05,12,-8];
+const researchProduction = [-0.05,12,-4];
 const researchBonus = {
 	// Bonus construction
 	cp_mecanisation: -0.05,
