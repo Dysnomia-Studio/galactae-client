@@ -391,7 +391,8 @@ class research extends _Research {
 	 * Simulate research evolution (client side calculation)
 	 */
 	static sim() {
-		if(userData.research[planetData.currResearch] === undefined) { return; } // If research is undefined
+		if(!planetData.currResearch || planetData.currResearch === '') { return; } // If research name is undefined
+		if(!userData.research[planetData.currResearch]) { return; } // If research is undefined
 		if(userData.research[planetData.currResearch] === -1) { return; } // If research is finished
 		if(Conquest.isPlanetBeingConquested()) { return; } // If planet is being conquested
 
