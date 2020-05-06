@@ -93,6 +93,7 @@ class webSockets {
 				if(key==='research') {
 					research.drawPanel();
 					units.refresh(units.list); // Because type creation is disabled when no research && we need research to draw mines
+					planetUI.InfoPopupDrawUpdate();
 				}
 			}
 			planetUI.MiscDrawUpdate();
