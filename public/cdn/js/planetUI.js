@@ -562,6 +562,10 @@ class planetUI {
 		// Refresh periodically
 		clearInterval(planetUI.InfoPopupResearchInterval);
 		planetUI.InfoPopupResearchInterval = setInterval(() => {
+			if(!researchList[planetData.currResearch]) {
+				return;
+			}
+
 			researchTime -= 1/3600;
 			spanCurrResearchTime.innerText = getStringTime(researchTime);
 
