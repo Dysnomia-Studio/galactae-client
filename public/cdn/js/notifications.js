@@ -57,18 +57,14 @@ class notifications {
 		}
 
 		document.getElementById('notifications-closeAll').addEventListener('click', function() {
+			const keep = [];
+
 			const list = document.getElementById('notifications-panel');
 			while(list.firstChild) {
-				if(ui.hasClass(list.firstChild, 'notif-tutorial')) {
-					break;
+				if(ui.hasClass(list.firstChild, 'notif-tutorial') || ui.hasClass(list.firstChild, 'notif-conquest')) {
+					keep.push(list.firstChild);
 				}
 				list.removeChild(list.firstChild);
-			}
-			while(list.lastChild) {
-				if(ui.hasClass(list.lastChild, 'notif-tutorial')) {
-					break;
-				}
-				list.removeChild(list.lastChild);
 			}
 
 			const closeAllButton = document.createElement('span');
@@ -76,6 +72,10 @@ class notifications {
 			closeAllButton.innerText = '☒';
 
 			list.appendChild(closeAllButton);
+
+			for(const notif of keep) {
+				list.appendChild(notif);
+			}
 
 			ui.notifCount = list.children.length - 1;
 			ui.updatePageTitle();
