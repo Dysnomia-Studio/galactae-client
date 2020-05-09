@@ -37,6 +37,10 @@ class Conquest extends _Conquest {
 
 		if(minEndTime) {
 			Conquest.refreshTimeout = setTimeout(() => {
+				for(const conquest of Conquest.list) {
+					notifications.removeInGameNotif('conquest_' + conquest.planet);
+				}
+
 				socket.emit('conquest-ask-refresh', userData);
 			}, minEndTime - Date.now());
 		}
