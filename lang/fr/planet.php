@@ -10,6 +10,7 @@
 	define('METAL_ALUMINIUM','Aluminium');
 	define('METAL_COPPER','Cuivre');
 	define('METAL_TITANIUM','Titane');
+	define('PLANET_COUNT','Capacité de planètes');
 	define('ENERGY','Consommation Energetique');
 	define('TIME','Temps');
 	define('BUILD','Construire');
@@ -20,6 +21,7 @@
 	define('AVAILABLE','Disponible');
 	define('USED','Utilisé');
 	define('TOTAL','Total');
+	define('NEXT_LEVEL','Prochain palier');
 	define('COST','Coût du niveau suivant');
 
 	// == Buildings == \\

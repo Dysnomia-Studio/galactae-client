@@ -422,22 +422,17 @@ class map {
 			units.planetTarget = this.id.split('liste_').join(''); // Center star or bottom bar
 		}
 
-		let system = GameMap.getSystemFromAdress(units.planetTarget);
+		const system = GameMap.getSystemFromAdress(units.planetTarget);
 
 		if(map.planetData[system][units.planetTarget].ownerName === null) {
 			document.getElementById('map-planet-menu-planetname').innerText = '';
 			document.getElementById('map-planet-menu-username').innerText = '';
-
-			ui.hide('#map-planet-menu img');
-			ui.show('#map-planet-menu-infos');
-			ui.show('#map-planet-menu-move');
-
 		} else { // Player planet
-			ui.show('#map-planet-menu img');
-
 			document.getElementById('map-planet-menu-planetname').innerText = map.planetData[system][units.planetTarget].name;
 			document.getElementById('map-planet-menu-username').innerText = '(' + map.planetData[system][units.planetTarget].ownerName + ')';
 		}
+
+		ui.show('#map-planet-menu img');
 
 		document.getElementById('map-planet-menu').style.left = e.pageX + 'px';
 		document.getElementById('map-planet-menu').style.top = e.pageY + 'px';

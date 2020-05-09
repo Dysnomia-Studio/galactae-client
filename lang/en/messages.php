@@ -125,6 +125,32 @@ translate['messages'] = {
 	// Alliances notif
 	'ALLIANCE_CREATE_ERROR': 'Error: An alliance with the same name already exists',
 	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: This alliance does not exists',
+	'ALLIANCE_YOU_ALREADY_HAVE': 'Erreur: You\'re already a member of an alliance',
+	'ALLIANCE_NOT_ENOUGH_RIGHTS': 'Erreur: You don\'t have enough rights.',
+	'ALLIANCE_INVALID_PLAYER_PERMISSIONS': 'Erreur: Invalid permissions.',
+	'ALLIANCE_ERR_SAME_ALLY': 'Erreur: You can\'t to diplomacy with your own alliance.',
+	'ALLIANCE_PLY_ASKED_TO_JOIN': 'A nation asked to join your alliance',
+	'ALLIANCE_ASKED_TO_PACT': 'An alliance want to make a pact with you',
+	'ALLIANCE_NEW_PACT': 'A new pact as been created',
+	'ALLIANCE_REFUSED_PACT': 'Refused pact',
+	'ALLIANCE_STOPPED_PACT': 'Stopped pact',
+	'ALLIANCE_GRANTED': (ally) => 'You were granted to join ' + ally + '.',
+	'ALLIANCE_REFUSED': (ally) => 'You were not granted to join ' + ally + '.',
+	'ALLIANCE_INVITED': (ally) => 'You were invited to join ' + ally + '.',
+	'ALLIANCE_KICKED': 'You were kicked from you alliance by ',
+	'ALLIANCE_NEWPERMS': 'Your role in the alliance were edited by ',
+	'ALLIANCE_NEW_PLAYER': (plyName) => plyName + ' has joined the alliance.',
+	'ALLIANCE_INVITE_REFUSED': (plyName) => plyName + ' refused to join alliance.',
+	'ALLIANCE_MEMBER_KICKED': (plyName, staffName) => plyName + ' was kicked from alliance by ' + staffName + '.',
+	'ALLIANCE_MEMBER_LEFT': (plyName) => plyName + ' has left the alliance.',
+	'ALLIANCE_EDITED': (plyName) => plyName + ' edited name and/or description from the alliance.',
+	'ALLIANCE_DISSOLVED': 'The alliance was dissolved.',
+
+	// Conquest
+	'BEING_CONQUESTED_BUILD': 'Planet is being conquered, you can\'t build anything', // @TODO: Conquest type
+	'BEING_CONQUESTED_BY': 'To arms! Your planet is being conquered by ', // @TODO: Conquest type
+	'YOU_ARE_CONQUERING': 'You are conquering ',
+	'BEING_CONQUESTED_END': 'End time: ',
 };
 
 translate['load'] = {

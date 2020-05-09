@@ -125,6 +125,32 @@ translate['messages'] = {
 	// Alliances notif
 	'ALLIANCE_CREATE_ERROR': 'Erreur: Une alliance avec le même nom existe déjà',
 	'ALLIANCE_DOES_NOT_EXISTS': 'Erreur: Cette Alliance n\'existe pas',
+	'ALLIANCE_YOU_ALREADY_HAVE': 'Erreur: Vous êtes déjà membre d\'une alliance',
+	'ALLIANCE_NOT_ENOUGH_RIGHTS': 'Erreur: Vous n\'avez pas les permissions necessaires.',
+	'ALLIANCE_INVALID_PLAYER_PERMISSIONS': 'Erreur: Permissions invalides.',
+	'ALLIANCE_ERR_SAME_ALLY': 'Erreur: Vous ne pouvez pas effectuer de diplomatie avec votre propre alliance.',
+	'ALLIANCE_PLY_ASKED_TO_JOIN': 'Une nation souhaiterait rejoindre votre alliance',
+	'ALLIANCE_ASKED_TO_PACT': 'Une alliance souhaiterai établir un pact avec la votre',
+	'ALLIANCE_NEW_PACT': 'Un nouveau pacte est maintenant en place',
+	'ALLIANCE_REFUSED_PACT': 'Pacte refusé',
+	'ALLIANCE_STOPPED_PACT': 'Pacte rompu',
+	'ALLIANCE_GRANTED': (ally) => 'Votre candidature à ' + ally + ' a été acceptée.',
+	'ALLIANCE_REFUSED': (ally) => 'Votre candidature à ' + ally + ' a été refusée.',
+	'ALLIANCE_INVITED': (ally) => 'Vous êtes invité à rejoindre ' + ally + '.',
+	'ALLIANCE_KICKED': 'Vous avez été éjecté de votre alliance par ',
+	'ALLIANCE_NEWPERMS': 'Votre rôle dans l\'alliance viens d\'être modifié par ',
+	'ALLIANCE_NEW_PLAYER': (plyName) => plyName + ' viens de rejoindre l\'alliance.',
+	'ALLIANCE_INVITE_REFUSED': (plyName) => plyName + ' a refusé de se joindre à l\'alliance.',
+	'ALLIANCE_MEMBER_KICKED': (plyName, staffName) => plyName + ' a été exclus de l\'alliance par ' + staffName + '.',
+	'ALLIANCE_MEMBER_LEFT': (plyName) => plyName + ' a quitté l\'alliance.',
+	'ALLIANCE_EDITED': (plyName) => plyName + ' a modifié le nom et/ou la description de l\'alliance.',
+	'ALLIANCE_DISSOLVED': 'L\'alliance a été dissoute.',
+
+	// Conquest
+	'BEING_CONQUESTED_BUILD': 'La planète est en train de se faire conquerir, il est impossible de construire.', // @TODO: Conquest type
+	'BEING_CONQUESTED_BY': 'Aux armes ! Votre planète est en train de se faire conquerir par ', // @TODO: Conquest type
+	'YOU_ARE_CONQUERING': 'Vous êtes en train de conquerir ',
+	'BEING_CONQUESTED_END': 'Fin: ',
 };
 
 translate['load'] = {

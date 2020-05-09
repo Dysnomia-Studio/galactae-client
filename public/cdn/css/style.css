@@ -136,6 +136,8 @@ em {
 	top: calc(50% - 75px);
 	left: calc(50% - 112px);
 
+	opacity: 0.8;
+
 	z-index: 1000;
 }
 .small-panel p {
@@ -370,7 +372,7 @@ select, input, summary {
 
 	padding: 0.75em;
 
-	z-index: 999; /* Above all */
+	z-index: 1001; /* Above all */
 }
 
 /**
@@ -819,12 +821,12 @@ select, input, summary {
 	-ms-user-select: none;
 }
 #hud-top-left {
-	width: calc(22vw - 3em);
+	width: calc(33vw - 3em);
 }
 #hud-top-right {
 	float: right;
 
-	width: calc(43vw - 3em);
+	width: calc(32vw - 3em);
 }
 #hud-top-center span, #hud-top-center img {
 	vertical-align: middle;
@@ -852,8 +854,6 @@ select, input, summary {
 #hud-top-right, #hud-top-left {
 	margin: 0 1.5em;
 	white-space:nowrap;
-
-	height: 2vw;
 }
 #hud-top-left, #hud-top-center, #hud-top-right {
 	display: inline-block;
@@ -932,7 +932,7 @@ select, input, summary {
 	top: 0.2vw;
 }
 #hud-top-right-moveLeft {
-	right: 42vw;
+	right: 31vw;
 }
 #hud-top-right-moveRight {
 	right: 0.5em;
@@ -941,7 +941,7 @@ select, input, summary {
 	left: 0.2em;
 }
 #hud-top-left-moveRight {
-	left: 20.5vw;
+	left: 31.5vw;
 }
 
 /* Tooltips */
@@ -2983,6 +2983,48 @@ a[class="research-search"]:hover {
 	animation-iteration-count: infinite;
 }
 
+.planet-info-popup {
+	position: fixed;
+
+	opacity: 0.8;
+
+	text-align: center;
+
+	z-index: 1 !important;
+}
+#planet-research-popup {
+	top: 75px;
+}
+#planet-conquest-popup {
+	zoom: 1.4;
+}
+.planet-info-important {
+	color: #0EC6C6;
+}
+#planet-info-popup-right {
+	float: right;
+}
+#planet-info-popup-right:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+	#planet-research-popup {
+		visibility: hidden;
+	}
+
+	#planet-conquest-popup {
+		z-index: 3 !important;
+	}
+}
+
+@media (min-height: 825px) {
+	#planet-research-popup {
+		top: 50px;
+		left: 50px;
+	}
+}
+
 /**
  * Other planet
  */
@@ -3195,6 +3237,9 @@ a[class="research-search"]:hover {
 }
 .notif-building {
 	background: url(../img/ui/notif-building.svg);
+}
+.notif-conquest {
+	background: url(../img/ui/notif-conquest.svg);
 }
 .notif-fleetMove {
 	background: url(../img/ui/fleets.png);

@@ -107,6 +107,7 @@ class planetUI {
 		planetUI.BuildingDrawUpdate();
 		planetUI.ResourcesDrawUpdate(); // Needed to be after building for ratios
 		planetUI.MiscDrawUpdate();
+		planetUI.InfoPopupDrawUpdate();
 		planetUI.drawCanBeBuild();
 
 		// Clear existing timeout
@@ -135,14 +136,16 @@ class planetUI {
 	 * Clientside simulation of growing resources
 	 */
 	static simMyRealRessources() {
-		planetData.resources = Resources.CalcNewResources(
-			planetData.resources,
-			planetData.Buildings,
-			planetData.planetType,
-			2*TIME.SECONDS_TO_MS, // 2 secondes
-			userData,
-			planetData.nextBuilding
-		);
+		if(!Conquest.isPlanetBeingConquested()) {
+			planetData.resources = Resources.CalcNewResources(
+				planetData.resources,
+				planetData.Buildings,
+				planetData.planetType,
+				2*TIME.SECONDS_TO_MS, // 2 secondes
+				userData,
+				planetData.nextBuilding
+			);
+		}
 
 		//Helium 3
 		document.getElementById('he-fuel-distribute').style.display = 'none';
@@ -185,6 +188,7 @@ class planetUI {
 	 */
 	static ResourcesDrawUpdate() {
 		// Top left
+		document.getElementById('credits_nmb').innerText = GetBetterUnit(userData.money);
 		document.getElementById('population_nmb').innerHTML = GetBetterUnit(habProd - habCons);
 		document.getElementById('research_nmb').innerHTML = GetBetterUnit(researchProd,'/h');
 		document.getElementById('moral_nmb').innerHTML = Math.round(Buildings.calcPlanetMorale(planetData.Buildings)*100)+'%';
@@ -225,9 +229,8 @@ class planetUI {
 		energyCons = Buildings.getEnergyCons(buildings);
 
 		// Habitants
-		habProd = Math.round(habGen[0]*Math.pow(buildings[2],2) + habGen[1]* buildings[2] + habGen[2]);
+		[ habProd, habCons ] = Buildings.getPeopleConsAndProd(planetData, units.fleetList);
 		habProd1 = Math.round(habGen[0]*Math.pow((buildings[2]+1),2) + habGen[1]*(buildings[2]+1) + habGen[2]);
-		habCons = planetUI.getHabitantConsomation();
 
 		// Research
 		researchProd = Research.getResearchProduction(buildings[8]);
@@ -321,6 +324,15 @@ class planetUI {
 		document.getElementById('population-available').innerHTML = GetBetterUnit(habProd-habCons,'');
 		document.getElementById('population-used').innerHTML = GetBetterUnit(habCons,'');
 		document.getElementById('population-total').innerHTML = GetBetterUnit(habProd,'');
+
+		const pCountTotal = Conquest.getPlanetMaxCount(userData.points);
+		const pCountUsed = userData.planetlist.length;
+
+		document.getElementById('planetCount_nmb').innerHTML = pCountUsed + '/' + pCountTotal;
+		document.getElementById('planetCount-available').innerHTML = pCountTotal - pCountUsed;
+		document.getElementById('planetCount-used').innerHTML = pCountUsed;
+		document.getElementById('planetCount-total').innerHTML = pCountTotal;
+		document.getElementById('planetCount-next-level').innerHTML = Conquest.minPointForPlanetCount(pCountTotal + 1) + ' pts';
 	}
 	/*
 	* Draws if buildings can be build.
@@ -350,34 +362,6 @@ class planetUI {
 		ui.toggleClass('.building-list-active', 'building-list-active', document.getElementById(buildingsNames[planetData.nextBuilding]));
 
 		// @TODO: Draw if a building can be upgraded (use of planetUI.canBeBuild())
-	}
-
-	/**
-	 * Gets the current habitant use.
-	 *
-	 * @return     {number}  The current habitant use
-	 */
-	static getHabitantConsomation() {
-		let habitants = 0;
-		const buildings = planetData.Buildings;
-
-		// Buildings
-		for(let i=0; i<14; i++) {
-			if(buildings[i]===0) { continue; }
-			if(i===planetData.nextBuilding) {
-				// Current in-build building
-				habitants += parseInt(Buildings.GetCost(i,buildings[i] + 1).habitants);
-				continue;
-			}
-			habitants += parseInt(Buildings.GetCost(i,buildings[i]).habitants);
-		}
-
-		// Units builded and in-build
-		for(let i=0; i<units.fleetList.length; i++) {
-			habitants += units.fleetList[i].population;
-		}
-
-		return habitants;
 	}
 
 	/**
@@ -472,6 +456,121 @@ class planetUI {
 				planetBack.init(planetData.planetType);
 			});
 		}
+	}
+
+	static InfoPopupDrawUpdate() {
+		ui.hide('#planet-conquest-popup');
+		ui.hide('#planet-research-popup');
+
+		if(Conquest.isPlanetBeingConquested()) {
+			planetUI.InfoPopupDrawConquest();
+		} else if(planetData.currResearch && planetData.currResearch !== '' && !Research.isSearched(userData, planetData.currResearch)) {
+			planetUI.InfoPopupDrawResearch();
+		}
+	}
+
+	static InfoPopupDrawConquest() {
+		ui.empty('#planet-conquest-popup');
+
+		const popup = document.getElementById('planet-conquest-popup');
+
+		if(Conquest.isDefender()) {
+			const span = document.createElement('span');
+			span.innerText = translate['messages'].BEING_CONQUESTED_BY;
+			popup.appendChild(span);
+
+			const span2 = document.createElement('span');
+			span2.classList.add('planet-info-important');
+			span2.innerText = Conquest.getConquestor();
+			popup.appendChild(span2);
+		} else {
+			const span = document.createElement('span');
+			span.innerText = translate['messages'].YOU_ARE_CONQUERING;
+			popup.appendChild(span);
+
+			const span2 = document.createElement('span');
+			span2.classList.add('planet-info-important');
+			span2.innerText = planetData.address;
+			popup.appendChild(span2);
+		}
+
+		popup.appendChild(document.createElement('br'));
+		popup.appendChild(document.createElement('br'));
+
+		const spanConquestEndTime = document.createElement('span');
+		spanConquestEndTime.innerText = translate['messages'].BEING_CONQUESTED_END;
+		popup.appendChild(spanConquestEndTime);
+
+		const spanConquestEndTime2 = document.createElement('span');
+		spanConquestEndTime2.classList.add('planet-info-important');
+		spanConquestEndTime2.innerText = getDateTime(Conquest.getConquestEndTime());
+		popup.appendChild(spanConquestEndTime2);
+
+		ui.show('#planet-conquest-popup');
+	}
+
+	static InfoPopupDrawResearch() {
+		ui.empty('#planet-research-popup');
+
+		const production = Research.getResearchProduction(planetData.Buildings[8]);
+
+		const popup = document.getElementById('planet-research-popup');
+
+		const description = document.createElement('p');
+
+		const spanCurrResearch = document.createElement('span');
+		spanCurrResearch.innerText = translate['research'].current_research;
+		description.appendChild(spanCurrResearch);
+
+		description.appendChild(document.createElement('br'));
+
+		const spanCurrResearchName = document.createElement('span');
+		spanCurrResearchName.innerText = translate.research[planetData.currResearch].name;
+		description.appendChild(spanCurrResearchName);
+
+		description.appendChild(document.createElement('br'));
+
+		// Research status
+		const spanCurrResearchStatus = document.createElement('span');
+		spanCurrResearchStatus.innerText = Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
+		description.appendChild(spanCurrResearchStatus);
+
+		description.appendChild(document.createElement('br'));
+
+		// Research time
+		const spanCurrResearchTime = document.createElement('span');
+
+		let researchTime = (researchList[planetData.currResearch].cost - userData.research[planetData.currResearch]) / production;
+		spanCurrResearchTime.innerText = getStringTime(researchTime);
+
+		description.appendChild(spanCurrResearchTime);
+
+		popup.appendChild(description);
+
+		const link = document.createElement('a');
+		link.id = 'planet-info-popup-right';
+		link.classList.add('research-search');
+		link.classList.add('planet-info-important');
+		link.innerText = translate['research'].go_to_research;
+		link.addEventListener('click', () => {
+			research.openUI();
+		});
+		popup.appendChild(link);
+
+		ui.show('#planet-research-popup');
+
+		// Refresh periodically
+		clearInterval(planetUI.InfoPopupResearchInterval);
+		planetUI.InfoPopupResearchInterval = setInterval(() => {
+			if(!researchList[planetData.currResearch]) {
+				return;
+			}
+
+			researchTime -= 1/3600;
+			spanCurrResearchTime.innerText = getStringTime(researchTime);
+
+			spanCurrResearchStatus.innerText = Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
+		},1000);
 	}
 
 	/**
@@ -605,6 +704,8 @@ class planetUI {
 		if(max) { // Max Level
 			document.getElementById('building-message').innerHTML = translate.messages['UPGRADE_MAX'];
 			ui.hide('#building-cost');
+		} else if(Conquest.isPlanetBeingConquested()) {
+			document.getElementById('building-message').innerHTML = translate.messages['BEING_CONQUESTED_BUILD'];
 		} else if(requirements !== '') { // Another building in build mode
 			document.getElementById('building-message').innerHTML = translate.messages['MISSING_PARENTS'] + ': ' + requirements;
 		} else if(planetData.nextBuilding === id && planetData.nextBuildingTime !== null && planetData.nextBuildingTime.getTime() > (Date.now() + planetUI.deltaNow)) { // Current building in build mode
