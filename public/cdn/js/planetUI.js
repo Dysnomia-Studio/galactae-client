@@ -150,7 +150,7 @@ class planetUI {
 		//Helium 3
 		document.getElementById('he-fuel-distribute').style.display = 'none';
 
-		if(planetData.Buildings[13] !== 0 && planetData.nextBuilding !== 13) {
+		if(planetData.Buildings[13] !== 0) {
 
 			if(units.fleetList && units.fleetList.length > 0) {
 				let empty;
