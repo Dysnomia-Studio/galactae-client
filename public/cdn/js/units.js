@@ -372,7 +372,7 @@ class units extends _Units {
 				id: userData.id,
 				username: userData.username,
 				from: units.currFleet,
-				to: fleet,
+				to: fleet.id,
 				fuelCount: count,
 			});
 			ui.hide('#fleet-transferFuel-panel');
