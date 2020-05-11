@@ -347,7 +347,7 @@ class planetUI {
 		if(timeLeft>0) {
 			canbebuildtimeout = setTimeout(function() {
 				planetUI.drawCanBeBuild();
-			},timeLeft);
+			},timeLeft*TIME.HOUR_TO_MS);
 		}
 
 		// Refresh this when a building is ended
