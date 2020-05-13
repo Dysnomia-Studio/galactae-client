@@ -181,8 +181,6 @@ class ui {
 		ui.bonusStreak = 0;
 		ui.bonusStreakBest = 0;
 
-		ui.notifCount = 0;
-
 		ui.mouseStatus = [0,0,0,0];
 
 		document.addEventListener('mousedown', function(event) {
@@ -337,8 +335,10 @@ class ui {
 	 */
 	static updatePageTitle() {
 		let notifString = '';
-		if(ui.notifCount !== 0) {
-			notifString = '('+ui.notifCount+') ';
+		const notifCount = notifications.count();
+
+		if(notifCount !== 0) {
+			notifString = '('+notifCount+') ';
 		}
 
 		document.title = notifString + userData.username + ' - ' + planetData.name;

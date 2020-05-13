@@ -50,7 +50,6 @@ class notifications {
 			element.addEventListener('click', function() {
 				notifications.gameNotifClick(this);
 
-				ui.notifCount--;
 				ui.updatePageTitle();
 				notifications.updateClearButtonDisplay();
 			});
@@ -77,7 +76,6 @@ class notifications {
 				list.appendChild(notif);
 			}
 
-			ui.notifCount = list.children.length - 1;
 			ui.updatePageTitle();
 			notifications.updateClearButtonDisplay();
 		});
@@ -116,11 +114,17 @@ class notifications {
 		}
 	}
 
+	static count() {
+		return Array.from(document.getElementById('notifications-panel').children).filter(
+			(elt) => !ui.hasClass(elt, 'notif-tutorial') && !ui.hasClass(elt, 'notif-conquest')
+		).length - 1;
+	}
+
 	/**
 	 * Draw or not "clear all" button
 	 */
 	static updateClearButtonDisplay() {
-		if(ui.notifCount === 0) {
+		if(notifications.count() === 0) {
 			ui.hide('#notifications-closeAll');
 		} else {
 			ui.show('#notifications-closeAll');
@@ -131,7 +135,6 @@ class notifications {
 		const notifElt = document.getElementById('notif-' + id);
 		if(notifElt) {
 			notifElt.remove();
-			ui.notifCount--;
 		}
 	}
 
@@ -155,7 +158,6 @@ class notifications {
 
 		notifPanel.innerHTML = content;
 
-		ui.notifCount++;
 		ui.updatePageTitle();
 		notifications.updateClearButtonDisplay();
 
