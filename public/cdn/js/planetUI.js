@@ -894,7 +894,7 @@ class planetUI {
 		// Set informations
 		document.getElementById('planet-other-address-data').innerText = units.planetTarget;
 
-		if(pData !== undefined) {
+		if(!!pData.name) {
 			if(pData.ally === '') {
 				document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
 			} else {
