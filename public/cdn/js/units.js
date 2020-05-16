@@ -618,6 +618,8 @@ class units extends _Units {
 
 			if(document.getElementById('fleet-build-message').innerHTML !== '') {
 				ui.hide('#fleet-build-openPanel');
+			} else {
+				ui.show('#fleet-build-openPanel', 'inline');
 			}
 
 			// Fleet Build
