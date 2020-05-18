@@ -20,8 +20,6 @@ if($ally === '' && $pageDemandee < 0 && isset($userGameData['ally'])) {
 	$ally = $userGameData['ally'];
 }
 
-$ally='Test';
-
 $pageData['ranks'] = [];
 $pageData['pageCount'] = 0;
 $pageData['pageOuverte'] = 0;
