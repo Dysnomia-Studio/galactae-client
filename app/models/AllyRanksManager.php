@@ -36,9 +36,6 @@ class AllyRanksManager extends SQLInterface {
 	}
 
 	public function getGlobalListByPage($page) {
-		var_dump("begin:");
-		var_dump($page*15);
-
 		return $this->selectQuery('SELECT *, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
 			FROM "alliances_ranks"
 			OFFSET :beginRank LIMIT 15',
