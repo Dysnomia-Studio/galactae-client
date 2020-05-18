@@ -1,32 +1,38 @@
 <?php
 class RanksManager extends SQLInterface {
-	public function getGlobalListPageCount() {
-		global $dbname;
+	public function __construct() {
+		global $config;
 
+		$host 		= $config['SQLCredentialsGameServer']['host'];
+		$db 		= $config['SQLCredentialsGameServer']['db'];
+		$id 		= $config['SQLCredentialsGameServer']['id'];
+		$password 	= $config['SQLCredentialsGameServer']['password'];
+		$driver 	= $config['SQLCredentialsGameServer']['driver'];
+		$port 		= $config['SQLCredentialsGameServer']['port'];
+
+		SQLInterface::__construct($host,$db,$id,$password,$driver,$port);
+	}
+	
+	public function getGlobalListPageCount() {
 		return ceil(
 				$this->selectQuery('SELECT COUNT(*) as "plyCount"
-					FROM "globalRanks"
-					WHERE server_name = :server_name',
-				['server_name' => $dbname],
+					FROM "player_ranks"',
+				[],
 				true)['plyCount']
 			/15);
 	}
 
 	public function getGlobalListByName($player) {
-		global $dbname;
 		
 		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "globalRanks"
-			WHERE server_name = :serverName
+			FROM "player_ranks"
 			OFFSET GREATEST((
 				SELECT rank FROM (
 					SELECT name, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-					FROM "globalRanks"
-					WHERE server_name = :serverName
+					FROM "player_ranks"
 				) ranksList WHERE name = :userName
 			) - 8, 0) LIMIT 15',
 		[
-			'serverName' => $dbname,
 			'userName' => $player
 		]);
 	}
@@ -35,102 +41,24 @@ class RanksManager extends SQLInterface {
 		global $dbname;
 		
 		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "globalRanks"
-			WHERE server_name = :serverName
+			FROM "player_ranks"
 			OFFSET :beginRank LIMIT 15',
 		[
-			'serverName' => $dbname,
 			'beginRank' => $page*15
 		]);
 	}
 
-	public function getGlobalListByGameIdAndServer($gameId, $serverName) {
+	public function getGlobalListByGameIdAndServer($gameId) {
 		
-		return $this->selectQuery('SELECT name, points, planets, ally, server_name, (
+		return $this->selectQuery('SELECT name, points, planets, ally, (
 				SELECT rank FROM (
 					SELECT game_id, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-					FROM "globalRanks"
-					WHERE server_name = :serverName
+					FROM "player_ranks"
 				) ranksList WHERE game_id = :game_id
 			) AS rank
-			FROM "globalRanks"
-			WHERE server_name = :serverName
-			AND game_id = :game_id',
+			FROM "player_ranks"
+			WHERE game_id = :game_id',
 		[
-			'serverName' => $serverName,
-			'game_id' => $gameId
-		]);
-	}
-
-
-	public function getSectorListPageCount($sector) {
-		global $dbname;
-
-		return ceil(
-				$this->selectQuery('SELECT COUNT(*) as "plyCount"
-					FROM "sectorRanks"
-					WHERE server_name = :serverName
-					AND sector = :sector',
-				[
-					'serverName' => $dbname,
-					'sector' => $sector
-				],
-				true)['plyCount']
-			/15);
-	}
-
-	public function getSectorListByNameAndSector($userName, $sector) {
-		global $dbname;
-		
-		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "sectorRanks"
-			WHERE server_name = :serverName
-			AND sector = :sector
-			OFFSET GREATEST((
-				SELECT rank FROM (
-					SELECT name, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-					FROM "sectorRanks"
-					WHERE server_name = :serverName
-					AND sector = :sector
-				) ranksList WHERE name = :userName
-			) - 8, 0) LIMIT 15',
-		[
-			'serverName' => $dbname,
-			'userName' => $userName,
-			'sector' => $sector
-		]);
-	}
-
-	public function getSectorListByPage($page, $sector) {
-		global $dbname;
-		
-		return $this->selectQuery('SELECT name, points, planets, ally, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "sectorRanks"
-			WHERE server_name = :serverName
-			AND sector = :sector
-			OFFSET :beginRank LIMIT 15',
-		[
-			'serverName' => $dbname,
-			'beginRank' => $page*15,
-			'sector' => $sector
-		]);
-	}
-
-
-	public function getSectorListByGameIdAndServer($gameId, $serverName) {
-		
-		return $this->selectQuery('SELECT name, points, planets, ally, server_name, sector, (
-				SELECT rank FROM (
-					SELECT game_id, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-					FROM "sectorRanks"
-					WHERE server_name = :serverName AND sector = SR.sector
-				) ranksList WHERE game_id = :game_id
-			) AS rank
-			FROM "sectorRanks" as SR
-			WHERE server_name = :serverName
-			AND game_id = :game_id',
-		[
-			'serverName' => $serverName,
 			'game_id' => $gameId
 		]);
 	}

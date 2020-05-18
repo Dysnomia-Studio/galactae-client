@@ -181,8 +181,6 @@ class ui {
 		ui.bonusStreak = 0;
 		ui.bonusStreakBest = 0;
 
-		ui.notifCount = 0;
-
 		ui.mouseStatus = [0,0,0,0];
 
 		document.addEventListener('mousedown', function(event) {
@@ -279,10 +277,7 @@ class ui {
 			DOMElts[i].addEventListener('click', function() {
 				ui.toggleClass('.ranks-ul .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
-				let sector = planetData.address.split('-');
-				sector = sector[0] + '-' + sector[1];
-
-				document.getElementById('hud-ranks-frame').src = 'ranks.php?type=' + this.getAttribute('choice')  + '&sector=' + sector;
+				document.getElementById('hud-ranks-frame').src = 'ranks.php?type=' + this.getAttribute('choice');
 			});
 		}
 
@@ -337,8 +332,10 @@ class ui {
 	 */
 	static updatePageTitle() {
 		let notifString = '';
-		if(ui.notifCount !== 0) {
-			notifString = '('+ui.notifCount+') ';
+		const notifCount = notifications.count();
+
+		if(notifCount !== 0) {
+			notifString = '('+notifCount+') ';
 		}
 
 		document.title = notifString + userData.username + ' - ' + planetData.name;

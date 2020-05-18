@@ -70,8 +70,6 @@ class planetUI {
 		if(data.data.nextBuildingTime) {
 			data.data.nextBuildingTime = new Date(data.data.nextBuildingTime);
 		}
-		data.data.lastResourcesUpdate = new Date(data.data.lastResourcesUpdate);
-		data.data.lastUnitUpdate = new Date(data.data.lastUnitUpdate);
 		if(data.data.unitBuildingEndTime) {
 			data.data.unitBuildingEndTime = new Date(data.data.unitBuildingEndTime);
 		}
@@ -894,7 +892,7 @@ class planetUI {
 		// Set informations
 		document.getElementById('planet-other-address-data').innerText = units.planetTarget;
 
-		if(pData !== undefined) {
+		if(!!pData.name) {
 			if(pData.ally === '') {
 				document.getElementById('planet-other-ally-data').innerText = translate['ui']['no-ally'];
 			} else {

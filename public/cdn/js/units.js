@@ -618,6 +618,8 @@ class units extends _Units {
 
 			if(document.getElementById('fleet-build-message').innerHTML !== '') {
 				ui.hide('#fleet-build-openPanel');
+			} else {
+				ui.show('#fleet-build-openPanel', 'inline');
 			}
 
 			// Fleet Build
@@ -781,23 +783,6 @@ class units extends _Units {
 	 * Regenerate the fleet list (select in unit build UI)
 	 */
 	static regenerateSelectFleetLists() {
-		units.fleetTimers = units.fleetTimers || [];
-		for(let i=0; i<units.fleetTimers.length; i++) {
-			clearTimeout(units.fleetTimers[i]);
-		}
-		units.fleetTimers = [];
-		let u = 0;
-		for(let i=0; i<units.fleetList.length; i++) {
-			// Note: We must disable timeouts that are stored in more than 32 bits
-			if(units.fleetList[i].endMoveTime !== null && units.fleetList[i].endMoveTime.getTime()-Date.now() < Math.pow(2, 31)) {
-				units.fleetTimers[u] = setTimeout(() => {
-					units.sync();
-				}, units.fleetList[i].endMoveTime.getTime()-Date.now()+planetUI.deltaNow+ TIME.SECOND_MARGIN * TIME.SECONDS_TO_MS); // Wait 5 sec
-
-				u++;
-			}
-		}
-
 		// Fleet list
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML = unitBuildSelectHeader;
 		for(let i=0; i<units.fleetList.length; i++) {
@@ -1993,6 +1978,8 @@ class units extends _Units {
 				translate['ui']['no-player'] + '</em>)'
 			;
 		}
+
+		document.getElementById('map-move-panel-move').value = translate['messages']['movePanelBtn'][moveType];
 
 		// Display panel
 		ui.show('#map-move-panel');

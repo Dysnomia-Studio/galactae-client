@@ -32,10 +32,8 @@
 	define('DAY_BEST','Best:');
 
 	//== RANKS ==\\
-	define('RANKS_GALAXY_PLAYER', 'Galaxy - Player');
-	define('RANKS_SECTOR_PLAYER', 'Sector - Player');
-	define('RANKS_GALAXY_ALLY', 'Galaxy - Alliance');
-	define('RANKS_SECTOR_ALLY', 'Sector - Alliance');
+	define('RANKS_PLAYER', 'Player');
+	define('RANKS_ALLY', 'Alliance');
 
 	//== REPORTS ==\\
 	define('DELETE', 'Delete');

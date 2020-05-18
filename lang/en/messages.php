@@ -91,6 +91,12 @@ translate['messages'] = {
 		'Move to',
 		'Spy planet',
 	],
+	'movePanelBtn': [
+		'Defend',
+		'Attack',
+		'Move to',
+		'Spy',
+	],
 	'IN_BUILDING_FLEET': 'Error: Your fleet building list isn\'t finish.',
 	'ALREADY_MOVING_FLEET': 'Error: Your fleet is already moving.',
 	'NO_ENOUGHT_CARRIER': 'Error: You haven\'t enough carrier capacity.',

@@ -578,7 +578,7 @@ select, input, summary {
 		background-position:center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		z-index: 500;
+		z-index: 1500;
 
 		text-align: center;
 	}

@@ -91,6 +91,12 @@ translate['messages'] = {
 		'Deplacement vers',
 		'Espionnage de la planete',
 	],
+	'movePanelBtn': [
+		'Défendre',
+		'Attaquer',
+		'S\'y déplacer',
+		'Espionner',
+	],
 	'IN_BUILDING_FLEET': 'Erreur: La file de construction de votre flotte n\'est pas terminée.',
 	'ALREADY_MOVING_FLEET': 'Erreur: Votre flotte se déplace déjà.',
 	'NO_ENOUGHT_CARRIER': 'Erreur: Pas assez de place pour transporter vos chasseurs.',
