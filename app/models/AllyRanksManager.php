@@ -14,24 +14,20 @@ class AllyRanksManager extends SQLInterface {
 	}
 
 	public function getGlobalListPageCount() {
-		global $dbname;
-
 		return ceil(
-				$this->selectQuery('SELECT COUNT(*) as "allyCount" FROM "alliances_points"',
+				$this->selectQuery('SELECT COUNT(*) as "allyCount" FROM "alliances_ranks"',
 					[],
 					true)['allyCount']
 			/15);
 	}
 
 	public function getGlobalListByName($ally) {
-		global $dbname;
-		
 		return $this->selectQuery('SELECT *, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "alliances_points"
+			FROM "alliances_ranks"
 			OFFSET GREATEST((
 				SELECT rank FROM (
 					SELECT name, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-					FROM "alliances_points"
+					FROM "alliances_ranks"
 				) ranksList WHERE name = :allyName
 			) - 8, 0) LIMIT 15',
 		[
@@ -40,59 +36,14 @@ class AllyRanksManager extends SQLInterface {
 	}
 
 	public function getGlobalListByPage($page) {
-		global $dbname;
-		
+		var_dump("begin:");
+		var_dump($page*15);
+
 		return $this->selectQuery('SELECT *, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "alliances_points"
+			FROM "alliances_ranks"
 			OFFSET :beginRank LIMIT 15',
 		[
 			'beginRank' => $page*15
-		]);
-	}
-
-	public function getSectorListPageCount($sector) {
-		global $dbname;
-
-		return ceil(
-				$this->selectQuery('SELECT COUNT(*) as "allyCount"
-					FROM "alliances_points_sector"
-					WHERE sector = :sector',
-				[
-					'sector' => $sector
-				],
-				true)['allyCount']
-			/15);
-	}
-
-	public function getSectorListByNameAndSector($allyName, $sector) {
-		global $dbname;
-		
-		return $this->selectQuery('SELECT *, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "alliances_points_sector"
-			WHERE sector = :sector
-			OFFSET GREATEST((
-				SELECT rank FROM (
-					SELECT name, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-					FROM "alliances_points_sector"
-					WHERE sector = :sector
-				) ranksList WHERE name = :allyName
-			) - 8, 0) LIMIT 15',
-		[
-			'allyName' => $allyName,
-			'sector' => $sector
-		]);
-	}
-
-	public function getSectorListByPage($page, $sector) {
-		global $dbname;
-		
-		return $this->selectQuery('SELECT *, ROW_NUMBER() OVER(ORDER BY points DESC) AS rank
-			FROM "alliances_points_sector"
-			WHERE sector = :sector
-			OFFSET :beginRank LIMIT 15',
-		[
-			'beginRank' => $page*15,
-			'sector' => $sector
 		]);
 	}
 }

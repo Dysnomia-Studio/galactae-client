@@ -395,10 +395,8 @@
 <?php /* Ranks */ ?>
 <div id="hud-ranks" class="extra-large-panel">
 	<ul class="ul-choice-line ranks-ul">
-		<li choice="galaxy-players" id="ranks-galPly-button" class="ul-choice-line-li-active"><?= RANKS_GALAXY_PLAYER; ?></li>
-		<li choice="sector-players" id="ranks-secPly-button"><?= RANKS_SECTOR_PLAYER; ?></li>
-		<li choice="galaxy-ally" id="ranks-galAly-button"><?= RANKS_GALAXY_ALLY; ?></li>
-		<li choice="sector-ally" id="ranks-secAly-button"><?= RANKS_SECTOR_ALLY; ?></li>
+		<li choice="players" id="ranks-galPly-button" class="ul-choice-line-li-active"><?= RANKS_PLAYER; ?></li>
+		<li choice="ally" id="ranks-galAly-button"><?= RANKS_ALLY; ?></li>
 	</ul>
 
 	<span id="hud-ranks-close">X</span>
