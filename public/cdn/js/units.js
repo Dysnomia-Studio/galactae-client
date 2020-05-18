@@ -1979,6 +1979,8 @@ class units extends _Units {
 			;
 		}
 
+		document.getElementById('map-move-panel-move').value = translate['messages']['movePanelBtn'][moveType];
+
 		// Display panel
 		ui.show('#map-move-panel');
 	}
