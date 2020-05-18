@@ -70,8 +70,6 @@ class planetUI {
 		if(data.data.nextBuildingTime) {
 			data.data.nextBuildingTime = new Date(data.data.nextBuildingTime);
 		}
-		data.data.lastResourcesUpdate = new Date(data.data.lastResourcesUpdate);
-		data.data.lastUnitUpdate = new Date(data.data.lastUnitUpdate);
 		if(data.data.unitBuildingEndTime) {
 			data.data.unitBuildingEndTime = new Date(data.data.unitBuildingEndTime);
 		}
