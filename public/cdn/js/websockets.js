@@ -170,6 +170,10 @@ class webSockets {
 		});
 
 		window.addEventListener('error', function(event) {
+			if(!event.error) {
+				event.error = {};
+			}
+
 			socket.emit('client-error', {
 				username: userData.username,
 				id: userData.id,
