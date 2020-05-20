@@ -21,8 +21,8 @@ class settings {
 				}*/
 			},
 			graphical: {
-				planetRotation: {
-					default: true,
+				planetsRotation: {
+					default: false,
 					type: 'checkbox'
 				},
 				/*animationLvl: {
@@ -79,7 +79,7 @@ class settings {
 
 		// Mobile low settings mode
 		if(isMobileBrowser()) {
-			this.settingsList.graphical.planetRotation.default = false;
+			this.settingsList.graphical.planetsRotation.default = false;
 		}
 
 		this.initUI();

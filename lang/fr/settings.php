@@ -21,7 +21,7 @@ translate['settings'] = {
 		'deskNotifications': 'Notifications sur le bureau',
 	},
 	'graphical': {
-		'planetRotation': 'Rotation des planètes',
+		'planetsRotation': 'Rotation des planètes',
 		'map3D': 'Carte du système solaire en 3D',
 	},
 	'sounds': {
