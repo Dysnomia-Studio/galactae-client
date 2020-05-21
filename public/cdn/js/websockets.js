@@ -29,7 +29,7 @@ class webSockets {
 				connectTimeout = -1;
 			}
 
-			socket.emit('game-connect', userData);
+			socket.emit('game-connect', webSockets.getUserData());
 		});
 
 		//Sync the planet data
@@ -166,7 +166,7 @@ class webSockets {
 			kick('RESTARTING_SERVER');
 		});
 		window.addEventListener('beforeunload', function() {
-			socket.emit('game-disconnect',{username: userData.username, id: userData.id, pid: userData.pid});
+			socket.emit('game-disconnect', webSockets.getUserData());
 		});
 
 		window.addEventListener('error', function(event) {
@@ -175,8 +175,7 @@ class webSockets {
 			}
 
 			socket.emit('client-error', {
-				username: userData.username,
-				id: userData.id,
+				...webSockets.getUserData(),
 				errorName: event.error.name,
 				errorMessage: event.error.message,
 				errorStack: event.error.stack,
@@ -186,4 +185,11 @@ class webSockets {
 		loadScreen.complete('server');
 	}
 
+	static getUserData() {
+		return {
+			username: userData.username,
+			id: userData.id,
+			pid: userData.pid,
+		};
+	}
 }

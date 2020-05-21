@@ -26,7 +26,11 @@ class chat {
 
 			// Sending message to server
 			if (!blockSend) {
-				socket.emit('chat-send', { message: normalizeText(message), username: userData.username, id: userData.id, channel: chatChannel });
+				socket.emit('chat-send', {
+					...webSockets.getUserData(),
+					message: normalizeText(message),
+					channel: chatChannel
+				});
 				ui.lastMessage = message;
 			}
 			document.getElementById('chat_message').focus(); // Focus chat input

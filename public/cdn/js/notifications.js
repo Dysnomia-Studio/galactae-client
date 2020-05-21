@@ -102,7 +102,7 @@ class notifications {
 			ui.fleetPanelToggle('fleet-move');
 		} else if(ui.hasClass(element, 'notif-conquest')) {
 			socket.emit('planet-ask-data', {
-				...userData,
+				...webSockets.getUserData(),
 				pid: element.id.substring('notif-conquest_'.length),
 			});
 			return;

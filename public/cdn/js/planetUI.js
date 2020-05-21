@@ -53,7 +53,7 @@ class planetUI {
 	 * Ask to the server data on current planet
 	 */
 	static sync() {
-		socket.emit('planet-ask-data', userData);
+		socket.emit('planet-ask-data', webSockets.getUserData());
 	}
 
 	/**
@@ -175,7 +175,11 @@ class planetUI {
 		if(planetData.Buildings[id]+1 > buildingMaxLvl[planetData.planetType][id]) {
 			ui.drawMessage('MAX_LEVEL');
 		} else {
-			socket.emit('planet-build', { planet: planetData.address, id: userData.id, username: userData.username, building: id });
+			socket.emit('planet-build', {
+				...webSockets.getUserData(),
+				planet: planetData.address,
+				building: id,
+			});
 		}
 	}
 
@@ -856,7 +860,10 @@ class planetUI {
 		if(planetId < 0) { planetId = userData.planetlist.length - 1; }
 		if(planetId >= userData.planetlist.length) { planetId = 0; }
 
-		socket.emit('planet-ask-data', { id: userData.id, username: userData.username, pid: userData.planetlist[planetId] });
+		socket.emit('planet-ask-data', {
+			...webSockets.getUserData(),
+			pid: userData.planetlist[planetId]
+		});
 	}
 
 	/**

@@ -263,7 +263,10 @@ class ui {
 			if(dayBonus2 && ui.hasClass(dayBonus2, 'day-bonus-active')) {
 				choice = 2;
 			}
-			socket.emit('daily-bonus', { id: userData.id, username: userData.username, choice: choice, pid: userData.pid });
+			socket.emit('daily-bonus', {
+				...webSockets.getUserData(),
+				choice: choice,
+			});
 			ui.closeTab('#day-bonus');
 		});
 
@@ -590,7 +593,10 @@ class ui {
 
 		if(ui.oldname !== newname) {
 			newname = normalizeText(newname);
-			socket.emit('planet-rename', { planet: userData.pid, username: userData.username, id: userData.id, name: newname });
+			socket.emit('planet-rename', {
+				...webSockets.getUserData(),
+				name: newname,
+			});
 		}
 		ui.renaming = false;
 	}

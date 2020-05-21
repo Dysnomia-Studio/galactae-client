@@ -375,16 +375,17 @@ class research extends _Research {
 	 * @param      {<type>}  id      Research identifier
 	 */
 	static change(id) {
-		socket.emit('research-change', { username: userData.username, id: userData.id, pid: userData.pid, research: id });
+		socket.emit('research-change', {
+			...webSockets.getUserData(),
+			research: id
+		});
 	}
 
 	/**
 	 * Ask server to recalc research
-	 *
-	 * @param      {<type>}  id      Research identifier
 	 */
-	static sync(id) {
-		socket.emit('research-sync', { username: userData.username, id: userData.id, pid: userData.pid });
+	static sync() {
+		socket.emit('research-sync', webSockets.getUserData());
 	}
 
 	/**

@@ -138,8 +138,7 @@ class tactics {
 		// @TODO: translate
 		ui.confirm('Voulez vous supprimer la tactique ' + currTactic.name + ' ?', 'Oui', 'Non', () => {
 			socket.emit('tactics-delete', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				tacticId: currTactic.id
 			});
 		});
@@ -313,8 +312,7 @@ class tactics {
 		tactics.currTactic.name = document.getElementById('fleet-tacticsManager-tacticName').value;
 
 		socket.emit('tactics-upsert', {
-			id: userData.id,
-			username: userData.username,
+			...webSockets.getUserData(),
 			tactic: tactics.currTactic
 		});
 
