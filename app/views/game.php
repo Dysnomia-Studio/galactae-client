@@ -983,6 +983,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Reports.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Research.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Resources.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Trading.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Tutorials.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Units.js"></script>
 
@@ -1004,7 +1005,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/Resources.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/settings.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/tactics.js"></script>
-<script type="text/javascript" src="<?= $cdnURL ?>js/trade.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/Trading.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Tutorials.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/ui.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/units.js"></script>

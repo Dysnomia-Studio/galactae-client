@@ -1,4 +1,4 @@
-class trade {
+class Trading extends _Trading {
 	static openPlanetPanel() {
 
 	}
