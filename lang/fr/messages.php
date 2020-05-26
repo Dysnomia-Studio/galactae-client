@@ -160,8 +160,9 @@ translate['messages'] = {
 };
 
 translate['load'] = {
+	'alliance': 'Chargement de l\'alliance',
+	'conquest': 'Chargement des conquêtes',
 	'fleet': 'Chargement des flottes',
-	'pictures': 'Chargement des images',
 	'load': 'Chargement de la page',
 	'maps': 'Chargement des cartes',
 	'planet': 'Chargement des données de la planete',

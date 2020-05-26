@@ -160,8 +160,9 @@ translate['messages'] = {
 };
 
 translate['load'] = {
+	'alliance': 'Loading alliance data',
+	'conquest': 'Loading conquest list',
 	'fleet': 'Loading fleets',
-	'pictures': 'Loading pictures',
 	'load': 'Loading page',
 	'maps': 'Loading maps',
 	'planet': 'Loading planet data',

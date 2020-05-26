@@ -112,6 +112,7 @@ class webSockets {
 		// Sync the alliance details
 		socket.on('player-alliance-data', (alliance) => {
 			Alliances.updateDetails(alliance);
+			loadScreen.complete('alliance');
 		});
 
 		socket.on('player-search-results', (alliances) => {
@@ -122,6 +123,7 @@ class webSockets {
 		// Sync the conquest list
 		socket.on('player-conquest-list', (conquestList) => {
 			Conquest.init(conquestList);
+			loadScreen.complete('conquest');
 		});
 
 		//Launch the chat

@@ -1,31 +1,25 @@
-let loadStatusArr = {
-	'settings': false,
-	'server': false,
-	'planet': false,
-	'units': false,
-	'player': false,
+const defaultLoadStatusArr = {
+	'alliance': false,
+	'conquest': false,
 	'fleet': false,
-	'maps': false,
 	'load': false,
+	'maps': false,
+	'planet': false,
+	'player': false,
+	'server': false,
 	'service-worker': false,
+	'settings': false,
 	'tactics': false,
+	'units': false,
 };
+
+let loadStatusArr = JSON.parse(JSON.stringify(defaultLoadStatusArr));
 
 class loadScreen {
 	static reset() {
-		loadStatusArr = {
-			'settings': false,
-			'server': false,
-			'planet': false,
-			'units': false,
-			'player': false,
-			'fleet': false,
-			'maps': false,
-			'load': false,
-			'service-worker': false,
-			'tactics': false,
-		};
+		loadStatusArr = JSON.parse(JSON.stringify(defaultLoadStatusArr));
 		loadScreen.complete();
+
 		ui.show('#loading-overlay');
 	}
 
