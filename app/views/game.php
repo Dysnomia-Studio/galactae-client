@@ -543,9 +543,9 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?= FLEET_BUILD_CORVET; ?></li>
 			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?= FLEET_BUILD_CARRIER; ?></li>
 		</ul>
-		<div id="fleet-build-content">
-			<h2 id="fleet-build-list-empty"><?= FLEET_NO_MODEL; ?></h2>
-			<table id="fleet-build-list" class="unit-list-table" aria-describedby="Unit list">
+		<div id="fleet-build-content" class="dual-column-80-20">
+			<h2 id="fleet-build-list-empty" class="dual-column-80-20-message"><?= FLEET_NO_MODEL; ?></h2>
+			<table id="fleet-build-list" class="unit-list-table dual-column-80-20-left" aria-describedby="Unit list">
 				<thead>
 					<tr>
 						<th id="fleet-build-list-type-name"><?= FLEET_BUILD_NAME; // Le nom du vaisseau 					 ?></th>
@@ -557,7 +557,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<tbody id="fleet-build-list-tbody"></tbody>
 			</table>
 
-			<div id="fleet-build-info">
+			<div id="fleet-build-info" class="dual-column-80-20-right">
 				<input type="button" id="fleet-build-create" name="fleet-build-new-model" class="ui-large-button" value="<?= FLEET_BUILD_CREATE; ?>">
 
 				<div id="fleet-build-stat">
@@ -974,6 +974,26 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<li id="trading-panel-ongoing-button"><?= TRADING_MENU_ONGOING ?></li>
 		<li id="trading-panel-ended-button"><?= TRADING_MENU_ENDED ?></li>
 	</ul>
+
+	<div id="trading-content" class="dual-column-80-20">
+		<h2 id="trading-list-empty" class="dual-column-80-20-message"><?= TRADING_NO_ORDER; ?></h2>
+		<table id="trading-list" class="unit-list-table dual-column-80-20-left" aria-describedby="Trading list">
+			<thead>
+				<tr>
+					<th id="trading-list-player"><?= TRADING_PLAYER; ?></th>
+					<th id="trading-list-alliance"><?= TRADING_ALLIANCE; ?></th>
+					<th id="trading-list-details"><?= TRADING_DETAILS; ?></th>
+					<th id="trading-list-distance"><?= TRADING_DISTANCE; ?></th>
+					<th id="trading-list-repetition"><?= TRADING_REPETITION; ?></th>
+				</tr>
+			</thead>
+			<tbody id="trading-list-tbody"></tbody>
+		</table>
+
+		<div id="trading-info" class="dual-column-80-20-right">
+
+		</div>
+	</div>
 </div>
 
 <?php /* Game Version & Copyright */ ?>

@@ -307,7 +307,39 @@ em {
 	}
 }
 
-
+/**
+ * Column 80%/20%
+ */
+.dual-column-80-20 {
+	padding: 1em 2em;
+}
+.dual-column-80-20-message {
+	text-align: center;
+	margin: 0;
+}
+.dual-column-80-20-message, .dual-column-80-20-left {
+	width: calc(100% - 220px);
+	margin-right: 10px;
+}
+.dual-column-80-20-left, .dual-column-80-20-right {
+	display: inline-block;
+	vertical-align: top;
+}
+.dual-column-80-20-left {
+	height: 100%;
+	border-spacing: 0;
+}
+.dual-column-80-20-left tbody {
+	overflow-y: auto; /* Trigger vertical scroll */
+	overflow-x: hidden; /* Hide the horizontal scroll */
+}
+.dual-column-80-20-right {
+	width: 200px;
+	height: 100%;
+	padding-right: 0.3em;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
 
 /* Fix for opera */
 select, input, summary {
@@ -1582,25 +1614,10 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 }
 #fleet-build-content {
 	height: calc(100% - 3em - 2em); /* Total - Top - padding */
-	padding: 1em 2em;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
-}
-#fleet-build-list, #fleet-build-info {
-	display: inline-block;
-	vertical-align: top;
-}
-#fleet-build-list {
-	width: calc(100% - 220px);
-	margin-right: 10px;
-	height: 100%;
-	border-spacing: 0;
-}
-#fleet-build-list tbody {
-	overflow-y: auto; /* Trigger vertical scroll */
-	overflow-x: hidden; /* Hide the horizontal scroll */
 }
 #fleet-build-list td, #fleet-build-list th {
 	width: 24%;
@@ -1658,13 +1675,6 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 .fleet-build-list-active {
 	border: 1px solid #0EC6C6 !important;
 }
-#fleet-build-info {
-	width: 200px;
-	height: 100%;
-	padding-right: 0.3em;
-	overflow-y: auto;
-	overflow-x: hidden;
-}
 #fleet-build-stat {
 	margin: 0.5em 0;
 }
@@ -1719,11 +1729,6 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 }
 #fleet-ship-build-cost {
 	width: 60%;
-}
-#fleet-build-list-empty {
-	text-align: center;
-	width: calc(100% - 220px);
-	margin: 0;
 }
 @media all and (max-width: 900px) {
 	#fleet-build-desc { /* We need space, and mostly, mobiles won't see that ... */
@@ -3491,3 +3496,6 @@ a[class="research-search"]:hover {
 /**
  * Trading panel
  */
+#trading-list td, #trading-list th {
+	width: 19%;
+}
