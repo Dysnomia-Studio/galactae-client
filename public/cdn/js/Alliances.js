@@ -5,27 +5,11 @@ class Alliances {
 		});
 
 		// Menu
-		// @TODO: refacto to group up with fleet tabs
-		document.querySelectorAll('#alliances-panel .ul-choice-line li').forEach(function(elt) {
-			elt.addEventListener('click', () => {
-				ui.toggleClass('#alliances-panel .ul-choice-line .ul-choice-line-li-active', 'ul-choice-line-li-active', elt);
-
-				const buttonList = [
-					'alliances-panel-info',
-					'alliances-panel-members',
-					'alliances-panel-newMembers',
-					'alliances-panel-diplomacy',
-				];
-
-				for(const buttonName of buttonList) {
-					if(elt.id === buttonName + '-button') {
-						ui.show('#' + buttonName);
-					} else {
-						ui.hide('#' + buttonName);
-					}
-				}
-			});
-		});
+		ui.bindChoiceLine('#alliances-panel .ul-choice-line', [
+			'alliances-panel-info',
+			'alliances-panel-members',
+			'alliances-panel-diplomacy',
+		]);
 
 		/**
 		 * Info page events

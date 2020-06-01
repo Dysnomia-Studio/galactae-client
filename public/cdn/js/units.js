@@ -78,32 +78,13 @@ class units extends _Units {
 		});
 
 		// Fleet Menu
-		// @TODO: refacto to group up with alliances tabs
-		document.querySelectorAll('.fleet-ul1 li').forEach(function(elt) {
-			elt.addEventListener('click', function() {
-				if(preventFleetHUDClosing) { return; }
-
-				ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
-
-				const buttonList = [
-					'fleet-build',
-					'fleet-orbit',
-					'fleet-move',
-					'fleet-out',
-					'fleet-tactics',
-				];
-
-				for(const buttonName of buttonList) {
-					if(this.id === buttonName + '-button') {
-						ui.show('#' + buttonName);
-					} else {
-						ui.hide('#' + buttonName);
-					}
-				}
-
-				ui.updateBottom();
-			});
-		});
+		ui.bindChoiceLine('.fleet-ul1', [
+			'fleet-build',
+			'fleet-orbit',
+			'fleet-move',
+			'fleet-out',
+			'fleet-tactics',
+		], () => preventFleetHUDClosing);
 
 		// Fleet submenus
 		document.querySelectorAll('#fleet-build-choice li').forEach(function(e) {

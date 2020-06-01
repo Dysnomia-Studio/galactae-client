@@ -136,6 +136,29 @@ class ui {
 		return button;
 	}
 
+	static bindChoiceLine(menuSelector, btnList, prevent) {
+		document.querySelectorAll(menuSelector + ' li').forEach(function(elt) {
+			elt.addEventListener('click', () => {
+				if(typeof prevent === 'function' && prevent()) {
+					console.log('prevent');
+					return;
+				}
+
+				ui.toggleClass(menuSelector + ' .ul-choice-line-li-active', 'ul-choice-line-li-active', elt);
+
+				for(const buttonName of btnList) {
+					if(elt.id === buttonName + '-button') {
+						ui.show('#' + buttonName);
+					} else {
+						ui.hide('#' + buttonName);
+					}
+				}
+
+				ui.updateBottom();
+			});
+		});
+	}
+
 	static openProfile(username) {
 		const win = window.open('https://galactae.eu/profil?u='+ username, '_blank');
 		win.focus();
