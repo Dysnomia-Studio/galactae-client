@@ -965,6 +965,17 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<input id="alliances-panel-createBtn-validate" class="ui-medium-button small-panel-submit" type="submit" placeholder="<?= CONFIRM; ?>">
 </div>
 
+<div id="trading-panel" class="extra-large-panel">
+	<span id="trading-close" class="close-button">X</span>
+
+	<ul id="trading-panel-menu" class="ul-choice-line">
+		<li id="trading-panel-public-button" class="ul-choice-line-li-active"><?= TRADING_MENU_PUBLIC ?></li>
+		<li id="trading-panel-request-button"><?= TRADING_MENU_REQUEST ?></li>
+		<li id="trading-panel-ongoing-button"><?= TRADING_MENU_ONGOING ?></li>
+		<li id="trading-panel-ended-button"><?= TRADING_MENU_ENDED ?></li>
+	</ul>
+</div>
+
 <?php /* Game Version & Copyright */ ?>
 <div id="game-version"><?= file_get_contents($cdnURL.'version.txt'); ?> - <a href="https://bugs.dysnomia.studio/projects/galactae/" target="_blank" rel="noopener noreferrer">Bug Tracker</a><br /><?= CREATED_BY; ?> <a href="https://dysnomia.studio/" target="_blank" rel="noopener noreferrer">Dysnomia</a> - Copyright 2016-<?= date("Y"); ?></div>
 <?php /* Libs */ ?>

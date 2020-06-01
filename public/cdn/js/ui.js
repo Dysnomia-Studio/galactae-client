@@ -246,6 +246,9 @@ class ui {
 		// Load alliances UI
 		Alliances.loadUI();
 
+		// Load tutorials UI
+		Trading.loadUI();
+
 		document.getElementById('hud-ranks-close').addEventListener('click', function() {
 			ui.closeTab('#hud-ranks');
 			ui.ranks = false;
@@ -715,7 +718,13 @@ class ui {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
 		});
 		document.getElementById('hud-bottom-button-trade').addEventListener('click', function() {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			if(!ui.trading) {
+				ui.show('#trading-panel');
+			} else {
+				ui.hide('#trading-panel');
+			}
+
+			ui.trading = !ui.trading;
 		});
 		document.getElementById('hud-bottom-button-messages').addEventListener('click', function() {
 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);

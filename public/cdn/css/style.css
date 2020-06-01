@@ -1307,7 +1307,7 @@ select, input, summary {
 	border-right: 1px solid #0EC6C6;
 }
 .ul-choice-line li:last-child { border: 0; }
-.fleet-ul1, .ranks-ul {
+.fleet-ul1, .ranks-ul, #trading-panel-menu {
 	margin-left: 25px;
 	width: calc(100% - 75px);
 }
@@ -3487,3 +3487,7 @@ a[class="research-search"]:hover {
 #alliances-panel-create {
 	padding-top: 1.5em;
 }
+
+/**
+ * Trading panel
+ */
