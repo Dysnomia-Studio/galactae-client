@@ -171,6 +171,7 @@ translate['load'] = {
 	'service-worker': 'Préchargement des images',
 	'settings': 'Chargement des paramètres',
 	'tactics': 'Chargement des tactiques',
+	'trading': 'Chargement du commerce',
 	'units': 'Chargement des données unités',
 };
 </script>

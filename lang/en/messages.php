@@ -170,7 +170,8 @@ translate['load'] = {
 	'server': 'Connecting to server ...',
 	'service-worker': 'Preloading resources',
 	'settings': 'Loading settings',
-	'tactics': 'Loading des tactics',
+	'tactics': 'Loading tactics',
+	'trading': 'Loading trading orders',
 	'units': 'Loading units',
 };
 </script>

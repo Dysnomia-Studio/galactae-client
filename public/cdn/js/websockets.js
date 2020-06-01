@@ -126,6 +126,12 @@ class webSockets {
 			loadScreen.complete('conquest');
 		});
 
+		// Sync the trading lst
+		socket.on('trading-list', (tradingList) => {
+			Trading.init(tradingList);
+			loadScreen.complete('trading');
+		});
+
 		//Launch the chat
 		chat.init();
 

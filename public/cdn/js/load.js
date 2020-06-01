@@ -10,6 +10,7 @@ const defaultLoadStatusArr = {
 	'service-worker': false,
 	'settings': false,
 	'tactics': false,
+	'trading': false,
 	'units': false,
 };
 
