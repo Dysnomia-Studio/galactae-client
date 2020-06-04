@@ -143,7 +143,7 @@ class ui {
 
 	static playMusic() {
 		if(!ui.music) {
-			ui.music = new Audio(cdnURL + 'snd/music/music01.wav');
+			ui.music = new Audio(cdnURL + 'snd/music/music01.ogg');
 
 			window.addEventListener('blur', () => {
 				ui.music.pause();
