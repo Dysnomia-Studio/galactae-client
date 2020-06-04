@@ -1287,7 +1287,11 @@ const neededCache = [
 	cdnURL + 'js/websockets.js',
 
 	cdnURL + 'js/load.js',
-].concat(imgCache.slice());
+
+	...imgCache,
+
+	cdnURL + 'snd/music/music01.ogg',
+];
 
 /**
  * Fleets move type

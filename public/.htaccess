@@ -1,6 +1,6 @@
 RewriteEngine On
 
-RewriteCond %{REQUEST_FILENAME} !(.*)\.(css|jpg|png|gif|svg|js|ttf|ico|mp3|wav|map|xml)$
+RewriteCond %{REQUEST_FILENAME} !(.*)\.(css|jpg|png|gif|svg|js|ttf|ico|mp3|wav|ogg|map|xml)$
 RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
 
 # Errors
@@ -10,7 +10,7 @@ ErrorDocument 404 ../errors/404.html
 ErrorDocument 408 ../errors/time_out.html
 ErrorDocument 504 ../errors/time_out.html
 
-<FilesMatch "\.(css|jpg|png|gif|svg|js|ttf|ico|mp3|wav|map|xml)$">
+<FilesMatch "\.(css|jpg|png|gif|svg|js|ttf|ico|mp3|wav|ogg|map|xml)$">
   FileETag None
   <IfModule mod_headers.c>
     Header unset ETag
