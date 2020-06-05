@@ -817,6 +817,15 @@ class planetUI {
 				valuep1 = ' (+ ' + GetBetterUnit(storageHelium1 - storageHelium,'t')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
+			case 12: // Trading
+				title = translate['planet-ui']['capacity'];
+				icon = '';
+				const curr = Trading.getPlanetCapacity(planetData.Buildings[id]);
+				const next = Trading.getPlanetCapacity(planetData.Buildings[id] + 1);
+				value = GetBetterUnit(curr,'t');
+				valuep1 = ' (+ ' + GetBetterUnit(next - curr,'t')
+					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
+				break;
 			case 13: // Helium production facility
 				title = translate['planet-ui']['production'];
 				icon = '&sup3;He';
