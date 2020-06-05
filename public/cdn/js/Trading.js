@@ -1,6 +1,8 @@
 class Trading extends _Trading {
 	static init(tradingList) {
-		console.log(tradingList);
+		Trading.list = tradingList;
+
+		Trading.showPanel('public');
 	}
 
 	static loadUI() {
@@ -14,10 +16,154 @@ class Trading extends _Trading {
 			'trading-panel-request',
 			'trading-panel-ongoing',
 			'trading-panel-ended',
-		]);
+		], () => false, Trading.showPanel);
 	}
 
 	static openPlanetPanel() {
 
+	}
+
+	static generateDetailText() {
+		return 'details';
+	}
+
+	static calcTimeTo(origin, destination) {
+		const systemeDepart = GameMap.getSystemFromAdress(origin);
+		const systemeArrivee = GameMap.getSystemFromAdress(destination);
+
+		let time = 0;
+
+		if(systemeDepart === systemeArrivee) {
+			const baseDist = GameMap.getPlanetDistance(
+				origin,
+				destination,
+				now/TIME.SECONDS_TO_MS);
+			if(Number.isNaN(baseDist) || baseDist < 0) { return; }
+			const baseTravelTime = Trading.calcSubMoveTime(baseDist);
+
+			const previewDist = GameMap.getPlanetDistance(
+				origin,
+				destination,
+				now/TIME.SECONDS_TO_MS + Math.round(baseTravelTime*TIME.HOUR_TO_SECONDS*100)/100);
+			if(Number.isNaN(previewDist) || previewDist < 0) { return; }
+			const previewTime = Trading.calcSubMoveTime(previewDist);
+
+			/* Final travel time:
+				Average of ...
+				 Time to travel to planet where it's now
+				and
+				 Time to travel to planet where it'll be when we arrive to this previous position
+			*/
+			time = (baseTravelTime + previewTime)/2;
+		} else {
+			const secteurDepart = GameMap.getSectorFromAdress(origin);
+			const secteurArrivee = GameMap.getSectorFromAdress(destination);
+
+			// @TODO: load XMLs
+
+			const systemeDepartDOM = map.xmlDoc[secteurDepart].querySelector('sy[id="' + systemeDepart + '"]');
+			const systemeArriveeDOM = map.xmlDoc[secteurArrivee].querySelector('sy[id="' + systemeArrivee + '"]');
+
+			const dist = Math.sqrt(
+				Math.pow(systemeDepartDOM.getAttribute('x') - systemeArriveeDOM.getAttribute('x'),2) +
+				Math.pow(systemeDepartDOM.getAttribute('y') - systemeArriveeDOM.getAttribute('y'),2)
+			);
+
+			time = Trading.calcSupMoveTime(dist);
+		}
+
+		return time;
+	}
+
+	static generateDistanceText(order) {
+		if(order.new_user === null) {
+			return '??:??:?? / ??:??:??';
+		}
+
+		const planets = [
+			[order.prev_user_origin, order.new_user_destination],
+			[order.new_user_origin, order.prev_user_destination],
+		];
+
+		const times = [];
+		for(const duo of planets) {
+			times.push(
+				Trading.calcTimeTo(duo[0], duo[1]),
+			);
+		}
+
+		if(getStringTime(times[0]) === getStringTime(times[1])) {
+			return getStringTime(times[0]);
+		}
+
+		return getStringTime(times[0]) + ' / ' + getStringTime(times[1]);
+	}
+
+	static generateRepetitionText() {
+		return 'repetition';
+	}
+
+	static showPanel(type) {
+		let tradeList = [];
+
+		switch (type) {
+			case 'public':
+				tradeList = Trading.list.filter((elt) => elt.prev_user !== userData.username && !elt.accepted && !elt.aborted);
+				break;
+			case 'request':
+				tradeList = Trading.list.filter((elt) => (elt.prev_user === userData.username || elt.new_user ===  userData.username) && !elt.accepted && !elt.aborted);
+				break;
+			case 'ongoing':
+				tradeList = Trading.list.filter((elt) => elt.accepted && !elt.done);
+				break;
+			case 'ended':
+				tradeList = Trading.list.filter((elt) => elt.done || elt.aborted);
+				break;
+			default:
+				// Do nothing here
+				break;
+		}
+
+		if(tradeList.length === 0) {
+			ui.show('#trading-list-empty');
+			ui.hide('#trading-list');
+			return;
+		}
+
+		const table = document.getElementById('trading-list-tbody');
+
+		ui.emptyElt(table);
+
+		for(const tradeOrder of tradeList) {
+			const tr = document.createElement('tr');
+
+
+			let username = tradeOrder.prev_user;
+			let ally = tradeOrder.prev_user_ally;
+
+			if(username === userData.username) {
+				username = tradeOrder.new_user;
+				ally = tradeOrder.new_user_ally;
+			}
+
+			if(username === null) {
+				username = '-';
+			}
+
+			if(!ally) {
+				ally = '';
+			}
+
+			tr.appendChild(ui.createTdText(username));
+			tr.appendChild(ui.createTdText(ally));
+			tr.appendChild(ui.createTdText(Trading.generateDetailText(tradeOrder.resources_destination, tradeOrder.resources_origin)));
+			tr.appendChild(ui.createTdText(Trading.generateDistanceText(tradeOrder)));
+			tr.appendChild(ui.createTdText(Trading.generateRepetitionText(tradeOrder)));
+
+			table.append(tr);
+		}
+
+		ui.hide('#trading-list-empty');
+		ui.show('#trading-list');
 	}
 }

@@ -51,6 +51,7 @@ translate['buildings'] = [
 ];
 
 translate['planet-ui'] = {
+	'capacity': 'Capacity',
 	'storage': 'Stockage',
 	'production': 'Production',
 	'population': 'Population',

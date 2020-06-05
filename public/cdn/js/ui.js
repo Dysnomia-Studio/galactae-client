@@ -129,6 +129,10 @@ class ui {
 		return ui.createTextElement('span', text, className);
 	}
 
+	static createTdText(text, className='') {
+		return ui.createTextElement('td', text, className);
+	}
+
 	static createSpanBtn(text, onClick, className='') {
 		const button = ui.createSpanText(text, className);
 		button.addEventListener('click', onClick);
@@ -136,7 +140,7 @@ class ui {
 		return button;
 	}
 
-	static bindChoiceLine(menuSelector, btnList, prevent) {
+	static bindChoiceLine(menuSelector, btnList, prevent, callback) {
 		document.querySelectorAll(menuSelector + ' li').forEach(function(elt) {
 			elt.addEventListener('click', () => {
 				if(typeof prevent === 'function' && prevent()) {
@@ -145,6 +149,13 @@ class ui {
 				}
 
 				ui.toggleClass(menuSelector + ' .ul-choice-line-li-active', 'ul-choice-line-li-active', elt);
+
+				if(typeof callback === 'function') {
+					let btnName = elt.id.split('-');
+					btnName = btnName[btnName.length - 2];
+					callback(btnName);
+					return;
+				}
 
 				for(const buttonName of btnList) {
 					if(elt.id === buttonName + '-button') {
