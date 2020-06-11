@@ -14,7 +14,7 @@ self.addEventListener('install', function(event) {
 this.addEventListener('activate', function(event) {
 	event.waitUntil(
 		caches.keys().then(function(keyList) {
-			return Promise.all(keyList.map(function(key) {
+			return Promise.allSettled(keyList.map(function(key) {
 				if (self.version !== key) {
 					console.log('[SW] Deleting old cache: ' + key);
 					return caches.delete(key);
