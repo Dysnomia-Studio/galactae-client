@@ -1,6 +1,6 @@
 importScripts('cdn/js/calcConstants.js');
 
-self.version = 'Beta-0.6.7-rev.200518a';
+self.version = 'Beta-0.6.7-rev.200611b';
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
@@ -16,7 +16,7 @@ this.addEventListener('activate', function(event) {
 		caches.keys().then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
 				if (self.version !== key) {
-					console.debug('[SW] Deleting old cache: ' + key);
+					console.log('[SW] Deleting old cache: ' + key);
 					return caches.delete(key);
 				}
 			}));
@@ -29,33 +29,33 @@ self.addEventListener('fetch', function(event) {
 		// caches.match() always resolves
 		// but in case of success response will have value
 		if (response !== undefined) {
-			console.debug('Use of cached resource !');
-			console.debug(event.request);
-			console.debug('------------------------');
+			console.log('Use of cached resource !');
+			console.log(event.request);
+			console.log('------------------------');
 			return response;
 		}
 
-		console.debug('Fetch resource !');
-		console.debug(event.request);
-		console.debug('------------------------');
+		console.log('Fetch resource !');
+		console.log(event.request);
+		console.log('------------------------');
 
 		return fetch(event.request).then(function(response) {
 			if(response.status !== 200 ||
 				event.request.method === 'POST' ||
 				response.headers.get('Content-Type').indexOf('html') !== -1) {
 
-				console.debug('------------------------');
-				console.debug(event.request);
-				console.debug('Do not cache it');
-				console.debug('------------------------');
+				console.log('------------------------');
+				console.log(event.request);
+				console.log('Do not cache it');
+				console.log('------------------------');
 
 				return response;
 			}
 
-			console.debug('------------------------');
-			console.debug(event.request);
-			console.debug('Cache it');
-			console.debug('------------------------');
+			console.log('------------------------');
+			console.log(event.request);
+			console.log('Cache it');
+			console.log('------------------------');
 
 			// response may be used only once
 			// we need to save clone to put one copy in cache
