@@ -353,7 +353,7 @@ class Alliances {
 			() => { // Yes
 				socket.emit(
 					'alliance-leave',
-					userData
+					webSockets.getUserData()
 				);
 			}, () => { // No
 				// Do nothing
@@ -370,7 +370,7 @@ class Alliances {
 			() => { // Yes
 				socket.emit(
 					'alliance-disslove',
-					userData
+					webSockets.getUserData()
 				);
 			}, () => { // No
 				// Do nothing
@@ -383,7 +383,7 @@ class Alliances {
 			socket.emit(
 				'alliance-invite-ask',
 				{
-					...userData,
+					...webSockets.getUserData(),
 					playerName: this.value,
 				}
 			);
@@ -396,7 +396,7 @@ class Alliances {
 		socket.emit(
 			'alliance-pact-choice',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				allyId,
 				choice,
 			}
@@ -407,7 +407,7 @@ class Alliances {
 		socket.emit(
 			'alliance-pact-cancelInvite',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				allyId,
 			}
 		);
@@ -418,7 +418,7 @@ class Alliances {
 			socket.emit(
 				'alliance-search',
 				{
-					...userData,
+					...webSockets.getUserData(),
 					searchText: this.value,
 				}
 			);
@@ -433,7 +433,7 @@ class Alliances {
 			socket.emit(
 				'alliance-create',
 				{
-					...userData,
+					...webSockets.getUserData(),
 					name,
 					description,
 				}
@@ -450,7 +450,7 @@ class Alliances {
 			socket.emit(
 				'alliance-pact-ask',
 				{
-					...userData,
+					...webSockets.getUserData(),
 					allyName: this.value,
 				}
 			);
@@ -463,7 +463,7 @@ class Alliances {
 		socket.emit(
 			'alliance-join-ask',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				allyName: allyName,
 			}
 		);
@@ -479,7 +479,7 @@ class Alliances {
 				socket.emit(
 					'alliance-pact-stop',
 					{
-						...userData,
+						...webSockets.getUserData(),
 						allyId,
 					}
 				);
@@ -493,7 +493,7 @@ class Alliances {
 		socket.emit(
 			'alliance-join-choice',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				plyName,
 				choice,
 			}
@@ -504,7 +504,7 @@ class Alliances {
 		socket.emit(
 			'alliance-invite-remove',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				playerName,
 			}
 		);
@@ -537,7 +537,7 @@ class Alliances {
 			socket.emit(
 				'alliance-members-permissionsEdit',
 				{
-					...userData,
+					...webSockets.getUserData(),
 					...playerPerms,
 				}
 			);
@@ -551,7 +551,7 @@ class Alliances {
 					socket.emit(
 						'alliance-members-permissionsEdit',
 						{
-							...userData,
+							...webSockets.getUserData(),
 							...playerPerms,
 						}
 					);
@@ -572,7 +572,7 @@ class Alliances {
 				socket.emit(
 					'alliance-members-kick',
 					{
-						...userData,
+						...webSockets.getUserData(),
 						playerName,
 					}
 				);
@@ -586,7 +586,7 @@ class Alliances {
 		socket.emit(
 			'alliance-invite-choice',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				allyId,
 				choice,
 			}
@@ -597,7 +597,7 @@ class Alliances {
 		socket.emit(
 			'alliance-join-remove',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				allyId,
 			}
 		);
@@ -629,7 +629,7 @@ class Alliances {
 		socket.emit(
 			'alliance-edit',
 			{
-				...userData,
+				...webSockets.getUserData(),
 				name,
 				description,
 			}

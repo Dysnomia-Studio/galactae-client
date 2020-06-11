@@ -41,7 +41,7 @@ class Conquest extends _Conquest {
 					notifications.removeInGameNotif('conquest_' + conquest.planet);
 				}
 
-				socket.emit('conquest-ask-refresh', userData);
+				socket.emit('conquest-ask-refresh', webSockets.getUserData());
 			}, minEndTime - Date.now());
 		}
 	}

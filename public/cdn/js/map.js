@@ -802,8 +802,7 @@ class map {
 			// Events
 			document.getElementById(systemList[i].id).addEventListener('click', function() {
 				socket.emit('system-ask-mapData', {
-					id: userData.id,
-					username: userData.username,
+					...webSockets.getUserData(),
 					systemAddress: this.id,
 				});
 			});

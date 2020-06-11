@@ -3,8 +3,7 @@ class Tutorials extends _Tutorials {
 		document.getElementById('tutorial-panel-ok').addEventListener('click', () => {
 			if(Tutorials.hasCompletedTutorial(Tutorials.currTutorial, userData, planetData, units.fleetList, units.list, false)) {
 				socket.emit('tutorial-confirm', {
-					id: userData.id,
-					username: userData.username,
+					...webSockets.getUserData(),
 					tutorial: Tutorials.currTutorial,
 				});
 			} else {

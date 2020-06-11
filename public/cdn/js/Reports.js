@@ -91,15 +91,24 @@ class Reports extends _Reports {
 			notifications.removeInGameNotif(report);
 		}
 
-		socket.emit('player-report-set-read', { username: userData.username, id: userData.id, reports });
+		socket.emit('player-report-set-read', {
+			...webSockets.getUserData(),
+			reports
+		});
 	}
 
 	static serverMarkUnRead(reports) {
-		socket.emit('player-report-set-unread', { username: userData.username, id: userData.id, reports });
+		socket.emit('player-report-set-unread', {
+			...webSockets.getUserData(),
+			reports
+		});
 	}
 
 	static serverDelete(reports) {
-		socket.emit('player-report-delete', { username: userData.username, id: userData.id, reports });
+		socket.emit('player-report-delete', {
+			...webSockets.getUserData(),
+			reports
+		});
 	}
 
 	static markRead(reportId) {
@@ -118,7 +127,10 @@ class Reports extends _Reports {
 		Reports.markRead(reportId);
 
 		if(!Reports.cache[reportId]) {
-			socket.emit('player-report-ask', { username: userData.username, id: userData.id, reportId });
+			socket.emit('player-report-ask', {
+				...webSockets.getUserData(),
+				reportId
+			});
 		} else {
 			Reports.displayReport(reportId);
 		}

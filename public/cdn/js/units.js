@@ -6,9 +6,10 @@ class units extends _Units {
 	 * Ask units from server
 	 */
 	static sync() {
-		const data = userData;
-		data.planet = planetData.address;
-		socket.emit('units-ask-data', data);
+		socket.emit('units-ask-data', {
+			...webSockets.getUserData(),
+			planet: planetData.address,
+		});
 	}
 
 	/**
@@ -156,8 +157,7 @@ class units extends _Units {
 			if(ui.moveType === 3) { ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']); return; }
 
 			socket.emit('fleet-move', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				fleetId: units.currFleet,
 				destination: units.planetTarget,
 				moveType: units.moveType,
@@ -198,8 +198,7 @@ class units extends _Units {
 
 				() => { // Yes
 					socket.emit('unit-type-delete', {
-						id: userData.id,
-						username: userData.username,
+						...webSockets.getUserData(),
 						unit: units.list[units.currUnit].id,
 					});
 					preventFleetHUDClosing = false;
@@ -227,8 +226,7 @@ class units extends _Units {
 			if(document.getElementById('fleet-type-rename-newName').value === '') { return; }
 
 			socket.emit('unit-type-rename', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				shipId: units.list[units.currUnit].id,
 				shipNewName: document.getElementById('fleet-type-rename-newName').value,
 			});
@@ -298,8 +296,7 @@ class units extends _Units {
 			if(document.getElementById('fleet-rename-newName').value === '') { return; }
 
 			socket.emit('fleet-rename', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				fleetId: document.getElementById('fleet-rename').getAttribute('fleetId'),
 				fleetNewName: document.getElementById('fleet-rename-newName').value,
 			});
@@ -319,8 +316,7 @@ class units extends _Units {
 			fleet = units.fleetList[fleet];
 
 			socket.emit('fleet-merge', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				from: units.currFleet,
 				to: fleet.id,
 			});
@@ -343,8 +339,7 @@ class units extends _Units {
 			fleet = units.fleetList[fleet];
 
 			socket.emit('fleet-units-transfer', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				from: units.currFleet,
 				to: fleet.id,
 				unitId: units.currTransferUnit,
@@ -369,8 +364,7 @@ class units extends _Units {
 			fleet = units.fleetList[fleet];
 
 			socket.emit('fleet-transferFuel', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				from: units.currFleet,
 				to: fleet.id,
 				fuelCount: count,
@@ -396,9 +390,7 @@ class units extends _Units {
 			}
 
 			socket.emit('fleet-tactics-assign', {
-				id: userData.id,
-				username: userData.username,
-				pid: planetData.address,
+				...webSockets.getUserData(),
 				fleetId: units.currFleet,
 				tacticId: currTactic,
 			});
@@ -850,8 +842,7 @@ class units extends _Units {
 		if(preventUnitBuildPanelClose) { return; }
 
 		const unit = {
-			id: userData.id,
-			username: userData.username,
+			...webSockets.getUserData(),
 			planet: userData.pid,
 			count: count,
 			unit: units.list[units.currUnit].id,
@@ -1483,7 +1474,10 @@ class units extends _Units {
 		if(errors === 0) {
 			ui.closeTab('#fleet-type-create',false);
 			preventFleetHUDClosing = false;
-			socket.emit('unit-type-create', { id: userData.id, username: userData.username, ship: ship });
+			socket.emit('unit-type-create', {
+				...webSockets.getUserData(),
+				ship: ship
+			});
 		} else {
 			ui.drawMessage(errorMessage);
 		}
@@ -1702,8 +1696,7 @@ class units extends _Units {
 			if(fleetNb < 0) { return; }
 
 			socket.emit('fleet-move', {
-				id: userData.id,
-				username: userData.username,
+				...webSockets.getUserData(),
 				fleetId: fleetId,
 				destination: units.fleetList[fleetNb].motherPlanetAddress,
 				moveType: FLEET_MOVE_TYPE.DEFEND,
@@ -1815,8 +1808,7 @@ class units extends _Units {
 			priorityElts[i].addEventListener('click', function(e) {
 				e.preventDefault();
 				socket.emit('fleet-set-priority', {
-					id: userData.id,
-					username: userData.username,
+					...webSockets.getUserData(),
 					fleet: this.id,
 					planet: planetData.address,
 				});
