@@ -1233,10 +1233,10 @@ for(const i in backPlanetList) {
 	imgCache.push(cdnURL + 'img/planets/back/' + backPlanetList[i] + '.png');
 }
 const planetList = [0,1,2,3,4,5,6,7,8,9,
-	101,102,103,104,105,106,107,108,109,110,111,112,113,
-	501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,
-	/*901,*/42,
-	1000,1001,1002,//1003,1004,1005,1006,1007,1008,
+	//101,102,103,104,105,106,107,108,109,110,111,112,113,
+	//501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,
+	///*901,*/42,
+	//1000,1001,1002,//1003,1004,1005,1006,1007,1008,
 ];
 for(const i in planetList) {
 	imgCache.push(cdnURL + 'img/planets/front/' + planetList[i] + '.jpg');
@@ -1254,9 +1254,11 @@ const neededCache = [
 	cdnURL + 'js/css_globe_perspectivetransform.js',
 
 	cdnURL + 'js/_shared/Buildings.js',
+	cdnURL + 'js/_shared/Conquest.js',
 	cdnURL + 'js/_shared/DependencyEngine.js',
 	cdnURL + 'js/_shared/Fleets.js',
 	cdnURL + 'js/_shared/GameMap.js',
+	cdnURL + 'js/_shared/Reports.js',
 	cdnURL + 'js/_shared/Research.js',
 	cdnURL + 'js/_shared/Resources.js',
 	cdnURL + 'js/_shared/Tutorials.js',
@@ -1283,7 +1285,7 @@ const neededCache = [
 	cdnURL + 'js/trade.js',
 	cdnURL + 'js/Tutorials.js',
 	cdnURL + 'js/ui.js',
-	cdnURL + 'js/Units.js',
+	cdnURL + 'js/units.js',
 	cdnURL + 'js/websockets.js',
 
 	cdnURL + 'js/load.js',

@@ -1,6 +1,6 @@
 importScripts('cdn/js/calcConstants.js');
 
-self.version = 'Beta-0.6.7-rev.200518a';
+self.version = 'Beta-0.6.7-rev.200611g';
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
@@ -14,12 +14,14 @@ self.addEventListener('install', function(event) {
 this.addEventListener('activate', function(event) {
 	event.waitUntil(
 		caches.keys().then(function(keyList) {
-			return Promise.all(keyList.map(function(key) {
+			return Promise.allSettled(keyList.map(function(key) {
 				if (self.version !== key) {
 					console.debug('[SW] Deleting old cache: ' + key);
 					return caches.delete(key);
 				}
 			}));
+		}).then(() => {
+			self.clients.claim();
 		})
 	);
 });
@@ -29,6 +31,7 @@ self.addEventListener('fetch', function(event) {
 		// caches.match() always resolves
 		// but in case of success response will have value
 		if (response !== undefined) {
+			console.debug('[SW] Use of cache: ' + event.request.url);
 			return response;
 		}
 
@@ -46,6 +49,7 @@ self.addEventListener('fetch', function(event) {
 			const responseClone = response.clone();
 
 			caches.open(self.version).then(function (cache) {
+				console.debug('[SW] Add to cache: ' + event.request.url);
 				cache.put(event.request, responseClone);
 			});
 
