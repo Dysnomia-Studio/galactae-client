@@ -29,16 +29,33 @@ self.addEventListener('fetch', function(event) {
 		// caches.match() always resolves
 		// but in case of success response will have value
 		if (response !== undefined) {
+			console.debug('Use of cached resource !');
+			console.debug(event.request);
+			console.debug('------------------------');
 			return response;
 		}
+
+		console.debug('Fetch resource !');
+		console.debug(event.request);
+		console.debug('------------------------');
 
 		return fetch(event.request).then(function(response) {
 			if(response.status !== 200 ||
 				event.request.method === 'POST' ||
 				response.headers.get('Content-Type').indexOf('html') !== -1) {
 
+				console.debug('------------------------');
+				console.debug(event.request);
+				console.debug('Do not cache it');
+				console.debug('------------------------');
+
 				return response;
 			}
+
+			console.debug('------------------------');
+			console.debug(event.request);
+			console.debug('Cache it');
+			console.debug('------------------------');
 
 			// response may be used only once
 			// we need to save clone to put one copy in cache
