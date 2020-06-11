@@ -97,6 +97,7 @@ ready(function() {
 
 	// Service worker
 	if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+		navigator.serviceWorker.register('/service-worker.js');
 		navigator.serviceWorker.register('/sw.js').then(function(registration) {
 			// Registration was successful
 			console.info('[SW] Registration successful with scope: ', registration.scope);
