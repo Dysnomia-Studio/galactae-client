@@ -39,7 +39,13 @@ class map {
 
 		map.oldPos = [0,0];
 
-		map.influenceZones = {};
+		if(!map.influenceZones) {
+			map.influenceZones = {};
+		}
+
+		if(!map.points) {
+			map.points = [];
+		}
 
 		/**
 		 * Load XML
@@ -773,11 +779,16 @@ class map {
 				document.getElementById('map-global').appendChild(sector);
 			}
 
+			const cx = Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH);
+			const cy = Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT);
+
+			map.points.push([cx, cy]);
+
 			// Draw planet
 			const circle = ui.createSVGElt('circle', {
 				id: systemList[i].id,
-				cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
-				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
+				cx,
+				cy,
 				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
 				fill: 'url(#' + starBType + ')'});
 			sector.appendChild(circle);
@@ -830,85 +841,83 @@ class map {
 		circleGroup.appendChild(currPlanetBack2);
 	}
 
+	static getCoordinatesFromSystem(system) {
+		const sector = GameMap.getSectorFromAdress(system + '-0');
+
+		if(!map.xmlDoc[sector]) {
+			return [0, 0];
+		}
+
+		const systemDOM = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
+
+		const cx = Math.round(parseFloat(systemDOM.getAttribute('x')/10) * MAP_SIZE_WIDTH);
+		const cy = Math.round(parseFloat(systemDOM.getAttribute('y')/10) * MAP_SIZE_HEIGHT);
+
+		return [cx, cy];
+	}
+
+	static memberFilter(points, list) {
+		return points.filter((coords) =>
+			list.filter(
+				(elt) => elt[0] === coords[0] && elt[1] === coords[1]
+			).length > 0
+		).length > 0;
+	}
+
 	static drawInfluenceZones() {
 		if(!planetData.galacticPos) {
 			return;
 		}
 
-		const hexGroup = document.getElementById('map-global-overlay-hex');
-		const circleGroup = document.getElementById('map-global-overlay-circle');
+		const overlayGroup = document.getElementById('map-global-overlay');
 
-		ui.emptyElt(hexGroup);
-		ui.emptyElt(circleGroup);
+		map.points = Array.from(new Set(map.points));
 
-		// Allied & Enemies (pink)
-		for(const systemId in map.influenceZones.alliedAndEnnemiesSystems) {
-			map.appendInfluenceZone(
-				hexGroup,
-				circleGroup,
-				map.influenceZones.alliedAndEnnemiesSystems[systemId],
-				map.influenceZones.alliedAndEnnemiesSystems,
-				'#FFC0CB'
-			);
+		const delaunay = Delaunator.from(map.points);
+
+		const alliedAndEnnemiesSystems = map.influenceZones.alliedAndEnnemiesSystems.map(map.getCoordinatesFromSystem);
+		const ennemiesSystems = map.influenceZones.ennemiesSystems.map(map.getCoordinatesFromSystem);
+		const allyAlliedSystems = map.influenceZones.allyAlliedSystems.map(map.getCoordinatesFromSystem);
+		const alliedSystems = map.influenceZones.alliedSystems.map(map.getCoordinatesFromSystem);
+		const playerSystems = map.influenceZones.playerSystems.map(map.getCoordinatesFromSystem);
+
+		ui.emptyElt(overlayGroup);
+
+		for(let i = 0; i < delaunay.triangles.length; i+=3) {
+			const points = [
+				map.points[delaunay.triangles[i]],
+				map.points[delaunay.triangles[i + 1]],
+				map.points[delaunay.triangles[i + 2]],
+			];
+
+			if(points.filter((elt) => !elt).length > 0) {
+				continue;
+			}
+
+			let color = '';
+
+			if(map.memberFilter(points, alliedAndEnnemiesSystems)) {
+				color = '#FFC0CB';
+			} else if(map.memberFilter(points, ennemiesSystems)) {
+				color = '#FF0000';
+			} else if(map.memberFilter(points, allyAlliedSystems)) {
+				color = '#FFFFFF';
+			} else if(map.memberFilter(points, alliedSystems)) {
+				color = '#ffe500';
+			} else if(map.memberFilter(points, playerSystems)) {
+				color = '#2196f3';
+			}
+
+			if(color !== '') {
+				const triangle = ui.createSVGElt('polygon', {
+					id: i + '-triangle',
+					points: points.map((elt) => elt.join(',')).join(' '),
+					fill: color,
+					stroke: color,
+				});
+				overlayGroup.appendChild(triangle);
+			}
 		}
-
-		// Ennemies territories (red)
-		for(const systemId in map.influenceZones.ennemiesSystems) {
-			map.appendInfluenceZone(
-				hexGroup,
-				circleGroup,
-				map.influenceZones.ennemiesSystems[systemId],
-				map.influenceZones.ennemiesSystems,
-				'#FF0000'
-			);
-		}
-
-		// Alliance allies (white)
-		for(const systemId in map.influenceZones.allyAlliedSystems) {
-			map.appendInfluenceZone(
-				hexGroup,
-				circleGroup,
-				map.influenceZones.allyAlliedSystems[systemId],
-				map.influenceZones.allyAlliedSystems,
-				'#FFFFFF'
-			);
-		}
-
-
-		// Allied territories (yellow)
-		for(const systemId in map.influenceZones.alliedSystems) {
-			map.appendInfluenceZone(
-				hexGroup,
-				circleGroup,
-				map.influenceZones.alliedSystems[systemId],
-				map.influenceZones.alliedSystems,
-				'#ffe500'
-			);
-		}
-
-
-		// Player territories (blue)
-		for(const systemId in map.influenceZones.playerSystems) {
-			map.appendInfluenceZone(
-				hexGroup,
-				circleGroup,
-				map.influenceZones.playerSystems[systemId],
-				map.influenceZones.playerSystems,
-				'#2196f3'
-			);
-		}
-
-		// Current planet (blue circle)
-		const currPlanetLegend = ui.createSVGElt('circle', {
-			id: 'currPlanet',
-			cx: Math.round(parseFloat(planetData.galacticPos[0])/10 * MAP_SIZE_WIDTH),
-			cy: Math.round(parseFloat(planetData.galacticPos[1])/10 * MAP_SIZE_HEIGHT),
-			r: 17,
-			stroke: '#5ae4ff',
-			'stroke-width': 1,
-			fill: 'transparent',
-		});
-		hexGroup.appendChild(currPlanetLegend);
 	}
 
 	/**

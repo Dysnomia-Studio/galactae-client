@@ -481,8 +481,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<stop stop-opacity="0" stop-color="#8e6f27" offset="1"></stop>
 			</radialGradient>
 		</defs>
-		<g id="map-global-overlay-hex"></g>
-		<g id="map-global-overlay-circle"></g>
+		<g id="map-global-overlay"></g>
 	</svg>
 	<div id="map-system" class="opening view-2D">
         <div id="map-system-universeBack">
@@ -975,6 +974,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/remove-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
+<script src="https://unpkg.com/delaunator@4.0.1/delaunator.min.js"></script>
+
 <?php /* Client Classes */ ?>
 
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
