@@ -481,6 +481,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<stop stop-opacity="0" stop-color="#8e6f27" offset="1"></stop>
 			</radialGradient>
 		</defs>
+		<g id="map-global-overlay"></g>
 	</svg>
 	<div id="map-system" class="opening view-2D">
         <div id="map-system-universeBack">
@@ -977,7 +978,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 
 	<div id="trading-content" class="dual-column-80-20">
 		<h2 id="trading-list-empty" class="dual-column-80-20-message"><?= TRADING_NO_ORDER; ?></h2>
-		<table id="trading-list" class="unit-list-table dual-column-80-20-left" aria-describedby="Trading list">
+		<table id="trading-list" class="dual-column-80-20-left" aria-describedby="Trading list">
 			<thead>
 				<tr>
 					<th id="trading-list-player"><?= TRADING_PLAYER; ?></th>

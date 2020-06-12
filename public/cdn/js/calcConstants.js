@@ -1491,3 +1491,14 @@ const tutorialObjectives = {
 	// 'quests': [],
 	// 'secondPlanet': [],
 };
+
+const resourcesIcons = {
+	mineral: '<img height="20" src="./cdn/img/ui/minerals.png" alt="minerals">',
+	helium: '<span class="element">³He </span>',
+	aluminium: '<span class="element">Al </span>',
+	iron: '<span class="element" id="element_fe">Fe </span>',
+	titanium: '<span class="element">Ti </span>',
+	copper: '<span class="element">Cu </span>',
+	credits: '<img height="15" src="./cdn/img/ui/credits.png" alt="credits">',
+	planets: '<img height="15" src="./cdn/img/ui/planetCount.png" alt="planetCount">',
+};

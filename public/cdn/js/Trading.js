@@ -23,8 +23,34 @@ class Trading extends _Trading {
 
 	}
 
-	static generateDetailText() {
-		return 'details';
+	static generateUniqueDetail(resourceName, value, negatif) {
+		let details = ' ' +  resourcesIcons[resourceName] + ':';
+
+		if(negatif) {
+			details += '-';
+		}
+
+		let unit = 't';
+		if(resourceName !== 'credits' && resourceName !== 'planets') {
+			unit = '';
+		}
+
+		return details + GetBetterUnit(value);
+	}
+
+	static generateDetailText(resDestination, resOrigin, destination) {
+		let details = '';
+
+		for(const resourceName in resDestination) {
+			details += Trading.generateUniqueDetail(resourceName, resDestination[resourceName], destination);
+		}
+
+		for(const resourceName in resOrigin) {
+			details += Trading.generateUniqueDetail(resourceName, resOrigin[resourceName], !destination);
+		}
+
+
+		return details;
 	}
 
 	static calcTimeTo(origin, destination) {
@@ -77,7 +103,7 @@ class Trading extends _Trading {
 
 	static generateDistanceText(order) {
 		if(order.new_user === null) {
-			return '??:??:?? / ??:??:??';
+			return '-';
 		}
 
 		const planets = [
@@ -151,12 +177,17 @@ class Trading extends _Trading {
 			}
 
 			if(!ally) {
-				ally = '';
+				ally = '-';
 			}
 
 			tr.appendChild(ui.createTdText(username));
 			tr.appendChild(ui.createTdText(ally));
-			tr.appendChild(ui.createTdText(Trading.generateDetailText(tradeOrder.resources_destination, tradeOrder.resources_origin)));
+
+			const detailsTd = document.createElement('td');
+			detailsTd.innerHTML = Trading.generateDetailText(tradeOrder.resources_destination, tradeOrder.resources_origin, tradeOrder.new_user === userData.username);
+			// @TODO: find a better way than innerHTML ...
+
+			tr.appendChild(detailsTd);
 			tr.appendChild(ui.createTdText(Trading.generateDistanceText(tradeOrder)));
 			tr.appendChild(ui.createTdText(Trading.generateRepetitionText(tradeOrder)));
 
