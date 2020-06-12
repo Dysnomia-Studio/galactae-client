@@ -125,8 +125,13 @@ class Trading extends _Trading {
 		return getStringTime(times[0]) + ' / ' + getStringTime(times[1]);
 	}
 
-	static generateRepetitionText() {
-		return 'repetition';
+	static generateRepetitionText(tradingOrder) {
+		if(tradingOrder.repetition_count === null) {
+			return '-';
+		}
+
+		// @TODO: improve that
+		return translate['trading'].eachDate + tradingOrder.repetition_interval + ' (' + tradingOrder.repetition_done + '/' + tradingOrder.repetition_count + ')';
 	}
 
 	static showPanel(type) {

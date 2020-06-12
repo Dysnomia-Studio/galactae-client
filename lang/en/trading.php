@@ -11,3 +11,11 @@ define('TRADING_DISTANCE', 'Time');
 define('TRADING_REPETITION', 'Repetition');
 
 define('TRADING_NO_ORDER', 'No trading order');
+?>
+<script type="text/javascript">
+var translate = translate || {};
+
+translate['trading'] = {
+	'eachDate': 'Each ',
+};
+</script>
