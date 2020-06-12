@@ -883,39 +883,73 @@ class map {
 
 		ui.emptyElt(overlayGroup);
 
-		for(let i = 0; i < delaunay.triangles.length; i+=3) {
-			const points = [
-				map.points[delaunay.triangles[i]],
-				map.points[delaunay.triangles[i + 1]],
-				map.points[delaunay.triangles[i + 2]],
+		function edgesOfTriangle(t) { return [3 * t, 3 * t + 1, 3 * t + 2]; }
+
+		function pointsOfTriangle(delaunay, t) {
+			return edgesOfTriangle(t)
+				.map(e => delaunay.triangles[e]);
+		}
+
+		function triangleOfEdge(e)  { return Math.floor(e / 3); }
+
+		function circumcenter(a, b, c) {
+			const ad = a[0] * a[0] + a[1] * a[1];
+			const bd = b[0] * b[0] + b[1] * b[1];
+			const cd = c[0] * c[0] + c[1] * c[1];
+			const D = 2 * (a[0] * (b[1] - c[1]) + b[0] * (c[1] - a[1]) + c[0] * (a[1] - b[1]));
+			return [
+				1 / D * (ad * (b[1] - c[1]) + bd * (c[1] - a[1]) + cd * (a[1] - b[1])),
+				1 / D * (ad * (c[0] - b[0]) + bd * (a[0] - c[0]) + cd * (b[0] - a[0])),
 			];
+		}
 
-			if(points.filter((elt) => !elt).length > 0) {
-				continue;
-			}
+		function triangleCenter(points, delaunay, t) {
+			const vertices = pointsOfTriangle(delaunay, t).map(p => points[p]);
+			return circumcenter(vertices[0], vertices[1], vertices[2]);
+		}
 
-			let color = '';
+		for(let i = 0; i < delaunay.triangles.length; i++) {
+			if (delaunay.halfedges[i] > 0) {
+				const p = triangleCenter(map.points, delaunay, triangleOfEdge(i));
+				const q = triangleCenter(map.points, delaunay, triangleOfEdge(delaunay.halfedges[i]));
 
-			if(map.memberFilter(points, alliedAndEnnemiesSystems)) {
-				color = '#FFC0CB';
-			} else if(map.memberFilter(points, ennemiesSystems)) {
-				color = '#FF0000';
-			} else if(map.memberFilter(points, allyAlliedSystems)) {
-				color = '#FFFFFF';
-			} else if(map.memberFilter(points, alliedSystems)) {
-				color = '#ffe500';
-			} else if(map.memberFilter(points, playerSystems)) {
-				color = '#2196f3';
-			}
+				/*console.log(i);
+				console.log(p);
+				console.log(q);*/
 
-			if(color !== '') {
-				const triangle = ui.createSVGElt('polygon', {
-					id: i + '-triangle',
-					points: points.map((elt) => elt.join(',')).join(' '),
-					fill: color,
-					stroke: color,
-				});
-				overlayGroup.appendChild(triangle);
+				const points = [
+					map.points[delaunay.triangles[i]],
+					p,
+					q,
+				];
+
+				if(points.filter((elt) => !elt).length > 0) {
+					continue;
+				}
+
+				let color = '';
+
+				if(map.memberFilter(points, alliedAndEnnemiesSystems)) {
+					color = '#FFC0CB';
+				} else if(map.memberFilter(points, ennemiesSystems)) {
+					color = '#FF0000';
+				} else if(map.memberFilter(points, allyAlliedSystems)) {
+					color = '#FFFFFF';
+				} else if(map.memberFilter(points, alliedSystems)) {
+					color = '#ffe500';
+				} else if(map.memberFilter(points, playerSystems)) {
+					color = '#2196f3';
+				}
+
+				if(color !== '') {
+					const triangle = ui.createSVGElt('polygon', {
+						id: i + '-triangle',
+						points: points.map((elt) => elt.join(',')).join(' '),
+						fill: color,
+						stroke: color,
+					});
+					overlayGroup.appendChild(triangle);
+				}
 			}
 		}
 	}
