@@ -481,6 +481,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<stop stop-opacity="0" stop-color="#8e6f27" offset="1"></stop>
 			</radialGradient>
 		</defs>
+		<g id="map-global-overlay-hex"></g>
+		<g id="map-global-overlay-circle"></g>
 	</svg>
 	<div id="map-system" class="opening view-2D">
         <div id="map-system-universeBack">

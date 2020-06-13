@@ -39,6 +39,8 @@ class map {
 
 		map.oldPos = [0,0];
 
+		map.influenceZones = {};
+
 		/**
 		 * Load XML
 		 */
@@ -370,6 +372,9 @@ class map {
 		ui.mapChat = (document.getElementById('hud-chat').style.display === 'block');
 		ui.closeTab('#hud-chat',false);
 		ui.chat = false;
+
+		// On demande la mise à jour des zones d'influence au serveur
+		socket.emit('global-ask-influenceData', webSockets.getUserData());
 	}
 
 	/**
@@ -740,14 +745,6 @@ class map {
 		// Get XML
 		const systemList = map.xmlDoc[sector].querySelectorAll('sy');
 
-		function makeSVGElt(tagName, args) {
-			const el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
-			for (const i in args) {
-				el.setAttribute(i, args[i]);
-			}
-			return el;
-		}
-
 		// Generate Content
 		for(let i=0; i<systemList.length; i++) {
 			const starList = systemList[i].querySelectorAll('st');
@@ -768,7 +765,7 @@ class map {
 			const sectorAddress = x + '-' + y;
 			let sector = document.getElementById(sectorAddress);
 			if(!sector) {
-				sector = makeSVGElt('g', {
+				sector = ui.createSVGElt('g', {
 					id: sectorAddress,
 				});
 				sector.setAttribute('x', sectorAddress.split('-')[0]);
@@ -776,20 +773,8 @@ class map {
 				document.getElementById('map-global').appendChild(sector);
 			}
 
-			if(GameMap.getSystemFromAdress(planetData.address) === systemList[i].id) {
-				const currPlanetLegend = makeSVGElt('circle', {
-					id: 'currPlanet',
-					cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
-					cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
-					r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
-					stroke: '#0EC6C6',
-					'stroke-width': 1,
-				});
-				sector.appendChild(currPlanetLegend);
-			}
-
 			// Draw planet
-			const circle = makeSVGElt('circle', {
+			const circle = ui.createSVGElt('circle', {
 				id: systemList[i].id,
 				cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
 				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
@@ -809,6 +794,121 @@ class map {
 		}
 
 		map.updateSectorVisibility();
+	}
+
+	static appendInfluenceZone(hexGroup, circleGroup, system, systemList, color) {
+		const sector = GameMap.getSectorFromAdress(system + '-0');
+
+		if(!map.xmlDoc[sector]) { console.error('Missing sector: ' + sector); return; } // @TODO: load it !
+
+		const systemDOM = map.xmlDoc[sector].querySelector('sy[id="' + system + '"]');
+
+		const cx = Math.round(parseFloat(systemDOM.getAttribute('x')/10) * MAP_SIZE_WIDTH);
+		const cy = Math.round(parseFloat(systemDOM.getAttribute('y')/10) * MAP_SIZE_HEIGHT);
+
+		let points = '';
+		const radius = 12;
+		for(let ang = 0; ang < Math.PI*2; ang+= Math.PI / 4) {
+			points += (cx + radius*Math.sin(ang)) + ',' + (cy + radius*Math.cos(ang)) + ' ';
+		}
+		points = points.trim();
+
+		const currPlanetBack = ui.createSVGElt('polygon', {
+			id: system + '-overlay',
+			points,
+			fill: color,
+		});
+		hexGroup.appendChild(currPlanetBack);
+
+		const currPlanetBack2 = ui.createSVGElt('circle', {
+			id: system + '-overlay-back',
+			cx,
+			cy,
+			r: 40,
+			fill: color,
+		});
+		circleGroup.appendChild(currPlanetBack2);
+	}
+
+	static drawInfluenceZones() {
+		if(!planetData.galacticPos) {
+			return;
+		}
+
+		const hexGroup = document.getElementById('map-global-overlay-hex');
+		const circleGroup = document.getElementById('map-global-overlay-circle');
+
+		ui.emptyElt(hexGroup);
+		ui.emptyElt(circleGroup);
+
+		// Allied & Enemies (pink)
+		for(const systemId in map.influenceZones.alliedAndEnnemiesSystems) {
+			map.appendInfluenceZone(
+				hexGroup,
+				circleGroup,
+				map.influenceZones.alliedAndEnnemiesSystems[systemId],
+				map.influenceZones.alliedAndEnnemiesSystems,
+				'#FFC0CB'
+			);
+		}
+
+		// Ennemies territories (red)
+		for(const systemId in map.influenceZones.ennemiesSystems) {
+			map.appendInfluenceZone(
+				hexGroup,
+				circleGroup,
+				map.influenceZones.ennemiesSystems[systemId],
+				map.influenceZones.ennemiesSystems,
+				'#FF0000'
+			);
+		}
+
+		// Alliance allies (white)
+		for(const systemId in map.influenceZones.allyAlliedSystems) {
+			map.appendInfluenceZone(
+				hexGroup,
+				circleGroup,
+				map.influenceZones.allyAlliedSystems[systemId],
+				map.influenceZones.allyAlliedSystems,
+				'#FFFFFF'
+			);
+		}
+
+
+		// Allied territories (yellow)
+		for(const systemId in map.influenceZones.alliedSystems) {
+			map.appendInfluenceZone(
+				hexGroup,
+				circleGroup,
+				map.influenceZones.alliedSystems[systemId],
+				map.influenceZones.alliedSystems,
+				'#ffe500'
+			);
+		}
+
+
+		// Player territories (blue)
+		for(const systemId in map.influenceZones.playerSystems) {
+			map.appendInfluenceZone(
+				hexGroup,
+				circleGroup,
+				map.influenceZones.playerSystems[systemId],
+				map.influenceZones.playerSystems,
+				'#2196f3'
+			);
+		}
+
+		// Current planet (blue circle)
+		const currPlanetLegend = ui.createSVGElt('circle', {
+			id: 'currPlanet',
+			cx: Math.round(parseFloat(planetData.galacticPos[0])/10 * MAP_SIZE_WIDTH),
+			cy: Math.round(parseFloat(planetData.galacticPos[1])/10 * MAP_SIZE_HEIGHT),
+			r: 17,
+			stroke: '#5ae4ff',
+			'stroke-width': 1,
+			fill: 'transparent',
+		});
+		hexGroup.appendChild(currPlanetLegend);
 	}
 
 	/**
@@ -831,6 +931,8 @@ class map {
 			const newY = (1/map.zoom)*document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
 
 			map.moveUI([newX, newY]);
+
+			map.drawInfluenceZones();
 		});
 	}
 

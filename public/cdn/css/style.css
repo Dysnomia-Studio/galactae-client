@@ -2042,6 +2042,9 @@ a[class="research-search"]:hover {
 
 	z-index: -1;
 }
+#map-global-overlay-circle {
+	opacity: 0.25;
+}
 
 /**
  * Solar system Map
