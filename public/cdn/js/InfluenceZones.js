@@ -66,26 +66,25 @@ class InfluenceZones {
 					continue;
 				}
 
-				let color = '';
+				let className = '';
 
 				if(InfluenceZones.memberFilter(points, alliedAndEnnemiesSystems)) {
-					color = '#FFC0CB';
+					className = 'alliedAndEnnemies';
 				} else if(InfluenceZones.memberFilter(points, ennemiesSystems)) {
-					color = '#FF0000';
+					className = 'ennemies';
 				} else if(InfluenceZones.memberFilter(points, allyAlliedSystems)) {
-					color = '#FFFFFF';
+					className = 'allyAllied';
 				} else if(InfluenceZones.memberFilter(points, alliedSystems)) {
-					color = '#ffe500';
+					className = 'allied';
 				} else if(InfluenceZones.memberFilter(points, playerSystems)) {
-					color = '#2196f3';
+					className = 'player';
 				}
 
-				if(color !== '') {
+				if(className !== '') {
 					const triangle = ui.createSVGElt('polygon', {
 						id: i + '-triangle',
 						points: points.map((elt) => elt.join(',')).join(' '),
-						fill: color,
-						stroke: color,
+						class: 'map-overlay-' + className,
 					});
 					overlayGroup.appendChild(triangle);
 				}

@@ -2045,6 +2045,31 @@ a[class="research-search"]:hover {
 #map-global-overlay {
 	opacity: 0.25;
 }
+.map-overlay-alliedAndEnnemies {
+	fill: #FFC0CB;
+	stroke: #FFC0CB;
+	color: #FFC0CB;
+}
+.map-overlay-ennemies {
+	fill: #FF0000;
+	stroke: #FF0000;
+	color: #FF0000;
+}
+.map-overlay-allyAllied {
+	fill: #FFFFFF;
+	stroke: #FFFFFF;
+	color: #FFFFFF;
+}
+.map-overlay-allied {
+	fill: #ffe500;
+	stroke: #ffe500;
+	color: #ffe500;
+}
+.map-overlay-player {
+	fill: #2196f3;
+	stroke: #2196f3;
+	color: #2196f3;
+}
 
 /**
  * Solar system Map
