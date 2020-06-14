@@ -162,6 +162,7 @@ class map {
 
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
+		const oldZoom = 0 + map.zoom;
 		map.zoom += coef;
 
 		if(map.zoom < MAP_MIN_ZOOM || map.zoom > MAP_MAX_ZOOM) {
@@ -172,8 +173,16 @@ class map {
 		window.cancelAnimationFrame(map.zoomFrameId);
 
 		map.zoomFrameId =  window.requestAnimationFrame(() => {
-			document.getElementById('map-global').style.zoom = map.zoom;
-			document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
+			const mapElt = document.getElementById('map-global');
+
+			mapElt.style.zoom = map.zoom;
+			mapElt.style.MozTransform = 'scale(' + map.zoom + ')';
+
+			map.oldPos[0] = map.oldPos[0] - (1/oldZoom * mapPrevMouse[0]) + (1/map.zoom * mapPrevMouse[0]);
+			map.oldPos[1] = map.oldPos[1] - (1/oldZoom * mapPrevMouse[1]) + (1/map.zoom * mapPrevMouse[1]);
+
+			mapElt.style.left =  Math.round(map.oldPos[0]) + 'px';
+			mapElt.style.top =  Math.round(map.oldPos[1]) + 'px';
 
 			map.updateSectorVisibility();
 		});
@@ -239,12 +248,6 @@ class map {
 		}
 		if(parseInt(pos[1]) > 0) {
 			pos[1] = 0;
-		}
-		if(parseInt(pos[0]) < (document.documentElement.clientWidth-MAP_SIZE_WIDTH*map.zoom)) {
-			pos[0] = document.documentElement.clientWidth-MAP_SIZE_WIDTH*map.zoom;
-		}
-		if(parseInt(pos[1]) < (document.documentElement.clientHeight-MAP_SIZE_HEIGHT*map.zoom)) {
-			pos[1] = document.documentElement.clientHeight-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
 		if(pos[0] === map.oldPos[0] && pos[1] === map.oldPos[1]) {

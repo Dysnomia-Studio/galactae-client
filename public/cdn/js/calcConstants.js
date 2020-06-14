@@ -541,7 +541,7 @@ const MAP_STAR_SIZE_RATIO = 0.08;
 
 const MAP_MIN_ZOOM = 0.4;
 const MAP_MAX_ZOOM = 1.75;
-const MAP_ZOOM_COEF = 0.03;
+const MAP_ZOOM_COEF = 0.05;
 const MAP_ZOOM_COEF_MOBILE_MAX = 0.1;
 
 const MAP_4K_LOADER_WIDTH = 1920;
