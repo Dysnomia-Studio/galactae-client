@@ -37,6 +37,11 @@ class InfluenceZones {
 			return;
 		}
 
+		const currPlanet = document.getElementById('currPlanet');
+		if(currPlanet !== null) {
+			currPlanet.remove();
+		}
+
 		const overlayGroup = document.getElementById('map-global-overlay');
 
 		map.points = Array.from(new Set(map.points));
@@ -90,5 +95,17 @@ class InfluenceZones {
 				}
 			}
 		}
+
+		// Current planet (blue circle)
+		const currPlanetLegend = ui.createSVGElt('circle', {
+			id: 'currPlanet',
+			cx: Math.round(parseFloat(planetData.galacticPos[0])/10 * MAP_SIZE_WIDTH),
+			cy: Math.round(parseFloat(planetData.galacticPos[1])/10 * MAP_SIZE_HEIGHT),
+			r: 17,
+			stroke: '#5ae4ff',
+			'stroke-width': 1,
+			fill: 'transparent',
+		});
+		document.getElementById('map-global').appendChild(currPlanetLegend);
 	}
 }
