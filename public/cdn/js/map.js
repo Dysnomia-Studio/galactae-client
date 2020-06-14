@@ -39,6 +39,14 @@ class map {
 
 		map.oldPos = [0,0];
 
+		if(!map.influenceZones) {
+			map.influenceZones = {};
+		}
+
+		if(!map.points) {
+			map.points = [];
+		}
+
 		/**
 		 * Load XML
 		 */
@@ -370,6 +378,9 @@ class map {
 		ui.mapChat = (document.getElementById('hud-chat').style.display === 'block');
 		ui.closeTab('#hud-chat',false);
 		ui.chat = false;
+
+		// On demande la mise à jour des zones d'influence au serveur
+		socket.emit('global-ask-influenceData', webSockets.getUserData());
 	}
 
 	/**
@@ -403,6 +414,7 @@ class map {
 	static resetMaps() {
 		/* Hide all maps */
 		ui.hide('#map-global');
+		ui.hide('#map-global-legend');
 		ui.hide('#map-address');
 		ui.hide('#map-system');
 
@@ -740,14 +752,6 @@ class map {
 		// Get XML
 		const systemList = map.xmlDoc[sector].querySelectorAll('sy');
 
-		function makeSVGElt(tagName, args) {
-			const el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
-			for (const i in args) {
-				el.setAttribute(i, args[i]);
-			}
-			return el;
-		}
-
 		// Generate Content
 		for(let i=0; i<systemList.length; i++) {
 			const starList = systemList[i].querySelectorAll('st');
@@ -768,7 +772,7 @@ class map {
 			const sectorAddress = x + '-' + y;
 			let sector = document.getElementById(sectorAddress);
 			if(!sector) {
-				sector = makeSVGElt('g', {
+				sector = ui.createSVGElt('g', {
 					id: sectorAddress,
 				});
 				sector.setAttribute('x', sectorAddress.split('-')[0]);
@@ -776,23 +780,16 @@ class map {
 				document.getElementById('map-global').appendChild(sector);
 			}
 
-			if(GameMap.getSystemFromAdress(planetData.address) === systemList[i].id) {
-				const currPlanetLegend = makeSVGElt('circle', {
-					id: 'currPlanet',
-					cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
-					cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
-					r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
-					stroke: '#0EC6C6',
-					'stroke-width': 1,
-				});
-				sector.appendChild(currPlanetLegend);
-			}
+			const cx = Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH);
+			const cy = Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT);
+
+			map.points.push([cx, cy]);
 
 			// Draw planet
-			const circle = makeSVGElt('circle', {
+			const circle = ui.createSVGElt('circle', {
 				id: systemList[i].id,
-				cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
-				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
+				cx,
+				cy,
 				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
 				fill: 'url(#' + starBType + ')'});
 			sector.appendChild(circle);
@@ -809,6 +806,8 @@ class map {
 		}
 
 		map.updateSectorVisibility();
+
+		InfluenceZones.drawInfluenceZones();
 	}
 
 	/**
@@ -852,5 +851,6 @@ class map {
 		map.resetMaps();
 		map.currentAddress = address;
 		ui.show('#map-global');
+		ui.show('#map-global-legend');
 	}
 }

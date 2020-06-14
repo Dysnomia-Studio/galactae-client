@@ -48,6 +48,10 @@ class webSockets {
 
 			map.openSolarSystemMap(system);
 		});
+		socket.on('map-influence-zones', (data) => {
+			map.influenceZones = data;
+			InfluenceZones.drawInfluenceZones();
+		});
 
 		//Sync the units data
 		socket.on('units-recieve-data',function(data) {

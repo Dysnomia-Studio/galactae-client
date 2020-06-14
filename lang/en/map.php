@@ -11,6 +11,13 @@
 	define('MAP_PLANET_INFO_PLANET', 'Planet');
 	define('MAP_PLANET_INFO_POINTS', 'Points');
 	define('MAP_PLANET_INFO_LASTREPORTS', 'Last reports');
+
+	define('MAP_INF_ZONES_TITLE', 'Influence Zones:');
+	define('MAP_INF_ZONES_PLAYER', 'YOUR PLANETS');
+	define('MAP_INF_ZONES_ALLIES', 'ALLIANCE');
+	define('MAP_INF_ZONES_ALLYALLIES', 'ALLIANCE PACTS');
+	define('MAP_INF_ZONES_ENNEMIES', 'ALLIANCE ENNEMIES');
+	define('MAP_INF_ZONES_ALLIEDANDENNEMIES', 'ALLIANCE PACTS AND ENNEMIES');
 ?>
 <script type="text/javascript">
 var translate = translate || {};

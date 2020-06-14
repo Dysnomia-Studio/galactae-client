@@ -136,6 +136,13 @@ class ui {
 		return button;
 	}
 
+	static createSVGElt(tagName, args) {
+		const el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
+		for (const i in args) {
+			el.setAttribute(i, args[i]);
+		}
+		return el;
+	}
 	static openProfile(username) {
 		const win = window.open('https://galactae.eu/profil?u='+ username, '_blank');
 		win.focus();

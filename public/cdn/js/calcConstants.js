@@ -1272,6 +1272,7 @@ const neededCache = [
 	cdnURL + 'js/DependencyEngine.js',
 	cdnURL + 'js/Fleets.js',
 	cdnURL + 'js/GameMap.js',
+	cdnURL + 'js/InfluenceZones.js',
 	cdnURL + 'js/map.js',
 	cdnURL + 'js/misc.js',
 	cdnURL + 'js/notifications.js',
