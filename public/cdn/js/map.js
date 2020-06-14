@@ -414,6 +414,7 @@ class map {
 	static resetMaps() {
 		/* Hide all maps */
 		ui.hide('#map-global');
+		ui.hide('#map-global-legend');
 		ui.hide('#map-address');
 		ui.hide('#map-system');
 
@@ -805,6 +806,8 @@ class map {
 		}
 
 		map.updateSectorVisibility();
+
+		InfluenceZones.drawInfluenceZones();
 	}
 
 	/**
@@ -827,8 +830,6 @@ class map {
 			const newY = (1/map.zoom)*document.documentElement.clientHeight/2 - (MAP_SIZE_HEIGHT * systemXML.getAttribute('y')/10);
 
 			map.moveUI([newX, newY]);
-
-			InfluenceZones.drawInfluenceZones();
 		});
 	}
 
@@ -850,5 +851,6 @@ class map {
 		map.resetMaps();
 		map.currentAddress = address;
 		ui.show('#map-global');
+		ui.show('#map-global-legend');
 	}
 }
