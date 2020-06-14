@@ -997,6 +997,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/GameMap.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/InfluenceZones.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>

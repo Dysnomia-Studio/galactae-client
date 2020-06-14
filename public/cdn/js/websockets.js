@@ -50,7 +50,7 @@ class webSockets {
 		});
 		socket.on('map-influence-zones', (data) => {
 			map.influenceZones = data;
-			map.drawInfluenceZones();
+			InfluenceZones.drawInfluenceZones();
 		});
 
 		//Sync the units data
