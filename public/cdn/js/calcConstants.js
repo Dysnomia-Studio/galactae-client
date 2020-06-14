@@ -586,7 +586,7 @@ const researchPos = {
 	cp_molecular_compression: 	[5333,5500],
 	// Armes
 	wep_railgun:				[4000,8500],
-	wep_nuke:					[5250,9000],
+	wep_nuke:					[5000,9000],
 	wep_laser:					[4000,7000],
 	wep_plasma:					[3666,7333],
 	// Shields & Defenses
@@ -614,7 +614,7 @@ const researchPos = {
 	carrier_small: 				[5000,3500],
 	carrier_medium: 			[5000,3000],
 	// Colony ship
-	colony_ship: 				[3000,4900],
+	colony_ship: 				[3000,5500],
 	heavy_colony_ship:  		[2666,4900],
 	// Satellites
 	wep_sat_ag1:				[6000,6500],
@@ -653,7 +653,6 @@ const researchList = {
 	]},
 	prop_plasma:				{ cost: 2500, 	parents: [
 		{ type: 'research', name: 'prop_ions' },
-		{ type: 'research', name: 'misc_phyQuantique' },
 	]},
 	prop_vsl: 					{ cost: 15000, 	parents: [
 		{ type: 'research', name: 'prop_ions' },
@@ -691,7 +690,10 @@ const researchList = {
 	]},
 	// Armes
 	wep_railgun:				{ cost: 50, 	parents: [{ type: 'research', name: 'phyContemporaine' }] },
-	wep_nuke:					{ cost: 180, 	parents: [{ type: 'research', name: 'wep_railgun' }] },
+	wep_nuke:					{ cost: 180, 	parents: [
+		{ type: 'research', name: 'misc_phyQuantique' },
+		{ type: 'building', id: 8, lvl: 5 },
+	]},
 	wep_laser:					{ cost: 260, 	parents: [
 		{ type: 'research', name: 'wep_railgun' },
 		{ type: 'research', name: 'misc_phyQuantique' },
@@ -762,12 +764,12 @@ const researchList = {
 	carrier_medium: 			{ cost: 2850, 	parents: [{ type: 'research', name: 'carrier_small' }] },
 	// Colony ship
 	colony_ship:  				{ cost: 3500,	parents: [
-		{ type: 'research', name: 'prop_vsl' },
 		{ type: 'research', name: 'misc_colony' },
 		{ type: 'research', name: 'cp_molecular_compression' },
 		{ type: 'building', id: 11, lvl: 10 },
 	]},
 	heavy_colony_ship: 			{ cost: 8500, 	parents: [
+		{ type: 'research', name: 'prop_vsl' },
 		{ type: 'research', name: 'colony_ship' },
 		{ type: 'building', id: 11, lvl: 15 },
 	]},
@@ -789,10 +791,12 @@ const researchList = {
 	// Autres recherches
 	misc_astronomie:			{ cost: 45, 	parents: [{ type: 'research', name: 'phyContemporaine' }] },
 	misc_telemetrie: 			{ cost: 90, 	parents: [{ type: 'research', name: 'misc_astronomie' }] },
-	misc_advTelemetrie:			{ cost: 320, 	parents: [{ type: 'research', name: 'misc_telemetrie' }] },
+	misc_advTelemetrie:			{ cost: 320, 	parents: [
+		{ type: 'research', name: 'misc_telemetrie' },
+		{ type: 'building', id: 9, lvl: 1 },
+	] },
 	misc_mecStellaire: 			{ cost: 600, 	parents: [
 		{ type: 'research', name: 'misc_calcGravit' },
-		{ type: 'research', name: 'misc_phySolaire' },
 	]},
 	misc_phyQuantique: 			{ cost: 120, 	parents: [
 		{ type: 'research', name: 'phyContemporaine' },
