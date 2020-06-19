@@ -435,16 +435,18 @@ class ui {
 	 * Tout les événements lorsqu'une touche est appuyée
 	 */
 	static keydown(e) {
-		if(e.target.tagName.toLowerCase() === 'input') { return; }
+		if(e.target.tagName.toLowerCase() === 'input') {
+			// Save nom planete
+			if(e.which === KEYBOARD.ENTER && ui.renaming === true){
+				ui.planetNameSwitchToSpan();
+			}
+
+			return;
+		}
 
 		// Fermer une fenêtre
 		if(e.which === settings.get('keyboard_escape')){ // Echap
 			ui.closeWindow();
-		}
-
-		// Save nom planete
-		if(e.which === KEYBOARD.ENTER && ui.renaming === true){
-			ui.planetNameSwitchToSpan();
 		}
 
 		// Historique chat
