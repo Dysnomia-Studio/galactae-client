@@ -305,13 +305,13 @@
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#ally" id="hud-bottom-button-ally"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
+			<a href="#ally" id="hud-bottom-button-alliances"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
+			<a href="#rapports" id="hud-bottom-button-report"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>

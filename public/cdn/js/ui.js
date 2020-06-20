@@ -572,6 +572,17 @@ class ui {
 		triggerFleetActive('build', 'units');
 		triggerFleetActive('orbit', 'fleets');
 		triggerFleetActive('move', 'radar');
+
+		function triggerPanelActive(name) {
+			if(document.getElementById(name + '-panel').style.display === 'block') {
+				document.getElementById('hud-bottom-button-' + name).classList.add('hud-bottom-active');
+			} else {
+				document.getElementById('hud-bottom-button-' + name).classList.remove('hud-bottom-active');
+			}
+		}
+
+		triggerPanelActive('alliances');
+		triggerPanelActive('report');
 	}
 
 	/********** PLANET NAME **********/
@@ -702,21 +713,25 @@ class ui {
 			ui.fleetPanelToggle('fleet-move');
 		});
 
-		document.getElementById('hud-bottom-button-ally').addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-alliances').addEventListener('click', function() {
 			if(!ui.allys) {
 				ui.show('#alliances-panel');
 			} else {
 				ui.hide('#alliances-panel');
 			}
 
+			ui.updateBottom();
+
 			ui.allys = !ui.allys;
 		});
-		document.getElementById('hud-bottom-button-rapports').addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-report').addEventListener('click', function() {
 			if(!ui.reports) {
 				ui.show('#report-panel');
 			} else {
 				ui.hide('#report-panel');
 			}
+
+			ui.updateBottom();
 
 			ui.reports = !ui.reports;
 		});
