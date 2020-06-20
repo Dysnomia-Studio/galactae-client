@@ -2,6 +2,7 @@ class Alliances {
 	static loadUI() {
 		document.getElementById('alliances-close').addEventListener('click', () => {
 			ui.hide('#alliances-panel');
+			ui.updateBottom();
 		});
 
 		// Menu
