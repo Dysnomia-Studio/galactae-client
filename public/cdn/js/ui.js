@@ -546,7 +546,8 @@ class ui {
 	 */
 	static updateBottom() {
 		function triggerActive(name) {
-			if(document.getElementById('hud-' + name).style.display === 'block') {
+			const display = document.getElementById('hud-' + name).style.display;
+			if(display === '' || display === 'block') {
 				document.getElementById('hud-bottom-button-' + name).classList.add('hud-bottom-active');
 			} else {
 				document.getElementById('hud-bottom-button-' + name).classList.remove('hud-bottom-active');
