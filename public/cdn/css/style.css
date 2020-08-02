@@ -2042,6 +2042,55 @@ a[class="research-search"]:hover {
 
 	z-index: -1;
 }
+#map-global-overlay {
+	opacity: 0.25;
+}
+.map-overlay-alliedAndEnnemies {
+	fill: #FFC0CB;
+	stroke: #FFC0CB;
+	color: #FFC0CB;
+}
+.map-overlay-ennemies {
+	fill: #FF0000;
+	stroke: #FF0000;
+	color: #FF0000;
+}
+.map-overlay-allyAllied {
+	fill: #FFFFFF;
+	stroke: #FFFFFF;
+	color: #FFFFFF;
+}
+.map-overlay-allied {
+	fill: #ffe500;
+	stroke: #ffe500;
+	color: #ffe500;
+}
+.map-overlay-player {
+	fill: #2196f3;
+	stroke: #2196f3;
+	color: #2196f3;
+}
+.map-overlay-legend {
+	color: #0ec6c6;
+	font-size: 1.5em;
+	margin-bottom: 0.2em;
+}
+#map-global-legend {
+	position: fixed;
+	right: 0;
+	bottom: 3.5em;
+
+	text-align: right;
+
+	margin: 0;
+	padding: 0;
+	padding-right: 3px;
+
+	font-weight: bold;
+}
+#map-global-legend li {
+	list-style: none;
+}
 
 /**
  * Solar system Map

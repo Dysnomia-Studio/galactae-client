@@ -305,13 +305,13 @@
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#ally" id="hud-bottom-button-ally"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
+			<a href="#ally" id="hud-bottom-button-alliances"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
+			<a href="#rapports" id="hud-bottom-button-report"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>
@@ -481,7 +481,20 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				<stop stop-opacity="0" stop-color="#8e6f27" offset="1"></stop>
 			</radialGradient>
 		</defs>
+		<g id="map-global-overlay"></g>
 	</svg>
+
+	<ul id="map-global-legend">
+		<ul>
+			<li class="map-overlay-legend"><?= MAP_INF_ZONES_TITLE ?></li>
+			<li class="map-overlay-player"><?= MAP_INF_ZONES_PLAYER ?> &#11035;</li>
+			<li class="map-overlay-allied"><?= MAP_INF_ZONES_ALLIES ?> &#11035;</li>
+			<li class="map-overlay-allyAllied"><?= MAP_INF_ZONES_ALLYALLIES ?> &#11035;</li>
+			<!--<li class="map-overlay-ennemies"><?= MAP_INF_ZONES_ENNEMIES ?> &#11035;</li>
+			<li class="map-overlay-alliedAndEnnemies"><?= MAP_INF_ZONES_ALLIEDANDENNEMIES ?> &#11035;</li>-->
+		</ul>
+	</ul>
+
 	<div id="map-system" class="opening view-2D">
         <div id="map-system-universeBack">
           <div id="map-system-galaxyBack">
@@ -973,6 +986,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/remove-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
+<script src="https://unpkg.com/delaunator@4.0.1/delaunator.min.js"></script>
+
 <?php /* Client Classes */ ?>
 
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
@@ -994,6 +1009,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/GameMap.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/InfluenceZones.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>

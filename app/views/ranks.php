@@ -35,15 +35,24 @@ echo '<table style="width: 100%; text-align: center;">
 	</tr>';
 
 foreach ($pageData['ranks'] as $player) {
+	if(substr($player['name'],0,5) === '[NPC]') { // @TODO: translate
+		$player['name'] = '<span style="color: red; font-weight: bold;">'.$player['name'].'</span>';
+	}
+
 	if($player['name'] === $userData['user_name']) {
 		$player['name'] = '<em>'.$userData['user_name'].'</em>';
 	}
 
+	$rank = '-';
+	if($player['rank'] > 1) {
+		$rank = ($player['rank'] - 1);
+	}
+
 	echo '
 	<tr>
-		<td>'.$player['rank'].'</td>
+		<td>'.$rank.'</td>
 		<td class="rank-name">'.$player['name'].'</td>
-		<td>'.$player['points'].'</td>
+		<td>'.number_format($player['points'], 0, ',', ' ').'</td>
 		<td>'.$player['planets'].'</td>';
 
 	if(!isset($player['ally']) || $player['ally']==null) {

@@ -39,7 +39,7 @@ foreach ($pageData['ranks'] as $ally) {
 	<tr>
 		<td>'.$ally['rank'].'</td>
 		<td class="rank-name">'.$ally['name'].'</td>
-		<td>'.$ally['points'].'</td>
+		<td>'.number_format($ally['points'], 0, ',', ' ').'</td>
 		<td>'.$ally['planetscount'].'</td>
 		<td>'.$ally['memberscount'].'</td>
 	</tr>';

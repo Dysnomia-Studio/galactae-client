@@ -253,7 +253,7 @@ class units extends _Units {
 		document.getElementById('fleet-newFleet-panel-close').addEventListener('click', () => {
 			ui.hide('#fleet-newFleet-panel');
 			preventUnitBuildPanelClose = false;
-			units.regenerateSelectFleetLists();
+			units.regenerateSelectFleetLists(planetData.address);
 		});
 
 		document.getElementById('fleet-ship-build-upgrade').addEventListener('click', () => {
@@ -774,12 +774,12 @@ class units extends _Units {
 	/**
 	 * Regenerate the fleet list (select in unit build UI)
 	 */
-	static regenerateSelectFleetLists() {
+	static regenerateSelectFleetLists(address) {
 		// Fleet list
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML = unitBuildSelectHeader;
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; } // Def fleet
-			if(units.fleetList[i].position !== planetData.address || units.fleetList[i].orbitPosition !== 0) { continue; } // Moving/Out fleets
+			if(units.fleetList[i].position !== address || units.fleetList[i].orbitPosition !== 0) { continue; } // Moving/Out fleets
 
 			document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
 					document.getElementById('fleet-ship-build-fleetSelect').innerHTML + '<option id="' + i + '">' + units.fleetList[i].name + '</option>';
@@ -813,7 +813,7 @@ class units extends _Units {
 		document.getElementById('fleet-ship-build-count').value = '';
 		document.getElementById('fleet-ship-build-count').setAttribute('placeholder','Max: ' + units.getMaxShips());
 
-		units.regenerateSelectFleetLists();
+		units.regenerateSelectFleetLists(planetData.address);
 
 		if(units.list[units.currUnit].shipType === 'SHIP_DEF') {
 			ui.hide('#fleet-ship-build-fleetSelect');
@@ -1706,11 +1706,13 @@ class units extends _Units {
 		Array.from(document.getElementsByClassName('fleet-show-mergeInto')).forEach((elt) => elt.addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
-			units.regenerateSelectFleetLists();
-
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
+
+			const fleet = units.fleetList[fleetNb];
+
+			units.regenerateSelectFleetLists(fleet.position);
 
 			document.getElementById('fleet-merge-name').innerText = units.getFleetData(fleetId).name;
 
@@ -1724,11 +1726,13 @@ class units extends _Units {
 		Array.from(document.getElementsByClassName('fleet-show-transferFuel')).forEach((elt) => elt.addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
-			units.regenerateSelectFleetLists();
-
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
+
+			const fleet = units.fleetList[fleetNb];
+
+			units.regenerateSelectFleetLists(fleet.position);
 
 			document.querySelector('#fleet-transferFuel-panel option[id="' + fleetNb + '"]').disabled = true;
 			units.currFleet=fleetId;
@@ -1744,11 +1748,13 @@ class units extends _Units {
 		Array.from(document.getElementsByClassName('fleet-show-transferUnits')).forEach((elt) => elt.addEventListener('click', () => {
 			if(preventFleetHUDClosing) { return; }
 
-			units.regenerateSelectFleetLists();
-
 			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
 			if(fleetNb < 0) { return; }
+
+			const fleet = units.fleetList[fleetNb];
+
+			units.regenerateSelectFleetLists(fleet.position);
 
 			document.querySelector('#fleet-units-transfer-panel option[id="' + fleetNb + '"]').disabled = true;
 			units.currFleet=fleetId;
@@ -1764,8 +1770,6 @@ class units extends _Units {
 
 		Array.from(document.getElementsByClassName('fleet-show-assignTactic')).forEach((elt) => elt.addEventListener('click', function(event) {
 			if(preventFleetHUDClosing) { event.preventDefault(); }
-
-			units.regenerateSelectFleetLists();
 
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			units.currFleet = fleetId;
