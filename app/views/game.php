@@ -527,6 +527,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
     		<span id="map-move-panel-message">Deplacement vers <em>PlanetName</em> (<em>Joueur</em>)</span><br/>
     		<br/>
     		Temps: ~<span id="map-move-panel-time">12:34:56</span><br/>
+    		Habitable: <span id="map-move-panel-habitability">No</span><br/>
     		&sup3;He: <span id="map-move-panel-fuel">12.34Kt (56% du reservoir)</span><br/>
     		<div id="map-move-panel-hangar-general">Hangar: <span id="map-move-panel-hangar">0/0</span></div><br/>
     	</div>

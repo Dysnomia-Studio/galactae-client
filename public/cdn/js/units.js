@@ -1975,6 +1975,12 @@ class units extends _Units {
 			;
 		}
 
+		if(map.planetData[system][units.planetTarget].planetType < 100) {
+			document.getElementById('map-move-panel-habitability').innerHTML = '<span style="color: green;">' + translate['ui']['CONFIRM_YES'] + '</span>';
+		} else {
+			document.getElementById('map-move-panel-habitability').innerHTML = '<span style="color: red;">' + translate['ui']['CONFIRM_NO'] + '</span>';
+		}
+
 		document.getElementById('map-move-panel-move').value = translate['messages']['movePanelBtn'][moveType];
 
 		// Display panel
