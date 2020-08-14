@@ -11,7 +11,7 @@ define('ALLY_PLY_NAME', 'Player Name:');
 define('ALLY_DESC', 'Description:');
 define('ALLY_EDIT', 'Edit');
 define('ALLY_EDIT_CANCEL', 'Cancel Edit');
-define('ALLY_EDIT_SAVE', 'Save Edit');
+define('ALLY_EDIT_SAVE', 'Save');
 define('ALLY_DISSOLVE', 'Dissolve alliance');
 define('ALLY_QUIT', 'Quit alliance');
 define('ALLY_CREATE', 'Create alliance');

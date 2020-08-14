@@ -7,7 +7,7 @@
 	define('FLEET_TACTICS','Tactics');
 	define('FLEET_BUILD_ALL','All types');
 	define('FLEET_BUILD_DEF','Orbital Defenses');
-	define('FLEET_BUILD_CUISADER','Cruisaders');
+	define('FLEET_BUILD_CUISADER','Battlecruiser');
 	define('FLEET_BUILD_CUIRASSE','Battleships');
 	define('FLEET_BUILD_FIGHTER','Fighters');
 	define('FLEET_BUILD_CORVET','Corvette');
@@ -24,7 +24,7 @@
 	define('FLEET_CREATE','Create');
 	define('SHIP_NAME','Name');
 	define('SHIP_WEAPONS','Weapons');
-	define('SHIP_SHIELD','Defences');
+	define('SHIP_SHIELD','Defenses');
 	define('SHIP_ROLE','Role');
 	define('SHIP_SPEEDS','Engine(s)');
 	define('SHIP_SUBSPEED','Interplanetary');

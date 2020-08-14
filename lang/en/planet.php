@@ -25,8 +25,8 @@
 	define('COST','Next level cost');
 
 	// == Buildings == \\
-	define('PLANET_BUILDING','Ground Build');
-	define('ORBITAL_BUILDING','Orbital Build');
+	define('PLANET_BUILDING','Ground Buildings');
+	define('ORBITAL_BUILDING','Orbital Buildings');
 ?>
 <script type="text/javascript">
 var translate = translate || {};

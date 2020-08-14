@@ -5,8 +5,8 @@
 
 	define('MAP_FOCUS_CURRENT_SYSTEM','Center on current system');
 
-	define('MAP_PLANET_INFO_ADRESS', 'Adress');
-	define('MAP_PLANET_INFO_ALLY', 'Ally');
+	define('MAP_PLANET_INFO_ADRESS', 'Address');
+	define('MAP_PLANET_INFO_ALLY', 'Alliance');
 	define('MAP_PLANET_INFO_PLAYER', 'Player');
 	define('MAP_PLANET_INFO_PLANET', 'Planet');
 	define('MAP_PLANET_INFO_POINTS', 'Points');
