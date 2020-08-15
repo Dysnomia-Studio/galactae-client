@@ -22,40 +22,73 @@ define('ALLY_MEMBERS_PERMS_FOUNDER', 'Founder');
 define('ALLY_MEMBERS_PERMS_LEADER', 'Leader');
 define('ALLY_MEMBERS_PERMS_DIPLOMACY', 'Diplomacy');
 define('ALLY_MEMBERS_PERMS_NONE', 'No permission');
+
+// Pacts
+define('ALLY_PACT_NO', 'No pact');
+define('ALLY_PACT_CURRENT', 'Pacts:');
+
+define('ALLY_PACT_ASKTOJOIN_NO', 'No incoming pact invitation');
+define('ALLY_PACT_ASKTOJOIN_CURRENT', 'Incoming pact invitation(s):');
+
+define('ALLY_PACT_INVITATIONS_NO', 'No pact invitation');
+define('ALLY_PACT_INVITATIONS_CURRENT', 'Pact invitation(s):');
+
+define('ALLY_MEMBERS_ASKTOJOIN_NO', 'No player asked to join alliance');
+define('ALLY_MEMBERS_ASKTOJOIN_CURRENT', 'Player(s) that asked to join alliance:');
+
+define('ALLY_MEMBERS_INVITATIONS_NO', 'No player invited to join alliance');
+define('ALLY_MEMBERS_INVITATIONS_CURRENT', 'Player(s) invited to join alliance:');
+
+define('ALLY_NOALLY_ASKTOJOIN_NO', 'You have not applied to alliance');
+define('ALLY_NOALLY_ASKTOJOIN_CURRENT', 'Alliance(s) you applied to:');
+
+define('ALLY_NOALLY_INVITATIONS_NO', 'No invitation to join alliance');
+define('ALLY_NOALLY_INVITATIONS_CURRENT', 'Invitation(s) to join an alliance:');
+
+define('ALLY_ASKTOJOIN', 'Ask to join');
+define('ALLY_RESULTS', 'No results');
+define('ALLY_RESULTS_NO', 'Results:');
+
+define('ALLY_QUIT_CONFIRM', 'Do you really want to quit this alliance ?');
+define('ALLY_DISSOLVE_CONFIRM', 'Do you really want to dissolve this alliance ?');
+define('ALLY_STOPPACT_CONFIRM', 'Do you really want to stop this pact ?');
+
+define('ALLY_ABANDON_FOUNDER_CONFIRM', 'Do you really want to abandon your founder role and give it to %playerName% ?');
+define('ALLY_KICK_CONFIRM', 'Do you really want to kick %playerName% from the alliance ?');
 ?>
 <script type="text/javascript">
 var translate = translate || {};
 
 translate['alliance'] = {
-	'pact-no': 'No pact',
-	'pact-current': 'Pacts:',
+	'pact-no': "<?= ALLY_PACT_NO ?>",
+	'pact-current': "<?= ALLY_PACT_CURRENT ?>",
 
-	'pact-askToJoin-no': 'No incoming pact invitation',
-	'pact-askToJoin-current': 'Incoming pact invitation(s):',
+	'pact-askToJoin-no': "<?= ALLY_PACT_ASKTOJOIN_NO ?>",
+	'pact-askToJoin-current': "<?= ALLY_PACT_ASKTOJOIN_CURRENT ?>",
 
-	'pact-invitations-no': 'No pact invitation',
-	'pact-invitations-current': 'Pact invitation(s):',
+	'pact-invitations-no': "<?= ALLY_PACT_INVITATIONS_NO ?>",
+	'pact-invitations-current': "<?= ALLY_PACT_INVITATIONS_CURRENT ?>",
 
-	'members-askToJoin-no': 'No player asked to join alliance',
-	'members-askToJoin-current': 'Player(s) that asked to join alliance:',
+	'members-askToJoin-no': "<?= ALLY_MEMBERS_ASKTOJOIN_NO ?>",
+	'members-askToJoin-current': "<?= ALLY_MEMBERS_ASKTOJOIN_CURRENT ?>",
 
-	'members-invitations-no': 'No player invited to join alliance',
-	'members-invitations-current': 'Player(s) invited to join alliance:',
+	'members-invitations-no': "<?= ALLY_MEMBERS_INVITATIONS_NO ?>",
+	'members-invitations-current': "<?= ALLY_MEMBERS_INVITATIONS_CURRENT ?>",
 
-	'noAlly-askToJoin-no': 'You have not applied to alliance',
-	'noAlly-askToJoin-current': 'Alliance(s) you applied to:',
+	'noAlly-askToJoin-no': "<?= ALLY_NOALLY_ASKTOJOIN_NO ?>",
+	'noAlly-askToJoin-current': "<?= ALLY_NOALLY_ASKTOJOIN_CURRENT ?>",
 
-	'noAlly-invitations-no': 'No invitation to join alliance',
-	'noAlly-invitations-current': 'Invitation(s) to join an alliance:',
+	'noAlly-invitations-no': "<?= ALLY_NOALLY_INVITATIONS_NO ?>",
+	'noAlly-invitations-current': "<?= ALLY_NOALLY_INVITATIONS_CURRENT ?>",
 
-	'askToJoin': 'Ask to join',
-	'results-no': 'No results',
-	'results': 'Results:',
+	'askToJoin': "<?= ALLY_ASKTOJOIN ?>",
+	'results-no': "<?= ALLY_RESULTS ?>",
+	'results': "<?= ALLY_RESULTS_NO ?>",
 
-	'quit-confirm': 'Do you really want to quit this alliance ?',
-	'dissolve-confirm': 'Do you really want to dissolve this alliance ?',
-	'stopPact-confirm': 'Do you really want to stop this pact ?',
-	'abandon-founder-confirm': (playerName) => 'Do you really want to abandon your founder role and give it to '+ playerName + ' ?',
-	'kick-confirm': (playerName) => 'Do you really want to kick ' + playerName + ' from alliance ?',
+	'quit-confirm': "<?= ALLY_QUIT_CONFIRM ?>",
+	'dissolve-confirm': "<?= ALLY_DISSOLVE_CONFIRM ?>",
+	'stopPact-confirm': "<?= ALLY_STOPPACT_CONFIRM ?>",
+	'abandon-founder-confirm': (playerName) => "<?= ALLY_ABANDON_FOUNDER_CONFIRM ?>".replace('%playerName%', playerName),
+	'kick-confirm': (playerName) => "<?= ALLY_KICK_CONFIRM ?>".replace('%playerName%', playerName),
 };
 </script>
