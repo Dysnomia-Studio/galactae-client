@@ -34,6 +34,10 @@ translate['alliance'] = {
 	'kick-confirm': (playerName) => "<?= ALLY_KICK_CONFIRM ?>".replace('%playerName%', playerName),
 };
 
+translate['map'] = {
+	PLANET_INFO_NOREPORTS: "<?= PLANET_INFO_NOREPORTS ?>",
+};
+
 const fleetTranslate = {
 	// Titles
 	'SHIP_TYPE': "<?= FLEET_BUILD_TYPE ?>",

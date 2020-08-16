@@ -18,11 +18,5 @@
 	define('MAP_INF_ZONES_ALLYALLIES', 'ALLIANCE PACTS');
 	define('MAP_INF_ZONES_ENNEMIES', 'ALLIANCE ENNEMIES');
 	define('MAP_INF_ZONES_ALLIEDANDENNEMIES', 'ALLIANCE PACTS AND ENNEMIES');
-?>
-<script type="text/javascript">
-var translate = translate || {};
 
-translate['map'] = {
-	PLANET_INFO_NOREPORTS: 'No reports',
-};
-</script>
+	define('PLANET_INFO_NOREPORTS', 'No reports');
