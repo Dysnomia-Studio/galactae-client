@@ -1542,9 +1542,9 @@ class units extends _Units {
 
 		// Prorité
 		if(type === 'orbit' && fleet.maxFuel > 0 && planetData.highPriorityFleet === fleet.id) {
-			content += '<td class="text-center"><span style="color: #0ec6c6;">✔</span>' + fleetTranslate['priorty-fuel'] + '</td>';
+			content += '<td class="text-center"><span style="color: #0ec6c6;">✔</span>' + fleetTranslate['priority-fuel'] + '</td>';
 		} else if(type === 'orbit' && fleet.maxFuel > 0) {
-			content += '<td class="text-center priority-fleet" id="' + fleet.id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priorty-fuel'] + '</td>';
+			content += '<td class="text-center priority-fleet" id="' + fleet.id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priority-fuel'] + '</td>';
 		} else if(type === 'out') {
 			content += '<td class="text-center">' + fleetTranslate['orbiting'] + ' ' + fleet.position + '</td>'; // @TODO: pname (username) instead of position
 		} else if(type === 'moving') {

@@ -550,12 +550,13 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<div id="fleet-build">
 		<ul id="fleet-build-choice" class="ul-choice-line fleet-ul2">
 			<li shipType="SHIP_ALL" id="fleet-build-all-button" class="ul-choice-line-li-active"><?= FLEET_BUILD_ALL; ?></li>
-			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?= FLEET_BUILD_DEF; ?></li>
-			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?= FLEET_BUILD_FIGHTER; ?></li>
-			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?= FLEET_BUILD_CUISADER; ?></li>
-			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?= FLEET_BUILD_CUIRASSE; ?></li>
-			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?= FLEET_BUILD_CORVET; ?></li>
-			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?= FLEET_BUILD_CARRIER; ?></li>
+			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?= FLEET_TYPE_DEFENSE; ?></li>
+			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?= FLEET_TYPE_FIGHTER; ?></li>
+			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?= FLEET_TYPE_BATTLECRUISER; ?></li>
+			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?= FLEET_TYPE_CUIRASSE; ?></li>
+			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?= FLEET_TYPE_CORVET; ?></li>
+			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?= FLEET_TYPE_CARRIER; ?></li>
+			<li shipType="SHIP_COLONY" id="fleet-build-colony-button"><?= FLEET_TYPE_COLONY; ?></li>
 		</ul>
 		<div id="fleet-build-content">
 			<h2 id="fleet-build-list-empty"><?= FLEET_NO_MODEL; ?></h2>
