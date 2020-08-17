@@ -38,6 +38,10 @@ translate['map'] = {
 	PLANET_INFO_NOREPORTS: "<?= PLANET_INFO_NOREPORTS ?>",
 };
 
+translate['tactic'] = {
+	'orderNew': "<?= TACTIC_NEW_ORDER ?>",
+};
+
 translate['ui'] = {
 	// Day bonus
 	'credits': "<?= UI_CREDITS ?>",
