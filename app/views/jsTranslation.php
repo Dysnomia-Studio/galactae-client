@@ -38,6 +38,19 @@ translate['map'] = {
 	PLANET_INFO_NOREPORTS: "<?= PLANET_INFO_NOREPORTS ?>",
 };
 
+translate['ui'] = {
+	// Day bonus
+	'credits': "<?= UI_CREDITS ?>",
+	'ofHe3': "<?= UI_OFHE3 ?>",
+
+	// Confirm box
+	'CONFIRM_YES': "<?= UI_CONFIRM_YES ?>",
+	'CONFIRM_NO': "<?= UI_CONFIRM_NO ?>",
+
+	'no-ally': "<?= UI_NO_ALLY ?>",
+	'no-player': "<?= UI_NO_PLAYER ?>",
+};
+
 const fleetTranslate = {
 	// Titles
 	'SHIP_TYPE': "<?= FLEET_BUILD_TYPE ?>",

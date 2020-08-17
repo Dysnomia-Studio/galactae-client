@@ -52,20 +52,14 @@
 	// A no-bug measure
 	define('META_DESC','');
 	define('META_KEYS','');
-?>
-<script type="text/javascript">
-var translate = translate || {};
 
-translate['ui'] = {
 	// Day bonus
-	'credits': 'galactic credits',
-	'ofHe3': 'of Helium 3',
+	define('UI_CREDITS', 'galactic credits');
+	define('UI_OFHE3', 'of Helium 3');
 
 	// Confirm box
-	'CONFIRM_YES': 'Yes',
-	'CONFIRM_NO': 'No',
+	define('UI_CONFIRM_YES', 'Yes');
+	define('UI_CONFIRM_NO', 'No');
 
-	'no-ally': 'No alliance',
-	'no-player': 'No player',
-};
-</script>
+	define('UI_NO_ALLY', 'No alliance');
+	define('UI_NO_PLAYER', 'No player');
