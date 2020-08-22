@@ -24,11 +24,7 @@ class Trading extends _Trading {
 	}
 
 	static generateUniqueDetail(resourceName, value, negatif) {
-		let details = ' ' +  resourcesIcons[resourceName] + ':';
-
-		if(negatif) {
-			details += '-';
-		}
+		const details = ' ' +  resourcesIcons[resourceName] + ':';
 
 		let unit = 't';
 		if(resourceName !== 'credits' && resourceName !== 'planets') {
@@ -38,17 +34,20 @@ class Trading extends _Trading {
 		return details + GetBetterUnit(value);
 	}
 
-	static generateDetailText(resDestination, resOrigin, destination) {
-		let details = '';
+	static generateDetailText(resDestination, resOrigin) {
+		let details = '<div>→ ';
 
 		for(const resourceName in resDestination) {
-			details += Trading.generateUniqueDetail(resourceName, resDestination[resourceName], destination);
+			details += Trading.generateUniqueDetail(resourceName, resDestination[resourceName]);
 		}
+
+		details += '</div><div>← ';
 
 		for(const resourceName in resOrigin) {
-			details += Trading.generateUniqueDetail(resourceName, resOrigin[resourceName], !destination);
+			details += Trading.generateUniqueDetail(resourceName, resOrigin[resourceName]);
 		}
 
+		details += '</div>';
 
 		return details;
 	}
@@ -137,6 +136,9 @@ class Trading extends _Trading {
 	static showPanel(type) {
 		let tradeList = [];
 
+		ui.hide('#trading-list-date');
+		document.getElementById('trading-list').classList.remove('trading-list-ended');
+
 		switch (type) {
 			case 'public':
 				tradeList = Trading.list.filter((elt) => elt.prev_user !== userData.username && !elt.accepted && !elt.aborted);
@@ -148,7 +150,9 @@ class Trading extends _Trading {
 				tradeList = Trading.list.filter((elt) => elt.accepted && !elt.done);
 				break;
 			case 'ended':
-				tradeList = Trading.list.filter((elt) => elt.done || elt.aborted);
+				tradeList = Trading.list.filter((elt) => elt.done || elt.aborted).sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime());
+				ui.show('#trading-list-date');
+				document.getElementById('trading-list').classList.add('trading-list-ended');
 				break;
 			default:
 				// Do nothing here
@@ -195,6 +199,11 @@ class Trading extends _Trading {
 			tr.appendChild(detailsTd);
 			tr.appendChild(ui.createTdText(Trading.generateDistanceText(tradeOrder)));
 			tr.appendChild(ui.createTdText(Trading.generateRepetitionText(tradeOrder)));
+
+			if(type === 'ended') {
+				const date = new Date(tradeOrder.date);
+				tr.appendChild(ui.createTdText(date.toLocaleDateString() + ' ' + date.toLocaleTimeString()));
+			}
 
 			table.append(tr);
 		}

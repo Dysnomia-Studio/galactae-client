@@ -3539,4 +3539,9 @@ a[class="research-search"]:hover {
  */
 #trading-list td, #trading-list th {
 	width: 19%;
+	white-space: break-spaces;
+	padding-bottom: 0.5em;
+}
+.trading-list-ended td, .trading-list-ended th {
+	width: 16% !important;
 }

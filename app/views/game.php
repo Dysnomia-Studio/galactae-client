@@ -1025,6 +1025,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 					<th id="trading-list-details"><?= TRADING_DETAILS; ?></th>
 					<th id="trading-list-distance"><?= TRADING_DISTANCE; ?></th>
 					<th id="trading-list-repetition"><?= TRADING_REPETITION; ?></th>
+					<th id="trading-list-date"><?= TRADING_DATE; ?></th>
 				</tr>
 			</thead>
 			<tbody id="trading-list-tbody"></tbody>

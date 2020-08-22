@@ -9,6 +9,7 @@ define('TRADING_ALLIANCE', 'Alliance');
 define('TRADING_DETAILS', 'Details');
 define('TRADING_DISTANCE', 'Time');
 define('TRADING_REPETITION', 'Repetition');
+define('TRADING_DATE', 'Date');
 
 define('TRADING_NO_ORDER', 'No trading order');
 ?>
