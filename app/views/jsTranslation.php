@@ -2,14 +2,23 @@
 var translate = translate || {};
 
 translate['alliance'] = {
-	'pact-no': "<?= ALLY_PACT_NO ?>",
-	'pact-current': "<?= ALLY_PACT_CURRENT ?>",
+	'pacts-no': "<?= ALLY_PACT_NO ?>",
+	'pacts-current': "<?= ALLY_PACT_CURRENT ?>",
 
-	'pact-askToJoin-no': "<?= ALLY_PACT_ASKTOJOIN_NO ?>",
-	'pact-askToJoin-current': "<?= ALLY_PACT_ASKTOJOIN_CURRENT ?>",
+	'pacts-askToJoin-no': "<?= ALLY_PACT_ASKTOJOIN_NO ?>",
+	'pacts-askToJoin-current': "<?= ALLY_PACT_ASKTOJOIN_CURRENT ?>",
 
-	'pact-invitations-no': "<?= ALLY_PACT_INVITATIONS_NO ?>",
-	'pact-invitations-current': "<?= ALLY_PACT_INVITATIONS_CURRENT ?>",
+	'pacts-invitations-no': "<?= ALLY_PACT_INVITATIONS_NO ?>",
+	'pacts-invitations-current': "<?= ALLY_PACT_INVITATIONS_CURRENT ?>",
+
+	'ennemies-no': "<?= ALLY_ENNEMIES_NO ?>",
+	'ennemies-current': "<?= ALLY_ENNEMIES_CURRENT ?>",
+
+	'ennemies-askToJoin-no': "<?= ALLY_ENNEMIES_ASKTOJOIN_NO ?>",
+	'ennemies-askToJoin-current': "<?= ALLY_ENNEMIES_ASKTOJOIN_CURRENT ?>",
+
+	'ennemies-invitations-no': "<?= ALLY_ENNEMIES_INVITATIONS_NO ?>",
+	'ennemies-invitations-current': "<?= ALLY_ENNEMIES_INVITATIONS_CURRENT ?>",
 
 	'members-askToJoin-no': "<?= ALLY_MEMBERS_ASKTOJOIN_NO ?>",
 	'members-askToJoin-current': "<?= ALLY_MEMBERS_ASKTOJOIN_CURRENT ?>",
@@ -29,7 +38,8 @@ translate['alliance'] = {
 
 	'quit-confirm': "<?= ALLY_QUIT_CONFIRM ?>",
 	'dissolve-confirm': "<?= ALLY_DISSOLVE_CONFIRM ?>",
-	'stopPact-confirm': "<?= ALLY_STOPPACT_CONFIRM ?>",
+	'stop-pacts-confirm': "<?= ALLY_STOPPACT_CONFIRM ?>",
+	'stop-ennemies-confirm': "<?= ALLY_STOPENNEMIES_CONFIRM ?>",
 	'abandon-founder-confirm': (playerName) => "<?= ALLY_ABANDON_FOUNDER_CONFIRM ?>".replace('%playerName%', playerName),
 	'kick-confirm': (playerName) => "<?= ALLY_KICK_CONFIRM ?>".replace('%playerName%', playerName),
 };

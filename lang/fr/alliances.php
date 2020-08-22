@@ -2,7 +2,8 @@
 // Menu
 define('ALLY_MEMBERS', 'Membres');
 define('ALLY_INFOS', 'Informations');
-define('ALLY_DIPLOMACY', 'Diplomatie');
+define('ALLY_PACT', 'Pactes');
+define('ALLY_ENNEMIES', 'Ennemis');
 
 // Infos
 define('ALLY_NAME', 'Nom de l\'alliance:');
@@ -33,6 +34,17 @@ define('ALLY_PACT_ASKTOJOIN_CURRENT', 'Demandes de pactes entrantes:');
 define('ALLY_PACT_INVITATIONS_NO', 'Aucune invitation en cours');
 define('ALLY_PACT_INVITATIONS_CURRENT', 'Demandes de pactes sortantes');
 
+// Ennemies
+define('ALLY_ENNEMIES_NO', 'Aucune guerre en cours');
+define('ALLY_ENNEMIES_CURRENT', 'Guerres en cours:');
+
+define('ALLY_ENNEMIES_ASKTOJOIN_NO', 'Aucune demande en cours');
+define('ALLY_ENNEMIES_ASKTOJOIN_CURRENT', 'Declarations de guerre entrantes:');
+
+define('ALLY_ENNEMIES_INVITATIONS_NO', 'Aucune invitation en cours');
+define('ALLY_ENNEMIES_INVITATIONS_CURRENT', 'Declarations de guerre sortantes');
+
+// Members
 define('ALLY_MEMBERS_ASKTOJOIN_NO', 'Aucune demande de joueur pour rejoindre l\'alliance');
 define('ALLY_MEMBERS_ASKTOJOIN_CURRENT', 'Demandes de joueur à rejoindre l\'alliance:');
 
@@ -52,6 +64,7 @@ define('ALLY_RESULTS_NO', 'Résultats:');
 define('ALLY_QUIT_CONFIRM', 'Voulez-vous vraiment quitter l\'alliance ?');
 define('ALLY_DISSOLVE_CONFIRM', 'Voulez-vous vraiment dissoudre l\'alliance ?');
 define('ALLY_STOPPACT_CONFIRM', 'Voulez-vous vraiment stopper ce pacte ?');
+define('ALLY_STOPENNEMIES_CONFIRM', 'Voulez-vous vraiment stopper cette guerre ?');
 
 define('ALLY_ABANDON_FOUNDER_CONFIRM', 'Voulez-vous quitter votre rôle de fondateur de l\'alliance au profit de %playerName% ?');
 define('ALLY_KICK_CONFIRM', 'Voulez-vous vraiment exclure %playerName% de l\'alliance ?');

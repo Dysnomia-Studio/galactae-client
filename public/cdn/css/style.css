@@ -3485,11 +3485,11 @@ a[class="research-search"]:hover {
 	margin: 0 1%;
 	padding: 1%;
 }
-#alliances-panel-pactsInvit-list, #alliances-panel-membersInvit-list, #alliances-panel-noAlly-askToJoin, #alliance-search-results {
+#alliances-panel-pactsInvit-list, #alliances-panel-ennemiesInvit-list, #alliances-panel-membersInvit-list, #alliances-panel-noAlly-askToJoin, #alliance-search-results {
 	height: calc(100% - 60px);
 	overflow-y: auto;
 }
-#alliances-panel-pactsInvit-input, #alliances-panel-membersInvit-input, #alliances-panel-askToAlly-input, #alliances-panel-search-input {
+#alliances-panel-pactsInvit-input, #alliances-panel-ennemiesInvit-input, #alliances-panel-membersInvit-input, #alliances-panel-askToAlly-input, #alliances-panel-search-input {
 	width: calc(100% - 14px);
 }
 .alliances-tab-half-cell:last-child {

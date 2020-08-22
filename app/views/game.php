@@ -849,7 +849,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<ul id="alliances-panel-menu" class="ul-choice-line">
 			<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
 			<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
-			<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
+			<li id="alliances-panel-pacts-button"><?= ALLY_PACT ?></li>
+			<li id="alliances-panel-ennemies-button"><?= ALLY_ENNEMIES ?></li>
 		</ul>
 
 		<div id="alliances-panel-info" class="alliances-tab large-panel-tab">
@@ -914,7 +915,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				</div>
 			</div>
 		</div>
-		<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
+		<div id="alliances-panel-pacts" class="alliances-tab extra-large-panel-tab">
 			<div class="alliances-tab-half alliances-tab-cell">
 				<ul id="alliances-panel-pacts-list"></ul>
 			</div>
@@ -930,6 +931,30 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						type="text"
 						name="alliances-panel-pactsInvit-input"
 						id="alliances-panel-pactsInvit-input"
+						class="ui-small-input"
+						placeholder="<?= ALLY_NAME ?>"
+						size="50"
+						autocomplete="off"
+					/>
+				</div>
+			</div>
+		</div>
+		<div id="alliances-panel-ennemies" class="alliances-tab extra-large-panel-tab">
+			<div class="alliances-tab-half alliances-tab-cell">
+				<ul id="alliances-panel-ennemies-list"></ul>
+			</div>
+
+			<div class="alliances-tab-half">
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-ennemiesAsk-list"></ul>
+				</div>	
+
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-ennemiesInvit-list"></ul>
+					<input
+						type="text"
+						name="alliances-panel-ennemiesInvit-input"
+						id="alliances-panel-ennemiesInvit-input"
 						class="ui-small-input"
 						placeholder="<?= ALLY_NAME ?>"
 						size="50"
