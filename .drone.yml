@@ -9,9 +9,6 @@ steps:
     sonar_token: ***REMOVED***
     level: TRACE
     showProfiling: true
-  when:
-    branch:
-    - dev
 
 - name: docker
   image: plugins/docker
@@ -30,6 +27,8 @@ steps:
   when:
     event:
     - push
+    branch:
+    - dev
 
 - name: discord
   pull: default
@@ -44,8 +43,6 @@ steps:
         Build **{{repo.name}}** on branch **${DRONE_BRANCH}** failed.
       {{/success}}
   when:
-    branch:
-    - master
     event:
     - push
     status: 
