@@ -487,11 +487,11 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<ul id="map-global-legend">
 		<ul>
 			<li class="map-overlay-legend"><?= MAP_INF_ZONES_TITLE ?></li>
-			<li class="map-overlay-player"><?= MAP_INF_ZONES_PLAYER ?> &#11035;</li>
-			<li class="map-overlay-allied"><?= MAP_INF_ZONES_ALLIES ?> &#11035;</li>
-			<li class="map-overlay-allyAllied"><?= MAP_INF_ZONES_ALLYALLIES ?> &#11035;</li>
-			<!--<li class="map-overlay-ennemies"><?= MAP_INF_ZONES_ENNEMIES ?> &#11035;</li>
-			<li class="map-overlay-alliedAndEnnemies"><?= MAP_INF_ZONES_ALLIEDANDENNEMIES ?> &#11035;</li>-->
+			<li class="map-overlay-player"><?= MAP_INF_ZONES_PLAYER ?> &#9640;</li>
+			<li class="map-overlay-allied"><?= MAP_INF_ZONES_ALLIES ?> &#9640;</li>
+			<li class="map-overlay-allyAllied"><?= MAP_INF_ZONES_ALLYALLIES ?> &#9640;</li>
+			<li class="map-overlay-ennemies"><?= MAP_INF_ZONES_ENNEMIES ?> &#9640;</li>
+			<li class="map-overlay-alliedAndEnnemies"><?= MAP_INF_ZONES_ALLIEDANDENNEMIES ?> &#9640;</li>
 		</ul>
 	</ul>
 
