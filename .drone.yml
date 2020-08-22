@@ -1,5 +1,5 @@
 kind: pipeline
-name: galactae-server
+name: galactae-client
 
 steps:
 - name: sonarqube
@@ -12,6 +12,24 @@ steps:
   when:
     branch:
     - dev
+
+- name: docker
+  image: plugins/docker
+  volumes:
+  - name: docker_sock
+    path: /var/run/docker.sock
+  settings:
+    repo: dysnomia/galactae-client
+    dockerfile: Dockerfile
+    tags: ${DRONE_BRANCH}
+    dry_run: true
+    pull-image: false
+  environment:
+    PLUGIN_PULL_IMAGE: false
+
+  when:
+    event:
+    - push
 
 - name: discord
   pull: default
@@ -34,3 +52,8 @@ steps:
     - changed
     - failure
     - success
+
+volumes:
+  - name: docker_sock
+    host:
+      path: /var/run/docker.sock

@@ -141,7 +141,8 @@ class planetUI {
 				planetData.planetType,
 				2*TIME.SECONDS_TO_MS, // 2 secondes
 				userData,
-				planetData.nextBuilding
+				planetData.nextBuilding,
+				units.fleetList.map((elt) => elt.maxFuel).reduce((acc, val) => acc + val, 0) - units.fleetList.map((elt) => elt.fuel).reduce((acc, val) => acc + val, 0)
 			);
 		}
 

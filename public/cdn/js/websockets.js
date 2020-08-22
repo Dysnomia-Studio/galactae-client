@@ -48,6 +48,10 @@ class webSockets {
 
 			map.openSolarSystemMap(system);
 		});
+		socket.on('map-influence-zones', (data) => {
+			map.influenceZones = data;
+			InfluenceZones.drawInfluenceZones();
+		});
 
 		//Sync the units data
 		socket.on('units-recieve-data',function(data) {
@@ -172,9 +176,6 @@ class webSockets {
 		});
 		socket.on('server-reboot', function() {
 			kick('RESTARTING_SERVER');
-		});
-		window.addEventListener('beforeunload', function() {
-			socket.emit('game-disconnect', webSockets.getUserData());
 		});
 
 		window.addEventListener('error', function(event) {

@@ -305,13 +305,13 @@
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#ally" id="hud-bottom-button-ally"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
+			<a href="#ally" id="hud-bottom-button-alliances"><img src="<?= $cdnURL ?>img/ui/ally.svg" alt="ally"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_ALLY; ?></span>
 			</span>
 		</span>
 		<span class="tooltip">
-			<a href="#rapports" id="hud-bottom-button-rapports"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
+			<a href="#rapports" id="hud-bottom-button-report"><img src="<?= $cdnURL ?>img/ui/rapports.svg" alt="rapports"></a>
 			<span class="tooltip-wrapper tooltips-hud-bottom tooltip-wrapper-top">
 				<span class="tooltip-content"><?= HUD_BOTTOM_RAPPORTS; ?></span>
 			</span>
@@ -483,6 +483,18 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		</defs>
 		<g id="map-global-overlay"></g>
 	</svg>
+
+	<ul id="map-global-legend">
+		<ul>
+			<li class="map-overlay-legend"><?= MAP_INF_ZONES_TITLE ?></li>
+			<li class="map-overlay-player"><?= MAP_INF_ZONES_PLAYER ?> &#9640;</li>
+			<li class="map-overlay-allied"><?= MAP_INF_ZONES_ALLIES ?> &#9640;</li>
+			<li class="map-overlay-allyAllied"><?= MAP_INF_ZONES_ALLYALLIES ?> &#9640;</li>
+			<li class="map-overlay-ennemies"><?= MAP_INF_ZONES_ENNEMIES ?> &#9640;</li>
+			<li class="map-overlay-alliedAndEnnemies"><?= MAP_INF_ZONES_ALLIEDANDENNEMIES ?> &#9640;</li>
+		</ul>
+	</ul>
+
 	<div id="map-system" class="opening view-2D">
         <div id="map-system-universeBack">
           <div id="map-system-galaxyBack">
@@ -515,6 +527,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
     		<span id="map-move-panel-message">Deplacement vers <em>PlanetName</em> (<em>Joueur</em>)</span><br/>
     		<br/>
     		Temps: ~<span id="map-move-panel-time">12:34:56</span><br/>
+    		Habitable: <span id="map-move-panel-habitability">No</span><br/>
     		&sup3;He: <span id="map-move-panel-fuel">12.34Kt (56% du reservoir)</span><br/>
     		<div id="map-move-panel-hangar-general">Hangar: <span id="map-move-panel-hangar">0/0</span></div><br/>
     	</div>
@@ -537,12 +550,13 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 	<div id="fleet-build">
 		<ul id="fleet-build-choice" class="ul-choice-line fleet-ul2">
 			<li shipType="SHIP_ALL" id="fleet-build-all-button" class="ul-choice-line-li-active"><?= FLEET_BUILD_ALL; ?></li>
-			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?= FLEET_BUILD_DEF; ?></li>
-			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?= FLEET_BUILD_FIGHTER; ?></li>
-			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?= FLEET_BUILD_CUISADER; ?></li>
-			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?= FLEET_BUILD_CUIRASSE; ?></li>
-			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?= FLEET_BUILD_CORVET; ?></li>
-			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?= FLEET_BUILD_CARRIER; ?></li>
+			<li shipType="SHIP_DEF" id="fleet-build-defense-button"><?= FLEET_TYPE_DEFENSE; ?></li>
+			<li shipType="SHIP_FIGHTER" id="fleet-build-fighter-button"><?= FLEET_TYPE_FIGHTER; ?></li>
+			<li shipType="SHIP_BATTLECRUISER" id="fleet-build-cruisader-button"><?= FLEET_TYPE_BATTLECRUISER; ?></li>
+			<li shipType="SHIP_CUIRASSE" id="fleet-build-cuirasse-button"><?= FLEET_TYPE_CUIRASSE; ?></li>
+			<li shipType="SHIP_CORVET" id="fleet-build-corvette-button"><?= FLEET_TYPE_CORVET; ?></li>
+			<li shipType="SHIP_CARRIER" id="fleet-build-carrier-button"><?= FLEET_TYPE_CARRIER; ?></li>
+			<li shipType="SHIP_COLONY" id="fleet-build-colony-button"><?= FLEET_TYPE_COLONY; ?></li>
 		</ul>
 		<div id="fleet-build-content" class="dual-column-80-20">
 			<h2 id="fleet-build-list-empty" class="dual-column-80-20-message"><?= FLEET_NO_MODEL; ?></h2>
@@ -835,7 +849,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 		<ul id="alliances-panel-menu" class="ul-choice-line">
 			<li id="alliances-panel-info-button" class="ul-choice-line-li-active"><?= ALLY_INFOS ?></li>
 			<li id="alliances-panel-members-button"><?= ALLY_MEMBERS ?></li>
-			<li id="alliances-panel-diplomacy-button"><?= ALLY_DIPLOMACY ?></li>
+			<li id="alliances-panel-pacts-button"><?= ALLY_PACT ?></li>
+			<li id="alliances-panel-ennemies-button"><?= ALLY_ENNEMIES ?></li>
 		</ul>
 
 		<div id="alliances-panel-info" class="alliances-tab large-panel-tab">
@@ -900,7 +915,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 				</div>
 			</div>
 		</div>
-		<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
+		<div id="alliances-panel-pacts" class="alliances-tab extra-large-panel-tab">
 			<div class="alliances-tab-half alliances-tab-cell">
 				<ul id="alliances-panel-pacts-list"></ul>
 			</div>
@@ -916,6 +931,30 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 						type="text"
 						name="alliances-panel-pactsInvit-input"
 						id="alliances-panel-pactsInvit-input"
+						class="ui-small-input"
+						placeholder="<?= ALLY_NAME ?>"
+						size="50"
+						autocomplete="off"
+					/>
+				</div>
+			</div>
+		</div>
+		<div id="alliances-panel-ennemies" class="alliances-tab extra-large-panel-tab">
+			<div class="alliances-tab-half alliances-tab-cell">
+				<ul id="alliances-panel-ennemies-list"></ul>
+			</div>
+
+			<div class="alliances-tab-half">
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-ennemiesAsk-list"></ul>
+				</div>	
+
+				<div class="alliances-tab-half-cell alliances-tab-cell">
+					<ul id="alliances-panel-ennemiesInvit-list"></ul>
+					<input
+						type="text"
+						name="alliances-panel-ennemiesInvit-input"
+						id="alliances-panel-ennemiesInvit-input"
 						class="ui-small-input"
 						placeholder="<?= ALLY_NAME ?>"
 						size="50"
@@ -1005,6 +1044,8 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/remove-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
+<script src="https://unpkg.com/delaunator@4.0.1/delaunator.min.js"></script>
+
 <?php /* Client Classes */ ?>
 
 <script type="text/javascript" src="<?= $cdnURL ?>js/_shared/Buildings.js"></script>
@@ -1027,6 +1068,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/DependencyEngine.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/Fleets.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/GameMap.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/InfluenceZones.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/map.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/misc.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/notifications.js"></script>

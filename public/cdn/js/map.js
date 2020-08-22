@@ -39,6 +39,14 @@ class map {
 
 		map.oldPos = [0,0];
 
+		if(!map.influenceZones) {
+			map.influenceZones = {};
+		}
+
+		if(!map.points) {
+			map.points = [];
+		}
+
 		/**
 		 * Load XML
 		 */
@@ -154,6 +162,7 @@ class map {
 
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
+		const oldZoom = 0 + map.zoom;
 		map.zoom += coef;
 
 		if(map.zoom < MAP_MIN_ZOOM || map.zoom > MAP_MAX_ZOOM) {
@@ -164,8 +173,16 @@ class map {
 		window.cancelAnimationFrame(map.zoomFrameId);
 
 		map.zoomFrameId =  window.requestAnimationFrame(() => {
-			document.getElementById('map-global').style.zoom = map.zoom;
-			document.getElementById('map-global').style.MozTransform = 'scale(' + map.zoom + ')';
+			const mapElt = document.getElementById('map-global');
+
+			mapElt.style.zoom = map.zoom;
+			mapElt.style.MozTransform = 'scale(' + map.zoom + ')';
+
+			map.oldPos[0] = map.oldPos[0] - (1/oldZoom * mapPrevMouse[0]) + (1/map.zoom * mapPrevMouse[0]);
+			map.oldPos[1] = map.oldPos[1] - (1/oldZoom * mapPrevMouse[1]) + (1/map.zoom * mapPrevMouse[1]);
+
+			mapElt.style.left =  Math.round(map.oldPos[0]) + 'px';
+			mapElt.style.top =  Math.round(map.oldPos[1]) + 'px';
 
 			map.updateSectorVisibility();
 		});
@@ -231,12 +248,6 @@ class map {
 		}
 		if(parseInt(pos[1]) > 0) {
 			pos[1] = 0;
-		}
-		if(parseInt(pos[0]) < (document.documentElement.clientWidth-MAP_SIZE_WIDTH*map.zoom)) {
-			pos[0] = document.documentElement.clientWidth-MAP_SIZE_WIDTH*map.zoom;
-		}
-		if(parseInt(pos[1]) < (document.documentElement.clientHeight-MAP_SIZE_HEIGHT*map.zoom)) {
-			pos[1] = document.documentElement.clientHeight-MAP_SIZE_HEIGHT*map.zoom;
 		}
 
 		if(pos[0] === map.oldPos[0] && pos[1] === map.oldPos[1]) {
@@ -370,6 +381,9 @@ class map {
 		ui.mapChat = (document.getElementById('hud-chat').style.display === 'block');
 		ui.closeTab('#hud-chat',false);
 		ui.chat = false;
+
+		// On demande la mise à jour des zones d'influence au serveur
+		socket.emit('global-ask-influenceData', webSockets.getUserData());
 	}
 
 	/**
@@ -403,6 +417,7 @@ class map {
 	static resetMaps() {
 		/* Hide all maps */
 		ui.hide('#map-global');
+		ui.hide('#map-global-legend');
 		ui.hide('#map-address');
 		ui.hide('#map-system');
 
@@ -740,14 +755,6 @@ class map {
 		// Get XML
 		const systemList = map.xmlDoc[sector].querySelectorAll('sy');
 
-		function makeSVGElt(tagName, args) {
-			const el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
-			for (const i in args) {
-				el.setAttribute(i, args[i]);
-			}
-			return el;
-		}
-
 		// Generate Content
 		for(let i=0; i<systemList.length; i++) {
 			const starList = systemList[i].querySelectorAll('st');
@@ -768,7 +775,7 @@ class map {
 			const sectorAddress = x + '-' + y;
 			let sector = document.getElementById(sectorAddress);
 			if(!sector) {
-				sector = makeSVGElt('g', {
+				sector = ui.createSVGElt('g', {
 					id: sectorAddress,
 				});
 				sector.setAttribute('x', sectorAddress.split('-')[0]);
@@ -776,23 +783,16 @@ class map {
 				document.getElementById('map-global').appendChild(sector);
 			}
 
-			if(GameMap.getSystemFromAdress(planetData.address) === systemList[i].id) {
-				const currPlanetLegend = makeSVGElt('circle', {
-					id: 'currPlanet',
-					cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
-					cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
-					r: 3 * Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
-					stroke: '#0EC6C6',
-					'stroke-width': 1,
-				});
-				sector.appendChild(currPlanetLegend);
-			}
+			const cx = Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH);
+			const cy = Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT);
+
+			map.points.push([cx, cy]);
 
 			// Draw planet
-			const circle = makeSVGElt('circle', {
+			const circle = ui.createSVGElt('circle', {
 				id: systemList[i].id,
-				cx: Math.round(parseFloat(systemList[i].getAttribute('x')/10) * MAP_SIZE_WIDTH),
-				cy: Math.round(parseFloat(systemList[i].getAttribute('y')/10) * MAP_SIZE_HEIGHT),
+				cx,
+				cy,
 				r: Math.round(MAP_STAR_SIZE_BASE + starBSize * MAP_STAR_SIZE_RATIO),
 				fill: 'url(#' + starBType + ')'});
 			sector.appendChild(circle);
@@ -809,6 +809,8 @@ class map {
 		}
 
 		map.updateSectorVisibility();
+
+		InfluenceZones.drawInfluenceZones();
 	}
 
 	/**
@@ -852,5 +854,6 @@ class map {
 		map.resetMaps();
 		map.currentAddress = address;
 		ui.show('#map-global');
+		ui.show('#map-global-legend');
 	}
 }

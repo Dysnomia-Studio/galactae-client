@@ -35,6 +35,8 @@ $debut = round(microtime(true) * 1000);
 		<?php
 			include_once(FILE_CONFIG);
 
+			include_once(DIR_VIEW.'jsTranslation.php');
+
 			if(file_exists(DIR_VIEW.$pageData['pageName']) || file_exists(DIR_CTRL.$pageData['pageName'])) {
 
 				if(file_exists(DIR_CTRL.$pageData['pageName'])) {

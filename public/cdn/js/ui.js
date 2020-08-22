@@ -170,6 +170,13 @@ class ui {
 		});
 	}
 
+	static createSVGElt(tagName, args) {
+		const el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
+		for (const i in args) {
+			el.setAttribute(i, args[i]);
+		}
+		return el;
+	}
 	static openProfile(username) {
 		const win = window.open('https://galactae.eu/profil?u='+ username, '_blank');
 		win.focus();
@@ -465,16 +472,18 @@ class ui {
 	 * Tout les événements lorsqu'une touche est appuyée
 	 */
 	static keydown(e) {
-		if(e.target.tagName.toLowerCase() === 'input') { return; }
+		if(e.target.tagName.toLowerCase() === 'input') {
+			// Save nom planete
+			if(e.which === KEYBOARD.ENTER && ui.renaming === true){
+				ui.planetNameSwitchToSpan();
+			}
+
+			return;
+		}
 
 		// Fermer une fenêtre
 		if(e.which === settings.get('keyboard_escape')){ // Echap
 			ui.closeWindow();
-		}
-
-		// Save nom planete
-		if(e.which === KEYBOARD.ENTER && ui.renaming === true){
-			ui.planetNameSwitchToSpan();
 		}
 
 		// Historique chat
@@ -600,6 +609,17 @@ class ui {
 		triggerFleetActive('build', 'units');
 		triggerFleetActive('orbit', 'fleets');
 		triggerFleetActive('move', 'radar');
+
+		function triggerPanelActive(name) {
+			if(document.getElementById(name + '-panel').style.display === 'block') {
+				document.getElementById('hud-bottom-button-' + name).classList.add('hud-bottom-active');
+			} else {
+				document.getElementById('hud-bottom-button-' + name).classList.remove('hud-bottom-active');
+			}
+		}
+
+		triggerPanelActive('alliances');
+		triggerPanelActive('report');
 	}
 
 	/********** PLANET NAME **********/
@@ -730,21 +750,25 @@ class ui {
 			ui.fleetPanelToggle('fleet-move');
 		});
 
-		document.getElementById('hud-bottom-button-ally').addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-alliances').addEventListener('click', function() {
 			if(!ui.allys) {
 				ui.show('#alliances-panel');
 			} else {
 				ui.hide('#alliances-panel');
 			}
 
+			ui.updateBottom();
+
 			ui.allys = !ui.allys;
 		});
-		document.getElementById('hud-bottom-button-rapports').addEventListener('click', function() {
+		document.getElementById('hud-bottom-button-report').addEventListener('click', function() {
 			if(!ui.reports) {
 				ui.show('#report-panel');
 			} else {
 				ui.hide('#report-panel');
 			}
+
+			ui.updateBottom();
 
 			ui.reports = !ui.reports;
 		});
