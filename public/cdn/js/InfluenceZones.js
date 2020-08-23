@@ -106,6 +106,6 @@ class InfluenceZones {
 			'stroke-width': 1,
 			fill: 'transparent',
 		});
-		document.getElementById('map-global').appendChild(currPlanetLegend);
+		document.getElementById('map-global').prepend(currPlanetLegend);
 	}
 }

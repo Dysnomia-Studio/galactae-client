@@ -3,7 +3,7 @@
 	define('SUPPORT','Support');
 	define('FORUM','Forum');
 	define('PROFIL','Profile');
-	define('PORTAL','Galaxy Portal');
+	define('PORTAL','Galaxies List');
 	define('SETTINGS','Settings');
 	define('DISCONNECT','Disconnect');
 
@@ -13,11 +13,11 @@
 	define('HUD_BOTTOM_UNITS','Units');
 	define('HUD_BOTTOM_FLEETS','Fleets');
 	define('HUD_BOTTOM_RADAR','Radar');
-	define('HUD_BOTTOM_ALLY','Alliance');
+	define('HUD_BOTTOM_ALLY','Alliances');
 	define('HUD_BOTTOM_RAPPORTS','Reports');
 
 	define('HUD_BOTTOM_QUEST','Quests');
-	define('HUD_BOTTOM_TRADE','Trades');
+	define('HUD_BOTTOM_TRADE','Trading');
 	define('HUD_BOTTOM_RANKS','Ranks');
 	define('HUD_BOTTOM_PROFIL','Profile');
 	define('HUD_BOTTOM_MESSAGES','Private Messages');
@@ -42,9 +42,9 @@
 
 	//== OTHER ==\\
 	define('GAME_LOADING','Loading game ...');
-	define('PORTRAIT_ERROR','You need a screen in landscape orientation to play.');
+	define('PORTRAIT_ERROR','You need landscape orientation to play this game.');
 	define('CREATED_BY','Created by');
-	define('SOON_AVAILABLE','Soon Available ...');
+	define('SOON_AVAILABLE','Available Soon ...');
 	define('OLDER_NEWS','Older');
 	define('NEWER_NEWS','Newer');
 	define('CONFIRM','Confirm');
@@ -52,20 +52,14 @@
 	// A no-bug measure
 	define('META_DESC','');
 	define('META_KEYS','');
-?>
-<script type="text/javascript">
-var translate = translate || {};
 
-translate['ui'] = {
 	// Day bonus
-	'credits': 'galactic credits',
-	'ofHe3': 'of Helium 3',
+	define('UI_CREDITS', 'galactic credits');
+	define('UI_OFHE3', 'of Helium 3');
 
 	// Confirm box
-	'CONFIRM_YES': 'Yes',
-	'CONFIRM_NO': 'No',
+	define('UI_CONFIRM_YES', 'Yes');
+	define('UI_CONFIRM_NO', 'No');
 
-	'no-ally': 'No alliance',
-	'no-player': 'No player',
-};
-</script>
+	define('UI_NO_ALLY', 'No alliance');
+	define('UI_NO_PLAYER', 'No player');

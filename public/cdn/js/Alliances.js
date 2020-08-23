@@ -14,8 +14,8 @@ class Alliances {
 				const buttonList = [
 					'alliances-panel-info',
 					'alliances-panel-members',
-					'alliances-panel-newMembers',
-					'alliances-panel-diplomacy',
+					'alliances-panel-pacts',
+					'alliances-panel-ennemies',
 				];
 
 				for(const buttonName of buttonList) {
@@ -42,6 +42,7 @@ class Alliances {
 		 */
 		document.getElementById('alliances-panel-membersInvit-input').addEventListener('keypress', Alliances.invitPlayer);
 		document.getElementById('alliances-panel-pactsInvit-input').addEventListener('keypress', Alliances.askPact);
+		document.getElementById('alliances-panel-ennemiesInvit-input').addEventListener('keypress', Alliances.askEnnemies);
 		document.getElementById('alliances-panel-search-input').addEventListener('keypress', Alliances.search);
 		document.getElementById('alliances-panel-createBtn').addEventListener('click', () => { ui.show('#alliances-panel-create'); });
 		document.getElementById('alliances-panel-createBtn-close').addEventListener('click', () => { ui.hide('#alliances-panel-create'); });
@@ -98,17 +99,21 @@ class Alliances {
 		ui.hide('#alliances-panel-info-saveEdit');
 	}
 
-	static renderPacts() {
-		ui.empty('#alliances-panel-pacts-list');
-		ui.empty('#alliances-panel-pactsAsk-list');
-		ui.empty('#alliances-panel-pactsInvit-list');
+	static renderPactsUI(type, allied) {
+		ui.empty('#alliances-panel-' + type + '-list');
+		ui.empty('#alliances-panel-' + type + 'Ask-list');
+		ui.empty('#alliances-panel-' + type + 'Invit-list');
 
 		const currentUser = Alliances.getCurrentUser();
 
-		const ulOk = document.getElementById('alliances-panel-pacts-list');
-		const ulAsk = document.getElementById('alliances-panel-pactsAsk-list');
-		const ulInvit = document.getElementById('alliances-panel-pactsInvit-list');
+		const ulOk = document.getElementById('alliances-panel-' + type + '-list');
+		const ulAsk = document.getElementById('alliances-panel-' + type + 'Ask-list');
+		const ulInvit = document.getElementById('alliances-panel-' + type + 'Invit-list');
 		for(const pact of Alliances.details.pacts) {
+			if(pact.allied !== allied) {
+				continue;
+			}
+
 			const li = document.createElement('li');
 
 			let allyName = pact.ally_1_name;
@@ -122,7 +127,7 @@ class Alliances {
 				li.appendChild(ui.createSpanText(allyName));
 
 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId); }, 'alliances-panel-cancel'));
+					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId, type); }, 'alliances-panel-cancel'));
 				}
 
 				ulOk.appendChild(li);
@@ -147,28 +152,33 @@ class Alliances {
 		}
 
 		if(!ulOk.firstChild) {
-			ulOk.appendChild(ui.createLiText(translate['alliance']['pact-no']));
+			ulOk.appendChild(ui.createLiText(translate['alliance'][type + '-no']));
 		} else {
-			ulOk.prepend(ui.createLiText(translate['alliance']['pact-current'],'alliances-panel-list-header'));
+			ulOk.prepend(ui.createLiText(translate['alliance'][type + '-current'],'alliances-panel-list-header'));
 		}
 
 		if(!ulAsk.firstChild) {
-			ulAsk.appendChild(ui.createLiText(translate['alliance']['pact-askToJoin-no']));
+			ulAsk.appendChild(ui.createLiText(translate['alliance'][type + '-askToJoin-no']));
 		} else {
-			ulAsk.prepend(ui.createLiText(translate['alliance']['pact-askToJoin-current'],'alliances-panel-list-header'));
+			ulAsk.prepend(ui.createLiText(translate['alliance'][type + '-askToJoin-current'],'alliances-panel-list-header'));
 		}
 
 		if(!ulInvit.firstChild) {
-			ulInvit.appendChild(ui.createLiText(translate['alliance']['pact-invitations-no']));
+			ulInvit.appendChild(ui.createLiText(translate['alliance'][type + '-invitations-no']));
 		} else {
-			ulInvit.prepend(ui.createLiText(translate['alliance']['pact-invitations-no'],'alliances-panel-list-header'));
+			ulInvit.prepend(ui.createLiText(translate['alliance'][type + '-invitations-current'],'alliances-panel-list-header'));
 		}
 
 		if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-			ui.show('#alliances-panel-pactsInvit-input');
+			ui.show('#alliances-panel-' + type + 'Invit-input');
 		} else {
-			ui.hide('#alliances-panel-pactsInvit-input');
+			ui.hide('#alliances-panel-' + type + 'Invit-input');
 		}
+	}
+
+	static renderPacts() {
+		Alliances.renderPactsUI('pacts', true);
+		Alliances.renderPactsUI('ennemies', false);
 	}
 
 	static renderMembers() {
@@ -460,6 +470,22 @@ class Alliances {
 		}
 	}
 
+	static askEnnemies(e) {
+		// @TODO: Autocomplete with available list of alliances (use search method)
+
+		if(e.key === 'Enter' && this.value.length > 0) {
+			socket.emit(
+				'alliance-ennemies-ask',
+				{
+					...webSockets.getUserData(),
+					allyName: this.value,
+				}
+			);
+
+			this.value = '';
+		}
+	}
+
 	static askToJoin(allyName) {
 		socket.emit(
 			'alliance-join-ask',
@@ -470,9 +496,9 @@ class Alliances {
 		);
 	}
 
-	static stopPact(allyId) {
+	static stopPact(allyId, type) {
 		ui.confirm(
-			translate['alliance']['stopPact-confirm'],
+			translate['alliance']['stop-' + type + '-confirm'],
 			translate['ui']['CONFIRM_YES'],
 			translate['ui']['CONFIRM_NO'],
 

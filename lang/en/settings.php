@@ -1,6 +1,6 @@
 <?php
 define('SETTINGS_CANCEL', 'Cancel');
-define('SETTINGS_VALIDATE', 'Validate');
+define('SETTINGS_VALIDATE', 'Confirm');
 ?>
 
 <script type="text/javascript">

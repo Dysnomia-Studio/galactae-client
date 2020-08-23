@@ -6,12 +6,35 @@
 	define('FLEET_OUT','En dehors');
 	define('FLEET_TACTICS','Tactiques');
 	define('FLEET_BUILD_ALL','Tout types');
-	define('FLEET_BUILD_DEF','Defenses Orbitales');
-	define('FLEET_BUILD_CUISADER','Croiseurs');
-	define('FLEET_BUILD_CUIRASSE','Cuirassés');
-	define('FLEET_BUILD_FIGHTER','Chasseurs');
-	define('FLEET_BUILD_CORVET','Corvettes');
-	define('FLEET_BUILD_CARRIER','Transporteurs');
+
+	//== Types ==\\
+	define('FLEET_TYPE_DEFENSE', 'Defenses Orbitales');
+		define('FLEET_TYPE_DEFENSE_SAT_AG1', 'Satellite AG-I');
+		define('FLEET_TYPE_DEFENSE_SAT_AG2', 'Satellite AG-II');
+		define('FLEET_TYPE_DEFENSE_SAT_AG3', 'Satellite AG-III');
+
+		define('FLEET_TYPE_DEFENSE_WEP_MINES', 'Mines spatiales');
+		define('FLEET_TYPE_DEFENSE_WEP_MINES_IEM', 'Mines électromagnetiques');
+		define('FLEET_TYPE_DEFENSE_WEP_MINES_NUKE', 'Mines nucléaires');
+
+	define('FLEET_TYPE_BATTLECRUISER','Croiseurs');
+		define('FLEET_TYPE_BATTLECRUISER_ATRIOS','Classe Atrios');
+
+	define('FLEET_TYPE_CUIRASSE','Cuirassés');
+		define('FLEET_TYPE_CUIRASSE_SMALL','Petit');
+
+	define('FLEET_TYPE_FIGHTER','Chasseurs');
+		define('FLEET_TYPE_FIGHTER_SMALL','Intercepteur Leger');
+		define('FLEET_TYPE_FIGHTER_MEDIUM','Intercepteur Lourd');
+		define('FLEET_TYPE_FIGHTER_HUGE','Bombardier');
+
+	define('FLEET_TYPE_CORVET','Corvettes');
+		define('FLEET_TYPE_CORVET_AEGIS','Classe Aegis');
+
+	define('FLEET_TYPE_CARRIER','Transporteurs');
+		define('FLEET_TYPE_CARRIER_MEDIUM','Moyen');
+
+	define('FLEET_TYPE_COLONY','Vaisseaux Coloniaux');
 
 	//== Details ==\\
 	define('FLEET_BUILD_NAME','Nom');
@@ -32,6 +55,99 @@
 	define('SHIP_MISS_CHANCE','Chance d\'évitement');
 	define('SHIP_FCAP','Capacité chasseurs');
 	define('SHIP_FWEIGHT', 'Capacité chasseurs utilisée');
+
+	//== Weapons ==\\
+	define('SHIP_PART_WEAPON_RAILGUN', 'Canon Electrique');
+	define('SHIP_PART_WEAPON_RAILGUN_DESC', 'Projectile accéléré par électromagnetisme');
+	define('SHIP_PART_WEAPON_LASER', 'Canon Laser');
+	define('SHIP_PART_WEAPON_LASER_DESC', 'Armes à laser');
+	define('SHIP_PART_WEAPON_PLASMA', 'Canon Plasma');
+	define('SHIP_PART_WEAPON_PLASMA_DESC', 'Armes à projectiles à très haute température');
+	define('SHIP_PART_WEAPON_EXPLOSIVE', 'Missile Conventionnel');
+	define('SHIP_PART_WEAPON_EXPLOSIVE_DESC', 'Missile explosif conventionnel à moyenne porté');
+	define('SHIP_PART_WEAPON_NUKE', 'Missile Nucléaire');
+	define('SHIP_PART_WEAPON_NUKE_DESC', 'Arme de destruction massive radioactive');
+	define('SHIP_PART_WEAPON_IEM', 'Missile Electromagnetique');
+	define('SHIP_PART_WEAPON_IEM_DESC', 'Missile générant une impulsion électromagnetique en explosant');
+	define('SHIP_PART_WEAPON_ANTIMATER', 'Missile à antimatière');
+
+	//== Ship Defenses ==\\
+	define('SHIP_PART_DEF_MAGNETIC', 'Bouclier magnetique');
+	define('SHIP_PART_DEF_MAGNETIC_DESC', 'Bouclier utilisant la force electromagnetique pour repousser les projectiles');
+	define('SHIP_PART_DEF_TURRET', 'Tourelles anti-projectiles');
+	define('SHIP_PART_DEF_TURRET_DESC', 'Tourelles utilisées afin d\'intercepter les projectiles explosifs');
+	define('SHIP_PART_DEF_PROJECTOR', 'Projecteur de bouclier magnetique');
+	define('SHIP_PART_DEF_PROJECTOR_DESC', 'Bouclier magnetique reporté sur un vaisseau allié');
+	define('SHIP_PART_DEF_SINGULARITY', 'Systeme à Singularité');
+	define('SHIP_PART_DEF_SINGULARITY_DESC', 'Système permettant d\'attirer les projectiles légers visant des vaisseaux alliés vers le courant');
+
+	//== Propulsion ==\\
+	define('SHIP_PART_PROP_ENGINE_SPEED', 'Vitesse max.');
+	define('SHIP_PART_PROP_ION', 'Moteur à ion');
+	define('SHIP_PART_PROP_ION_DESC', SHIP_PART_PROP_ENGINE_SPEED.': %speed% au/s');
+	define('SHIP_PART_PROP_PPLASMA', 'Moteur à plasma');
+	define('SHIP_PART_PROP_PPLASMA_DESC', SHIP_PART_PROP_ENGINE_SPEED.': %speed% au/s');
+	define('SHIP_PART_PROP_VSOLAIRE', 'Voile solaire');
+	define('SHIP_PART_PROP_VSOLAIRE_DESC', SHIP_PART_PROP_ENGINE_SPEED.': %speed% au/s');
+	define('SHIP_PART_PROP_VSL', 'Moteur supraluminique');
+	define('SHIP_PART_PROP_VSL_DESC', SHIP_PART_PROP_ENGINE_SPEED.': %speed% pc/s');
+	define('SHIP_PART_PROP_WD', 'Generateur de saut');
+	define('SHIP_PART_PROP_WD_DESC', SHIP_PART_PROP_ENGINE_SPEED.': %speed% pc/s');
+	define('SHIP_PART_PROP_HYPERESPACE', 'Moteur Hyperespace');
+	define('SHIP_PART_PROP_HYPERESPACE_DESC', SHIP_PART_PROP_ENGINE_SPEED.': %speed% pc/s');
+
+	//== Other ==\\
+	define('SHIP_PART_OTHER_HANGAR', 'Hangar');
+	define('SHIP_PART_OTHER_HANGARCAPACITY', 'Capacité');
+	define('SHIP_PART_OTHER_HANGARSIMPLE', 'Hangar Simple');
+	define('SHIP_PART_OTHER_HANGARSIMPLE_DESC', SHIP_PART_OTHER_HANGARCAPACITY.': %hangarCapacity%');
+	define('SHIP_PART_OTHER_HANGARDOUBLE', 'Hangar Double');
+	define('SHIP_PART_OTHER_HANGARDOUBLE_DESC', SHIP_PART_OTHER_HANGARCAPACITY.': %hangarCapacity%');
+	define('SHIP_PART_OTHER_NONE', 'Aucune pièce');
+	define('SHIP_PART_OTHER_NONE_DESC', '&nbsp;');
+	define('SHIP_PART_OTHER_NOPARTRESEARCHED', 'Aucune piece recherchée');
+	define('SHIP_PART_OTHER_NOPARTRESEARCHED_DESC', 'Aucune piece recherchée');
+
+	//== Types ==\\
+	define('SHIP_PART_TYPE_CANNON', 'Canons');
+	define('SHIP_PART_TYPE_ROCKETLAUNCHER', 'Lance missiles');
+	define('SHIP_PART_TYPE_SHIELD', 'Defenses');
+	define('SHIP_PART_TYPE_SUB_PROPULSION', 'Propulsion subluminique');
+	define('SHIP_PART_TYPE_SUP_PROPULSION', 'Propulsion supraluminique');
+
+	//== Texts ==\\
+	define('FLEET_BUILD_OPENPANEL', 'Construire l\'unité');
+	define('FLEET_BUILD_TYPE_COPY', 'Copier ce modele');
+	define('FLEET_BUILD_TYPE_DELETE', 'Supprimer le modele');
+	define('FLEET_BUILD_TYPE_DELETE_CONFIRMMESSAGE', 'Souhaitez vous vraiment supprimer ce modèle ?');
+
+	define('UNITS_PRIORITY_FUEL', 'Prioritaire carburant');
+	define('UNITS_NO_PRIORITY_FUEL', 'Non Prioritaire carburant');
+	define('UNITS_OF_MAXFUEL', 'du reservoir');
+	define('UNITS_ORBITING', 'Autour de');
+
+	define('UNITS_TRANSFERUNITS', 'Transférer unités');
+	define('UNITS_RECYCLE', 'Recycler unités');
+	define('UNITS_UPGRADE', 'Ameliorer unités');
+	define('UNITS_BACKTOMOTHERPLANET', 'Rappeler');
+
+	define('UNITS_MERGEINTO', 'Fusionner dans ...');
+	define('UNITS_TRANSFERFUEL', 'Transferer Carburant vers ...');
+	define('UNITS_ASSIGNTACTIC', 'Assigner tactique');
+
+	define('UNITS_NO_ORBIT_UNIT', 'Aucune unité en orbite');
+	define('UNITS_NO_MOVE_UNIT', 'Aucune flotte ne se déplace');
+	define('UNITS_NO_OUT_UNIT', 'Aucune unité en orbite d\'une autre planète');
+
+	define('UNITS_MOVINGTO', 'Déplacement vers');
+	define('UNITS_ATTACKING', 'Attaque vers');
+	define('UNITS_MOVINGTODEF', 'Déplacement pour défendre vers');
+	define('UNITS_ARRIVEAT', ', arrivée:');
+
+	define('UNITS_UNIT', 'unité(s)');
+
+	define('UNITS_TACTIC', 'Tactique');
+	define('UNITS_DEFAULTTACTIC', 'Par Défaut');
 
 	//== Fleet ==\\
 	define('FLEET','Flotte');
@@ -59,133 +175,3 @@
 
 	//== Erreurs ==\\
 	define('FLEET_NO_MODEL','Vous n\'avez encore aucun modèle');
-?>
-<script type="text/javascript">
-const fleetTranslate = {
-	// Titles
-	'SHIP_TYPE': 'Type',
-	'SHIP_SHAPE': 'Modèle',
-
-	// Types & Shapes
-	'SHIP_DEF': 'Défense',
-	'SHIP_SAT_AG1': 'Satellite AG-I',
-	'SHIP_SAT_AG2': 'Satellite AG-II',
-	'SHIP_SAT_AG3': 'Satellite AG-III',
-
-	'SHIP_WEP_MINES': 'Mines spatiales',
-	'SHIP_WEP_MINES_IEM': 'Mines électromagnetiques',
-	'SHIP_WEP_MINES_NUKE': 'Mines nucléaires',
-
-	'SHIP_BATTLECRUISER': 'Croiseur',
-	'SHIP_BATTLECRUISER_ATRIOS': 'Classe Atrios',
-
-	'SHIP_CUIRASSE': 'Cuirassé',
-	'SHIP_CUIRASSE_SMALL': 'Petit',
-
-	'SHIP_COLONY': 'Vaisseau Colonial',
-
-	'SHIP_FIGHTER': 'Chasseur',
-	'SHIP_FIGHTER_SMALL': 'Intercepteur Leger',
-	'SHIP_FIGHTER_MEDIUM': 'Intercepteur Lourd',
-	'SHIP_FIGHTER_HUGE': 'Bombardier',
-
-	'SHIP_CORVET': 'Corvette',
-	'SHIP_CORVET_AEGIS': 'Classe Aegis',
-
-	'SHIP_CARRIER': 'Transporteur',
-	'SHIP_CARRIER_MEDIUM': 'Moyen',
-
-	// Armes
-	'railgun': 'Canon Electrique',
-	'railgun_desc': 'Projectile accéléré par électromagnetisme',
-	'laser': 'Canon Laser',
-	'laser_desc': 'Armes à laser',
-	'plasma': 'Canon Plasma',
-	'plasma_desc': 'Armes à projectiles à très haute température',
-	'explosive': 'Missile Conventionnel',
-	'explosive_desc': 'Missile explosif conventionnel à moyenne porté',
-	'nuke': 'Missile Nucléaire',
-	'nuke_desc': 'Arme de destruction massive radioactive',
-	'iem': 'Missile Electromagnetique',
-	'iem_desc': 'Missile générant une impulsion électromagnetique en explosant',
-	'antimater': 'Missile à antimatière',
-
-	// Defenses
-	'magnetic': 'Bouclier magnetique',
-	'magnetic_desc': 'Bouclier utilisant la force electromagnetique pour repousser les projectiles',
-	'turret': 'Tourelles anti-projectiles',
-	'turret_desc': 'Tourelles utilisées afin d\'intercepter les projectiles explosifs',
-	'projector': 'Projecteur de bouclier magnetique',
-	'projector_desc': 'Bouclier magnetique reporté sur un vaisseau allié',
-	'singularity': 'Systeme à Singularité',
-	'singularity_desc': 'Système permettant d\'attirer les projectiles légers visant des vaisseaux alliés vers le courant',
-
-	// Propulsion
-	'engine_speed': 'Vitesse max.',
-	'ion': 'Moteur à ion',
-	get ion_desc() { return `${this['engine_speed']}: %speed% au/s`; },
-	'pplasma': 'Moteur à plasma',
-	get pplasma_desc() { return `${this['engine_speed']}: %speed% au/s`; },
-	'vsolaire': 'Voile solaire',
-	get vsolaire_desc() { return `${this['engine_speed']}: %speed% au/s`; },
-	'vsl': 'Moteur supraluminique',
-	get vsl_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
-	'wd': 'Generateur de saut',
-	get wd_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
-	'hyperespace': 'Moteur Hyperespace',
-	get hyperespace_desc() { return `${this['engine_speed']}: %speed% pc/s`; },
-
-	// Other
-	'hangar': 'Hangar',
-	'hangarCapacity': 'Capacité',
-	'hangarSimple': 'Hangar Simple',
-	get hangarSimple_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
-	'hangarDouble': 'Hangar Double',
-	get hangarDouble_desc() { return `${this['hangarCapacity']} : %hangarCapacity%`; },
-	'none': 'Aucune pièce',
-	'none_desc': '&nbsp;',
-	'noPartResearched': 'Aucune piece recherchée',
-	'noPartResearched_desc': 'Aucune piece recherchée',
-
-	// Types
-	'cannon': 'Canons',
-	'rocketLauncher': 'Lance missiles',
-	'shield': 'Defenses',
-	'sub_propulsion': 'Propulsion subluminique',
-	'sup_propulsion': 'Propulsion supraluminique',
-
-	// Texts
-	'fleet-build-openPanel': 'Construire l\'unité',
-	'fleet-build-type-copy': 'Copier ce modele',
-	'fleet-build-type-delete': 'Supprimer le modele',
-	'fleet-build-type-delete-confirmMessage': 'Souhaitez vous vraiment supprimer ce modèle ?',
-
-	'priorty-fuel': 'Prioritaire carburant',
-	'no-priorty-fuel': 'Non Prioritaire carburant',
-	'of-maxFuel': 'du reservoir',
-	'orbiting': 'Autour de',
-
-	'transferUnits': 'Transférer unités',
-	'recycle': 'Recycler unités',
-	'upgrade': 'Ameliorer unités',
-	'backToMotherPlanet': 'Rappeler',
-
-	'mergeInto': 'Fusionner dans ...',
-	'transferFuel': 'Transferer Carburant vers ...',
-	'assignTactic': 'Assigner tactique',
-
-	'no-orbit-unit': 'Aucune unité en orbite',
-	'no-move-unit': 'Aucune flotte ne se déplace',
-	'no-out-unit': 'Aucune unité en orbite d\'une autre planète',
-
-	'movingTo': 'Déplacement vers',
-	'attacking': 'Attaque vers',
-	'movingToDef': 'Déplacement pour défendre vers',
-	'arriveAt': ', arrivée:',
-
-	'unit': 'unité(s)',
-
-	'tactic': 'Tactique',
-	'defaultTactic': 'Par Défaut',
-};
-</script>

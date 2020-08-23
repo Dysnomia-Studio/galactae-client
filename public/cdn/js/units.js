@@ -1542,9 +1542,9 @@ class units extends _Units {
 
 		// Prorité
 		if(type === 'orbit' && fleet.maxFuel > 0 && planetData.highPriorityFleet === fleet.id) {
-			content += '<td class="text-center"><span style="color: #0ec6c6;">✔</span>' + fleetTranslate['priorty-fuel'] + '</td>';
+			content += '<td class="text-center"><span style="color: #0ec6c6;">✔</span>' + fleetTranslate['priority-fuel'] + '</td>';
 		} else if(type === 'orbit' && fleet.maxFuel > 0) {
-			content += '<td class="text-center priority-fleet" id="' + fleet.id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priorty-fuel'] + '</td>';
+			content += '<td class="text-center priority-fleet" id="' + fleet.id + '"><span style="color: #0ec6c6;">✖</span>' + fleetTranslate['no-priority-fuel'] + '</td>';
 		} else if(type === 'out') {
 			content += '<td class="text-center">' + fleetTranslate['orbiting'] + ' ' + fleet.position + '</td>'; // @TODO: pname (username) instead of position
 		} else if(type === 'moving') {
@@ -1973,6 +1973,12 @@ class units extends _Units {
 				units.planetTarget + '</em> (<em>' +
 				translate['ui']['no-player'] + '</em>)'
 			;
+		}
+
+		if(map.planetData[system][units.planetTarget].planetType < 100) {
+			document.getElementById('map-move-panel-habitability').innerHTML = '<span style="color: green;">' + translate['ui']['CONFIRM_YES'] + '</span>';
+		} else {
+			document.getElementById('map-move-panel-habitability').innerHTML = '<span style="color: red;">' + translate['ui']['CONFIRM_NO'] + '</span>';
 		}
 
 		document.getElementById('map-move-panel-move').value = translate['messages']['movePanelBtn'][moveType];

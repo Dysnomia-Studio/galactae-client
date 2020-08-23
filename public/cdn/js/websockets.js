@@ -169,9 +169,6 @@ class webSockets {
 		socket.on('server-reboot', function() {
 			kick('RESTARTING_SERVER');
 		});
-		window.addEventListener('beforeunload', function() {
-			socket.emit('game-disconnect', webSockets.getUserData());
-		});
 
 		window.addEventListener('error', function(event) {
 			if(!event.error) {

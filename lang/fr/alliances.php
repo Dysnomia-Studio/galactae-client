@@ -2,7 +2,8 @@
 // Menu
 define('ALLY_MEMBERS', 'Membres');
 define('ALLY_INFOS', 'Informations');
-define('ALLY_DIPLOMACY', 'Diplomatie');
+define('ALLY_PACT', 'Pactes');
+define('ALLY_ENNEMIES', 'Ennemis');
 
 // Infos
 define('ALLY_NAME', 'Nom de l\'alliance:');
@@ -22,40 +23,48 @@ define('ALLY_MEMBERS_PERMS_FOUNDER', 'Fondateur');
 define('ALLY_MEMBERS_PERMS_LEADER', 'Leader');
 define('ALLY_MEMBERS_PERMS_DIPLOMACY', 'Diplomatie');
 define('ALLY_MEMBERS_PERMS_NONE', 'Aucune permission');
-?>
-<script type="text/javascript">
-var translate = translate || {};
 
-translate['alliance'] = {
-	'pact-no': 'Aucun pacte en cours',
-	'pact-current': 'Pactes en cours:',
+// Pacts
+define('ALLY_PACT_NO', 'Aucun pacte en cours');
+define('ALLY_PACT_CURRENT', 'Pactes en cours:');
 
-	'pact-askToJoin-no': 'Aucune demande en cours',
-	'pact-askToJoin-current': 'Demandes de pactes entrantes:',
+define('ALLY_PACT_ASKTOJOIN_NO', 'Aucune demande en cours');
+define('ALLY_PACT_ASKTOJOIN_CURRENT', 'Demandes de pactes entrantes:');
 
-	'pact-invitations-no': 'Aucune invitation en cours',
-	'pact-invitations-current': 'Demandes de pactes sortantes:',
+define('ALLY_PACT_INVITATIONS_NO', 'Aucune invitation en cours');
+define('ALLY_PACT_INVITATIONS_CURRENT', 'Demandes de pactes sortantes');
 
-	'members-askToJoin-no': 'Aucune demande de joueur pour rejoindre l\'alliance',
-	'members-askToJoin-current': 'Demandes de joueur à rejoindre l\'alliance:',
+// Ennemies
+define('ALLY_ENNEMIES_NO', 'Aucune guerre en cours');
+define('ALLY_ENNEMIES_CURRENT', 'Guerres en cours:');
 
-	'members-invitations-no': 'Aucune invitation à rejoindre l\'alliance',
-	'members-invitations-current': 'Invitations à rejoindre l\'alliance:',
+define('ALLY_ENNEMIES_ASKTOJOIN_NO', 'Aucune demande en cours');
+define('ALLY_ENNEMIES_ASKTOJOIN_CURRENT', 'Declarations de guerre entrantes:');
 
-	'noAlly-askToJoin-no': 'Aucune demande pour rejoindre une alliance',
-	'noAlly-askToJoin-current': 'Demandes de afin de rejoindre une alliance:',
+define('ALLY_ENNEMIES_INVITATIONS_NO', 'Aucune invitation en cours');
+define('ALLY_ENNEMIES_INVITATIONS_CURRENT', 'Declarations de guerre sortantes');
 
-	'noAlly-invitations-no': 'Aucune invitation à rejoindre une alliance',
-	'noAlly-invitations-current': 'Invitations à rejoindre une alliance:',
+// Members
+define('ALLY_MEMBERS_ASKTOJOIN_NO', 'Aucune demande de joueur pour rejoindre l\'alliance');
+define('ALLY_MEMBERS_ASKTOJOIN_CURRENT', 'Demandes de joueur à rejoindre l\'alliance:');
 
-	'askToJoin': 'Demander à rejoindre',
-	'results-no': 'Aucun résultat',
-	'results': 'Résultats:',
+define('ALLY_MEMBERS_INVITATIONS_NO', 'Aucune invitation à rejoindre l\'alliance');
+define('ALLY_MEMBERS_INVITATIONS_CURRENT', 'Invitations à rejoindre l\'alliance:');
 
-	'quit-confirm': 'Voulez-vous vraiment quitter l\'alliance ?',
-	'dissolve-confirm': 'Voulez-vous vraiment dissoudre l\'alliance ?',
-	'stopPact-confirm': 'Voulez-vous vraiment stopper ce pacte ?',
-	'abandon-founder-confirm': (playerName) => 'Voulez-vous quitter votre rôle de fondateur de l\'alliance au profit de '+ playerName + ' ?',
-	'kick-confirm': (playerName) => 'Voulez-vous vraiment exclure ' + playerName + ' de l\'alliance ?',
-};
-</script>
+define('ALLY_NOALLY_ASKTOJOIN_NO', 'Aucune invitation à rejoindre une alliance');
+define('ALLY_NOALLY_ASKTOJOIN_CURRENT', 'Demandes de afin de rejoindre une alliance:');
+
+define('ALLY_NOALLY_INVITATIONS_NO', 'Aucune invitation à rejoindre une alliance');
+define('ALLY_NOALLY_INVITATIONS_CURRENT', 'Invitations à rejoindre une alliance:');
+
+define('ALLY_ASKTOJOIN', 'Demander à rejoindre');
+define('ALLY_RESULTS', 'Aucun résultat');
+define('ALLY_RESULTS_NO', 'Résultats:');
+
+define('ALLY_QUIT_CONFIRM', 'Voulez-vous vraiment quitter l\'alliance ?');
+define('ALLY_DISSOLVE_CONFIRM', 'Voulez-vous vraiment dissoudre l\'alliance ?');
+define('ALLY_STOPPACT_CONFIRM', 'Voulez-vous vraiment stopper ce pacte ?');
+define('ALLY_STOPENNEMIES_CONFIRM', 'Voulez-vous vraiment stopper cette guerre ?');
+
+define('ALLY_ABANDON_FOUNDER_CONFIRM', 'Voulez-vous quitter votre rôle de fondateur de l\'alliance au profit de %playerName% ?');
+define('ALLY_KICK_CONFIRM', 'Voulez-vous vraiment exclure %playerName% de l\'alliance ?');
