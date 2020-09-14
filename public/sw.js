@@ -38,7 +38,8 @@ self.addEventListener('fetch', function(event) {
 		return fetch(event.request).then(function(response) {
 			if(response.status !== 200 ||
 				event.request.method === 'POST' ||
-				response.headers.get('Content-Type').indexOf('html') !== -1) {
+				response.headers.get('Content-Type').indexOf('html') !== -1 ||
+				request.url.includes('cypress')) {
 
 				return response;
 			}
