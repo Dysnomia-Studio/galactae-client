@@ -363,6 +363,10 @@ class units extends _Units {
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
 			fleet = units.fleetList[fleet];
 
+			if(!fleet) {
+				return;
+			}
+
 			socket.emit('fleet-transferFuel', {
 				...webSockets.getUserData(),
 				from: units.currFleet,
