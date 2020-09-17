@@ -600,7 +600,7 @@ class ui {
 		ui.renaming = true;
 	}
 	static planetNameSwitchToSpan() {
-		let newname = document.getElementById('hud-planet-name').value;
+		const newname = document.getElementById('hud-planet-name').value;
 
 		// This try/catch is usefull when hitting ENTER Key
 		try {
@@ -612,7 +612,6 @@ class ui {
 		document.getElementById('hud-planet-name').addEventListener('click', ui.planetNameSwitchToInput);
 
 		if(ui.oldname !== newname) {
-			newname = normalizeText(newname);
 			socket.emit('planet-rename', {
 				...webSockets.getUserData(),
 				name: newname,
