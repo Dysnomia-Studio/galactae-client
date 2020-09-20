@@ -271,7 +271,7 @@ class notifications {
 				// Do nothing
 		}
 
-		if(osOpt.icon !== undefined && desc !== '') {
+		if(osOpt.icon !== undefined && desc !== '' && !isMobileBrowser()) {
 			osOpt.body = desc;
 			notifications.notifyOnOS('Galactae: ' + title, osOpt);
 		}

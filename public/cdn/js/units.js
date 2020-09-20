@@ -363,6 +363,10 @@ class units extends _Units {
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
 			fleet = units.fleetList[fleet];
 
+			if(!fleet) {
+				return;
+			}
+
 			socket.emit('fleet-transferFuel', {
 				...webSockets.getUserData(),
 				from: units.currFleet,
@@ -1164,7 +1168,7 @@ class units extends _Units {
 
 			//@TODO: ameliorer ca, utiliser une liste globale ou virer les anciens event
 			document.addEventListener('click', (e) => {
-				if(!!e.target.parentNode.parentNode && !ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
+				if(!!e.target.parentNode && !!e.target.parentNode.parentNode && !ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
 					ui.hide('#part-selecting-seen-' + id + ' dd ul');
 				}
 			});
@@ -1975,7 +1979,7 @@ class units extends _Units {
 			;
 		}
 
-		if(map.planetData[system][units.planetTarget].planetType < 100) {
+		if(map.planetData[system][units.planetTarget].planetType < 200) {
 			document.getElementById('map-move-panel-habitability').innerHTML = '<span style="color: green;">' + translate['ui']['CONFIRM_YES'] + '</span>';
 		} else {
 			document.getElementById('map-move-panel-habitability').innerHTML = '<span style="color: red;">' + translate['ui']['CONFIRM_NO'] + '</span>';

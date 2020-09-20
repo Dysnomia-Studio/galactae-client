@@ -1,6 +1,6 @@
 importScripts('cdn/js/calcConstants.js');
 
-self.version = 'Beta-0.6.8-rev.200823a';
+self.version = 'Beta-0.10.7-rev.200920c';
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
@@ -38,7 +38,8 @@ self.addEventListener('fetch', function(event) {
 		return fetch(event.request).then(function(response) {
 			if(response.status !== 200 ||
 				event.request.method === 'POST' ||
-				response.headers.get('Content-Type').indexOf('html') !== -1) {
+				response.headers.get('Content-Type').indexOf('html') !== -1 ||
+				event.request.url.includes('cypress')) {
 
 				return response;
 			}

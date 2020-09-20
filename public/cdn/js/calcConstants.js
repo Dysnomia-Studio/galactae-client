@@ -347,13 +347,13 @@ buildingMaxLvl[0] = buildingMaxLvl[1] = buildingMaxLvl[2] = buildingMaxLvl[3] = 
 buildingMaxLvl[101] = buildingMaxLvl[104] = [
 	15,	// Carriere
 	30,	// Metallurgie
-	22,	// Habitations
-	22,	// Serres
-	26,	// Centrales Solaires
+	20,	// Habitations
+	20,	// Serres
+	25,	// Centrales Solaires
 	20,	// Entrepôts
 	5,	// Etat Major
-	30,	// Centre de lancement
-	25,	// Centre de recherches
+	25,	// Centre de lancement
+	20,	// Centre de recherches
 	10,	// Radar
 	25,	// Reservoir
 	25,	// Chantier naval
@@ -364,8 +364,8 @@ buildingMaxLvl[101] = buildingMaxLvl[104] = [
 buildingMaxLvl[102] = buildingMaxLvl[113] = [
 	30,	// Carriere
 	20,	// Metallurgie
-	21,	// Habitations
-	21,	// Serres
+	20,	// Habitations
+	20,	// Serres
 	25,	// Centrales Solaires
 	25,	// Entrepôts
 	5,	// Etat Major
@@ -381,13 +381,13 @@ buildingMaxLvl[102] = buildingMaxLvl[113] = [
 buildingMaxLvl[103] = [
 	15,	// Carriere
 	15,	// Metallurgie
-	18,	// Habitations
-	18,	// Serres
-	17,	// Centrales Solaires
+	20,	// Habitations
+	20,	// Serres
+	25,	// Centrales Solaires
 	15,	// Entrepôts
 	5,	// Etat Major
-	20,	// Centre de lancement
-	20,	// Centre de recherches
+	35,	// Centre de lancement
+	35,	// Centre de recherches
 	10,	// Radar
 	20,	// Reservoir
 	20,	// Chantier naval
@@ -398,12 +398,12 @@ buildingMaxLvl[103] = [
 buildingMaxLvl[105] = buildingMaxLvl[109] = [
 	25,	// Carriere
 	25,	// Metallurgie
-	23,	// Habitations
-	23,	// Serres
-	26,	// Centrales Solaires
+	25,	// Habitations
+	25,	// Serres
+	30,	// Centrales Solaires
 	25,	// Entrepôts
 	5,	// Etat Major
-	30,	// Centre de lancement
+	35,	// Centre de lancement
 	25,	// Centre de recherches
 	10,	// Radar
 	25,	// Reservoir
@@ -417,7 +417,7 @@ buildingMaxLvl[106] = buildingMaxLvl[107] = [
 	30,	// Metallurgie
 	25,	// Habitations
 	25,	// Serres
-	29,	// Centrales Solaires
+	30,	// Centrales Solaires
 	20,	// Entrepôts
 	5,	// Etat Major
 	25,	// Centre de lancement
@@ -430,15 +430,15 @@ buildingMaxLvl[106] = buildingMaxLvl[107] = [
 ];
 // Montagnes, glace
 buildingMaxLvl[108] = [
-	25,	// Carriere
+	20,	// Carriere
 	15,	// Metallurgie
 	20,	// Habitations
 	20,	// Serres
-	21,	// Centrales Solaires
+	25,	// Centrales Solaires
 	15,	// Entrepôts
 	5,	// Etat Major
-	20,	// Centre de lancement
-	25,	// Centre de recherches
+	30,	// Centre de lancement
+	35,	// Centre de recherches
 	10,	// Radar
 	20,	// Reservoir
 	20,	// Chantier naval
@@ -449,10 +449,10 @@ buildingMaxLvl[108] = [
 buildingMaxLvl[110] = [
 	20,	// Carriere
 	20,	// Metallurgie
-	21,	// Habitations
-	21,	// Serres
-	22,	// Centrales Solaires
-	20,	// Entrepôts
+	20,	// Habitations
+	20,	// Serres
+	25,	// Centrales Solaires
+	25,	// Entrepôts
 	5,	// Etat Major
 	25,	// Centre de lancement
 	25,	// Centre de recherches
@@ -466,9 +466,9 @@ buildingMaxLvl[110] = [
 buildingMaxLvl[111] = [
 	30,	// Carriere
 	30,	// Metallurgie
-	24,	// Habitations
-	24,	// Serres
-	29,	// Centrales Solaires
+	25,	// Habitations
+	25,	// Serres
+	30,	// Centrales Solaires
 	25,	// Entrepôts
 	5,	// Etat Major
 	30,	// Centre de lancement
@@ -483,8 +483,8 @@ buildingMaxLvl[111] = [
 buildingMaxLvl[112] = [
 	25,	// Carriere
 	25,	// Metallurgie
-	22,	// Habitations
-	22,	// Serres
+	25,	// Habitations
+	25,	// Serres
 	25,	// Centrales Solaires
 	20,	// Entrepôts
 	5,	// Etat Major

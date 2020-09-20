@@ -35,13 +35,13 @@ translate['buildings'] = [
 	// ground
 	{id: 'carriere', name: 'Quarry', desc: 'The Quarry will harvest minerals from the ground.'},
 	{id: 'metallurgy', name: 'Metallurgy', desc: 'In this building, minerals become metals.'},
-	{id: 'living',name: 'Houses', desc: 'Here lives the population.'},
+	{id: 'living',name: 'Houses Disctrict', desc: 'Here lives the population.'},
 	{id: 'serre', name: 'Greenhouse', desc: 'The greenhouse are the main source of food on the planet.'},
 	{id: 'solar', name: 'Solar Power Plant', desc: 'Make electricity with solar energy !' },
 	{id: 'warehouse', name: 'Warehouse', desc: 'Warehouse will stock minerals and metals.' },
-	{id: 'headquarter', name: 'Headquarters', desc: 'The Headquarters lead all your fleets and all your defenses.' },
+	{id: 'headquarter', name: 'Headquarter', desc: 'The Headquarter lead all your fleets and all your defenses.' },
 	{id: 'launchpad', name: 'Space Center', desc: 'In the space center, we\'ll build planet defences, fighters and resource transport to space buildings. Each level improve productivity.' },
-	{id: 'research', name: 'Institute for Scientific Research', desc: 'The research centers of all your planets works together to discover new technologies.' },
+	{id: 'research', name: 'Reasearch center', desc: 'The research centers of all your planets works together to discover new technologies.' },
 	// Space
 	{id: 'radar', name: 'Radar Satelite', desc: 'This satelite will detect all closet fleets and is useful to contact your fleets.' },
 	{id: 'tank', name: 'Tank', desc: 'It will stock Helium 3.' },
