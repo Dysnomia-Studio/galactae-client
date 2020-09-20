@@ -1168,7 +1168,7 @@ class units extends _Units {
 
 			//@TODO: ameliorer ca, utiliser une liste globale ou virer les anciens event
 			document.addEventListener('click', (e) => {
-				if(!!e.target.parentNode.parentNode && !ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
+				if(!!e.target.parentNode && !!e.target.parentNode.parentNode && !ui.hasClass(e.target.parentNode.parentNode, 'dropdown')) {
 					ui.hide('#part-selecting-seen-' + id + ' dd ul');
 				}
 			});
