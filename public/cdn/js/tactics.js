@@ -113,11 +113,14 @@ class tactics {
 			if(a.priority > b.priority) {
 				return 1;
 			} else if(a.priority === b.priority) {
-				if(tactics.getTacticById(a.unit).name > tactics.getTacticById(b.unit).name) {
-					return 1;
-				} else if(tactics.getTacticById(a.unit).name === tactics.getTacticById(b.unit).name && fleetTranslate[a.target] > fleetTranslate[b.target]) {
+				if(
+					(tactics.getTacticById(a.unit).name > tactics.getTacticById(b.unit).name) ||
+					(tactics.getTacticById(a.unit).name === tactics.getTacticById(b.unit).name && fleetTranslate[a.target] > fleetTranslate[b.target])
+				) {
 					return 1;
 				}
+
+				return 0;
 			}
 
 			return -1;

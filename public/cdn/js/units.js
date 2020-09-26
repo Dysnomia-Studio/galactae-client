@@ -1571,7 +1571,7 @@ class units extends _Units {
 			preventFleetHUDClosing = false;
 			socket.emit('unit-type-create', {
 				...webSockets.getUserData(),
-				ship: ship
+				ship: ship,
 			});
 		} else {
 			ui.drawMessage(errorMessage);
@@ -1600,7 +1600,7 @@ class units extends _Units {
 		return {
 			totalcount,
 			fighterCount,
-			fighterCap
+			fighterCap,
 		};
 	}
 
@@ -1912,7 +1912,9 @@ class units extends _Units {
 			let i = 0;
 			for(const tactic of tactics.tacticList) {
 				const option = document.createElement('option');
-				option.id = i++;
+
+				i++;
+				option.id = i;
 				option.innerText = tactic.name;
 
 				mainList.appendChild(option);
@@ -1930,11 +1932,11 @@ class units extends _Units {
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-upgrade')).forEach((elt) => elt.addEventListener('click', function(event) {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']); // @TODO: upgrade
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-recycle')).forEach((elt) => elt.addEventListener('click', function(event) {
-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']); // @TODO: recycle
 		}));
 
 		const priorityElts = document.getElementsByClassName('priority-fleet');
@@ -2032,7 +2034,7 @@ class units extends _Units {
 
 		return {
 			time,
-			fuel
+			fuel,
 		};
 	}
 
@@ -2172,13 +2174,15 @@ class units extends _Units {
 		if(units.fleetFuel[units.currFleet]) {
 			fFuel = units.fleetFuel[units.currFleet];
 			ratio = Math.round(fFuel[0]/fFuel[1]*100);
+
+			if(Number.isNaN(ratio)) {
+				ratio = '?';
+				fFuel = [0,0];
+			} else if(ratio > 999) {
+				ratio = '+999';
+			}
 		}
-		if(ratio > 999) {
-			ratio = '+999';
-		}
-		if(Number.isNaN(ratio)) {
-			ratio = '?'; fFuel = [0,0];
-		}
+
 		document.getElementById('map-move-panel-fuel').innerHTML =
 			GetBetterUnit(fFuel[0], 't', fFuel[1] + 1) +
 			' (' + ratio + '% ' + fleetTranslate['of-maxFuel'] + ')';
