@@ -64,7 +64,9 @@ class map {
 		 */
 		'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(e) {
 			document.getElementById('map-global').addEventListener(e, function(event) {
-				if(map.scaling) { return; }
+				if(map.scaling) {
+					return;
+				}
 
 				map.touchHandler(event);
 			});
@@ -127,9 +129,15 @@ class map {
 
 
 				let coef = (map.dist / newDist) - 1;
-				if(coef > MAP_ZOOM_COEF_MOBILE_MAX) { coef = MAP_ZOOM_COEF_MOBILE_MAX; }
-				if(coef < -MAP_ZOOM_COEF_MOBILE_MAX) { coef = -MAP_ZOOM_COEF_MOBILE_MAX; }
-				if(coef === 0) { return; }
+				if(coef > MAP_ZOOM_COEF_MOBILE_MAX) {
+					coef = MAP_ZOOM_COEF_MOBILE_MAX;
+				}
+				if(coef < -MAP_ZOOM_COEF_MOBILE_MAX) {
+					coef = -MAP_ZOOM_COEF_MOBILE_MAX;
+				}
+				if(coef === 0) {
+					return;
+				}
 
 				map.makeZoom(-coef);
 
@@ -566,7 +574,7 @@ class map {
 			orbitSize[0] = 0;
 
 			firstPlanet = stars[0].size * STAR_ECART;
-		} else if(stars.length == 2) { // two stars
+		} else if(stars.length === 2) { // two stars
 			// Si c'est les memes gTypes (naine et naine OU geante et geante), et on exclue les supergeantes
 			if(stars[0].type.substr(-5) === stars[1].type.substr(-5) &&
 				stars[0].type.substr(-10) !== 'SuperGiant' &&
@@ -750,7 +758,9 @@ class map {
 	 */
 	static drawSector(sector) {
 		// Stop if already created
-		if(document.getElementById(sector + '-1') !== null) { return; }
+		if(document.getElementById(sector + '-1') !== null) {
+			return;
+		}
 
 		// Get XML
 		const systemList = map.xmlDoc[sector].querySelectorAll('sy');

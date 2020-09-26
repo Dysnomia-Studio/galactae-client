@@ -145,7 +145,7 @@ const charList = [
 	['æ','&aelig;'],
 	// c
 	['ç','&ccedil;'],
-	// e		
+	// e
 	['è','&egrave;'],
 	['é','&eacute;'],
 	['ê','&ecirc;'],
@@ -154,7 +154,7 @@ const charList = [
 	['ì','&igrave;'],
 	['í','&iacute;'],
 	['î','&icirc;'],
-	['ï','&iuml;'], 
+	['ï','&iuml;'],
 	// n
 	['ñ','&ntilde;'],
 	// o
@@ -217,4 +217,7 @@ function unNormalizeText(str) {
 	return str;
 }
 
-function log(txt) { console.log(txt); } // Compatibility with server for shared libraries
+// Compatibility with server for shared libraries
+function log(txt) {
+	console.log(txt);
+}

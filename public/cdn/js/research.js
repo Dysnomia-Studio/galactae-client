@@ -16,7 +16,7 @@ class research extends _Research {
 		simulatedEvent.initMouseEvent({
 			touchstart: 'mousedown',
 			touchmove: 'mousemove',
-			touchend: 'mouseup'
+			touchend: 'mouseup',
 		}[event.type], true, true, window, 1,
 			touch.screenX, touch.screenY,
 			touch.clientX, touch.clientY, false,
@@ -37,7 +37,9 @@ class research extends _Research {
 
 		'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(e) {
 			document.getElementById('hud-research').addEventListener(e, function(event) {
-				if(research.scaling) { return; }
+				if(research.scaling) {
+					return;
+				}
 
 				research.touchHandler(event);
 			});
@@ -94,9 +96,15 @@ class research extends _Research {
 
 
 				let coef = (research.dist / newDist) - 1;
-				if(coef > 0.1) { coef = 0.1; }
-				if(coef < -0.1) { coef = -0.1; }
-				if(coef === 0) { return; }
+				if(coef > 0.1) {
+					coef = 0.1;
+				}
+				if(coef < -0.1) {
+					coef = -0.1;
+				}
+				if(coef === 0) {
+					return;
+				}
 
 				research.makeZoom(-coef);
 
@@ -127,8 +135,14 @@ class research extends _Research {
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
 		research.zoom += coef;
-		if(research.zoom < RESEARCH_MIN_ZOOM) { research.zoom -= coef; return; }
-		if(research.zoom > RESEARCH_MAX_ZOOM) { research.zoom -= coef; return; }
+		if(research.zoom < RESEARCH_MIN_ZOOM) {
+			research.zoom -= coef;
+			return;
+		}
+		if(research.zoom > RESEARCH_MAX_ZOOM) {
+			research.zoom -= coef;
+			return;
+		}
 
 		const pos = ui.position('#hud-research');
 		pos.left = ((pos.left - researchPrevMouse[0]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[0]*1.1;
@@ -168,7 +182,7 @@ class research extends _Research {
 		if(researchPos[planetData.currResearch] !== undefined) {
 			const newUIPos = [
 				document.documentElement.clientWidth/2  - researchPos[planetData.currResearch][0]*research.zoom,
-				document.documentElement.clientHeight/2 - researchPos[planetData.currResearch][1]*research.zoom
+				document.documentElement.clientHeight/2 - researchPos[planetData.currResearch][1]*research.zoom,
 			];
 			research.moveUI(newUIPos);
 		}
@@ -181,6 +195,7 @@ class research extends _Research {
 
 		ui.research = true;
 	}
+
 	/**
 	 * Move the UI
 	 */
@@ -205,7 +220,9 @@ class research extends _Research {
 	 * Draws research UI
 	 */
 	static drawPanel() {
-		if(research.zoom === undefined) { research.zoom = 1; }
+		if(research.zoom === undefined) {
+			research.zoom = 1;
+		}
 
 		document.getElementById('research-content').style.zoom = 1;
 		document.getElementById('research-content').style.MozTransform = 'scale(1)';
@@ -254,7 +271,9 @@ class research extends _Research {
 	 * @param	  {string}  parent  The parent
 	 */
 	static drawNode(key) {
-		if(document.querySelectorAll('#'+key+'-node').length > 0) { return; }
+		if(document.querySelectorAll('#'+key+'-node').length > 0) {
+			return;
+		}
 
 		// Place this node
 		let className = '';
@@ -303,9 +322,13 @@ class research extends _Research {
 	 * @param	  {string}  parent  The parent
 	 */
 	static drawLink(child,parent) {
-		if(child === '' || parent === '' || typeof parent === 'object') { return; }
+		if(child === '' || parent === '' || typeof parent === 'object') {
+			return;
+		}
 
-		if( !(document.querySelectorAll('#'+child+'-node').length) || !(document.querySelectorAll('#'+parent+'-node').length) ) { return; }
+		if( !(document.querySelectorAll('#'+child+'-node').length) || !(document.querySelectorAll('#'+parent+'-node').length) ) {
+			return;
+		}
 
 		const childPos = ui.position('#' + child + '-node');
 		const parentPos = ui.position('#' + parent + '-node');
@@ -316,8 +339,11 @@ class research extends _Research {
 		const y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
 		let color; //default
 
-		if(research.isSearched(userData, parent)) { color = '#0EC6C6'; }
-		else { color = 'rgba(14,198,198,0.2)'; }
+		if(research.isSearched(userData, parent)) {
+			color = '#0EC6C6';
+		} else {
+			color = 'rgba(14,198,198,0.2)';
+		}
 
 		const newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
 		newLine.setAttribute('stroke',color);
@@ -377,7 +403,7 @@ class research extends _Research {
 	static change(id) {
 		socket.emit('research-change', {
 			...webSockets.getUserData(),
-			research: id
+			research: id,
 		});
 	}
 
@@ -392,10 +418,22 @@ class research extends _Research {
 	 * Simulate research evolution (client side calculation)
 	 */
 	static sim() {
-		if(!planetData.currResearch || planetData.currResearch === '') { return; } // If research name is undefined
-		if(typeof userData.research[planetData.currResearch] !== 'number') { return; } // If research is undefined
-		if(userData.research[planetData.currResearch] === -1) { return; } // If research is finished
-		if(Conquest.isPlanetBeingConquested()) { return; } // If planet is being conquested
+		// If research name is undefined
+		if(!planetData.currResearch || planetData.currResearch === '') {
+			return;
+		}
+		// If research is undefined
+		if(typeof userData.research[planetData.currResearch] !== 'number') {
+			return;
+		}
+		// If research is finished
+		if(userData.research[planetData.currResearch] === -1) {
+			return;
+		}
+		// If planet is being conquested
+		if(Conquest.isPlanetBeingConquested()) {
+			return;
+		}
 
 		userData.research[planetData.currResearch]+= Research.getResearchProduction(planetData.Buildings[8])/1800;
 

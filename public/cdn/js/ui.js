@@ -35,8 +35,13 @@ class ui {
 	 */
 	static drawMessage(msg) {
 		// Translation
-		if(msg === undefined) { return; }
-		if((translate.messages[msg] !== undefined) && (translate.messages[msg] !== '')) { msg = translate.messages[msg]; }
+		if(msg === undefined) {
+			return;
+		}
+		if((translate.messages[msg] !== undefined) && (translate.messages[msg] !== '')) {
+			msg = translate.messages[msg];
+		}
+
 		// Draw the message
 		const msgPanel = document.getElementById('messagePanel');
 		msgPanel.innerText = msg;
@@ -57,7 +62,9 @@ class ui {
 	}
 
 	static confirm(question, yesMsg, noMsg, cbYes, cbNo) {
-		if(confirmBoxCreated) { return; }
+		if(confirmBoxCreated) {
+			return;
+		}
 		confirmBoxCreated = true;
 
 		function clearConfirmBox() {
@@ -215,7 +222,7 @@ class ui {
 			ui.menu = !(ui.menu);
 		});
 		document.addEventListener('click', function(e) {
-			if(ui.menu && e.target.id != 'game-menu' && e.target.id != 'hud-gameMenu') {
+			if(ui.menu && e.target.id !== 'game-menu' && e.target.id !== 'hud-gameMenu') {
 				ui.closeTab('#game-menu', false);
 				ui.menu = !(ui.menu);
 			}
@@ -303,23 +310,19 @@ class ui {
 				}
 			});
 			window.addEventListener('keydown', function(e) {
-			//F12 => Firefox, Chrome, Edge
-				if(e.which === KEYBOARD.F12){
-					if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
-						return false;
+				if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
+					//F12 => Firefox, Chrome, Edge
+					if(e.which === KEYBOARD.F12){
+							return false;
 					}
-				}
-				//CTRL + SHIFT + C => Opera
-				if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
-					if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
-						return false;
+					//CTRL + SHIFT + C => Opera
+					if(e.which === KEYBOARD.C && e.ctrlKey && e.shiftKey){
+							return false;
 					}
-				}
 
-				//CTRL + SHIFT + I => Chromium
-				if(e.which === KEYBOARD.I && e.ctrlKey && e.shiftKey){
-					if(document.location.host.substr(3,3) !== 'dev' && document.location.host.substr(0,4) !== 'test') {
-						return false;
+					//CTRL + SHIFT + I => Chromium
+					if(e.which === KEYBOARD.I && e.ctrlKey && e.shiftKey){
+							return false;
 					}
 				}
 			});
@@ -333,7 +336,7 @@ class ui {
 	static position(selector) {
 		return {
 			left: parseInt(window.getComputedStyle(document.querySelector(selector)).left.slice(0, -2)),
-			top: parseInt(window.getComputedStyle(document.querySelector(selector)).top.slice(0, -2))
+			top: parseInt(window.getComputedStyle(document.querySelector(selector)).top.slice(0, -2)),
 		};
 	}
 
@@ -358,8 +361,12 @@ class ui {
 		function scrollTop(elementID, multiply) {
 			let scroll = document.getElementById(elementID).scrollLeft;
 			scroll += 20 * multiply;
-			if(scroll<0) { scroll=0; }
-			if(scroll>document.getElementById(elementID).clientWidth) { scroll=document.getElementById(elementID).clientWidth; }
+			if(scroll<0) {
+				scroll=0;
+			}
+			if(scroll>document.getElementById(elementID).clientWidth) {
+				scroll=document.getElementById(elementID).clientWidth;
+			}
 			document.getElementById(elementID).scrollLeft=scroll;
 		}
 
@@ -754,19 +761,24 @@ class ui {
 		document.getElementById('day-bonus-best').innerHTML = best;
 
 		// What's the bonus today ?
-		streak=streak%30;
+		streak = streak%30;
 		let credits;
 		let helium = 0;
 
-		if(streak==1) { credits = 15; }
-		else if(streak==2) { credits = 25; }
-		else if(streak==3) { credits = 50; }
-		else if(streak==4) { credits = 80; }
-		else if(streak<10) { credits = 100; }
-		else if(streak<20) {
+		if(streak === 1) {
+			credits = 15;
+		} else if(streak === 2) {
+			credits = 25;
+		} else if(streak === 3) {
+			credits = 50;
+		} else if(streak === 4) {
+			credits = 80;
+		} else if(streak < 10) {
+			credits = 100;
+		} else if(streak < 20) {
 			credits = 10*(streak + 1); // 110 to 200
 			helium = 1750 * streak; // 15000 is about 45 min of ion propulsion for 1 vessel - 15000 to 33250
-		} else if(streak<30) {
+		} else if(streak < 30) {
 			credits = 15*streak; // 300 to 435
 			helium = 2000 * streak; // 40000 to 58000
 		} else {

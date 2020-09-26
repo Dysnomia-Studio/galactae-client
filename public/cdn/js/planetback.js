@@ -145,9 +145,11 @@ class planetBack {
 	 * Render the planet
 	 */
 	static renderPlanet() {
+		++planetBack.frames;
+
 		if(!ui.research &&
 			(!ui.map || map.currentMap !== 'sector') &&
-			settings.get('graphical_planetsRotation') || ++planetBack.frames < 5) {
+			settings.get('graphical_planetsRotation') || planetBack.frames < 5) {
 
 			// New position
 			planetBack.calc.long = (-Date.now()/1000)%360 - 180;

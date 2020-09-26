@@ -67,7 +67,10 @@ class units extends _Units {
 
 		// Fleet panels close events
 		document.getElementById('fleet-close').addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
+
 			if(units.unitPanelTimeout !== -1) {
 				clearTimeout(units.unitPanelTimeout);
 				units.unitPanelTimeout = -1;
@@ -81,7 +84,9 @@ class units extends _Units {
 		// @TODO: refacto to group up with alliances tabs
 		document.querySelectorAll('.fleet-ul1 li').forEach(function(elt) {
 			elt.addEventListener('click', function() {
-				if(preventFleetHUDClosing) { return; }
+				if(preventFleetHUDClosing) {
+					return;
+				}
 
 				ui.toggleClass('.fleet-ul1 .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
@@ -108,7 +113,9 @@ class units extends _Units {
 		// Fleet submenus
 		document.querySelectorAll('#fleet-build-choice li').forEach(function(e) {
 			e.addEventListener('click', function() {
-				if(preventFleetHUDClosing) { return; }
+				if(preventFleetHUDClosing) {
+					return;
+				}
 
 				ui.toggleClass('#fleet-build-choice .ul-choice-line-li-active', 'ul-choice-line-li-active', this);
 
@@ -154,7 +161,10 @@ class units extends _Units {
 
 		// Move
 		document.getElementById('map-move-panel-move').addEventListener('click', () => {
-			if(ui.moveType === 3) { ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']); return; }
+			if(ui.moveType === 3) {
+				ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+				return;
+			}
 
 			socket.emit('fleet-move', {
 				...webSockets.getUserData(),
@@ -177,19 +187,25 @@ class units extends _Units {
 		});
 
 		document.getElementById('fleet-build-create').addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			units.drawCreateTypePanel();
 		});
 		// Type copy
 		document.getElementById('fleet-build-type-copy').addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			units.drawCreateTypePanel(true);
 		});
 		// Type delete
 		document.getElementById('fleet-build-type-delete').addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			ui.confirm(
 				fleetTranslate['fleet-build-type-delete-confirmMessage'],
@@ -213,7 +229,9 @@ class units extends _Units {
 
 		// Type rename
 		document.getElementById('fleet-build-rename').addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			const oldName = units.list[units.currUnit].name;
 			document.getElementById('fleet-type-rename-name').innerText = oldName;
@@ -223,7 +241,9 @@ class units extends _Units {
 			preventFleetHUDClosing = true;
 		});
 		document.getElementById('fleet-type-rename-submit').addEventListener('click', () => {
-			if(document.getElementById('fleet-type-rename-newName').value === '') { return; }
+			if(document.getElementById('fleet-type-rename-newName').value === '') {
+				return;
+			}
 
 			socket.emit('unit-type-rename', {
 				...webSockets.getUserData(),
@@ -241,7 +261,9 @@ class units extends _Units {
 
 	static fleetBuildEvents() {
 		document.getElementById('fleet-build-openPanel').addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			preventFleetHUDClosing = true;
 			units.drawBuildPanel();
@@ -285,7 +307,9 @@ class units extends _Units {
 		});
 
 		document.getElementById('fleet-ship-build-close').addEventListener('click', () => {
-			if(preventUnitBuildPanelClose) { return; }
+			if(preventUnitBuildPanelClose) {
+				return;
+			}
 			preventFleetHUDClosing = false;
 			ui.closeTab('#fleet-ship-build');
 		});
@@ -293,7 +317,9 @@ class units extends _Units {
 
 	static fleetListEvents() {
 		document.getElementById('fleet-rename-submit').addEventListener('click', () => {
-			if(document.getElementById('fleet-rename-newName').value === '') { return; }
+			if(document.getElementById('fleet-rename-newName').value === '') {
+				return;
+			}
 
 			socket.emit('fleet-rename', {
 				...webSockets.getUserData(),
@@ -309,7 +335,9 @@ class units extends _Units {
 		});
 
 		document.getElementById('fleet-merge-submit').addEventListener('click', () => {
-			if(document.getElementById('fleet-merge-fleetSelect').selectedIndex === '-2') { return; }
+			if(document.getElementById('fleet-merge-fleetSelect').selectedIndex === '-2') {
+				return;
+			}
 
 			let fleet = document.getElementById('fleet-merge-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -331,8 +359,12 @@ class units extends _Units {
 		document.getElementById('fleet-units-transfer-submit').addEventListener('click', () => {
 			const count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value);
 
-			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') { return; }
-			if(Number.isNaN(count) || count <= 0) { return; } //@TODO: check max
+			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') {
+				return;
+			}
+			if(Number.isNaN(count) || count <= 0) { // @TODO: check max
+				return;
+			}
 
 			let fleet = document.getElementById('fleet-units-transfer-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -356,8 +388,12 @@ class units extends _Units {
 		document.getElementById('fleet-transferFuel-submit').addEventListener('click', () => {
 			const count = parseInt(document.getElementById('fleet-transferFuel-fuelCount').value);
 
-			if(document.getElementById('fleet-transferFuel-fleetSelect').selectedIndex === '-2') { return; }
-			if(Number.isNaN(count) || count <= 0) { return; } //@TODO: check max
+			if(document.getElementById('fleet-transferFuel-fleetSelect').selectedIndex === '-2') {
+				return;
+			}
+			if(Number.isNaN(count) || count <= 0) { //@TODO: check max
+				return;
+			}
 
 			let fleet = document.getElementById('fleet-transferFuel-fleetSelect');
 			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
@@ -385,7 +421,9 @@ class units extends _Units {
 			const select = document.getElementById('fleet-assignTactic-tacticSelect');
 			let currTactic = select.options[select.selectedIndex].id;
 
-			if(currTactic === '-2') { return; }
+			if(currTactic === '-2') {
+				return;
+			}
 
 			if(!currTactic || currTactic === '-1') {
 				currTactic = '-1';
@@ -464,8 +502,12 @@ class units extends _Units {
 	 */
 	static getFleetName(id) {
 		let name = units.getFleetData(id).name;
-		if(name === undefined) { name = ''; }
-		if(name === 'SHIP_DEF') { return fleetTranslate[name]; }
+		if(name === undefined) {
+			name = '';
+		}
+		if(name === 'SHIP_DEF') {
+			return fleetTranslate[name];
+		}
 
 		return name;
 	}
@@ -622,7 +664,9 @@ class units extends _Units {
 			const DOMElts = document.querySelectorAll('#fleet-build-list tbody tr');
 			for(let i=0; i<DOMElts.length; i++) {
 				DOMElts[i].addEventListener('click', function() {
-					if(preventFleetHUDClosing) { return; }
+					if(preventFleetHUDClosing) {
+						return;
+					}
 
 					ui.toggleClass('#fleet-build-list .fleet-build-list-active', 'fleet-build-list-active', this);
 
@@ -641,7 +685,9 @@ class units extends _Units {
 					break;
 				}
 			}
-			if(!disabledButton) { break; }
+			if(!disabledButton) {
+				break;
+			}
 		}
 		if(disabledButton) {
 			ui.hide('#fleet-build-create');
@@ -695,8 +741,12 @@ class units extends _Units {
 	static validFleetName() {
 		const fname = document.getElementById('fleet-newFleet-name').value;
 
-		if(fname === '') { return; }
-		if(units.fleetExists(fname)) { return; }
+		if(fname === '') {
+			return;
+		}
+		if(units.fleetExists(fname)) {
+			return;
+		}
 
 		units.fname = fname;
 		document.querySelector('#fleet-ship-build-fleetSelect option[id="-1"]').innerText = units.fname;
@@ -720,7 +770,9 @@ class units extends _Units {
 		const currUnit = units.list[units.currUnit];
 		let count = parseInt(document.getElementById('fleet-ship-build-count').value);
 
-		if(document.getElementById('fleet-ship-build-count').value === '' || count < 1) { count = 1; }
+		if(document.getElementById('fleet-ship-build-count').value === '' || count < 1) {
+			count = 1;
+		}
 
 		for(const i in costs) {
 			if(currUnit.cost[i] === 0) {
@@ -782,8 +834,12 @@ class units extends _Units {
 		// Fleet list
 		document.getElementById('fleet-ship-build-fleetSelect').innerHTML = unitBuildSelectHeader;
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; } // Def fleet
-			if(units.fleetList[i].position !== address || units.fleetList[i].orbitPosition !== 0) { continue; } // Moving/Out fleets
+			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { // Def fleet
+				continue;
+			}
+			if(units.fleetList[i].position !== address || units.fleetList[i].orbitPosition !== 0) { // Moving/Out fleets
+				continue;
+			}
 
 			document.getElementById('fleet-ship-build-fleetSelect').innerHTML =
 					document.getElementById('fleet-ship-build-fleetSelect').innerHTML + '<option id="' + i + '">' + units.fleetList[i].name + '</option>';
@@ -801,7 +857,9 @@ class units extends _Units {
 	 * Draws the unit build panel
 	 */
 	static drawBuildPanel() {
-		if(units.currUnit === -1 || units.list[units.currUnit] === undefined) { return; }
+		if(units.currUnit === -1 || units.list[units.currUnit] === undefined) {
+			return;
+		}
 		ui.show('#fleet-ship-build-fleetSelect');
 
 		units.fname = '';
@@ -841,9 +899,15 @@ class units extends _Units {
 		let fleet = document.getElementById('fleet-ship-build-fleetSelect');
 		fleet = parseInt(fleet.options[fleet.selectedIndex].id);
 
-		if(Number.isNaN(fleet) || fleet === undefined || (fleet === -2 && units.list[units.currUnit].shipType !== 'SHIP_DEF')) { return; }
-		if(Number.isNaN(count) || count === undefined || units.currUnit === -1) { return; }
-		if(preventUnitBuildPanelClose) { return; }
+		if(Number.isNaN(fleet) || fleet === undefined || (fleet === -2 && units.list[units.currUnit].shipType !== 'SHIP_DEF')) {
+			return;
+		}
+		if(Number.isNaN(count) || count === undefined || units.currUnit === -1) {
+			return;
+		}
+		if(preventUnitBuildPanelClose) {
+			return;
+		}
 
 		const unit = {
 			...webSockets.getUserData(),
@@ -899,7 +963,9 @@ class units extends _Units {
 					break;
 				}
 			}
-			if(disabled) { continue; }
+			if(disabled) {
+				continue;
+			}
 
 			if(selectedType !== unitTypes[i]) {
 				selectContent += '<option value="' + unitTypes[i] + '">' + fleetTranslate[unitTypes[i]] + '</option>';
@@ -938,8 +1004,12 @@ class units extends _Units {
 
 		let selectShipShape = '';
 		for(const index in shipShapesDetails[type]) {
-			if(selectedShape === '') { selectedShape = index; }
-			if(shipResearchDependencies[index] !== undefined && !research.isSearched(userData, shipResearchDependencies[index])) { continue; }
+			if(selectedShape === '') {
+				selectedShape = index;
+			}
+			if(shipResearchDependencies[index] !== undefined && !research.isSearched(userData, shipResearchDependencies[index])) {
+				continue;
+			}
 
 			if(index === selectedShape) {
 				selectShipShape += '<option value="' + index + '" selected>' + fleetTranslate[index] + '</option>';
@@ -1076,7 +1146,10 @@ class units extends _Units {
 				for(let j=0; j<content[shape[i][0]].length; j++) {
 					if(content[shape[i][0]][j] !== 'none' &&
 						shipResearchDependencies[content[shape[i][0]][j]] !== undefined &&
-						!research.isSearched(userData, shipResearchDependencies[content[shape[i][0]][j]])) { continue; }
+						!research.isSearched(userData, shipResearchDependencies[content[shape[i][0]][j]])) {
+
+						continue;
+					}
 
 					const newOption = document.createElement('option');
 					newOption.value = content[shape[i][0]][j];
@@ -1243,7 +1316,9 @@ class units extends _Units {
 	 * @param      {(Function|number|string)}        note    The note
 	 */
 	static updateStats(div, type, shape, parts, note) {
-		if(parts === undefined) { parts = []; } // Mines only
+		if(parts === undefined) { // Mines only
+			parts = [];
+		}
 
 		const modules = {
 			'sub_propulsion': 0,
@@ -1257,7 +1332,9 @@ class units extends _Units {
 		ui.show(div + ' div');
 
 		for(let i=0; i<parts.length; i++) {
-			if(parts[i].tech === 'none' || parts[i].tech === 'noPartResearched') { continue; }
+			if(parts[i].tech === 'none' || parts[i].tech === 'noPartResearched') {
+				continue;
+			}
 
 			switch(parts[i].type) {
 				case 'sub_propulsion':
@@ -1340,8 +1417,12 @@ class units extends _Units {
 	static getWeaponList(unitId) {
 		const armes = {};
 		for(let i=0; i<units.list[unitId].parts.length; i++) {
-			if(units.list[unitId].parts[i].type !== 'cannon' && units.list[unitId].parts[i].type !== 'rocketLauncher') { continue; }
-			if(units.list[unitId].parts[i].tech === 'none') { continue; }
+			if(units.list[unitId].parts[i].type !== 'cannon' && units.list[unitId].parts[i].type !== 'rocketLauncher') {
+				continue;
+			}
+			if(units.list[unitId].parts[i].tech === 'none') {
+				continue;
+			}
 			if(armes[units.list[unitId].parts[i].tech] === undefined) {
 				armes[units.list[unitId].parts[i].tech] = 1;
 			} else {
@@ -1355,8 +1436,12 @@ class units extends _Units {
 	static getDefenseList(unitId) {
 		const defenses = {};
 		for(let i=0; i<units.list[unitId].parts.length; i++) {
-			if(units.list[unitId].parts[i].type !== 'shield') { continue; }
-			if(units.list[unitId].parts[i].tech === 'none') { continue; }
+			if(units.list[unitId].parts[i].type !== 'shield') {
+				continue;
+			}
+			if(units.list[unitId].parts[i].tech === 'none') {
+				continue;
+			}
 			if(defenses[units.list[unitId].parts[i].tech] === undefined) {
 				defenses[units.list[unitId].parts[i].tech] = 1;
 			} else {
@@ -1374,7 +1459,9 @@ class units extends _Units {
 	 */
 	static selectUnit(id) {
 		units.currUnit = id = (id === undefined)?0:id;
-		if(units.list[id] === undefined) { return; }
+		if(units.list[id] === undefined) {
+			return;
+		}
 
 		document.getElementById('fleet-build-name').innerHTML = units.list[id].name;
 
@@ -1385,7 +1472,9 @@ class units extends _Units {
 		if(!units.list[id].shipShape.includes('SHIP_WEP_MINES')) {
 			const armes = units.getWeaponList(id);
 			for(const i in armes) {
-				if(armesText !== '') { armesText += ', '; }
+				if(armesText !== '') {
+					armesText += ', ';
+				}
 				let translation = fleetTranslate[i];
 				if(translation === undefined) {
 					translation = fleetTranslate['missile_' + i];
@@ -1405,7 +1494,9 @@ class units extends _Units {
 		if(!units.list[id].shipShape.includes('SHIP_WEP_MINES')) {
 			const shields = units.getDefenseList(id);
 			for(const i in shields) {
-				if(shieldText !== '') { shieldText += ', '; }
+				if(shieldText !== '') {
+					shieldText += ', ';
+				}
 				shieldText += shields[i] + 'x ' + fleetTranslate[i];
 			}
 		}
@@ -1506,7 +1597,11 @@ class units extends _Units {
 			}
 		}
 
-		return { totalcount, fighterCount, fighterCap };
+		return {
+			totalcount,
+			fighterCount,
+			fighterCap
+		};
 	}
 
 	static getFleetSpoilerDOM(fleet, type, disableTransfers) {
@@ -1573,7 +1668,9 @@ class units extends _Units {
 
 		for(let allUnitsId=0; allUnitsId<units.list.length; allUnitsId++) {
 			const count = fleet.units[units.list[allUnitsId].id];
-			if(!count) { continue; }
+			if(!count) {
+				continue;
+			}
 
 			content +=  '<tr id="'+ units.list[allUnitsId].id +'" class="table-line">' +
 							'<td>' + units.list[allUnitsId].name + '</td>' +
@@ -1636,9 +1733,14 @@ class units extends _Units {
 
 		for(let i=0; i<units.fleetList.length; i++) {
 			if(Object.entries(units.fleetList[i].units).length === 0 &&
-				units.fleetList[i].units.constructor === Object) { continue; } // It's updated serverside, but not here ...
+				units.fleetList[i].units.constructor === Object) { // It's updated serverside, but not here ...
 
-			if(units.fleetList[i].name === 'SHIP_DEF') { units.fleetList[i].name = fleetTranslate[units.fleetList[i].name]; }
+				continue;
+			}
+
+			if(units.fleetList[i].name === 'SHIP_DEF') {
+				units.fleetList[i].name = fleetTranslate[units.fleetList[i].name];
+			}
 
 			if(units.fleetList[i].position === planetData.address && units.fleetList[i].endMoveTime === null) {
 
@@ -1676,11 +1778,15 @@ class units extends _Units {
 		// Fleet rename
 		Array.from(document.getElementsByClassName('fleet-rename')).forEach((elt) => elt.addEventListener('click', function(event) {
 			event.preventDefault();
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
-			if(fleetNb < 0) { return; }
+			if(fleetNb < 0) {
+				return;
+			}
 
 			const oldName = units.fleetList[fleetNb].name;
 			document.getElementById('fleet-rename-name').innerText = oldName;
@@ -1697,7 +1803,9 @@ class units extends _Units {
 
 			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
-			if(fleetNb < 0) { return; }
+			if(fleetNb < 0) {
+				return;
+			}
 
 			socket.emit('fleet-move', {
 				...webSockets.getUserData(),
@@ -1708,11 +1816,15 @@ class units extends _Units {
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-mergeInto')).forEach((elt) => elt.addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
-			if(fleetNb < 0) { return; }
+			if(fleetNb < 0) {
+				return;
+			}
 
 			const fleet = units.fleetList[fleetNb];
 
@@ -1728,11 +1840,15 @@ class units extends _Units {
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-transferFuel')).forEach((elt) => elt.addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
-			if(fleetNb < 0) { return; }
+			if(fleetNb < 0) {
+				return;
+			}
 
 			const fleet = units.fleetList[fleetNb];
 
@@ -1750,11 +1866,15 @@ class units extends _Units {
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-transferUnits')).forEach((elt) => elt.addEventListener('click', () => {
-			if(preventFleetHUDClosing) { return; }
+			if(preventFleetHUDClosing) {
+				return;
+			}
 
 			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
-			if(fleetNb < 0) { return; }
+			if(fleetNb < 0) {
+				return;
+			}
 
 			const fleet = units.fleetList[fleetNb];
 
@@ -1773,7 +1893,9 @@ class units extends _Units {
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-assignTactic')).forEach((elt) => elt.addEventListener('click', function(event) {
-			if(preventFleetHUDClosing) { event.preventDefault(); }
+			if(preventFleetHUDClosing) {
+				event.preventDefault();
+			}
 
 			const fleetId = elt.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
 			units.currFleet = fleetId;
@@ -1781,7 +1903,9 @@ class units extends _Units {
 
 			const mainList = document.getElementById('fleet-assignTactic-tacticSelect');
 			while (mainList.lastChild) {
-				if(mainList.lastChild.id === '-1') { break; }
+				if(mainList.lastChild.id === '-1') {
+					break;
+				}
 				mainList.removeChild(mainList.lastChild);
 			}
 
@@ -1800,7 +1924,9 @@ class units extends _Units {
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-table')).forEach((elt) => elt.addEventListener('click', function(event) {
-			if(preventFleetHUDClosing) { event.preventDefault(); }
+			if(preventFleetHUDClosing) {
+				event.preventDefault();
+			}
 		}));
 
 		Array.from(document.getElementsByClassName('fleet-show-upgrade')).forEach((elt) => elt.addEventListener('click', function(event) {
@@ -1859,14 +1985,18 @@ class units extends _Units {
 				planeteDepart,
 				planeteArrivee,
 				now/TIME.SECONDS_TO_MS);
-			if(Number.isNaN(baseDist) || baseDist < 0) { return; }
+			if(Number.isNaN(baseDist) || baseDist < 0) {
+				return;
+			}
 			const baseTravelTime = Fleets.calcMoveTime(baseDist, minSpeed.speed);
 
 			const previewDist = GameMap.getPlanetDistance(
 				planeteDepart,
 				planeteArrivee,
 				now/TIME.SECONDS_TO_MS + Math.round(baseTravelTime*TIME.HOUR_TO_SECONDS*100)/100);
-			if(Number.isNaN(previewDist) || previewDist < 0) { return; }
+			if(Number.isNaN(previewDist) || previewDist < 0) {
+				return;
+			}
 			const previewTime = Fleets.calcMoveTime(previewDist, minSpeed.speed);
 
 			/* Final travel time:
@@ -1900,7 +2030,10 @@ class units extends _Units {
 
 		const fuel = [Fleets.calcFuelCost(minSpeed.engines) * time, fleet.fuel];
 
-		return { time, fuel };
+		return {
+			time,
+			fuel
+		};
 	}
 
 	/**
@@ -1918,9 +2051,15 @@ class units extends _Units {
 		// Fleet list
 		let fleetListDOM = '';
 		for(let i=0; i<units.fleetList.length; i++) {
-			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) { continue; }
-			if(units.fleetList[i].endMoveTime !== null) { continue; }
-			if(units.fleetList[i].position === units.planetTarget) { continue; }
+			if(units.fleetList[i].name === fleetTranslate['SHIP_DEF']) {
+				continue;
+			}
+			if(units.fleetList[i].endMoveTime !== null) {
+				continue;
+			}
+			if(units.fleetList[i].position === units.planetTarget) {
+				continue;
+			}
 
 			const mt = units.calcTimeAndFuel(units.fleetList[i]);
 			units.fleetTimes[units.fleetList[i].id] = mt.time;
@@ -2034,8 +2173,12 @@ class units extends _Units {
 			fFuel = units.fleetFuel[units.currFleet];
 			ratio = Math.round(fFuel[0]/fFuel[1]*100);
 		}
-		if(ratio > 999) { ratio = '+999'; }
-		if(Number.isNaN(ratio)) { ratio = '?'; fFuel = [0,0]; }
+		if(ratio > 999) {
+			ratio = '+999';
+		}
+		if(Number.isNaN(ratio)) {
+			ratio = '?'; fFuel = [0,0];
+		}
 		document.getElementById('map-move-panel-fuel').innerHTML =
 			GetBetterUnit(fFuel[0], 't', fFuel[1] + 1) +
 			' (' + ratio + '% ' + fleetTranslate['of-maxFuel'] + ')';
