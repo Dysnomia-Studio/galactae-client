@@ -3,10 +3,12 @@ class InfluenceZones {
 
 	static pointsOfTriangle(delaunay, t) {
 		return InfluenceZones.edgesOfTriangle(t)
-			.map(e => delaunay.triangles[e]);
+			.map((e) => delaunay.triangles[e]);
 	}
 
-	static triangleOfEdge(e)  { return Math.floor(e / 3); }
+	static triangleOfEdge(e)  {
+		return Math.floor(e / 3);
+	}
 
 	static circumcenter(a, b, c) {
 		const ad = a[0] * a[0] + a[1] * a[1];
@@ -20,7 +22,7 @@ class InfluenceZones {
 	}
 
 	static triangleCenter(points, delaunay, t) {
-		const vertices = InfluenceZones.pointsOfTriangle(delaunay, t).map(p => points[p]);
+		const vertices = InfluenceZones.pointsOfTriangle(delaunay, t).map((p) => points[p]);
 		return InfluenceZones.circumcenter(vertices[0], vertices[1], vertices[2]);
 	}
 

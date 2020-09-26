@@ -44,8 +44,8 @@ class Alliances {
 		document.getElementById('alliances-panel-pactsInvit-input').addEventListener('keypress', Alliances.askPact);
 		document.getElementById('alliances-panel-ennemiesInvit-input').addEventListener('keypress', Alliances.askEnnemies);
 		document.getElementById('alliances-panel-search-input').addEventListener('keypress', Alliances.search);
-		document.getElementById('alliances-panel-createBtn').addEventListener('click', () => { ui.show('#alliances-panel-create'); });
-		document.getElementById('alliances-panel-createBtn-close').addEventListener('click', () => { ui.hide('#alliances-panel-create'); });
+		document.getElementById('alliances-panel-createBtn').addEventListener('click', () => ui.show('#alliances-panel-create'));
+		document.getElementById('alliances-panel-createBtn-close').addEventListener('click', () => ui.hide('#alliances-panel-create'));
 		document.getElementById('alliances-panel-createBtn-validate').addEventListener('click', Alliances.create);
 
 
@@ -127,7 +127,7 @@ class Alliances {
 				li.appendChild(ui.createSpanText(allyName));
 
 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId, type); }, 'alliances-panel-cancel'));
+					li.appendChild(ui.createSpanBtn('✗', () => Alliances.stopPact(allyId, type), 'alliances-panel-cancel'));
 				}
 
 				ulOk.appendChild(li);
@@ -135,8 +135,8 @@ class Alliances {
 				li.appendChild(ui.createSpanText(allyName));
 
 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyId, false); }, 'alliances-panel-refuse'));
-					li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyId, true); }, 'alliances-panel-validate'));
+					li.appendChild(ui.createSpanBtn('✗', () => Alliances.choicePact(allyId, false), 'alliances-panel-refuse'));
+					li.appendChild(ui.createSpanBtn('✓', () => Alliances.choicePact(allyId, true), 'alliances-panel-validate'));
 				}
 
 				ulAsk.appendChild(li);
@@ -144,7 +144,7 @@ class Alliances {
 				li.appendChild(ui.createSpanText(allyName));
 
 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
-					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPactInvite(allyId); }, 'alliances-panel-cancel'));
+					li.appendChild(ui.createSpanBtn('✗', () => Alliances.cancelPactInvite(allyId), 'alliances-panel-cancel'));
 				}
 
 				ulInvit.appendChild(li);
@@ -229,7 +229,7 @@ class Alliances {
 
 			const tdKick = document.createElement('td');
 			if(currUser.name !== player.name && (currUser.founder || (currUser.leader && (!player.founder && !player.leader)))) {
-				tdKick.appendChild(ui.createSpanBtn('✗', () => { Alliances.kick(player.name); }, 'alliances-panel-kick'));
+				tdKick.appendChild(ui.createSpanBtn('✗', () => Alliances.kick(player.name), 'alliances-panel-kick'));
 			}
 			tr.appendChild(tdKick);
 
@@ -242,8 +242,8 @@ class Alliances {
 			li.appendChild(ui.createSpanText(player.player));
 
 			if(currUser.founder || currUser.leader) {
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceAskToJoin(player.player, false); }, 'alliances-panel-refuse'));
-				li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceAskToJoin(player.player, true); }, 'alliances-panel-validate'));
+				li.appendChild(ui.createSpanBtn('✗', () => Alliances.choiceAskToJoin(player.player, false), 'alliances-panel-refuse'));
+				li.appendChild(ui.createSpanBtn('✓', () => Alliances.choiceAskToJoin(player.player, true), 'alliances-panel-validate'));
 			}
 
 			ulAsk.appendChild(li);
@@ -261,7 +261,7 @@ class Alliances {
 			li.appendChild(ui.createSpanText(player.player));
 
 			if(currUser.founder || currUser.leader) {
-				li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelPlayerInvitation(player.player); }, 'alliances-panel-cancel'));
+				li.appendChild(ui.createSpanBtn('✗', () => Alliances.cancelPlayerInvitation(player.player), 'alliances-panel-cancel'));
 			}
 
 			ulInvit.appendChild(li);
@@ -290,7 +290,7 @@ class Alliances {
 			const li = document.createElement('li');
 			li.appendChild(ui.createSpanText(ask.alliance_name));
 
-			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.cancelAskToJoin(ask.alliance); }, 'alliances-panel-cancel'));
+			li.appendChild(ui.createSpanBtn('✗', () => Alliances.cancelAskToJoin(ask.alliance), 'alliances-panel-cancel'));
 
 			ulAsk.appendChild(li);
 		}
@@ -306,8 +306,8 @@ class Alliances {
 			const li = document.createElement('li');
 			li.appendChild(ui.createSpanText(invitation.alliance_name));
 
-			li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choiceInvite(invitation.alliance, false); }, 'alliances-panel-refuse'));
-			li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choiceInvite(invitation.alliance, true); }, 'alliances-panel-validate'));
+			li.appendChild(ui.createSpanBtn('✗', () => Alliances.choiceInvite(invitation.alliance, false), 'alliances-panel-refuse'));
+			li.appendChild(ui.createSpanBtn('✓', () => Alliances.choiceInvite(invitation.alliance, true), 'alliances-panel-validate'));
 
 			ulInvit.appendChild(li);
 		}
@@ -337,7 +337,7 @@ class Alliances {
 			li.appendChild(ui.createSpanText(alliance.name));
 
 			if(!cantAskAllys.find((elt) => elt === alliance.name)) {
-				li.appendChild(ui.createSpanBtn(translate['alliance']['askToJoin'], () => { Alliances.askToJoin(alliance.name); }, 'alliances-panel-askToJoin'));
+				li.appendChild(ui.createSpanBtn(translate['alliance']['askToJoin'], () => Alliances.askToJoin(alliance.name), 'alliances-panel-askToJoin'));
 			} else {
 				li.appendChild(ui.createSpanText('-', 'alliances-panel-askToJoin'));
 			}
@@ -542,7 +542,7 @@ class Alliances {
 			playerName,
 			founder: false,
 			leader: false,
-			diplomacy: false
+			diplomacy: false,
 		};
 
 		switch (permission) {

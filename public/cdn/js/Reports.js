@@ -17,7 +17,7 @@ class Reports extends _Reports {
 
 		for(const report of reports.filter((elt) => !elt.read)) {
 			notifications.notify('report', {
-				id: report.battleLogId
+				id: report.battleLogId,
 			});
 		}
 
@@ -93,21 +93,21 @@ class Reports extends _Reports {
 
 		socket.emit('player-report-set-read', {
 			...webSockets.getUserData(),
-			reports
+			reports,
 		});
 	}
 
 	static serverMarkUnRead(reports) {
 		socket.emit('player-report-set-unread', {
 			...webSockets.getUserData(),
-			reports
+			reports,
 		});
 	}
 
 	static serverDelete(reports) {
 		socket.emit('player-report-delete', {
 			...webSockets.getUserData(),
-			reports
+			reports,
 		});
 	}
 
@@ -129,7 +129,7 @@ class Reports extends _Reports {
 		if(!Reports.cache[reportId]) {
 			socket.emit('player-report-ask', {
 				...webSockets.getUserData(),
-				reportId
+				reportId,
 			});
 		} else {
 			Reports.displayReport(reportId);
@@ -256,7 +256,9 @@ class Reports extends _Reports {
 	}
 
 	static displayReport(reportId) {
-		if(!Reports.cache[reportId]) { return; }
+		if(!Reports.cache[reportId]) {
+			return;
+		}
 
 		Reports.currReport = reportId;
 

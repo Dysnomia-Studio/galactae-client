@@ -923,7 +923,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<div class="alliances-tab-half">
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-pactsAsk-list"></ul>
-				</div>	
+				</div>
 
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-pactsInvit-list"></ul>
@@ -947,7 +947,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<div class="alliances-tab-half">
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-ennemiesAsk-list"></ul>
-				</div>	
+				</div>
 
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-ennemiesInvit-list"></ul>

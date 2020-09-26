@@ -63,15 +63,15 @@ class Conquest extends _Conquest {
 	}
 
 	static isDefender() {
-		return Conquest.getConquestListOnCurrentPlanet().filter((elt) => {
-			return elt.prevplayer === userData.username;
-		}).length > 0;
+		return Conquest.getConquestListOnCurrentPlanet().filter((elt) =>
+			elt.prevplayer === userData.username
+		).length > 0;
 	}
 
 	static getConquestor() {
-		return Conquest.getConquestListOnCurrentPlanet().map((elt) => {
-			return elt.newplayer;
-		}).join(',');
+		return Conquest.getConquestListOnCurrentPlanet().map((elt) =>
+			elt.newplayer
+		).join(',');
 	}
 
 	static getConquestEndTime() {

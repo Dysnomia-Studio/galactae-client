@@ -1404,9 +1404,9 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 #fleet-type-create-submit {
 	display: block;
 	position: absolute;
+
 	width: 170px;
-}
-#fleet-type-create-submit {
+
 	bottom: 25px;
 	right: 25px;
 }
