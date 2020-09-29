@@ -30,8 +30,11 @@ class webSockets {
 
 		//Sync the planet data
 		socket.on('planet-recieve-data',function(data) {
+			const newPlanetAddress = data.planet || data.data.address;
+
 			planetUI.refresh(data);
-			if(userData.research !== undefined) {
+			if(userData.research !== undefined && newPlanetAddress !== userData.lastRenderedResearchPlanet) {
+				userData.lastRenderedResearchPlanet = newPlanetAddress;
 				research.drawPanel();
 			}
 			loadScreen.complete('planet');
