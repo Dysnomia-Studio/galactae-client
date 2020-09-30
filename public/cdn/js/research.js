@@ -236,6 +236,8 @@ class research extends _Research {
 			research.zoom = 1;
 		}
 
+		document.getElementById('hud-research').style.opacity = 0;
+		ui.show('#hud-research');
 		document.getElementById('research-content').style.zoom = 1;
 		document.getElementById('research-content').style.MozTransform = 'scale(1)';
 
@@ -273,6 +275,8 @@ class research extends _Research {
 			}
 		}
 
+		ui.hide('#hud-research');
+		document.getElementById('hud-research').style.opacity = 1;
 		research.loadUI();
 		document.getElementById('research-content').style.zoom = research.zoom;
 		document.getElementById('research-content').style.MozTransform = 'scale(' + research.zoom + ')';
