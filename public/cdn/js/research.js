@@ -499,8 +499,10 @@ class research extends _Research {
 		}
 
 		const researchCost = document.querySelector('#' + planetData.currResearch + '-node .research-cost');
-		ui.emptyElt(researchCost);
-		research.generateCostDiv(researchCost, Math.floor(userData.research[planetData.currResearch]), researchList[planetData.currResearch].cost);
+		if(researchCost !== null) {
+			ui.emptyElt(researchCost);
+			research.generateCostDiv(researchCost, Math.floor(userData.research[planetData.currResearch]), researchList[planetData.currResearch].cost);
+		}
 	}
 }
 
