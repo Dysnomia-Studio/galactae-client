@@ -181,9 +181,7 @@ class Reports extends _Reports {
 	static displayList() {
 		const reportList = document.getElementById('report-list');
 
-		while(reportList.firstChild) {
-			reportList.removeChild(reportList.firstChild);
-		}
+		ui.emptyElt(reportList);
 
 		// If no report avaiable
 		if(!Reports.reportList || !Array.isArray(Reports.reportList) || Reports.reportList.length === 0) {

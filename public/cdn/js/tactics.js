@@ -213,9 +213,7 @@ class tactics {
 
 	static drawOrders() {
 		const mainList = document.getElementById('fleet-tacticsManager-orderList');
-		while (mainList.firstChild) {
-			mainList.removeChild(mainList.firstChild);
-		}
+		ui.emptyElt(mainList);
 
 		if(tactics.currOrder < 0) {
 			const listElt = document.createElement('li');

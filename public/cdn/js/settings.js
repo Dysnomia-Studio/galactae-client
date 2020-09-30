@@ -118,9 +118,7 @@ class settings {
 
 	static generateMenu() {
 		const menu = document.getElementById('settings-menu-choice');
-		while(menu.firstChild) {
-			menu.removeChild(menu.firstChild);
-		}
+		ui.emptyElt(menu);
 
 		let first = false;
 		for(const settingsCategory in this.settingsList) {
@@ -231,9 +229,7 @@ class settings {
 
 	static generatePanels() {
 		const panes = document.getElementById('settings-menu-panes');
-		while(panes.firstChild) {
-			panes.removeChild(panes.firstChild);
-		}
+		ui.emptyElt(panes);
 
 		let first = false;
 		for(const settingsCategory in this.settingsList) {

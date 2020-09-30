@@ -138,10 +138,7 @@ class planetBack {
 		/* Empty Vars */
 		this.contentDOM = [];
 		/* Remove DOM Elements */
-		let elt;
-		while (elt = this.planetContent.firstChild) {
-			this.planetContent.removeChild(elt);
-		}
+		ui.emptyElt(this.planetContent);
 	}
 
 	/**
