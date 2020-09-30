@@ -65,7 +65,7 @@ class loadScreen {
 				}
 
 				if(translate.load[key] !== undefined) {
-					document.getElementById('loading-overlay-desc').innerHTML = translate.load[key];
+					document.getElementById('loading-overlay-desc').innerText = translate.load[key];
 				}
 				break;
 			}
@@ -90,7 +90,7 @@ class loadScreen {
 }
 
 ready(function() {
-	document.getElementById('loading-overlay-desc').innerHTML = translate.load['server'];
+	document.getElementById('loading-overlay-desc').innerText = translate.load['server'];
 
 	// Load settings
 	settings.init();
