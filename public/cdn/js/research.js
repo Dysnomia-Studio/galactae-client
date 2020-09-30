@@ -216,6 +216,18 @@ class research extends _Research {
 		document.getElementById('hud-research').style.left = pos[0] + 'px';
 		document.getElementById('hud-research').style.top = pos[1] + 'px';
 	}
+	static generateCostDiv(researchCost, actual, max) {
+		const img = document.createElement('img');
+		img.setAttribute('height', 20);
+		img.setAttribute('src', cdnURL + 'img/ui/research.svg');
+		img.setAttribute('alt', 'research');
+		researchCost.appendChild(img);
+
+		const span = document.createElement('span');
+		span.innerText = actual + '/' + max;
+		researchCost.appendChild(span);
+	}
+
 	/**
 	 * Draws research UI
 	 */
@@ -227,11 +239,17 @@ class research extends _Research {
 		document.getElementById('research-content').style.zoom = 1;
 		document.getElementById('research-content').style.MozTransform = 'scale(1)';
 
-		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
-		document.getElementById('hud-research').style.opacity = 0;
-		ui.show('#hud-research');
+
 		// Reset panel content
-		document.getElementById('research-content').innerHTML = '<svg id="research-links" width="10000px" height="10000px"></svg>';
+		const researchContent = document.getElementById('research-content');
+		ui.emptyElt(researchContent);
+
+		const svg = ui.createSVGElt('svg');
+		researchContent.appendChild(svg);
+
+		svg.id = 'research-links';
+		svg.setAttribute('width', '10000px');
+		svg.setAttribute('height', '10000px');
 
 		// Create nodes
 		for(const key in userData.research) {
@@ -255,9 +273,6 @@ class research extends _Research {
 			}
 		}
 
-		ui.hide('#hud-research');
-		document.getElementById('hud-research').style.opacity = 1;
-
 		research.loadUI();
 		document.getElementById('research-content').style.zoom = research.zoom;
 		document.getElementById('research-content').style.MozTransform = 'scale(' + research.zoom + ')';
@@ -276,44 +291,84 @@ class research extends _Research {
 		}
 
 		// Place this node
-		let className = '';
+		const node = document.createElement('div');
+		node.id = key + '-node';
+		node.classList.add('research-node');
 		if(!research.researchedParent(userData, planetData, key)) {
-			className = ' research-node-notAvailable';
+			node.classList.add('research-node-notAvailable');
 		} else if(research.isSearched(userData, key)) {
-			className = ' research-node-done';
+			node.classList.add('research-node-done');
 		} else if(planetData.currResearch === key && !research.isSearched(userData, key)) {
-			className = ' research-node-current';
+			node.classList.add('research-node-current');
 		}
-		let content = '<div class="research-node' + className + '" id="' + key + '-node">';
+
+		const h2 = document.createElement('h2');
+		node.appendChild(h2);
+
+		const span = document.createElement('span');
+		span.classList.add('research-desc');
+		node.appendChild(span);
+
+		const researchBottom = document.createElement('div');
+		researchBottom.classList.add('research-bottom');
+		node.appendChild(researchBottom);
 
 		if(research.researchedParent(userData, planetData, key)) {
-			content += '<h2>' + translate.research[key].name + '</h2>';
-			content += '<span class="research-desc text-justify">' + translate['research'][key].desc + '</span>';
-			content += '<div class="research-bottom">';
+			h2.innerText = translate.research[key].name;
+
+			span.classList.add('text-justify');
+			span.innerText = translate.research[key].desc;
+
 			if(!research.isSearched(userData, key)) {
-				content += '<span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
+				const researchCost = document.createElement('span');
+				researchCost.classList.add('research-cost');
+				research.generateCostDiv(
+					researchCost,
+					Math.floor(userData.research[key]),
+					researchList[key].cost
+				);
+				researchBottom.appendChild(researchCost);
+
 				if(planetData.currResearch !== key) {
-					content += '<a class="research-search" id="' + key + '" src="#research">' + translate['research'].search + '</a>';
+					const aLink = document.createElement('a');
+					aLink.classList.add('research-search');
+					aLink.id = key;
+					aLink.setAttribute('src', '#research');
+					aLink.innerText = translate.research.search;
+					researchBottom.appendChild(aLink);
 				} else {
-					content += '<span class="research-search">' + translate['research'].ongoing + '</span>';
+					const researchOnGoing = document.createElement('span');
+					researchOnGoing.classList.add('research-search');
+					researchOnGoing.innerText = translate.research.ongoing;
+					researchBottom.appendChild(researchOnGoing);
 				}
 			} else {
-				content += '<p class="research-ok">' + translate['research'].tech_owned + '</p>';
+				const researchOk = document.createElement('p');
+				researchOk.classList.add('research-ok');
+				researchOk.innerText = translate.research.tech_owned;
+				researchBottom.appendChild(researchOk);
 			}
-			content += '</div>';
 		} else {
-			content += '<h2>???</h2>';
-			content += '<span class="research-desc text-center">' + research.getMissingParents(key) + '</span>';
-			content += '<div class="research-bottom"><span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">?/?</span></div>';
+			h2.innerText = '???';
+
+			span.classList.add('text-center');
+			span.innerText = research.getMissingParents(key);
+
+			const researchCost = document.createElement('span');
+			researchCost.classList.add('research-cost');
+			research.generateCostDiv(
+				researchCost,
+				'?',
+				'?'
+			);
+			researchBottom.appendChild(researchCost);
 		}
-		document.getElementById('research-content').innerHTML = document.getElementById('research-content').innerHTML + content;
 
 		// Position
-		const node = document.getElementById(key + '-node');
-		if(node) {
-			node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + 'px';
-			node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + 'px';
-		}
+		node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + 'px';
+		node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + 'px';
+
+		document.getElementById('research-content').appendChild(node);
 	}
 	/**
 	 * Draws a link between 2 nodes
@@ -443,7 +498,9 @@ class research extends _Research {
 			research.sync();
 		}
 
-		document.querySelector('#' + planetData.currResearch + '-node .research-cost').innerHTML = '<img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
+		const researchCost = document.querySelector('#' + planetData.currResearch + '-node .research-cost');
+		ui.emptyElt(researchCost);
+		research.generateCostDiv(researchCost, Math.floor(userData.research[planetData.currResearch]), researchList[planetData.currResearch].cost);
 	}
 }
 
