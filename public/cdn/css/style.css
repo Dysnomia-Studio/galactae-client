@@ -2048,8 +2048,9 @@ a[class="research-search"]:hover {
 
 	z-index: -1;
 }
-#map-global-overlay {
+#map-global-overlay * {
 	opacity: 0.25;
+	stroke: transparent;
 }
 .map-overlay-alliedAndEnnemies {
 	fill: #FFC0CB;
@@ -2075,6 +2076,15 @@ a[class="research-search"]:hover {
 	fill: #2196f3;
 	stroke: #2196f3;
 	color: #2196f3;
+}
+.map-overlay-alliedForces {
+	fill: #ffe500;
+	font-weight: bold;
+	opacity: 1 !important;
+}
+.map-overlay-textLine {
+	stroke: #5ae4ff !important;
+	opacity: 1 !important;
 }
 .map-overlay-legend {
 	color: #0ec6c6;

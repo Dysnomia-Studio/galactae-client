@@ -109,5 +109,29 @@ class InfluenceZones {
 			fill: 'transparent',
 		});
 		document.getElementById('map-global').prepend(currPlanetLegend);
+
+		// Show unit forces
+		for(const system in map.influenceZones.alliedForces) {
+			const pos = GameMap.getCoordinatesFromSystem(system);
+
+			const text = ui.createSVGElt('text', {
+				id: system + '-alliedForces',
+				x: pos[0] + 5,
+				y: pos[1] - 5,
+				class: 'map-overlay-alliedForces',
+			});
+			text.textContent = '⚔️ ' + GetBetterUnit(map.influenceZones.alliedForces[system]);
+			overlayGroup.appendChild(text);
+
+			const textLine = ui.createSVGElt('line', {
+				id: system + '-textLine',
+				x1: pos[0],
+				y1: pos[1],
+				x2: pos[0] + 75,
+				y2: pos[1],
+				class: 'map-overlay-textLine',
+			});
+			overlayGroup.appendChild(textLine);
+		}
 	}
 }
