@@ -70,6 +70,7 @@
 	define('MODEL_DELETED', 'Ship blueprint deleted');
 	define('FLEET_MAX_REACHED', 'Maximum count of fleets reached');
 	define('FLEET_NAME_ALREADY_EXISTS', 'Another fleet with this name already belong to this planet');
+	define('FUEL_TRANSFER_SUCCESSFUL', 'Fuel transfer successful.');
 	define('BUILDING_ERROR_INVALID_FLEET', 'Error: units fleet doesn\'t exists');
 	define('BUILDING_ERROR_FLEET_SIZE', 'Error: fleet maximum units capacity exceeded');
 	// Errors message
