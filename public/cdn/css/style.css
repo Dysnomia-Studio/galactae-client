@@ -466,7 +466,7 @@ select, input, summary {
 .gvt-choosecard, .gvt-header {
 	border: 1px solid #0EC6C6;
 	background-color: #0b1012;
-	width: 33%;
+	width: 33vw;
 	padding: 1em;
 }
 .gvt-choosecard {
@@ -504,6 +504,7 @@ select, input, summary {
 	text-align: center;
 	display: inline-block;
 	line-height: 3em;
+	padding: 0 1em;
 }
 .gvt-choosebtn-nextButton {
 	-webkit-animation: gvt-choicebtn-anim 1.5s linear infinite;
