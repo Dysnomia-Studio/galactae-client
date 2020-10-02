@@ -19,3 +19,5 @@
 	define('GVT_CHOOSE', 'Choisir ');
 
 	define('GVT_BEGIN', 'Démarrer l\'outil d\'administration de la planète.');
+
+	define('GVT_PLANET_NAME', 'Planète de %s');

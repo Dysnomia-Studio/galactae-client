@@ -246,7 +246,7 @@ class UserManager extends SQLInterface {
 	public function updateUserLastNews($uid, $newsId) {
 		$this->updateContent('users',
             [ 'lastViewedNews' => $newsId ],
-			['id' => $uid],
+			['id' => $uid]
 		);
 	}
 }
