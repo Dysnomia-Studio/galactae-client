@@ -113,13 +113,14 @@ class tactics {
 			if(a.priority > b.priority) {
 				return 1;
 			} else if(a.priority === b.priority) {
-				if(tactics.getTacticById(a.unit).name > tactics.getTacticById(b.unit).name) {
+				if(
+					(tactics.getTacticById(a.unit).name > tactics.getTacticById(b.unit).name) ||
+					(tactics.getTacticById(a.unit).name === tactics.getTacticById(b.unit).name && fleetTranslate[a.target] > fleetTranslate[b.target])
+				) {
 					return 1;
-				} else if(tactics.getTacticById(a.unit).name === tactics.getTacticById(b.unit).name) {
-					if(fleetTranslate[a.target] > fleetTranslate[b.target]) {
-						return 1;
-					}
 				}
+
+				return 0;
 			}
 
 			return -1;
@@ -127,7 +128,9 @@ class tactics {
 	}
 
 	static openDeleteUI(id) {
-		if(Number.isNaN(id) || !tactics.tacticList[id]) { return; }
+		if(Number.isNaN(id) || !tactics.tacticList[id]) {
+			return;
+		}
 		const currTactic = tactics.tacticList[id];
 
 		if(tactics.isUsedByFleet(currTactic.id)) {
@@ -139,7 +142,7 @@ class tactics {
 		ui.confirm('Voulez vous supprimer la tactique ' + currTactic.name + ' ?', 'Oui', 'Non', () => {
 			socket.emit('tactics-delete', {
 				...webSockets.getUserData(),
-				tacticId: currTactic.id
+				tacticId: currTactic.id,
 			});
 		});
 	}
@@ -191,7 +194,9 @@ class tactics {
 		// Unit Types
 		let unitTypesHTML = '';
 		for(let i=0; i<units.list.length; i++) {
-			if(units.list[i].id.includes('SHIP_WEP_MINES')) { continue; }
+			if(units.list[i].id.includes('SHIP_WEP_MINES')) {
+				continue;
+			}
 
 			unitTypesHTML += '<option value="' + i + '">' + units.list[i].name + '</option>';
 		}
@@ -208,9 +213,7 @@ class tactics {
 
 	static drawOrders() {
 		const mainList = document.getElementById('fleet-tacticsManager-orderList');
-		while (mainList.firstChild) {
-			mainList.removeChild(mainList.firstChild);
-		}
+		ui.emptyElt(mainList);
 
 		if(tactics.currOrder < 0) {
 			const listElt = document.createElement('li');
@@ -240,7 +243,9 @@ class tactics {
 
 		Array.from(document.querySelectorAll('#fleet-tacticsManager-orderList li')).forEach((elt) => elt.addEventListener('click', () => {
 			const id = parseInt(elt.id);
-			if(Number.isNaN(id)) { return; }
+			if(Number.isNaN(id)) {
+				return;
+			}
 			tactics.currOrder = id;
 			tactics.drawCurrentOrder();
 
@@ -253,7 +258,7 @@ class tactics {
 			tactics.currTactic = {
 				name: '',
 				owner: userData.id,
-				orders: []
+				orders: [],
 			};
 		} else {
 			tactics.currTactic = tactics.tacticList[id];
@@ -277,10 +282,12 @@ class tactics {
 			order = {
 				unit: units.list[eltUnitType.options[eltUnitType.selectedIndex].value].id,
 				target: unitTypes[eltUnitTarget.options[eltUnitTarget.selectedIndex].value],
-				priority: parseInt(document.getElementById('fleet-tacticsManager-priorityLevel').value)
+				priority: parseInt(document.getElementById('fleet-tacticsManager-priorityLevel').value),
 			};
 
-		if(Number.isNaN(order.priority)) { return; }
+		if(Number.isNaN(order.priority)) {
+			return;
+		}
 		// @TODO: prevent duplicate orders
 
 		if(!tactics.currTactic.orders[tactics.currOrder]) {
@@ -296,7 +303,9 @@ class tactics {
 	}
 
 	static deleteOrder() {
-		if(!tactics.currTactic.orders[tactics.currOrder]) { return; }
+		if(!tactics.currTactic.orders[tactics.currOrder]) {
+			return;
+		}
 
 		tactics.currTactic.orders.splice(tactics.currOrder, 1);
 
@@ -313,7 +322,7 @@ class tactics {
 
 		socket.emit('tactics-upsert', {
 			...webSockets.getUserData(),
-			tactic: tactics.currTactic
+			tactic: tactics.currTactic,
 		});
 
 		ui.hide('#fleet-tacticsManager-panel');

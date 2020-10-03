@@ -22,14 +22,16 @@ class chat {
 				chat.sm('NO_PM_YOU');
 				blockSend = true;
 			}
-			if(message.length === 0) { blockSend = true; }
+			if(message.length === 0) {
+				blockSend = true;
+			}
 
 			// Sending message to server
 			if (!blockSend) {
 				socket.emit('chat-send', {
 					...webSockets.getUserData(),
 					message: normalizeText(message),
-					channel: chatChannel
+					channel: chatChannel,
 				});
 				ui.lastMessage = message;
 			}
@@ -82,7 +84,9 @@ class chat {
 	 */
 	static pm(data) {
 		// Translation
-		if((translate.messages[data.msg] !== undefined) && (translate.messages[data.msg] !== '')) { data.msg = translate.messages[data.msg]; }
+		if((translate.messages[data.msg] !== undefined) && (translate.messages[data.msg] !== '')) {
+			data.msg = translate.messages[data.msg];
+		}
 
 		const listElt = '<li><span class="private-message">'+data.msg+'</span></li>';
 
@@ -106,7 +110,9 @@ class chat {
 	 */
 	static sm(msg) {
 		// Translation
-		if((translate.messages[msg] !== undefined) && (translate.messages[msg] !== '')) { msg = translate.messages[msg]; }
+		if((translate.messages[msg] !== undefined) && (translate.messages[msg] !== '')) {
+			msg = translate.messages[msg];
+		}
 
 		const listElt = '<li><span class="system-message">'+msg+'</span></li>';
 

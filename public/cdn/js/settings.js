@@ -13,7 +13,7 @@ class settings {
 						'en': 'English',
 						/*'ru': 'Русский',
 						'de': 'Deutsch',*/
-					}
+					},
 				},
 				/*deskNotifications: {
 					default: true,
@@ -23,7 +23,7 @@ class settings {
 			graphical: {
 				planetsRotation: {
 					default: false,
-					type: 'checkbox'
+					type: 'checkbox',
 				},
 				/*animationLvl: {
 					default: 'high', // @TODO: auto-detect
@@ -36,45 +36,45 @@ class settings {
 				},*/
 				map3D: {
 					default: true,
-					type: 'checkbox'
-				}
+					type: 'checkbox',
+				},
 			},
 			sounds: {
 				soundLvl: {
 					default: 100,
 					type: 'slider',
 					min: 0,
-					max: 100
+					max: 100,
 				},
 				musicVol: {
 					default: 10,
 					type: 'slider',
 					min: 0,
-					max: 100
+					max: 100,
 				},
 				escape: {
 					default: true,
-					type: 'checkbox'
+					type: 'checkbox',
 				},
 				privateMessage: {
 					default: true,
-					type: 'checkbox'
+					type: 'checkbox',
 				},
 			},
 			keyboard: {
 				escape: {
 					default: KEYBOARD.ESC,
-					type: 'keyboard'
+					type: 'keyboard',
 				},
 				nextPlanet: {
 					default: KEYBOARD.RARROW,
-					type: 'keyboard'
+					type: 'keyboard',
 				},
 				prevPlanet: {
 					default: KEYBOARD.LARROW,
-					type: 'keyboard'
-				}
-			}
+					type: 'keyboard',
+				},
+			},
 		};
 
 		// Mobile low settings mode
@@ -118,9 +118,7 @@ class settings {
 
 	static generateMenu() {
 		const menu = document.getElementById('settings-menu-choice');
-		while(menu.firstChild) {
-			menu.removeChild(menu.firstChild);
-		}
+		ui.emptyElt(menu);
 
 		let first = false;
 		for(const settingsCategory in this.settingsList) {
@@ -231,9 +229,7 @@ class settings {
 
 	static generatePanels() {
 		const panes = document.getElementById('settings-menu-panes');
-		while(panes.firstChild) {
-			panes.removeChild(panes.firstChild);
-		}
+		ui.emptyElt(panes);
 
 		let first = false;
 		for(const settingsCategory in this.settingsList) {
@@ -312,15 +308,22 @@ class settings {
 	static get(settingName) {
 		let val = getCookie('galactae_settings_' + settingName);
 		if(val !== '') {
-			if(val === 'true') { val = true; }
-			if(val === 'false') { val = false; }
+			if(val === 'true') {
+				val = true;
+			}
+			if(val === 'false') {
+				val = false;
+			}
 			return val;
 		}
 
 		const words = settingName.split('_');
 		val = this.settingsList;
 		for(const i in words) {
-			if(val[words[i]] === undefined) { console.error('ERROR: Invalid setting name - ' + settingName); return ''; }
+			if(val[words[i]] === undefined) {
+				console.error('ERROR: Invalid setting name - ' + settingName);
+				return '';
+			}
 			val = val[words[i]];
 		}
 

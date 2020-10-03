@@ -38,7 +38,7 @@ function getParameterByName(name, url) {
 
 	name = name.replace(/[\[\]]/g, '\\$&');
 
-	let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+	const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
 		results = regex.exec(url);
 
 	if (!results) {
@@ -67,7 +67,7 @@ function isMobileBrowser() {
  * @return	 {string}  Reduced value with unit
  */
 function GetBetterUnit(nmbr,unit='',max=-1,disableMax=false) {
-	let units = ['','K','M','G','T','P','E','Z','Y'];
+	const units = ['','K','M','G','T','P','E','Z','Y'];
 	let unitId = 0;
 	let newnbr = nmbr;
 	let signe = false;
@@ -81,7 +81,9 @@ function GetBetterUnit(nmbr,unit='',max=-1,disableMax=false) {
 		newnbr = newnbr/1000;
 		unitId++;
 	}
-	if(newnbr < 0) { newnbr = 0; }
+	if(newnbr < 0) {
+		newnbr = 0;
+	}
 	if(signe) {
 		newnbr = -newnbr;
 	}
@@ -145,7 +147,7 @@ const charList = [
 	['æ','&aelig;'],
 	// c
 	['ç','&ccedil;'],
-	// e		
+	// e
 	['è','&egrave;'],
 	['é','&eacute;'],
 	['ê','&ecirc;'],
@@ -154,7 +156,7 @@ const charList = [
 	['ì','&igrave;'],
 	['í','&iacute;'],
 	['î','&icirc;'],
-	['ï','&iuml;'], 
+	['ï','&iuml;'],
 	// n
 	['ñ','&ntilde;'],
 	// o
@@ -217,4 +219,7 @@ function unNormalizeText(str) {
 	return str;
 }
 
-function log(txt) { console.log(txt); } // Compatibility with server for shared libraries
+// Compatibility with server for shared libraries
+function log(txt) {
+	console.log(txt);
+}

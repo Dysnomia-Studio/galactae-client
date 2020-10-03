@@ -149,17 +149,14 @@ class planetUI {
 		//Helium 3
 		document.getElementById('he-fuel-distribute').style.display = 'none';
 
-		if(planetData.Buildings[13] !== 0) {
+		if(planetData.Buildings[13] !== 0 && units.fleetList && units.fleetList.length > 0) {
+			let empty;
+			[planetData, units.fleetList, empty] = Fleets.distributeFuel(Object.assign({}, planetData), units.fleetList.slice(0), userData);
 
-			if(units.fleetList && units.fleetList.length > 0) {
-				let empty;
-				[planetData, units.fleetList, empty] = Fleets.distributeFuel(Object.assign({}, planetData), units.fleetList.slice(0), userData);
+			// @TODO: Update before full on server
 
-				// @TODO: Update before full on server
-
-				if(!empty) {
-					document.getElementById('he-fuel-distribute').style.display = 'inline';
-				}
+			if(!empty) {
+				document.getElementById('he-fuel-distribute').style.display = 'inline';
 			}
 		}
 
@@ -446,7 +443,9 @@ class planetUI {
 		//Page Title
 		ui.updatePageTitle();
 
-		if(!planetData.address) { return; }
+		if(!planetData.address) {
+			return;
+		}
 
 		let sector = planetData.address.split('-');
 		sector.pop();
@@ -732,9 +731,9 @@ class planetUI {
 			const dateEnd = new Date(Date.now() + planetUI.enoughResources*3600*1000);
 			const dateTom = new Date(Date.now() + (24*60*60*1000));
 
-			if(dateNow.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Same day
+			if(dateNow.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Same day
 				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_TODAY_AT'] + ' ' + dateEnd.toLocaleTimeString();
-			} else if(dateTom.toLocaleDateString() == dateEnd.toLocaleDateString()) { // Tomorrow
+			} else if(dateTom.toLocaleDateString() === dateEnd.toLocaleDateString()) { // Tomorrow
 				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_TOMORROW_AT'] + ' ' + dateEnd.toLocaleTimeString();
 			} else {
 				document.getElementById('building-message').innerHTML = translate.messages['ENOUGH_RESOURCES_THE'] + ' ' + dateEnd.toLocaleDateString() + ' ' + translate.messages['ENOUGH_RESOURCES_AT'] + ' ' + dateEnd.toLocaleTimeString();
@@ -823,14 +822,19 @@ class planetUI {
 				icon = '&sup3;He';
 				value = GetBetterUnit(heliumProdBase,'t/h');
 				let val = heliumProdBase1 - heliumProdBase;
-				if(val < 0) { val = heliumProdBase1; }
+				if(val < 0) {
+					val = heliumProdBase1;
+				}
 				valuep1 = ' (+ ' + GetBetterUnit(val,'t/h')
 					+ ' ' + translate['planet-ui']['afterUpdating'] + ')';
 				break;
 			default:
 		}
 
-		if(planetData.Buildings[id] === 0 && value !== '') { value = '0'; } // If lvl, we set to 0
+		// If lvl, we set to 0
+		if(planetData.Buildings[id] === 0 && value !== '') {
+			value = '0';
+		}
 
 		document.getElementById('building-bonus-title').innerHTML = title;
 		document.getElementById('building-bonus-icon').innerHTML = icon;
@@ -858,12 +862,16 @@ class planetUI {
 
 
 	static getPlanetData(planetId) {
-		if(planetId < 0) { planetId = userData.planetlist.length - 1; }
-		if(planetId >= userData.planetlist.length) { planetId = 0; }
+		if(planetId < 0) {
+			planetId = userData.planetlist.length - 1;
+		}
+		if(planetId >= userData.planetlist.length) {
+			planetId = 0;
+		}
 
 		socket.emit('planet-ask-data', {
 			...webSockets.getUserData(),
-			pid: userData.planetlist[planetId]
+			pid: userData.planetlist[planetId],
 		});
 	}
 

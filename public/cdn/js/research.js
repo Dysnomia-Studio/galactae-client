@@ -16,7 +16,7 @@ class research extends _Research {
 		simulatedEvent.initMouseEvent({
 			touchstart: 'mousedown',
 			touchmove: 'mousemove',
-			touchend: 'mouseup'
+			touchend: 'mouseup',
 		}[event.type], true, true, window, 1,
 			touch.screenX, touch.screenY,
 			touch.clientX, touch.clientY, false,
@@ -37,7 +37,9 @@ class research extends _Research {
 
 		'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(e) {
 			document.getElementById('hud-research').addEventListener(e, function(event) {
-				if(research.scaling) { return; }
+				if(research.scaling) {
+					return;
+				}
 
 				research.touchHandler(event);
 			});
@@ -94,9 +96,15 @@ class research extends _Research {
 
 
 				let coef = (research.dist / newDist) - 1;
-				if(coef > 0.1) { coef = 0.1; }
-				if(coef < -0.1) { coef = -0.1; }
-				if(coef === 0) { return; }
+				if(coef > 0.1) {
+					coef = 0.1;
+				}
+				if(coef < -0.1) {
+					coef = -0.1;
+				}
+				if(coef === 0) {
+					return;
+				}
 
 				research.makeZoom(-coef);
 
@@ -127,8 +135,14 @@ class research extends _Research {
 	static makeZoom(coef) {
 		coef = parseFloat(parseFloat(coef).toFixed(2));
 		research.zoom += coef;
-		if(research.zoom < RESEARCH_MIN_ZOOM) { research.zoom -= coef; return; }
-		if(research.zoom > RESEARCH_MAX_ZOOM) { research.zoom -= coef; return; }
+		if(research.zoom < RESEARCH_MIN_ZOOM) {
+			research.zoom -= coef;
+			return;
+		}
+		if(research.zoom > RESEARCH_MAX_ZOOM) {
+			research.zoom -= coef;
+			return;
+		}
 
 		const pos = ui.position('#hud-research');
 		pos.left = ((pos.left - researchPrevMouse[0]*1.1)/(research.zoom - coef) * research.zoom) + researchPrevMouse[0]*1.1;
@@ -168,7 +182,7 @@ class research extends _Research {
 		if(researchPos[planetData.currResearch] !== undefined) {
 			const newUIPos = [
 				document.documentElement.clientWidth/2  - researchPos[planetData.currResearch][0]*research.zoom,
-				document.documentElement.clientHeight/2 - researchPos[planetData.currResearch][1]*research.zoom
+				document.documentElement.clientHeight/2 - researchPos[planetData.currResearch][1]*research.zoom,
 			];
 			research.moveUI(newUIPos);
 		}
@@ -181,6 +195,7 @@ class research extends _Research {
 
 		ui.research = true;
 	}
+
 	/**
 	 * Move the UI
 	 */
@@ -201,20 +216,42 @@ class research extends _Research {
 		document.getElementById('hud-research').style.left = pos[0] + 'px';
 		document.getElementById('hud-research').style.top = pos[1] + 'px';
 	}
+	static generateCostDiv(researchCost, actual, max) {
+		const img = document.createElement('img');
+		img.setAttribute('height', 20);
+		img.setAttribute('src', cdnURL + 'img/ui/research.svg');
+		img.setAttribute('alt', 'research');
+		researchCost.appendChild(img);
+
+		const span = document.createElement('span');
+		span.innerText = actual + '/' + max;
+		researchCost.appendChild(span);
+	}
+
 	/**
 	 * Draws research UI
 	 */
 	static drawPanel() {
-		if(research.zoom === undefined) { research.zoom = 1; }
+		if(research.zoom === undefined) {
+			research.zoom = 1;
+		}
 
+		document.getElementById('hud-research').style.opacity = 0;
+		ui.show('#hud-research');
 		document.getElementById('research-content').style.zoom = 1;
 		document.getElementById('research-content').style.MozTransform = 'scale(1)';
 
-		// !! SVG NEEDS A DISPLAY BLOCK TO WORK !! \\
-		document.getElementById('hud-research').style.opacity = 0;
-		ui.show('#hud-research');
+
 		// Reset panel content
-		document.getElementById('research-content').innerHTML = '<svg id="research-links" width="10000px" height="10000px"></svg>';
+		const researchContent = document.getElementById('research-content');
+		ui.emptyElt(researchContent);
+
+		const svg = ui.createSVGElt('svg');
+		researchContent.appendChild(svg);
+
+		svg.id = 'research-links';
+		svg.setAttribute('width', '10000px');
+		svg.setAttribute('height', '10000px');
 
 		// Create nodes
 		for(const key in userData.research) {
@@ -240,7 +277,6 @@ class research extends _Research {
 
 		ui.hide('#hud-research');
 		document.getElementById('hud-research').style.opacity = 1;
-
 		research.loadUI();
 		document.getElementById('research-content').style.zoom = research.zoom;
 		document.getElementById('research-content').style.MozTransform = 'scale(' + research.zoom + ')';
@@ -254,47 +290,89 @@ class research extends _Research {
 	 * @param	  {string}  parent  The parent
 	 */
 	static drawNode(key) {
-		if(document.querySelectorAll('#'+key+'-node').length > 0) { return; }
+		if(document.querySelectorAll('#'+key+'-node').length > 0) {
+			return;
+		}
 
 		// Place this node
-		let className = '';
+		const node = document.createElement('div');
+		node.id = key + '-node';
+		node.classList.add('research-node');
 		if(!research.researchedParent(userData, planetData, key)) {
-			className = ' research-node-notAvailable';
+			node.classList.add('research-node-notAvailable');
 		} else if(research.isSearched(userData, key)) {
-			className = ' research-node-done';
+			node.classList.add('research-node-done');
 		} else if(planetData.currResearch === key && !research.isSearched(userData, key)) {
-			className = ' research-node-current';
+			node.classList.add('research-node-current');
 		}
-		let content = '<div class="research-node' + className + '" id="' + key + '-node">';
+
+		const h2 = document.createElement('h2');
+		node.appendChild(h2);
+
+		const span = document.createElement('span');
+		span.classList.add('research-desc');
+		node.appendChild(span);
+
+		const researchBottom = document.createElement('div');
+		researchBottom.classList.add('research-bottom');
+		node.appendChild(researchBottom);
 
 		if(research.researchedParent(userData, planetData, key)) {
-			content += '<h2>' + translate.research[key].name + '</h2>';
-			content += '<span class="research-desc text-justify">' + translate['research'][key].desc + '</span>';
-			content += '<div class="research-bottom">';
+			h2.innerText = translate.research[key].name;
+
+			span.classList.add('text-justify');
+			span.innerText = translate.research[key].desc;
+
 			if(!research.isSearched(userData, key)) {
-				content += '<span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[key]) + '/' + researchList[key].cost + '</span>';
+				const researchCost = document.createElement('span');
+				researchCost.classList.add('research-cost');
+				research.generateCostDiv(
+					researchCost,
+					Math.floor(userData.research[key]),
+					researchList[key].cost
+				);
+				researchBottom.appendChild(researchCost);
+
 				if(planetData.currResearch !== key) {
-					content += '<a class="research-search" id="' + key + '" src="#research">' + translate['research'].search + '</a>';
+					const aLink = document.createElement('a');
+					aLink.classList.add('research-search');
+					aLink.id = key;
+					aLink.setAttribute('src', '#research');
+					aLink.innerText = translate.research.search;
+					researchBottom.appendChild(aLink);
 				} else {
-					content += '<span class="research-search">' + translate['research'].ongoing + '</span>';
+					const researchOnGoing = document.createElement('span');
+					researchOnGoing.classList.add('research-search');
+					researchOnGoing.innerText = translate.research.ongoing;
+					researchBottom.appendChild(researchOnGoing);
 				}
 			} else {
-				content += '<p class="research-ok">' + translate['research'].tech_owned + '</p>';
+				const researchOk = document.createElement('p');
+				researchOk.classList.add('research-ok');
+				researchOk.innerText = translate.research.tech_owned;
+				researchBottom.appendChild(researchOk);
 			}
-			content += '</div>';
 		} else {
-			content += '<h2>???</h2>';
-			content += '<span class="research-desc text-center">' + research.getMissingParents(key) + '</span>';
-			content += '<div class="research-bottom"><span class="research-cost"><img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">?/?</span></div>';
+			h2.innerText = '???';
+
+			span.classList.add('text-center');
+			span.innerText = research.getMissingParents(key);
+
+			const researchCost = document.createElement('span');
+			researchCost.classList.add('research-cost');
+			research.generateCostDiv(
+				researchCost,
+				'?',
+				'?'
+			);
+			researchBottom.appendChild(researchCost);
 		}
-		document.getElementById('research-content').innerHTML = document.getElementById('research-content').innerHTML + content;
 
 		// Position
-		const node = document.getElementById(key + '-node');
-		if(node) {
-			node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + 'px';
-			node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + 'px';
-		}
+		node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + 'px';
+		node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + 'px';
+
+		document.getElementById('research-content').appendChild(node);
 	}
 	/**
 	 * Draws a link between 2 nodes
@@ -303,9 +381,13 @@ class research extends _Research {
 	 * @param	  {string}  parent  The parent
 	 */
 	static drawLink(child,parent) {
-		if(child === '' || parent === '' || typeof parent === 'object') { return; }
+		if(child === '' || parent === '' || typeof parent === 'object') {
+			return;
+		}
 
-		if( !(document.querySelectorAll('#'+child+'-node').length) || !(document.querySelectorAll('#'+parent+'-node').length) ) { return; }
+		if( !(document.querySelectorAll('#'+child+'-node').length) || !(document.querySelectorAll('#'+parent+'-node').length) ) {
+			return;
+		}
 
 		const childPos = ui.position('#' + child + '-node');
 		const parentPos = ui.position('#' + parent + '-node');
@@ -316,8 +398,11 @@ class research extends _Research {
 		const y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
 		let color; //default
 
-		if(research.isSearched(userData, parent)) { color = '#0EC6C6'; }
-		else { color = 'rgba(14,198,198,0.2)'; }
+		if(research.isSearched(userData, parent)) {
+			color = '#0EC6C6';
+		} else {
+			color = 'rgba(14,198,198,0.2)';
+		}
 
 		const newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
 		newLine.setAttribute('stroke',color);
@@ -377,7 +462,7 @@ class research extends _Research {
 	static change(id) {
 		socket.emit('research-change', {
 			...webSockets.getUserData(),
-			research: id
+			research: id,
 		});
 	}
 
@@ -392,10 +477,22 @@ class research extends _Research {
 	 * Simulate research evolution (client side calculation)
 	 */
 	static sim() {
-		if(!planetData.currResearch || planetData.currResearch === '') { return; } // If research name is undefined
-		if(typeof userData.research[planetData.currResearch] !== 'number') { return; } // If research is undefined
-		if(userData.research[planetData.currResearch] === -1) { return; } // If research is finished
-		if(Conquest.isPlanetBeingConquested()) { return; } // If planet is being conquested
+		// If research name is undefined
+		if(!planetData.currResearch || planetData.currResearch === '') {
+			return;
+		}
+		// If research is undefined
+		if(typeof userData.research[planetData.currResearch] !== 'number') {
+			return;
+		}
+		// If research is finished
+		if(userData.research[planetData.currResearch] === -1) {
+			return;
+		}
+		// If planet is being conquested
+		if(Conquest.isPlanetBeingConquested()) {
+			return;
+		}
 
 		userData.research[planetData.currResearch]+= Research.getResearchProduction(planetData.Buildings[8])/1800;
 
@@ -405,7 +502,11 @@ class research extends _Research {
 			research.sync();
 		}
 
-		document.querySelector('#' + planetData.currResearch + '-node .research-cost').innerHTML = '<img height="20" src="' + cdnURL + 'img/ui/research.svg" alt="research">' + Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
+		const researchCost = document.querySelector('#' + planetData.currResearch + '-node .research-cost');
+		if(researchCost !== null) {
+			ui.emptyElt(researchCost);
+			research.generateCostDiv(researchCost, Math.floor(userData.research[planetData.currResearch]), researchList[planetData.currResearch].cost);
+		}
 	}
 }
 

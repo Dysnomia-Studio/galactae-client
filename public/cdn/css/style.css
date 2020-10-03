@@ -466,7 +466,7 @@ select, input, summary {
 .gvt-choosecard, .gvt-header {
 	border: 1px solid #0EC6C6;
 	background-color: #0b1012;
-	width: 33%;
+	width: 33vw;
 	padding: 1em;
 }
 .gvt-choosecard {
@@ -504,6 +504,7 @@ select, input, summary {
 	text-align: center;
 	display: inline-block;
 	line-height: 3em;
+	padding: 0 1em;
 }
 .gvt-choosebtn-nextButton {
 	-webkit-animation: gvt-choicebtn-anim 1.5s linear infinite;
@@ -727,7 +728,7 @@ select, input, summary {
 #game-menu {
 	position: fixed;
 
-	left: 30.5vw;
+	left: 42vw;
 	top: 40px;
 
 	box-sizing: content-box;
@@ -1404,9 +1405,9 @@ input[type="text"].ui-large-input, input[type="number"].ui-large-input, .ui-larg
 #fleet-type-create-submit {
 	display: block;
 	position: absolute;
+
 	width: 170px;
-}
-#fleet-type-create-submit {
+
 	bottom: 25px;
 	right: 25px;
 }
@@ -2048,8 +2049,9 @@ a[class="research-search"]:hover {
 
 	z-index: -1;
 }
-#map-global-overlay {
+#map-global-overlay * {
 	opacity: 0.25;
+	stroke: transparent;
 }
 .map-overlay-alliedAndEnnemies {
 	fill: #FFC0CB;
@@ -2075,6 +2077,15 @@ a[class="research-search"]:hover {
 	fill: #2196f3;
 	stroke: #2196f3;
 	color: #2196f3;
+}
+.map-overlay-alliedForces {
+	fill: #ffe500;
+	font-weight: bold;
+	opacity: 1 !important;
+}
+.map-overlay-textLine {
+	stroke: #5ae4ff !important;
+	opacity: 1 !important;
 }
 .map-overlay-legend {
 	color: #0ec6c6;
@@ -2633,6 +2644,41 @@ a[class="research-search"]:hover {
 	position: absolute;
 	overflow: hidden;
 }
+#planet-back-prev, #planet-back-next {
+	position: fixed;
+
+	height: 80px;
+	top: calc(50% - 50px);
+
+	z-index: 100;
+
+	cursor: url(../img/mouse_cursor.png), auto;
+}
+#planet-back-prev:hover, #planet-back-next:hover {
+	filter: drop-shadow(0 0 10px #00d2ff);
+	cursor: url(../img/mouse_pointer.png), pointer;
+}
+#planet-back-prev {
+	left: calc(50% - 268px - 40px - 40px);
+}
+#planet-back-next {
+	right: calc(50% - 268px - 40px - 40px);
+}
+
+@media (max-width: 1072px) {
+	#planet-back-prev {
+		left: calc(40% - 40px - 40px);
+	}
+	#planet-back-next {
+		right: calc(40% - 40px - 40px);
+	}
+
+	#planet-back-prev, #planet-back-next {
+		height: 40px;
+		top: calc(50% - 20px);
+	}
+}
+
 /**
  * Planet - Current
  */

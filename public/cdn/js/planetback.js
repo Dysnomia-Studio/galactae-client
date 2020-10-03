@@ -22,7 +22,7 @@ class planetBack {
 		this.planet = {};
 		this.planet.speed = 0.02;
 		this.planet.type = type;
-		this.planet.radius = Math.min(document.documentElement.clientHeight/4, 268);
+		this.planet.radius = Math.min(document.documentElement.clientHeight / 4, document.documentElement.clientWidth / 8);
 
 		/* Calc Vars */
 		this.calc = {};
@@ -38,6 +38,9 @@ class planetBack {
 		this.renderPlanet();
 		// Tell we loaded the planet
 		loadScreen.complete('pback');
+
+		document.getElementById('planet-back-prev').addEventListener('click', () => planetUI.prev());
+		document.getElementById('planet-back-next').addEventListener('click', () => planetUI.next());
 	}
 
 	/**
@@ -135,19 +138,18 @@ class planetBack {
 		/* Empty Vars */
 		this.contentDOM = [];
 		/* Remove DOM Elements */
-		let elt;
-		while (elt = this.planetContent.firstChild) {
-			this.planetContent.removeChild(elt);
-		}
+		ui.emptyElt(this.planetContent);
 	}
 
 	/**
 	 * Render the planet
 	 */
 	static renderPlanet() {
+		++planetBack.frames;
+
 		if(!ui.research &&
 			(!ui.map || map.currentMap !== 'sector') &&
-			settings.get('graphical_planetsRotation') || ++planetBack.frames < 5) {
+			settings.get('graphical_planetsRotation') || planetBack.frames < 5) {
 
 			// New position
 			planetBack.calc.long = (-Date.now()/1000)%360 - 180;

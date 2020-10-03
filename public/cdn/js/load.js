@@ -38,18 +38,26 @@ class loadScreen {
 		let loadCount = 0;
 		let loadMax = 0;
 		for(const key in loadStatusArr) {
-			if(loadStatusArr[key]) { loadCount++; }
+			if(loadStatusArr[key]) {
+				loadCount++;
+			}
+
 			loadMax++;
 		}
 
-		if(loadCount === loadMax) { return; } // Not needed if loading is already hided
+		// Not needed if loading is already hided
+		if(loadCount === loadMax) {
+			return;
+		}
 
 		// Loading texts
 		if(title !== '') {
 			loadStatusArr[title] = true;
 
 			for(const key in loadStatusArr) {
-				if(loadStatusArr[key] === true) { continue; }
+				if(loadStatusArr[key] === true) {
+					continue;
+				}
 
 				ui.hide('.loading-overlay-bar-secondary');
 				if(key === 'pictures') {
@@ -57,7 +65,7 @@ class loadScreen {
 				}
 
 				if(translate.load[key] !== undefined) {
-					document.getElementById('loading-overlay-desc').innerHTML = translate.load[key];
+					document.getElementById('loading-overlay-desc').innerText = translate.load[key];
 				}
 				break;
 			}
@@ -82,7 +90,7 @@ class loadScreen {
 }
 
 ready(function() {
-	document.getElementById('loading-overlay-desc').innerHTML = translate.load['server'];
+	document.getElementById('loading-overlay-desc').innerText = translate.load['server'];
 
 	// Load settings
 	settings.init();
@@ -124,4 +132,6 @@ ready(function() {
 	}
 });
 
-window.addEventListener('load', function() { loadScreen.complete('load'); });
+window.addEventListener('load', function() {
+	loadScreen.complete('load');
+});

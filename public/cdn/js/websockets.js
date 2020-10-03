@@ -5,21 +5,17 @@ class webSockets {
 		//Connect to the server
 		socket = io.connect(gameServer, {secure: true, 'connect timeout': 10000, transports: ['websocket'] });
 
-		//Catch connection errors (like server offline)
-		socket.on('connect_failed', function(){
-			kick('CONNECT_LOSS',10000,true);
+		//Catch connection errors (like server offline, or network issues)
+		const connectError = () => {
+			kick('CONNECT_LOSS', 10000, true);
 
 			if(ui.research) {
 				ui.show('#hud-research');
 			}
-		});
-		socket.on('connect_error', function(){
-			kick('CONNECT_LOSS',10000,true);
+		};
+		socket.on('connect_failed', connectError);
+		socket.on('connect_error', connectError);
 
-			if(ui.research) {
-				ui.show('#hud-research');
-			}
-		});
 		socket.on('connect', function() {
 			if(connectTimeout === undefined) {
 				connectTimeout = -1;
@@ -34,8 +30,12 @@ class webSockets {
 
 		//Sync the planet data
 		socket.on('planet-recieve-data',function(data) {
+			const newPlanetAddress = data.planet || data.data.address;
+			const oldCurrResearch = planetData.currResearch;
+
 			planetUI.refresh(data);
-			if(userData.research !== undefined) {
+			if(userData.research !== undefined && ((newPlanetAddress !== userData.lastRenderedResearchPlanet) || oldCurrResearch !== data.data.currResearch)) {
+				userData.lastRenderedResearchPlanet = newPlanetAddress;
 				research.drawPanel();
 			}
 			loadScreen.complete('planet');

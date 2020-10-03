@@ -3,10 +3,12 @@ class InfluenceZones {
 
 	static pointsOfTriangle(delaunay, t) {
 		return InfluenceZones.edgesOfTriangle(t)
-			.map(e => delaunay.triangles[e]);
+			.map((e) => delaunay.triangles[e]);
 	}
 
-	static triangleOfEdge(e)  { return Math.floor(e / 3); }
+	static triangleOfEdge(e)  {
+		return Math.floor(e / 3);
+	}
 
 	static circumcenter(a, b, c) {
 		const ad = a[0] * a[0] + a[1] * a[1];
@@ -20,7 +22,7 @@ class InfluenceZones {
 	}
 
 	static triangleCenter(points, delaunay, t) {
-		const vertices = InfluenceZones.pointsOfTriangle(delaunay, t).map(p => points[p]);
+		const vertices = InfluenceZones.pointsOfTriangle(delaunay, t).map((p) => points[p]);
 		return InfluenceZones.circumcenter(vertices[0], vertices[1], vertices[2]);
 	}
 
@@ -107,5 +109,29 @@ class InfluenceZones {
 			fill: 'transparent',
 		});
 		document.getElementById('map-global').prepend(currPlanetLegend);
+
+		// Show unit forces
+		for(const system in map.influenceZones.alliedForces) {
+			const pos = GameMap.getCoordinatesFromSystem(system);
+
+			const text = ui.createSVGElt('text', {
+				id: system + '-alliedForces',
+				x: pos[0] + 5,
+				y: pos[1] - 5,
+				class: 'map-overlay-alliedForces',
+			});
+			text.textContent = '⚔️ ' + GetBetterUnit(map.influenceZones.alliedForces[system]);
+			overlayGroup.appendChild(text);
+
+			const textLine = ui.createSVGElt('line', {
+				id: system + '-textLine',
+				x1: pos[0],
+				y1: pos[1],
+				x2: pos[0] + 75,
+				y2: pos[1],
+				class: 'map-overlay-textLine',
+			});
+			overlayGroup.appendChild(textLine);
+		}
 	}
 }

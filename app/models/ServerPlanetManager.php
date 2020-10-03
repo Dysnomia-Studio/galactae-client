@@ -51,7 +51,7 @@ class ServerPlanetManager extends SQLInterface {
 		return [
 				// General informations
 					'id' => $planet['id'],
-					'name' => 'Planète de '.$user['name'], //@ADD: Translation
+					'name' => sprintf(GVT_PLANET_NAME, $user['name']),
 					'address' => $planet['address'],
 					// owner
 					// points

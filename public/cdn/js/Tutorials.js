@@ -43,9 +43,8 @@ class Tutorials extends _Tutorials {
 				.replace(/{PlayerName}/g, userData.username);
 
 		const objectivesUL = document.getElementById('tutorial-panel-objectives');
-		while(objectivesUL.firstChild) {
-			objectivesUL.removeChild(objectivesUL.firstChild);
-		}
+		ui.emptyElt(objectivesUL);
+
 		for(let currTutorial = 0; currTutorial < tutorialObjectives[Tutorials.currTutorial].length; currTutorial++) {
 			const listElt = document.createElement('li');
 			listElt.innerText = translate.tutorials[Tutorials.currTutorial + '-objective-' + currTutorial];

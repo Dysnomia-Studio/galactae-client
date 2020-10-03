@@ -29,6 +29,8 @@
 			<div id="planet-back-content"></div>
 			<div id="planet-back-halo"></div>
 		</div>
+		<img src="<?= $cdnURL ?>img/ui/arrow-left.png" id="planet-back-prev" />
+		<img src="<?= $cdnURL ?>img/ui/arrow-right.png" id="planet-back-next" />
 	</div>
 
 	<?php /* Current Planet */ ?>
@@ -188,9 +190,7 @@
 
 	<div id="hud-top-center">
 		<img id="hud-settings" height="20" src="<?= $cdnURL ?>img/ui/settings.svg" alt="settings">
-		<span id="hud-planet-prev" onclick="planetUI.prev();">&#9664;</span>
 		<span id="hud-planet-name">SomeLongName</span>
-		<span id="hud-planet-next" onclick="planetUI.next();">&#9654;</span>
 		<img id="hud-gameMenu" height="15" src="<?= $cdnURL ?>img/ui/gameMenu.png" alt="gameMenu">
 	</div>
 
@@ -923,7 +923,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<div class="alliances-tab-half">
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-pactsAsk-list"></ul>
-				</div>	
+				</div>
 
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-pactsInvit-list"></ul>
@@ -947,7 +947,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 			<div class="alliances-tab-half">
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-ennemiesAsk-list"></ul>
-				</div>	
+				</div>
 
 				<div class="alliances-tab-half-cell alliances-tab-cell">
 					<ul id="alliances-panel-ennemiesInvit-list"></ul>

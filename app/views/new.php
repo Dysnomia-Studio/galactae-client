@@ -1,43 +1,37 @@
 <table class="gvt-choicepage" aria-describedby="government choice form">
 	<tr>
 		<td colspan="3" class="gvt-header">
-			Bienvenue <?php echo $userData['user_name']; ?> ! Quel type de dirigeant êtes vous ?
+			<?= GVT_WELCOME.' '.$userData['user_name']. ' ! '.GVT_WELCOME_2 ?>
 		</td>
 	</tr>
 	<tr>
 		<td class="gvt-choosecard">
-			<h1>Président</h1>
+			<h1><?= GVT_PRESIDENT ?></h1>
 			<div>
 				<img src="<?= $cdnURL ?>img/ui/wip.svg" alt="Work in progress" />
-				<p>Il est la tête de proue de son parti politique depuis peu, mais il fait déjà parler de lui. Les foules s'assemblent rien qu'à l'énonciation de son nom, et il compte bien se servir de cet avantage pour accroitre son emprise sur la galaxie.
-				<br/>
-				Sa carrière lui a permis de savoir cerner les besoins des gens, et ainsi sous sa direction, le peuple est plus facilement satisfait.
-				</p>
+				<p><?= GVT_PRESIDENT_DESC ?></p>
 			</div>
-			<span id="choosebtn1" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton">Choisir Président !</span>
+			<span id="choosebtn1" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton"><?= GVT_CHOOSE.GVT_PRESIDENT.' !' ?></span>
 		</td>
 		<td class="gvt-choosecard">
-			<h1>PDG</h1>
+			<h1><?= GVT_CEO ?></h1>
 			<div>
 				<img src="<?= $cdnURL ?>img/ui/wip.svg" alt="Work in progress" />
-				<p>À la tête d'un conglomérat, il dirige ses planètes dans le but de toujours augmenter ses profits. Il lui a fallu faire des OPA chez ses concurrents afin de prendre le contrôle de sa planète, et cette expérience lui permettra d'en prendre d'autres ...<br/>
-				Sa grande maîtrise des outils économiques va lui permettre d'éviter les taxes galactiques lors des échanges commerciaux.</p>
+				<p><?= GVT_CEO_DESC ?></p>
 			</div>
-			<span id="choosebtn2" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton">Choisir PDG !</span>
+			<span id="choosebtn2" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton"><?= GVT_CHOOSE.GVT_CEO.' !' ?></span>
 		</td>
 		<td class="gvt-choosecard">
-			<h1>Empereur</h1>
+			<h1><?= GVT_EMPEROR ?></h1>
 			<div>
 				<img src="<?= $cdnURL ?>img/ui/wip.svg" alt="Work in progress" />
-				<p>L'Empereur est le héros du peuple, il libère vaillamment les planètes sous le joug des tyrans. Un coup d'état après l'autre, il augmente son emprise sur la galaxie ...
-				<br/>
-				Il dirige d'une main de fer ses armées, ce qui lui permet une meilleure efficacité lors des combats.</p>
+				<p><?= GVT_EMPEROR_DESC ?></p>
 			</div>
-			<span id="choosebtn3" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton">Choisir Empereur !</span>
+			<span id="choosebtn3" class="gvt-choosebtn ui-medium-button gvt-choosebtn-nextButton"><?= GVT_CHOOSE.GVT_EMPEROR.' !' ?></span>
 		</td>
 	</tr>
 
-	<tr><td colspan="3" class="gvt-footer"> <span id="gvt-confbtn" class="ui-large-button">Commencer l'aventure !</span></td></tr>
+	<tr><td colspan="3" class="gvt-footer"> <span id="gvt-confbtn" class="ui-large-button"><?= GVT_BEGIN ?></span></td></tr>
 </table>
 
 <form method="post" action="index.php" id="choose">

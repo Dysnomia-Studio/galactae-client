@@ -284,7 +284,7 @@ const keyboardMap = [
 	'CHAR?', // [252]
 	'PA1', // [253]
 	'WIN_OEM_CLEAR', // [254]
-	'CHAR?' // [255]
+	'CHAR?', // [255]
 ];
 
 /**
@@ -1082,7 +1082,7 @@ const shipShapesDetails = {
 			},
 			partCount: 5,
 		},
-	}
+	},
 };
 
 const SHIP_SHAPE_SVG_WIDTH = 800;

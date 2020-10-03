@@ -70,6 +70,7 @@
 	define('MODEL_DELETED', 'Plan de vaisseau supprimé !');
 	define('FLEET_MAX_REACHED', 'Nombre de flottes maximales atteintes');
 	define('FLEET_NAME_ALREADY_EXISTS', 'Une autre flotte avec ce nom appartient déjà à cette planète');
+	define('FUEL_TRANSFER_SUCCESSFUL', 'Le transfert de fuel a été effectué avec succès.');
 	define('BUILDING_ERROR_INVALID_FLEET', 'Erreur: la flotte où construire ces unités n\'existe pas');
 	define('BUILDING_ERROR_FLEET_SIZE', 'Erreur: capacité maximale d\'unités de la flotte depassée');
 	// Errors message
