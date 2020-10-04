@@ -2637,6 +2637,10 @@ a[class="research-search"]:hover {
 	width: 0;
 	height: 0;
 }
+#planet-back-content-2D {
+	background-size: cover;
+	border-radius: 50%;
+}
 #planet-back-halo {
 	background-size: cover;
 }

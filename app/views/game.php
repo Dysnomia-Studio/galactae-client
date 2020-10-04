@@ -26,6 +26,7 @@
 	<div id="planet-back">
 		<div id="planet-back-bg"></div>
 		<div id="planet-back-sphere">
+			<div id="planet-back-content-2D"></div>
 			<div id="planet-back-content"></div>
 			<div id="planet-back-halo"></div>
 		</div>
