@@ -5,6 +5,8 @@ const RESEARCH_MAX_ZOOM = 1.75;
 
 const researchPrevMouse = [0,0];
 
+const nodePositions = {};
+
 class research extends _Research {
 	/**
 	 * Handle mobile touch and bind it to mouse events
@@ -247,8 +249,6 @@ class research extends _Research {
 		ui.emptyElt(researchContent);
 
 		const svg = ui.createSVGElt('svg');
-		researchContent.appendChild(svg);
-
 		svg.id = 'research-links';
 		svg.setAttribute('width', '10000px');
 		svg.setAttribute('height', '10000px');
@@ -264,7 +264,7 @@ class research extends _Research {
 
 			for(let i=0; i<current.parents.length; i++) {
 				if(current.parents[i].name) {
-					research.drawLink(key,current.parents[i].name);
+					research.drawLink(key,current.parents[i].name, svg);
 				}
 			}
 
@@ -274,6 +274,8 @@ class research extends _Research {
 				});
 			}
 		}
+
+		researchContent.appendChild(svg);
 
 		ui.hide('#hud-research');
 		document.getElementById('hud-research').style.opacity = 1;
@@ -369,8 +371,13 @@ class research extends _Research {
 		}
 
 		// Position
-		node.style.left = (researchPos[key][0]- (node.offsetHeight)/2) + 'px';
-		node.style.top = (researchPos[key][1] - (node.offsetWidth)/2) + 'px';
+		nodePositions[key] = {
+			left: (researchPos[key][0]- (node.offsetHeight)/2),
+			top: (researchPos[key][1] - (node.offsetWidth)/2),
+		};
+
+		node.style.left = nodePositions[key].left + 'px';
+		node.style.top = nodePositions[key].top + 'px';
 
 		document.getElementById('research-content').appendChild(node);
 	}
@@ -380,7 +387,7 @@ class research extends _Research {
 	 * @param	  {string}  child   The child
 	 * @param	  {string}  parent  The parent
 	 */
-	static drawLink(child,parent) {
+	static drawLink(child, parent, svg) {
 		if(child === '' || parent === '' || typeof parent === 'object') {
 			return;
 		}
@@ -389,8 +396,8 @@ class research extends _Research {
 			return;
 		}
 
-		const childPos = ui.position('#' + child + '-node');
-		const parentPos = ui.position('#' + parent + '-node');
+		const childPos = nodePositions[child];
+		const parentPos = nodePositions[parent];
 
 		const x1 = parseInt(childPos.left) + (parseInt(document.getElementById(child + '-node').clientWidth)/2);
 		const y1 = parseInt(childPos.top) + (parseInt(document.getElementById(child + '-node').clientHeight)/2);
@@ -411,7 +418,8 @@ class research extends _Research {
 		newLine.setAttribute('y1',y1);
 		newLine.setAttribute('x2',x2);
 		newLine.setAttribute('y2',y2);
-		document.getElementById('research-links').append(newLine);
+
+		svg.append(newLine);
 	}
 
 	/**
