@@ -453,10 +453,8 @@ class planetUI {
 		sector = sector.join('-');
 
 		if(typeof map.xmlDoc !== 'undefined') {
-			map.loadMapAndNeighborhood(sector, function() {
-				//Set background
-				planetBack.init(planetData.planetType);
-			});
+			planetBack.init(planetData.planetType);
+			map.loadMapAndNeighborhood(sector);
 		}
 	}
 
