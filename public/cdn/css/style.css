@@ -2654,8 +2654,6 @@ a[class="research-search"]:hover {
 	height: 80px;
 	top: calc(50% - 50px);
 
-	z-index: 100;
-
 	cursor: url(../img/mouse_cursor.png), auto;
 }
 #planet-back-prev:hover, #planet-back-next:hover {
