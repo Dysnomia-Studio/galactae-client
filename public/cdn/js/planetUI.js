@@ -456,6 +456,14 @@ class planetUI {
 			planetBack.init(planetData.planetType);
 			map.loadMapAndNeighborhood(sector);
 		}
+
+		if(!userData.planetlist || userData.planetlist.length < 2) {
+			ui.hide('#planet-back-prev');
+			ui.hide('#planet-back-next');
+		} else {
+			ui.show('#planet-back-prev');
+			ui.show('#planet-back-next');
+		}
 	}
 
 	static InfoPopupDrawUpdate() {
