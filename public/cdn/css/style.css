@@ -1023,9 +1023,6 @@ select, input, summary {
 	right: 15%;
 }
 
-.tooltips-hud-bottom {
-	margin-left: 10px !important;
-}
 .tooltips-hud-bottom .tooltip-content {
 	width: auto;
 	padding-left: 0.5em;
