@@ -525,12 +525,12 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
     	</div>
 
     	<div id="map-move-panel-info">
-    		<span id="map-move-panel-message">Deplacement vers <em>PlanetName</em> (<em>Joueur</em>)</span><br/>
+    		<span id="map-move-panel-message"><?= UNITS_MOVINGTO ?> <em>PlanetName</em> (<em>Joueur</em>)</span><br/>
     		<br/>
-    		Temps: ~<span id="map-move-panel-time">12:34:56</span><br/>
-    		Habitable: <span id="map-move-panel-habitability">No</span><br/>
-    		&sup3;He: <span id="map-move-panel-fuel">12.34Kt (56% du reservoir)</span><br/>
-    		<div id="map-move-panel-hangar-general">Hangar: <span id="map-move-panel-hangar">0/0</span></div><br/>
+    		<?= UNITS_MOVE_TIME ?>: ~<span id="map-move-panel-time">12:34:56</span><br/>
+    		<?= UNITS_MOVE_HABITABLE ?>: <span id="map-move-panel-habitability">No</span><br/>
+    		&sup3;He: <span id="map-move-panel-fuel">12.34Kt (56% <?= UNITS_OF_MAXFUEL ?>)</span><br/>
+    		<div id="map-move-panel-hangar-general"><?= SHIP_PART_OTHER_HANGAR ?>: <span id="map-move-panel-hangar">0/0</span></div><br/>
     	</div>
 
     	<input type="button" id="map-move-panel-move" name="map-move-panel-move" class="ui-large-button" value="Some move">
@@ -643,7 +643,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 
 <div id="fleet-type-rename" class="small-panel">
 	<span id="fleet-type-rename-close" class="small-panel-close">X</span>
-	<p>Nouveau nom pour <span id="fleet-type-rename-name">SHIPNAME</span></p>
+	<p><?= FLEET_NEWNAME ?> <span id="fleet-type-rename-name">SHIPNAME</span></p>
 	<input id="fleet-type-rename-newName" class="ui-large-button small-panel-text" type="text" placeholder="Nouveau nom">
 	<input id="fleet-type-rename-submit" class="ui-large-button small-panel-submit" type="submit" value="Renommer">
 </div>
@@ -713,7 +713,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 </div>
 <div id="fleet-transferFuel-panel" class="small-panel">
 	<span id="fleet-transferFuel-close" class="small-panel-close">X</span>
-	<p><?= FLEET_TRANSFERFUEL_FROM ?> <span id="fleet-transferFuel-name">FLEETNAME</span> vers :</p>
+	<p><?= FLEET_TRANSFERFUEL_FROM ?> <span id="fleet-transferFuel-name">FLEETNAME</span> <?= FLEET_TRANSFER_TO ?>:</p>
 	<select id="fleet-transferFuel-fleetSelect" class="ui-large-button small-panel-select">
 		<option id="-2" selected disabled><?= FLEET; ?></option>
 		<option id="-1"><?= NEW_FLEET; ?></option>

@@ -220,6 +220,12 @@ translate['map'] = {
 
 translate['tactic'] = {
 	'orderNew': "<?= TACTIC_NEW_ORDER ?>",
+
+	'no-tactic': "<?= TACTIC_NONE ?>",
+	'name': "<?= TACTIC_NAME ?>",
+	'orders': "<?= TACTIC_ORDERS ?>",
+
+	'DELETE_QUESTION': "<?= TACTIC_DELETE_QUESTION ?>",
 };
 
 translate['ui'] = {
