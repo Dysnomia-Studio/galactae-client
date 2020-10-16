@@ -76,9 +76,7 @@ class ui {
 		elt.classList.add('confirmBox');
 		elt.classList.add('small-panel');
 
-		const spanQuestion = document.createElement('span');
-		spanQuestion.innerText = question;
-		elt.appendChild(spanQuestion);
+		elt.appendChild(ui.createSpanText(question));
 
 		const inputAccept = document.createElement('input');
 		inputAccept.classList.add('ui-large-button');
@@ -114,8 +112,6 @@ class ui {
 		createdElement.setAttribute('type', 'text');
 		createdElement.className = className;
 		createdElement.value = value;
-
-		console.log(createdElement);
 
 		return createdElement;
 	}

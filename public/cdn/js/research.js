@@ -225,9 +225,7 @@ class research extends _Research {
 		img.setAttribute('alt', 'research');
 		researchCost.appendChild(img);
 
-		const span = document.createElement('span');
-		span.innerText = actual + '/' + max;
-		researchCost.appendChild(span);
+		researchCost.appendChild(ui.createSpanText(actual + '/' + max));
 	}
 
 	/**
@@ -411,15 +409,16 @@ class research extends _Research {
 			color = 'rgba(14,198,198,0.2)';
 		}
 
-		const newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
-		newLine.setAttribute('stroke',color);
-		newLine.setAttribute('stroke-width','2');
-		newLine.setAttribute('x1',x1);
-		newLine.setAttribute('y1',y1);
-		newLine.setAttribute('x2',x2);
-		newLine.setAttribute('y2',y2);
-
-		svg.append(newLine);
+		svg.append(
+			ui.createSVGElt('line', {
+				'stroke': color,
+				'stroke-width': '2',
+				'x1': x1,
+				'y1': y1,
+				'x2': x2,
+				'y2': y2,
+			})
+		);
 	}
 
 	/**

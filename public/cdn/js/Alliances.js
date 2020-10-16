@@ -199,9 +199,7 @@ class Alliances {
 			const tr = document.createElement('tr');
 
 			// Name
-			const tdName = document.createElement('td');
-			tdName.innerText = player.name;
-			tr.appendChild(tdName);
+			tr.appendChild(ui.createTextElement('td', player.name));
 
 			// Perms
 			let havePerm = false;
