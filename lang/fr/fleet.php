@@ -144,6 +144,9 @@
 	define('UNITS_MOVINGTODEF', 'Déplacement pour défendre vers');
 	define('UNITS_ARRIVEAT', ', arrivée:');
 
+	define('UNITS_MOVE_TIME', 'Temps');
+	define('UNITS_MOVE_HABITABLE', 'Habitable');
+
 	define('UNITS_UNIT', 'unité(s)');
 
 	define('UNITS_TACTIC', 'Tactique');

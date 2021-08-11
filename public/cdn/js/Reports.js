@@ -167,9 +167,10 @@ class Reports extends _Reports {
 		aElt.addEventListener('click', () => Reports.showReport(report.battleLogId));
 
 		// Date
-		const dateTd = document.createElement('td');
-		dateTd.innerText = report.date.toLocaleDateString() + ' ' + report.date.toLocaleTimeString();
-		trElt.append(dateTd);
+		trElt.append(ui.createTextElement(
+			'td',
+			report.date.toLocaleDateString() + ' ' + report.date.toLocaleTimeString()
+		));
 
 		if(!report.read) {
 			trElt.classList.add('unread');
@@ -191,10 +192,11 @@ class Reports extends _Reports {
 			const column = document.createElement('td');
 			line.append(column);
 
-			const header = document.createElement('h2');
-			column.append(header);
-			header.innerText = translate['messages']['NO_REPORTS_AVAILABLE'];
-			header.classList.add('text-center');
+			column.append(ui.createTextElement(
+				'h2',
+				translate['messages']['NO_REPORTS_AVAILABLE'],
+				'text-center'
+			));
 		}
 
 		// Generate DOM

@@ -1329,7 +1329,7 @@ class units extends _Units {
 		let miss = 0; // @TODO: Calc miss
 
 		// Hide some things if needed
-		ui.show(div + ' div');
+		ui.show('#' + div + ' div'); // @TODO: improve perfs here
 
 		for(let i=0; i<parts.length; i++) {
 			if(parts[i].tech === 'none' || parts[i].tech === 'noPartResearched') {

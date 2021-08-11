@@ -41,13 +41,13 @@ class tactics {
 		let html = '';
 
 		if(!tactics.tacticList || tactics.tacticList.length === 0) {
-			html += '<h2>Aucune tactique</h2>';
+			html += '<h2>' + translate['tactic']['no-tactic'] + '</h2>';
 		} else {
 			html += '<table>';
 
 			html += '<tr class="text-center">';
-			html += '<th>Nom</th>';
-			html += '<th>Ordres</th>';
+			html += '<th>' + translate['tactic']['name'] + '</th>';
+			html += '<th>' + translate['tactic']['orders'] + '</th>';
 			html += '<th class="tactics-edit"></th>';
 			html += '<th class="tactics-remove"></th>';
 			html += '</tr>';
@@ -138,13 +138,18 @@ class tactics {
 			return;
 		}
 
-		// @TODO: translate
-		ui.confirm('Voulez vous supprimer la tactique ' + currTactic.name + ' ?', 'Oui', 'Non', () => {
-			socket.emit('tactics-delete', {
-				...webSockets.getUserData(),
-				tacticId: currTactic.id,
-			});
-		});
+		ui.confirm(
+			translate['tactic']['TACTIC_DELETE_QUESTION'].replace('%tacticName%', currTactic.name),
+			translate['ui']['CONFIRM_YES'],
+			translate['ui']['CONFIRM_NO'],
+
+			() => {
+				socket.emit('tactics-delete', {
+					...webSockets.getUserData(),
+					tacticId: currTactic.id,
+				});
+			}
+		);
 	}
 
 	static getTacticById(id) {

@@ -15,6 +15,7 @@ class planetBack {
 		this.planetBg = document.getElementById('planet-back-bg');
 		this.planetSphere = document.getElementById('planet-back-sphere');
 		this.planetContent = document.getElementById('planet-back-content');
+		this.planetContent2D = document.getElementById('planet-back-content-2D');
 		this.planetHalo = document.getElementById('planet-back-halo');
 		this.contentDOM = [];
 
@@ -30,7 +31,6 @@ class planetBack {
 		this.calc.lat = 0;
 
 		this.tick = 1;
-		this.frames = 0;
 
 		// Create planet
 		this.createPlanet();
@@ -54,18 +54,25 @@ class planetBack {
 		this.planetHalo.style.backgroundImage = 'url('+cdnURL+'img/planets/halo/' + this.planet.type + '.png)';
 		this.planetMap = 'url('+cdnURL+'img/planets/front/' + this.planet.type + '.jpg)';
 
-		const halo = document.querySelector('#planet-back-halo');
-		halo.style.width = Math.round(this.planet.radius*2/536*725) + 'px';
-		halo.style.height = Math.round(this.planet.radius*2/536*710) + 'px';
+		const mleft = Math.round(this.planet.radius/536*725);
+		const mTop = Math.round(this.planet.radius/536*710);
 
-		let mleft = Math.round(this.planet.radius/536*725);
-		let mTop = Math.round(this.planet.radius/536*710);
-		if(this.planet.type > 101) {
-			mleft += 0;
-			mTop += 0;
+		this.planetHalo.style.width = (mleft*2) + 'px';
+		this.planetHalo.style.height = (mTop*2) + 'px';
+		this.planetHalo.style.marginLeft = '-' + mleft + 'px';
+		this.planetHalo.style.marginTop = '-' + mTop + 'px';
+
+		if(!settings.get('graphical_planetsRotation')) {
+			this.planetContent2D.style.backgroundImage = this.planetMap;
+
+			this.planetContent2D.style.width = (mleft*0.75*2) + 'px';
+			this.planetContent2D.style.height = (mTop*0.75*2) + 'px';
+
+			this.planetContent2D.style.marginLeft = '-' + mleft*0.75 + 'px';
+			this.planetContent2D.style.marginTop = '-' + mleft*0.75 + 'px';
+			return;
 		}
-		halo.style.marginLeft = '-' + mleft + 'px';
-		halo.style.marginTop = '-' + mTop + 'px';
+		this.planetContent2D.style.backgroundImage = '';
 
 		/* Planet */
 		this.calc.Xparts = 16;
@@ -145,11 +152,9 @@ class planetBack {
 	 * Render the planet
 	 */
 	static renderPlanet() {
-		++planetBack.frames;
-
 		if(!ui.research &&
 			(!ui.map || map.currentMap !== 'sector') &&
-			settings.get('graphical_planetsRotation') || planetBack.frames < 5) {
+			settings.get('graphical_planetsRotation')) {
 
 			// New position
 			planetBack.calc.long = (-Date.now()/1000)%360 - 180;

@@ -453,10 +453,16 @@ class planetUI {
 		sector = sector.join('-');
 
 		if(typeof map.xmlDoc !== 'undefined') {
-			map.loadMapAndNeighborhood(sector, function() {
-				//Set background
-				planetBack.init(planetData.planetType);
-			});
+			planetBack.init(planetData.planetType);
+			map.loadMapAndNeighborhood(sector);
+		}
+
+		if(!userData.planetlist || userData.planetlist.length < 2) {
+			ui.hide('#planet-back-prev');
+			ui.hide('#planet-back-next');
+		} else {
+			ui.show('#planet-back-prev');
+			ui.show('#planet-back-next');
 		}
 	}
 
@@ -477,36 +483,37 @@ class planetUI {
 		const popup = document.getElementById('planet-conquest-popup');
 
 		if(Conquest.isDefender()) {
-			const span = document.createElement('span');
-			span.innerText = translate['messages'].BEING_CONQUESTED_BY;
-			popup.appendChild(span);
+			popup.appendChild(ui.createSpanText(
+				translate['messages'].BEING_CONQUESTED_BY
+			));
 
-			const span2 = document.createElement('span');
-			span2.classList.add('planet-info-important');
-			span2.innerText = Conquest.getConquestor();
-			popup.appendChild(span2);
+			popup.appendChild(ui.createSpanText(
+				Conquest.getConquestor(),
+				'planet-info-important'
+			));
+
 		} else {
-			const span = document.createElement('span');
-			span.innerText = translate['messages'].YOU_ARE_CONQUERING;
-			popup.appendChild(span);
+			popup.appendChild(ui.createSpanText(
+				translate['messages'].YOU_ARE_CONQUERING
+			));
 
-			const span2 = document.createElement('span');
-			span2.classList.add('planet-info-important');
-			span2.innerText = planetData.address;
-			popup.appendChild(span2);
+			popup.appendChild(ui.createSpanText(
+				planetData.addres,
+				'planet-info-important'
+			));
 		}
 
 		popup.appendChild(document.createElement('br'));
 		popup.appendChild(document.createElement('br'));
 
-		const spanConquestEndTime = document.createElement('span');
-		spanConquestEndTime.innerText = translate['messages'].BEING_CONQUESTED_END;
-		popup.appendChild(spanConquestEndTime);
+		popup.appendChild(ui.createSpanText(
+			translate['messages'].BEING_CONQUESTED_END
+		));
 
-		const spanConquestEndTime2 = document.createElement('span');
-		spanConquestEndTime2.classList.add('planet-info-important');
-		spanConquestEndTime2.innerText = getDateTime(Conquest.getConquestEndTime());
-		popup.appendChild(spanConquestEndTime2);
+		popup.appendChild(ui.createSpanText(
+			getDateTime(Conquest.getConquestEndTime()),
+			'planet-info-important'
+		));
 
 		ui.show('#planet-conquest-popup');
 	}
@@ -520,32 +527,30 @@ class planetUI {
 
 		const description = document.createElement('p');
 
-		const spanCurrResearch = document.createElement('span');
-		spanCurrResearch.innerText = translate['research'].current_research;
-		description.appendChild(spanCurrResearch);
+		description.appendChild(ui.createSpanText(
+			translate['research'].current_research
+		));
 
 		description.appendChild(document.createElement('br'));
 
-		const spanCurrResearchName = document.createElement('span');
-		spanCurrResearchName.innerText = translate.research[planetData.currResearch].name;
-		description.appendChild(spanCurrResearchName);
+		description.appendChild(ui.createSpanText(
+			translate.research[planetData.currResearch].name
+		));
 
 		description.appendChild(document.createElement('br'));
 
 		// Research status
-		const spanCurrResearchStatus = document.createElement('span');
-		spanCurrResearchStatus.innerText = Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost;
-		description.appendChild(spanCurrResearchStatus);
+		description.appendChild(ui.createSpanText(
+			Math.floor(userData.research[planetData.currResearch]) + '/' + researchList[planetData.currResearch].cost
+		));
 
 		description.appendChild(document.createElement('br'));
 
 		// Research time
-		const spanCurrResearchTime = document.createElement('span');
-
 		let researchTime = (researchList[planetData.currResearch].cost - userData.research[planetData.currResearch]) / production;
-		spanCurrResearchTime.innerText = getStringTime(researchTime);
-
-		description.appendChild(spanCurrResearchTime);
+		description.appendChild(ui.createSpanText(
+			getStringTime(researchTime)
+		));
 
 		popup.appendChild(description);
 

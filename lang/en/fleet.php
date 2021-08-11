@@ -144,6 +144,9 @@
 	define('UNITS_MOVINGTODEF', 'Moving to defend');
 	define('UNITS_ARRIVEAT', ', arriving:');
 
+	define('UNITS_MOVE_TIME', 'Time');
+	define('UNITS_MOVE_HABITABLE', 'Habitable');
+
 	define('UNITS_UNIT', 'unit(s)');
 
 	define('UNITS_TACTIC', 'Tactic');
@@ -152,7 +155,7 @@
 	//== Fleet ==\\
 	define('FLEET','Fleet');
 	define('FLEET_NAME','Fleet name');
-	define('FLEET_NEWNAME','New fleet name for');
+	define('FLEET_NEWNAME','New name for');
 	define('FLEET_TRANSFER_TYPE','Transfer units of type');
 	define('FLEET_TRANSFERALL_TYPE','Transfer all units of type');
 	define('FLEET_TRANSFERFUEL_FROM','Tranfer fuel from');
