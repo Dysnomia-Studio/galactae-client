@@ -2,3 +2,4 @@
 *.bat
 .scannerwork/*
 app/views/gvars.php
+config.php
