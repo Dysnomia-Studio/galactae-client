@@ -142,6 +142,10 @@ class ui {
 	static createSVGElt(tagName, args) {
 		const el = document.createElementNS('http://www.w3.org/2000/svg', tagName);
 		for (const i in args) {
+			if (!args.hasOwnProperty(i)) {
+				continue;
+			}
+			
 			el.setAttribute(i, args[i]);
 		}
 		return el;

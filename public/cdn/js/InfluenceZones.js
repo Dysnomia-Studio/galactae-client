@@ -112,6 +112,10 @@ class InfluenceZones {
 
 		// Show unit forces
 		for(const system in map.influenceZones.alliedForces) {
+			if (!map.influenceZones.alliedForces.hasOwnProperty(system)) {
+				continue;
+			}
+
 			const pos = GameMap.getCoordinatesFromSystem(system);
 
 			const text = ui.createSVGElt('text', {

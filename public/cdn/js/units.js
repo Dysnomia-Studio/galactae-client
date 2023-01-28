@@ -1225,6 +1225,10 @@ class units extends _Units {
 
 		// Click Events
 		for(const i in clickEvent) {
+			if (!clickEvent.hasOwnProperty(i)) {
+				continue;
+			}
+
 			const id = clickEvent[i];
 
 			document.querySelectorAll('#part-selecting-seen-' + id + ' dt a').forEach(function(elt) {
@@ -1494,6 +1498,10 @@ class units extends _Units {
 		if(!units.list[id].shipShape.includes('SHIP_WEP_MINES')) {
 			const shields = units.getDefenseList(id);
 			for(const i in shields) {
+				if (!shields.hasOwnProperty(i)) {
+					continue;
+				}
+
 				if(shieldText !== '') {
 					shieldText += ', ';
 				}
@@ -1583,6 +1591,10 @@ class units extends _Units {
 		let fighterCount = 0;
 		let fighterCap = 0;
 		for(const key in fleet.units) {
+			if (!fleet.units.hasOwnProperty(key)) {
+				continue;
+			}
+
 			totalcount += fleet.units[key];
 
 			const currUnit = units.getUnitData(key);
@@ -1590,6 +1602,10 @@ class units extends _Units {
 				fighterCount += (fighterWeight[currUnit.shipShape] * fleet.units[key]);
 			} else if(currUnit.shipType === 'SHIP_CARRIER') {
 				for(const p in currUnit.parts) {
+					if (!currUnit.parts.hasOwnProperty(p)) {
+						continue;
+					}
+
 					if(currUnit.parts[p].type === 'hangar') {
 						fighterCap += (hangarSize[currUnit.parts[p].tech] * fleet.units[key]);
 					}
@@ -1978,6 +1994,10 @@ class units extends _Units {
 
 			const unitList = [];
 			for(const key in fleet.units) {
+				if (!fleet.units.hasOwnProperty(key)) {
+					continue;
+				}
+
 				unitList.push(units.getUnitData(key));
 			}
 
@@ -2016,6 +2036,10 @@ class units extends _Units {
 			const unitList = [];
 			const unitIdList = units.list.map((unit) => unit.id);
 			for(const key in fleet.units) {
+				if (!fleet.units.hasOwnProperty(key)) {
+					continue;
+				}
+
 				const currUnitId = unitIdList.indexOf(key);
 				unitList.push(units.list[currUnitId]);
 			}
@@ -2151,11 +2175,19 @@ class units extends _Units {
 		let fighterCap = 0;
 		if(currentFleet.units) {
 			for(const key in currentFleet.units) {
+				if (!currentFleet.units.hasOwnProperty(key)) {
+					continue;
+				}
+				
 				const currUnit = units.getUnitData(key);
 				if(currUnit.shipType === 'SHIP_FIGHTER') {
 					fighterCount += (fighterWeight[currUnit.shipShape] * currentFleet.units[key]);
 				} else if(currUnit.shipType === 'SHIP_CARRIER') {
 					for(const p in currUnit.parts) {
+						if (!currUnit.parts.hasOwnProperty(key)) {
+							continue;
+						}
+						
 						if(currUnit.parts[p].type === 'hangar') {
 							fighterCap += (hangarSize[currUnit.parts[p].tech] * currentFleet.units[key]);
 						}

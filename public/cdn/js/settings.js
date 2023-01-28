@@ -122,6 +122,10 @@ class settings {
 
 		let first = false;
 		for(const settingsCategory in this.settingsList) {
+			if (!this.settingsList.hasOwnProperty(settingsCategory)) {
+				continue;
+			}
+
 			const menuElt = document.createElement('li');
 			menuElt.innerText = translate['settings']['menu'][settingsCategory];
 			menuElt.id = 'settings-menu-' + settingsCategory;
@@ -154,6 +158,10 @@ class settings {
 				settingElt.classList.add('ui-small-select');
 
 				for(const option in settingData.choices) {
+					if (!settingData.choices.hasOwnProperty(option)) {
+						continue;
+					}
+
 					const optionElt = document.createElement('option');
 					optionElt.value = option;
 					optionElt.innerText = settingData.choices[option];
@@ -207,6 +215,10 @@ class settings {
 		const paneContent = document.createElement('table');
 
 		for(const currSetting in this.settingsList[settingsCategory]) {
+			if (!this.settingsList[settingsCategory].hasOwnProperty(currSetting)) {
+				continue;
+			}
+
 			const paneLine = document.createElement('tr');
 
 			// Left column
@@ -233,6 +245,10 @@ class settings {
 
 		let first = false;
 		for(const settingsCategory in this.settingsList) {
+			if (!this.settingsList.hasOwnProperty(settingsCategory)) {
+				continue;
+			}
+
 			const pane = document.createElement('li');
 
 			const paneContent = this.generatePanelContent(settingsCategory);
@@ -257,7 +273,15 @@ class settings {
 
 	static saveSettings() {
 		for(const settingsCategory in this.settingsList) {
+			if (!this.settingsList.hasOwnProperty(settingsCategory)) {
+				continue;
+			}
+
 			for(const currSetting in this.settingsList[settingsCategory]) {
+				if (!this.settingsList[settingsCategory].hasOwnProperty(currSetting)) {
+					continue;
+				}
+
 				const currSettingElt = document.getElementById('settings-' + settingsCategory + '-' + currSetting + '-value');
 
 				switch(this.settingsList[settingsCategory][currSetting].type) {
@@ -320,6 +344,10 @@ class settings {
 		const words = settingName.split('_');
 		val = this.settingsList;
 		for(const i in words) {
+			if (!words.hasOwnProperty(i)) {
+				continue;
+			}
+			
 			if(val[words[i]] === undefined) {
 				console.error('ERROR: Invalid setting name - ' + settingName);
 				return '';

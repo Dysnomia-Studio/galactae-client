@@ -253,11 +253,19 @@ class research extends _Research {
 
 		// Create nodes
 		for(const key in userData.research) {
+			if (!userData.research.hasOwnProperty(key)) {
+				continue;
+			}
+
 			research.drawNode(key);
 		}
 
 		// Link Them
 		for(const key in userData.research) {
+			if (!userData.research.hasOwnProperty(key)) {
+				continue;
+			}
+			
 			const current = researchList[key];
 
 			for(let i=0; i<current.parents.length; i++) {
