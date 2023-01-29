@@ -251,10 +251,10 @@ class map {
 			pos[1] += map.oldPos[1];
 		}
 
-		if(parseInt(pos[0]) > 0) {
+		if(parseInt(pos[0], 10) > 0) {
 			pos[0] = 0;
 		}
-		if(parseInt(pos[1]) > 0) {
+		if(parseInt(pos[1], 10) > 0) {
 			pos[1] = 0;
 		}
 
@@ -292,8 +292,8 @@ class map {
 		const coords = sector.split('-');
 
 		// At borders ?
-		coords[0] = parseInt(coords[0]);
-		coords[1] = parseInt(coords[1]);
+		coords[0] = parseInt(coords[0], 10);
+		coords[1] = parseInt(coords[1], 10);
 		const top = coords[0] === 0;
 		const bottom = coords[0] === 9;
 		const left = coords[1] === 0;

@@ -294,14 +294,14 @@ class units extends _Units {
 		});
 
 		document.getElementById('fleet-ship-build-count').addEventListener('input', function() {
-			units.updateCount(parseInt(this.value));
+			units.updateCount(parseInt(this.value, 10));
 		});
 
 		document.getElementById('fleet-ship-build-fleetSelect').addEventListener('change', () => {
 			let fleetSelect = document.getElementById('fleet-ship-build-fleetSelect');
 			fleetSelect = fleetSelect.options[fleetSelect.selectedIndex].id;
 
-			if(parseInt(fleetSelect) === -1) {
+			if(parseInt(fleetSelect, 10) === -1) {
 				units.drawNewFleetPanel();
 			}
 		});
@@ -340,7 +340,7 @@ class units extends _Units {
 			}
 
 			let fleet = document.getElementById('fleet-merge-fleetSelect');
-			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
+			fleet = parseInt(fleet.options[fleet.selectedIndex].id, 10);
 			fleet = units.fleetList[fleet];
 
 			socket.emit('fleet-merge', {
@@ -357,7 +357,7 @@ class units extends _Units {
 		});
 
 		document.getElementById('fleet-units-transfer-submit').addEventListener('click', () => {
-			const count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value);
+			const count = parseInt(document.getElementById('fleet-units-transfer-unitCount').value, 10);
 
 			if(document.getElementById('fleet-units-transfer-fleetSelect').selectedIndex === '-2') {
 				return;
@@ -367,7 +367,7 @@ class units extends _Units {
 			}
 
 			let fleet = document.getElementById('fleet-units-transfer-fleetSelect');
-			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
+			fleet = parseInt(fleet.options[fleet.selectedIndex].id, 10);
 			fleet = units.fleetList[fleet];
 
 			socket.emit('fleet-units-transfer', {
@@ -386,7 +386,7 @@ class units extends _Units {
 		});
 
 		document.getElementById('fleet-transferFuel-submit').addEventListener('click', () => {
-			const count = parseInt(document.getElementById('fleet-transferFuel-fuelCount').value);
+			const count = parseInt(document.getElementById('fleet-transferFuel-fuelCount').value, 10);
 
 			if(document.getElementById('fleet-transferFuel-fleetSelect').selectedIndex === '-2') {
 				return;
@@ -396,7 +396,7 @@ class units extends _Units {
 			}
 
 			let fleet = document.getElementById('fleet-transferFuel-fleetSelect');
-			fleet = parseInt(fleet.options[fleet.selectedIndex].id);
+			fleet = parseInt(fleet.options[fleet.selectedIndex].id, 10);
 			fleet = units.fleetList[fleet];
 
 			if(!fleet) {
@@ -768,7 +768,7 @@ class units extends _Units {
 		];
 
 		const currUnit = units.list[units.currUnit];
-		let count = parseInt(document.getElementById('fleet-ship-build-count').value);
+		let count = parseInt(document.getElementById('fleet-ship-build-count').value, 10);
 
 		if(document.getElementById('fleet-ship-build-count').value === '' || count < 1) {
 			count = 1;
@@ -895,9 +895,9 @@ class units extends _Units {
 	 * Ask to build an unit - Event on build button click
 	 */
 	static askUnitBuild() {
-		const count = parseInt(document.getElementById('fleet-ship-build-count').value);
+		const count = parseInt(document.getElementById('fleet-ship-build-count').value, 10);
 		let fleet = document.getElementById('fleet-ship-build-fleetSelect');
-		fleet = parseInt(fleet.options[fleet.selectedIndex].id);
+		fleet = parseInt(fleet.options[fleet.selectedIndex].id, 10);
 
 		if(Number.isNaN(fleet) || fleet === undefined || (fleet === -2 && units.list[units.currUnit].shipType !== 'SHIP_DEF')) {
 			return;
@@ -1182,8 +1182,8 @@ class units extends _Units {
 					selected = source.options[0];
 				}
 
-				const selw = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).width.slice(0, -2));
-				const selh = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).height.slice(0, -2));
+				const selw = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).width.slice(0, -2), 10);
+				const selh = parseInt(window.getComputedStyle(document.getElementById('fleet-type-create-schematic')).height.slice(0, -2), 10);
 				const w = shape[id][4]/SHIP_SHAPE_SVG_WIDTH*selw - 12;
 				const h = shape[id][5]/SHIP_SHAPE_SVG_HEIGHT*selh - 12;
 

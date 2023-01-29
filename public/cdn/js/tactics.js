@@ -22,7 +22,7 @@ class tactics {
 		});
 
 		document.getElementById('fleet-tacticsManager-priorityLevel').addEventListener('change', function() {
-			if(Number.isNaN(parseInt(this.value))) {
+			if(Number.isNaN(parseInt(this.value, 10))) {
 				this.value = 1;
 				return;
 			}
@@ -80,11 +80,11 @@ class tactics {
 		});
 
 		Array.from(document.getElementsByClassName('tactics-remove')).forEach((elt) => elt.addEventListener('click', () => {
-			tactics.openDeleteUI(parseInt(elt.parentNode.id.split('-')[1]));
+			tactics.openDeleteUI(parseInt(elt.parentNode.id.split('-')[1], 10));
 		}));
 
 		Array.from(document.getElementsByClassName('tactics-edit')).forEach((elt) => elt.addEventListener('click', () => {
-			tactics.openEditor(parseInt(elt.parentNode.id.split('-')[1]));
+			tactics.openEditor(parseInt(elt.parentNode.id.split('-')[1], 10));
 		}));
 	}
 
@@ -247,7 +247,7 @@ class tactics {
 
 
 		Array.from(document.querySelectorAll('#fleet-tacticsManager-orderList li')).forEach((elt) => elt.addEventListener('click', () => {
-			const id = parseInt(elt.id);
+			const id = parseInt(elt.id, 10);
 			if(Number.isNaN(id)) {
 				return;
 			}
@@ -287,7 +287,7 @@ class tactics {
 			order = {
 				unit: units.list[eltUnitType.options[eltUnitType.selectedIndex].value].id,
 				target: unitTypes[eltUnitTarget.options[eltUnitTarget.selectedIndex].value],
-				priority: parseInt(document.getElementById('fleet-tacticsManager-priorityLevel').value),
+				priority: parseInt(document.getElementById('fleet-tacticsManager-priorityLevel').value, 10),
 			};
 
 		if(Number.isNaN(order.priority)) {

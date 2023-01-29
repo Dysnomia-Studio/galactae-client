@@ -202,16 +202,16 @@ class research extends _Research {
 	 * Move the UI
 	 */
 	static moveUI(pos) {
-		if(parseInt(pos[0]) > 0) {
+		if(parseInt(pos[0], 10) > 0) {
 			pos[0] = 0;
 		}
-		if(parseInt(pos[1]) > 0) {
+		if(parseInt(pos[1], 10) > 0) {
 			pos[1] = 0;
 		}
-		if(parseInt(pos[0]) < (document.body.clientWidth-RESEARCH_DIV_SIZE*research.zoom)) {
+		if(parseInt(pos[0], 10) < (document.body.clientWidth-RESEARCH_DIV_SIZE*research.zoom)) {
 			pos[0] = document.body.clientWidth-RESEARCH_DIV_SIZE*research.zoom;
 		}
-		if(parseInt(pos[1]) < (document.getElementById('planet').clientHeight-RESEARCH_DIV_SIZE*research.zoom)) {
+		if(parseInt(pos[1], 10) < (document.getElementById('planet').clientHeight-RESEARCH_DIV_SIZE*research.zoom)) {
 			pos[1] = document.getElementById('planet').clientHeight-RESEARCH_DIV_SIZE*research.zoom;
 		}
 
@@ -405,10 +405,10 @@ class research extends _Research {
 		const childPos = nodePositions[child];
 		const parentPos = nodePositions[parent];
 
-		const x1 = parseInt(childPos.left) + (parseInt(document.getElementById(child + '-node').clientWidth)/2);
-		const y1 = parseInt(childPos.top) + (parseInt(document.getElementById(child + '-node').clientHeight)/2);
-		const x2 = parseInt(parentPos.left) + (parseInt(document.getElementById(parent + '-node').clientWidth)/2);
-		const y2 = parseInt(parentPos.top) + (parseInt(document.getElementById(parent + '-node').clientHeight)/2);
+		const x1 = parseInt(childPos.left, 10) + (parseInt(document.getElementById(child + '-node').clientWidth, 10)/2);
+		const y1 = parseInt(childPos.top, 10) + (parseInt(document.getElementById(child + '-node').clientHeight, 10)/2);
+		const x2 = parseInt(parentPos.left, 10) + (parseInt(document.getElementById(parent + '-node').clientWidth, 10)/2);
+		const y2 = parseInt(parentPos.top, 10) + (parseInt(document.getElementById(parent + '-node').clientHeight, 10)/2);
 		let color; //default
 
 		if(research.isSearched(userData, parent)) {

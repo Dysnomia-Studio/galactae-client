@@ -169,7 +169,7 @@ class ui {
 		}
 
 		ui.music.play();
-		ui.music.volume = parseInt(settings.get('sounds_musicVol')) / 100;
+		ui.music.volume = parseInt(settings.get('sounds_musicVol'), 10) / 100;
 	}
 
 	/**
@@ -335,8 +335,8 @@ class ui {
 
 	static position(selector) {
 		return {
-			left: parseInt(window.getComputedStyle(document.querySelector(selector)).left.slice(0, -2)),
-			top: parseInt(window.getComputedStyle(document.querySelector(selector)).top.slice(0, -2)),
+			left: parseInt(window.getComputedStyle(document.querySelector(selector)).left.slice(0, -2), 10),
+			top: parseInt(window.getComputedStyle(document.querySelector(selector)).top.slice(0, -2), 10),
 		};
 	}
 
