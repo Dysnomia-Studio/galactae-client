@@ -1,7 +1,14 @@
 <?php
 class Stats extends SQLInterface {
     public function __construct() {
-        SQLInterface::__construct('***REMOVED***', 'stats', '***REMOVED***', '***REMOVED***');
+        global $config;
+        
+        SQLInterface::__construct(
+            $config['stats']['host'],
+            $config['stats']['db'],
+            $config['stats']['id'],
+            $config['stats']['password']
+        );
     }
 
     public function insertVisit($visits) {
