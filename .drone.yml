@@ -9,6 +9,7 @@ steps:
       from_secret: SONAR_HOST
     sonar_token: 
       from_secret: SONAR_TOKEN
+    branchAnalysis: true
   when:
     branch:
     - dev
@@ -21,7 +22,7 @@ steps:
   settings:
     repo: dysnomia/galactae-client
     dockerfile: Dockerfile
-    tags: ${DRONE_BRANCH}
+    tags: ${DRONE_BRANCH//\//-}
     dry_run: true
     pull-image: false
   environment:

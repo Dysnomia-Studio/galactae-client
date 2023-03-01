@@ -2,10 +2,10 @@
 $config = array(
 	'mongoURL' => '',
 	'SQLCredentials' => [
-		'host' => '***REMOVED***',
-		'db' => 'galactae',
-		'id' => '***REMOVED***',
-		'password' => '***REMOVED***',
+		'host' => 'SERVER',
+		'db' => 'DATABASE',
+		'id' => 'USERNAME',
+		'password' => 'PASSWORD',
 		'driver' => 'pgsql',
 		'port' => 5432
 	],
