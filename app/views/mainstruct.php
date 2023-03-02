@@ -26,7 +26,6 @@ $debut = round(microtime(true) * 1000);
 
 		<link rel="shortcut icon" type="image/png" href="<?php echo $cdnURL; ?>img/favicon.png"/>
 		<link rel="stylesheet" media="screen" type="text/css" title="Design" href="<?php echo $cdnURL; ?>css/style.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 		<meta name="theme-color" content="#0b1012"></head>
 
 		<?php $lang->drawCached(); ?>

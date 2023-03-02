@@ -4,6 +4,11 @@
  * 10 a 100: fenetres
  * 100+: parties des fenetres
  */
+@font-face {
+    font-family: 'Titillium Web';
+    src: url('https://cdn.galactae.eu/game/fonts/TitilliumWeb-Regular.ttf');
+    font-display: swap;
+}
 
 /**
  * Global design

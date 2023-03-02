@@ -1211,7 +1211,7 @@ for(let i=0; i<buildingsNames.length; i++) {
 // Planets
 const backPlanetList = [0];
 for(const i in backPlanetList) {
-	if (!backPlanetList.units.hasOwnProperty(i)) {
+	if (!backPlanetList[i].units.hasOwnProperty(i)) {
 		continue;
 	}
 
@@ -1224,7 +1224,7 @@ const planetList = [0,1,2,3,4,5,6,7,8,9,
 	//1000,1001,1002,//1003,1004,1005,1006,1007,1008,
 ];
 for(const i in planetList) {
-	if (!planetList.units.hasOwnProperty(i)) {
+	if (!planetList[i].units.hasOwnProperty(i)) {
 		continue;
 	}
 	
