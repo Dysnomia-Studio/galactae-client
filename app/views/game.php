@@ -30,8 +30,8 @@
 			<div id="planet-back-content"></div>
 			<div id="planet-back-halo"></div>
 		</div>
-		<img src="<?= $cdnURL ?>img/ui/arrow-left.png" id="planet-back-prev" />
-		<img src="<?= $cdnURL ?>img/ui/arrow-right.png" id="planet-back-next" />
+		<img src="<?= $cdnURL ?>img/ui/arrow-left.png" alt="previous" id="planet-back-prev" />
+		<img src="<?= $cdnURL ?>img/ui/arrow-right.png" alt="next" id="planet-back-next" />
 	</div>
 
 	<?php /* Current Planet */ ?>
