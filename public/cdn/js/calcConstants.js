@@ -1211,10 +1211,6 @@ for(let i=0; i<buildingsNames.length; i++) {
 // Planets
 const backPlanetList = [0];
 for(const i in backPlanetList) {
-	if (!backPlanetList[i].units.hasOwnProperty(i)) {
-		continue;
-	}
-
 	imgCache.push(cdnURL + 'img/planets/back/' + backPlanetList[i] + '.png');
 }
 const planetList = [0,1,2,3,4,5,6,7,8,9,
@@ -1224,10 +1220,6 @@ const planetList = [0,1,2,3,4,5,6,7,8,9,
 	//1000,1001,1002,//1003,1004,1005,1006,1007,1008,
 ];
 for(const i in planetList) {
-	if (!planetList[i].units.hasOwnProperty(i)) {
-		continue;
-	}
-	
 	imgCache.push(cdnURL + 'img/planets/front/' + planetList[i] + '.jpg');
 	imgCache.push(cdnURL + 'img/planets/halo/' + planetList[i] + '.png');
 }
