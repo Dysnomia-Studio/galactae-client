@@ -1014,7 +1014,7 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
 <script type="text/javascript" src="<?= $cdnURL ?>js/remove-polyfill.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/socket.io.min.js"></script>
 <script type="text/javascript" src="<?= $cdnURL ?>js/css_globe_perspectivetransform.js"></script>
-<script src="https://unpkg.com/delaunator@4.0.1/delaunator.min.js"></script>
+<script type="text/javascript" src="<?= $cdnURL ?>js/delaunator.min.js"></script>
 
 <?php /* Client Classes */ ?>
 
