@@ -1,0 +1,139 @@
+diff --git a/app/views/game.php b/app/views/game.php
+index ad1ec08..ec9e7f5 100644
+--- a/app/views/game.php
++++ b/app/views/game.php
+@@ -913,8 +913,13 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
+ 			</div>
+ 		</div>
+ 		<div id="alliances-panel-diplomacy" class="alliances-tab extra-large-panel-tab">
+-			<div class="alliances-tab-half alliances-tab-cell">
+-				<ul id="alliances-panel-pacts-list"></ul>
++			<div class="alliances-tab-half">
++				<div class="alliances-tab-half-cell alliances-tab-cell">
++					<ul id="alliances-panel-pacts-list"></ul>
++				</div>
++				<div class="alliances-tab-half-cell alliances-tab-cell">
++					<ul id="alliances-panel-enemies-list"></ul>
++				</div>
+ 			</div>
+ 
+ 			<div class="alliances-tab-half">
+diff --git a/lang/en/alliances.php b/lang/en/alliances.php
+index a2cad98..2f5755f 100644
+--- a/lang/en/alliances.php
++++ b/lang/en/alliances.php
+@@ -27,9 +27,14 @@ define('ALLY_MEMBERS_PERMS_NONE', 'No permission');
+ var translate = translate || {};
+ 
+ translate['alliance'] = {
++	'pact': 'Pacts',
+ 	'pact-no': 'No pact',
+ 	'pact-current': 'Pacts:',
+ 
++	'ennemies': 'Ennemies',
++	'ennemies-no': 'No ennemy found',
++	'ennemies-current': 'Ennemies:',
++
+ 	'pact-askToJoin-no': 'No incoming pact invitation',
+ 	'pact-askToJoin-current': 'Incoming pact invitation(s):',
+ 
+diff --git a/lang/fr/alliances.php b/lang/fr/alliances.php
+index 160624b..472fb5c 100644
+--- a/lang/fr/alliances.php
++++ b/lang/fr/alliances.php
+@@ -27,10 +27,15 @@ define('ALLY_MEMBERS_PERMS_NONE', 'Aucune permission');
+ var translate = translate || {};
+ 
+ translate['alliance'] = {
++	'pact': 'Pacte',
+ 	'pact-no': 'Aucun pacte en cours',
+ 	'pact-current': 'Pactes en cours:',
+ 
+-	'pact-askToJoin-no': 'Aucune demande en cours',
++	'ennemies': 'Ennemis',
++	'ennemies-no': 'Aucun ennemi declaré',
++	'ennemies-current': 'Ennemis:',
++
++	'pact-askToJoin-no': 'Aucune demande entrante',
+ 	'pact-askToJoin-current': 'Demandes de pactes entrantes:',
+ 
+ 	'pact-invitations-no': 'Aucune invitation en cours',
+diff --git a/public/cdn/js/Alliances.js b/public/cdn/js/Alliances.js
+index e5cf30b..fa950bf 100644
+--- a/public/cdn/js/Alliances.js
++++ b/public/cdn/js/Alliances.js
+@@ -100,12 +100,14 @@ class Alliances {
+ 
+ 	static renderPacts() {
+ 		ui.empty('#alliances-panel-pacts-list');
++		ui.empty('#alliances-panel-enemies-list');
+ 		ui.empty('#alliances-panel-pactsAsk-list');
+ 		ui.empty('#alliances-panel-pactsInvit-list');
+ 
+ 		const currentUser = Alliances.getCurrentUser();
+ 
+ 		const ulOk = document.getElementById('alliances-panel-pacts-list');
++		const ulEnnemies = document.getElementById('alliances-panel-enemies-list');
+ 		const ulAsk = document.getElementById('alliances-panel-pactsAsk-list');
+ 		const ulInvit = document.getElementById('alliances-panel-pactsInvit-list');
+ 		for(const pact of Alliances.details.pacts) {
+@@ -125,10 +127,20 @@ class Alliances {
+ 					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.stopPact(allyId); }, 'alliances-panel-cancel'));
+ 				}
+ 
+-				ulOk.appendChild(li);
++				if(pact.allied) {
++					ulOk.appendChild(li);
++				} else {
++					ulEnnemies.appendChild(li);
++				}
+ 			} else if(pact.ally_2_name === Alliances.details.name) {
+ 				li.appendChild(ui.createSpanText(allyName));
+ 
++				if(pact.allied) {
++					li.appendChild(ui.createSpanText(' (' + translate['alliance']['pact'] + ')'));
++				} else {
++					li.appendChild(ui.createSpanText(' (' + translate['alliance']['ennemies'] + ')'));
++				}
++
+ 				if(currentUser.founder || currentUser.leader || currentUser.diplomacy) {
+ 					li.appendChild(ui.createSpanBtn('✗', () => { Alliances.choicePact(allyId, false); }, 'alliances-panel-refuse'));
+ 					li.appendChild(ui.createSpanBtn('✓', () => { Alliances.choicePact(allyId, true); }, 'alliances-panel-validate'));
+@@ -152,6 +164,12 @@ class Alliances {
+ 			ulOk.prepend(ui.createLiText(translate['alliance']['pact-current'],'alliances-panel-list-header'));
+ 		}
+ 
++		if(!ulEnnemies.firstChild) {
++			ulEnnemies.appendChild(ui.createLiText(translate['alliance']['ennemies-no']));
++		} else {
++			ulEnnemies.prepend(ui.createLiText(translate['alliance']['ennemies-current'],'alliances-panel-list-header'));
++		}
++
+ 		if(!ulAsk.firstChild) {
+ 			ulAsk.appendChild(ui.createLiText(translate['alliance']['pact-askToJoin-no']));
+ 		} else {
+diff --git a/public/cdn/js/_shared/Trading.js b/public/cdn/js/_shared/Trading.js
+new file mode 100644
+index 0000000..357c3d2
+--- /dev/null
++++ b/public/cdn/js/_shared/Trading.js
+@@ -0,0 +1,19 @@
++(function (exports) {
++	exports._Trading = class Trading {
++		static getPlanetCapacity(lvl) {
++			if(lvl === 0) {
++				return 0;
++			}
++
++			return 1000 * Math.pow(lvl, 2) - 2700 * lvl + 2600;
++		}
++
++		static calcSubMoveTime(distance) {
++			return -0.00004 * Math.pow(distance, 2) + 0.0096 * distance;
++		}
++
++		static calcSupMoveTime(distance) {
++			return -0.024 * Math.pow(distance, 2) + 7.23 * distance + 0.001;
++		}
++	};
++})(typeof exports === 'undefined'? window : exports);

@@ -1,0 +1,129 @@
+diff --git a/app/views/game.php b/app/views/game.php
+index f5fda16..7606a58 100644
+--- a/app/views/game.php
++++ b/app/views/game.php
+@@ -686,6 +686,12 @@ if(!isset($userData['lastViewedNews']) || $userData['lastViewedNews'] < $lastNew
+ 	<input id="fleet-units-transfer-unitCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
+ 	<input id="fleet-units-transfer-submit" class="ui-large-button small-panel-submit" type="submit" value="<?= CONFIRM; ?>">
+ </div>
++<div id="fleet-units-recycle-panel" class="small-panel">
++	<span id="fleet-units-recycle-close" class="small-panel-close">X</span>
++	<p><?= FLEET_RECYCLING ?> <span id="fleet-units-recycle-name">SHIPNAME</span> :</p>
++	<input id="fleet-units-recycle-unitCount" class="ui-large-button small-panel-text" type="number" placeholder="Nombre:">
++	<input id="fleet-units-recycle-submit" class="ui-large-button small-panel-submit" type="submit" value="<?= CONFIRM; ?>">
++</div>
+ <div id="fleet-merge-panel" class="small-panel">
+ 	<span id="fleet-merge-panel-close" class="small-panel-close">X</span>
+ 	<p><?= FLEET_TRANSFERALL_TYPE ?> <span id="fleet-merge-name">FLEETNAME</span> <?= FLEET_TRANSFER_TO ?>:</p>
+diff --git a/lang/en/fleet.php b/lang/en/fleet.php
+index 0aba8f8..d624e41 100644
+--- a/lang/en/fleet.php
++++ b/lang/en/fleet.php
+@@ -42,6 +42,7 @@
+ 	define('FLEET_TRANSFERFUEL_FROM','Tranfer fuel from');
+ 	define('FLEET_TRANSFER_TO','to');
+ 	define('NEW_FLEET','New Fleet ...');
++	define('FLEET_RECYCLING', 'Recycling ');
+ 
+ 	//== Tactics ==\\
+ 	define('FLEET_UNIT_TYPE', 'Unit type');
+diff --git a/lang/fr/fleet.php b/lang/fr/fleet.php
+index 85ca509..3dd90b9 100644
+--- a/lang/fr/fleet.php
++++ b/lang/fr/fleet.php
+@@ -42,6 +42,7 @@
+ 	define('FLEET_TRANSFERFUEL_FROM','Tranferer fuel de');
+ 	define('FLEET_TRANSFER_TO','vers');
+ 	define('NEW_FLEET','Nouvelle Flotte ...');
++	define('FLEET_RECYCLING', 'Recycler ');
+ 
+ 	//== Tactics ==\\
+ 	define('FLEET_UNIT_TYPE', 'Type d\'unité');
+diff --git a/public/cdn/css/style.css b/public/cdn/css/style.css
+index 97eafc2..e17becd 100644
+--- a/public/cdn/css/style.css
++++ b/public/cdn/css/style.css
+@@ -136,7 +136,7 @@ em {
+ 	top: calc(50% - 75px);
+ 	left: calc(50% - 112px);
+ 
+-	opacity: 0.8;
++	opacity: 0.9;
+ 
+ 	z-index: 1000;
+ }
+diff --git a/public/cdn/js/units.js b/public/cdn/js/units.js
+index dca174a..5be6490 100644
+--- a/public/cdn/js/units.js
++++ b/public/cdn/js/units.js
+@@ -402,6 +402,25 @@ class units extends _Units {
+ 			ui.hide('#fleet-assignTactic-panel');
+ 			preventFleetHUDClosing = false;
+ 		});
++
++		document.getElementById('fleet-transferFuel-submit').addEventListener('click', () => {
++			const count = parseInt(document.getElementById('fleet-units-recycle-unitCount').value);
++
++			if(Number.isNaN(count) || count <= 0) { return; } //@TODO: check max
++
++			socket.emit('fleet-recycle', {
++				...webSockets.getUserData(),
++				fleetId: units.currRecycleFleet,
++				unitId: units.currRecycleUnit,
++				count,
++			});
++			ui.hide('#fleet-units-recycle-panel');
++			preventFleetHUDClosing = false;
++		});
++		document.getElementById('fleet-units-recycle-close').addEventListener('click', () => {
++			ui.hide('#fleet-units-recycle-panel');
++			preventFleetHUDClosing = false;
++		});
+ 	}
+ 
+ 	/**
+@@ -1585,7 +1604,7 @@ class units extends _Units {
+ 				content += '<img class="fleet-show-transferUnits" title="' + fleetTranslate['transferUnits'] + '" src="./cdn/img/ui/unit-transfer.svg">';
+ 			}
+ 
+-			if(type === 'orbit') {
++			if((type === 'orbit' || type === 'out') && fleet.ownerId === userData.id) {
+ 				content += '<img class="fleet-show-upgrade" title="' + fleetTranslate['upgrade'] + '" src="./cdn/img/ui/unit-upgrade.svg">' +
+ 						'<img class="fleet-show-recycle" title="' + fleetTranslate['recycle'] + '" src="./cdn/img/ui/unit-recycle.svg">';
+ 			}
+@@ -1762,6 +1781,24 @@ class units extends _Units {
+ 			preventFleetHUDClosing = true;
+ 		}));
+ 
++		Array.from(document.getElementsByClassName('fleet-show-recycle')).forEach((elt) => elt.addEventListener('click', () => {
++			if(preventFleetHUDClosing) { return; }
++
++			const fleetId = elt.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].id; // Yeah, that's ugly ...
++			const fleetNb = units.fleetList.map((fleet) => fleet.id).indexOf(fleetId);
++			if(fleetNb < 0) { return; }
++
++			units.currRecycleFleet = fleetId;
++			units.currRecycleUnit = elt.parentNode.parentNode.id;
++
++			document.getElementById('fleet-units-recycle-unitCount').value = '';
++
++			document.getElementById('fleet-units-recycle-name').innerText = elt.parentNode.parentNode.children[0].innerText;
++
++			ui.show('#fleet-units-recycle-panel');
++			preventFleetHUDClosing = true;
++		}));
++
+ 		Array.from(document.getElementsByClassName('fleet-show-assignTactic')).forEach((elt) => elt.addEventListener('click', function(event) {
+ 			if(preventFleetHUDClosing) { event.preventDefault(); }
+ 
+@@ -1799,10 +1836,6 @@ class units extends _Units {
+ 			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+ 		}));
+ 
+-		Array.from(document.getElementsByClassName('fleet-show-recycle')).forEach((elt) => elt.addEventListener('click', function(event) {
+-			ui.drawMessage(translate['messages']['DISABLED_FUNCTIONALIY']);
+-		}));
+-
+ 		const priorityElts = document.getElementsByClassName('priority-fleet');
+ 		for(let i=0; i<priorityElts.length; i++) {
+ 			priorityElts[i].addEventListener('click', function(e) {

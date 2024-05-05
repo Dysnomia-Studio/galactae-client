@@ -1,0 +1,22 @@
+diff --git a/public/cdn/js/calcConstants.js b/public/cdn/js/calcConstants.js
+index ec9ccbf..6597944 100644
+--- a/public/cdn/js/calcConstants.js
++++ b/public/cdn/js/calcConstants.js
+@@ -330,7 +330,7 @@ const buildingMaxLvl = [
+ 	25,	// Serres
+ 	30,	// Centrales Solaires
+ 	25,	// Entrepôts
+-	5,	// Etat Major
++	10,	// Etat Major
+ 	35,	// Centre de lancement
+ 	30,	// Centre de recherches
+ 	10,	// Radar
+@@ -650,7 +650,7 @@ const researchList = {
+ /**
+  * Units
+  */
+-const hqFleetCount = [2,5,9,14,20,0]; // Last entry to prevent bugs
++const hqFleetCount = [1,2,3,5,7,9,12,15,18,20,0]; // Last entry to prevent bugs
+ const shipResearchDependencies = {
+ 	// Satelites shapes
+ 	SHIP_SAT_AG1: 'wep_sat_ag1',

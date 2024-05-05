@@ -1,0 +1,62 @@
+diff --git a/lang/en/fleet.php b/lang/en/fleet.php
+index bd4cba8..52ced7e 100644
+--- a/lang/en/fleet.php
++++ b/lang/en/fleet.php
+@@ -83,6 +83,7 @@ const fleetTranslate = {
+ 	'SHIP_CUIRASSE_SMALL': 'Small',
+ 
+ 	'SHIP_COLONY': 'Colony ship',
++	'SHIP_COLONY_HEAVY': 'Heavy Colony ship',
+ 
+ 	'SHIP_FIGHTER': 'Fighter',
+ 	'SHIP_FIGHTER_SMALL': 'Light Interceptor',
+diff --git a/lang/fr/fleet.php b/lang/fr/fleet.php
+index 030df9d..23598e0 100644
+--- a/lang/fr/fleet.php
++++ b/lang/fr/fleet.php
+@@ -83,6 +83,7 @@ const fleetTranslate = {
+ 	'SHIP_CUIRASSE_SMALL': 'Petit',
+ 
+ 	'SHIP_COLONY': 'Vaisseau Colonial',
++	'SHIP_COLONY_HEAVY': 'Vaisseau Colonial Lourd',
+ 
+ 	'SHIP_FIGHTER': 'Chasseur',
+ 	'SHIP_FIGHTER_SMALL': 'Intercepteur Leger',
+diff --git a/public/cdn/js/calcConstants.js b/public/cdn/js/calcConstants.js
+index 06fa021..0051796 100644
+--- a/public/cdn/js/calcConstants.js
++++ b/public/cdn/js/calcConstants.js
+@@ -578,6 +578,7 @@ const shipResearchDependencies = {
+ 
+ 	// Colony ships
+ 	SHIP_COLONY: 'colony_ship',
++	SHIP_COLONY_HEAVY: 'heavy_colony_ship',
+ 
+ 	// Explosives
+ 	explosive: 'wep_mines',
+@@ -819,6 +820,17 @@ const shipShapesDetails = {
+ 			},
+ 			partCount: 5,
+ 		},
++		SHIP_COLONY_HEAVY: {
++			svg: [
++
++			],
++			content: {
++				sub_propulsion: ['ion','pplasma'],
++				sup_propulsion: ['vsl','wd','hyperespace'],
++				shield: ['none','magnetic','turret'],
++			},
++			partCount: 6,
++		},
+ 	}
+ };
+ 
+@@ -854,6 +866,7 @@ const shipCosts = { // [Al,Fe,Ti,Cu,Time,Population]
+ 	SHIP_CARRIER_MEDIUM: 		[510,420,190, 95,1.65,1200],
+ 	// Colony ship
+ 	SHIP_COLONY: 				[290,300,150, 80,   4, 500],
++	SHIP_COLONY_HEAVY:			[320,330,165, 90,   6, 700],
+ 
+ 	/**
+ 	 * Ship parts
