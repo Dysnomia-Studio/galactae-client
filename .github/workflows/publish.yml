@@ -7,19 +7,8 @@ permissions:
   contents: read
 
 jobs:
-  sonar:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
   build_tag:
     if: startsWith(github.event.ref, 'refs/tags/')
-    needs: sonar
   
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +29,6 @@ jobs:
   
   build_branch:
     if: ${{ (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/feature/')) && github.event_name == 'push' }}
-    needs: sonar
   
     runs-on: ubuntu-latest
     steps:
